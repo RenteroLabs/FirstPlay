@@ -18,7 +18,7 @@ const Home: NextPage = () => {
         </h1>
       </main>
     </div>
-  )
+  )  
 }
 
 export default Home
