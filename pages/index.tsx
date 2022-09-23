@@ -17,14 +17,23 @@ const Home: NextPage = () => {
         <div className={styles.headerBox}>
           <Image src="/logo.png" width="161" height="36" />
           <p className={styles.divider}></p>
-          <p className={styles.solgan}> Be the FIRST to play and earn.  </p>
+          <p className={styles.solgan}>Be the FIRST to play and earn.</p>
           <div className={styles.socialMedias}>
-            <Image src="/twitter logo.png" width="40" height="40" />
-            <Image src="/discord logo.png" width="40" height="40" />
-            <Image src="/telegram logo.png" width="40" height="40" />
+            <Image src="/twitter logo.png" layout='fill' objectFit='contain'/>
+            <Image src="/discord logo.png" layout='fill' objectFit='contain' />
+            <Image src="/telegram logo.png" layout='fill' objectFit='contain' />
           </div>
         </div>
         <div className={styles.introBox}>
+          <span className={styles.currency1}>
+            <Image src="/currency1.png" width="97" height="99" />
+          </span>
+          <span className={styles.currency2}>
+            <Image src="/currency2.png" width="76" height="61" />
+          </span>
+          <span className={styles.currency3}>
+            <Image src="/currency3.png" width="74" height="71" />
+          </span>
           <div className={styles.introduction}>
             <h3>First Play</h3>
             <p>A blockchain game platform</p>
@@ -33,14 +42,17 @@ const Home: NextPage = () => {
             <p>Be the FIRST to play and earn.</p>
           </div>
           <div className={styles.gamePlayImg}>
-            <Image src="/game material.png" width="616" height="616" />
+            <Image 
+              src="/game material.png" 
+              layout="fill" 
+              />
           </div>
         </div>
       </section>
 
       <section className={styles.featureBox}>
         <div className={styles.featureTitle}>
-          0 Barriers to <br />
+          0 Barriers to
           entry blockchain game
         </div>
         <div className={styles.featureList}>
