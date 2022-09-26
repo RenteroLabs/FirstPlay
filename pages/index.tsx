@@ -15,11 +15,13 @@ const Home: NextPage = () => {
       <section className={styles.main}>
         <div className={styles.topCover}></div>
         <div className={styles.headerBox}>
-          <Image src="/logo.png" width="161" height="36" />
+          <div className={styles.logoBox}>
+            <Image src="/logo.png" layout='fill' objectFit='contain' />
+          </div>
           <p className={styles.divider}></p>
           <p className={styles.solgan}>Be the FIRST to play and earn.</p>
           <div className={styles.socialMedias}>
-            <Image src="/twitter logo.png" layout='fill' objectFit='contain'/>
+            <Image src="/twitter logo.png" layout='fill' objectFit='contain' />
             <Image src="/discord logo.png" layout='fill' objectFit='contain' />
             <Image src="/telegram logo.png" layout='fill' objectFit='contain' />
           </div>
@@ -42,10 +44,10 @@ const Home: NextPage = () => {
             <p>Be the FIRST to play and earn.</p>
           </div>
           <div className={styles.gamePlayImg}>
-            <Image 
-              src="/game material.png" 
-              layout="fill" 
-              />
+            <Image
+              src="/game material.png"
+              layout="fill"
+            />
           </div>
         </div>
       </section>
