@@ -1,0 +1,102 @@
+.gameCard {
+  width: auto;
+  max-width: 27.15rem;
+  background: #ffffff;
+  border-radius: 1.33rem;
+
+  .gameImage {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    overflow: hidden;
+
+    img {
+      object-fit: cover;
+    }
+  }
+
+  .gameContent {
+    padding: 1.67rem 1.67rem 1.8rem;
+
+    .gameName {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      p {
+        font-size: 2rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #222222;
+        line-height: 2rem;
+      }
+      .chainIcon {
+        position: relative;
+        width: 1.67rem;
+        height: 1.67rem;
+      }
+    }
+
+    .gameTags {
+      margin: 1.17rem 0 1.67rem;
+
+      .gameTag {
+        border-radius: 1.5rem;
+        opacity: 0.3;
+        border: 0.04rem solid #222222;
+
+        font-size: 1rem;
+        font-family: Inter-Regular, Inter;
+        font-weight: 400;
+        color: #222222;
+        line-height: 1rem;
+        padding: 0.33rem 0.83rem;
+        & + .gameTag {
+          margin-left: 0.67rem;
+        }
+      }
+    }
+    .gameRewards {
+      font-size: 1.33rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #8e50e4;
+      line-height: 1.33rem;
+    }
+  }
+}
+
+
+
+
+@media screen  and (max-width: 1024px){
+  .gameCard {
+    .gameContent {
+      padding: 1.33rem 1rem 1.5rem;
+      .gameName {
+        p {
+          font-size: 1.75rem;
+          line-height: 1.75rem;
+        }
+        .chainIcon {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+      }
+      .gameTags {
+        margin: 0.83rem 0 1.33rem;
+        .gameTag {
+          padding: 0.33rem 0.58rem;
+
+          & + .gameTag {
+            margin-left: 0.33rem;
+          }
+        }
+      }
+      .gameRewards {
+        font-size: 1.17rem;
+        line-height: 1.17rem;
+      }
+    }
+  }
+  
+}

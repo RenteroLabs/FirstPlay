@@ -1,0 +1,79 @@
+.comingGames {
+  height: auto;
+  .comingGamesBox {
+    height: 100%;
+    width: 73%;
+    margin: auto;
+    padding-top: 6.75rem;
+
+    .cardList {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 3.33rem;
+
+      & > div {
+        width: calc((100% - 8rem) / 4);
+        margin-bottom: 2.67rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1650px) {
+  .comingGames {
+    .comingGamesBox {
+      width: 78%;
+      .cardList {
+        & > div {
+          width: calc((100% - 7rem) / 4);
+          margin-bottom: 2.3rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .comingGames {
+    .comingGamesBox {
+      width: 83.3%;
+      padding-top: 6.67rem;
+
+      .cardList {
+        & > div {
+          width: calc((100% - 6rem) / 4);
+          margin-bottom: 2rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .comingGames {
+
+    .comingGamesBox {
+      width: 89%;
+      padding-top: 5rem;
+      
+      .cardList {
+        margin-top: 2.5rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px){
+  .comingGames {
+
+    .comingGamesBox {
+      width: 92.2%;
+      padding-top: 5rem;
+      
+      .cardList {
+        margin-top: 2.5rem;
+      }
+    }
+  }
+}

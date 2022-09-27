@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="472px" height="250px" viewBox="0 0 472 250" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>椭圆形</title>
+    <defs>
+        <linearGradient x1="50%" y1="100%" x2="50%" y2="6.16297582e-31%" id="linearGradient-1">
+            <stop stop-color="#F82757" offset="0%"></stop>
+            <stop stop-color="#984CEC" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-24.4%" y="-30.1%" width="148.9%" height="160.2%" filterUnits="objectBoundingBox" id="filter-2">
+            <feGaussianBlur stdDeviation="50" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.253111374">
+        <g id="1-1首页-新用户" transform="translate(0.000000, -4947.000000)" fill="url(#linearGradient-1)" stroke="#979797">
+            <g id="底部背景色" transform="translate(0.000000, 4947.267549)">
+                <ellipse id="椭圆形" filter="url(#filter-2)" cx="41" cy="-22.9624351" rx="308" ry="250.196078"></ellipse>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,33 @@
+.coverBox {
+  position: relative;
+  height: 50rem;
+}
+
+.contactUs {
+  height: 17.5rem;
+  background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  h3 {
+    font-size: 4rem;
+    font-family: Inter-Bold, Inter;
+    font-weight: bold;
+    color: #ffffff;
+    line-height: 4rem;
+    margin-bottom: 1.67rem;
+  }
+  p {
+    font-size: 1.75rem;
+    font-family: Inter-Regular, Inter;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1.75rem;
+  }
+}
+
+.mainBox {
+  min-height: 200px;
+  background-color: #f4f4f9;
+}

@@ -1,0 +1,22 @@
+.sectionTitleBox {
+  display: flex;
+  justify-content: flex-start;
+  .emphasize {
+    font-size: 3rem;
+    font-family: Montserrat-Black, Montserrat;
+    font-weight: 900;
+    color: #222222;
+    line-height: 3rem;
+    background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .normal {
+    font-size: 3rem;
+    font-family: Montserrat-Black, Montserrat;
+    font-weight: 900;
+    color: #222222;
+    line-height: 3rem;
+  }
+}
