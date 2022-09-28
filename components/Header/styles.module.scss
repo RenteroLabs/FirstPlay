@@ -26,5 +26,117 @@
       color: #222222;
       line-height: 1.5rem;
     }
+
+    .headerSetting {
+      margin-left: 2.42rem;
+      height: 100%;
+      align-items: center;
+      display: flex;
+
+      & > div {
+        cursor: pointer;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 1.66rem;
+
+        .headerNavImage {
+          width: 3.67rem;
+          height: 3.67rem;
+          position: relative;
+        }
+      }
+    }
+  }
+}
+
+.walletMenuBox {
+  .addressItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.67rem;
+    p {
+      font-size: 1.5rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #222222;
+      line-height: 1.5rem;
+    }
+    & > div {
+      position: relative;
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+  .divider {
+    height: 0.08rem;
+    opacity: 0.1;
+    border: 0.08rem solid #222222;
+    margin: 0 auto 0.5rem;
+  }
+  .menuItem {
+    font-size: 1.5rem;
+    font-family: Inter-Medium, Inter;
+    font-weight: 500;
+    color: #222222;
+    line-height: 1.5rem;
+    padding: 1rem 0;
+
+    display: flex;
+    align-items: center;
+
+    & > div {
+      position: relative;
+      width: 2rem;
+      height: 2rem;
+      margin-right: 1rem;
+    }
+  }
+}
+
+.walletNav {
+  position: relative;
+  cursor: pointer;
+  height: 100%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+
+  .walletMenuBox {
+    display: none;
+
+    .networkHeader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.67rem;
+
+      p {
+        flex-grow: 1;
+        text-align: center;
+        font-size: 1.33rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: rgba($color: #222222, $alpha: 0.5);
+        line-height: 1.33rem;
+        cursor: default;
+      }
+    }
+  }
+
+  &:hover {
+    .walletMenuBox {
+      display: block;
+      position: absolute;
+      top: 66px;
+      right: -100%;
+      width: 22.58rem;
+      background: #ffffff;
+      border-radius: 1rem;
+      padding: 2rem 1.67rem 1.5rem;
+      z-index: 1010;
+    }
   }
 }

@@ -1,0 +1,83 @@
+import React, { useEffect, useMemo, useState } from 'react'
+import { Alert, Box, CircularProgress, Dialog, DialogTitle, Drawer, IconButton, Typography, useMediaQuery } from '@mui/material'
+import ArrowRightAltRoundedIcon from '@mui/icons-material/ArrowRightAltRounded';
+import CloseIcon from '@mui/icons-material/Close';
+import styles from './style.module.scss'
+import { Connector, useConnect } from 'wagmi';
+
+interface ConnectWalletProps {
+  showConnect: boolean;
+  setShowConnect: (show: boolean) => any;
+  callback?: () => any;
+}
+
+const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
+  const { showConnect, setShowConnect, callback = () => { } } = props
+
+  const { connect, connectors, error, isLoading, pendingConnector } = useConnect({
+    onSuccess() {
+      setShowConnect(false)
+      callback()
+    }
+  })
+
+  const [MetaMaskConnector, WalletConnectConnector] = connectors
+
+  const [MetaMaskConnecting, WalletConnectConnecting] = useMemo(() => {
+    if (!isLoading) return [false, false]
+
+    return [
+      MetaMaskConnector.id === pendingConnector?.id,
+      WalletConnectConnector.id === pendingConnector?.id
+    ]
+  }, [isLoading, pendingConnector])
+
+  const handleConnect = async (selectedConnector: Connector) => {
+    if (isLoading && pendingConnector?.id === selectedConnector.id) {
+      return
+    }
+    await connect({ connector: selectedConnector })
+  }
+
+  return <Dialog open={showConnect} className={styles.container} >
+    <DialogTitle className={styles.dialogTitle} >
+      Choose a wallet
+      <IconButton
+        aria-label="close"
+        onClick={() => setShowConnect(false)}
+        sx={{
+          position: 'absolute', right: 8, top: "2rem", color: (theme) => theme.palette.grey[500],
+        }}
+      >
+        <CloseIcon />
+      </IconButton>
+    </DialogTitle>
+    <div className={styles.dialogContent}>
+      <Box className={styles.walletList}>
+        {error &&
+          <Alert severity="error" sx={{ display: 'flex', alignItems: 'center' }}>
+            {error.message}
+          </Alert>}
+        <Box className={styles.walletItem}>
+          <div
+            onClick={() => handleConnect(connectors[0])}>
+            <span className={styles.itemMetamaskLogo}></span>
+            <p>MetaMask</p>
+            {MetaMaskConnecting ? <CircularProgress /> : <ArrowRightAltRoundedIcon />}
+          </div>
+        </Box>
+
+        <Box className={styles.walletItem}>
+          <div
+            onClick={() => handleConnect(WalletConnectConnector)}>
+            <span className={styles.itemWalletConnectLogo}></span>
+            <p>WalletConnect</p>
+            {WalletConnectConnecting ? <CircularProgress /> : <ArrowRightAltRoundedIcon />}
+          </div>
+        </Box>
+      </Box>
+    </div>
+  </Dialog>
+}
+
+export default ConnectWallet

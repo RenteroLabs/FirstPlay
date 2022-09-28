@@ -5,6 +5,8 @@ const BNB_ICON = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAB5
 
 export const CHAIN_ICON_MAP: Record<number, string> = {
   1: ETHEREUM_ICON,
+  4: ETHEREUM_ICON,
   56: BNB_ICON,
+  97: BNB_ICON,
   137: '/polygon-matic-logo.svg',
 }
