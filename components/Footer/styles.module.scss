@@ -24,7 +24,7 @@
   }
   .footerBox {
     height: 100%;
-    width: 73%;
+    width: 78.2%;
     margin: auto;
     display: flex;
     justify-content: space-between;
@@ -82,6 +82,54 @@
   .footerBox div {
     & + div {
       margin-left: 7.5rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1650px) {
+  .footer {
+    .footerBox {
+      width: 78%;
+      .cardList {
+        & > div {
+          width: calc((100% - 7rem) / 4);
+          margin-bottom: 2.3rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .footer {
+    &::before {
+      width: 32%;
+    }
+    .footerBox {
+      width: 83.3%;
+    }
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .footer {
+    &::before {
+      width: 38%;
+    }
+    .footerBox {
+      width: 89%;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .footer {
+    &::before {
+      width: 45%;
+    }
+    height: 17.49rem;
+    .footerBox {
+      width: 92.2%;
     }
   }
 }

@@ -21,6 +21,9 @@ const HotGames: React.FC = () => {
         <GameCard />
         <GameCard />
         <GameCard />
+        <GameCard />
+        <GameCard />
+        <GameCard />
       </Box>
     </Box>
   </Box>

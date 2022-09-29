@@ -4,6 +4,7 @@
   position: fixed;
   width: 100%;
   z-index: 1000;
+  box-shadow: rgb(229, 232, 235) 0px 1px 0px 0px;
 
   .headerBox {
     width: 83.33%;
@@ -25,6 +26,11 @@
       font-weight: 600;
       color: #222222;
       line-height: 1.5rem;
+      & > div {
+        & + div {
+          margin-left: 4.17rem;
+        }
+      }
     }
 
     .headerSetting {
@@ -39,7 +45,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0 1.66rem;
+        padding: 0 1.25rem;
 
         .headerNavImage {
           width: 3.67rem;
@@ -104,8 +110,33 @@
   display: flex;
   align-items: center;
 
+  @-webkit-keyframes slide-bottom {
+    0% {
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+    }
+    100% {
+      -webkit-transform: translateY(100px);
+      transform: translateY(100px);
+    }
+  }
+  @keyframes slide-bottom {
+    0% {
+      -webkit-transform: translateY(-10px);
+      transform: translateY(-10px);
+    }
+    100% {
+      -webkit-transform: translateY(0px);
+      transform: translateY(0px);
+    }
+  }
+
   .walletMenuBox {
     display: none;
+
+    -webkit-animation: slide-bottom 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      both;
+    animation: slide-bottom 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 
     .networkHeader {
       display: flex;
@@ -137,6 +168,68 @@
       border-radius: 1rem;
       padding: 2rem 1.67rem 1.5rem;
       z-index: 1010;
+    }
+  }
+}
+
+
+@media screen and (max-width: 1024px){
+  .header {
+    height: 6rem;
+  }
+}
+
+
+
+@media screen and (max-width: 1650px) {
+  .header {
+    .headerBox {
+      width: 78%;
+     
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .header {
+
+    .headerBox {
+      width: 83.3%;
+    }
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .header {
+
+    .headerBox {
+      width: 89%;
+    
+    }
+  }
+}
+
+@media screen and (max-width: 1024px){
+  .header {
+    .headerBox {
+      width: 92.2%;
+
+      .headerLogo {
+        width: 11.67rem;
+        height: 2.67rem;
+      }
+      .headerNavs {
+        & > div {
+          & + div {
+            margin-left: 3.33rem;
+          }
+        }
+      }
+      .headerSetting {
+        & > div {
+          padding: 0 0.88rem;
+        }
+      }
     }
   }
 }

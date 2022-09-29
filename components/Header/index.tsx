@@ -1,4 +1,4 @@
-import { Box, Button, MenuItem, Stack, Typography } from '@mui/material'
+import { Box, Button, MenuItem, Stack, Typography, Slide } from '@mui/material'
 import styles from './styles.module.scss'
 import Image from 'next/image'
 import ConnectWallet from '../ConnectWallet'
@@ -11,11 +11,12 @@ import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutl
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import { SUPPORT_CHAINS } from 'constants/index'
 import { CHAIN_ICON_MAP } from 'constants/static'
+import { useIsMounted } from 'hooks/useIsMounted'
 
 const Header: React.FC = () => {
   const [showConnect, setShowConnect] = useState<boolean>(false)
-
   const [walletMenu, setWalletMenu] = useState<boolean>(false)
+  const isMounted = useIsMounted()
 
   const { address } = useAccount()
   const { chain } = useNetwork()
@@ -23,13 +24,6 @@ const Header: React.FC = () => {
   const { disconnect } = useDisconnect()
 
   const [showChangeNetwork, setShowChangeNetwork] = useState<boolean>(false)
-
-  const handleConnectWallet = () => {
-    // setWalletMenu(!walletMenu)
-    // if (!address) {
-    //   setShowConnect(true)
-    // }
-  }
 
   const chooseSwitchNetwork = (id: number | undefined) => {
     if ((chain?.id !== id || pendingChainId !== id) && switchNetwork) {
@@ -44,7 +38,7 @@ const Header: React.FC = () => {
         <Image src="/headerLogo.png" alt="header logo" layout='fill' objectFit='contain' />
       </Box>
       <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-        <Stack direction="row" className={styles.headerNavs} spacing="4.17rem">
+        <Stack direction="row" className={styles.headerNavs} >
           <Box>Games</Box>
           <Box>Strategy</Box>
           <Box>
@@ -64,11 +58,8 @@ const Header: React.FC = () => {
           </Box>
 
           {
-            !address ?
-              <Button variant="contained" onClick={() => setShowConnect(true)}>
-                Connect Wallet
-              </Button>
-              : <Box
+            address && isMounted ?
+              <Box
                 className={styles.walletNav}
                 onMouseEnter={() => {
                   if (address) {
@@ -153,12 +144,14 @@ const Header: React.FC = () => {
                     </Box>}
                 </Box>
               </Box>
+              :
+              <Button variant="contained" onClick={() => setShowConnect(true)}>
+                Connect Wallet
+              </Button>
           }
-
         </Box>
       </Box>
     </Box>
-
     <ConnectWallet showConnect={showConnect} setShowConnect={setShowConnect} />
   </Box>
 }

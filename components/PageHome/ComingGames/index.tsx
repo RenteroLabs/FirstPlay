@@ -13,6 +13,7 @@ const ComingGames: React.FC = (props) => {
         <GameCard />
         <GameCard />
         <GameCard />
+        <GameCard />
       </Box>
     </Box>
   </Box>

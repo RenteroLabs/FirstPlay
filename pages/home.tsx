@@ -12,7 +12,7 @@ const FirstPlay: NextPage = () => {
 
   return <Box>
     <Box className={styles.coverBox}>
-      <Image src="/headerCover1.png" alt="cover image" layout="fill" objectFit="contain" />
+      <Image src="/headerCover1.png" alt="cover image" layout="fill" objectFit="cover" />
     </Box>
     <GudeStep />
 

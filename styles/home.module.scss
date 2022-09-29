@@ -1,6 +1,11 @@
 .coverBox {
   position: relative;
-  height: 50rem;
+  height: 31.25vw;
+  max-height: 45.83rem;
+  object-fit: cover;
+  // img {
+  //   object-fit: contain !important;
+  // }
 }
 
 .contactUs {
@@ -30,4 +35,37 @@
 .mainBox {
   min-height: 200px;
   background-color: #f4f4f9;
+}
+
+@media screen and (min-width: 1921px) {
+  .coverBox {
+    background-size: cover;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  // .coverBox {
+  //   height: 45vw;
+  // }
+}
+
+@media screen and (max-width: 1024px) {
+  .contactUs {
+    height: 14.5rem;
+    h3 {
+      font-size: 3.33rem;
+      font-family: Inter-Bold, Inter;
+      font-weight: bold;
+      color: #ffffff;
+      line-height: 3.33rem;
+      margin-bottom: 1.33rem;
+    }
+    p {
+      font-size: 1.5rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #ffffff;
+      line-height: 1.5rem;
+    }
+  }
 }
