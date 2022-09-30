@@ -1,20 +1,22 @@
 .walletList {
-  background: #1a1a46;
-  padding: 3.33rem;
+  padding: 0 3.33rem 3.33rem;
 }
 
 .walletItem {
-  width: 40rem;
+  // width: 40rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.67rem;
-  font-family: Poppins-SemiBold, Poppins;
+  font-size: 1.75rem;
+  font-family: Inter-SemiBold, Inter;
   font-weight: 600;
-  color: #fcfcfd;
-  line-height: 2.33rem;
-  background: #25254f;
-  border-radius: 1.67rem;
+  color: #222222;
+  line-height: 2rem;
+
+  background: #ffffff;
+  border-radius: 1rem;
+  border: 0.08rem solid rgba(34, 34, 34, 0.2);
+  padding: 1.33rem 1.67rem;
   cursor: pointer;
   position: relative;
   z-index: 1;
@@ -25,37 +27,25 @@
       height: 1.67rem;
     }
   }
-
-  &:hover {
-    background: linear-gradient(
-      270deg,
-      rgba(183, 33, 255, 1),
-      rgba(90, 220, 254, 1)
-    );
+  p {
+    flex-grow: 1;
+    text-align: left;
+    margin: 0;
+    margin-left: 1.67rem;
+    font-size: 1.75rem;
+    font-family: Inter-SemiBold, Inter;
+    font-weight: 600;
+    color: #222222;
+    line-height: 2rem;
   }
 
-  div {
-    width: 39.5rem;
-    padding: 2rem 2rem;
-    border-radius: 1.5rem;
-    margin: 0.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #25254f;
-    position: relative;
-    z-index: 10;
-    p {
-      flex-grow: 1;
-      text-align: left;
-      margin: 0;
-      margin-left: 1rem;
-    }
+  &:hover {
+    box-shadow: 0 0 1px 3px rgba($color: #eee, $alpha: 0.8);
   }
 }
 
 .walletItem + .walletItem {
-  margin-top: 2rem;
+  margin-top: 1.67rem;
 }
 
 .walletItem {
@@ -79,63 +69,71 @@
   :global {
     .MuiPaper-root {
       background: transparent;
-      width: auto;
+      width: 40rem;
       max-width: none;
     }
   }
   .dialogTitle {
     width: 100%;
-    background: #272750;
-    border-radius: 1.67rem 1.67rem 0rem 0rem;
-    font-size: 2rem;
-    font-family: Poppins-SemiBold, Poppins;
-    font-weight: 600;
-    color: #ffffff;
-    line-height: 2.67rem;
-    text-align: center;
-    padding: 2rem 0;
+    background: white;
+    border-radius: 1rem 1rem 0rem 0rem;
+    font-size: 2.5rem;
+    font-family: Inter-Bold, Inter;
+    font-weight: bold;
+    color: #222222;
+    line-height: 2.5rem;
+    padding: 3.33rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   .dialogContent {
-    border-radius: 0rem 0rem 1.67rem 1.67rem;
-    background-color: #1a1a46;
-    overflow: hidden;
+    border-radius: 0rem 0rem 1rem 1rem;
+    background-color: white;
+    // overflow: hidden;
   }
 }
 
-.drawerWalletBox {
-  padding: 1rem 2rem;
-  padding-top: 9rem;
-  width: 100%;
+@media screen and (max-width: 600px) {
+  .container {
+    :global {
+      .MuiPaper-root {
+        width: 100%;
+        margin: auto 2rem;
+      }
+    }
 
-  h3 {
-    font-size: 1.6rem;
-    font-family: MonumentExtended-Black, MonumentExtended;
-    font-weight: 900;
-    color: #ffffff;
-    line-height: 3.33rem;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 2rem;
-  }
-  .walletItem {
-    @extend .walletItem;
-    width: 100%;
+    .dialogTitle {
+      font-size: 1.75rem;
+      font-family: Inter-Bold, Inter;
+      font-weight: bold;
+      color: #222222;
+      line-height: 1.75rem;
+      padding: 3rem 2rem 2rem;
+    }
+    .dialogContent {
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #222222;
+      .walletItem {
+        padding: 1rem 1.17rem;
 
-    div {
-      width: calc(100% - 0.5rem);
+        p {
+          font-size: 16px;
+          line-height: 16px;
+        }
+
+        .logoBase {
+          width: 3rem;
+          height: 3rem;
+          background-size: 100% 100%;
+        }
+      }
     }
   }
-}
 
-.triggerBox {
-  width: 100%;
-  padding: 0 !important;
-}
-
-.drawer {
-  :global {
-    .MuiPaper-root {
-      background-image: none;
-    }
+  .walletList {
+    padding: 0 2rem 3rem;
   }
 }

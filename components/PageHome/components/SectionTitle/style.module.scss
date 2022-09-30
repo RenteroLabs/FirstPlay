@@ -21,11 +21,22 @@
   }
 }
 
-@media screen and (max-width: 1024px){
+@media screen and (max-width: 1024px) {
   .sectionTitleBox {
-    .emphasize, .normal {
+    .emphasize,
+    .normal {
       font-size: 2.5rem;
       line-height: 2.5rem;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .sectionTitleBox {
+    .emphasize,
+    .normal {
+      font-size: 2rem;
+      line-height: 2rem;
     }
   }
 }

@@ -7,6 +7,7 @@ import ComingGames from "@/components/PageHome/ComingGames";
 import Support from "@/components/PageHome/Support";
 import GameStrategy from "@/components/PageHome/GameStrategy";
 import GudeStep from "@/components/PageHome/GuideStep";
+import TrialGame from "@/components/PageHome/TrialingGame";
 
 const FirstPlay: NextPage = () => {
 
@@ -14,7 +15,8 @@ const FirstPlay: NextPage = () => {
     <Box className={styles.coverBox}>
       <Image src="/headerCover1.png" alt="cover image" layout="fill" objectFit="cover" />
     </Box>
-    <GudeStep />
+    {/* <GudeStep /> */}
+    <TrialGame />
 
     <Box className={styles.mainBox}>
       <HotGames />
@@ -24,7 +26,7 @@ const FirstPlay: NextPage = () => {
     </Box>
     <Box className={styles.contactUs}>
       <Typography variant="h3">Contact Us</Typography>
-      <Typography>Please feel free to contact us via support@rentero.io  for more support.</Typography>
+      <Typography>Please feel free to contact us via <a target="__blank" href="mailto:business@firstplay.io"><span>business@firstplay.io</span></a> for more support.</Typography>
     </Box>
   </Box>
 }

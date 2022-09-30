@@ -2,16 +2,16 @@ import { Box } from '@mui/material'
 import styles from './style.module.scss'
 
 interface SectionTitleProps {
-  emphasize: string
   normal: string
+  emphasize?: string
   sort?: 'first' | 'last'
 }
 
 const SectionTitle: React.FC<SectionTitleProps> = (props) => {
   const { emphasize, normal, sort = 'first' } = props
 
-  const emphasizeStr = <Box className={styles.emphasize}>{emphasize}</Box>
   const normalStr = <Box className={styles.normal}>{normal}</Box>
+  const emphasizeStr = emphasize && <Box className={styles.emphasize}>{emphasize}</Box>
 
   return <Box className={styles.sectionTitleBox}>
     {

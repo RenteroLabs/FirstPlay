@@ -1,8 +1,8 @@
-import { Box, Button, MenuItem, Stack, Typography, Slide } from '@mui/material'
+import { Box, Button, MenuItem, Stack, Typography, Slide, useMediaQuery, Drawer } from '@mui/material'
 import styles from './styles.module.scss'
 import Image from 'next/image'
 import ConnectWallet from '../ConnectWallet'
-import { useRef, useState, useMemo } from 'react'
+import { useState, useMemo } from 'react'
 import { useAccount, useDisconnect, useNetwork, useSwitchNetwork } from 'wagmi'
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import { formatAddress } from 'util/format'
@@ -12,18 +12,26 @@ import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutl
 import { SUPPORT_CHAINS } from 'constants/index'
 import { CHAIN_ICON_MAP } from 'constants/static'
 import { useIsMounted } from 'hooks/useIsMounted'
+import classNames from 'classnames/bind'
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
-const Header: React.FC = () => {
-  const [showConnect, setShowConnect] = useState<boolean>(false)
-  const [walletMenu, setWalletMenu] = useState<boolean>(false)
-  const isMounted = useIsMounted()
+const cx = classNames.bind(styles)
 
+interface HeaderUserInfoProps {
+  closeCallback: () => any
+  connectWallet?: () => any
+}
+const HeaderUserInfo: React.FC<HeaderUserInfoProps> = (props) => {
+  const { closeCallback, connectWallet } = props
+
+  const isMobileHeaderNav = useMediaQuery('(max-width: 920px)')
+
+  const [showChangeNetwork, setShowChangeNetwork] = useState<boolean>(false)
   const { address } = useAccount()
   const { chain } = useNetwork()
   const { pendingChainId, switchNetwork } = useSwitchNetwork()
   const { disconnect } = useDisconnect()
-
-  const [showChangeNetwork, setShowChangeNetwork] = useState<boolean>(false)
 
   const chooseSwitchNetwork = (id: number | undefined) => {
     if ((chain?.id !== id || pendingChainId !== id) && switchNetwork) {
@@ -32,12 +40,120 @@ const Header: React.FC = () => {
     setShowChangeNetwork(false)
   }
 
+  return <Box className={cx({ walletMenuBox: true })} >
+    {
+      showChangeNetwork ?
+        <Box>
+          <Box className={styles.networkHeader}>
+            <ArrowBackIosNewOutlinedIcon
+              sx={{ cursor: 'pointer', color: 'black' }}
+              onClick={() => setShowChangeNetwork(false)} />
+            <Typography >Switch Network</Typography>
+          </Box>
+          <Box className={styles.divider}></Box>
+          {
+            SUPPORT_CHAINS.map(item => {
+              return <MenuItem
+                key={item.id}
+                onClick={() => chooseSwitchNetwork(item.id)}
+                className={styles.menuItem}
+              >
+                <Box>
+                  <Image src={CHAIN_ICON_MAP[item.id]} layout='fill' objectFit='contain' />
+                </Box>
+                <span>{item.name}</span>
+              </MenuItem>
+            })
+          }
+        </Box> :
+        <Box>
+          {
+            address &&
+            <>
+              <Box className={styles.addressItem} >
+                <Typography>{formatAddress(address, 4)}</Typography>
+                <Box sx={{ cursor: 'pointer' }} onClick={() => {
+                  disconnect()
+                  closeCallback()
+                }}>
+                  <Image src="/header_exit.png" layout='fill' objectFit='contain' />
+                </Box>
+              </Box>
+              <Box className={styles.divider}></Box>
+              <MenuItem className={styles.menuItem} disableRipple>
+                <Box>
+                  <Image src="/header_menu_wallet.png" layout='fill' objectFit='contain' />
+                </Box>
+                Items
+              </MenuItem>
+              <MenuItem className={styles.menuItem} sx={{ marginBottom: '0.5rem' }} disableRipple>
+                <Box>
+                  <Image src="/header_menu_wallet.png" layout='fill' objectFit='contain' />
+                </Box>
+                Activity
+              </MenuItem>
+              <Box className={styles.divider}></Box>
+              {chain && address &&
+                <MenuItem
+                  className={styles.menuItem}
+                  onClick={() => {
+                    setShowChangeNetwork(true)
+                  }}>
+                  <Box>
+                    <Image src={CHAIN_ICON_MAP[chain?.id]} layout='fill' objectFit='contain' />
+                  </Box>
+                  <Box
+                    sx={{ display: 'flex', flexGrow: '1', alignItems: 'center', justifyContent: 'space-between' }}>
+                    {chain?.name}
+                    <ArrowForwardIosOutlinedIcon />
+                  </Box>
+                </MenuItem>}
+
+            </>
+          }
+          {
+            isMobileHeaderNav &&
+            <>
+              {address && <Box className={styles.divider} />}
+              <MenuItem className={styles.menuItem} disableRipple>
+                Games
+              </MenuItem>
+              <MenuItem className={styles.menuItem} disableRipple>
+                Strategy
+              </MenuItem>
+              <MenuItem className={styles.menuItem} disableRipple>
+                Guide
+              </MenuItem>
+              <MenuItem className={styles.menuItem} disableRipple>
+                Contact
+              </MenuItem>
+            </>
+          }
+
+          {!address && <Box
+            className={styles.userInfoConnect}
+            onClick={() => { if (connectWallet) connectWallet() }}
+          >Connect Wallet</Box>}
+        </Box>
+    }
+  </Box>
+}
+
+const Header: React.FC = () => {
+  const [showConnect, setShowConnect] = useState<boolean>(false)
+  const [walletMenu, setWalletMenu] = useState<boolean>(false)
+  const isMounted = useIsMounted()
+  const isMobileHeaderNav = useMediaQuery('(max-width: 920px)')
+  const [mobileDrawer, setMobileDrawer] = useState<boolean>(false)
+
+  const { address } = useAccount()
+
   return <Box className={styles.header}>
     <Box className={styles.headerBox}>
       <Box className={styles.headerLogo}>
         <Image src="/headerLogo.png" alt="header logo" layout='fill' objectFit='contain' />
       </Box>
-      <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+      {!isMobileHeaderNav && <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
         <Stack direction="row" className={styles.headerNavs} >
           <Box>Games</Box>
           <Box>Strategy</Box>
@@ -61,98 +177,39 @@ const Header: React.FC = () => {
             address && isMounted ?
               <Box
                 className={styles.walletNav}
-                onMouseEnter={() => {
-                  if (address) {
-                    setWalletMenu(true)
-                  }
-                }}>
+                onMouseEnter={() => { if (address) { setWalletMenu(true) } }}
+                onMouseLeave={() => setWalletMenu(false)}
+              >
                 <Box className={styles.headerNavImage} >
                   <Image src="/header_wallet.png" layout="fill" objectFit='contain' />
-                  {walletMenu &&
-                    <Box className={styles.walletMenuBox} >
-                      {
-                        showChangeNetwork ?
-                          <Box>
-                            <Box className={styles.networkHeader}>
-                              <ArrowBackIosNewOutlinedIcon
-                                sx={{ cursor: 'pointer', color: 'black' }}
-                                onClick={() => setShowChangeNetwork(false)} />
-                              <Typography >Switch Network</Typography>
-                            </Box>
-                            <Box className={styles.divider}></Box>
-                            {
-                              SUPPORT_CHAINS.map(item => {
-                                return <MenuItem
-                                  key={item.id}
-                                  onClick={() => chooseSwitchNetwork(item.id)}
-                                  className={styles.menuItem}
-                                >
-                                  <Box>
-                                    <Image src={CHAIN_ICON_MAP[item.id]} layout='fill' objectFit='contain' />
-                                  </Box>
-                                  <span>{item.name}</span>
-                                </MenuItem>
-                              })
-                            }
-                          </Box> :
-                          <Box>
-                            <Box className={styles.addressItem} >
-                              <Typography>{formatAddress(address, 4)}</Typography>
-                              <Box sx={{ cursor: 'pointer' }} onClick={() => {
-                                disconnect()
-                                setWalletMenu(false)
-                              }}>
-                                <Image src="/header_exit.png" layout='fill' objectFit='contain' />
-                              </Box>
-                            </Box>
-                            <Box className={styles.divider}></Box>
-                            <MenuItem
-                              className={styles.menuItem}
-                              disableRipple>
-                              <Box>
-                                <Image src="/header_menu_wallet.png" layout='fill' objectFit='contain' />
-                              </Box>
-                              Items
-                            </MenuItem>
-                            <MenuItem
-                              className={styles.menuItem}
-                              sx={{ marginBottom: '0.5rem' }}
-                              disableRipple>
-                              <Box>
-                                <Image src="/header_menu_wallet.png" layout='fill' objectFit='contain' />
-                              </Box>
-                              Activity
-                            </MenuItem>
-                            <Box className={styles.divider}></Box>
-                            {chain &&
-                              <MenuItem
-                                className={styles.menuItem}
-                                onClick={() => {
-                                  setShowChangeNetwork(true)
-                                }}>
-                                <Box>
-                                  <Image src={CHAIN_ICON_MAP[chain?.id]} layout='fill' objectFit='contain' />
-                                </Box>
-                                <Box
-                                  sx={{ display: 'flex', flexGrow: '1', alignItems: 'center', justifyContent: 'space-between' }}>
-                                  {chain?.name}
-                                  <ArrowForwardIosOutlinedIcon />
-                                </Box>
-                              </MenuItem>}
-                          </Box>
-                      }
-                    </Box>}
+                  {walletMenu && <HeaderUserInfo closeCallback={() => setWalletMenu(false)} />}
                 </Box>
               </Box>
               :
-              <Button variant="contained" onClick={() => setShowConnect(true)}>
+              <Box className={styles.connectBtn} onClick={() => setShowConnect(true)}>
                 Connect Wallet
-              </Button>
+              </Box>
           }
+
         </Box>
-      </Box>
+      </Box>}
+
+      {isMobileHeaderNav && <Box className={styles.mobileMenuIcon} onClick={() => setMobileDrawer(!mobileDrawer)}>
+        {mobileDrawer ? <CloseIcon /> : <MenuIcon />}
+      </Box>}
     </Box>
+
     <ConnectWallet showConnect={showConnect} setShowConnect={setShowConnect} />
+
+    <Drawer
+      anchor='right'
+      open={mobileDrawer && isMobileHeaderNav}
+      onClose={() => setMobileDrawer(false)}
+    >
+      <Box className={styles.drawer}>
+        <HeaderUserInfo closeCallback={() => setMobileDrawer(false)} connectWallet={() => setShowConnect(true)} />
+      </Box>
+    </Drawer>
   </Box>
 }
 

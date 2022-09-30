@@ -73,3 +73,18 @@
     }
   }
 }
+
+@media screen and (max-width: 800px){
+  .gameStrategy {
+    .gameStrategyBox {
+      width: 91.5%;
+      .cardList {
+        flex-direction: column;
+        margin-top: 1.67rem;
+        & > div {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

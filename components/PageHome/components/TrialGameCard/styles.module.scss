@@ -1,0 +1,80 @@
+.trialGameCard {
+  background: #f4f4f4;
+  border-radius: 1rem;
+  padding: 1.67rem;
+
+  display: flex;
+  justify-content: space-between;
+
+  .gameCover {
+    position: relative;
+    width: 10.33rem;
+    height: 10.33rem;
+    img {
+      border-radius: 1rem;
+    }
+  }
+
+  .gameInfo {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin: 0 2.5rem;
+
+    h3 {
+      font-size: 2rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #222222;
+      line-height: 2rem;
+      margin-top: 0.83rem;
+    }
+    .gameReward {
+      font-size: 1.5rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #8e50e4;
+      line-height: 1.5rem;
+      margin-top: 2.42rem;
+      margin-bottom: 1.58rem;
+    }
+    .timeleft {
+      font-size: 1.33rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #222222;
+      line-height: 1.33rem;
+    }
+  }
+
+  .btnList {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .guideBtn {
+      font-size: 1.33rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #222222;
+      line-height: 1.33rem;
+
+      border-radius: 1.83rem;
+      border: 0.08rem solid rgba(34, 34, 34, 0.2);
+      padding: 1.17rem 3rem;
+      cursor: pointer;
+    }
+    .playBtn {
+      font-size: 1.33rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.33rem;
+
+      padding: 1.17rem 3.33rem;
+      background: linear-gradient(270deg, #f82757 0%, #984cec 100%);
+      border-radius: 1.83rem;
+      margin-left: 1.67rem;
+      cursor: pointer;
+    }
+  }
+}

@@ -133,3 +133,17 @@
     }
   }
 }
+
+@media screen and (max-width: 600px){
+  .footer {
+    height: auto;
+    &::before {
+      background: none;
+    }
+
+    .footerBox {
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+  }
+}

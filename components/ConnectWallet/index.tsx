@@ -41,13 +41,13 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
 
   return <Dialog open={showConnect} className={styles.container} >
     <DialogTitle className={styles.dialogTitle} >
-      Choose a wallet
+      Connect Wallet
       <IconButton
         aria-label="close"
         onClick={() => setShowConnect(false)}
-        sx={{
-          position: 'absolute', right: 8, top: "2rem", color: (theme) => theme.palette.grey[500],
-        }}
+        // sx={{
+        //   position: 'absolute', right: 8, top: "2rem", color: (theme) => theme.palette.grey[500],
+        // }}
       >
         <CloseIcon />
       </IconButton>
@@ -58,22 +58,16 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
           <Alert severity="error" sx={{ display: 'flex', alignItems: 'center' }}>
             {error.message}
           </Alert>}
-        <Box className={styles.walletItem}>
-          <div
-            onClick={() => handleConnect(connectors[0])}>
-            <span className={styles.itemMetamaskLogo}></span>
-            <p>MetaMask</p>
-            {MetaMaskConnecting ? <CircularProgress /> : <ArrowRightAltRoundedIcon />}
-          </div>
+        <Box className={styles.walletItem} onClick={() => handleConnect(connectors[0])}>
+          <span className={styles.itemMetamaskLogo}></span>
+          <p>MetaMask</p>
+          {MetaMaskConnecting ? <CircularProgress /> : <ArrowRightAltRoundedIcon sx={{ color: '#8E50E4' }} />}
         </Box>
 
-        <Box className={styles.walletItem}>
-          <div
-            onClick={() => handleConnect(WalletConnectConnector)}>
-            <span className={styles.itemWalletConnectLogo}></span>
-            <p>WalletConnect</p>
-            {WalletConnectConnecting ? <CircularProgress /> : <ArrowRightAltRoundedIcon />}
-          </div>
+        <Box className={styles.walletItem} onClick={() => handleConnect(WalletConnectConnector)}>
+          <span className={styles.itemWalletConnectLogo}></span>
+          <p>WalletConnect</p>
+          {WalletConnectConnecting ? <CircularProgress /> : <ArrowRightAltRoundedIcon sx={{ color: '#8E50E4' }} />}
         </Box>
       </Box>
     </div>

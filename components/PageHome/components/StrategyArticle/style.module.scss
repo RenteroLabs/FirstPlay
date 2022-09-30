@@ -1,13 +1,14 @@
 .articleCard {
   display: flex;
   justify-content: space-between;
-  border-radius: 1rem;
+  border-radius: 1rem !important;
   margin-bottom: 2rem;
   height: 21.5rem;
   .articleInfo {
     padding: 2.5rem;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
 
     h4 {
       font-size: 1.5rem;
@@ -81,6 +82,120 @@
     img {
       object-fit: cover;
       height: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .articleCard {
+    height: 19.17rem;
+    .gameCover {
+      width: 19.17rem;
+    }
+    .articleInfo {
+      padding: 2.5rem 1.67rem;
+
+      h3 {
+        font-size: 1.75rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 2.33rem;
+        margin: 1.67rem 0 0;
+      }
+      h4 {
+        font-size: 1.33rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        line-height: 1.33rem;
+      }
+      .linkBtn {
+        margin-top: 2.33rem;
+        width: 44%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .articleCard {
+    height: 11.67rem;
+    .gameCover {
+      width: 11.67rem;
+    }
+    .articleInfo {
+      padding: 1.67rem 1.67rem 2.67rem;
+
+      h3 {
+        font-size: 1.75rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 2.33rem;
+        margin: 1.67rem 0 0;
+      }
+      h4 {
+        font-size: 1.33rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        line-height: 1.33rem;
+      }
+      .linkBtn {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .articleCard {
+    height: auto;
+    margin-bottom: 1.33rem;
+    max-height: 160px;
+    .gameCover {
+      width: 32vw;
+
+      img {
+        height: 32vw;
+      }
+    }
+
+    .articleInfo {
+      padding: 1.67rem 1.33rem 1.75rem;
+
+      h4 {
+        font-size: 1.33rem;
+        line-height: 1.33rem;
+      }
+      h3 {
+        font-size: 1.5rem;
+        line-height: 2rem;
+        margin: 1.25rem 0 0;
+      }
+      .linkBtn {
+        // margin-top: 1.67rem;
+        display: none;
+      }
+    }
+  }
+}
+
+// @media screen and (max-width: 600px){
+//   .articleCard {
+//     .articleInfo {
+//       .linkBtn {
+//         display: none;
+//       }
+//     }
+//   }
+// }
+
+@media screen and (max-width: 375px) {
+  .articleCard {
+    .gameCover {
+      img {
+        height: 100%;
+      }
     }
   }
 }
