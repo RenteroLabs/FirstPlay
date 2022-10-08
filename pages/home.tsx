@@ -15,8 +15,8 @@ const FirstPlay: NextPage = () => {
     <Box className={styles.coverBox}>
       <Image src="/headerCover1.png" alt="cover image" layout="fill" objectFit="cover" />
     </Box>
-    {/* <GudeStep /> */}
-    <TrialGame />
+    <GudeStep />
+    {/* <TrialGame /> */}
 
     <Box className={styles.mainBox}>
       <HotGames />

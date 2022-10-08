@@ -72,3 +72,27 @@
     }
   }
 }
+
+@media screen and (max-width: 600px) {
+  .trialgame {
+    .trialgameBox {
+      padding-top: 3.33rem;
+      .subtitle {
+        font-size: 1.17rem;
+        font-family: Inter-Regular, Inter;
+        font-weight: 400;
+        color: rgba($color: #222222, $alpha: 0.5);
+        line-height: 1.67rem;
+        margin-top: 0.83rem;
+      }
+      .cardList {
+        margin-top: 2.5rem;
+        & > div {
+          & + div {
+            margin-top: 1.33rem;
+          }
+        }
+      }
+    }
+  }
+}

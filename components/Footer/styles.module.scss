@@ -6,11 +6,12 @@
   &::before {
     display: inline-block;
     content: '';
-    width: 24.5%;
+    width: 26.5%;
     height: 100%;
     background: url(../../public/footer_bg1.svg);
     position: absolute;
     top: 0;
+    background-repeat: no-repeat;
   }
   &::after {
     display: inline-block;
@@ -21,6 +22,7 @@
     position: absolute;
     top: 0;
     right: 0.03%;
+    background-repeat: no-repeat;
   }
   .footerBox {
     height: 100%;
@@ -29,6 +31,34 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    .mobileBrands {
+      order: 0;
+      h3 {
+        margin-top: 3.4rem;
+        margin-bottom: 1.25rem;
+      }
+      p {
+        font-size: 1.17rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: rgba($color: white, $alpha: 0.5);
+        line-height: 1.67rem;
+      }
+    }
+    .mobileCopyright {
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: rgba($color: white, $alpha: 0.5);
+      line-height: 1.83rem;
+      margin: 2.5rem 0 2.67rem;
+      order: 10;
+    }
+    .linkList {
+      display: flex;
+      align-items: center;
+    }
     .brands {
       flex-grow: 1;
       p {
@@ -69,11 +99,21 @@
     .medias {
       align-self: flex-start;
       margin-top: 60px;
-      & > div {
-        position: relative;
-        width: 3.33rem;
-        height: 3.33rem;
-        & + div {
+      position: relative;
+      z-index: 10;
+      
+      a {
+        cursor: pointer;
+        display: block;
+        width: auto;
+        height: auto;
+        & > div {
+          position: relative;
+          width: 3.33rem;
+          height: 3.33rem;
+          
+        }
+        & + a {
           margin-left: 2.5rem;
         }
       }
@@ -125,7 +165,7 @@
 @media screen and (max-width: 1024px) {
   .footer {
     &::before {
-      width: 45%;
+      background: none;
     }
     height: 17.49rem;
     .footerBox {
@@ -134,7 +174,7 @@
   }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 900px) {
   .footer {
     height: auto;
     &::before {
@@ -144,6 +184,43 @@
     .footerBox {
       flex-direction: column;
       justify-content: flex-start;
+      align-items: flex-start;
+
+      div {
+        & + div {
+          margin-left: 5rem;
+        }
+      }
+      .linkList {
+        margin-left: 0rem;
+        order: 2;
+      }
+
+      .brands {
+        display: none;
+      }
+      .medias {
+        order: 1;
+        margin: 2.58rem 0 2.5rem;
+      }
+
+      .platform,
+      .support {
+        h4 {
+          font-size: 1.33rem;
+          font-family: Inter-SemiBold, Inter;
+          font-weight: 600;
+          color: #ffffff;
+          line-height: 1.33rem;
+        }
+        p {
+          font-size: 1.17rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #ffffff;
+          line-height: 1.17rem;
+        }
+      }
     }
   }
 }
