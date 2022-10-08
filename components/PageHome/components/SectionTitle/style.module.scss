@@ -10,6 +10,7 @@
     background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    white-space: nowrap;
   }
 
   .normal {
@@ -18,6 +19,7 @@
     font-weight: 900;
     color: #222222;
     line-height: 3rem;
+    white-space: nowrap;
   }
 }
 

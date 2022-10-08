@@ -102,10 +102,9 @@
   }
 }
 
-@media screen and (max-width: 1024px){
+@media screen and (max-width: 1024px) {
   .userStep {
     .userStepBox {
-
       h3 {
         font-size: 1.75rem;
         line-height: 1.75rem;
@@ -119,6 +118,60 @@
 
       .stepProgress {
         margin-top: 2.83rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .userStep {
+    .userStepBox {
+      .stepProgress {
+        display: none;
+      }
+      .stepIcon {
+        height: 6rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .userStep {
+    .userStepBox {
+
+      .stepIcon {
+        height: 4.21rem;
+      }
+
+      p {
+        font-size: 1.17rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #222222;
+        line-height: 1.5rem;
+        margin-bottom: 0.83rem;
+        margin-top: 2rem;
+      }
+      .buttonBox {
+        margin-top: 1.67rem;
+
+        .baseBtn {
+          font-size: 1.33rem;
+          font-weight: 600;
+          color: #ffffff;
+          line-height: 1.33rem;
+          height: 3rem;
+          width: 45%;
+        }
       }
     }
   }
