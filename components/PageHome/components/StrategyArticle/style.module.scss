@@ -33,15 +33,11 @@
     }
 
     .linkBtn {
+      display: flex;
+      width: 11.17rem;
       border-radius: 1.83rem;
       border: 0.08rem solid rgba(228, 64, 91, 1);
       padding: 1px 1.67rem;
-      // border-image: linear-gradient(
-      //     270deg,
-      //     rgba(228, 64, 91, 1),
-      //     rgba(142, 80, 228, 1)
-      //   )
-      //   0.08 0.08;
 
       font-size: 1.33rem;
       font-family: Inter-SemiBold, Inter;
@@ -51,8 +47,7 @@
       background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      width: 38%;
-      display: flex;
+      // width: 38%;
       align-items: center;
 
       cursor: pointer;
@@ -111,7 +106,7 @@
       }
       .linkBtn {
         margin-top: 2.33rem;
-        width: 44%;
+        // width: 44%;
       }
     }
   }

@@ -2,7 +2,7 @@
   width: auto;
   max-width: 27.15rem;
   background: #ffffff;
-  border-radius: 1.33rem !important;
+  border-radius: 1rem !important;
 
   .gameImage {
     position: relative;
@@ -16,31 +16,38 @@
   }
 
   .gameContent {
-    padding: 1.67rem 1.67rem 1.8rem;
+    padding: 1.67rem;
 
     .gameName {
       display: flex;
       align-items: center;
       justify-content: space-between;
       p {
-        font-size: 2rem;
+        font-size: 1.75rem;
         font-family: Inter-SemiBold, Inter;
         font-weight: 600;
         color: #222222;
-        line-height: 2rem;
+        line-height: 1.75rem;
+        flex-grow: 1;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
       .chainIcon {
         position: relative;
         width: 1.67rem;
         height: 1.67rem;
+        margin-left: 0.5rem;
+        flex-shrink: 0;
       }
     }
 
     .gameTags {
-      margin: 1.17rem 0 1.67rem;
+      margin: 1.25rem 0 1.58rem;
 
       .gameTag {
-        border-radius: 1.5rem;
+        display: inline-block;
+        border-radius: 1.83rem;
         opacity: 0.3;
         border: 0.04rem solid #222222;
 
@@ -49,26 +56,34 @@
         font-weight: 400;
         color: #222222;
         line-height: 1rem;
-        padding: 0.33rem 0.83rem;
+
+        padding: 0.33rem 0.75rem;
         & + .gameTag {
           margin-left: 0.67rem;
         }
       }
     }
+
     .gameRewards {
       font-size: 1.33rem;
       font-family: Inter-Medium, Inter;
       font-weight: 500;
       color: #8e50e4;
       line-height: 1.33rem;
+      display: flex;
+      align-items: flex-start;
+
+      .rewardIcon {
+        width: 1.17rem;
+        height: 1.42rem;
+        position: relative;
+        margin-right: 0.67rem;
+      }
     }
   }
 }
 
-
-
-
-@media screen  and (max-width: 1024px){
+@media screen and (max-width: 1024px) {
   .gameCard {
     .gameContent {
       padding: 1.33rem 1rem 1.5rem;
@@ -98,5 +113,32 @@
       }
     }
   }
-  
+}
+
+@media screen and (max-width: 1024px) {
+
+  .gameCard {
+    
+    .gameContent {
+      padding: 0.83rem;
+
+      .gameName {
+
+        p {
+          font-size: 1.5rem;
+          line-height: 1.5rem;
+        }
+      }
+
+      .gameTags {
+        margin: 0.83rem 0;
+      }
+
+      .gameRewards {
+        .rewardIcon {
+          display: none;
+        }
+      }
+    }
+  }
 }

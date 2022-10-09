@@ -22,7 +22,7 @@
 @media screen and (max-width: 1650px) {
   .support {
     .supportBox {
-      width: 78%;
+      width: 80%;
       .cardList {
         & > div {
           width: calc((100% - 7rem) / 4);
@@ -72,6 +72,15 @@
       .cardList {
         margin-top: 2.5rem;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 600px){
+  .support {
+
+    .supportBox {
+      padding-top: 2.5rem;
     }
   }
 }

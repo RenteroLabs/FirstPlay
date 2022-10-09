@@ -57,3 +57,7 @@ export const SUPPORT_CHAINS =
       BSC_CHAIN,
       BSC_TEST
     ]
+
+const TEST_BACKEND_API = 'https://testapi.firstplay.app'
+const PRODUCTION_BACKEND_API = ''
+export const BASE_BACKEND_API = process.env.NEXT_PUBLIC_ENV === 'PRO' ? PRODUCTION_BACKEND_API : TEST_BACKEND_API

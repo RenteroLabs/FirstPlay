@@ -25,7 +25,7 @@
   .hotGames {
 
     .hotGamesBox {
-      width: 78%;
+      width: 80%;
       .cardList {
       
         & > div {
@@ -77,6 +77,38 @@
       
       .cardList {
         margin-top: 2.5rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px){
+  .hotGames {
+
+    .hotGamesBox {
+      
+      .cardList {
+        & > div {
+          width: calc((100% - 4rem) / 3);
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 600px){
+  .hotGames {
+    .hotGamesBox {
+      width: calc(100% - 2.66rem);
+      padding-top: 2.5rem;
+
+      .cardList {
+        margin-top: 1.67rem;
+        & > div {
+          width: calc((100% - 1.33rem) / 2);
+          margin-bottom: 1.33rem;
+        }
       }
     }
   }
