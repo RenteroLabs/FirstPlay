@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import type { AppInitialProps, AppProps } from 'next/app'
 import Layout from '@/components/Layout'
 import { SUPPORT_CHAINS } from 'constants/index'
 
@@ -9,7 +9,7 @@ import { publicProvider } from 'wagmi/providers/public'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 
-import { NextIntlProvider } from 'next-intl'
+import { AbstractIntlMessages, NextIntlProvider } from 'next-intl'
 
 // connect wallet config
 const { chains, provider, webSocketProvider } = configureChains(SUPPORT_CHAINS, [
@@ -34,7 +34,13 @@ const client = createClient({
   webSocketProvider
 })
 
-function MyApp({ Component, pageProps }: AppProps) {
+type AppPropsWithMessages = AppProps & {
+  pageProps: AppInitialProps & {
+    messages: AbstractIntlMessages
+  }
+}
+
+function MyApp({ Component, pageProps }: AppPropsWithMessages) {
   return <WagmiConfig client={client}>
     <NextIntlProvider messages={pageProps.messages}>
       <Layout>
