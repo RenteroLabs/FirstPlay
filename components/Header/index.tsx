@@ -10,7 +10,7 @@ import FeaturedVideoOutlinedIcon from '@mui/icons-material/FeaturedVideoOutlined
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import { SUPPORT_CHAINS } from 'constants/index'
-import { CHAIN_ICON_MAP } from 'constants/static'
+import { CHAIN_ICON_MAP, CONNECTED_WALLET } from 'constants/static'
 import { useIsMounted } from 'hooks/useIsMounted'
 import classNames from 'classnames/bind'
 import MenuIcon from '@mui/icons-material/Menu';
@@ -201,7 +201,7 @@ const Header: React.FC = () => {
                 onMouseLeave={() => setWalletMenu(false)}
               >
                 <Box className={styles.headerNavImage} >
-                  <Image src="/header_wallet.png" layout="fill" objectFit='contain' />
+                  <Image src={CONNECTED_WALLET} layout="fill" objectFit='contain' />
                   {walletMenu && <HeaderUserInfo closeCallback={() => setWalletMenu(false)} />}
                 </Box>
               </Box>

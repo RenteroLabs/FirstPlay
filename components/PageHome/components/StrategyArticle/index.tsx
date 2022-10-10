@@ -1,6 +1,8 @@
 import { Box, Card, CardMedia, Typography } from "@mui/material"
 import styles from './style.module.scss'
 import EastIcon from '@mui/icons-material/East';
+import { BADGE_ICON } from "constants/static";
+import Image from 'next/image'
 
 interface StrategyArticleProp {
   articleInfo: Record<string, any>
@@ -13,7 +15,10 @@ const StrategyArticle: React.FC<StrategyArticleProp> = (props) => {
 
   return <Card className={styles.articleCard}>
     <Box className={styles.articleInfo} sx={{ backgroundColor: cardBgColor[articleInfo.key] }}>
-      <Typography variant="h4">{articleInfo.game_name}</Typography>
+      <Typography variant="h4">
+        {articleInfo.game_name}
+        <Box><Image src={BADGE_ICON} layout="fill" /></Box>
+      </Typography>
       <Typography variant="h3">{articleInfo.title}</Typography>
       <Box className={styles.linkBtn}>Strategy <EastIcon /></Box>
     </Box>

@@ -1,5 +1,5 @@
 import { Box, Card, CardContent, CardMedia, Stack, Typography } from "@mui/material"
-import { CHAIN_ICON_MAP, REWARD_ICON } from "constants/static"
+import { CHAIN_ICON_MAP, HOT_GAME_ICON, REWARD_ICON } from "constants/static"
 import Image from "next/image"
 import styles from './style.module.scss'
 
@@ -9,7 +9,7 @@ interface GameCardProps {
 
 const GameCard: React.FC<GameCardProps> = (props) => {
   const { gameInfo } = props
-  
+  console.log(gameInfo)
   return <Card className={styles.gameCard}>
     <Box className={styles.gameImage}>
       <Image src={gameInfo?.image} layout="fill" objectFit="cover" />
@@ -31,12 +31,18 @@ const GameCard: React.FC<GameCardProps> = (props) => {
         </Box>
         <Box className={styles.gameRewards}>
           <Box className={styles.rewardIcon}>
-            <Image src={REWARD_ICON}  layout="fill" />
+            <Image src={REWARD_ICON} layout="fill" />
           </Box>
           Rewards: {gameInfo?.reward || '-'}
         </Box>
       </Stack>
     </CardContent>
+    <Box className={styles.gameHot}>
+      <Box>
+        <Image src={HOT_GAME_ICON} layout="fill" />
+      </Box>
+      {gameInfo?.view}
+    </Box>
   </Card>
 }
 

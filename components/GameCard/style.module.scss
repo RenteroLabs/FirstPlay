@@ -3,6 +3,7 @@
   // max-width: 27.15rem;
   background: #ffffff;
   border-radius: 1rem !important;
+  position: relative;
 
   .gameImage {
     position: relative;
@@ -81,6 +82,32 @@
       }
     }
   }
+
+  .gameHot {
+    position: absolute;
+    right: 0.83rem;
+    top: 0.83rem;
+    padding: 0.58rem 0.67rem 0.75rem;
+    background: rgba($color: white, $alpha: 0.3);
+    border-radius: 0rem 1rem 0rem 1rem;
+    display: flex;
+    align-items: center;
+
+    min-width: 5.67rem;
+    user-select: none;
+
+    font-size: 1.33rem;
+    font-family: Inter-SemiBold, Inter;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.33rem;
+    div {
+      position: relative;
+      width: 1.17rem;
+      height: 1.43rem;
+      margin-right: 0.33rem;
+    }
+  }
 }
 
 @media screen and (max-width: 1024px) {
@@ -116,14 +143,11 @@
 }
 
 @media screen and (max-width: 1024px) {
-
   .gameCard {
-    
     .gameContent {
       padding: 0.83rem;
 
       .gameName {
-
         p {
           font-size: 1.5rem;
           line-height: 1.5rem;
@@ -138,6 +162,28 @@
         .rewardIcon {
           display: none;
         }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .gameCard {
+    .gameHot {
+      padding: 0.33rem;
+      min-width: 4.67rem;
+      font-size: 1.17rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.17rem;
+
+      height: 2rem;
+      border-radius: 0rem 0.67rem 0rem 0.67rem;
+      
+      div {
+        width: 1rem;
+        height: 1.23rem;
       }
     }
   }

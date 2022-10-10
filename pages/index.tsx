@@ -1,5 +1,5 @@
 import { GetStaticProps, GetStaticPropsContext, InferGetStaticPropsType, NextPage } from "next";
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, useMediaQuery } from '@mui/material'
 import styles from '../styles/home.module.scss'
 import Image from "next/image";
 import HotGames from "@/components/PageHome/HotGames";
@@ -10,15 +10,24 @@ import GudeStep from "@/components/PageHome/GuideStep";
 import TrialGame from "@/components/PageHome/TrialingGame";
 import { getHomeInfo } from "services/home";
 import { useTranslations } from "next-intl";
+import { useMemo } from "react";
 
 const FirstPlay: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   const { hotGames, strategys, comingGames } = props
 
+  const isMiddleSize = useMediaQuery("(max-width: 900px)")
+  const isMobileSize = useMediaQuery("(max-width: 450px)")
   const t = useTranslations('Index.Contact')
+
+  const coverSize = useMemo(() => {
+    if (isMobileSize) return 375
+    if (isMiddleSize) return 900
+    return 1920
+  }, [isMiddleSize, isMobileSize])
 
   return <Box>
     <Box className={styles.coverBox}>
-      <Image src="/headerCover1.png" alt="cover image" layout="fill" objectFit="cover" />
+      <Image src={`/headerCover${coverSize}.png`} alt="cover image" layout="fill"  objectFit="cover" />
     </Box>
     <GudeStep />
     {/* <TrialGame /> */}

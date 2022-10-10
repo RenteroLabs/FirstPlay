@@ -16,6 +16,14 @@
       font-weight: 600;
       color: rgba(#222222, 0.5);
       line-height: 1.5rem;
+      display: flex;
+      align-items: center;
+      div {
+        position: relative;
+        width: 1.61rem;
+        height: 1.61rem;
+        margin-left: 0.83rem;
+      }
     }
     h3 {
       font-size: 2.5rem;
