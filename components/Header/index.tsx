@@ -15,6 +15,9 @@ import { useIsMounted } from 'hooks/useIsMounted'
 import classNames from 'classnames/bind'
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useTranslations } from 'next-intl'
 
 const cx = classNames.bind(styles)
 
@@ -25,6 +28,7 @@ interface HeaderUserInfoProps {
 const HeaderUserInfo: React.FC<HeaderUserInfoProps> = (props) => {
   const { closeCallback, connectWallet } = props
 
+  const t = useTranslations('Index.Header')
   const isMobileHeaderNav = useMediaQuery('(max-width: 920px)')
 
   const [showChangeNetwork, setShowChangeNetwork] = useState<boolean>(false)
@@ -116,16 +120,13 @@ const HeaderUserInfo: React.FC<HeaderUserInfoProps> = (props) => {
             <>
               {address && <Box className={styles.divider} />}
               <MenuItem className={styles.menuItem} disableRipple>
-                Games
+                {t('passNFT')}
               </MenuItem>
               <MenuItem className={styles.menuItem} disableRipple>
-                Strategy
+                {t('games')}
               </MenuItem>
               <MenuItem className={styles.menuItem} disableRipple>
-                Guide
-              </MenuItem>
-              <MenuItem className={styles.menuItem} disableRipple>
-                Contact
+                {t('strategy')}
               </MenuItem>
             </>
           }
@@ -133,18 +134,22 @@ const HeaderUserInfo: React.FC<HeaderUserInfoProps> = (props) => {
           {!address && <Box
             className={styles.userInfoConnect}
             onClick={() => { if (connectWallet) connectWallet() }}
-          >Connect Wallet</Box>}
+          >{t("connectWallet")}</Box>}
         </Box>
     }
   </Box>
 }
 
 const Header: React.FC = () => {
+
+  const { locale, asPath } = useRouter()
   const [showConnect, setShowConnect] = useState<boolean>(false)
   const [walletMenu, setWalletMenu] = useState<boolean>(false)
   const isMounted = useIsMounted()
   const isMobileHeaderNav = useMediaQuery('(max-width: 920px)')
   const [mobileDrawer, setMobileDrawer] = useState<boolean>(false)
+
+  const t = useTranslations("Index.Header")
 
   const { address } = useAccount()
 
@@ -155,16 +160,31 @@ const Header: React.FC = () => {
       </Box>
       {!isMobileHeaderNav && <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
         <Stack direction="row" className={styles.headerNavs} >
-          <Box>Games</Box>
-          <Box>Strategy</Box>
           <Box>
-            Guild
+            <Link href="/pass">
+              {t('passNFT')}
+            </Link>
           </Box>
-          <Box>Contact</Box>
+          <Box>{t('games')}</Box>
+          <Box>{t('strategy')}</Box>
         </Stack>
         <Box className={styles.headerSetting}>
-          <Box>
-            <Box className={styles.headerNavImage}> <Image src="/header_language.png" layout="fill" objectFit='contain' /> </Box>
+          <Box className={styles.languageNav}>
+            <Box className={styles.headerNavImage}>
+              <Image src="/header_language.png" layout="fill" objectFit='contain' />
+            </Box>
+            <Box className={styles.languageBox}>
+              <Box>
+                <Link href={asPath} locale="en-US">
+                  English
+                </Link>
+              </Box>
+              <Box>
+                <Link href={asPath} locale="zh-CN">
+                  简体中文
+                </Link>
+              </Box>
+            </Box>
           </Box>
 
           <Box>
@@ -187,7 +207,7 @@ const Header: React.FC = () => {
               </Box>
               :
               <Box className={styles.connectBtn} onClick={() => setShowConnect(true)}>
-                Connect Wallet
+                {t("connectWallet")}
               </Box>
           }
 

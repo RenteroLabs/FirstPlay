@@ -1,8 +1,11 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography, useMediaQuery } from "@mui/material";
 import Image from 'next/image'
 import styles from './style.module.scss'
 import classname from 'classnames/bind'
 import DoneIcon from '@mui/icons-material/Done';
+import ConnectWallet from "@/components/ConnectWallet";
+import { useState } from "react";
+import { useIsMounted } from "hooks/useIsMounted";
 
 const cx = classname.bind(styles)
 
@@ -10,15 +13,20 @@ interface UserStepProps {
   stepIndex: number
   stepTitle: string
   stepDesc: string
-  stepStatus: 'Done' | 'Pendding' | 'Waitting'
+  stepStatus: 'Done' | 'Pendding' | 'Waitting' | string
 }
 
 const UserStep: React.FC<UserStepProps> = (props) => {
   const { stepIndex, stepTitle, stepDesc, stepStatus } = props
+  const [showConnectWallet, setShowConnectWallet] = useState<boolean>(false)
+  const isMobileSize = useMediaQuery("(max-width: 1400px)")
+  const isMounted = useIsMounted()
 
   const setpButton = () => {
     let text
     let btnStyle
+    let clickCallback = () => { }
+
     switch (stepIndex) {
       case 1:
         if (stepStatus === 'Done') {
@@ -27,6 +35,7 @@ const UserStep: React.FC<UserStepProps> = (props) => {
         } else {
           text = "Connect"
           btnStyle = styles.activeBtn
+          clickCallback = () => { setShowConnectWallet(true) }
         }
         break;
       case 2:
@@ -49,7 +58,8 @@ const UserStep: React.FC<UserStepProps> = (props) => {
           text = "Trial"
           btnStyle = styles.activeBtn
         } else {
-          text = "Trial"
+          // text = "Trial"
+          text = isMobileSize && isMounted ? "Coming" : 'Coming Soon'
           btnStyle = styles.waittingBtn
         }
         break;
@@ -61,12 +71,13 @@ const UserStep: React.FC<UserStepProps> = (props) => {
           text = "Claim"
           btnStyle = styles.activeBtn
         } else {
-          text = "Claim"
+          // text = "Claim"
+          text = isMobileSize && isMounted ? "Coming" : 'Coming Soon'
           btnStyle = styles.waittingBtn
         }
         break;
     }
-    return <Box className={btnStyle}>{text}</Box>
+    return <Box className={btnStyle} onClick={clickCallback}>{text}</Box>
   }
   return <Box className={styles.userStep}>
     <Stack className={styles.userStepBox}>
@@ -79,9 +90,10 @@ const UserStep: React.FC<UserStepProps> = (props) => {
       <Typography variant="h3">{stepTitle}</Typography>
       <Typography className={cx({ notActiveDesc: stepStatus === 'Waitting' })}>{stepDesc}</Typography>
       <Box className={styles.buttonBox}>
-        {setpButton()}
+        {isMounted && setpButton()}
       </Box>
     </Stack>
+    <ConnectWallet showConnect={showConnectWallet} setShowConnect={setShowConnectWallet} />
   </Box>
 }
 

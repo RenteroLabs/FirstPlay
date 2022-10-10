@@ -232,6 +232,43 @@
   }
 }
 
+.languageNav {
+  position: relative;
+  cursor: pointer;
+  height: 100%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  .languageBox {
+    display: none;
+    div {
+      font-size: 1.5rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #222222;
+      line-height: 1.5rem;
+      padding: 0.88rem 1.67rem;
+    }
+  }
+
+  &:hover {
+    .languageBox {
+      display: block;
+      position: absolute;
+      top: 84px;
+      right: -32%;
+      width: 9.5rem;
+      background: #ffffff;
+      border-radius: 0.83rem;
+      padding: 0.88rem 0;
+
+      div:hover {
+        background-color: #efefef;
+      }
+    }
+  }
+}
+
 .drawer {
   position: relative;
   width: 40rem;

@@ -1,0 +1,31 @@
+{
+  "Index": {
+    "Header": {
+      "games": "游戏",
+      "strategy": "攻略",
+      "passNFT": "Pass NFT",
+      "connectWallet": "连接钱包"
+    },
+    "Footer": {
+      "solgan": "轻松有趣地边玩游戏边挣钱",
+      "copyright": "版权所有 2022 Rentero.io 保留所有权利。",
+      "platform": "平台",
+      "games": "游戏",
+      "strategy": "攻略",
+      "passNFT": "Pass NFT",
+      "support": "支持",
+      "whitepaper": "白皮书",
+      "litebook": "简版白皮书",
+      "SDK": "SDK",
+      "social": "社交媒体",
+      "twitter": "Twitter",
+      "telegram": "Telegram",
+      "discord": "Discord"
+    },
+    "Contact": {
+      "title": "联系我们",
+      "subTitle": "随时可通过 <maillink>business@firstplay.io</maillink> 与我们联系以获得更多支持。"
+    }
+  },
+  "PassNFT": {}
+}

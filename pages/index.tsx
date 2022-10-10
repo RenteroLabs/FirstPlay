@@ -1,4 +1,4 @@
-import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
+import { GetStaticProps, GetStaticPropsContext, InferGetStaticPropsType, NextPage } from "next";
 import { Box, Typography } from '@mui/material'
 import styles from '../styles/home.module.scss'
 import Image from "next/image";
@@ -9,10 +9,13 @@ import GameStrategy from "@/components/PageHome/GameStrategy";
 import GudeStep from "@/components/PageHome/GuideStep";
 import TrialGame from "@/components/PageHome/TrialingGame";
 import { getHomeInfo } from "services/home";
+import { useTranslations } from "next-intl";
 
 const FirstPlay: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   const { hotGames, strategys, comingGames } = props
-  
+
+  const t = useTranslations('Index.Contact')
+
   return <Box>
     <Box className={styles.coverBox}>
       <Image src="/headerCover1.png" alt="cover image" layout="fill" objectFit="cover" />
@@ -27,15 +30,21 @@ const FirstPlay: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (pro
       <Support />
     </Box>
     <Box className={styles.contactUs}>
-      <Typography variant="h3">Contact Us</Typography>
-      <Typography>Please feel free to contact us via <a target="__blank" href="mailto:business@firstplay.io"><span>business@firstplay.io</span></a> for more support.</Typography>
+      <Typography variant="h3">{t('title')}</Typography>
+      <Typography>
+        {t.rich('subTitle', {
+          maillink: (children) => <a target="__blank" href="mailto:business@firstplay.io"><span>{children}</span></a>
+        })}
+        {/* Please feel free to contact us via <a target="__blank" href="mailto:business@firstplay.io"><span>business@firstplay.io</span></a> for more support. */}
+        </Typography>
     </Box>
   </Box>
 }
 
 export default FirstPlay
 
-export const getStaticProps: GetStaticProps = async (context) => {
+
+export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsContext) => {
   // 获取首页数据
   const result = await getHomeInfo()
   const { popular_games = [], banners = [], strategies = [], upcoming_games = [] } = result.data || {}
@@ -44,7 +53,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       hotGames: popular_games,
       comingGames: upcoming_games,
-      strategys: strategies
+      strategys: strategies,
+
+      // 获取国际化文案
+      messages: (await import(`../i18n/${locale}.json`)).default
     }
   }
 }

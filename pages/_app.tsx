@@ -9,6 +9,8 @@ import { publicProvider } from 'wagmi/providers/public'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 
+import { NextIntlProvider } from 'next-intl'
+
 // connect wallet config
 const { chains, provider, webSocketProvider } = configureChains(SUPPORT_CHAINS, [
   alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID }),
@@ -34,9 +36,11 @@ const client = createClient({
 
 function MyApp({ Component, pageProps }: AppProps) {
   return <WagmiConfig client={client}>
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <NextIntlProvider messages={pageProps.messages}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </NextIntlProvider>
   </WagmiConfig>
 }
 

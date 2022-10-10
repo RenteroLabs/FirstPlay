@@ -1,9 +1,12 @@
 import { Box, Stack, Typography, useMediaQuery } from "@mui/material"
 import styles from './styles.module.scss'
 import Image from "next/image"
+import { useTranslations } from "next-intl"
 
 const Footer: React.FC = () => {
   const isMobileLayout = useMediaQuery('(max-width: 900px)')
+
+  const t = useTranslations('Index.Footer')
 
   return <Box className={styles.footer}>
     <Box className={styles.footerBox}>
@@ -13,51 +16,44 @@ const Footer: React.FC = () => {
           FirstPlay
         </Typography>
         <Typography variant="body1" component="p">
-          Rentero is an open-source NFTs rental protocol
-          built to maximize the utility of NFTs</Typography>
+          First Play Be the first to play and earn.</Typography>
       </Box>}
       <Stack className={styles.brands}>
         <Typography variant="h3">
           {/* <Image src="/headerLogo.png" layout="fill" objectFit="contain" /> */}
           FirstPlay
         </Typography>
-        <Typography variant="body1">Easy Fun and Earn</Typography>
-        <Typography variant="subtitle2">Copyright 2022 Rentero.io All rights reserved.</Typography>
+        <Typography variant="body1">{t('solgan')}</Typography>
+        <Typography variant="subtitle2">{t('copyright')}</Typography>
       </Stack>
       <Box className={styles.linkList}>
         <Stack className={styles.platform}>
-          <Typography variant="h4">Platform</Typography>
-          <Typography variant="body1">Games</Typography>
-          <Typography variant="body1">Startegy</Typography>
-          <Typography variant="body1">Contact</Typography>
+          <Typography variant="h4">{t('platform')}</Typography>
+          <Typography variant="body1">{t('passNFT')}</Typography>
+          <Typography variant="body1">{t('games')}</Typography>
+          <Typography variant="body1">{t('strategy')}</Typography>
+        </Stack>
+        <Stack className={styles.medias}>
+          <Typography variant="h4">{t('social')}</Typography>
+          <a href="https://twitter.com/FirstPlay2022" target="_blank" rel="noreferrer">
+            <Typography variant="body1">{t('twitter')}</Typography>
+          </a>
+          <a href="https://discord.com/invite/84mhbPXFUu" target="_blank" rel="noreferrer">
+            <Typography variant="body1">{t('discord')}</Typography>
+          </a>
+          <a href="https://t.me/firstplay2022" target="_blank" rel="noreferrer">
+            <Typography variant="body1">{t('telegram')}</Typography>
+          </a>
         </Stack>
         <Stack className={styles.support}>
-          <Typography variant="h4">Support</Typography>
-          <Typography variant="body1">Whitepaper</Typography>
-          <Typography variant="body1">Litebook</Typography>
-          <Typography variant="body1">SDK</Typography>
+          <Typography variant="h4">{t('support')}</Typography>
+          <Typography variant="body1">{t('whitepaper')}</Typography>
+          <Typography variant="body1">{t('litebook')}</Typography>
+          <Typography variant="body1">{t('SDK')}</Typography>
         </Stack>
       </Box>
-      <Stack direction="row" className={styles.medias}>
-        <a href="https://twitter.com/FirstPlay2022" target="_blank" rel="noreferrer">
-          <Box>
-            <Image src="/twitter_footer.png" alt="twitter" layout="fill" objectFit="contain" />
-          </Box>
-        </a>
-        <a href="https://discord.com/invite/84mhbPXFUu" target="_blank" rel="noreferrer">
-          <Box>
-            <Image src="/discord_footer.png" alt="twitter" layout="fill" objectFit="contain" />
-          </Box>
-        </a>
-        <a href="https://t.me/firstplay2022" target="_blank" rel="noreferrer">
-          <Box>
-            <Image src="/telegram_footer.png" alt="twitter" layout="fill" objectFit="contain" />
-          </Box>
-        </a>
-      </Stack>
       {isMobileLayout &&
-        <Typography className={styles.mobileCopyright}>Copyright 2021-2022 Rentero.io All rights
-          reserved.</Typography>}
+        <Typography className={styles.mobileCopyright}>{t('copyright')}</Typography>}
     </Box>
   </Box>
 }
