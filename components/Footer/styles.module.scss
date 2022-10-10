@@ -38,7 +38,6 @@
     .linkList {
       display: flex;
       align-items: center;
-      margin-top: 3.42rem;
     }
     .brands {
       flex-grow: 1;
@@ -142,6 +141,7 @@
       .linkList {
         margin-left: 0rem;
         order: 2;
+        margin-top: 3.42rem;
       }
 
       .brands {
