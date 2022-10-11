@@ -27,7 +27,7 @@ const FirstPlay: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (pro
 
   return <Box>
     <Box className={styles.coverBox}>
-      <Image src={`/headerCover${coverSize}.png`} alt="cover image" layout="fill"  objectFit="cover" />
+      <Image priority src={`/headerCover${coverSize}.png`} alt="cover image" layout="fill" objectFit="cover" />
     </Box>
     <GudeStep />
     {/* <TrialGame /> */}
@@ -44,8 +44,7 @@ const FirstPlay: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (pro
         {t.rich('subTitle', {
           maillink: (children) => <a target="__blank" href="mailto:business@firstplay.io"><span>{children}</span></a>
         })}
-        {/* Please feel free to contact us via <a target="__blank" href="mailto:business@firstplay.io"><span>business@firstplay.io</span></a> for more support. */}
-        </Typography>
+      </Typography>
     </Box>
   </Box>
 }

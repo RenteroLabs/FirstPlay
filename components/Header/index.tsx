@@ -161,68 +161,70 @@ const Header: React.FC = () => {
       <Box className={styles.headerLogo}>
         <Image src="/headerLogo.png" alt="header logo" layout='fill' objectFit='contain' />
       </Box>
-      {!isMobileHeaderNav && <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-        <Stack direction="row" className={styles.headerNavs} >
-          <Box>
-            <Link href="/pass" >
-              <a target="_blank">{t('passNFT')}</a>
-            </Link>
-          </Box>
-          <Box>{t('games')}</Box>
-          <Box>{t('strategy')}</Box>
-        </Stack>
-        <Box className={styles.headerSetting}>
-          <Box className={styles.languageNav}>
-            <Box className={styles.headerNavImage}>
-              <Image src={HEADER_LANGUAGE} layout="fill" objectFit='contain' />
+      {!isMobileHeaderNav && isMounted &&
+        <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+          <Stack direction="row" className={styles.headerNavs} >
+            <Box>
+              <Link href="/pass" >
+                <a target="_blank">{t('passNFT')}</a>
+              </Link>
             </Box>
-            <Box className={styles.languageBox}>
-              <Box>
-                <Link href={asPath} locale="en-US">
-                  English
-                </Link>
+            <Box>{t('games')}</Box>
+            <Box>{t('strategy')}</Box>
+          </Stack>
+          <Box className={styles.headerSetting}>
+            <Box className={styles.languageNav}>
+              <Box className={styles.headerNavImage}>
+                <Image src={HEADER_LANGUAGE} layout="fill" objectFit='contain' />
               </Box>
-              <Box>
-                <Link href={asPath} locale="zh-CN">
-                  简体中文
-                </Link>
-              </Box>
-            </Box>
-          </Box>
-
-          <Box>
-            <Box className={styles.headerNavImage}>
-              <Image src={HEADER_SHARE} layout="fill" objectFit='contain' />
-            </Box>
-            <Box className={styles.socialMediaBox}>
-
-            </Box>
-          </Box>
-
-          {
-            address && isMounted ?
-              <Box
-                className={styles.walletNav}
-                onMouseEnter={() => { if (address) { setWalletMenu(true) } }}
-                onMouseLeave={() => setWalletMenu(false)}
-              >
-                <Box className={styles.headerNavImage} >
-                  <Image src={CONNECTED_WALLET} layout="fill" objectFit='contain' />
-                  {walletMenu && <HeaderUserInfo closeCallback={() => setWalletMenu(false)} />}
+              <Box className={styles.languageBox}>
+                <Box>
+                  <Link href={asPath} locale="en-US">
+                    English
+                  </Link>
+                </Box>
+                <Box>
+                  <Link href={asPath} locale="zh-CN">
+                    简体中文
+                  </Link>
                 </Box>
               </Box>
-              :
-              <Box className={styles.connectBtn} onClick={() => setShowConnect(true)}>
-                {t("connectWallet")}
+            </Box>
+
+            <Box>
+              <Box className={styles.headerNavImage}>
+                <Image src={HEADER_SHARE} layout="fill" objectFit='contain' />
               </Box>
-          }
+              <Box className={styles.socialMediaBox}>
 
-        </Box>
-      </Box>}
+              </Box>
+            </Box>
 
-      {isMobileHeaderNav && <Box className={styles.mobileMenuIcon} onClick={() => setMobileDrawer(!mobileDrawer)}>
-        {mobileDrawer ? <CloseIcon /> : <MenuIcon />}
-      </Box>}
+            {
+              address && isMounted ?
+                <Box
+                  className={styles.walletNav}
+                  onMouseEnter={() => { if (address) { setWalletMenu(true) } }}
+                  onMouseLeave={() => setWalletMenu(false)}
+                >
+                  <Box className={styles.headerNavImage} >
+                    <Image src={CONNECTED_WALLET} layout="fill" objectFit='contain' />
+                    {walletMenu && <HeaderUserInfo closeCallback={() => setWalletMenu(false)} />}
+                  </Box>
+                </Box>
+                :
+                <Box className={styles.connectBtn} onClick={() => setShowConnect(true)}>
+                  {t("connectWallet")}
+                </Box>
+            }
+
+          </Box>
+        </Box>}
+
+      {isMobileHeaderNav && isMounted &&
+        <Box className={styles.mobileMenuIcon} onClick={() => setMobileDrawer(!mobileDrawer)}>
+          {mobileDrawer ? <CloseIcon /> : <MenuIcon />}
+        </Box>}
     </Box>
 
     <ConnectWallet showConnect={showConnect} setShowConnect={setShowConnect} />
