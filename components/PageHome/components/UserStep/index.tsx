@@ -4,8 +4,10 @@ import styles from './style.module.scss'
 import classname from 'classnames/bind'
 import DoneIcon from '@mui/icons-material/Done';
 import ConnectWallet from "@/components/ConnectWallet";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useIsMounted } from "hooks/useIsMounted";
+import Link from "next/link";
+import { STEP_1, STEP_2, STEP_3 , STEP_4} from "constants/static";
 
 const cx = classname.bind(styles)
 
@@ -21,6 +23,16 @@ const UserStep: React.FC<UserStepProps> = (props) => {
   const [showConnectWallet, setShowConnectWallet] = useState<boolean>(false)
   const isMobileSize = useMediaQuery("(max-width: 1400px)")
   const isMounted = useIsMounted()
+
+  const STEP_URL = useMemo(() => {
+    switch (stepIndex) {
+      case 1: return STEP_1
+      case 2: return STEP_2
+      case 3: return STEP_3
+      case 4: return STEP_4
+      default: return STEP_4
+    }
+  }, [stepIndex])
 
   const setpButton = () => {
     let text
@@ -43,7 +55,7 @@ const UserStep: React.FC<UserStepProps> = (props) => {
           text = <DoneIcon sx={{ color: 'white' }} />
           btnStyle = styles.doneBtn
         } else if (stepStatus === 'Pendding') {
-          text = "Mint"
+          text = <Link href="/pass"><a target="__blank">Mint</a></Link>
           btnStyle = styles.activeBtn
         } else {
           text = "Mint"
@@ -82,7 +94,7 @@ const UserStep: React.FC<UserStepProps> = (props) => {
   return <Box className={styles.userStep}>
     <Stack className={styles.userStepBox}>
       <Box className={styles.stepIcon}>
-        <Image src={`/step${stepIndex}.png`} layout="fill" objectFit="contain" />
+        <Image src={STEP_URL} layout="fill" objectFit="contain" />
       </Box>
       <Box className={styles.stepProgress}>
         <Image src={`/step_progress_${stepStatus === 'Done' ? 'colorful' : 'gray'}.png`} layout="fill" objectFit="contain" />

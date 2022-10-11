@@ -9,7 +9,7 @@ interface GameCardProps {
 
 const GameCard: React.FC<GameCardProps> = (props) => {
   const { gameInfo } = props
-  console.log(gameInfo)
+
   return <Card className={styles.gameCard}>
     <Box className={styles.gameImage}>
       <Image src={gameInfo?.image} layout="fill" objectFit="cover" />
@@ -42,6 +42,9 @@ const GameCard: React.FC<GameCardProps> = (props) => {
         <Image src={HOT_GAME_ICON} layout="fill" />
       </Box>
       {gameInfo?.view}
+    </Box>
+    <Box className={styles.topMask}>
+      
     </Box>
   </Card>
 }

@@ -88,3 +88,23 @@
     }
   }
 }
+
+@media screen and (max-width: 600px) {
+  .guidestep {
+    .guidestepBox {
+      padding-top: 3.33rem;
+      padding-bottom: 2.5rem;
+      .stepList {
+        & > div {
+          width: 50%;
+          margin-top: 1.5rem;
+          margin-bottom: 1rem;
+        }
+      }
+
+      .stepList {
+        margin-top: 1rem;
+      }
+    }
+  }
+}

@@ -26,12 +26,12 @@ const Support: React.FC = () => {
         </Box>
         <Box className={styles.brandItem}>
           <Box>
-            <Image src="/Lita_logo.png" layout="fill" objectFit="contain" />
+            <Image src="/C2 Ventures_logo.png" layout="fill" objectFit="contain" />
           </Box>
         </Box>
         <Box className={styles.brandItem}>
           <Box>
-            <Image src="/C2 Ventures_logo.png" layout="fill" objectFit="contain" />
+            <Image src="/Lita_logo.png" layout="fill" objectFit="contain" />
           </Box>
         </Box>
       </Box>

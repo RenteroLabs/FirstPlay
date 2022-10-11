@@ -10,7 +10,7 @@ import FeaturedVideoOutlinedIcon from '@mui/icons-material/FeaturedVideoOutlined
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import { SUPPORT_CHAINS } from 'constants/index'
-import { CHAIN_ICON_MAP, CONNECTED_WALLET } from 'constants/static'
+import { CHAIN_ICON_MAP, CONNECTED_WALLET, HEADER_LANGUAGE, HEADER_SHARE } from 'constants/static'
 import { useIsMounted } from 'hooks/useIsMounted'
 import classNames from 'classnames/bind'
 import MenuIcon from '@mui/icons-material/Menu';
@@ -112,16 +112,19 @@ const HeaderUserInfo: React.FC<HeaderUserInfoProps> = (props) => {
                     <ArrowForwardIosOutlinedIcon />
                   </Box>
                 </MenuItem>}
-
             </>
           }
           {
             isMobileHeaderNav &&
             <>
               {address && <Box className={styles.divider} />}
-              <MenuItem className={styles.menuItem} disableRipple>
-                {t('passNFT')}
-              </MenuItem>
+              <Link href="/pass">
+                <a target="__blank">
+                  <MenuItem className={styles.menuItem} disableRipple>
+                    {t('passNFT')}
+                  </MenuItem>
+                </a>
+              </Link>
               <MenuItem className={styles.menuItem} disableRipple>
                 {t('games')}
               </MenuItem>
@@ -161,8 +164,8 @@ const Header: React.FC = () => {
       {!isMobileHeaderNav && <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
         <Stack direction="row" className={styles.headerNavs} >
           <Box>
-            <Link href="/pass">
-              {t('passNFT')}
+            <Link href="/pass" >
+              <a target="_blank">{t('passNFT')}</a>
             </Link>
           </Box>
           <Box>{t('games')}</Box>
@@ -171,7 +174,7 @@ const Header: React.FC = () => {
         <Box className={styles.headerSetting}>
           <Box className={styles.languageNav}>
             <Box className={styles.headerNavImage}>
-              <Image src="/header_language.png" layout="fill" objectFit='contain' />
+              <Image src={HEADER_LANGUAGE} layout="fill" objectFit='contain' />
             </Box>
             <Box className={styles.languageBox}>
               <Box>
@@ -189,7 +192,10 @@ const Header: React.FC = () => {
 
           <Box>
             <Box className={styles.headerNavImage}>
-              <Image src="/header_share.png" layout="fill" objectFit='contain' />
+              <Image src={HEADER_SHARE} layout="fill" objectFit='contain' />
+            </Box>
+            <Box className={styles.socialMediaBox}>
+
             </Box>
           </Box>
 

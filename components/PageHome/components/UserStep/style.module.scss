@@ -84,6 +84,10 @@
         border-radius: 1.67rem;
         filter: blur(0px);
         cursor: pointer;
+
+        a {
+          width: 100%;
+        }
       }
     }
   }
@@ -142,7 +146,8 @@
     .userStepBox {
 
       .stepIcon {
-        height: 4.21rem;
+        // height: 4.21rem;
+        height: 5rem;
       }
 
       p {
@@ -160,13 +165,14 @@
         color: #222222;
         line-height: 1.5rem;
         margin-bottom: 0.83rem;
-        margin-top: 2rem;
+        // margin-top: 2rem;
+        margin-top: 1.5rem;
       }
       .buttonBox {
         margin-top: 1.67rem;
 
         .baseBtn {
-          font-size: 1.33rem;
+          font-size: 1rem;
           font-weight: 600;
           color: #ffffff;
           line-height: 1.33rem;

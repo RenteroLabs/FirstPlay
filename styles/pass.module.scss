@@ -10,18 +10,230 @@
     .nftInfo {
       height: 55.17rem;
       background: #ffffff;
+      padding: 5rem;
+
+      .nftMetadata {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        .nftCover {
+          width: 18.33rem;
+          height: 18.33rem;
+          position: relative;
+          background: #d8d8d8;
+          border-radius: 1rem;
+          overflow: hidden;
+          flex-shrink: 0;
+          flex-grow: 0;
+        }
+        .nftIntro {
+          flex-grow: 1;
+          margin-left: 3.33rem;
+          h2 {
+            font-size: 4rem;
+            font-family: Inter-Bold, Inter;
+            font-weight: bold;
+            color: #222222;
+            line-height: 4rem;
+            display: flex;
+            align-items: center;
+            div {
+              height: 1.73rem;
+              width: 1.73rem;
+              position: relative;
+              margin-left: 0.67rem;
+            }
+          }
+          p {
+            margin-top: 1.67rem;
+
+            font-size: 1.5rem;
+            font-family: Inter-Medium, Inter;
+            font-weight: 500;
+            color: rgba(#222222, 0.5);
+            line-height: 2.5rem;
+          }
+        }
+      }
+
+      .rewardBox {
+        margin-top: 5rem;
+        background: #f9f6fc;
+        border-radius: 1rem;
+        min-height: 10rem;
+        padding: 3.33rem;
+
+        h3 {
+          font-size: 2.5rem;
+          font-family: Inter-Bold, Inter;
+          font-weight: bold;
+          color: #222222;
+          line-height: 2.5rem;
+          margin-bottom: 2.29rem;
+        }
+
+        .rewardItem {
+          display: flex;
+          align-items: center;
+          font-size: 1.75rem;
+          font-family: Inter-MediumItalic, Inter;
+          font-weight: normal;
+          color: #8e50e4;
+          line-height: 3.67rem;
+          div {
+            width: 1.5rem;
+            height: 1.86rem;
+            position: relative;
+            margin-right: 0.83rem;
+          }
+        }
+      }
     }
 
     .progress {
       margin-top: 3.33rem;
       height: 25.42rem;
       background: #ffffff;
+      padding: 5rem;
+
+      h3 {
+        font-size: 2.5rem;
+        font-family: Inter-Bold, Inter;
+        font-weight: bold;
+        color: #222222;
+        line-height: 2.5rem;
+      }
+
+      h4 {
+        font-size: 1.75rem;
+        font-family: Inter-Bold, Inter;
+        font-weight: bold;
+        color: #222222;
+        line-height: 1.75rem;
+        margin: 3.33rem 0 1.67rem;
+      }
+
+      p {
+        font-size: 1.75rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 1.75rem;
+
+        margin-bottom: 2.92rem;
+      }
+      .progressBar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1.75rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 1.75rem;
+        user-select: none;
+
+        // .linerProgress {
+        //   flex-grow: 1;
+        // }
+        .mintCount {
+          flex-shrink: 0;
+          flex-grow: 0;
+          margin-left: 1.83rem;
+          span {
+            color: #8e50e4;
+          }
+        }
+      }
     }
 
-    .task {
+    .taskBox {
       margin-top: 3.33rem;
       height: 41.67rem;
       background: #ffffff;
+      padding: 5rem;
+
+      .taskHeader {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 2.5rem;
+        border-bottom: 0.16rem solid rgba(#222, 0.1);
+
+        h3 {
+          font-size: 2.5rem;
+          font-family: Inter-Bold, Inter;
+          font-weight: bold;
+          color: #222222;
+          line-height: 2.5rem;
+          margin-right: 0.58rem;
+        }
+        h4 {
+          text-align: left;
+          flex-grow: 1;
+          font-size: 1.75rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #222222;
+          line-height: 1.75rem;
+        }
+        
+        .taskTime {
+          font-size: 1.75rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #222222;
+          line-height: 1.75rem;
+          display: flex;
+          align-items: center;
+          div {
+            width: 1.83rem;
+            height: 1.83rem;
+            position: relative;
+            margin-right: 0.67rem;
+          }
+        }
+      }
+
+      .taskDetail {
+        display: flex;
+        justify-content: space-between;
+        .taskDetailInfo {
+          .taskLink {
+            display: inline-block;
+            background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
+            box-shadow: 0rem 0.67rem 2.5rem 0rem rgba(142, 80, 228, 0.3);
+            border-radius: 2.67rem;
+            filter: blur(0px);
+
+            font-size: 1.75rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.75rem;
+
+            padding: 1.33rem 3.83rem;
+            vertical-align: middle;
+          }
+          p {
+            font-size: 1.5rem;
+            font-family: Inter-Regular, Inter;
+            font-weight: 400;
+            color: rgba(#222, 0.5);
+            line-height: 1.5rem;
+            margin-top: 2.5rem;
+          }
+        }
+
+        .taskIllustration {
+          div {
+            width: 23.83rem;
+            height: 21.33rem;
+            position: relative;
+          }
+        }
+      }
     }
   }
 }

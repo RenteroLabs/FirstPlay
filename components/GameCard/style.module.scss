@@ -83,8 +83,18 @@
     }
   }
 
+  .topMask {
+    position: absolute;
+    z-index: 50;
+    top: 0;
+    left: 0;
+    height: 6.5rem;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(#000, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+  }
   .gameHot {
     position: absolute;
+    z-index: 100;
     right: 0.83rem;
     top: 0.83rem;
     padding: 0.58rem 0.67rem 0.75rem;
@@ -139,6 +149,10 @@
         line-height: 1.17rem;
       }
     }
+
+    .topMask {
+      height: 5rem;
+    }
   }
 }
 
@@ -180,10 +194,28 @@
 
       height: 2rem;
       border-radius: 0rem 0.67rem 0rem 0.67rem;
-      
+
       div {
         width: 1rem;
         height: 1.23rem;
+      }
+    }
+
+    .topMask {
+      height: 3.5rem;
+    }
+    
+    .gameContent {
+      .gameTags {
+        margin: 0.5rem 0;
+        .gameTag {
+          font-size: 10px;
+          padding: 2px 4px;
+
+          & + .gameTag {
+            margin-left: 0.33rem;
+          }
+        }
       }
     }
   }
