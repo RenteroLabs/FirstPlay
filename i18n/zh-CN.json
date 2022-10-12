@@ -7,7 +7,7 @@
       "connectWallet": "连接钱包"
     },
     "Footer": {
-      "solgan": "轻松有趣地边玩游戏边挣钱",
+      "solgan": "0门槛试玩游戏并获取收益",
       "copyright": "版权所有 2022 Rentero.io 保留所有权利。",
       "platform": "平台",
       "games": "游戏",
@@ -24,7 +24,7 @@
     },
     "Contact": {
       "title": "联系我们",
-      "subTitle": "随时可通过 <maillink>business@firstplay.io</maillink> 与我们联系以获得更多支持。"
+      "subTitle": "游戏项目入驻及其他合作请联系 <maillink>business@firstplay.io</maillink> 获取支持"
     }
   },
   "PassNFT": {}

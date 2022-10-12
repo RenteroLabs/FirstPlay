@@ -191,12 +191,29 @@ const Header: React.FC = () => {
               </Box>
             </Box>
 
-            <Box>
+            <Box className={styles.shareNav}>
               <Box className={styles.headerNavImage}>
                 <Image src={HEADER_SHARE} layout="fill" objectFit='contain' />
               </Box>
               <Box className={styles.socialMediaBox}>
-
+                <a href="https://twitter.com/FirstPlay2022" target="_blank" rel="noreferrer">
+                  <Box className={styles.mediaItem}>
+                    <Box><Image src="/media_twitter.webp" layout='fill' /></Box>
+                    Twitter
+                  </Box>
+                </a>
+                <a href="https://discord.com/invite/84mhbPXFUu" target="_blank" rel="noreferrer">
+                  <Box className={styles.mediaItem}>
+                    <Box><Image src="/media_discord.webp" layout='fill' /></Box>
+                    Discord
+                  </Box>
+                </a>
+                <a href="https://t.me/firstplay2022" target="_blank" rel="noreferrer">
+                  <Box className={styles.mediaItem}>
+                    <Box><Image src="/media_telegram.webp" layout='fill' /></Box>
+                    Telegram
+                  </Box>
+                </a>
               </Box>
             </Box>
 

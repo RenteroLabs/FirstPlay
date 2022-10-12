@@ -12,7 +12,7 @@ const HotGames: React.FC<HotGamesProps> = (props) => {
 
   return <Box className={styles.hotGames}>
     <Box className={styles.hotGamesBox}>
-      <SectionTitle normal="Games" emphasize="Hottest" />
+      <SectionTitle normal="Games" emphasize="Hot" />
       <Box className={styles.cardList}>
         {
           hotGames.map((item, index) => <GameCard gameInfo={item} key={index} />)

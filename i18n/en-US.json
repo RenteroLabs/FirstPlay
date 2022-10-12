@@ -7,7 +7,7 @@
       "connectWallet": "Connect Wallet"
     },
     "Footer": {
-      "solgan": "First Play Be the first to play and earn.",
+      "solgan": "Be the first to play and earn.",
       "copyright": "Copyright 2022 Rentero.io All rights reserved.",
       "platform": "Platform",
       "games": "Games",
@@ -24,7 +24,7 @@
     },
     "Contact": {
       "title": "Contact Us",
-      "subTitle": "Please feel free to contact us via <maillink>business@firstplay.io</maillink> for more support."
+      "subTitle": "For game projects and other cooperation, please contact <maillink>business@firstplay.io</maillink>"
     }
   },
   "PassNFT": {

@@ -51,10 +51,13 @@
       font-size: 1.33rem;
       font-family: Inter-SemiBold, Inter;
       font-weight: 600;
-      color: rgba(142, 80, 228, 0);
+      // color: rgba(142, 80, 228, 1);
+      color: rgba($color: #e4405b, $alpha: 0.8);
+      // color: white;
       line-height: 3.67rem;
-      background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
+      background-image: -webkit-linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
       -webkit-background-clip: text;
+      // -webkit-text-fill-color: #e4405b;
       -webkit-text-fill-color: transparent;
       // width: 38%;
       align-items: center;

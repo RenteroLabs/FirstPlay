@@ -27,7 +27,9 @@ const FirstPlay: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (pro
 
   return <Box>
     <Box className={styles.coverBox}>
-      <Image priority src={`/headerCover${coverSize}.png`} alt="cover image" layout="fill" objectFit="cover" />
+      {coverSize === 1920 && <Image priority src={`/headerCover1920.jpg`} alt="cover image" layout="fill" objectFit="cover" />}
+      {coverSize === 900 && <Image priority src={`/headerCover900.jpg`} alt="cover image" layout="fill" objectFit="cover" />}
+      {coverSize === 375 && <Image priority src={`/headerCover375.jpg`} alt="cover image" layout="fill" objectFit="cover" />}
     </Box>
     <GudeStep />
     {/* <TrialGame /> */}

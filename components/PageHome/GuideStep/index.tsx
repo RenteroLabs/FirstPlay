@@ -35,7 +35,7 @@ const GudeStep: React.FC = () => {
         <UserStep
           stepIndex={3}
           stepTitle="Try A Game"
-          stepDesc="0 barriers to entry a game provide guide and walkthrough"
+          stepDesc="0 barriers to entry a game, provide game guidance and walkthroughs"
           stepStatus="Waitting"
         />
         <UserStep

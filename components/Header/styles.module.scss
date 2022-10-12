@@ -269,6 +269,52 @@
   }
 }
 
+.shareNav {
+  position: relative;
+  cursor: pointer;
+
+  .socialMediaBox {
+    display: none;
+    position: absolute;
+    background: #ffffff;
+    border-radius: 0.83rem;
+    padding: 0.88rem 0;
+    top: 84px;
+    right: -50%;
+
+    .mediaItem {
+      font-size: 1.5rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #222222;
+      line-height: 1.75rem;
+      padding: 0.88rem 1.67rem;
+
+      display: flex;
+      align-items: center;
+      div {
+        position: relative;
+        width: 2.4rem;
+        height: 2.4rem;
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  &:hover {
+    .socialMediaBox {
+      display: flex;
+      flex-direction: column;
+
+      .mediaItem {
+        &:hover {
+          background-color: #efefef;
+        }
+      }
+    }
+  }
+}
+
 .drawer {
   position: relative;
   width: 40rem;

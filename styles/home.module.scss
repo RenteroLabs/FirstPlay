@@ -49,10 +49,10 @@
   }
 }
 
-@media screen and (max-width: 1024px) {
-  // .coverBox {
-  //   height: 45vw;
-  // }
+@media screen and (max-width: 1400px) {
+  .coverBox {
+    height: 30vw;
+  }
 }
 
 @media screen and (max-width: 1024px) {
@@ -110,5 +110,11 @@
 @media screen and (max-width: 450px) {
   .coverBox {
     height: 41.67rem;
+  }
+}
+
+@media screen and (max-width: 374px){
+  .coverBox {
+    height: 128vw;
   }
 }

@@ -12,7 +12,7 @@ const GameStrategy: React.FC<GameStrategyProps> = (props) => {
 
   return <Box className={styles.gameStrategy}>
     <Box className={styles.gameStrategyBox}>
-      <SectionTitle normal="Games" emphasize="Strategy" sort="last" />
+      <SectionTitle normal="Games" emphasize="Tutorial" sort="last" />
       <Box className={styles.cardList}>
         {
           gameStrategy.map((item, index) =>
