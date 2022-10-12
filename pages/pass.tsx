@@ -1,14 +1,19 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import { GetStaticProps, GetStaticPropsContext, NextPage } from "next";
 import styles from '../styles/pass.module.scss'
 import Image from 'next/image'
 import { BADGE_ICON, REWARD_ICON, TIME_ICON } from "constants/static";
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import LinerProgress from "@/components/LinerProgress";
 import EastIcon from '@mui/icons-material/East';
+import PassNFTSuccess from "@/components/PageModals/passNFTSuccess";
+import Layout from "@/components/Layout";
+import { NextPageWithLayout } from "./_app";
 
-const PassNFT: NextPage = () => {
+const PassNFT: NextPageWithLayout = () => {
   const [mintCount, setMintCount] = useState<number>(100)
+
+  const [showModal, setShowModal] = useState<boolean>(false)
 
   return <Box className={styles.containBox}>
     <Box className={styles.container}>
@@ -24,11 +29,11 @@ const PassNFT: NextPage = () => {
                 <Image src={BADGE_ICON} layout="fill" />
               </Box>
             </Typography>
-            <Typography>What is PassNFT, related introduction. What is PassNFT, related introduction related introductionWhat is PassNFT, related introduction</Typography>
+            <Typography>What is the Pass-NFT : The trial credential on First Play, holding rare NFTs will enjoy more rights.</Typography>
           </Box>
         </Box>
         <Box className={styles.rewardBox}>
-          <Typography variant="h3">Earn rewards</Typography>
+          {/* <Typography variant="h3">Earn rewards</Typography> */}
           <Box className={styles.rewardItem}>
             <Box>
               <Image src={REWARD_ICON} layout="fill" />
@@ -53,6 +58,8 @@ const PassNFT: NextPage = () => {
           <LinerProgress percent={mintCount / 30} />
           <Box className={styles.mintCount}><span>{mintCount}</span> / 3000</Box>
         </Box>
+        <Typography variant="h6">* NFTs are issued in the order of user claims.</Typography>
+        <Typography variant="h6">* The distribution progress will be updated from 23:00 to 00:00 every day.</Typography>
       </Box>
 
       <Box className={styles.taskBox}>
@@ -68,10 +75,13 @@ const PassNFT: NextPage = () => {
           <Box className={styles.taskDetailInfo}>
             <Box className={styles.taskList}>
               <Box className={styles.taskItem}>
-
+                <Box><Image src="/pass_task.webp" layout="fill" /></Box>
+                <Typography>Follow On Twitter @FirstPlay2022</Typography>
               </Box>
+              <Divider orientation="vertical" flexItem sx={{ margin: "0 3rem"}} />
               <Box className={styles.taskItem}>
-
+                <Box><Image src="/pass_task.webp" layout="fill" /></Box>
+                <Typography>Join First Play Discord Server</Typography>
               </Box>
             </Box>
             <Box className={styles.taskLink}>
@@ -87,7 +97,13 @@ const PassNFT: NextPage = () => {
         </Box>
       </Box>
     </Box>
+
+    <PassNFTSuccess showModal={showModal} setShowModal={setShowModal} />
   </Box>
+}
+
+PassNFT.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>
 }
 
 export default PassNFT

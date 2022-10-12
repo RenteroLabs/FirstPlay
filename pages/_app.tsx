@@ -10,6 +10,8 @@ import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 
 import { AbstractIntlMessages, NextIntlProvider } from 'next-intl'
+import { NextComponentType, NextPage } from 'next/types'
+import { ReactElement, ReactNode } from 'react'
 
 // connect wallet config
 const { chains, provider, webSocketProvider } = configureChains(SUPPORT_CHAINS, [
@@ -34,18 +36,24 @@ const client = createClient({
   webSocketProvider
 })
 
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+
 type AppPropsWithMessages = AppProps & {
+  Component: NextPageWithLayout,
   pageProps: AppInitialProps & {
     messages: AbstractIntlMessages
-  }
+  },
 }
 
 function MyApp({ Component, pageProps }: AppPropsWithMessages) {
+
+  const getLayout = Component.getLayout ?? ((page) => page)
+
   return <WagmiConfig client={client}>
     <NextIntlProvider messages={pageProps.messages}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      {getLayout(<Component {...pageProps} />)}
     </NextIntlProvider>
   </WagmiConfig>
 }

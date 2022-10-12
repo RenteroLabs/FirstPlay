@@ -25,3 +25,7 @@ a {
     /* background: black; */
   }
 }
+
+.MuiDialog-container .MuiPaper-root {
+  background-color: transparent;
+}

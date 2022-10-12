@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
@@ -8,6 +9,9 @@ const nextConfig = {
   i18n: {
     locales: ["en-US", "zh-CN"],
     defaultLocale: "en-US",
+  },
+  typescript: {
+    ignoreBuildErrors: true,
   }
 }
 

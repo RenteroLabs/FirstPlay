@@ -10,9 +10,11 @@ import GudeStep from "@/components/PageHome/GuideStep";
 import TrialGame from "@/components/PageHome/TrialingGame";
 import { getHomeInfo } from "services/home";
 import { useTranslations } from "next-intl";
-import { useMemo } from "react";
+import { ReactElement, useMemo } from "react";
+import Layout from "@/components/Layout";
+import { NextPageWithLayout } from "./_app";
 
-const FirstPlay: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
+const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   const { hotGames, strategys, comingGames } = props
 
   const isMiddleSize = useMediaQuery("(max-width: 900px)")
@@ -49,6 +51,10 @@ const FirstPlay: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = (pro
       </Typography>
     </Box>
   </Box>
+}
+
+FirstPlay.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>
 }
 
 export default FirstPlay
