@@ -13,7 +13,7 @@ const StrategyArticle: NextPageWithLayout<{ content: string, post: Record<string
 
   const { content, post } = props
 
-  const CommentComponet = '<iframe src="https://embed.0xecho.com.ipns.page?color-theme=light&desc=&has-h-padding=true&has-v-padding=true&modules=comment%2Clike%2Ctip&receiver=empty.bit&target_uri=https%3A%2F%2Ftest.firstplay.app" frameborder="0"></iframe>'
+  const CommentComponet = '<iframe src="https://embed.0xecho.com.ipns.page?color-theme=light&desc=&has-h-padding=false&has-v-padding=true&modules=comment%2Clike%2Ctip&receiver=empty.bit&target_uri=https%3A%2F%2Ftest.firstplay.app" frameborder="0"></iframe>'
 
   return <Box>
     <Box className={styles.topCover}>

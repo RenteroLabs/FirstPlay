@@ -4,9 +4,9 @@
 }
 
 .contentBox {
-  max-width: 100rem;
+  max-width: 83.33rem;
   margin: auto;
-  padding-bottom: 10rem;
+  padding-bottom: 2rem;
   padding-top: 3.75rem;
 
   h1 {
@@ -21,6 +21,14 @@
     max-width: 100%;
     text-align: center;
     margin: 2rem auto;
+    display: flex;
+  }
+
+  pre {
+    overflow-x: scroll;
+  }
+  code {
+    overflow-x: scroll;
   }
 
   a {
@@ -28,8 +36,37 @@
   }
 
   iframe {
-    margin-top: 8rem;
+    margin-top: 6rem;
     width: 100%;
     min-height: 40rem;
+  }
+}
+
+@media screen and (max-width: 1400px){
+  .contentBox {
+    max-width: 66.67rem;
+  }
+}
+
+@media screen and (max-width: 840px){
+  .contentBox {
+    width: calc(100% - 5rem);
+    padding-top: 2rem;
+  }
+}
+
+
+@media screen and (max-width: 600px){
+  .topCover {
+    height: 15rem;
+  }
+  .contentBox {
+    width: calc(100% - 2.66rem);
+    padding-top: 2rem;
+    padding-bottom: 0;
+
+    iframe {
+      margin-top: 3rem;
+    }
   }
 }

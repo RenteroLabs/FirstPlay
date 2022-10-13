@@ -10,9 +10,21 @@ interface GameCardProps {
 const GameCard: React.FC<GameCardProps> = (props) => {
   const { gameInfo } = props
 
+  const imageKitLoader = ({ src, width, quality = 100 }: any) => {
+    const params = [`w-320`];
+    if (quality) {
+      params.push(`q-${quality}`);
+    }
+    const paramsString = params.join(",");
+    var urlEndpoint = "https://ik.imagekit.io/jnznr24q9";
+    const imagePaths = src.split('/')
+    const imageHash = imagePaths[imagePaths.length - 1]
+    return `${urlEndpoint}/${imageHash}?tr=${paramsString}`
+  }
+
   return <Card className={styles.gameCard}>
     <Box className={styles.gameImage}>
-      <Image src={gameInfo?.image} layout="fill" objectFit="cover" />
+      <Image src={gameInfo?.image} layout="fill" objectFit="cover" loader={imageKitLoader} />
     </Box>
 
     <CardContent className={styles.gameContent}>
@@ -44,7 +56,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
       {gameInfo?.view}
     </Box>
     <Box className={styles.topMask}>
-      
+
     </Box>
   </Card>
 }
