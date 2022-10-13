@@ -1,0 +1,35 @@
+.topCover {
+  height: 20rem;
+  position: relative;
+}
+
+.contentBox {
+  max-width: 100rem;
+  margin: auto;
+  padding-bottom: 10rem;
+  padding-top: 3.75rem;
+
+  h1 {
+    font-size: 3.33rem;
+    font-family: Inter-Bold, Inter;
+    font-weight: bold;
+    color: #222222;
+    line-height: 3.33rem;
+  }
+
+  img {
+    max-width: 100%;
+    text-align: center;
+    margin: 2rem auto;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  iframe {
+    margin-top: 8rem;
+    width: 100%;
+    min-height: 40rem;
+  }
+}
