@@ -21,7 +21,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
     const imageHash = imagePaths[imagePaths.length - 1]
     return `${urlEndpoint}/${imageHash}?tr=${paramsString}`
   }
-  console.log(gameInfo)
+
   return <Card className={styles.gameCard}>
     <Box className={styles.gameImage}>
       <Image priority src={gameInfo?.image} layout="fill" objectFit="cover" loader={imageKitLoader} />

@@ -1,9 +1,9 @@
 .passSuccessBox {
   width: 32.5rem;
-  height: 41rem;
+  // height: 41rem;
   background: #ffffff;
   border-radius: 1.33rem;
-  padding: 1.5rem 1rem 2.5rem;
+  padding: 1.5rem 1rem 0.5rem;
   text-align: center;
   position: relative;
 
@@ -59,6 +59,31 @@
   .closeIcon {
     position: absolute;
     right: 2.5rem;
-    top: 2.5rem
+    top: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .passSuccessBox {
+    width: calc(100vw - 6rem);
+    padding: 0rem 0.8rem 0.5rem;
+    h3 {
+      font-size: 1.75rem;
+      font-family: Inter-Bold, Inter;
+      font-weight: bold;
+      color: #222222;
+      line-height: 1.75rem;
+    }
+    h4 {
+      font-size: 1.33rem;
+      font-family: Inter-Bold, Inter;
+      font-weight: bold;
+      color: #222222;
+      line-height: 1.5rem;
+    }
+    .closeIcon {
+      top: 1.5rem;
+      right: 1.5rem;
+    }
   }
 }

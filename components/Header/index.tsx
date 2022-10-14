@@ -158,9 +158,12 @@ const Header: React.FC = () => {
 
   return <Box className={styles.header}>
     <Box className={styles.headerBox}>
-      <Box className={styles.headerLogo}>
-        <Image src="/headerLogo.png" alt="header logo" layout='fill' objectFit='contain' />
-      </Box>
+      <Link href="/">
+        <Box className={styles.headerLogo}>
+          <Image src="/headerLogo.png" alt="header logo" layout='fill' objectFit='contain' />
+        </Box>
+      </Link>
+
       {!isMobileHeaderNav && isMounted &&
         <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
           <Stack direction="row" className={styles.headerNavs} >
