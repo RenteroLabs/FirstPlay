@@ -14,20 +14,21 @@
       margin-top: 3.33rem;
       & > div {
         width: calc(50% - 1rem);
+
+        box-shadow: none;
+        &:hover {
+          box-shadow: 0 6px 18px #1d293924;
+        }
       }
     }
   }
 }
 
-
 @media screen and (max-width: 1650px) {
   .gameStrategy {
-
     .gameStrategyBox {
       width: 80%;
       .cardList {
-      
-     
       }
     }
   }
@@ -35,12 +36,10 @@
 
 @media screen and (max-width: 1440px) {
   .gameStrategy {
-
     .gameStrategyBox {
       width: 83.3%;
       padding-top: 6.67rem;
       .cardList {
-
       }
     }
   }
@@ -48,11 +47,10 @@
 
 @media screen and (max-width: 1240px) {
   .gameStrategy {
-
     .gameStrategyBox {
       width: 89%;
       padding-top: 5rem;
-      
+
       .cardList {
         margin-top: 2.5rem;
       }
@@ -60,13 +58,12 @@
   }
 }
 
-@media screen and (max-width: 1024px){
+@media screen and (max-width: 1024px) {
   .gameStrategy {
-
     .gameStrategyBox {
       width: 92.2%;
       padding-top: 5rem;
-      
+
       .cardList {
         margin-top: 2.5rem;
       }
@@ -74,7 +71,7 @@
   }
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 800px) {
   .gameStrategy {
     .gameStrategyBox {
       width: 91.5%;
@@ -89,7 +86,7 @@
   }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 600px) {
   .gameStrategy {
     .gameStrategyBox {
       padding-top: 2.5rem;
