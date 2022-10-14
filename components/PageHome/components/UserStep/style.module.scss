@@ -77,6 +77,12 @@
         opacity: 0.2;
       }
 
+      @keyframes btnAnimation {
+        0% {
+          box-shadow: 0 0 0 0 #ff6e85;
+        }
+      }
+
       .activeBtn {
         @extend .baseBtn;
         background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
@@ -85,6 +91,12 @@
         filter: blur(0px);
         cursor: pointer;
 
+        animation: btnAnimation 1s infinite ease-in-out;
+        box-shadow: 0 0 0 8px transparent;
+
+        &:hover {
+          animation: none;
+        }
         a {
           width: 100%;
         }

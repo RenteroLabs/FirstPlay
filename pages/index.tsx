@@ -13,6 +13,7 @@ import { useTranslations } from "next-intl";
 import { ReactElement, useMemo } from "react";
 import Layout from "@/components/Layout";
 import { NextPageWithLayout } from "./_app";
+import { reverse } from 'lodash'
 
 const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   const { hotGames, strategys, comingGames } = props
@@ -67,7 +68,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
 
   return {
     props: {
-      hotGames: popular_games,
+      hotGames: reverse(popular_games),
       comingGames: upcoming_games,
       strategys: strategies,
 
