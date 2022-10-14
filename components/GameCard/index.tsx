@@ -21,10 +21,10 @@ const GameCard: React.FC<GameCardProps> = (props) => {
     const imageHash = imagePaths[imagePaths.length - 1]
     return `${urlEndpoint}/${imageHash}?tr=${paramsString}`
   }
-
+  console.log(gameInfo)
   return <Card className={styles.gameCard}>
     <Box className={styles.gameImage}>
-      <Image src={gameInfo?.image} layout="fill" objectFit="cover" loader={imageKitLoader} />
+      <Image priority src={gameInfo?.image} layout="fill" objectFit="cover" loader={imageKitLoader} />
     </Box>
 
     <CardContent className={styles.gameContent}>
@@ -32,7 +32,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
         <Box className={styles.gameName}>
           <Typography>{gameInfo?.name}</Typography>
           <Box className={styles.chainIcon}>
-            <Image src={CHAIN_ICON_MAP[137]} alt="chain icon" layout="fill" objectFit="contain" />
+            <Image src={CHAIN_ICON_MAP[gameInfo?.game_chains[0]?.chain_id || 1]} alt="chain icon" layout="fill" objectFit="contain" />
           </Box>
         </Box>
         <Box className={styles.gameTags}>

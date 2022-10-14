@@ -8,7 +8,7 @@ interface StrategyArticleProp {
   articleInfo: Record<string, any>
 }
 
-const cardBgColor = ['#F1E4ED', '#E9E1E0', '#E5E5F3', '#F4F4F9']
+const cardBgColor = ['#F1E4ED', '#E9E1E0', '#E5E5F3', '#EBEADE']
 
 const StrategyArticle: React.FC<StrategyArticleProp> = (props) => {
   const { articleInfo } = props

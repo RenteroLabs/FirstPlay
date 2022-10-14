@@ -4,6 +4,10 @@
   background: #ffffff;
   border-radius: 1rem !important;
   position: relative;
+  box-shadow: none;
+  &:hover {
+    box-shadow: 0 6px 18px #1d293924;
+  }
 
   .gameImage {
     position: relative;
@@ -49,7 +53,7 @@
       .gameTag {
         display: inline-block;
         border-radius: 1.83rem;
-        opacity: 0.3;
+        opacity: 0.5;
         border: 0.04rem solid #222222;
 
         font-size: 1rem;
@@ -97,7 +101,8 @@
     z-index: 100;
     right: 0.83rem;
     top: 0.83rem;
-    padding: 0.58rem 0.67rem 0.75rem;
+    // padding: 0.58rem 0.67rem 0.75rem;
+    padding: 0.4rem 0.8rem;
     background: rgba($color: white, $alpha: 0.3);
     border-radius: 0rem 1rem 0rem 1rem;
     display: flex;

@@ -4,6 +4,12 @@
   border-radius: 1rem !important;
   margin-bottom: 2rem;
   height: 21.5rem;
+  box-shadow: none;
+  
+  &:hover {
+    box-shadow: 0 6px 18px #1d293924;
+  }
+
   .articleInfo {
     padding: 2.5rem;
     display: flex;
@@ -46,7 +52,7 @@
       width: 11.17rem;
       border-radius: 1.83rem;
       border: 0.08rem solid rgba(228, 64, 91, 1);
-      padding: 1px 1.67rem;
+      padding: 0px 1.67rem;
 
       font-size: 1.33rem;
       font-family: Inter-SemiBold, Inter;
@@ -54,7 +60,7 @@
       // color: rgba(142, 80, 228, 1);
       color: rgba($color: #e4405b, $alpha: 0.8);
       // color: white;
-      line-height: 3.67rem;
+      line-height: 3.3rem;
       background-image: -webkit-linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
       -webkit-background-clip: text;
       // -webkit-text-fill-color: #e4405b;
