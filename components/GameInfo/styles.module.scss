@@ -1,8 +1,5 @@
 .gameinfoBox {
-  max-width: 83.33rem;
-  margin: auto;
   display: flex;
-  padding: 5.83rem 0;
 
   .gameCover {
     width: 16.67rem;
@@ -46,7 +43,6 @@
   }
 
   .infoBox {
-    // display: flex;
     flex-grow: 1;
 
     .infoHeader {
@@ -54,6 +50,13 @@
       justify-content: space-between;
       align-items: center;
 
+      h3 {
+        font-size: 2.5rem;
+        font-family: Inter-Bold, Inter;
+        font-weight: bold;
+        color: #222222;
+        line-height: 2.5rem;
+      }
       button {
         width: 3.33rem;
         height: 3.33rem;
@@ -124,17 +127,17 @@
   }
 }
 
-@media screen and (max-width: 1400px) {
-  .gameinfoBox {
-    width: 66.67rem;
-  }
-}
+// @media screen and (max-width: 1400px) {
+//   .gameinfoBox {
+//     width: 66.67rem;
+//   }
+// }
 
-@media screen and (max-width: 840px) {
-  .gameinfoBox {
-    width: calc(100% - 5rem);
-  }
-}
+// @media screen and (max-width: 840px) {
+//   .gameinfoBox {
+//     width: calc(100% - 5rem);
+//   }
+// }
 
 @media screen and (max-width: 750px) {
   .gameinfoBox {
@@ -142,9 +145,9 @@
   }
 }
 
-@media screen and (max-width: 600px) {
-  .gameinfoBox {
-    width: calc(100% - 2.66rem);
-    padding: 1rem 0 1.5rem;
-  }
-}
+// @media screen and (max-width: 600px) {
+//   .gameinfoBox {
+//     width: calc(100% - 2.66rem);
+//     padding: 1rem 0 1.5rem;
+//   }
+// }

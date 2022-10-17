@@ -1,0 +1,179 @@
+.gameBox {
+  min-height: calc(100vh - 27.17rem);
+
+  .topCover {
+    height: 20rem;
+    position: relative;
+  }
+
+  .gameInfoBox {
+    max-width: 100rem;
+    margin: 5.83rem auto 3.33rem;
+  }
+
+  .rewardBox {
+    max-width: 100rem;
+    margin: auto;
+
+    h4 {
+      font-size: 1.75rem;
+      font-family: Inter-Bold, Inter;
+      font-weight: bold;
+      color: rgba(#222, 0.5);
+      line-height: 1.75rem;
+      margin-bottom: 0.83rem;
+    }
+    .rewardItem {
+      display: flex;
+      justify-content: space-between;
+      background: rgba($color: #8e50e4, $alpha: 0.1);
+      // padding: 1.67rem;
+      padding-left: 1.67rem;
+      border-radius: 0.67rem;
+      .rewardName {
+        display: flex;
+        align-items: center;
+
+        .rewardIcon {
+          position: relative;
+          width: 1.5rem;
+          height: 1.86rem;
+          margin-right: 0.83rem;
+          flex-shrink: 0;
+        }
+        p {
+          font-size: 1.75rem;
+          font-family: Inter-SemiBoldItalic, Inter;
+          font-weight: normal;
+          color: #222222;
+          line-height: 1.75rem;
+        }
+      }
+
+      .rewardValue {
+        padding: 1.67rem 1.67rem 1.67rem 4rem;
+        background: rgba($color: #8e50e4, $alpha: 0.1);
+        border-radius: 8.33rem 0.67rem 0.67rem 0rem;
+        flex-shrink: 0;
+        p {
+          font-size: 1.75rem;
+          font-family: Inter-SemiBoldItalic, Inter;
+          font-weight: normal;
+          color: #8e50e4;
+          line-height: 1.75rem;
+        }
+      }
+    }
+  }
+
+  @keyframes btnAnimation {
+    0% {
+      box-shadow: 0 0 0 0 #ff6e85;
+    }
+  }
+
+  .btnBox {
+    text-align: center;
+    margin-top: 6.42rem;
+    .trialBtn {
+      display: inline-block;
+      margin: auto;
+      padding: 1.5rem 6.67rem 1.45rem;
+      font-size: 1.75rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.75rem;
+      background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
+      border-radius: 2.67rem;
+      cursor: pointer;
+      user-select: none;
+
+      animation: btnAnimation 1s infinite ease-in-out;
+      box-shadow: 0 0 0 8px transparent;
+
+      &:hover {
+        animation: none;
+      }
+    }
+
+    .downIcon {
+      margin: 3.4rem auto;
+      @-webkit-keyframes slide-bottom {
+        0% {
+          -webkit-transform: translateY(-20px);
+          transform: translateY(-20px);
+        }
+        100% {
+          -webkit-transform: translateY(40px);
+          transform: translateY(40px);
+        }
+      }
+      @keyframes slide-bottom {
+        0% {
+          -webkit-transform: translateY(-20px);
+          transform: translateY(-20px);
+        }
+        100% {
+          -webkit-transform: translateY(40px);
+          transform: translateY(40px);
+        }
+      }
+
+      svg {
+        width: 4.12rem;
+        height: 4.5rem;
+        // background: linear-gradient(45deg, #f82757 0%, #984cec 100%);
+        color: rgba(#222, 0.8);
+        // line-height: 3.3rem;
+        // background-image: -webkit-linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
+        // -webkit-background-clip: text;
+        // // -webkit-text-fill-color: #e4405b;
+        // -webkit-text-fill-color: transparent;
+
+        -webkit-animation: slide-bottom 1.5s infinite both;
+        animation: slide-bottom 1.5s infinite both;
+      }
+    }
+  }
+
+  .cardBox {
+    margin: auto;
+    background: #f4f4f9;
+
+    .cardContent {
+      max-width: 100rem;
+      margin: auto;
+      padding: 6.67rem 0;
+      h3 {
+        text-align: center;
+        font-size: 2.5rem;
+        font-family: Inter-Bold, Inter;
+        font-weight: bold;
+        color: #222222;
+        line-height: 2.5rem;
+      }
+      h4 {
+        text-align: center;
+        margin-top: 1.58rem;
+        font-size: 1.5rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 1.5rem;
+      }
+
+
+      .cardList {
+        margin-top: 3.33rem;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        & > div {
+          width: calc((100% - 6.18rem) / 4);
+          margin-bottom: 2rem;
+        }
+      }
+    }
+  }
+}

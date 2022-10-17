@@ -87,3 +87,75 @@
     }
   }
 }
+
+.trialSuccessBox {
+  width: 34.17rem;
+  padding: 2.5rem;
+  background-color: white;
+  border-radius: 1.33rem;
+
+  .modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+      font-size: 1.75rem;
+      font-family: Inter-Bold, Inter;
+      font-weight: bold;
+      color: rgba(#222, 0.8);
+      line-height: 1.75rem;
+    }
+  }
+
+  .container {
+    text-align: center;
+
+    .successIllustration {
+      position: relative;
+      width: 14.06rem;
+      height: 11.04rem;
+      margin: auto;
+      margin-top: 4rem;
+    }
+    h3 {
+      font-size: 1.75rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #222222;
+      line-height: 2.5rem;
+      margin-top: 3.75rem;
+    }
+    h4 {
+      font-size: 1.75rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #222222;
+      line-height: 2.5rem;
+    }
+    .playLink {
+      display: inline-block;
+      padding: 1.17rem 6.67rem;
+      background: linear-gradient(270deg, #f82757 0%, #984cec 100%);
+      border-radius: 2.42rem;
+      font-size: 1.33rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.75rem;
+      cursor: pointer;
+      user-select: none;
+      margin-top: 3.33rem;
+    }
+
+    .strategyLink {
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #222222;
+      line-height: 1.17rem;
+      text-decoration: underline;
+      margin-top: 1.67rem;
+      cursor: pointer;
+    }
+  }
+}

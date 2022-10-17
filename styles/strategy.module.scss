@@ -3,6 +3,11 @@
   position: relative;
 }
 
+.gameInfoBox {
+  max-width: 83.33rem;
+  margin: 5.83rem auto;
+}
+
 .contentBox {
   max-width: 83.33rem;
   margin: auto;
@@ -42,23 +47,30 @@
   }
 }
 
-@media screen and (max-width: 1400px){
-  .contentBox {
+@media screen and (max-width: 1400px) {
+  .contentBox,
+  .gameInfoBox {
     max-width: 66.67rem;
   }
 }
 
-@media screen and (max-width: 840px){
+@media screen and (max-width: 840px) {
   .contentBox {
     width: calc(100% - 5rem);
     padding-top: 2rem;
   }
+  .gameInfoBox {
+    width: calc(100% - 5rem);
+  }
 }
 
-
-@media screen and (max-width: 600px){
+@media screen and (max-width: 600px) {
   .topCover {
     height: 15rem;
+  }
+  .gameinfoBox {
+    width: calc(100% - 2.66rem);
+    margin: 1rem 1.33rem 1.5rem !important;
   }
   .contentBox {
     width: calc(100% - 2.66rem);
@@ -68,5 +80,13 @@
     iframe {
       margin-top: 3rem;
     }
+  }
+  
+}
+
+@media screen and (max-width: 600px) {
+  .gameinfoBox {
+    width: calc(100% - 2.66rem);
+    margin: 1rem 1.33rem 1.5rem !important;
   }
 }

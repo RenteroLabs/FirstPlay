@@ -19,7 +19,9 @@ const StrategyArticle: NextPageWithLayout<{ content: string, post: Record<string
     <Box className={styles.topCover}>
       <Image src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3xhds6ikrj20zo0ibtcv.jpg" layout='fill' objectFit='cover' />
     </Box>
-    <GameInfo />
+    <Box className={styles.gameInfoBox}>
+      <GameInfo />
+    </Box>
     <Divider />
     <Box className={styles.contentBox}>
       <div dangerouslySetInnerHTML={{ __html: content }} />
