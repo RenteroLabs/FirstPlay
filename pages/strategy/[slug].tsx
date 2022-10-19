@@ -6,18 +6,31 @@ import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next'
 import Image from 'next/image'
 import { NextPageWithLayout } from 'pages/_app'
 import React, { ReactElement } from 'react'
+import { getGameInfo } from 'services/home'
 import { getAllPosts, getPostBySlug, markdownToHtml } from 'util/markdown'
 import styles from '../../styles/strategy.module.scss'
 
-const StrategyArticle: NextPageWithLayout<{ content: string, post: Record<string, any> }> = (props) => {
-  const { content, post } = props
+const StrategyArticle: NextPageWithLayout<{ content: string, post: Record<string, any>, gameInfo: Record<string, any> }> = (props) => {
+  const { content, post, gameInfo } = props
+
+  const imageKitLoader = ({ src, width, quality = 100 }: any) => {
+    const params = [`w-${width}`];
+    if (quality) {
+      params.push(`q-${quality}`);
+    }
+    const paramsString = params.join(",");
+    var urlEndpoint = "https://ik.imagekit.io/jnznr24q9";
+    const imagePaths = src.split('/')
+    const imageHash = imagePaths[imagePaths.length - 1]
+    return `${urlEndpoint}/${imageHash}?tr=${paramsString}`
+  }
 
   return <Box>
     <Box className={styles.topCover}>
-      <Image src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3xhds6ikrj20zo0ibtcv.jpg" layout='fill' objectFit='cover' />
+      <Image loader={imageKitLoader} src={post.coverImage} layout='fill' objectFit='cover' />
     </Box>
     <Box className={styles.gameInfoBox}>
-      <GameInfo />
+      <GameInfo gameInfo={gameInfo} />
     </Box>
     <Divider />
     <Box className={styles.contentBox}>
@@ -44,8 +57,10 @@ export const getStaticProps = async ({ locale, params }: GetStaticPropsContext<{
     'ogImage',
     'coverImage',
     'comment',
+    "gameId"
   ])
   const content = await markdownToHtml(post.content || '')
+  const game = await getGameInfo({ game_id: post.gameId })
 
   return {
     props: {
@@ -53,25 +68,26 @@ export const getStaticProps = async ({ locale, params }: GetStaticPropsContext<{
       messages: (await import(`../../i18n/${locale}.json`)).default,
 
       post,
-      content
+      content,
+
+      gameInfo: game.data
     }
   }
 }
 
-
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = getAllPosts(['slug'])
 
-  let allArticlePath: { params: any, locale: any }[] = []
+  let allArticlePath: { params: any }[] = []
 
-  SUPPORT_LANGUAGE.forEach((language) =>
+  // SUPPORT_LANGUAGE.forEach((language) =>
     posts.forEach(item => {
       allArticlePath.push({
         params: { slug: item.slug },
-        locale: language
+        // locale: language
       })
     })
-  )
+  // )
 
   return {
     paths: allArticlePath,

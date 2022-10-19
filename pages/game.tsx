@@ -33,7 +33,7 @@ const Game: NextPageWithLayout = () => {
       <Image src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3xhds6ikrj20zo0ibtcv.jpg" layout='fill' objectFit='cover' />
     </Box>
     <Box className={styles.gameInfoBox}>
-      <GameInfo />
+      <GameInfo gameInfo={{}} />
     </Box>
     <Box className={styles.rewardBox}>
       <Typography variant='h4'>Rewards</Typography>

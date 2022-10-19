@@ -1,13 +1,14 @@
 ---
 title: '10 things that beginners must know before playing the game'
 excerpt: ''
-coverImage: '/assets/blog/hello-world/cover.jpg'
 date: '2022-10-21'
 author:
   name: Dawn
 ogImage:
   url: '/assets/blog/hello-world/cover.jpg'
 comment: '<iframe src="https://embed.0xecho.com.ipns.page?color-theme=light&desc=&has-h-padding=false&has-v-padding=false&modules=comment%2Clike%2Ctip&receiver=firstplay.bit&target_uri=https%3A%2F%2Ffirstplay.app%2Fstrategy%2FTen-Things-For-BigTime-Beginner" frameborder="0"></iframe>'
+gameId: '701ec872-74f7-48bb-88e0-8eb2c769e7cf'
+coverImage: "https://rentero-resource.s3.ap-east-1.amazonaws.com/BigTime_1920x240.jpg"
 ---
 
 # 10 things that beginners must know before playing the game

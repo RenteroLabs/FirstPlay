@@ -1,14 +1,11 @@
 ---
 title: 'Simplest guide to help you from downloading StepN App to start playing'
-excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.'
-coverImage: '/assets/blog/hello-world/cover.jpg'
-date: '2020-03-16T05:35:07.322Z'
-author:
-  name: Dawn
-  picture: '/assets/blog/authors/tim.jpeg'
-ogImage:
-  url: '/assets/blog/hello-world/cover.jpg'
+excerpt: ''
+date: '2022-10-21'
+author: Dawn
 comment: '<iframe src="https://embed.0xecho.com.ipns.page?color-theme=light&desc=&has-h-padding=false&has-v-padding=false&modules=comment%2Clike%2Ctip&receiver=firstplay.bit&target_uri=https%3A%2F%2Ffirstplay.app%2Fstrategy%2FSimple-Guide-To-StepN" frameborder="0"></iframe>'
+gameId: 'ce11cfb8-c638-4b11-9760-cff4b39471be'
+coverImage: "https://rentero-resource.s3.ap-east-1.amazonaws.com/StepN_1920x240.jpg"
 ---
 
 # Simplest guide to help you from downloading StepN App to start playing
