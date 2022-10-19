@@ -44,6 +44,8 @@ const BSC_TEST: Chain = {
 const MAIN_NETWORK: Chain[] = [
   chain.mainnet,
   chain.rinkeby,
+  chain.polygon,
+  chain.polygonMumbai,
   BSC_CHAIN,
   BSC_TEST
 ]
@@ -54,6 +56,8 @@ export const SUPPORT_CHAINS =
     [
       chain.mainnet,
       chain.rinkeby,
+      chain.polygon,
+      chain.polygonMumbai,
       BSC_CHAIN,
       BSC_TEST
     ]

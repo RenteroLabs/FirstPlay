@@ -1,11 +1,12 @@
 import { Dialog, Box, Typography, FormControlLabel, Checkbox, IconButton } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import styles from './styles.module.scss'
 // import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CloseIcon from '@mui/icons-material/Close';
 import { useAccount } from "wagmi";
 import Link from "next/link";
+import { useLocalStorageState } from "ahooks";
 
 interface PassNFTSuccessProps {
   showModal: boolean;
@@ -15,18 +16,28 @@ interface PassNFTSuccessProps {
 const PassNFTSuccess: React.FC<PassNFTSuccessProps> = (props) => {
 
   const { showModal, setShowModal } = props
-  const { address } = useAccount()
+  const [hiddenShowAgain, setHiddenShowAgain] = useState<boolean>(false)
 
-  //  TODO: 进入页面和钱包切换时判断当前用户是否已拥有 NFT
+  const [showMore, setShowMore] = useLocalStorageState("showMoreTip")
+
   useEffect(() => {
+    if (hiddenShowAgain) {
+      setShowMore("false")
+    }
+  }, [hiddenShowAgain])
 
-    // TODO: 判断用户是否已勾选不再弹窗提醒
-
-
-  }, [address])
+  const couldOpen = useMemo(() => {
+    console.log(showMore)
+    if (showModal) {
+      if (showMore === undefined || Boolean(showMore) === true) {
+        return true
+      }
+    }
+    return false
+  }, [showMore, showModal])
 
   return <Dialog
-    open={showModal}
+    open={couldOpen}
   >
     <Box className={styles.passSuccessBox}>
       <Box className={styles.successIllustration}>
@@ -38,7 +49,7 @@ const PassNFTSuccess: React.FC<PassNFTSuccessProps> = (props) => {
         <Box className={styles.successBtn}>Back to home page</Box>
       </Link>
       <FormControlLabel
-        control={<Checkbox size="small" />}
+        control={<Checkbox size="small" onClick={() => setHiddenShowAgain(!hiddenShowAgain)} checked={hiddenShowAgain} />}
         label={<span className={styles.reopenTips}>Do not remind again</span>}
         className={styles.reopenTips} />
       <IconButton

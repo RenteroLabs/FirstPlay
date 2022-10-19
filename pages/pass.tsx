@@ -3,19 +3,56 @@ import { GetStaticProps, GetStaticPropsContext, NextPage } from "next";
 import styles from '../styles/pass.module.scss'
 import Image from 'next/image'
 import { BADGE_ICON, REWARD_ICON, TIME_ICON } from "constants/static";
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import LinerProgress from "@/components/LinerProgress";
 import EastIcon from '@mui/icons-material/East';
 import PassNFTSuccess from "@/components/PageModals/passNFTSuccess";
 import Layout from "@/components/Layout";
 import { NextPageWithLayout } from "./_app";
 import TwitterIcon from '@mui/icons-material/Twitter';
+import { erc721ABI, useAccount, useContractRead } from "wagmi";
+import { PASS_NFT_CONTRACT } from "constants/contract";
+import { BigNumber } from 'ethers'
+import { getPassNFTByAddress } from "services/web3";
+import { useRequest } from "ahooks";
 
 const PassNFT: NextPageWithLayout = () => {
-  const [mintCount, setMintCount] = useState<number>(100)
   const isMobileSize = useMediaQuery("(max-width: 600px)")
 
-  const [showModal, setShowModal] = useState<boolean>(true)
+  const [showModal, setShowModal] = useState<boolean>(false)
+  const [mintedNumber, setMintedNumber] = useState<number>(0)
+
+  const { address } = useAccount()
+
+  const { run: queryPassNFTByAddress } = useRequest(getPassNFTByAddress, {
+    manual: true,
+    onSuccess: (data) => {
+      if (data?.totalCount > 0) {
+        setShowModal(true)
+      }
+    }
+  })
+
+  // 连接或切换钱包地址
+  useEffect(() => {
+    if (address) {
+      queryPassNFTByAddress({
+        contractAddresses: [PASS_NFT_CONTRACT],
+        withMetadata: false,
+        owner: address
+      })
+    }
+  }, [address])
+
+  useContractRead({
+    addressOrName: PASS_NFT_CONTRACT,
+    contractInterface: erc721ABI,
+    functionName: 'totalSupply',
+    chainId: 137,
+    onSuccess(data) {
+      setMintedNumber(BigNumber.from(data).toNumber() || 0)
+    }
+  })
 
   return <Box className={styles.containBox}>
     <Box className={styles.container}>
@@ -57,8 +94,8 @@ const PassNFT: NextPageWithLayout = () => {
         <Typography variant="h4"> Rare Pass-NFT</Typography>
         <Typography>Serial number 1-3000. Rare Pass-NFT enjoy creation rights and more token rewards.</Typography>
         <Box className={styles.progressBar}>
-          <LinerProgress percent={mintCount / 30} />
-          <Box className={styles.mintCount}><span>{mintCount}</span> / 3000</Box>
+          <LinerProgress percent={mintedNumber / 30} />
+          <Box className={styles.mintCount}><span>{mintedNumber}</span> / 3000</Box>
         </Box>
         <Typography variant="h6">* NFTs are issued in the order of user claims.</Typography>
         <Typography variant="h6">* The distribution progress will be updated from 23:00 to 00:00 every day.</Typography>
@@ -121,12 +158,15 @@ const PassNFT: NextPageWithLayout = () => {
                   <Typography>Join First Play Discord Server</Typography>
                 </Box>
               </Box>}
-            <Box className={styles.taskLink}>
-              Do the task and Verify
-              <IconButton disableRipple>
-                <EastIcon />
-              </IconButton>
-            </Box>
+            <a href="https://app.quest3.xyz/quest/696517071963877646" target="_blank" rel="noreferrer">
+              <Box className={styles.taskLink}>
+                Do the task and Verify
+                <IconButton disableRipple>
+                  <EastIcon />
+                </IconButton>
+              </Box>
+            </a>
+
             <Typography>*The Pass-NFT will be drawn within 24 hours after the countdown is over.</Typography>
           </Box>
 
