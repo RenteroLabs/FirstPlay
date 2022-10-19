@@ -3,8 +3,14 @@
   overflow: hidden;
 
   .coverBox {
-    padding-bottom: 100%;
+    // padding-bottom: 100%;
     background-color: #efe5e5;
+
+    .coverType1 {
+      width: 100%;
+      padding-bottom: 100%;
+      position: relative;
+    }
   }
 
   .nftInfo {
@@ -88,6 +94,16 @@
       .trialBtn {
         display: block;
       }
+    }
+  }
+
+  .modalSizeCardInfo {
+    padding: 1rem;
+    .nftName {
+      padding-bottom: 0.83rem;
+    }
+    .trialInfo {
+      margin-top: 0.75rem;
     }
   }
 }

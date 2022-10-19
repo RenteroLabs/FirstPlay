@@ -1,4 +1,4 @@
-
+ 
 import { Box, Typography } from '@mui/material'
 import { GetStaticProps, GetStaticPropsContext, NextPage } from 'next'
 import { useRouter } from 'next/router'
@@ -13,6 +13,7 @@ import KeyboardDoubleArrowDownOutlinedIcon from '@mui/icons-material/KeyboardDou
 import TrialNFTCard from '@/components/TrialNFTCard'
 import TrialNFTCardSkeleton from '@/components/TrialNFTCard/TrialNFTCardSkeleton'
 import TrialSuccessModal from '@/components/PageModals/TrialSuccess'
+import QuickTrialNFT from '@/components/PageModals/quickTrialNFT'
 
 
 // 游戏详情页
@@ -20,6 +21,7 @@ const Game: NextPageWithLayout = () => {
 
   const router = useRouter()
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false)
+  const [showQuickTrialModal, setShowQuickTrialModal] = useState<boolean>(false)
 
   useEffect(() => {
     // 根据路由参数，获取当前游戏信息
@@ -48,7 +50,7 @@ const Game: NextPageWithLayout = () => {
       </Box>
     </Box>
     <Box className={styles.btnBox}>
-      <Box className={styles.trialBtn} onClick={() => setShowSuccessModal(true)}> Start Free Trial </Box>
+      <Box className={styles.trialBtn} onClick={() => setShowQuickTrialModal(true)}> Start Free Trial </Box>
       <Box className={styles.downIcon} onClick={() => {
         // window.body.screenTop(300)
         // document.body.scrollTop = 500
@@ -78,7 +80,8 @@ const Game: NextPageWithLayout = () => {
         </Box>
       </Box>
     </Box>
-    <TrialSuccessModal showModal={showSuccessModal} setShowModal={setShowSuccessModal} />
+    <QuickTrialNFT showModal={showQuickTrialModal} setShowModal={setShowQuickTrialModal} />
+    {/* <TrialSuccessModal showModal={showSuccessModal} setShowModal={setShowSuccessModal} /> */}
   </Box>
 }
 

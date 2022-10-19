@@ -176,7 +176,7 @@ const Header: React.FC = () => {
             <Box>{t('strategy')}</Box>
           </Stack>
           <Box className={styles.headerSetting}>
-            <Box className={styles.languageNav}>
+            {/* <Box className={styles.languageNav}>
               <Box className={styles.headerNavImage}>
                 <Image src={HEADER_LANGUAGE} layout="fill" objectFit='contain' />
               </Box>
@@ -192,7 +192,7 @@ const Header: React.FC = () => {
                   </Link>
                 </Box>
               </Box>
-            </Box>
+            </Box> */}
 
             <Box className={styles.shareNav}>
               <Box className={styles.headerNavImage}>

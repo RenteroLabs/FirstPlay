@@ -14,22 +14,24 @@ const StrategyArticle: React.FC<StrategyArticleProp> = (props) => {
   const { articleInfo } = props
 
   return <Card className={styles.articleCard}>
-    <Box className={styles.articleInfo} sx={{ backgroundColor: cardBgColor[articleInfo.key] }}>
-      <Typography variant="h4">
-        {articleInfo.game_name}
-        <Box><Image src={BADGE_ICON} layout="fill" /></Box>
-      </Typography>
-      <Typography variant="h3">{articleInfo.title}</Typography>
-      <Box className={styles.linkBtn}>Strategy <EastIcon /></Box>
-    </Box>
-    <Box className={styles.gameCover}>
-      <CardMedia
-        component="img"
-        alt="article cover image"
-        image="https://tva1.sinaimg.cn/large/e6c9d24egy1h3xgnbyzscj20zk0k0gtn.jpg"
-      />
-    </Box>
-  </Card>
+    < a href={articleInfo.link} target="_blank" rel="noreferrer" >
+      <Box className={styles.articleInfo} sx={{ backgroundColor: cardBgColor[articleInfo.key] }}>
+        <Typography variant="h4">
+          {articleInfo.game_name}
+          <Box><Image src={BADGE_ICON} layout="fill" /></Box>
+        </Typography>
+        <Typography variant="h3">{articleInfo.title}</Typography>
+        <Box className={styles.linkBtn}>Strategy <EastIcon /></Box>
+      </Box>
+      <Box className={styles.gameCover}>
+        <CardMedia
+          component="img"
+          alt="article cover image"
+          image={articleInfo.image}
+        />
+      </Box>
+    </a >
+  </Card >
 }
 
 export default StrategyArticle

@@ -76,6 +76,8 @@
         animation: btnAnimation 1s infinite ease-in-out;
         box-shadow: 0 0 0 8px transparent;
 
+        margin-left: 1rem;
+        
         &:hover {
           animation: none;
         }

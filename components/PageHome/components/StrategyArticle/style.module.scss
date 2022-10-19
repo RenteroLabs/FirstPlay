@@ -1,11 +1,14 @@
 .articleCard {
-  display: flex;
-  justify-content: space-between;
   border-radius: 1rem !important;
   margin-bottom: 2rem;
   height: 21.5rem;
   box-shadow: none;
-  
+
+  a {
+    display: flex;
+    justify-content: space-between;
+  }
+
   &:hover {
     box-shadow: 0 6px 18px #1d293924;
   }
@@ -61,7 +64,11 @@
       color: rgba($color: #e4405b, $alpha: 0.8);
       // color: white;
       line-height: 3.3rem;
-      background-image: -webkit-linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
+      background-image: -webkit-linear-gradient(
+        270deg,
+        #e4405b 0%,
+        #8e50e4 100%
+      );
       -webkit-background-clip: text;
       // -webkit-text-fill-color: #e4405b;
       -webkit-text-fill-color: transparent;

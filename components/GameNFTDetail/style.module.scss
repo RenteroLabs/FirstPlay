@@ -1,0 +1,208 @@
+.drawerBox {
+  height: 85vh;
+  position: relative;
+  overflow: hidden;
+
+  .contentBox {
+    position: relative;
+    height: calc(100% - 6.67rem);
+    overflow-y: scroll;
+    // padding-bottom: 6.67rem;
+    .infoBox {
+      width: 48.85%;
+      margin: 3.33rem auto 2rem;
+      // border: 1px solid gray;
+      display: flex;
+      justify-content: space-between;
+
+      .infoLeft {
+        display: flex;
+        flex-direction: column;
+        width: calc(50% - 1.25rem);
+        .nftCover {
+          width: 100%;
+          // padding-bottom: 100%;
+          background: #f4f4f9;
+          border-radius: 1rem;
+          margin-bottom: 2.5rem;
+          overflow: hidden;
+
+          .nftCoverType1 {
+            width: 100%;
+            padding-bottom: 100%;
+            position: relative;
+          }
+        }
+
+        .nftDetail {
+          height: 17.67rem;
+          border-radius: 1rem;
+          border: 0.08rem solid rgba(#979797, 0.3);
+
+          h3 {
+            background: #f4f4f9;
+            padding: 1.17rem 2.5rem 1.08rem;
+            border-radius: 1rem 1rem 0rem 0rem;
+            font-size: 1.75rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #222222;
+            line-height: 1.75rem;
+          }
+          & > div {
+            padding: 1.67rem 2.5rem;
+            .detailItem {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+
+              .detailKey {
+                font-size: 1.33rem;
+                font-family: Inter-Medium, Inter;
+                font-weight: 500;
+                color: #222222;
+                line-height: 1.33rem;
+              }
+
+              .detailValue {
+                font-size: 1.33rem;
+                font-family: Inter-MediumItalic, Inter;
+                font-weight: normal;
+                color: rgba(#222, 0.5);
+                line-height: 1.33rem;
+              }
+
+              & + .detailItem {
+                margin-top: 1.67rem;
+              }
+            }
+          }
+        }
+      }
+
+      .infoRight {
+        display: flex;
+        flex-direction: column;
+        width: calc(50% - 1.25rem);
+
+        .nftInfo {
+          height: 12.75rem;
+          background: #f4f4f9;
+          border-radius: 1rem;
+          margin-bottom: 2.5rem;
+          padding: 1.67rem 2.5rem;
+          h4 {
+            font-size: 1.33rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: rgba(#222, 0.5);
+            line-height: 1.33rem;
+          }
+          h3 {
+            font-size: 1.75rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #222222;
+            line-height: 1.75rem;
+            margin: 1.67rem auto;
+          }
+          .trialInfo {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.58rem;
+            .trialKey {
+              font-size: 1.33rem;
+              font-family: Inter-Medium, Inter;
+              font-weight: 500;
+              color: #222222;
+              line-height: 1.33rem;
+            }
+            .trialValue {
+              font-size: 1.33rem;
+              font-family: Inter-Medium, Inter;
+              font-weight: 500;
+              color: #8e50e4;
+              line-height: 1.33rem;
+            }
+          }
+        }
+        .metaList {
+          border-radius: 1rem;
+          border: 0.08rem solid rgba(#979797, 0.3);
+
+          h3 {
+            font-size: 1.75rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #222222;
+            line-height: 1.75rem;
+            background: #f4f4f9;
+            border-radius: 1rem 1rem 0rem 0rem;
+            padding: 1.5rem 2.67rem 1.42rem;
+          }
+
+          .statusList {
+            padding: 1.67rem 2.5rem;
+
+            h4 {
+              font-size: 1.33rem;
+              font-family: Inter-SemiBold, Inter;
+              font-weight: 600;
+              color: rgba(#222, 0.3);
+              line-height: 1.33rem;
+              margin-bottom: 1.67rem;
+            }
+            .statusItem {
+              display: flex;
+              justify-content: space-between;
+              font-size: 1.33rem;
+              font-family: Inter-Medium, Inter;
+              font-weight: 500;
+              color: #222222;
+              line-height: 1.33rem;
+
+              & + .statusItem {
+                margin-top: 1.67rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .drawerCloseIcon {
+    position: absolute;
+    right: 3.33rem;
+    top: 3.33rem;
+    background-color: rgba(#222, 0.05);
+  }
+
+  .btnBox {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6.67rem;
+    background: #8e50e4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .trialBtn {
+      display: inline-block;
+      padding: 1.33rem;
+      text-align: center;
+      width: 40rem;
+      background: rgba(white, 0.1);
+      border-radius: 2.67rem;
+      font-size: 2rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 2rem;
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+}

@@ -1,28 +1,26 @@
 ---
-title: 'Rentero Protocol 租赁协议接入指导文档'
-excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus.'
+title: '10 things that beginners must know before playing the game'
+excerpt: ''
 coverImage: '/assets/blog/hello-world/cover.jpg'
-date: '2020-03-16T05:35:07.322Z'
+date: '2022-10-21'
 author:
-  name: Tim Neutkens
-  picture: '/assets/blog/authors/tim.jpeg'
+  name: Dawn
 ogImage:
   url: '/assets/blog/hello-world/cover.jpg'
+comment: '<iframe src="https://embed.0xecho.com.ipns.page?color-theme=light&desc=&has-h-padding=false&has-v-padding=false&modules=comment%2Clike%2Ctip&receiver=firstplay.bit&target_uri=https%3A%2F%2Ffirstplay.app%2Fstrategy%2FTen-Things-For-BigTime-Beginner" frameborder="0"></iframe>'
 ---
 
-# Rentero Protocol 租赁协议接入指导文档
+# 10 things that beginners must know before playing the game
 
 <aside>
 📌 本文档旨在说明游戏方如何接入 Rentero Protocol 租赁协议，以及必要的改造逻辑说明和指导
-
-
 </aside>
 
-Rentero Protocol协议合约架构如下图所示，其包含了租借双方的租期管理、质押和赎回等核心功能。游戏接入方仅需要**识别、认可用户通过 Rentero Protocol 租赁的 NFT，可正常使用并获取收益**。
+Rentero Protocol 协议合约架构如下图所示，其包含了租借双方的租期管理、质押和赎回等核心功能。游戏接入方仅需要**识别、认可用户通过 Rentero Protocol 租赁的 NFT，可正常使用并获取收益**。
 
 ![RenteroProtocol.drawio.png](https://tva1.sinaimg.cn/large/008vxvgGly1h73njlzet6j316e0gq778.jpg)
 
-## 一、 NFT识别接入
+## 一、 NFT 识别接入
 
 ### 1. 识别租赁 NFT
 
@@ -56,11 +54,11 @@ const result = await renteroNFT.getRentNFTsByAddress(renterAddress)
 }
 ```
 
-*注：当前 SDK 仅返回用户租赁 NFT 的基本租约信息，展示所需的 NFT 元信息需由游戏方自行获取*
+_注：当前 SDK 仅返回用户租赁 NFT 的基本租约信息，展示所需的 NFT 元信息需由游戏方自行获取_
 
 ### 2. 获取租赁 NFT 过期时间
 
-当用户在开始进行游戏前，需获取租赁 NFT的过期时间，判断是否支持当前游戏回合以及即将到期提醒
+当用户在开始进行游戏前，需获取租赁 NFT 的过期时间，判断是否支持当前游戏回合以及即将到期提醒
 
 `getRentInfoById`: 支持获取 NFT 租赁信息，使用示例如下：
 
@@ -110,10 +108,9 @@ Rentero Protocol 的租赁能力集中在 `Rentero` 类，目前包含`lendNFT` 
 import { Rentero } from '@rentero/sdk-js'
 
 const rentero = new Rentero(signer, {
-    targetChain: 'bsctestnet', // current support chain 'mainnet' | 'rinkeby' | 'bsc' | 'bsctestnet'
-    renteroType: 'installment',
-  }
-)
+  targetChain: 'bsctestnet', // current support chain 'mainnet' | 'rinkeby' | 'bsc' | 'bsctestnet'
+  renteroType: 'installment',
+})
 ```
 
 ### 2. 出租上架 NFT 流程
@@ -122,14 +119,14 @@ const rentero = new Rentero(signer, {
 
 ```tsx
 Rentero.lendNFT(
-		nftAddress: string, 
-		tokenId: number, 
-		erc20Address: string, 
-		whitelist: string, 
-		deposit: BigNumber, 
-		dailyPrice: BigNumber, 
-		paymentCycle: number, 
-		minRentalDays: number, 
+		nftAddress: string,
+		tokenId: number,
+		erc20Address: string,
+		whitelist: string,
+		deposit: BigNumber,
+		dailyPrice: BigNumber,
+		paymentCycle: number,
+		minRentalDays: number,
 		maxRentalDays: number) => Promise<any>
 ```
 
@@ -205,10 +202,9 @@ Rentero.rentNFT(contractAddress: string, tokenId: number, rentDays: number) => P
 
 **3.2 授权 ERC20 Token**
 
- 在进行租赁调用前，需判断当前用户是否已授权足额指定 ERC20 Token租金给到 Market 合约，若无授权，将会在扣款租金动作因无权限而失败报错
+在进行租赁调用前，需判断当前用户是否已授权足额指定 ERC20 Token 租金给到 Market 合约，若无授权，将会在扣款租金动作因无权限而失败报错
 
 ![](https://tva1.sinaimg.cn/large/008vxvgGly1h73o0c3nbdj30eo02h3yd.jpg)
-
 
 ### 4. 违约操作流程
 
@@ -251,7 +247,7 @@ Rentero.redeemNFT(contractAddress: string, tokenId: number) => Promise<any>
 
 ## 三、常见问题
 
-### Q1: 项目方后端同学如何获取租赁NFT 数据？
+### Q1: 项目方后端同学如何获取租赁 NFT 数据？
 
 当前 SDK 主要服务于前端 DAPP 开发中的租赁数据获取，后端同学可通过我们的 TheGraph 服务来获取各链的所有租赁 NFT 数据信息，提供完备的搜索、查询功能，详细文档见[Rentero TheGraph 服务介绍与使用](https://www.notion.so/Rentero-TheGraph-40f52a9bd8b4455d9ff8040b9192bba0)。如果目前 SDK 中 RenteroNFT 类中包含的租赁数据查询方法不满足业务方需求，也可使用 TheGraph 方式查询
 

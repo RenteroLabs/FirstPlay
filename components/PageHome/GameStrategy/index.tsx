@@ -9,7 +9,6 @@ interface GameStrategyProps {
 
 const GameStrategy: React.FC<GameStrategyProps> = (props) => {
   const { gameStrategy } = props
-
   return <Box className={styles.gameStrategy}>
     <Box className={styles.gameStrategyBox}>
       <SectionTitle normal="Games" emphasize="Tutorial" sort="last" />

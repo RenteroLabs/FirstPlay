@@ -10,10 +10,7 @@ import { getAllPosts, getPostBySlug, markdownToHtml } from 'util/markdown'
 import styles from '../../styles/strategy.module.scss'
 
 const StrategyArticle: NextPageWithLayout<{ content: string, post: Record<string, any> }> = (props) => {
-
   const { content, post } = props
-
-  const CommentComponet = '<iframe src="https://embed.0xecho.com.ipns.page?color-theme=light&desc=&has-h-padding=false&has-v-padding=true&modules=comment%2Clike%2Ctip&receiver=empty.bit&target_uri=https%3A%2F%2Ftest.firstplay.app" frameborder="0"></iframe>'
 
   return <Box>
     <Box className={styles.topCover}>
@@ -25,7 +22,7 @@ const StrategyArticle: NextPageWithLayout<{ content: string, post: Record<string
     <Divider />
     <Box className={styles.contentBox}>
       <div dangerouslySetInnerHTML={{ __html: content }} />
-      <div dangerouslySetInnerHTML={{ __html: CommentComponet }} />
+      <div dangerouslySetInnerHTML={{ __html: post.comment }} />
     </Box>
   </Box>
 }
@@ -46,6 +43,7 @@ export const getStaticProps = async ({ locale, params }: GetStaticPropsContext<{
     'content',
     'ogImage',
     'coverImage',
+    'comment',
   ])
   const content = await markdownToHtml(post.content || '')
 
