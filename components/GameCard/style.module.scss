@@ -88,7 +88,7 @@
         font-weight: 500;
         color: #8e50e4;
         line-height: 1.33rem;
-       }
+      }
       .rewardIcon {
         width: 1.17rem;
         height: 1.42rem;
@@ -237,12 +237,21 @@
           }
         }
       }
+      .gameName {
+        // p {
+        //   font-size: 1.2rem;
+        //   line-height: 1.2rem;
+        // }
+      }
       .gameRewards {
         p {
           white-space: break-spaces;
           overflow: visible;
           text-overflow: unset;
           line-height: 1.33rem;
+          // font-size: 1rem;
+          // line-height: 1rem;
+          // font-weight: 400;
         }
       }
     }

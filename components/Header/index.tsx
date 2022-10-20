@@ -10,7 +10,7 @@ import FeaturedVideoOutlinedIcon from '@mui/icons-material/FeaturedVideoOutlined
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import { SUPPORT_CHAINS } from 'constants/index'
-import { CHAIN_ICON_MAP, CONNECTED_WALLET, FIRSTPLAY_LOGO, HEADER_LANGUAGE, HEADER_SHARE } from 'constants/static'
+import { CHAIN_ICON_MAP, CONNECTED_WALLET, FIRSTPLAY_LOGO, HEADER_LANGUAGE, HEADER_NAV_ACTIVITY, HEADER_NAV_ITEM, HEADER_SHARE } from 'constants/static'
 import { useIsMounted } from 'hooks/useIsMounted'
 import classNames from 'classnames/bind'
 import MenuIcon from '@mui/icons-material/Menu';
@@ -93,7 +93,7 @@ const HeaderUserInfo: React.FC<HeaderUserInfoProps> = (props) => {
                 })}
                 disableRipple>
                 <Box>
-                  <DnsIcon />
+                  <Image src={HEADER_NAV_ITEM} layout="fill" />
                 </Box>
                 Items
               </MenuItem>
@@ -105,7 +105,7 @@ const HeaderUserInfo: React.FC<HeaderUserInfoProps> = (props) => {
                 sx={{ marginBottom: '0.5rem' }}
                 disableRipple>
                 <Box>
-                  <ReceiptLongIcon />
+                  <Image src={HEADER_NAV_ACTIVITY} layout="fill" />
                 </Box>
                 Activity
               </MenuItem>
