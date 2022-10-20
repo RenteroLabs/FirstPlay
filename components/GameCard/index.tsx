@@ -49,12 +49,12 @@ const GameCard: React.FC<GameCardProps> = (props) => {
         </Box>
       </Stack>
     </CardContent>
-    <Box className={styles.gameHot}>
+    {/* <Box className={styles.gameHot}>
       <Box>
         <Image src={HOT_GAME_ICON} layout="fill" />
       </Box>
       {gameInfo?.view}
-    </Box>
+    </Box> */}
     <Box className={styles.topMask}>
 
     </Box>

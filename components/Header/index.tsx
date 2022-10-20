@@ -10,7 +10,7 @@ import FeaturedVideoOutlinedIcon from '@mui/icons-material/FeaturedVideoOutlined
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import { SUPPORT_CHAINS } from 'constants/index'
-import { CHAIN_ICON_MAP, CONNECTED_WALLET, HEADER_LANGUAGE, HEADER_SHARE } from 'constants/static'
+import { CHAIN_ICON_MAP, CONNECTED_WALLET, FIRSTPLAY_LOGO, HEADER_LANGUAGE, HEADER_SHARE } from 'constants/static'
 import { useIsMounted } from 'hooks/useIsMounted'
 import classNames from 'classnames/bind'
 import MenuIcon from '@mui/icons-material/Menu';
@@ -160,7 +160,7 @@ const Header: React.FC = () => {
     <Box className={styles.headerBox}>
       <Link href="/">
         <Box className={styles.headerLogo}>
-          <Image src="/headerLogo.png" alt="header logo" layout='fill' objectFit='contain' />
+          <Image src={FIRSTPLAY_LOGO} alt="header logo" layout='fill' objectFit='contain' />
         </Box>
       </Link>
 
@@ -172,8 +172,8 @@ const Header: React.FC = () => {
                 <a target="_blank">{t('passNFT')}</a>
               </Link>
             </Box>
-            <Box>{t('games')}</Box>
-            <Box>{t('strategy')}</Box>
+            <Box className={styles.disabled}>{t('games')}</Box>
+            <Box className={styles.disabled}>{t('strategy')}</Box>
           </Stack>
           <Box className={styles.headerSetting}>
             {/* <Box className={styles.languageNav}>

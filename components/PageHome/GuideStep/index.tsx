@@ -1,5 +1,8 @@
 import { Box } from "@mui/material"
-import { useMemo } from "react"
+import { useRequest } from "ahooks"
+import { PASS_NFT_CONTRACT } from "constants/contract"
+import { useMemo, useState } from "react"
+import { getPassNFTByAddress } from "services/web3"
 import { useAccount } from "wagmi"
 import SectionTitle from "../components/SectionTitle"
 import UserStep from "../components/UserStep"
@@ -7,14 +10,32 @@ import styles from './style.module.scss'
 
 const GudeStep: React.FC = () => {
   const { address } = useAccount()
+
+  const [mintedNumber, setMintedNumber] = useState<number>(0)
+
+  const { run: queryPassNFTByAddress } = useRequest(getPassNFTByAddress, {
+    manual: true,
+    onSuccess: (data) => {
+      setMintedNumber(data?.totalCount || 0)
+    }
+  })
+
   const [firstStepStatus, secondeStepStatus] = useMemo(() => {
     let first = "Pendding", second = 'Waitting'
     if (address) {
       first = 'Done'
       second = "Pendding"
+      queryPassNFTByAddress({
+        contractAddresses: [PASS_NFT_CONTRACT],
+        withMetadata: false,
+        owner: address
+      })
+      if (mintedNumber > 0) {
+        second = 'Done'
+      }
     }
     return [first, second]
-  }, [address])
+  }, [address, mintedNumber])
 
   return <Box className={styles.guidestep}>
     <Box className={styles.guidestepBox}>

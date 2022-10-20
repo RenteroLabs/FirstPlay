@@ -14,31 +14,19 @@ interface PassNFTSuccessProps {
 }
 
 const PassNFTSuccess: React.FC<PassNFTSuccessProps> = (props) => {
-
   const { showModal, setShowModal } = props
   const [hiddenShowAgain, setHiddenShowAgain] = useState<boolean>(false)
 
   const [showMore, setShowMore] = useLocalStorageState("showMoreTip")
 
   useEffect(() => {
-    if (hiddenShowAgain) {
-      setShowMore("false")
-    }
+    // if (hiddenShowAgain) {
+    //   setShowMore("false")
+    // }
+    
   }, [hiddenShowAgain])
 
-  const couldOpen = useMemo(() => {
-    console.log(showMore)
-    if (showModal) {
-      if (showMore === undefined || Boolean(showMore) === true) {
-        return true
-      }
-    }
-    return false
-  }, [showMore, showModal])
-
-  return <Dialog
-    open={couldOpen}
-  >
+  return <Dialog open={showModal} >
     <Box className={styles.passSuccessBox}>
       <Box className={styles.successIllustration}>
         <Image src="/pass_success.jpg" layout="fill" />

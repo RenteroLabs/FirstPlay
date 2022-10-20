@@ -14,6 +14,7 @@ import { ReactElement, useMemo } from "react";
 import Layout from "@/components/Layout";
 import { NextPageWithLayout } from "./_app";
 import { reverse } from 'lodash'
+import Head from "next/head";
 
 const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   const { hotGames, strategys, comingGames } = props
@@ -29,6 +30,11 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
   }, [isMiddleSize, isMobileSize])
 
   return <Box>
+    <Head>
+      <title>FirstPlay | Home</title>
+      <meta name="description" content="Be the first to play and earn | A blockchain game platform that allow you play games before buying NFTs and help you how to play to make money" />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
     <Box className={styles.coverBox}>
       {coverSize === 1920 && <Image priority src={`/headerCover1920.jpg`} alt="cover image" layout="fill" objectFit="cover" />}
       {coverSize === 900 && <Image priority src={`/headerCover900.jpg`} alt="cover image" layout="fill" objectFit="cover" />}

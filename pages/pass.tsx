@@ -14,7 +14,8 @@ import { erc721ABI, useAccount, useContractRead } from "wagmi";
 import { PASS_NFT_CONTRACT } from "constants/contract";
 import { BigNumber } from 'ethers'
 import { getPassNFTByAddress } from "services/web3";
-import { useRequest } from "ahooks";
+import { useLocalStorageState, useRequest } from "ahooks";
+import Head from "next/head";
 
 const PassNFT: NextPageWithLayout = () => {
   const isMobileSize = useMediaQuery("(max-width: 600px)")
@@ -24,11 +25,15 @@ const PassNFT: NextPageWithLayout = () => {
 
   const { address } = useAccount()
 
+  const [showMore] = useLocalStorageState("showMoreTip")
+
   const { run: queryPassNFTByAddress } = useRequest(getPassNFTByAddress, {
     manual: true,
     onSuccess: (data) => {
       if (data?.totalCount > 0) {
-        setShowModal(true)
+        if (!showMore || showMore === "true") {
+          setShowModal(true)
+        }
       }
     }
   })
@@ -55,6 +60,11 @@ const PassNFT: NextPageWithLayout = () => {
   })
 
   return <Box className={styles.containBox}>
+    <Head>
+      <title>PassNFT | FirstPlay</title>
+      <meta name="description" content="Be the first to play and earn | A blockchain game platform that allow you play games before buying NFTs and help you how to play to make money" />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
     <Box className={styles.container}>
       <Box className={styles.nftInfo}>
         <Box className={styles.nftMetadata}>

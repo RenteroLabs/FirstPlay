@@ -2,6 +2,7 @@ import { Box, Stack, Typography, useMediaQuery } from "@mui/material"
 import styles from './styles.module.scss'
 import Image from "next/image"
 import { useTranslations } from "next-intl"
+import { FIRSTPLAY_LOGO } from "constants/static"
 
 const Footer: React.FC = () => {
   const isMobileLayout = useMediaQuery('(max-width: 900px)')
@@ -12,16 +13,16 @@ const Footer: React.FC = () => {
     <Box className={styles.footerBox}>
       {isMobileLayout && <Box className={styles.mobileBrands}>
         <Typography variant="h3">
-          {/* <Image src="/headerLogo.png" layout="fill" objectFit="contain" /> */}
-          FirstPlay
+          <Image src={FIRSTPLAY_LOGO} layout="fill" objectFit="contain" />
+          {/* FirstPlay */}
         </Typography>
         <Typography variant="body1" component="p">
           First Play Be the first to play and earn.</Typography>
       </Box>}
       <Stack className={styles.brands}>
         <Typography variant="h3">
-          {/* <Image src="/headerLogo.png" layout="fill" objectFit="contain" /> */}
-          FirstPlay
+          <Image src={FIRSTPLAY_LOGO} layout="fill" objectFit="contain" />
+          {/* FirstPlay */}
         </Typography>
         <Typography variant="body1">{t('solgan')}</Typography>
         <Typography variant="subtitle2">{t('copyright')}</Typography>
@@ -30,8 +31,8 @@ const Footer: React.FC = () => {
         <Stack className={styles.platform}>
           <Typography variant="h4">{t('platform')}</Typography>
           <Typography variant="body1">{t('passNFT')}</Typography>
-          <Typography variant="body1">{t('games')}</Typography>
-          <Typography variant="body1">{t('strategy')}</Typography>
+          <Typography variant="body1" className={styles.disabled}>{t('games')}</Typography>
+          <Typography variant="body1" className={styles.disabled}>{t('strategy')}</Typography>
         </Stack>
         <Stack className={styles.medias}>
           <Typography variant="h4">{t('social')}</Typography>
@@ -47,9 +48,9 @@ const Footer: React.FC = () => {
         </Stack>
         <Stack className={styles.support}>
           <Typography variant="h4">{t('support')}</Typography>
-          <Typography variant="body1">{t('whitepaper')}</Typography>
-          <Typography variant="body1">{t('litebook')}</Typography>
-          <Typography variant="body1">{t('SDK')}</Typography>
+          <Typography variant="body1" className={styles.disabled}>{t('whitepaper')}</Typography>
+          <Typography variant="body1" className={styles.disabled}>{t('litebook')}</Typography>
+          <Typography variant="body1" className={styles.disabled}>{t('SDK')}</Typography>
         </Stack>
       </Box>
       {isMobileLayout &&

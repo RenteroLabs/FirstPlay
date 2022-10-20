@@ -17,6 +17,10 @@
       h3 {
         margin-top: 3.33rem;
         margin-bottom: 1.25rem;
+        width: 13.33rem;
+        height: 3rem;
+        position: relative;
+        cursor: pointer;
       }
       p {
         font-size: 1.17rem;
@@ -41,6 +45,12 @@
     }
     .brands {
       flex-grow: 1;
+      h3 {
+        width: 13.33rem;
+        height: 3rem;
+        position: relative;
+        cursor: pointer;
+      }
       p {
         margin-top: 1.42rem;
         font-size: 1.33rem;
@@ -75,8 +85,21 @@
         color: #222222;
         line-height: 1.33rem;
         margin-top: 1.67rem;
+
+        &:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+      .disabled {
+        color: rgba(#222, 0.5);
+        &:hover {
+          text-decoration: none;
+          cursor: not-allowed;
+        } 
       }
     }
+
   }
   .footerBox div {
     & + div {
@@ -165,12 +188,19 @@
           color: #222;
           line-height: 1.17rem;
         }
+        .disabled {
+          color: rgba(#222, 0.5);
+          &:hover {
+            text-decoration: none;
+            cursor: not-allowed;
+          } 
+        }
       }
     }
   }
 }
 
-@media  screen and (max-width: 600px) {
+@media screen and (max-width: 600px) {
   .footer {
     .footerBox {
       .linkList {
@@ -180,6 +210,13 @@
       div {
         & + div {
           margin-left: 0rem;
+        }
+      }
+
+      .mobileBrands {
+        h3 {
+          width: 10rem;
+          height: 2.33rem;
         }
       }
     }
