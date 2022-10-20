@@ -1,7 +1,7 @@
 import { Box } from "@mui/material"
 import { useRequest } from "ahooks"
 import { PASS_NFT_CONTRACT } from "constants/contract"
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { getPassNFTByAddress } from "services/web3"
 import { useAccount } from "wagmi"
 import SectionTitle from "../components/SectionTitle"
@@ -20,16 +20,21 @@ const GudeStep: React.FC = () => {
     }
   })
 
-  const [firstStepStatus, secondeStepStatus] = useMemo(() => {
-    let first = "Pendding", second = 'Waitting'
+  useEffect(() => {
     if (address) {
-      first = 'Done'
-      second = "Pendding"
       queryPassNFTByAddress({
         contractAddresses: [PASS_NFT_CONTRACT],
         withMetadata: false,
         owner: address
       })
+    }
+  }, [address])
+
+  const [firstStepStatus, secondeStepStatus] = useMemo(() => {
+    let first = "Pendding", second = 'Waitting'
+    if (address) {
+      first = 'Done'
+      second = "Pendding"
       if (mintedNumber > 0) {
         second = 'Done'
       }

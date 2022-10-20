@@ -40,14 +40,11 @@ const BSC_TEST: Chain = {
     }
   }
 }
-// TODO: 后续需把其中的测试网移除
+
 const MAIN_NETWORK: Chain[] = [
   chain.mainnet,
-  chain.rinkeby,
   chain.polygon,
-  chain.polygonMumbai,
   BSC_CHAIN,
-  BSC_TEST
 ]
 
 export const SUPPORT_CHAINS =
@@ -55,7 +52,7 @@ export const SUPPORT_CHAINS =
     MAIN_NETWORK :
     [
       chain.mainnet,
-      chain.rinkeby,
+      chain.goerli,
       chain.polygon,
       chain.polygonMumbai,
       BSC_CHAIN,

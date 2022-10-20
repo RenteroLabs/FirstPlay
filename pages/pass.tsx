@@ -59,6 +59,18 @@ const PassNFT: NextPageWithLayout = () => {
     }
   })
 
+  const imageKitLoader = ({ src, width, quality = 100 }: any) => {
+    const params = [`w-400`];
+    if (quality) {
+      params.push(`q-${quality}`);
+    }
+    const paramsString = params.join(",");
+    var urlEndpoint = "https://ik.imagekit.io/jnznr24q9";
+    const imagePaths = src.split('/')
+    const imageHash = imagePaths[imagePaths.length - 1]
+    return `${urlEndpoint}/${imageHash}?tr=${paramsString}`
+  }
+
   return <Box className={styles.containBox}>
     <Head>
       <title>PassNFT | FirstPlay</title>
@@ -69,7 +81,7 @@ const PassNFT: NextPageWithLayout = () => {
       <Box className={styles.nftInfo}>
         <Box className={styles.nftMetadata}>
           <Box className={styles.nftCover}>
-            <Image layout="fill" src="https://rentero-resource.s3.ap-east-1.amazonaws.com/e6c9d24egy1h3xgnbyzscj20zk0k0gtn.jpg" objectFit="cover" />
+            <Image loader={imageKitLoader} layout="fill" src="https://rentero-resource.s3.ap-east-1.amazonaws.com/PassNFT.jpg" objectFit="cover" />
           </Box>
           <Box className={styles.nftIntro}>
             <Typography variant="h2">

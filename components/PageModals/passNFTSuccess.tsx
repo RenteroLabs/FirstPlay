@@ -4,7 +4,6 @@ import Image from "next/image";
 import styles from './styles.module.scss'
 // import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import CloseIcon from '@mui/icons-material/Close';
-import { useAccount } from "wagmi";
 import Link from "next/link";
 import { useLocalStorageState } from "ahooks";
 
@@ -19,12 +18,6 @@ const PassNFTSuccess: React.FC<PassNFTSuccessProps> = (props) => {
 
   const [showMore, setShowMore] = useLocalStorageState("showMoreTip")
 
-  useEffect(() => {
-    // if (hiddenShowAgain) {
-    //   setShowMore("false")
-    // }
-    
-  }, [hiddenShowAgain])
 
   return <Dialog open={showModal} >
     <Box className={styles.passSuccessBox}>
@@ -37,7 +30,13 @@ const PassNFTSuccess: React.FC<PassNFTSuccessProps> = (props) => {
         <Box className={styles.successBtn}>Back to home page</Box>
       </Link>
       <FormControlLabel
-        control={<Checkbox size="small" onClick={() => setHiddenShowAgain(!hiddenShowAgain)} checked={hiddenShowAgain} />}
+        control={<Checkbox
+          size="small"
+          onClick={() => {
+            setShowMore(hiddenShowAgain ? "true" : "false")
+            setHiddenShowAgain(!hiddenShowAgain)
+          }}
+          checked={hiddenShowAgain} />}
         label={<span className={styles.reopenTips}>Do not remind again</span>}
         className={styles.reopenTips} />
       <IconButton

@@ -91,6 +91,7 @@ const UserStep: React.FC<UserStepProps> = (props) => {
     }
     return <Box className={btnStyle} onClick={clickCallback}>{text}</Box>
   }
+
   return <Box className={styles.userStep}>
     <Stack className={styles.userStepBox}>
       <Box className={styles.stepIcon}>
