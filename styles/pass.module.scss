@@ -63,6 +63,7 @@
         border-radius: 1rem;
         min-height: 10rem;
         padding: 3.33rem;
+        position: relative;
 
         .rewardItem {
           display: flex;
@@ -80,7 +81,30 @@
             height: 1.86rem;
             position: relative;
             margin-right: 0.83rem;
+            flex-shrink: 0;
           }
+        }
+
+        .icon_1 {
+          width: 8.5rem;
+          height: 8.33rem;
+          position: absolute;
+          top: -3rem;
+          right: 15rem;
+        }
+        .icon_2 {
+          width: 6.67rem;
+          height: 6.75rem;
+          position: absolute;
+          left: 40%;
+          bottom: -25%;
+        }
+        .icon_3 {
+          width: 6.08rem;
+          height: 6.08rem;
+          position: absolute;
+          right: 5%;
+          top: 40%;
         }
       }
     }
@@ -97,6 +121,14 @@
         font-weight: bold;
         color: #222222;
         line-height: 2.5rem;
+        display: flex;
+        align-items: center;
+        div {
+          width: 1.67rem;
+          height: 2.17rem;
+          position: relative;
+          margin-left: 0.67rem;
+        }
       }
 
       h4 {
@@ -279,7 +311,8 @@
             font-family: Inter-Regular, Inter;
             font-weight: 400;
             color: rgba(#222, 0.5);
-            line-height: 1.5rem;
+            line-height: 2rem;
+            margin-right: 2rem;
             margin-top: 2.5rem;
           }
 
@@ -379,6 +412,11 @@
         .rewardBox {
           padding: 2rem;
           margin-top: 4rem;
+          .icon_1,
+          .icon_2,
+          .icon_3 {
+            display: none;
+          }
         }
       }
       .progress {
@@ -582,6 +620,15 @@
       .progress,
       .taskBox {
         padding: 1.67rem 1.33rem;
+      }
+
+      .progress {
+        h3 {
+          div {
+            width: 1.33rem;
+            height: 1.64rem;
+          }
+        }
       }
     }
   }

@@ -45,7 +45,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
           <Box className={styles.rewardIcon}>
             <Image src={REWARD_ICON} layout="fill" />
           </Box>
-          Rewards: {gameInfo?.reward || '-'}
+          <Typography>Rewards: {gameInfo?.reward || '-'}</Typography>
         </Box>
       </Stack>
     </CardContent>

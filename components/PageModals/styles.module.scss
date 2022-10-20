@@ -3,7 +3,7 @@
   // height: 41rem;
   background: #ffffff;
   border-radius: 1.33rem;
-  padding: 1.5rem 1rem 0.5rem;
+  padding: 1.5rem 1rem 1.5rem;
   text-align: center;
   position: relative;
 
@@ -44,16 +44,19 @@
     min-width: 20rem;
 
     cursor: pointer;
-    margin-top: 2.33rem;
+    margin-top: 3.33rem;
     margin-bottom: 0.25rem;
   }
 
   .reopenTips {
-    font-size: 1rem;
+    font-size: 1.33rem;
     font-family: Inter-Medium, Inter;
     font-weight: 500;
     color: #222222;
-    line-height: 1rem;
+    line-height: 1.33rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .closeIcon {

@@ -18,6 +18,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useTranslations } from 'next-intl'
+import DnsIcon from '@mui/icons-material/Dns';
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 
 const cx = classNames.bind(styles)
 
@@ -84,15 +86,26 @@ const HeaderUserInfo: React.FC<HeaderUserInfoProps> = (props) => {
                 </Box>
               </Box>
               <Box className={styles.divider}></Box>
-              <MenuItem className={styles.menuItem} disableRipple>
+              <MenuItem
+                className={cx({
+                  menuItem: true,
+                  disabled: true,
+                })}
+                disableRipple>
                 <Box>
-                  <Image src="/header_menu_wallet.png" layout='fill' objectFit='contain' />
+                  <DnsIcon />
                 </Box>
                 Items
               </MenuItem>
-              <MenuItem className={styles.menuItem} sx={{ marginBottom: '0.5rem' }} disableRipple>
+              <MenuItem
+                className={cx({
+                  menuItem: true,
+                  disabled: true,
+                })}
+                sx={{ marginBottom: '0.5rem' }}
+                disableRipple>
                 <Box>
-                  <Image src="/header_menu_wallet.png" layout='fill' objectFit='contain' />
+                  <ReceiptLongIcon />
                 </Box>
                 Activity
               </MenuItem>
@@ -125,10 +138,17 @@ const HeaderUserInfo: React.FC<HeaderUserInfoProps> = (props) => {
                   </MenuItem>
                 </a>
               </Link>
-              <MenuItem className={styles.menuItem} disableRipple>
+
+              <MenuItem className={cx({
+                menuItem: true,
+                disabled: true,
+              })} disableRipple>
                 {t('games')}
               </MenuItem>
-              <MenuItem className={styles.menuItem} disableRipple>
+              <MenuItem className={cx({
+                menuItem: true,
+                disabled: true,
+              })} disableRipple>
                 {t('strategy')}
               </MenuItem>
             </>

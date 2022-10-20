@@ -69,6 +69,7 @@
       }
     }
 
+    // TODO: 先临时设置一行，超出省略
     .gameRewards {
       font-size: 1.33rem;
       font-family: Inter-Medium, Inter;
@@ -78,6 +79,16 @@
       display: flex;
       align-items: flex-start;
 
+      p {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-size: 1.33rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #8e50e4;
+        line-height: 1.33rem;
+       }
       .rewardIcon {
         width: 1.17rem;
         height: 1.42rem;
@@ -94,7 +105,11 @@
     left: 0;
     height: 6.5rem;
     width: 100%;
-    background: linear-gradient(180deg, rgba(#000, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(#000, 0.6) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
   }
   .gameHot {
     position: absolute;
@@ -209,7 +224,7 @@
     .topMask {
       height: 3.5rem;
     }
-    
+
     .gameContent {
       .gameTags {
         margin: 0.5rem 0;
@@ -220,6 +235,14 @@
           & + .gameTag {
             margin-left: 0.33rem;
           }
+        }
+      }
+      .gameRewards {
+        p {
+          white-space: break-spaces;
+          overflow: visible;
+          text-overflow: unset;
+          line-height: 1.33rem;
         }
       }
     }

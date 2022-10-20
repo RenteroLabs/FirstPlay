@@ -148,8 +148,18 @@
       width: 2rem;
       height: 2rem;
       margin-right: 1rem;
+      display: flex;
+      align-items: center;
+      svg {
+        font-size: 1.8rem;
+      }
     }
   }
+  .disabled {
+    color: rgba($color: #222, $alpha: 0.5);
+    cursor: not-allowed;
+  }
+
   .networkHeader {
     display: flex;
     align-items: center;
