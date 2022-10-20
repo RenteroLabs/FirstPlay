@@ -27,7 +27,7 @@ const StrategyArticle: NextPageWithLayout<{ content: string, post: Record<string
 
   return <Box>
     <Box className={styles.topCover}>
-      <Image loader={imageKitLoader} src={post.coverImage} layout='fill' objectFit='cover' />
+      <Image priority loader={imageKitLoader} src={post.coverImage} layout='fill' objectFit='cover' />
     </Box>
     <Box className={styles.gameInfoBox}>
       <GameInfo gameInfo={gameInfo} />
@@ -81,12 +81,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
   let allArticlePath: { params: any }[] = []
 
   // SUPPORT_LANGUAGE.forEach((language) =>
-    posts.forEach(item => {
-      allArticlePath.push({
-        params: { slug: item.slug },
-        // locale: language
-      })
+  posts.forEach(item => {
+    allArticlePath.push({
+      params: { slug: item.slug },
+      // locale: language
     })
+  })
   // )
 
   return {
