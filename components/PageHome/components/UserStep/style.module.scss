@@ -1,0 +1,197 @@
+.userStep {
+  .userStepBox {
+    text-align: center;
+    .stepIcon {
+      position: relative;
+      width: 50%;
+      height: 9.25rem;
+      margin: auto;
+    }
+
+    .stepProgress {
+      margin-top: 3.33rem;
+      position: relative;
+      width: 98%;
+      padding: 4%;
+    }
+
+    h3 {
+      font-size: 2rem;
+      font-family: Inter-Bold, Inter;
+      font-weight: bold;
+      color: #222222;
+      line-height: 2rem;
+      margin-top: 3.25rem;
+      margin-bottom: 1.33rem;
+    }
+
+    p {
+      font-size: 1.5rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #222222;
+      line-height: 2.33rem;
+      margin: 0 5%;
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 2;
+      /*! autoprefixer: off */
+      -webkit-box-orient: vertical;
+      // max-height: 4.66rem;
+    }
+
+    .notActiveDesc {
+      @extend p;
+      opacity: 0.5;
+    }
+
+    .buttonBox {
+      margin-top: 3.33rem;
+      display: flex;
+      justify-content: center;
+      .baseBtn {
+        display: flex;
+        background: #222222;
+        border-radius: 1.67rem;
+        filter: blur(0px);
+        font-size: 1.33rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #ffffff;
+        line-height: 3.33rem;
+        // padding: 0rem 3.33rem;
+        align-items: center;
+        height: 3.33rem;
+        width: 38%;
+        justify-content: center;
+      }
+      .doneBtn {
+        @extend .baseBtn;
+        color: white;
+        background: #222222;
+      }
+
+      .waittingBtn {
+        @extend .baseBtn;
+        opacity: 0.2;
+      }
+
+      @keyframes btnAnimation {
+        0% {
+          box-shadow: 0 0 0 0 #ff6e85;
+        }
+      }
+
+      .activeBtn {
+        @extend .baseBtn;
+        background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
+        box-shadow: 0rem 0.67rem 2.5rem 0rem rgba(142, 80, 228, 0.3);
+        border-radius: 1.67rem;
+        filter: blur(0px);
+        cursor: pointer;
+
+        animation: btnAnimation 1s infinite ease-in-out;
+        box-shadow: 0 0 0 8px transparent;
+
+        &:hover {
+          animation: none;
+        }
+        a {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .userStep {
+    .userStepBox {
+      p {
+        margin: 0 2%;
+      }
+
+      .buttonBox {
+        margin-top: 3rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .userStep {
+    .userStepBox {
+      h3 {
+        font-size: 1.75rem;
+        line-height: 1.75rem;
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      p {
+        font-size: 1.33rem;
+        line-height: 2rem;
+      }
+
+      .stepProgress {
+        margin-top: 2.83rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .userStep {
+    .userStepBox {
+      .stepProgress {
+        display: none;
+      }
+      .stepIcon {
+        height: 6rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .userStep {
+    .userStepBox {
+
+      .stepIcon {
+        // height: 4.21rem;
+        height: 5rem;
+      }
+
+      p {
+        font-size: 1.17rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #222222;
+        line-height: 1.5rem;
+        margin-bottom: 0.83rem;
+        // margin-top: 2rem;
+        margin-top: 1.5rem;
+      }
+      .buttonBox {
+        margin-top: 1.67rem;
+
+        .baseBtn {
+          font-size: 1rem;
+          font-weight: 600;
+          color: #ffffff;
+          line-height: 1.33rem;
+          height: 3rem;
+          width: 45%;
+        }
+      }
+    }
+  }
+}

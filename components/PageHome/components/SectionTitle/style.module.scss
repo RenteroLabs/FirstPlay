@@ -1,0 +1,44 @@
+.sectionTitleBox {
+  display: flex;
+  justify-content: flex-start;
+  .emphasize {
+    font-size: 3rem;
+    font-family: Montserrat-Black, Montserrat;
+    font-weight: 900;
+    color: #222222;
+    // line-height: 3rem;
+    background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: nowrap;
+  }
+
+  .normal {
+    font-size: 3rem;
+    font-family: Montserrat-Black, Montserrat;
+    font-weight: 900;
+    color: #222222;
+    // line-height: 3rem;
+    white-space: nowrap;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .sectionTitleBox {
+    .emphasize,
+    .normal {
+      font-size: 2.5rem;
+      // line-height: 2.5rem;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .sectionTitleBox {
+    .emphasize,
+    .normal {
+      font-size: 2rem;
+      // line-height: 2rem;
+    }
+  }
+}

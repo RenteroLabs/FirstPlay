@@ -1,0 +1,605 @@
+.containBox {
+  min-height: 90vh;
+  background: #f4f4f9;
+  padding: 2.5rem 0;
+
+  .container {
+    max-width: 100rem;
+    margin: auto;
+
+    .nftInfo {
+      background: #ffffff;
+      padding: 5rem;
+
+      .nftMetadata {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        .nftCover {
+          width: 18.33rem;
+          height: 18.33rem;
+          position: relative;
+          border-radius: 1rem;
+          overflow: hidden;
+          flex-shrink: 0;
+          flex-grow: 0;
+          background: linear-gradient(#70fac5, #9552eb);
+        }
+        .nftIntro {
+          flex-grow: 1;
+          margin-left: 3.33rem;
+          h2 {
+            font-size: 4rem;
+            font-family: Inter-Bold, Inter;
+            font-weight: bold;
+            color: #222222;
+            line-height: 4rem;
+            display: flex;
+            align-items: center;
+            div {
+              height: 1.73rem;
+              width: 1.73rem;
+              position: relative;
+              margin-left: 0.67rem;
+            }
+          }
+          p {
+            margin-top: 1.67rem;
+
+            max-width: 550px;
+            font-size: 1.5rem;
+            font-family: Inter-Medium, Inter;
+            font-weight: 500;
+            color: #222222;
+            line-height: 2.5rem;
+          }
+        }
+      }
+
+      .rewardBox {
+        margin-top: 5rem;
+        background: #f9f6fc;
+        border-radius: 1rem;
+        min-height: 10rem;
+        padding: 3.33rem;
+
+        .rewardItem {
+          display: flex;
+          align-items: center;
+          p {
+            font-size: 1.75rem;
+            font-family: Inter-MediumItalic, Inter;
+            font-weight: normal;
+            color: #8e50e4;
+            line-height: 3.67rem;
+          }
+
+          div {
+            width: 1.5rem;
+            height: 1.86rem;
+            position: relative;
+            margin-right: 0.83rem;
+          }
+        }
+      }
+    }
+
+    .progress {
+      margin-top: 2.5rem;
+      // height: 25.42rem;
+      background: #ffffff;
+      padding: 5rem;
+
+      h3 {
+        font-size: 2.5rem;
+        font-family: Inter-Bold, Inter;
+        font-weight: bold;
+        color: #222222;
+        line-height: 2.5rem;
+      }
+
+      h4 {
+        font-size: 1.75rem;
+        font-family: Inter-Bold, Inter;
+        font-weight: bold;
+        color: #222222;
+        line-height: 1.75rem;
+        margin: 3.33rem 0 1.67rem;
+      }
+      h6 {
+        font-size: 1.33rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: rgba($color: #222222, $alpha: 0.5);
+        line-height: 2rem;
+      }
+      p {
+        font-size: 1.75rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 1.75rem;
+
+        margin-bottom: 2.92rem;
+      }
+      .progressBar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1.75rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 1.75rem;
+        user-select: none;
+        margin-bottom: 3.33rem;
+
+        // .linerProgress {
+        //   flex-grow: 1;
+        // }
+        .mintCount {
+          flex-shrink: 0;
+          flex-grow: 0;
+          margin-left: 1.83rem;
+          span {
+            color: #8e50e4;
+          }
+        }
+      }
+    }
+
+    .taskBox {
+      margin-top: 2.5rem;
+      // height: 41.67rem;
+      background: #ffffff;
+      padding: 5rem;
+
+      .taskHeader {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 2.5rem;
+        border-bottom: 0.16rem solid rgba(#222, 0.1);
+
+        h3 {
+          font-size: 2.5rem;
+          font-family: Inter-Bold, Inter;
+          font-weight: bold;
+          color: #222222;
+          line-height: 2.5rem;
+          margin-right: 0.58rem;
+        }
+        h4 {
+          text-align: left;
+          flex-grow: 1;
+          font-size: 1.75rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #222222;
+          line-height: 1.75rem;
+        }
+
+        .taskTime {
+          font-size: 1.75rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #222222;
+          line-height: 1.75rem;
+          display: flex;
+          align-items: center;
+          div {
+            width: 1.83rem;
+            height: 1.83rem;
+            position: relative;
+            margin-right: 0.67rem;
+          }
+        }
+      }
+      .mobileTaskHeader {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.33rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 1.33rem;
+        margin-bottom: 1.83rem;
+        div {
+          width: 1.67rem;
+          height: 1.67rem;
+          position: relative;
+        }
+      }
+
+      .taskDetail {
+        display: flex;
+        justify-content: space-between;
+        .taskDetailInfo {
+          width: 100%;
+          .taskList {
+            display: flex;
+            align-items: center;
+            margin: 7rem auto;
+
+            .taskItem {
+              display: flex;
+              align-items: center;
+              p {
+                font-size: 1.33rem;
+                font-family: Inter-Medium, Inter;
+                font-weight: 500;
+                color: #222222;
+                line-height: 2rem;
+                max-width: 12rem;
+                margin-top: 0;
+              }
+              button {
+                background-color: #222;
+                width: 4.67rem;
+                height: 4.67rem;
+                margin-right: 0.83rem;
+                flex-shrink: 0;
+                flex-grow: 0;
+                svg {
+                  color: white;
+                  font-size: 2.8rem;
+                  width: 2.8rem;
+                  height: 2.8rem;
+                }
+              }
+            }
+          }
+          .taskLink {
+            display: inline-block;
+            background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
+            box-shadow: 0rem 0.67rem 2.5rem 0rem rgba(142, 80, 228, 0.3);
+            border-radius: 2.67rem;
+            filter: blur(0px);
+
+            font-size: 1.75rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.75rem;
+
+            padding: 1.33rem 3.83rem;
+            vertical-align: middle;
+            button {
+              padding: 0;
+              svg {
+                color: white;
+                font-size: 1.6rem;
+                margin-left: 1rem;
+              }
+            }
+          }
+          p {
+            font-size: 1.5rem;
+            font-family: Inter-Regular, Inter;
+            font-weight: 400;
+            color: rgba(#222, 0.5);
+            line-height: 1.5rem;
+            margin-top: 2.5rem;
+          }
+
+          .mobileDetailInfo {
+            padding: 1.67rem 1.33rem;
+            background: rgba(#e4405b, 0.05);
+            border-radius: 0.67rem;
+            margin-bottom: 1.67rem;
+            width: 100%;
+
+            h3 {
+              font-size: 2rem;
+              font-family: Inter-Bold, Inter;
+              font-weight: bold;
+              color: #222222;
+              line-height: 2rem;
+              display: flex;
+              align-items: center;
+              margin-bottom: 1.75rem;
+              h4 {
+                font-size: 1.5rem;
+                font-family: Inter-Medium, Inter;
+                font-weight: 500;
+                color: #222222;
+                line-height: 1.75rem;
+                margin-left: 0.5rem;
+              }
+            }
+
+            .mobileTaskItem {
+              padding: 0.83rem;
+              border-radius: 0.67rem;
+              border: 0.08rem solid rgba(#222, 0.1);
+              display: flex;
+              align-items: center;
+              p {
+                font-size: 1.17rem;
+                font-family: Inter-SemiBold, Inter;
+                font-weight: 600;
+                color: #222222;
+                line-height: 1.5rem;
+                margin: 0;
+              }
+
+              & + .mobileTaskItem {
+                margin-top: 1rem;
+              }
+
+              button {
+                width: 3rem;
+                height: 3rem;
+                background-color: #222;
+                margin-right: 0.67rem;
+                svg {
+                  color: white;
+                }
+              }
+            }
+          }
+        }
+
+        .taskIllustration {
+          display: flex;
+          align-items: center;
+          div {
+            width: 23.83rem;
+            height: 21.33rem;
+            position: relative;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .containBox {
+    padding: 0.83rem 0;
+
+    .container {
+      .progress {
+        margin-top: 0.83rem;
+      }
+      .taskBox {
+        margin-top: 0.83rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .containBox {
+    .container {
+      .nftInfo {
+        padding: 3rem;
+
+        .rewardBox {
+          padding: 2rem;
+          margin-top: 4rem;
+        }
+      }
+      .progress {
+        padding: 3rem;
+      }
+      .taskBox {
+        padding: 3rem;
+
+        .taskDetail {
+          .taskIllustration {
+            div {
+              width: 30vw;
+              height: 30vw;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .containBox {
+    .container {
+      .taskBox {
+        .taskHeader {
+          h4 {
+            display: none;
+          }
+        }
+        .taskDetail {
+          .taskIllustration {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 700px) {
+  .containBox {
+    .container {
+      .nftInfo {
+        padding: 2rem;
+
+        .nftMetadata {
+          flex-direction: column;
+          .nftCover {
+            margin-top: 1.2rem;
+          }
+          .nftIntro {
+            width: 100%;
+            margin-left: 0;
+            margin-top: 2.58rem;
+
+            h2 {
+              font-size: 2.5rem;
+              font-family: Inter-Bold, Inter;
+              font-weight: bold;
+              color: #222222;
+              line-height: 2.5rem;
+            }
+
+            p {
+              margin-top: 0.83rem;
+              font-size: 1.33rem;
+              font-family: Inter-Medium, Inter;
+              font-weight: 500;
+              color: #222222;
+              line-height: 2rem;
+            }
+          }
+        }
+
+        .rewardBox {
+          margin-top: 1.58rem;
+          padding: 1.67rem 1.33rem;
+
+          .rewardItem {
+            align-items: flex-start;
+            padding: 0.5rem 0;
+            p {
+              font-size: 1.33rem;
+              font-family: Inter-MediumItalic, Inter;
+              font-weight: normal;
+              color: #8e50e4;
+              line-height: 1.33rem;
+            }
+            div {
+              width: 1.17rem;
+              height: 1.45rem;
+              position: relative;
+              margin-right: 0.67rem;
+            }
+          }
+        }
+      }
+
+      .progress {
+        padding: 2rem;
+
+        h3 {
+          font-size: 2rem;
+          font-family: Inter-Bold, Inter;
+          font-weight: bold;
+          color: #222222;
+          line-height: 2.5rem;
+        }
+        h4 {
+          font-size: 1.33rem;
+          font-family: Inter-Bold, Inter;
+          font-weight: bold;
+          color: #222222;
+          line-height: 1.5rem;
+          margin: 1.67rem 0 0.83rem;
+        }
+        p {
+          font-size: 1.33rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #222222;
+          line-height: 2rem;
+          margin-bottom: 2rem;
+        }
+        h6 {
+          font-size: 1.17rem;
+          font-family: Inter-Regular, Inter;
+          font-weight: 400;
+          color: rgba(#222, 0.5);
+          line-height: 1.67rem;
+        }
+        .progressBar {
+          flex-direction: column;
+          margin-bottom: 2rem;
+          .mintCount {
+            margin-top: 0.83rem;
+            align-self: flex-end;
+            font-size: 1.33rem;
+            font-family: Inter-Medium, Inter;
+            font-weight: 500;
+            line-height: 1.33rem;
+          }
+        }
+      }
+
+      .taskBox {
+        padding: 2rem;
+
+        .taskDetail {
+          .taskDetailInfo {
+            .taskLink {
+              font-size: 1.5rem;
+              font-family: Inter-SemiBold, Inter;
+              font-weight: 600;
+              color: #ffffff;
+              line-height: 1.5rem;
+
+              padding: 1.17rem 3rem;
+              text-align: center;
+              display: block;
+              max-width: 28.58rem;
+              margin: auto;
+              button {
+                padding: 0;
+                svg {
+                  color: white;
+                  font-size: 1.6rem;
+                  margin-left: 1rem;
+                }
+              }
+            }
+            p {
+              font-size: 1.17rem;
+              font-family: Inter-Regular, Inter;
+              font-weight: 400;
+              color: rgba(#222, 0.5);
+              line-height: 1.5rem;
+              margin: 1.67rem 0 1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .containBox {
+    .container {
+      .nftInfo {
+        padding: 1.33rem;
+
+        .nftMetadata {
+          .nftCover {
+            width: 16.67rem;
+            height: 16.67rem;
+          }
+        }
+      }
+
+      .progress,
+      .taskBox {
+        padding: 1.67rem 1.33rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .containBox {
+    .container {
+      .taskBox {
+        .taskDetail {
+          .taskDetailInfo {
+            .mobileDetailInfo {
+              .mobileTaskItem {
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

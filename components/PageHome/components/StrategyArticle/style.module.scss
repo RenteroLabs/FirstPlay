@@ -1,0 +1,221 @@
+.articleCard {
+  border-radius: 1rem !important;
+  margin-bottom: 2rem;
+  height: 21.5rem;
+  box-shadow: none;
+
+  a {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &:hover {
+    box-shadow: 0 6px 18px #1d293924;
+  }
+
+  .articleInfo {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    h4 {
+      font-size: 1.5rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: rgba(#222222, 0.5);
+      line-height: 1.5rem;
+      display: flex;
+      align-items: center;
+      div {
+        position: relative;
+        width: 1.61rem;
+        height: 1.61rem;
+        margin-left: 0.83rem;
+      }
+    }
+    h3 {
+      font-size: 2.5rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #222222;
+      line-height: 3.33rem;
+      text-align: left;
+
+      margin: 2.33rem 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    .linkBtn {
+      display: flex;
+      width: 11.17rem;
+      border-radius: 1.83rem;
+      border: 0.08rem solid rgba(228, 64, 91, 1);
+      padding: 0px 1.67rem;
+
+      font-size: 1.33rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      // color: rgba(142, 80, 228, 1);
+      color: rgba($color: #e4405b, $alpha: 0.8);
+      // color: white;
+      line-height: 3.3rem;
+      background-image: -webkit-linear-gradient(
+        270deg,
+        #e4405b 0%,
+        #8e50e4 100%
+      );
+      -webkit-background-clip: text;
+      // -webkit-text-fill-color: #e4405b;
+      -webkit-text-fill-color: transparent;
+      // width: 38%;
+      align-items: center;
+
+      cursor: pointer;
+      svg {
+        color: #e4405b;
+        margin-left: 1rem;
+      }
+
+      &:hover {
+        color: white;
+        -webkit-text-fill-color: white;
+        border: none;
+        background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
+        box-shadow: 0rem 0.67rem 2.5rem 0rem rgba(142, 80, 228, 0.3);
+        border-radius: 1.83rem;
+        filter: blur(0px);
+        svg {
+          color: white;
+        }
+      }
+    }
+  }
+  .gameCover {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 21.5rem;
+    img {
+      object-fit: cover;
+      height: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .articleCard {
+    height: 19.17rem;
+    .gameCover {
+      width: 19.17rem;
+    }
+    .articleInfo {
+      padding: 2.5rem 1.67rem;
+
+      h3 {
+        font-size: 1.75rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 2.33rem;
+        margin: 1.67rem 0 0;
+      }
+      h4 {
+        font-size: 1.33rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        line-height: 1.33rem;
+      }
+      .linkBtn {
+        margin-top: 2.33rem;
+        // width: 44%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .articleCard {
+    height: 11.67rem;
+    .gameCover {
+      width: 11.67rem;
+    }
+    .articleInfo {
+      padding: 1.67rem;
+
+      h3 {
+        font-size: 1.75rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 2.33rem;
+        margin: 1.67rem 0 0;
+      }
+      h4 {
+        font-size: 1.33rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        line-height: 1.33rem;
+      }
+      .linkBtn {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .articleCard {
+    height: auto;
+    margin-bottom: 1.33rem;
+    max-height: 160px;
+    .gameCover {
+      width: 32vw;
+
+      img {
+        height: 32vw;
+      }
+    }
+
+    .articleInfo {
+      padding: 1.67rem 1.33rem 1.75rem;
+
+      h4 {
+        font-size: 1.33rem;
+        line-height: 1.33rem;
+      }
+      h3 {
+        font-size: 1.5rem;
+        line-height: 2rem;
+        margin: 1.25rem 0 0;
+      }
+      .linkBtn {
+        // margin-top: 1.67rem;
+        display: none;
+      }
+    }
+  }
+}
+
+// @media screen and (max-width: 600px){
+//   .articleCard {
+//     .articleInfo {
+//       .linkBtn {
+//         display: none;
+//       }
+//     }
+//   }
+// }
+
+@media screen and (max-width: 375px) {
+  .articleCard {
+    .gameCover {
+      img {
+        height: 100%;
+      }
+    }
+  }
+}

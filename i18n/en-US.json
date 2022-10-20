@@ -1,0 +1,33 @@
+{
+  "Index": {
+    "Header": {
+      "games": "Games",
+      "strategy": "Walkthrough",
+      "passNFT": "Pass NFT",
+      "connectWallet": "Connect Wallet"
+    },
+    "Footer": {
+      "solgan": "Be the first to play and earn.",
+      "copyright": "Copyright 2022 Rentero.io All rights reserved.",
+      "platform": "Platform",
+      "games": "Games",
+      "strategy": "Walkthrough",
+      "passNFT": "Pass NFT",
+      "support": "Support",
+      "whitepaper": "Whitepaper",
+      "litebook": "Litebook",
+      "SDK": "SDK",
+      "social": "Social",
+      "twitter": "Twitter",
+      "telegram": "Telegram",
+      "discord": "Discord"
+    },
+    "Contact": {
+      "title": "Contact Us",
+      "subTitle": "For game projects and other cooperation, please contact <maillink>business@firstplay.io</maillink>"
+    }
+  },
+  "PassNFT": {
+    
+  }
+}

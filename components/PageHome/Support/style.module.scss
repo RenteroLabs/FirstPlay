@@ -1,0 +1,127 @@
+.support {
+  min-height: 200px;
+  .supportBox {
+    width: 78.2%;
+    margin: auto;
+    padding-top: 6.75rem;
+    padding-bottom: 6.58rem;
+
+    .cardList {
+      display: flex;
+      // flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 3.33rem;
+
+      .brandItem {
+        width: calc((100% - 8.32rem) / 5);
+        height: 8rem;
+
+        border-radius: 1rem;
+        border: 0.08rem solid rgba(#222, 0.2);
+        & > div {
+          position: relative;
+          height: 100%;
+        }
+
+        &:hover {
+          box-shadow: 0 2px 10px #1d293924;
+          border: 0.08rem solid rgba(#222, 0.1);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1650px) {
+  .support {
+    .supportBox {
+      width: 80%;
+      .cardList {
+        .brandItem {
+          height: 7.2rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .support {
+    .supportBox {
+      width: 83.3%;
+      padding-top: 6.67rem;
+      .cardList {
+        .brandItem {
+          height: 6.83rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .support {
+    .supportBox {
+      width: 89%;
+      padding-top: 5rem;
+
+      .cardList {
+        margin-top: 2.5rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .support {
+    .supportBox {
+      width: 92.2%;
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+
+      .cardList {
+        margin-top: 2.5rem;
+        .brandItem {
+          height: 5.33rem;
+          border-radius: 0.67rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .support {
+    .supportBox {
+      .cardList {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        .brandItem {
+          width: calc((100% - 2rem) / 3);
+          margin: 0 0.3rem 0.83rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .support {
+    .supportBox {
+      padding-top: 2.5rem;
+      padding-bottom: 2.58rem;
+
+      .cardList {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        margin-top: 1.75rem;
+        .brandItem {
+          width: calc((100% - 1.66rem) / 2);
+          height: 4.33rem;
+          margin: 0 0.27rem 0.83rem;
+          // margin-bottom: 0.83rem;
+        }
+      }
+    }
+  }
+}

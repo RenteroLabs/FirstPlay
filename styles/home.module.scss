@@ -1,0 +1,120 @@
+.coverBox {
+  position: relative;
+  height: 26vw;
+  max-height: 41.67rem;
+  // min-height: 33.33rem;
+  object-fit: cover;
+  background: linear-gradient(180deg, rgba(#984CEC, 0.3) 0%, rgba(110,255,196,0.3) 100%);
+}
+
+.contactUs {
+  height: 17.5rem;
+  background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    text-decoration: underline;
+  }
+
+  h3 {
+    font-size: 4rem;
+    font-family: Inter-Bold, Inter;
+    font-weight: bold;
+    color: #ffffff;
+    line-height: 4rem;
+    margin-bottom: 1.67rem;
+  }
+  p {
+    font-size: 1.75rem;
+    font-family: Inter-Regular, Inter;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1.75rem;
+    text-align: center;
+    max-width: 80%;
+  }
+}
+
+.mainBox {
+  min-height: 200px;
+  background-color: #f4f4f9;
+}
+
+@media screen and (min-width: 1921px) {
+  .coverBox {
+    background-size: cover;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .coverBox {
+    height: 30vw;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .contactUs {
+    height: 14.5rem;
+    h3 {
+      font-size: 3.33rem;
+      font-family: Inter-Bold, Inter;
+      font-weight: bold;
+      color: #ffffff;
+      line-height: 3.33rem;
+      margin-bottom: 1.33rem;
+    }
+    p {
+      font-size: 1.5rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #ffffff;
+      line-height: 1.5rem;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .coverBox {
+    height: 45vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .coverBox {
+    // height: 41.67rem;
+    object-fit: contain;
+  }
+  .contactUs {
+    h3 {
+      font-size: 2rem;
+      font-family: Montserrat-Black, Montserrat;
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 2rem;
+    }
+    p {
+      font-size: 1.33rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
+      color: #ffffff;
+      line-height: 2rem;
+      max-width: 80%;
+      text-align: center;
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .coverBox {
+    height: 41.67rem;
+  }
+}
+
+@media screen and (max-width: 374px){
+  .coverBox {
+    height: 128vw;
+  }
+}
