@@ -91,7 +91,7 @@ const PassNFT: NextPageWithLayout = () => {
                 <Image src={BADGE_ICON} layout="fill" />
               </Box>
             </Typography>
-            <Typography>This is FirstPlay's first event before launch. Participate in event to get OAT rewards,we will airdrop FirstPlay PassNFT to OAT holders, with PassNFT, you can get the following benefits.</Typography>
+            <Typography>This is FirstPlay&#39;s first event before launch. Participate in event to get OAT rewards,we will airdrop FirstPlay PassNFT to OAT holders, with PassNFT, you can get the following benefits.</Typography>
           </Box>
         </Box>
         <Box className={styles.rewardBox}>
