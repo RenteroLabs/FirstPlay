@@ -2,7 +2,7 @@ import { Box, Divider, IconButton, Typography, useMediaQuery } from "@mui/materi
 import { GetStaticProps, GetStaticPropsContext, NextPage } from "next";
 import styles from '../styles/pass.module.scss'
 import Image from 'next/image'
-import { BADGE_ICON, REWARD_ICON, TIME_ICON } from "constants/static";
+import { BADGE_ICON, PASS_ICON_1, PASS_ICON_2, PASS_ICON_3, PASS_ICON_4, REWARD_ICON, TIME_ICON } from "constants/static";
 import { ReactElement, useEffect, useState } from "react";
 import LinerProgress from "@/components/LinerProgress";
 import EastIcon from '@mui/icons-material/East';
@@ -90,29 +90,42 @@ const PassNFT: NextPageWithLayout = () => {
                 <Image src={BADGE_ICON} layout="fill" />
               </Box>
             </Typography>
-            <Typography>What is the Pass-NFT : The trial credential on First Play, holding rare NFTs will enjoy more rights.</Typography>
+            <Typography>What is the Pass-NFT: The trial credential on First Play, holding rare NFTs will enjoy more rights.</Typography>
           </Box>
         </Box>
         <Box className={styles.rewardBox}>
-          {/* <Typography variant="h3">Earn rewards</Typography> */}
           <Box className={styles.rewardItem}>
             <Box>
               <Image src={REWARD_ICON} layout="fill" />
             </Box>
-            <Typography>Get the NFT first, then try it out;</Typography>
+            <Typography>Get the NFT first, then try it out.</Typography>
           </Box>
           <Box className={styles.rewardItem}>
             <Box><Image src={REWARD_ICON} layout="fill" /></Box>
-            <Typography>Continue to receive airdrop rewards;</Typography>
+            <Typography>Continue to receive airdrop rewards.</Typography>
           </Box>
           <Box className={styles.rewardItem}>
             <Box><Image src={REWARD_ICON} layout="fill" /></Box>
-            <Typography>You can have more rights after upgrading in the future;</Typography>
+            <Typography>You will have more benefits after being upgraded in the future.</Typography>
+          </Box>
+          <Box className={styles.icon_1}>
+            <Image src={PASS_ICON_1} layout="fill" />
+          </Box>
+          <Box className={styles.icon_2}>
+            <Image src={PASS_ICON_2} layout="fill" />
+          </Box>
+          <Box className={styles.icon_3}>
+            <Image src={PASS_ICON_3} layout="fill" />
           </Box>
         </Box>
       </Box>
       <Box className={styles.progress}>
-        <Typography variant="h3">Stage in progress</Typography>
+        <Typography variant="h3">
+          Stage in progress
+          <Box>
+            <Image src={PASS_ICON_4} layout="fill" />
+          </Box>
+        </Typography>
         <Typography variant="h4"> Rare Pass-NFT</Typography>
         <Typography>Serial number 1-3000. Rare Pass-NFT enjoy creation rights and more token rewards.</Typography>
         <Box className={styles.progressBar}>
@@ -120,7 +133,7 @@ const PassNFT: NextPageWithLayout = () => {
           <Box className={styles.mintCount}><span>{mintedNumber}</span> / 3000</Box>
         </Box>
         <Typography variant="h6">* NFTs are issued in the order of user claims.</Typography>
-        <Typography variant="h6">* The distribution progress will be updated from 23:00 to 00:00 every day.</Typography>
+        <Typography variant="h6">* The distribution progress will be updated between 12:00 and 13:00 every day.</Typography>
       </Box>
 
       <Box className={styles.taskBox}>
@@ -131,12 +144,12 @@ const PassNFT: NextPageWithLayout = () => {
               <Typography variant="h4">- Supported by @Quest3</Typography>
               <Box className={styles.taskTime}>
                 <Box><Image src={TIME_ICON} layout="fill" /></Box>
-                2022-10-22～2022-11-02
+                2022-10-21 ～ 2022-11-04
               </Box>
             </Box>
             :
             <Box className={styles.mobileTaskHeader}>
-              2022-10-22～2022-11-02
+              2022-10-21 ～ 2022-11-04
               <Box><Image src={TIME_ICON} layout="fill" /></Box>
             </Box>
         }
@@ -189,7 +202,7 @@ const PassNFT: NextPageWithLayout = () => {
               </Box>
             </a>
 
-            <Typography>*The Pass-NFT will be drawn within 24 hours after the countdown is over.</Typography>
+            <Typography>* The Pass-NFT will be sent to your address between 12:00 and 13:00 every day after you complete this task.</Typography>
           </Box>
 
           <Box className={styles.taskIllustration}>

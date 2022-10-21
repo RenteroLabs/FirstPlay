@@ -8,7 +8,7 @@ interface StrategyArticleProp {
   articleInfo: Record<string, any>
 }
 
-const cardBgColor = ['#F1E4ED', '#E9E1E0', '#E5E5F3', '#EBEADE']
+const cardBgColor = ['#F0E3CC', '#C6F2F2', '#E5E5F3', '#EBEADE']
 
 const StrategyArticle: React.FC<StrategyArticleProp> = (props) => {
   const { articleInfo } = props
@@ -21,7 +21,7 @@ const StrategyArticle: React.FC<StrategyArticleProp> = (props) => {
           <Box><Image src={BADGE_ICON} layout="fill" /></Box>
         </Typography>
         <Typography variant="h3">{articleInfo.title}</Typography>
-        <Box className={styles.linkBtn}>Strategy <EastIcon /></Box>
+        <Box className={styles.linkBtn}>View Tutorial <EastIcon /></Box>
       </Box>
       <Box className={styles.gameCover}>
         <CardMedia

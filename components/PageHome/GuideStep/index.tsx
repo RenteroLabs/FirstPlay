@@ -44,7 +44,7 @@ const GudeStep: React.FC = () => {
 
   return <Box className={styles.guidestep}>
     <Box className={styles.guidestepBox}>
-      <SectionTitle emphasize="4 Steps" normal="Easy To Firstplay" />
+      <SectionTitle emphasize="4 Easy Steps" normal="To First Play" />
       <Box className={styles.stepList}>
         <UserStep
           stepIndex={1}
@@ -55,7 +55,7 @@ const GudeStep: React.FC = () => {
         <UserStep
           stepIndex={2}
           stepTitle="Mint Our NFT"
-          stepDesc={`Claim Pass-NFT first, nqualify for the trial`}
+          stepDesc={`Claim Pass-NFT first, qualify for the trial`}
           stepStatus={secondeStepStatus}
         />
         <UserStep
@@ -66,7 +66,7 @@ const GudeStep: React.FC = () => {
         />
         <UserStep
           stepIndex={4}
-          stepTitle="Get rewards"
+          stepTitle="Get Rewards"
           stepDesc="Get game rewards, welcome to experience more games"
           stepStatus="Waitting"
         />

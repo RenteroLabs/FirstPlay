@@ -23,9 +23,9 @@
           height: 100%;
         }
 
-        &:hover {
-          box-shadow: 0 2px 10px #1d293924;
-          border: 0.08rem solid rgba(#222, 0.1);
+
+        img {
+          transform: scale(0.8);
         }
       }
     }
@@ -39,6 +39,10 @@
       .cardList {
         .brandItem {
           height: 7.2rem;
+
+          img {
+            transform: none;
+          }
         }
       }
     }

@@ -51,8 +51,8 @@
     }
 
     .linkBtn {
-      display: flex;
-      width: 11.17rem;
+      display: inline-flex;
+      width: 15rem;
       border-radius: 1.83rem;
       border: 0.08rem solid rgba(228, 64, 91, 1);
       padding: 0px 1.67rem;
@@ -200,15 +200,19 @@
   }
 }
 
-// @media screen and (max-width: 600px){
-//   .articleCard {
-//     .articleInfo {
-//       .linkBtn {
-//         display: none;
-//       }
-//     }
-//   }
-// }
+@media screen and (max-width: 600px){
+  .articleCard {
+    .articleInfo {
+      .linkBtn {
+        display: none;
+      }
+
+      h3 {
+        font-weight: 500;
+      }
+    }
+  }
+}
 
 @media screen and (max-width: 375px) {
   .articleCard {

@@ -31,7 +31,6 @@ const PassNFTSuccess: React.FC<PassNFTSuccessProps> = (props) => {
       </Link>
       <FormControlLabel
         control={<Checkbox
-          size="small"
           onClick={() => {
             setShowMore(hiddenShowAgain ? "true" : "false")
             setHiddenShowAgain(!hiddenShowAgain)
