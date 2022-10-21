@@ -21,7 +21,8 @@
   }
 
   .gameContent {
-    padding: 1.67rem;
+    // padding: 1.67rem;
+    padding: 1rem 1.67rem 1.67rem;
 
     .gameName {
       display: flex;
@@ -32,7 +33,7 @@
         font-family: Inter-SemiBold, Inter;
         font-weight: 600;
         color: #222222;
-        line-height: 1.75rem;
+        // line-height: 1.75rem;
         flex-grow: 1;
         overflow: hidden;
         white-space: nowrap;
@@ -48,7 +49,7 @@
     }
 
     .gameTags {
-      margin: 1.25rem 0 1.58rem;
+      margin: 1rem 0 1.2rem;
 
       .gameTag {
         display: inline-block;
@@ -77,7 +78,7 @@
       color: #8e50e4;
       line-height: 1.33rem;
       display: flex;
-      align-items: flex-start;
+      align-items: center;
 
       p {
         overflow: hidden;
@@ -87,7 +88,7 @@
         font-family: Inter-Medium, Inter;
         font-weight: 500;
         color: #8e50e4;
-        line-height: 1.33rem;
+        // line-height: 1.33rem;
       }
       .rewardIcon {
         width: 1.17rem;
@@ -143,11 +144,11 @@
 @media screen and (max-width: 1024px) {
   .gameCard {
     .gameContent {
-      padding: 1.33rem 1rem 1.5rem;
+      padding: 1rem 1rem 1.2rem;
       .gameName {
         p {
           font-size: 1.75rem;
-          line-height: 1.75rem;
+          // line-height: 1.75rem;
         }
         .chainIcon {
           width: 1.5rem;
@@ -166,7 +167,7 @@
       }
       .gameRewards {
         font-size: 1.17rem;
-        line-height: 1.17rem;
+        // line-height: 1.17rem;
       }
     }
 
@@ -179,17 +180,17 @@
 @media screen and (max-width: 1024px) {
   .gameCard {
     .gameContent {
-      padding: 0.83rem;
+      padding: 0.3rem 0.83rem 0.83rem;
 
       .gameName {
         p {
           font-size: 1.5rem;
-          line-height: 1.5rem;
+          // line-height: 1.5rem;
         }
       }
 
       .gameTags {
-        margin: 0.83rem 0;
+        margin: 0.5rem 0;
       }
 
       .gameRewards {
