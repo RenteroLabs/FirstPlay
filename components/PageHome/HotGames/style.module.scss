@@ -29,7 +29,7 @@
     .hotGamesBox {
       width: 80%;
       .cardList {
-        max-height: calc((80vw - 7rem) / 2 + 294px);
+        max-height: calc((80vw - 7rem) / 2 + 300px);
         overflow: hidden;
         & > div {
           width: calc((100% - 7rem) / 4);
