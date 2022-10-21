@@ -86,12 +86,12 @@ const PassNFT: NextPageWithLayout = () => {
           </Box>
           <Box className={styles.nftIntro}>
             <Typography variant="h2">
-              Pass-NFT
+              OAT-Event
               <Box>
                 <Image src={BADGE_ICON} layout="fill" />
               </Box>
             </Typography>
-            <Typography>What is the Pass-NFT: The trial credential on First Play, holding rare NFTs will enjoy more rights.</Typography>
+            <Typography>This is FirstPlay's first event before launch. Participate in event to get OAT rewards,we will airdrop FirstPlay PassNFT to OAT holders, with PassNFT, you can get the following benefits.</Typography>
           </Box>
         </Box>
         <Box className={styles.rewardBox}>
@@ -141,7 +141,7 @@ const PassNFT: NextPageWithLayout = () => {
         {
           !isMobileSize ?
             <Box className={styles.taskHeader}>
-              <Typography variant="h3">OAT Task Evnet</Typography>
+              <Typography variant="h3">OAT Event Task</Typography>
               <Typography variant="h4">- Supported by @Quest3</Typography>
               <Box className={styles.taskTime}>
                 <Box><Image src={TIME_ICON} layout="fill" /></Box>
@@ -177,7 +177,7 @@ const PassNFT: NextPageWithLayout = () => {
               :
               <Box className={styles.mobileDetailInfo}>
                 <Typography variant="h3">
-                  { isSmallMobileSize ? "OAT Task Event" :  "Task"} <Typography variant="h4">- Supported by @Quest3</Typography>
+                  {isSmallMobileSize ? "OAT Event Task" : "Task"} <Typography variant="h4">- Supported by @Quest3</Typography>
                 </Typography>
                 <Box className={styles.mobileTaskItem}>
                   <IconButton className={styles.taskMediaIcon} disableRipple>
