@@ -19,6 +19,7 @@ import Head from "next/head";
 
 const PassNFT: NextPageWithLayout = () => {
   const isMobileSize = useMediaQuery("(max-width: 600px)")
+  const isSmallMobileSize = useMediaQuery("(max-width: 375px)")
 
   const [showModal, setShowModal] = useState<boolean>(false)
   const [mintedNumber, setMintedNumber] = useState<number>(0)
@@ -119,7 +120,7 @@ const PassNFT: NextPageWithLayout = () => {
           </Box>
         </Box>
       </Box>
-      <Box className={styles.progress}>
+      {/* <Box className={styles.progress}>
         <Typography variant="h3">
           Stage in progress
           <Box>
@@ -134,13 +135,13 @@ const PassNFT: NextPageWithLayout = () => {
         </Box>
         <Typography variant="h6">* NFTs are issued in the order of user claims.</Typography>
         <Typography variant="h6">* The distribution progress will be updated between 12:00 and 13:00 every day.</Typography>
-      </Box>
+      </Box> */}
 
       <Box className={styles.taskBox}>
         {
           !isMobileSize ?
             <Box className={styles.taskHeader}>
-              <Typography variant="h3">Task</Typography>
+              <Typography variant="h3">OAT Task Evnet</Typography>
               <Typography variant="h4">- Supported by @Quest3</Typography>
               <Box className={styles.taskTime}>
                 <Box><Image src={TIME_ICON} layout="fill" /></Box>
@@ -176,7 +177,7 @@ const PassNFT: NextPageWithLayout = () => {
               :
               <Box className={styles.mobileDetailInfo}>
                 <Typography variant="h3">
-                  Task <Typography variant="h4">- Supported by @Quest3</Typography>
+                  { isSmallMobileSize ? "OAT Task Event" :  "Task"} <Typography variant="h4">- Supported by @Quest3</Typography>
                 </Typography>
                 <Box className={styles.mobileTaskItem}>
                   <IconButton className={styles.taskMediaIcon} disableRipple>
@@ -193,7 +194,7 @@ const PassNFT: NextPageWithLayout = () => {
                   <Typography>Join First Play Discord Server</Typography>
                 </Box>
               </Box>}
-            <a href="https://app.quest3.xyz/quest/697706041175146592" target="_blank" rel="noreferrer">
+            <a href="https://app.quest3.xyz/quest/696517071963877646" target="_blank" rel="noreferrer">
               <Box className={styles.taskLink}>
                 Do the task and Verify
                 <IconButton disableRipple>
@@ -202,7 +203,7 @@ const PassNFT: NextPageWithLayout = () => {
               </Box>
             </a>
 
-            <Typography>* The Pass-NFT will be sent to your address between 12:00 and 13:00 every day after you complete this task.</Typography>
+            <Typography>* After this event ,our Pass-NFT will be airdropped to the address holding OAT. The Pass-NFT on FirstPlay cannot be transferred, users who hold the Pass-NFT can trial games on FirstPlay for free.</Typography>
           </Box>
 
           <Box className={styles.taskIllustration}>

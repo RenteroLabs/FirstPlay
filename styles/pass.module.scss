@@ -440,6 +440,20 @@
   }
 }
 
+@media screen and (max-width: 950px) {
+  .containBox {
+    .container {
+      .taskBox {
+        .taskHeader {
+          h4 {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 800px) {
   .containBox {
     .container {
@@ -648,6 +662,11 @@
           .taskDetailInfo {
             .mobileDetailInfo {
               .mobileTaskItem {
+              }
+              h3 {
+                h4 {
+                  display: none;
+                }
               }
             }
           }
