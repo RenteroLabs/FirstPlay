@@ -8,7 +8,7 @@ ogImage:
   url: '/assets/blog/hello-world/cover.jpg'
 comment: '<iframe src="https://embed.0xecho.com.ipns.page?color-theme=light&desc=&has-h-padding=false&has-v-padding=false&modules=comment%2Clike%2Ctip&receiver=firstplay.bit&target_uri=https%3A%2F%2Ffirstplay.app%2Fstrategy%2FTen-Things-For-BigTime-Beginner" frameborder="0"></iframe>'
 gameId: '701ec872-74f7-48bb-88e0-8eb2c769e7cf'
-coverImage: "https://rentero-resource.s3.ap-east-1.amazonaws.com/BigTime_1920x240.jpg"
+coverImage: 'https://rentero-resource.s3.ap-east-1.amazonaws.com/BigTime_1920x240.jpg'
 ---
 
 # 10 things that beginners must know before playing the game
@@ -16,12 +16,6 @@ coverImage: "https://rentero-resource.s3.ap-east-1.amazonaws.com/BigTime_1920x24
 ![https://lh4.googleusercontent.com/fZYR3EBU2VH6eIjaLp5gzJLBkkmWNNmF3DrrpeC6GycBMRYD-Yf1jjLVOhUzXI7P5AnSHSov33nSwOGObs2Zatk_RrqvvY8XaxNZx_C4_Uxt2w-a1Av0odN0y15pfz5sAaRHPkl0vSnGaRcqw8HeAPBHBFNioyOersLyNhQZFKbXBuBfTTPOIWp6kg](https://lh4.googleusercontent.com/fZYR3EBU2VH6eIjaLp5gzJLBkkmWNNmF3DrrpeC6GycBMRYD-Yf1jjLVOhUzXI7P5AnSHSov33nSwOGObs2Zatk_RrqvvY8XaxNZx_C4_Uxt2w-a1Av0odN0y15pfz5sAaRHPkl0vSnGaRcqw8HeAPBHBFNioyOersLyNhQZFKbXBuBfTTPOIWp6kg)
 
 Big Time has reached the ruby pre-alpha! In the future,there will be many players gradually joining in, so we summarized 10 tips here to help new players get started quickly.
-
-Note: The points of the game are far more than these 10 points. If you have any curious or unclear questions, please join the Discord：
-
-[https://discord.com/invite/84mhbPXFUu](https://discord.com/invite/84mhbPXFUu)
-
-![https://lh5.googleusercontent.com/FKgkTdmazcqEgtIz3YgqCHt1yCk4f3vKhjiSMxgjOLHcFkd8wJTq1-xLQAi-2ZhbOMqlQvwhees8lR7sf3bqQrtSYdhMfRKgBqTGeO27TYjm2qD8dOIxRa0XW2f5DD_TwVvBHZub8o79-Kd_xDU5kxOgxJNA973kMk3dU4XixENgvHzB3exGpMjTbg](https://lh5.googleusercontent.com/FKgkTdmazcqEgtIz3YgqCHt1yCk4f3vKhjiSMxgjOLHcFkd8wJTq1-xLQAi-2ZhbOMqlQvwhees8lR7sf3bqQrtSYdhMfRKgBqTGeO27TYjm2qD8dOIxRa0XW2f5DD_TwVvBHZub8o79-Kd_xDU5kxOgxJNA973kMk3dU4XixENgvHzB3exGpMjTbg)
 
 The game is currently in the pre-alpha, with only one mainland and the basic brush  instance zones. The worldview, mission system, friend system, mount system, personal meta universe, equipment creation and token acquisition are not online yet. Please wait patiently!
 
@@ -203,6 +197,6 @@ Generally speaking, the equipment of the corresponding profession will have high
 
 ![https://lh6.googleusercontent.com/EulxgdXWTp_3nobVxAqVcLAFMHDPA6-tSNzrWItO7fM2jQDJrjihQThk1dxy0xRP3LREkOoSi0IyoSRSe5gdpL4DUCgwsLiOXWql0HNy7haoC-1r-b5QwMYcW6sB3Nm6p2VzrpZPXGP0_SDmHwWSx3QCO4vf7alX076ZBJ9DP8ZqZHw3lsSuCXOPSg](https://lh6.googleusercontent.com/EulxgdXWTp_3nobVxAqVcLAFMHDPA6-tSNzrWItO7fM2jQDJrjihQThk1dxy0xRP3LREkOoSi0IyoSRSe5gdpL4DUCgwsLiOXWql0HNy7haoC-1r-b5QwMYcW6sB3Nm6p2VzrpZPXGP0_SDmHwWSx3QCO4vf7alX076ZBJ9DP8ZqZHw3lsSuCXOPSg)
 
-*Welcome to the Discord of First Play, if you have any questions/need to form a team.*
+_Welcome to the Discord of First Play, if you have any questions/need to form a team._
 
-*Discord: [Join Link](https://discord.com/invite/84mhbPXFUu)*
+_Discord: [Join FirstPlay Discord](https://discord.com/invite/84mhbPXFUu)_
