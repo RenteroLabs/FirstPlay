@@ -19,6 +19,7 @@ import Head from "next/head";
 
 const PassNFT: NextPageWithLayout = () => {
   const isMobileSize = useMediaQuery("(max-width: 600px)")
+  const isSmallMobileSize = useMediaQuery("(max-width: 375px)")
 
   const [showModal, setShowModal] = useState<boolean>(false)
   const [mintedNumber, setMintedNumber] = useState<number>(0)
@@ -85,12 +86,12 @@ const PassNFT: NextPageWithLayout = () => {
           </Box>
           <Box className={styles.nftIntro}>
             <Typography variant="h2">
-              Pass-NFT
+              OAT-Event
               <Box>
                 <Image src={BADGE_ICON} layout="fill" />
               </Box>
             </Typography>
-            <Typography>What is the Pass-NFT: The trial credential on First Play, holding rare NFTs will enjoy more rights.</Typography>
+            <Typography>This is FirstPlay&#39;s first event before launch. Participate in event to get OAT rewards,we will airdrop FirstPlay PassNFT to OAT holders, with PassNFT, you can get the following benefits.</Typography>
           </Box>
         </Box>
         <Box className={styles.rewardBox}>
@@ -119,7 +120,7 @@ const PassNFT: NextPageWithLayout = () => {
           </Box>
         </Box>
       </Box>
-      <Box className={styles.progress}>
+      {/* <Box className={styles.progress}>
         <Typography variant="h3">
           Stage in progress
           <Box>
@@ -134,13 +135,13 @@ const PassNFT: NextPageWithLayout = () => {
         </Box>
         <Typography variant="h6">* NFTs are issued in the order of user claims.</Typography>
         <Typography variant="h6">* The distribution progress will be updated between 12:00 and 13:00 every day.</Typography>
-      </Box>
+      </Box> */}
 
       <Box className={styles.taskBox}>
         {
           !isMobileSize ?
             <Box className={styles.taskHeader}>
-              <Typography variant="h3">Task</Typography>
+              <Typography variant="h3">OAT Event Task</Typography>
               <Typography variant="h4">- Supported by @Quest3</Typography>
               <Box className={styles.taskTime}>
                 <Box><Image src={TIME_ICON} layout="fill" /></Box>
@@ -176,7 +177,7 @@ const PassNFT: NextPageWithLayout = () => {
               :
               <Box className={styles.mobileDetailInfo}>
                 <Typography variant="h3">
-                  Task <Typography variant="h4">- Supported by @Quest3</Typography>
+                  {isSmallMobileSize ? "OAT Event Task" : "Task"} <Typography variant="h4">- Supported by @Quest3</Typography>
                 </Typography>
                 <Box className={styles.mobileTaskItem}>
                   <IconButton className={styles.taskMediaIcon} disableRipple>
@@ -202,7 +203,7 @@ const PassNFT: NextPageWithLayout = () => {
               </Box>
             </a>
 
-            <Typography>* The Pass-NFT will be sent to your address between 12:00 and 13:00 every day after you complete this task.</Typography>
+            <Typography>* After this event ,our Pass-NFT will be airdropped to the address holding OAT. The Pass-NFT on FirstPlay cannot be transferred, users who hold the Pass-NFT can trial games on FirstPlay for free.</Typography>
           </Box>
 
           <Box className={styles.taskIllustration}>
