@@ -13,247 +13,196 @@ coverImage: "https://rentero-resource.s3.ap-east-1.amazonaws.com/BigTime_1920x24
 
 # 10 things that beginners must know before playing the game
 
-<aside>
-📌 本文档旨在说明游戏方如何接入 Rentero Protocol 租赁协议，以及必要的改造逻辑说明和指导
-</aside>
+![https://lh4.googleusercontent.com/fZYR3EBU2VH6eIjaLp5gzJLBkkmWNNmF3DrrpeC6GycBMRYD-Yf1jjLVOhUzXI7P5AnSHSov33nSwOGObs2Zatk_RrqvvY8XaxNZx_C4_Uxt2w-a1Av0odN0y15pfz5sAaRHPkl0vSnGaRcqw8HeAPBHBFNioyOersLyNhQZFKbXBuBfTTPOIWp6kg](https://lh4.googleusercontent.com/fZYR3EBU2VH6eIjaLp5gzJLBkkmWNNmF3DrrpeC6GycBMRYD-Yf1jjLVOhUzXI7P5AnSHSov33nSwOGObs2Zatk_RrqvvY8XaxNZx_C4_Uxt2w-a1Av0odN0y15pfz5sAaRHPkl0vSnGaRcqw8HeAPBHBFNioyOersLyNhQZFKbXBuBfTTPOIWp6kg)
 
-Rentero Protocol 协议合约架构如下图所示，其包含了租借双方的租期管理、质押和赎回等核心功能。游戏接入方仅需要**识别、认可用户通过 Rentero Protocol 租赁的 NFT，可正常使用并获取收益**。
+Big Time has reached the ruby pre-alpha! In the future,there will be many players gradually joining in, so we summarized 10 tips here to help new players get started quickly.
 
-![RenteroProtocol.drawio.png](https://tva1.sinaimg.cn/large/008vxvgGly1h73njlzet6j316e0gq778.jpg)
+Note: The points of the game are far more than these 10 points. If you have any curious or unclear questions, please join the Discord：
 
-## 一、 NFT 识别接入
+[https://discord.com/invite/84mhbPXFUu](https://discord.com/invite/84mhbPXFUu)
 
-### 1. 识别租赁 NFT
+![https://lh5.googleusercontent.com/FKgkTdmazcqEgtIz3YgqCHt1yCk4f3vKhjiSMxgjOLHcFkd8wJTq1-xLQAi-2ZhbOMqlQvwhees8lR7sf3bqQrtSYdhMfRKgBqTGeO27TYjm2qD8dOIxRa0XW2f5DD_TwVvBHZub8o79-Kd_xDU5kxOgxJNA973kMk3dU4XixENgvHzB3exGpMjTbg](https://lh5.googleusercontent.com/FKgkTdmazcqEgtIz3YgqCHt1yCk4f3vKhjiSMxgjOLHcFkd8wJTq1-xLQAi-2ZhbOMqlQvwhees8lR7sf3bqQrtSYdhMfRKgBqTGeO27TYjm2qD8dOIxRa0XW2f5DD_TwVvBHZub8o79-Kd_xDU5kxOgxJNA973kMk3dU4XixENgvHzB3exGpMjTbg)
 
-用户在登录游戏平台时，在识别展示用户正常持有的 NFTs 同时，需要通过 [Rentero SDK](https://www.npmjs.com/package/@rentero/sdk-js)，获取用户通过 Rentero Protocol 租赁的 NFTs 并加以识别展示。
+The game is currently in the pre-alpha, with only one mainland and the basic brush  instance zones. The worldview, mission system, friend system, mount system, personal meta universe, equipment creation and token acquisition are not online yet. Please wait patiently!
 
-`getRentNFTsByAddress`：支持获取用户租赁 NFTs，使用示例如下：
+## 1. Basic operation of the game
 
-```tsx
-import { RenteroNFT } from '@rentero/sdk-js'
+![https://lh5.googleusercontent.com/bP6U2zZK07dxE5BaQDq1hd5CJrDMshnS-cGO-UBMwc2MOD6TOvwL5un8fb4ky6U5TuWTvhHsCybLupnWZR8ZHjjtSwsEeyRQIkGsMXrBVNUwaY6xwYekALIKRe_EWqfejTMF3q057C4UDd1dnOnkaqrZ9KL8AlB57mgfVqSgC1Vd7MXjpdlM4l-8CA](https://lh5.googleusercontent.com/bP6U2zZK07dxE5BaQDq1hd5CJrDMshnS-cGO-UBMwc2MOD6TOvwL5un8fb4ky6U5TuWTvhHsCybLupnWZR8ZHjjtSwsEeyRQIkGsMXrBVNUwaY6xwYekALIKRe_EWqfejTMF3q057C4UDd1dnOnkaqrZ9KL8AlB57mgfVqSgC1Vd7MXjpdlM4l-8CA)
 
-const nftAddress = '0x80b4a4da97d676ee139bada2bf757b7f5afd0644'
-const renterAddress = '0x431b4ca18e269fc7e1f5af49b9f4e2af683f6207'
+Move: The game and most action playing games use the W, A, S, D four direction keys, the space is the jump key, and the SHIFT key for accelerates.
 
-// pass in the blockchain network and NFT contracts, instantiate the object
-const renteroNFT = new RenteroNFT('ropsten', [nftAddress])
+Attacks: Attacks are divided into ordinary attacks and strong attacks, which are left and right mouse buttons respectively. Different consecutive clicks can form different combos. (For example: the mage can release a shock wave to repel the surrounding enemies by clicking the left and right buttons three times)
 
-// query renter‘s NFTs
-const result = await renteroNFT.getRentNFTsByAddress(renterAddress)
+![https://lh6.googleusercontent.com/0W3qsKKI8VGmFklS_FuDTkLEfFvjauMBcDCO93RnawJ8tnaP9D-dLEjbz_pqMExUGuu8ZixR6Y6mH2MtliTkpebPjojqMzB3SjPTl1ZQjlX1GYwgkwiVdJPo0nI9P58IQfWb9YL5NF9O7MhC3ckHb4VBvnYqdHNr6qnlin5eI2m1obKIfez0qAp_HQ](https://lh6.googleusercontent.com/0W3qsKKI8VGmFklS_FuDTkLEfFvjauMBcDCO93RnawJ8tnaP9D-dLEjbz_pqMExUGuu8ZixR6Y6mH2MtliTkpebPjojqMzB3SjPTl1ZQjlX1GYwgkwiVdJPo0nI9P58IQfWb9YL5NF9O7MhC3ckHb4VBvnYqdHNr6qnlin5eI2m1obKIfez0qAp_HQ)
 
-// result example
-{
-  leases: [
-    {
-      tokenId: '341',
-      nftAddress: '0x80b4a4da97d676ee139bada2bf757b7f5afd0644',
-      lender: '0x576687d59d191a9b20110fb3e126dbf27d8e42e0',
-      expires: '1660638300'
-    }
-		...
-  ]
-}
-```
+Skills and consumables: The default keys for skills and consumables are 1 to 0. Players can press the ESE key and change the binding hotkey in the settings.
 
-_注：当前 SDK 仅返回用户租赁 NFT 的基本租约信息，展示所需的 NFT 元信息需由游戏方自行获取_
+Game perspective: Move the mouse and mouse wheel to control the distance of the camera.
 
-### 2. 获取租赁 NFT 过期时间
+Block: Q key by default (block only when equipped with shield)
 
-当用户在开始进行游戏前，需获取租赁 NFT 的过期时间，判断是否支持当前游戏回合以及即将到期提醒
+Interaction: Most interactions in the game use the E key.
 
-`getRentInfoById`: 支持获取 NFT 租赁信息，使用示例如下：
+Switch weapons: Because you can carry two weapons, players can use the F key to switch weapons.
 
-```tsx
-const nftAddress = '0x80b4a4da97d676ee139bada2bf757b7f5afd0644'
-const tokenId = 132
+Teaming and chatting: Press the P key to enter the teaming interface, and press the ENTER key to open the chat box.
 
-// qurey rent info
-const result = await renteroNFT.getRentInfoById(nftAddress, tokenId)
+Backpack: The backpack can be opened with TAB or I, and the skill tree and NFT inventory are also in it.
 
-// result example
-{
-  lease: {
-    renter: '0x431b4ca18e269fc7e1f5af49b9f4e2af683f6207',
-    lender: '0x576687d59d191a9b20110fb3e126dbf27d8e42e0',
-    expires: '1660638300'
-  }
-}
-```
+Action: Z, X, C, V, B are action shortcut keys by default.
 
-游戏平台需定期查询 NFT 租赁状态和过期时间
+## 2. Game World View
 
-**特殊情况**
+![https://lh4.googleusercontent.com/rYZVzjxhRB7lQYV81MO756er2Rt9qTvgmA5JXam44riCQWU37O9YZzOenq1JeN7ysy8XR83ymzA8w6EV7JMGH3fG7_waqHzkjp38braOTC7RnH522A8LFY9PhC_c7bEcKza9yIWxCgxWImyz1YYXfuA7P19p1kojhC4F4557RC2YCj0LnQIpQc4nTg](https://lh4.googleusercontent.com/rYZVzjxhRB7lQYV81MO756er2Rt9qTvgmA5JXam44riCQWU37O9YZzOenq1JeN7ysy8XR83ymzA8w6EV7JMGH3fG7_waqHzkjp38braOTC7RnH522A8LFY9PhC_c7bEcKza9yIWxCgxWImyz1YYXfuA7P19p1kojhC4F4557RC2YCj0LnQIpQc4nTg)
 
-- 在极少数场景中，用户正在游戏回合中时，出租者提前违约赎回，会导致用户正在游戏中时失去 NFT 使用权限，游戏方需对此种情况进行处理
+Big Time is a multiplayer RPG adventure game that combines fast action combat, NFT collection and spanning history.
 
-### 3. 租赁 NFT 收益获取结算
+Story setting: One day in the future, human technology has reached a singularity. A large number of robots have been made to serve human beings, but a robot factory inadvertently created wormholes. Wormholes lead to chaos in different time and space, and produce many monsters.
 
-在产品功能层面，用户使用租赁 NFTs 产生收益需通正常持有 NFTs 产品收益的行为和结果保持一致。在计算和提现收益时，均需认可租户的钱包地址。不管是由游戏方定期结算打款还是由用户在游戏内主动提现收益，收益需要正常转至租户钱包地址。
+The player's time and space is called Time's End. It is a place not affected by wormholes. Historical figures, including Einstein, have come here to seek refuge. He provides us with a time machine, which can travel through different time and space to investigate the truth of the wormhole event, eliminate monsters and rebuild the stability of the timeline
 
-★ 上述逻辑需由游戏方基于自身收益结算逻辑加以改造支持。
+Because it is the theme of time travel, you can see many historical characters in the game, such as Genghis Khan, the trainer of soldiers; The assassin's trainer is a famous female ninja of the Warring States Period of Japan who has watched the moon for thousands of generations; The trainer of the mage is Merlin, the most powerful wizard in the myth of King Arthur.
 
-## 二、租赁协议接入
+The setting of the future world includes the Warring States Period of Japan, the opening up of the western United States, the ancient Atlantis, etc. This land full of fantasy and wonder is waiting for you to explore!
 
-若 [Rentero Market](https://app.rentero.io) 的租赁市场不满足项目方的租赁需求，可通过 Rentero Protocol 的 SDK 自定义搭建项目方自己的租赁市场。此处项目方需前置完成第一部分：NFT 识别接入 工作。
+## 3. Different occupations and their advantages and disadvantages
 
-### 1. 租赁 SDK 功能介绍
+Big Time has a dynamic career system that allows players to customize games according to their favorite game style, and at the same time, allows players to upgrade the same role in multiple career paths, and instantly switch to the desired career. In the game, there are 4 occupations, namely, time warrior, time warlock, shadow blade and quantum therapist.
 
-Rentero Protocol 的租赁能力集中在 `Rentero` 类，目前包含`lendNFT` 、`reLendNFT` 、`rentNFT`、`earlyReturn` 和 `redeemNFT` 等完备的租赁相关功能，项目方可按需使用，详细 API 见 [SDK 文档](https://www.npmjs.com/package/@rentero/sdk-js)。
+![https://lh6.googleusercontent.com/2h114QOYxJ0UPFdtvuULnJQY3juFR-TzCGFXsJk5CXo8n7AzEE4X4T_LVIzUAePnnIdDFPSzZSb6suc6VW0a3d2ys0PSXgs8cBEAzfqPfgnMy7XAeigRH-b0PdsJwzycgF4M9lAmU4S7sKQ7mZYv6k0UZleC_Z53apFrNMerhiLvueV5NElPdQq0SQ](https://lh6.googleusercontent.com/2h114QOYxJ0UPFdtvuULnJQY3juFR-TzCGFXsJk5CXo8n7AzEE4X4T_LVIzUAePnnIdDFPSzZSb6suc6VW0a3d2ys0PSXgs8cBEAzfqPfgnMy7XAeigRH-b0PdsJwzycgF4M9lAmU4S7sKQ7mZYv6k0UZleC_Z53apFrNMerhiLvueV5NElPdQq0SQ)
 
-**Rentero 类初始化**， 依赖两个参数配置
+Time warrior (barbarian): sweep the enemy with aggressiveness and brute force, with high AOE damage and openness; Advantages: The roaring of invincibility, excellent tank attributes and sarcasm skills can protect teammates, and the super buff bonus of death lords can fight against disadvantages: short hands, slow attack speed, and CD packs.
 
-- singer： `ethers.Signer` 用于同合约的交互，签名交易
-- config： 配置项，targetChain 指定链名称；renteroType 指定不同的 Rentero Market，代表不同的租赁模式，当前仅包含租金分期模式，后续会推出更多模式以支持多样租赁业务
+Chronomancer(Mage): good at using magic to carry out remote destruction, and its control over time power enables them to achieve their goals accurately; Advantages: Long range attack with magic wand, good control skills, strong continuous output ability, and the ceiling of the current version of DPS; Disadvantages: slow equipment forming, crisp.
 
-```tsx
-import { Rentero } from '@rentero/sdk-js'
+Shadow Blade (Ninja): It can be invisible. They move silently in the shadow and launch a devastating strike like lightning when approaching prey; Advantages: fast running, easy to pull teammates by stealth, and effective monster cleaning with high explosive nuclear bomb skills. Disadvantages: Close combat but very fragile.
 
-const rentero = new Rentero(signer, {
-  targetChain: 'bsctestnet', // current support chain 'mainnet' | 'rinkeby' | 'bsc' | 'bsctestnet'
-  renteroType: 'installment',
-})
-```
+Quantum Fixer (Healer/Support): They can heal friendly troops. They act as field doctors and gadget makers to provide support for front-line soldiers; Advantages: All in one, improve team endurance and fault tolerance; Disadvantages: need to cooperate with teammates.
 
-### 2. 出租上架 NFT 流程
+![https://lh3.googleusercontent.com/H5yE8CsC2oDp2wXna6HG_GTRTDwIUeoElVIVZyiXpLoGETk7la5hRVrdi5Lbh7KlqAuvLMRRMHmlCN8KY0prUYKnocRgniWluuR6XSzQY5ScV9Aug8qLevNeQbTQQ4ZtT4aKN924yNDlt1utFsycZHlw967fqigvtcgvdE7cU_s2-yuIvrvgC4VjGA](https://lh3.googleusercontent.com/H5yE8CsC2oDp2wXna6HG_GTRTDwIUeoElVIVZyiXpLoGETk7la5hRVrdi5Lbh7KlqAuvLMRRMHmlCN8KY0prUYKnocRgniWluuR6XSzQY5ScV9Aug8qLevNeQbTQQ4ZtT4aKN924yNDlt1utFsycZHlw967fqigvtcgvdE7cU_s2-yuIvrvgC4VjGA)
 
-**2.1 上架 NFT**
+## 4. The strongest skills of the four occupations
 
-```tsx
-Rentero.lendNFT(
-		nftAddress: string,
-		tokenId: number,
-		erc20Address: string,
-		whitelist: string,
-		deposit: BigNumber,
-		dailyPrice: BigNumber,
-		paymentCycle: number,
-		minRentalDays: number,
-		maxRentalDays: number) => Promise<any>
-```
+Time warrior: Death Lord (kill enemies to strengthen himself), Roar of Invincibility (invincible for 18 seconds and return HP when attacked)
 
-出借上架 NFT 接口包含较多参数配置，具体含义和使用推荐如下：
+Chronomance: Arcane Storm (high damage range skill, suitable for clearing strange groups), Fire Fan (short CD, suitable for tasks), Time Stop (large scale stagnation of the enemy's time)
 
-- whitelist：白名单地址，如果设置，将只有白名单地址用户才能租借当前 NFT。当前白名单只支持设置一个钱包地址，若无需设置白名单，需传入 Zero Address 地址：`0x0000000000000000000000000000000000000000`
-- deposit：押金，当租约中，出借者违约时将押金赔偿给借用者。Rentero Market 当前押金金额设置为 1 天租金，项目方可根据自身业务需求自行设置押金金额
-- minRentalDays：上架设置用户可租借的最小天数，出借者可设置的最小值：1（天）
-- maxRentalDays：上架设置允许租户可租借的最大天数，出借者可设置的最大值：65535 （天）
-- nftAddress：上架 NFT 的合约地址
-- tokenId：上架 NFT 的编号 id
-- erc20Address：支付租金代币的 ERC20 token 合约地址
-- dailyPrice：租借 NFT 每天的单价
-- paymentCycle：租金支付周期（天），每隔 x 天支付一次租金
+Shadow Blade: Time Bomb (super high damage skill, called nuclear bomb)
 
-![Lend NFT UI Example](https://tva1.sinaimg.cn/large/008vxvgGly1h73nqhqa47j30fk02qt8m.jpg)
+Quantum Fixer: Cool grenade (reduce CD), advanced door (4 buffs can be stacked)
 
-Lend NFT UI Example
+## 5. pocket watch system
 
-**2.2 更新 NFT 出租配置**
+![https://lh4.googleusercontent.com/_8qrkh7Kz-vLPODqKQSx3OS5QZ-DL8kUtR2ygQTe2iPtcCOVH9RnGpvfMjaWiDLLalFAgxD6sXTSLshGmEmGneXvpzO_eJ0segZsFGp7KHPJ7n4xmr81P6_7TFd1gl4w1DUya3FuFWGTqN0eYnqRWhgDYdRQ2Q0aoiHfM6_kuZICe1Vh_JOQosC0pw](https://lh4.googleusercontent.com/_8qrkh7Kz-vLPODqKQSx3OS5QZ-DL8kUtR2ygQTe2iPtcCOVH9RnGpvfMjaWiDLLalFAgxD6sXTSLshGmEmGneXvpzO_eJ0segZsFGp7KHPJ7n4xmr81P6_7TFd1gl4w1DUya3FuFWGTqN0eYnqRWhgDYdRQ2Q0aoiHfM6_kuZICe1Vh_JOQosC0pw)
 
-对于已上架且尚未被租赁的 NFT，可允许更新起出租配置信息。具体可使用 `Rentero.reLendNFT` 方法，参数同 lendNFT 方法一致。
+The pocket watch is equivalent to the role in Big Time. There are 4 types of pocket watches (which have been introduced above).
 
-**2.3 出租上架流程**
+Each kind of professional pocket watch has 9 kinds of rarity. The rarer the pocket watch, the stronger the initial attribute it provides and will bring its own advanced skills. The more advanced the copy, the more likely it is to drop the rare pocket watch
 
-在调用 lend NFT 上架方法前，需判断当前出借的 NFT 是否已授权给 Market 合约，如果没有授权，需先让用户进行授权，否则将会因为没有转移 NFT 权限而中断回滚。
+You can switch the pocket watch to change careers at any time outside of the instance zones.
 
-![](https://tva1.sinaimg.cn/large/008vxvgGly1h73o3gfrqqj30f80dpt99.jpg)
+## 6. Skill tree and Gear system
 
-**2.4 使用示例**
+![https://lh4.googleusercontent.com/5phS2bI2JnacK5Yq_vdlFltklneirYSv8BaC-fHDIinlCFPaxdkA_BnC_Se4l2sZL4p3AOxVOj_hb60gDMlMwHzudHQECfL8ro9ds2MDvbRJkEuHmEpEPw3jDyr_BVQesudVsjJp6hkgEEaxZIhWMwNt75AHamHY-IbHrgLSN3VbkS0shVfnGDkREA](https://lh4.googleusercontent.com/5phS2bI2JnacK5Yq_vdlFltklneirYSv8BaC-fHDIinlCFPaxdkA_BnC_Se4l2sZL4p3AOxVOj_hb60gDMlMwHzudHQECfL8ro9ds2MDvbRJkEuHmEpEPw3jDyr_BVQesudVsjJp6hkgEEaxZIhWMwNt75AHamHY-IbHrgLSN3VbkS0shVfnGDkREA)
 
-```tsx
-// lendNFT
-const result = await rentero?.lendNFT(
-  '0x317caEc5AFd5d43B205683318eC35ed8B063d131',
-  573,
-  '0x304af20ef7a8497aeed4a4a6ba4601988d5b11f6',
-  '0x0000000000000000000000000000000000000000',
-  ethers.utils.parseUnits('2.4', 18),
-  ethers.utils.parseUnits('2.4', 18),
-  5,
-  1,
-  365
-)
-console.log(result)
-```
+Players can add some skills they want to upgrade in the skill tree. Dark skills need to be upgraded or some skills can be unlocked only when they are upgraded to a certain level. The character will get one skill point and two attribute points every time it is upgraded.
 
-```tsx
-// reLendNFT
-const result = await rentero?.lendNFT(
-  '0x317caEc5AFd5d43B205683318eC35ed8B063d131',
-  573,
-  '0x304af20ef7a8497aeed4a4a6ba4601988d5b11f6',
-  '0x0000000000000000000000000000000000000000',
-  ethers.utils.parseUnits('1.2', 18),
-  ethers.utils.parseUnits('1.2', 18),
-  3,
-  1,
-  365
-)
-console.log(result)
-```
+The time warrior meets the requirements of equipment attributes, they should give priority to improving their strength and vitality under the premise of ensuring the accuracy improvement brought by agility, and keep their shields on their F key at any time to preserve the survival of the team.
 
-### 3. 租用 NFT 流程
+The chronomancer suggested to increase the amount of blood, keep a blood bottle and speed up potion.
 
-租用者选择指定 NFT 后，填写租赁天数后，即可调用 `rentNFT` 方法进行租赁
+The shadowblade suggested adding some wisdom to ensure the intelligence damage under the condition that the normal equipment can be worn. Standing accelerating potions and various blue medicines.
 
-**3.1 租用 NFT 方法**
+The quantum fixer should give more suggestions. Under the condition of wearing normal equipment, she should be highly intelligent, appropriately increase vitality, and always have all kinds of blue drugs for acceleration.
 
-```tsx
-Rentero.rentNFT(contractAddress: string, tokenId: number, rentDays: number) => Promise<any>
-```
+![https://lh6.googleusercontent.com/pGB6adwol832QMz3hIEzrsq_rvfz2kpjlNDygvETyLhvqJiNQElbQxTXLgebkoV0fr-iRn_RoNyEhQI8O9rctZsrunTcH8gZr9p_YUJmLaw0RJB8xOC3qbTpyuFF4UBQgQBViadPT-n_9E--X59zx2yT5y1fT_Z16h5fNxYjtUTxzCfZ3SLf7eElxQ](https://lh6.googleusercontent.com/pGB6adwol832QMz3hIEzrsq_rvfz2kpjlNDygvETyLhvqJiNQElbQxTXLgebkoV0fr-iRn_RoNyEhQI8O9rctZsrunTcH8gZr9p_YUJmLaw0RJB8xOC3qbTpyuFF4UBQgQBViadPT-n_9E--X59zx2yT5y1fT_Z16h5fNxYjtUTxzCfZ3SLf7eElxQ)
 
-**3.2 授权 ERC20 Token**
+Gears (translated as parts) are equipment used to provide skills (also provide some attributes). They can be equipped on pocket watches
 
-在进行租赁调用前，需判断当前用户是否已授权足额指定 ERC20 Token 租金给到 Market 合约，若无授权，将会在扣款租金动作因无权限而失败报错
+## 7. How to break three kinds of shields
 
-![](https://tva1.sinaimg.cn/large/008vxvgGly1h73o0c3nbdj30eo02h3yd.jpg)
+The monsters in the game have three kinds of shields, pink shield, blue shield and yellow armor.
 
-### 4. 违约操作流程
+![https://lh4.googleusercontent.com/-x5FofuH4Pm4sHAGjY19tB7X8REKUhBygdu7kqZHP4kGMM6ZF4LSpX0N9yptTX2CSTA8E24uLfjLx7Gh7P1PP49MsHmJrfJRnyr7tTnpzDudN1LlabQhYj6owO-MwWrJjZpOdCtdlmhIMYc_vik1rs_TPW4cs5ss-EVVcYdEUdbVZgsQC69HS9DKRg](https://lh4.googleusercontent.com/-x5FofuH4Pm4sHAGjY19tB7X8REKUhBygdu7kqZHP4kGMM6ZF4LSpX0N9yptTX2CSTA8E24uLfjLx7Gh7P1PP49MsHmJrfJRnyr7tTnpzDudN1LlabQhYj6owO-MwWrJjZpOdCtdlmhIMYc_vik1rs_TPW4cs5ss-EVVcYdEUdbVZgsQC69HS9DKRg)
 
-违约操作包括：
+One handed sword with shield and two handed sword are suitable for breaking pink shield, two handed axe and two handed sword are suitable for breaking blue shield, and two handed staff, one handed hammer and two handed hammer are suitable for breaking yellow armor.
 
-- 出租者违约提前赎回 NFT（若赎回 NFT 不是正在租借中，则是正常下架操作）；
-- 租用者提前归还 NFT；
+Different skills will have different shield breaking effects.
 
-项目方可根据自身业务需求， 决定是否在自建租赁市场中提供相关违约操作能力。上述违约操作支持与否不影响主体的租赁业务流程。
+![https://lh4.googleusercontent.com/fZ7olo6Q2a_QRxBvgo2GDbnsvj3YLrURforHgzSCyQ8yUVp2LSBZiZnudtIKbyiatSSJxY0KzjNaXzK9HGwRbZDT7VKh-tx01Sbj4ljMyQxSyT9sH7U5zJztBcYfwk26OlxXC-8ss4m0IXavAlJ4QPV93cDdP-G48JApxCbf-zTEVpmws-ISMZpJ4A](https://lh4.googleusercontent.com/fZ7olo6Q2a_QRxBvgo2GDbnsvj3YLrURforHgzSCyQ8yUVp2LSBZiZnudtIKbyiatSSJxY0KzjNaXzK9HGwRbZDT7VKh-tx01Sbj4ljMyQxSyT9sH7U5zJztBcYfwk26OlxXC-8ss4m0IXavAlJ4QPV93cDdP-G48JApxCbf-zTEVpmws-ISMZpJ4A)
 
-租借双方有一方违约，违约方需向另一方支付违约金（即上述上架流程中的 deposit 押金），租赁协议提供方不会从违约金中抽取服务费。
+## 8. The current distribution of the game on the mainland
 
-**4.1** **租用者提前归还**
+![https://lh4.googleusercontent.com/QxGxxV565BziUsH4k44VUYJ4DUEfp5S1VXkipMLQmRvC-cIP1OSR67bMI71v1OyvH_0wCaisHTmh4ssd0C4mcDHv3mB_wLo4xGa9DBi6YR_RhBWWnTHQ_GjamMWyqrhKLYQ85NXtpkiKZ7Py2T63ref1Q3WOwUfh208aWDwU2Hgy4DmGjFxqmnysKg](https://lh4.googleusercontent.com/QxGxxV565BziUsH4k44VUYJ4DUEfp5S1VXkipMLQmRvC-cIP1OSR67bMI71v1OyvH_0wCaisHTmh4ssd0C4mcDHv3mB_wLo4xGa9DBi6YR_RhBWWnTHQ_GjamMWyqrhKLYQ85NXtpkiKZ7Py2T63ref1Q3WOwUfh208aWDwU2Hgy4DmGjFxqmnysKg)
 
-租用者提前归还 NFT ，协议会将租用者的押金转给出借者以作违约金，租赁关系终止，借用者结束 NFT 的使用权限， NFT 继续存在市场待租用
+The main world map of the game currently has three continents:Mangrove area, Swamp area and Snow area.
 
-```tsx
-Rentero.earlyReturn(contractAddress: string, tokenId: number) => Promise<any>
-```
+The instance zone level in the region increases as shown in the figure. Each area is divided into two areas.
 
-**4.2 出租者违约赎回**
+Mangrove area: rusting forest (1-14) and dusky forest (1-14)
 
-出租者违约赎回 NFT，协议会先行扣除出租者对应数量的押金以转给租用者做违约金，租赁关系终止，借用者失去使用权限，NFT 下架市场，出租者赎回 NFT
+Swamp area: no man‘s land (14-44) and waste lands (14-34)
 
-```tsx
-Rentero.redeemNFT(contractAddress: string, tokenId: number) => Promise<any>
-```
+Snow area: ice and icy wastes (7-45) and icy castle (22-51)
 
-如上所属，如果正常下架 NFT，执行 `redeemNFT` 方法即可，若是违约赎回，需让出租者先授权 ERC20 Token 给 Market 合约， Market 合约有权扣除押金金额给租用者，方可成功违约赎回。
+Although the game currently has the function of a small map, players who enter the game for the first time will still easily get lost and can't find the direction, and there are also some shortcuts between different regions in the game. Therefore, it is better to let the old players lead the map to get familiar with the terrain and routes before starting a personal campaign.
 
-![赎回](https://tva1.sinaimg.cn/large/008vxvgGly1h73o21akofj30ey01va9x.jpg)
+## 9. Introduction to several tasks in the replica
 
-### 5. 租赁订单数据获取
+The current tasks in the replica are:
 
-目前 RenteroNFT 类提供了基于钱包地址查询租赁 NFT 数据的相关接口，如果需要更为完整、丰富的搜索查询接口服务，可以调用的我们的 TheGraph 服务进行查询，详细使用文档见[Rentero TheGraph 服务介绍与使用](https://www.notion.so/Rentero-TheGraph-40f52a9bd8b4455d9ff8040b9192bba0)
+- Plant research: players need to find 4 locations on the map and collect target plants.
+- Kill the fauna: kill 5 peaceful creatures randomly generated in the map without attack. These creatures generally have no monsters or birthpoints nearby.
+- Demolition: Demolition of bombs at designated destinations. The bomb locations are fixed so that teammates can stand in advance.
+- Search for the detector: It is a fixed location, just like the bomb dismantlement mission.
+- Collect research data: Collect research points in limited time by killing monsters.
+- Kill guards: Kill a certain number of guards according to the map instructions. (The guards are not the same kind of monster. The guards on different maps are different, but the target monster has a red inverted triangle on its head.)
+- Soul Collection: Collect a certain number of souls after killing enemies in a fixed area
 
-### 6. 租赁协议佣金抽成
+## 10. Skill of brushing monsters
 
-初期默认 Rentero Protocol 会从出租者的租金收益中收取 10% 收益，用来支付相关平台交易 gas 费用和后期租赁协议维护、迭代和升级成本。若部分项目方需从租赁协议中收取部分分成，同租赁协议方沟通协商确定后，可进行调整。
+![https://lh5.googleusercontent.com/ZJw96dKxtvijVNe6XG705C-yNfAl9zU9tAfq1GHfya_pFqYG5xVBhWIPTyDgZBo7G86Bl8EQ6VansEjPlF0df0hvuj29B4gM73MjCAclysfBaGXXYiGBEWR9H4vpeHtMUTGo0JVBxpZqYNczi9A1ZitOl7fZ7-UpyxeLPmfTgJQbaD0LPlrRO_Qe4Q](https://lh5.googleusercontent.com/ZJw96dKxtvijVNe6XG705C-yNfAl9zU9tAfq1GHfya_pFqYG5xVBhWIPTyDgZBo7G86Bl8EQ6VansEjPlF0df0hvuj29B4gM73MjCAclysfBaGXXYiGBEWR9H4vpeHtMUTGo0JVBxpZqYNczi9A1ZitOl7fZ7-UpyxeLPmfTgJQbaD0LPlrRO_Qe4Q)
 
-## 三、常见问题
+In the game, all monsters may drop NFT when they die, but large monsters have a higher probability of exploding NFT.
 
-### Q1: 项目方后端同学如何获取租赁 NFT 数据？
+Therefore, brushing more Gauda or big beetles will have a better chance to obtain NFT. The number of monsters in the dungeon is related to the number of people in the dungeon. The more people there are, the more monsters there are, and the more difficult there are. This means that the team should try to gather 6 people before playing, so as to ensure maximum time efficiency.
 
-当前 SDK 主要服务于前端 DAPP 开发中的租赁数据获取，后端同学可通过我们的 TheGraph 服务来获取各链的所有租赁 NFT 数据信息，提供完备的搜索、查询功能，详细文档见[Rentero TheGraph 服务介绍与使用](https://www.notion.so/Rentero-TheGraph-40f52a9bd8b4455d9ff8040b9192bba0)。如果目前 SDK 中 RenteroNFT 类中包含的租赁数据查询方法不满足业务方需求，也可使用 TheGraph 方式查询
+After the team is formed, it is suggested that the team members can find the gate separately. After finding the gate, they can use the transmission potion to transmit the teammates to their own side, which can save a lot of time. The difficulty of different doors also varies. The one with two skeletons on the door is the most difficult. After the version, the difficulty of the monster is greatly increased, and the upgrade difficulty is also increased. When the monster level is higher than the player, the damage it causes will also have an additional bonus.
 
-### Q2: 能否不使用 SDK 直接同租赁协议交互？
+![https://lh5.googleusercontent.com/h8rsulBp2DgT97lA8VwAnY6DkZsI00Jk9IVS06qyby2xyW5lRDgM7iUSyh3dHRxwgFSfd7xe_agz_PloR-g7V0P3oI_DkTVz2eA0ZzUm2ySYNa2S5nBS_51KsEyjlF6kvtAVlIgIEMpPkABURZByJ-iCjvv2liCXshtDNODi3VdDGV8O--9RWCkdtw](https://lh5.googleusercontent.com/h8rsulBp2DgT97lA8VwAnY6DkZsI00Jk9IVS06qyby2xyW5lRDgM7iUSyh3dHRxwgFSfd7xe_agz_PloR-g7V0P3oI_DkTVz2eA0ZzUm2ySYNa2S5nBS_51KsEyjlF6kvtAVlIgIEMpPkABURZByJ-iCjvv2liCXshtDNODi3VdDGV8O--9RWCkdtw)
 
-**可以但不推荐**，SDK 会始终保持各链的最新 Market 合约，后续也会添加更多的租赁业务逻辑。其中包含了租赁协议的全部方法，方便用户使用。
+Therefore, it is recommended that players try to find dungeons with the same or lower level as themselves when they are not skilled.
 
-如果用户直接同租赁市场合约交互，需确保各环境对接交互的合约地址、ABI 一致。ABI 地址：[https://github.com/RenteroLabs/rentero-sdk/blob/main/src/constants.ts#L20](https://github.com/RenteroLabs/rentero-sdk/blob/main/src/constants.ts#L20)
+After entering the door, quickly go to the task location of the predecessor task. The tasks of picking flowers, dismantling bombs, finding detectors, and killing small animals can let the team members look for each other separately, just find the target, and don't spend too much time fighting small monsters; When fighting elite monsters, some monsters are more difficult, so you can send your teammates to fight together; When encountering Gouda and the big beetle, it is recommended that the team members attack together and share with each other to maximize the benefits.
+
+The team members can act separately to find the BOSS room. After one person finds the room, they can send their teammates to the door of the BOSS room to reduce the waiting time. Try not to pull too much strange hatred, or you may fail to fight because there are too many strange enemies, and the whole army will be destroyed without the help of your teammates, leading to the failure of the challenge.
+
+![https://lh6.googleusercontent.com/P7JBk5692X2Kea7rcDqdFx524gxypX1XuRgY_27ifRBA7F5g8g9XiuGNENM1fHSsTaz1WWNtyWrM3CpSFnSL1Qt1dyvEj2ldTWjIPy-fR_bEW0FRhRWgzH8h1By_TymE4S3zkIZzasgX8dhmkbFb1pTVrYiH4l4hure-qW8M2gOS2tv29w8_LiQ5wg](https://lh6.googleusercontent.com/P7JBk5692X2Kea7rcDqdFx524gxypX1XuRgY_27ifRBA7F5g8g9XiuGNENM1fHSsTaz1WWNtyWrM3CpSFnSL1Qt1dyvEj2ldTWjIPy-fR_bEW0FRhRWgzH8h1By_TymE4S3zkIZzasgX8dhmkbFb1pTVrYiH4l4hure-qW8M2gOS2tv29w8_LiQ5wg)
+
+When fighting in melee, you must always pay attention to the monster's damage and teammate's HP. Frequent use of the blood regeneration tree can effectively protect the team's safety.
+
+When fighting, soldiers and priests are responsible for creating a safe output environment for teammates; Soldiers can rush into the monster pile, actively pull hatred, and let the monster focus on themselves; The priest keeps an eye on the soldier's blood volume and throws various recovery and protection skills on his head to ensure the life safety of the soldier; It is better to have one mage with control skill, and then three mages can safely output at the edge, causing damage explosion.
+
+A teammate can be pulled up within 15 seconds after falling to the ground (similar to PUBG). If he is not pulled up within 15 seconds, he can only go to the resurrection point to resurrect his teammate. After resurrection, the dead will be reborn at the resurrection point. The resurrection point disappears after being used. There are generally 2-3 resurrection points in a dungeon.
+
+In order to avoid group extinction, you can actively press G to die when falling to the ground, and let the only surviving teammate go to the resurrection point to resurrect all the players.
+
+Supplement: equipment attribute points and Rank requirements.
+
+Due to the recent balance adjustment, the equipment requirements may change frequently. Please understand
+
+Every pocket watch has Rank's requirements. Rank is the experience points accumulated by players and has nothing to do with pocket watches.
+
+Each piece of equipment will have requirements for pocket watch level and attribute points
+
+![https://lh3.googleusercontent.com/3bopmOnPmHEhotKs61pBrMcsJl133BY--12ZvDF2ATFoOXIDtpVzFUiveH2VtCrV25r-j6MmIZrQOaq2U6VZSRi_uvFhbNd4nKDnC2pnmnezGP1rR2MuzQLna30hb7JUvkkdqeC3W0vcSzeBiByYQ9EULezACub3_pxrxGD-swUUu5B7h1A7Lk67gw](https://lh3.googleusercontent.com/3bopmOnPmHEhotKs61pBrMcsJl133BY--12ZvDF2ATFoOXIDtpVzFUiveH2VtCrV25r-j6MmIZrQOaq2U6VZSRi_uvFhbNd4nKDnC2pnmnezGP1rR2MuzQLna30hb7JUvkkdqeC3W0vcSzeBiByYQ9EULezACub3_pxrxGD-swUUu5B7h1A7Lk67gw)
+
+If the requirement is not met, it will be displayed in red in the library, that is, this equipment cannot be installed.
+
+Generally speaking, the equipment of the corresponding profession will have higher requirements for the corresponding advantage attributes of the profession (for example, the staff will have higher requirements for intelligence), so when selecting equipment, try to choose the equipment of the corresponding profession. Of course, as long as the attribute points are reached, you can also equip equipment for other classes.
+
+![https://lh6.googleusercontent.com/EulxgdXWTp_3nobVxAqVcLAFMHDPA6-tSNzrWItO7fM2jQDJrjihQThk1dxy0xRP3LREkOoSi0IyoSRSe5gdpL4DUCgwsLiOXWql0HNy7haoC-1r-b5QwMYcW6sB3Nm6p2VzrpZPXGP0_SDmHwWSx3QCO4vf7alX076ZBJ9DP8ZqZHw3lsSuCXOPSg](https://lh6.googleusercontent.com/EulxgdXWTp_3nobVxAqVcLAFMHDPA6-tSNzrWItO7fM2jQDJrjihQThk1dxy0xRP3LREkOoSi0IyoSRSe5gdpL4DUCgwsLiOXWql0HNy7haoC-1r-b5QwMYcW6sB3Nm6p2VzrpZPXGP0_SDmHwWSx3QCO4vf7alX076ZBJ9DP8ZqZHw3lsSuCXOPSg)
+
+*Welcome to the Discord of First Play, if you have any questions/need to form a team.*
+
+*Discord: [Join Link](https://discord.com/invite/84mhbPXFUu)*
