@@ -55,7 +55,7 @@ const GudeStep: React.FC = () => {
         <UserStep
           stepIndex={2}
           stepTitle="Mint Our NFT"
-          stepDesc={`Claim Pass-NFT first, nqualify for the trial`}
+          stepDesc={`Claim Pass-NFT first, qualify for the trial`}
           stepStatus={secondeStepStatus}
         />
         <UserStep

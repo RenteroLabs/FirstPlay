@@ -274,7 +274,7 @@
                 flex-shrink: 0;
                 flex-grow: 0;
                 svg {
-                  color: white;
+                  color: white !important;
                   font-size: 2.8rem;
                   width: 2.8rem;
                   height: 2.8rem;
@@ -300,7 +300,7 @@
             button {
               padding: 0;
               svg {
-                color: white;
+                color: white !important;
                 font-size: 1.6rem;
                 margin-left: 1rem;
               }
@@ -367,7 +367,7 @@
                 background-color: #222;
                 margin-right: 0.67rem;
                 svg {
-                  color: white;
+                  color: white !important;
                 }
               }
             }
