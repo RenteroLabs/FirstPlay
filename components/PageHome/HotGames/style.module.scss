@@ -29,7 +29,7 @@
     .hotGamesBox {
       width: 80%;
       .cardList {
-        max-height: calc((80vw - 7rem) / 2 + 294px);
+        max-height: calc((80vw - 7rem) / 2 + 300px);
         overflow: hidden;
         & > div {
           width: calc((100% - 7rem) / 4);
@@ -46,7 +46,7 @@
       width: 83.3%;
       padding-top: 6.67rem;
       .cardList {
-        max-height: calc((83vw - 6rem) / 2 + 294px);
+        max-height: calc((83vw - 6rem) / 2 + 300px);
 
         & > div {
           width: calc((100% - 6rem) / 4);
@@ -91,7 +91,7 @@
   .hotGames {
     .hotGamesBox {
       .cardList {
-        max-height: calc((92.2vw) + 282px);
+        max-height: calc((92.2vw) + 300px);
         & > div {
           width: calc((100% - 4rem) / 3);
         }
