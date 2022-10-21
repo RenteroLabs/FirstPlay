@@ -193,7 +193,7 @@ const PassNFT: NextPageWithLayout = () => {
                   <Typography>Join First Play Discord Server</Typography>
                 </Box>
               </Box>}
-            <a href="https://app.quest3.xyz/quest/696517071963877646" target="_blank" rel="noreferrer">
+            <a href="https://app.quest3.xyz/quest/697706041175146592" target="_blank" rel="noreferrer">
               <Box className={styles.taskLink}>
                 Do the task and Verify
                 <IconButton disableRipple>
