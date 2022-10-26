@@ -13,6 +13,8 @@ import { AbstractIntlMessages, NextIntlProvider } from 'next-intl'
 import { NextComponentType, NextPage } from 'next/types'
 import { ReactElement, ReactNode } from 'react'
 
+import { Analytics } from '@vercel/analytics/react';
+
 // connect wallet config
 const { chains, provider, webSocketProvider } = configureChains(SUPPORT_CHAINS, [
   alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID }),
@@ -54,6 +56,7 @@ function MyApp({ Component, pageProps }: AppPropsWithMessages) {
   return <WagmiConfig client={client}>
     <NextIntlProvider messages={pageProps.messages}>
       {getLayout(<Component {...pageProps} />)}
+      <Analytics />
     </NextIntlProvider>
   </WagmiConfig>
 }
