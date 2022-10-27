@@ -226,7 +226,6 @@ PassNFT.getLayout = function getLayout(page: ReactElement) {
 export default PassNFT
 
 
-
 export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsContext) => {
 
   return {
