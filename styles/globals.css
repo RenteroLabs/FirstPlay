@@ -28,4 +28,5 @@ a {
 
 .MuiDialog-container .MuiPaper-root {
   background-color: transparent;
+  overflow: hidden;
 }
