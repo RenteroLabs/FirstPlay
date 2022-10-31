@@ -12,6 +12,8 @@ import { useIsMounted } from "hooks/useIsMounted";
 import ChainActiveButton from "@/components/ChainActiveButton";
 import ActicvChainConfirm from "@/components/PageModals/activeChainConfirm";
 import ContractTxLoading from "@/components/PageModals/ContractTxLoading";
+import ProfileNFTCard from "@/components/ProfileNFTCard";
+import ProfileActivityTable from "@/components/PageProfile/ProfileActivityTabale";
 
 enum TabItem {
   Items,
@@ -91,14 +93,19 @@ const Profile: NextPageWithLayout = () => {
       {
         activeTab === TabItem.Items &&
         <Box className={styles.itemBox}>
-          <Typography>Item</Typography>
-          <Box className={styles.trialGameBtn}>Trial Games</Box>
+          {/* <Box className={styles.trialGameBtn}>Trial Games</Box> */}
+          <ProfileNFTCard />
+          <ProfileNFTCard />
+          <ProfileNFTCard />
+          <ProfileNFTCard />
+          <ProfileNFTCard />
+          <ProfileNFTCard />
         </Box>
       }
       {
         activeTab === TabItem.Activity &&
-        <Box className={styles.activity}>
-          <Typography>Activity</Typography>
+        <Box className={styles.activityBox}>
+          <ProfileActivityTable />
         </Box>
       }
     </Box>

@@ -5,7 +5,7 @@ import styles from './style.module.scss'
 
 import Header from "../Header";
 
-const ArticleLayout: React.FC<PropsWithChildren> = ({ children }) => {
+const LayoutWithoutFooter: React.FC<PropsWithChildren> = ({ children }) => {
 
   return (
     <Box sx={{ overflow: 'hidden'}}>
@@ -17,4 +17,4 @@ const ArticleLayout: React.FC<PropsWithChildren> = ({ children }) => {
   )
 }
 
-export default ArticleLayout
+export default LayoutWithoutFooter

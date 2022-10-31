@@ -1,4 +1,4 @@
-import ArticleLayout from '@/components/ArticleLayout'
+import LayoutWithoutFooter from '@/components/LayoutWithoutFooter'
 import GameInfo from '@/components/GameInfo'
 import { Box, Divider } from '@mui/material'
 import { SUPPORT_LANGUAGE } from 'constants/index'
@@ -41,7 +41,7 @@ const StrategyArticle: NextPageWithLayout<{ content: string, post: Record<string
 }
 
 StrategyArticle.getLayout = function getLayout(page: ReactElement) {
-  return <ArticleLayout>{page}</ArticleLayout>
+  return <LayoutWithoutFooter>{page}</LayoutWithoutFooter>
 }
 
 
