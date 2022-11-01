@@ -198,6 +198,17 @@
     }
     .profileContent {
       width: 100%;
+
+      .itemBox {
+        padding: 0 0.6rem;
+        margin-top: 1.17rem;
+        margin-bottom: 2rem;
+        & > div {
+          width: calc((100% - 2.9rem) / 2);
+          margin: auto 0.6rem;
+          margin-bottom: 1.42rem;
+        }
+      }
       .activityBox {
         margin-bottom: 2rem;
         margin-top: 1rem;

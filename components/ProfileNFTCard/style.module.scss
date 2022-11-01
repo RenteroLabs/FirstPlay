@@ -115,3 +115,39 @@
     }
   }
 }
+
+@media screen and (max-width: 600px) {
+  .nftBox {
+    .nftInfo {
+      padding: 0.83rem;
+
+      .nftName {
+        font-size: 1rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 1rem;
+      }
+      .nftIds {
+        font-size: 1.33rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #222222;
+        line-height: 1.33rem;
+        padding-top: 0.83rem;
+        padding-bottom: 0.83rem;
+      }
+      .trialInfo {
+        div {
+          display: none;
+        }
+      }
+      .trialBtn {
+        // display: none;
+        // &:hover {
+        //   display: none !important;
+        // }
+      }
+    }
+  }
+}

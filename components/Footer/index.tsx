@@ -55,8 +55,10 @@ const Footer: React.FC = () => {
         </Stack>
         <Stack className={styles.support}>
           <Typography variant="h4">{t('support')}</Typography>
+          <a href="https://docs.firstplay.app" target="_blank" rel="noreferrer">
+            <Typography variant="body1">{t('litebook')}</Typography>
+          </a>
           <Typography variant="body1" className={styles.disabled}>{t('whitepaper')}</Typography>
-          <Typography variant="body1" className={styles.disabled}>{t('litebook')}</Typography>
           <Typography variant="body1" className={styles.disabled}>{t('SDK')}</Typography>
         </Stack>
       </Box>
