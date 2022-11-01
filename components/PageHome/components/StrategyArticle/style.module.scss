@@ -1,7 +1,6 @@
 .articleCard {
   border-radius: 1rem !important;
   margin-bottom: 2rem;
-  height: 21.5rem;
   box-shadow: none;
 
   a {
@@ -99,16 +98,17 @@
     flex-grow: 0;
     flex-shrink: 0;
     width: 21.5rem;
-    img {
-      object-fit: cover;
+    .imaegBox {
+      position: relative;
       height: 100%;
+      width: 100%;
     }
   }
 }
 
 @media screen and (max-width: 1440px) {
   .articleCard {
-    height: 19.17rem;
+    height: auto;
     .gameCover {
       width: 19.17rem;
     }
@@ -139,7 +139,7 @@
 
 @media screen and (max-width: 1024px) {
   .articleCard {
-    height: 11.67rem;
+    height: auto;
     .gameCover {
       width: 11.67rem;
     }
@@ -175,7 +175,7 @@
     .gameCover {
       width: 32vw;
 
-      img {
+      .imaegBox {
         height: 32vw;
       }
     }
@@ -217,7 +217,7 @@
 @media screen and (max-width: 375px) {
   .articleCard {
     .gameCover {
-      img {
+      .imaegBox {
         height: 100%;
       }
     }

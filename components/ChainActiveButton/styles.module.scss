@@ -1,0 +1,37 @@
+.defaultBtn {
+  border-radius: 1.5rem;
+  border: 0.08rem solid rgba(#222, 0.2);
+  padding: 0.5rem 0.83rem;
+  display: inline-flex;
+  align-items: center;
+  min-width: 7rem;
+  cursor: pointer;
+}
+
+.activedBtn {
+  cursor: default;
+  border: none;
+  background-color: rgba($color: #8E50E4, $alpha: 0.15);
+}
+
+.chainIcon {
+  width: 1.67rem;
+  height: 1.67rem;
+  position: relative;
+}
+
+.chainName {
+  font-size: 1.17rem;
+  font-family: Inter-Medium, Inter;
+  font-weight: 500;
+  color: #222222;
+  line-height: 1.33rem;
+  margin-left: 0.67rem;
+  user-select: none;
+}
+
+.activeIcon {
+  color: #222;
+  font-size: 1.5rem;
+  font-weight: 600;
+}

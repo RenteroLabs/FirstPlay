@@ -31,6 +31,8 @@
       font-weight: 500;
       color: #222222;
       line-height: 2.33rem;
+      // 确保两行
+      height: 4.66rem;
       margin: 0 5%;
       display: -webkit-box;
       overflow: hidden;
@@ -131,6 +133,7 @@
       p {
         font-size: 1.33rem;
         line-height: 2rem;
+        height: 4rem;
       }
 
       .stepProgress {
@@ -168,6 +171,7 @@
         font-weight: 500;
         color: #222222;
         line-height: 1.5rem;
+        height: 3rem;
       }
 
       h3 {

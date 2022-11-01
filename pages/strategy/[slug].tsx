@@ -1,4 +1,4 @@
-import ArticleLayout from '@/components/ArticleLayout'
+import LayoutWithoutFooter from '@/components/LayoutWithoutFooter'
 import GameInfo from '@/components/GameInfo'
 import { Box, Divider } from '@mui/material'
 import { SUPPORT_LANGUAGE } from 'constants/index'
@@ -9,6 +9,7 @@ import React, { ReactElement } from 'react'
 import { getGameInfo } from 'services/home'
 import { getAllPosts, getPostBySlug, markdownToHtml } from 'util/markdown'
 import styles from '../../styles/strategy.module.scss'
+import Head from 'next/head'
 
 const StrategyArticle: NextPageWithLayout<{ content: string, post: Record<string, any>, gameInfo: Record<string, any> }> = (props) => {
   const { content, post, gameInfo } = props
@@ -26,6 +27,11 @@ const StrategyArticle: NextPageWithLayout<{ content: string, post: Record<string
   }
 
   return <Box>
+    <Head>
+      <title>Strategy | FirstPlay</title>
+      <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
     <Box className={styles.topCover}>
       <Image priority loader={imageKitLoader} src={post.coverImage} layout='fill' objectFit='cover' />
     </Box>
@@ -41,7 +47,7 @@ const StrategyArticle: NextPageWithLayout<{ content: string, post: Record<string
 }
 
 StrategyArticle.getLayout = function getLayout(page: ReactElement) {
-  return <ArticleLayout>{page}</ArticleLayout>
+  return <LayoutWithoutFooter>{page}</LayoutWithoutFooter>
 }
 
 

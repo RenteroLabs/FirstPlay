@@ -75,7 +75,7 @@ const PassNFT: NextPageWithLayout = () => {
   return <Box className={styles.containBox}>
     <Head>
       <title>PassNFT | FirstPlay</title>
-      <meta name="description" content="Be the first to play and earn | A blockchain game platform that allow you play games before buying NFTs and help you how to play to make money" />
+      <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Box className={styles.container}>
@@ -224,7 +224,6 @@ PassNFT.getLayout = function getLayout(page: ReactElement) {
 }
 
 export default PassNFT
-
 
 
 export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsContext) => {

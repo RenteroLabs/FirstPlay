@@ -9,10 +9,11 @@ interface ConnectWalletProps {
   showConnect: boolean;
   setShowConnect: (show: boolean) => any;
   callback?: () => any;
+  errorCallback?: () => any;
 }
 
 const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
-  const { showConnect, setShowConnect, callback = () => { } } = props
+  const { showConnect, setShowConnect, callback = () => { }, errorCallback = () => { } } = props
 
   const { connect, connectors, error, isLoading, pendingConnector } = useConnect({
     onSuccess() {
@@ -44,10 +45,10 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
       Connect Wallet
       <IconButton
         aria-label="close"
-        onClick={() => setShowConnect(false)}
-        // sx={{
-        //   position: 'absolute', right: 8, top: "2rem", color: (theme) => theme.palette.grey[500],
-        // }}
+        onClick={() => {
+          setShowConnect(false)
+          errorCallback()
+        }}
       >
         <CloseIcon />
       </IconButton>
