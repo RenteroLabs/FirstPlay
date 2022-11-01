@@ -24,10 +24,8 @@
     },
     "Contact": {
       "title": "Contact Us",
-      "subTitle": "For game projects and other cooperation, please contact <maillink>business@firstplay.io</maillink>"
+      "subTitle": "For game projects and other cooperation, please contact <maillink>business@firstplay.app</maillink>"
     }
   },
-  "PassNFT": {
-    
-  }
+  "PassNFT": {}
 }

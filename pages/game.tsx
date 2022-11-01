@@ -14,6 +14,7 @@ import TrialNFTCard from '@/components/TrialNFTCard'
 import TrialNFTCardSkeleton from '@/components/TrialNFTCard/TrialNFTCardSkeleton'
 import TrialSuccessModal from '@/components/PageModals/TrialSuccess'
 import QuickTrialNFT from '@/components/PageModals/quickTrialNFT'
+import Head from 'next/head'
 
 
 // 游戏详情页
@@ -29,6 +30,11 @@ const Game: NextPageWithLayout = () => {
   }, [router])
 
   return <Box className={styles.gameBox}>
+    <Head>
+      <title>Games | FirstPlay</title>
+      <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
     <Box className={styles.topCover}>
       <Image src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3xhds6ikrj20zo0ibtcv.jpg" layout='fill' objectFit='cover' />
     </Box>

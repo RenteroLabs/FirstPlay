@@ -14,6 +14,7 @@ import ActicvChainConfirm from "@/components/PageModals/activeChainConfirm";
 import ContractTxLoading from "@/components/PageModals/ContractTxLoading";
 import ProfileNFTCard from "@/components/ProfileNFTCard";
 import ProfileActivityTable from "@/components/PageProfile/ProfileActivityTabale";
+import Head from "next/head";
 
 enum TabItem {
   Items,
@@ -49,6 +50,11 @@ const Profile: NextPageWithLayout = () => {
   }
 
   return <Box className={styles.containerBox}>
+    <Head>
+      <title>Profile | FirstPlay</title>
+      <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
     <Box className={styles.profileHeaderBox}>
       <Box className={styles.profileHeader}>
         <Box className={styles.headerInfo}>
@@ -87,7 +93,7 @@ const Profile: NextPageWithLayout = () => {
         className={styles.tabsHeader}
         value={activeTab}
         onChange={(_: any, newItem: number) => setActiveTab(newItem)} >
-        <Tab label="Items" value={TabItem.Items} disableRipple  />
+        <Tab label="Items" value={TabItem.Items} disableRipple />
         <Tab label="Activity" value={TabItem.Activity} disableRipple />
       </Tabs>
       {

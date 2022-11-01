@@ -31,8 +31,8 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
 
   return <Box>
     <Head>
-      <title>FirstPlay | Home</title>
-      <meta name="description" content="Be the first to play and earn | A blockchain game platform that allow you play games before buying NFTs and help you how to play to make money" />
+      <title>FirstPlay</title>
+      <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Box className={styles.coverBox}>
@@ -53,7 +53,7 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
       <Typography variant="h3">{t('title')}</Typography>
       <Typography>
         {t.rich('subTitle', {
-          maillink: (children) => <a target="__blank" href="mailto:business@firstplay.io"><span>{children}</span></a>
+          maillink: (children) => <a target="__blank" href="mailto:business@firstplay.app"><span>{children}</span></a>
         })}
       </Typography>
     </Box>

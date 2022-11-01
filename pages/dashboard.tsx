@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import Moralis from 'moralis'
 import { AXE_NFT_CONTRACT, FIRSTPLAY_MARKET_CONTRACT } from 'constants/contract'
 import { FIRSTPLYA_MARKET_ABI } from 'constants/abi'
+import Head from 'next/head'
 
 Moralis.start({
   apiKey: process.env.NEXT_PUBLIC_MORALIS_ID
@@ -110,6 +111,11 @@ const Dashboard: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
 
   return <Box className={styles.dashboardBox} >
 
+    <Head>
+      <title>Dashboard | FirstPlay</title>
+      <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
     <Box className={styles.dashboard}>
       <Box className={styles.leftNavBox}>
         <Typography>NFT Manage</Typography>
