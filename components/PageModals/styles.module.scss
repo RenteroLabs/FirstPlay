@@ -165,7 +165,7 @@
 
 .quickTrialBox {
   width: 31.67rem;
-  height: 43.17rem;
+  // height: 43.17rem;
   background: #fcfcfc;
   border-radius: 1.33rem;
   padding: 2.42rem 2.5rem;
@@ -190,17 +190,19 @@
 
     .cardBox {
       width: 18.33rem;
-      margin: 2.5rem auto;
+      margin: 2.2rem auto 2.4rem;
       box-shadow: 0rem 0.33rem 5rem 0rem rgba(0, 0, 0, 0.1);
       border-radius: 1rem;
       overflow: hidden;
     }
 
     .tryAnother {
-      display: flex;
+      display: inline-flex;
       justify-content: center;
       cursor: pointer;
       user-select: none;
+      max-width: 8rem;
+      margin: auto;
       p {
         text-decoration: underline;
         margin-left: 0.5rem;
@@ -209,7 +211,9 @@
   }
 
   .btnBox {
+    max-width: 20rem;
     display: inline-block;
+    margin: auto;
     font-size: 1.33rem;
     font-family: Inter-SemiBold, Inter;
     font-weight: 600;

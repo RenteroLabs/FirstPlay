@@ -5,11 +5,28 @@
   .coverBox {
     // padding-bottom: 100%;
     background-color: #efe5e5;
+    position: relative;
 
     .coverType1 {
       width: 100%;
       padding-bottom: 100%;
       position: relative;
+    }
+
+    .imageMask {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: rgba(#000, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      & > span {
+        width: 8.42rem !important;
+        height: 8.42rem !important;
+      }
     }
   }
 
@@ -121,6 +138,76 @@
     .trialInfo {
       span {
         height: 2.5rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .nftBox {
+
+    .coverBox {
+      .imageMask {
+        & > span {
+          height: 5.5rem !important;
+          width: 5.5rem !important;
+        }
+      }
+    }
+    .nftInfo {
+      padding: 0.83rem;
+
+      .nftName {
+        font-size: 1.33rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #222222;
+        line-height: 1.33rem;
+        padding-bottom: 0.83rem;
+      }
+
+      .trialInfo {
+        p {
+          font-size: 1rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #222222;
+          line-height: 1rem;
+        }
+
+        .trialDay {
+          font-size: 1rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #8e50e4;
+          line-height: 1rem;
+        }
+      }
+
+      @-webkit-keyframes slide-top {
+        0% {
+          -webkit-transform: translateY(20px);
+          transform: translateY(20px);
+        }
+        100% {
+          -webkit-transform: translateY(0);
+          transform: translateY(0);
+        }
+      }
+      @keyframes slide-top {
+        0% {
+          -webkit-transform: translateY(20px);
+          transform: translateY(20px);
+        }
+        100% {
+          -webkit-transform: translateY(0);
+          transform: translateY(0);
+        }
+      }
+
+      .trialBtn {
+        height: 2.8rem;
+        line-height: 2.8rem;
       }
     }
   }

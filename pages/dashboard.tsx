@@ -39,15 +39,21 @@ const Dashboard: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
     signerOrProvider: signer
   })
 
+  const MARKET_CONTRACT = useContract({
+    addressOrName: FIRSTPLAY_MARKET_CONTRACT,
+    contractInterface: FIRSTPLYA_MARKET_ABI,
+    signerOrProvider: signer
+  })
+
   const { config } = usePrepareContractWrite({
     addressOrName: FIRSTPLAY_MARKET_CONTRACT,
     contractInterface: FIRSTPLYA_MARKET_ABI,
     functionName: "supply",
     args: [
       [AXE_NFT_CONTRACT],
-      [10],
+      [18],
       AXE_GAME_ID,
-      7
+      14
     ]
   })
 
@@ -109,6 +115,11 @@ const Dashboard: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
     }
   }
 
+  // 试玩 NFT
+  const trialNFT = async () => {
+    await MARKET_CONTRACT.play("0x99e3852eff14ab51ed97fcbde76445c9a6fab0f7b3ffda40539e51bad7d942c4")
+  }
+
   return <Box className={styles.dashboardBox} >
 
     <Head>
@@ -133,6 +144,7 @@ const Dashboard: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
           <Button onClick={queryNFTsByAddress}>Query NFT</Button>
           <Button onClick={approveToMarket}>Approve to Market</Button>
           <Button onClick={uploadNFTToMarket}>Upload NFT</Button>
+          <Button onClick={trialNFT}>Trial NFT</Button>
         </Box>
 
       </Box>

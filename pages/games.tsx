@@ -71,14 +71,14 @@ const Game: NextPageWithLayout = () => {
         <Typography variant='h4'>Choose your own favorite NFT to trial.</Typography>
 
         <Box className={styles.cardList}>
+          {/* <TrialNFTCard />
           <TrialNFTCard />
           <TrialNFTCard />
           <TrialNFTCard />
           <TrialNFTCard />
           <TrialNFTCard />
           <TrialNFTCard />
-          <TrialNFTCard />
-          <TrialNFTCard />
+          <TrialNFTCard /> */}
           <TrialNFTCardSkeleton />
           <TrialNFTCardSkeleton />
           <TrialNFTCardSkeleton />
@@ -86,7 +86,7 @@ const Game: NextPageWithLayout = () => {
         </Box>
       </Box>
     </Box>
-    <QuickTrialNFT showModal={showQuickTrialModal} setShowModal={setShowQuickTrialModal} />
+    {/* <QuickTrialNFT showModal={showQuickTrialModal} setShowModal={setShowQuickTrialModal} /> */}
     {/* <TrialSuccessModal showModal={showSuccessModal} setShowModal={setShowSuccessModal} /> */}
   </Box>
 }

@@ -8,7 +8,19 @@ export const getHomeInfo = async () => {
 }
 
 
-export const getGameInfo = async (params: Record<string, any>) => {
+interface GameInfoParams {
+  game_id: string
+}
+export const getGameInfo = async (params: GameInfoParams) => {
   const data = await fetch(`${BASE_BACKEND_API}/api/game?${qs.stringify(params)}`)
+  return data.json()
+}
+
+/**
+ * 获取平台全部游戏数据
+ * @returns 
+ */
+export const getAllGamesInfo = async () => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/games`)
   return data.json()
 }

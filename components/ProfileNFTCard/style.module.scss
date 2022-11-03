@@ -116,6 +116,18 @@
   }
 }
 
+@media screen and (max-width: 1060px) {
+  .nftBox {
+    .nftInfo {
+      .trialInfo {
+        div {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 600px) {
   .nftBox {
     .nftInfo {
@@ -141,12 +153,22 @@
         div {
           display: none;
         }
+        .leftDay {
+          font-size: 1rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #e4405b;
+          line-height: 1rem;
+        }
       }
       .trialBtn {
-        // display: none;
-        // &:hover {
-        //   display: none !important;
-        // }
+        display: none;
+        animation: none;
+      }
+      &:hover {
+        .trialBtn {
+          display: none;
+        }
       }
     }
   }

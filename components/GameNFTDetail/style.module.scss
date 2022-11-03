@@ -203,6 +203,16 @@
       line-height: 2rem;
       cursor: pointer;
       user-select: none;
+      span {
+        font-size: 1.5rem;
+        font-family: Inter-Regular, Inter;
+        font-weight: 400;
+        color: #ffffff;
+        line-height: 1.5rem;
+      }
+    }
+    .trialingBtn {
+      cursor: default;
     }
   }
 }
