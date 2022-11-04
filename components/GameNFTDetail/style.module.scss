@@ -9,7 +9,8 @@
     overflow-y: scroll;
     // padding-bottom: 6.67rem;
     .infoBox {
-      width: 48.85%;
+      // width: 48.85%;
+      max-width: 78.16rem;
       margin: 3.33rem auto 2rem;
       // border: 1px solid gray;
       display: flex;
@@ -213,6 +214,91 @@
     }
     .trialingBtn {
       cursor: default;
+    }
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .drawerBox {
+    .contentBox {
+      .infoBox {
+        width: calc(100% - 13.66rem);
+        margin: 2.5rem auto 2rem;
+      }
+    }
+    .drawerCloseIcon {
+      top: 2.5rem;
+      right: 1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .drawerBox {
+    .contentBox {
+      .infoBox {
+        width: 60%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .infoLeft,
+        .infoRight {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .drawerBox {
+    .contentBox {
+      .infoBox {
+        width: 70%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .drawerBox {
+    height: calc(100vh - 9.34rem);
+    .contentBox {
+      .infoBox {
+        width: 80%;
+      }
+    }
+
+    .btnBox {
+      height: 5rem;
+      padding: 0.83rem 1.42rem;
+      .trialBtn {
+        display: block;
+        font-size: 1.33rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #ffffff;
+        line-height: 1.33rem;
+        padding: 1rem;
+        span {
+          font-size: 1.17rem;
+          line-height: 1.17rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .drawerBox {
+    .contentBox {
+      .infoBox {
+        width: calc(100% - 2.66rem);
+        margin-top: 5rem;
+      }
+    }
+    .drawerCloseIcon {
+      top: 1rem;
     }
   }
 }

@@ -268,7 +268,7 @@
 
 @media screen and (max-width: 1250px) {
   .gameBox {
-    .rewardBox {
+    .rewardBox, .gameInfoBox {
       width: calc(100% - 10rem);
     }
     .cardBox {
@@ -286,7 +286,7 @@
     .topCover {
       height: 18.33rem;
     }
-    .rewardBox {
+    .rewardBox , .gameInfoBox{
       width: calc(100% - 6rem);
     }
 
@@ -309,8 +309,12 @@
 @media screen and (max-width: 750px) {
   .gameBox {
     .rewardBox,
-    .rewardMobileBox {
+    .rewardMobileBox, .gameInfoBox {
       width: calc(100% - 4rem);
+    }
+
+    .gameInfoBox {
+      margin: 2rem auto 0;
     }
     .btnBox {
       margin-top: 4rem;
@@ -340,6 +344,12 @@
   .gameBox {
     .topCover {
       height: 15rem;
+    }
+
+    .gameInfoBox {
+      width: calc(100% - 2.66rem);
+      margin: auto;
+      margin-top: -3.33rem;
     }
     .btnBox {
       display: none;

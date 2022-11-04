@@ -179,7 +179,6 @@ const Game: NextPageWithLayout = () => {
       chainId={chainId}
     />
     {/* <TrialSuccessModal showModal={showSuccessModal} setShowModal={setShowSuccessModal} /> */}
-
     <ContractTxLoading txHash={txHash} showModal={showTxLoading} />
   </Box>
 }
