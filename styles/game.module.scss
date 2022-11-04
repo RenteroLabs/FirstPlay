@@ -66,6 +66,53 @@
     }
   }
 
+  .rewardMobileBox {
+    background: rgba(#8e50e4, 0.1);
+    border-radius: 0.67rem;
+    padding: 1rem 1.33rem;
+    margin: auto;
+    .cardHeader {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 1rem;
+      border-bottom: 0.16rem solid rgba(#222, 0.1);
+      h4 {
+        font-size: 1.75rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #222222;
+        line-height: 1.75rem;
+      }
+      img {
+        width: 1.17rem;
+        height: 1.45rem;
+      }
+    }
+    .rewardDesc {
+      font-size: 1.33rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #222222;
+      line-height: 1.67rem;
+      margin-top: 1rem;
+    }
+    .rewardVal {
+      display: flex;
+      align-items: center;
+      font-size: 1.33rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #8e50e4;
+      line-height: 1.33rem;
+      margin-top: 0.83rem;
+      img {
+        margin-left: 1rem;
+        width: 2.5rem;
+        height: 1.75rem;
+      }
+    }
+  }
+
   @keyframes btnAnimation {
     0% {
       box-shadow: 0 0 0 0 #ff6e85;
@@ -101,22 +148,22 @@
       margin: 3.4rem auto;
       @-webkit-keyframes slide-bottom {
         0% {
-          -webkit-transform: translateY(-20px);
-          transform: translateY(-20px);
+          -webkit-transform: translateY(-10px);
+          transform: translateY(-10px);
         }
         100% {
-          -webkit-transform: translateY(40px);
-          transform: translateY(40px);
+          -webkit-transform: translateY(20px);
+          transform: translateY(20px);
         }
       }
       @keyframes slide-bottom {
         0% {
-          -webkit-transform: translateY(-20px);
-          transform: translateY(-20px);
+          -webkit-transform: translateY(-10px);
+          transform: translateY(-10px);
         }
         100% {
-          -webkit-transform: translateY(40px);
-          transform: translateY(40px);
+          -webkit-transform: translateY(20px);
+          transform: translateY(20px);
         }
       }
 
@@ -137,12 +184,52 @@
     }
   }
 
+  .btnMobileBox {
+    margin: 1.83rem auto 2.83rem;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    .gameStrategyBtn {
+      margin-top: 1rem;
+      padding: 1.17rem 2rem;
+      border-radius: 2rem;
+      border: 0.16rem solid #bb489c;
+     
+      font-size: 1.33rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: rgba(142, 80, 228, 0);
+      line-height: 1.33rem;
+      background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      cursor: pointer;
+    }
+
+    .trialBtn {
+      margin-top: 1rem;
+      background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
+      box-shadow: 0rem 0.67rem 2.5rem 0rem rgba(142, 80, 228, 0.3);
+      border-radius: 2.67rem;
+      filter: blur(0px);
+
+      font-size: 1.33rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.33rem;
+
+      padding: 1.17rem 2rem;
+      cursor: pointer;
+    }
+  }
+
   .cardBox {
     margin: auto;
     background: #f4f4f9;
 
     .cardContent {
-      max-width: 100rem;
+      max-width: calc(100rem + 2rem);
       margin: auto;
       padding: 6.67rem 0;
       h3 {
@@ -163,15 +250,144 @@
         line-height: 1.5rem;
       }
 
-
       .cardList {
         margin-top: 3.33rem;
         display: flex;
-        justify-content: space-around;
+        justify-content: flex-start;
         flex-wrap: wrap;
         & > div {
-          width: calc((100% - 6.18rem) / 4);
+          width: calc((100% - 8rem) / 4);
           margin-bottom: 2rem;
+          margin-left: 1rem;
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .gameBox {
+    .rewardBox, .gameInfoBox {
+      width: calc(100% - 10rem);
+    }
+    .cardBox {
+      width: 100%;
+      .cardContent {
+        width: calc(100% - 10rem);
+        margin: auto;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .gameBox {
+    .topCover {
+      height: 18.33rem;
+    }
+    .rewardBox , .gameInfoBox{
+      width: calc(100% - 6rem);
+    }
+
+    .cardBox {
+      .cardContent {
+        width: calc(100% - 6rem);
+        .cardList {
+          & > div {
+            width: calc((100% - 8rem) / 3);
+            margin-bottom: 2rem;
+            margin-left: 1rem;
+            margin-right: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .gameBox {
+    .rewardBox,
+    .rewardMobileBox, .gameInfoBox {
+      width: calc(100% - 4rem);
+    }
+
+    .gameInfoBox {
+      margin: 2rem auto 0;
+    }
+    .btnBox {
+      margin-top: 4rem;
+      .downIcon {
+        margin: 2rem auto;
+      }
+    }
+    .cardBox {
+      .cardContent {
+        width: calc(100% - 4rem);
+
+        .cardList {
+          justify-content: center;
+          & > div {
+            width: calc((100% - 8rem) / 2);
+            margin-bottom: 2rem;
+            margin-left: 1rem;
+            margin-right: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .gameBox {
+    .topCover {
+      height: 15rem;
+    }
+
+    .gameInfoBox {
+      width: calc(100% - 2.66rem);
+      margin: auto;
+      margin-top: -3.33rem;
+    }
+    .btnBox {
+      display: none;
+    }
+    .rewardBox,
+    .rewardMobileBox {
+      width: calc(100% - 2.66rem);
+    }
+    .cardBox {
+      .cardContent {
+        width: calc(100% - 1.2rem);
+
+        padding: 2.5rem 0;
+
+        h3 {
+          font-size: 1.75rem;
+          font-family: Inter-Bold, Inter;
+          font-weight: bold;
+          color: #222222;
+          line-height: 1.75rem;
+        }
+
+        h4 {
+          font-size: 1.17rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #222222;
+          line-height: 1.17rem;
+          margin-top: 0.83rem;
+        }
+        .cardList {
+          margin-top: 1.67rem;
+          & > div {
+            width: calc((100% - 2.84rem) / 2);
+            margin-bottom: 1.42rem;
+            margin-left: 0.71rem;
+            margin-right: 0.71rem;
+          }
         }
       }
     }

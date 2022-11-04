@@ -1,5 +1,5 @@
 import { NextPageWithLayout } from "./_app";
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useMemo, useState } from 'react';
 import { Box, IconButton, Stack, Tab, Tabs, Typography } from "@mui/material";
 import Layout from "@/components/Layout";
 import Image from 'next/image';
@@ -15,6 +15,11 @@ import ContractTxLoading from "@/components/PageModals/ContractTxLoading";
 import ProfileNFTCard from "@/components/ProfileNFTCard";
 import ProfileActivityTable from "@/components/PageProfile/ProfileActivityTabale";
 import Head from "next/head";
+import ConnectWallet from "@/components/ConnectWallet";
+import { useRouter } from "next/router";
+import { useLazyQuery } from "@apollo/client";
+import { GET_USER_TRIALING } from "services/documentNode";
+import { goerliGraph } from "services/graphql";
 
 enum TabItem {
   Items,
@@ -24,18 +29,52 @@ enum TabItem {
 const Profile: NextPageWithLayout = () => {
   const { address } = useAccount()
   const isMounted = useIsMounted()
+  const router = useRouter()
 
   const [activeTab, setActiveTab] = useState<number>(TabItem.Items)
 
+  const [showConnect, setShowConnect] = useState<boolean>(false)
   const [showModal, setShowModal] = useState<boolean>(false)
   const [showTxLoading, setShowTxLoading] = useState<boolean>(false)
   const [txHash, setTxHash] = useState<string>("")
 
   const [activeChainInfo, setActiveChainInfo] = useState<{ chainId?: number, chainName?: string }>({})
 
+  const [trialList, setTrialList] = useState<Record<string, any>[]>([])
+
+  const timestamp = useMemo(() => (Number(new Date) / 1000).toFixed(), [])
+
+  const [getTrialingList, { refetch }] = useLazyQuery(GET_USER_TRIALING, {
+    variables: {
+      expires: timestamp,
+      player: address
+    },
+    client: goerliGraph,
+    onCompleted(data) {
+      console.log(data)
+      setTrialList(data?.packages || [])
+    }
+  })
+
+  useEffect(() => {
+    // 正常情况用户连接钱包后进入 Profile 页
+    // 需处理用户进入后断开钱包情况
+    if (!address) {
+      setShowConnect(true)
+    } else {
+      getTrialingList()
+    }
+  }, [address])
+
   useEffect(() => {
     // 获取用户激活链数据
   }, [])
+
+
+
+
+
+
 
   const imageKitLoader = ({ src, width, quality = 100 }: any) => {
     const params = [`w-400`];
@@ -61,10 +100,11 @@ const Profile: NextPageWithLayout = () => {
           <Box className={styles.addressItem}>
             {address && isMounted && formatAddress(address, 8)}
             {address && isMounted && <CopyButton targetValue={address || ""} />}
+            {!address && isMounted && <Typography>Not connect wallet yet !</Typography>}
           </Box>
           <Box className={styles.chainsActiveItem}>
             <Typography className={styles.chainsActiveDesc}>Trial qualification:</Typography>
-            <Stack direction="row" spacing="0.83rem" >
+            <Stack direction="row" className={styles.activeBtnList} >
               <ChainActiveButton
                 chainId={137}
                 isActived={true}
@@ -100,12 +140,11 @@ const Profile: NextPageWithLayout = () => {
         activeTab === TabItem.Items &&
         <Box className={styles.itemBox}>
           {/* <Box className={styles.trialGameBtn}>Trial Games</Box> */}
-          <ProfileNFTCard />
-          <ProfileNFTCard />
-          <ProfileNFTCard />
-          <ProfileNFTCard />
-          <ProfileNFTCard />
-          <ProfileNFTCard />
+
+          {
+            trialList.map((item, index) =>
+              <ProfileNFTCard key={index} nftInfo={item} />)
+          }
         </Box>
       }
       {
@@ -126,6 +165,14 @@ const Profile: NextPageWithLayout = () => {
     />
 
     <ContractTxLoading showModal={showTxLoading} txHash={txHash} />
+
+    <ConnectWallet
+      showConnect={showConnect}
+      setShowConnect={setShowConnect}
+      errorCallback={() => {
+        router.push('/')
+      }}
+    />
   </Box>
 }
 

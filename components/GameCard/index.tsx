@@ -1,6 +1,7 @@
 import { Box, Card, CardContent, CardMedia, Stack, Typography } from "@mui/material"
 import { CHAIN_ICON_MAP, HOT_GAME_ICON, REWARD_ICON } from "constants/static"
 import Image from "next/image"
+import { useRouter } from "next/router"
 import styles from './style.module.scss'
 
 interface GameCardProps {
@@ -9,6 +10,8 @@ interface GameCardProps {
 
 const GameCard: React.FC<GameCardProps> = (props) => {
   const { gameInfo } = props
+
+  const router = useRouter()
 
   const imageKitLoader = ({ src, width, quality = 100 }: any) => {
     const params = [`w-320`];
@@ -22,7 +25,15 @@ const GameCard: React.FC<GameCardProps> = (props) => {
     return `${urlEndpoint}/${imageHash}?tr=${paramsString}`
   }
 
-  return <Card className={styles.gameCard}>
+  // TODO: prefetch 预先请求页面
+  const linkToGameDetail = () => {
+    router.push({
+      pathname: '/game/[uuid]',
+      query: { uuid: gameInfo.game_id}
+    })
+  }
+
+  return <Card className={styles.gameCard} onClick={linkToGameDetail}>
     <Box className={styles.gameImage}>
       <Image priority src={gameInfo?.image} layout="fill" objectFit="cover" loader={imageKitLoader} />
     </Box>

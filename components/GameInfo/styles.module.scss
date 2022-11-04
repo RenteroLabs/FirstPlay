@@ -33,7 +33,9 @@
       font-family: Inter-Medium, Inter;
       font-weight: 500;
       color: #222222;
-      line-height: 2rem;
+      height: 2rem;
+      display: inline-flex;
+      align-items: center;
       padding: 0 1.25rem;
 
       & + .tagItem {
@@ -75,22 +77,27 @@
   .mobileHeader {
     display: flex;
     align-items: flex-end;
+    justify-content: space-between;
 
     .imageCover {
-      width: 30vw;
-      height: 30vw;
+      width: 24vw;
+      height: 24vw;
       max-width: 12rem;
       max-height: 12rem;
+      min-width: 8rem;
+      min-height: 8rem;
       position: relative;
-      background: #d2d2d2;
+      background: #e8e8e8;
       border-radius: 1rem;
-      // border: 0.5rem solid #ffffff;
+      border: 0.25rem solid #ffffff;
       overflow: hidden;
       margin-right: 3vw;
       flex-shrink: 0;
     }
-
+  }
+  .mobileBox {
     .gameTitle {
+      margin-top: 2.5rem;
       display: flex;
       flex-direction: column;
       align-self: flex-end;
@@ -104,18 +111,20 @@
       }
 
       .tagList {
-        margin: 0.83rem 0 0 0;
+        margin: 1rem 0 0 0;
       }
     }
-  }
-  .mobileBox {
     .gameDesc {
       font-size: 1.33rem;
-      font-family: Inter-Medium, Inter;
-      font-weight: 500;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
       color: #222222;
       line-height: 2rem;
-      margin: 2rem auto;
+      margin: 1.67rem auto;
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
     }
     .socialList {
       button {
@@ -145,9 +154,19 @@
   }
 }
 
-// @media screen and (max-width: 600px) {
-//   .gameinfoBox {
-//     width: calc(100% - 2.66rem);
-//     padding: 1rem 0 1.5rem;
-//   }
-// }
+@media screen and (max-width: 600px) {
+  .gameinfoBox {
+    .gameCover {
+      width: 8rem;
+      height: 8rem;
+    }
+
+    .gameDesc {
+      font-size: 1.33rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
+      color: #222222;
+      line-height: 2rem;
+    }
+  }
+}

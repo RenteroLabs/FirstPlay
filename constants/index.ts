@@ -66,3 +66,7 @@ export const BASE_BACKEND_API = process.env.NEXT_PUBLIC_ENV === 'PRO' ? PRODUCTI
 // 暂时关闭，支持多语言时需要开启
 // export const SUPPORT_LANGUAGE: string[] = ["en-US", "zh-CN"]
 export const SUPPORT_LANGUAGE: string[] = ["en-US"]
+
+
+// 后端 metadata 服务地址
+export const METADATA_SERVICE = "https://metadata.rentero.io"

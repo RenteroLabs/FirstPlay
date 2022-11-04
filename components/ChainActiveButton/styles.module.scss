@@ -6,6 +6,10 @@
   align-items: center;
   min-width: 7rem;
   cursor: pointer;
+
+  & + .defaultBtn {
+    margin-left: 0.83rem;
+  }
 }
 
 .activedBtn {
@@ -34,4 +38,14 @@
   color: #222;
   font-size: 1.5rem;
   font-weight: 600;
+}
+
+@media screen and (max-width: 680px){
+  .defaultBtn, .activedBtn {
+    margin: auto 0.42rem;
+    margin-bottom: 1rem;
+  }
+  .defaultBtn + .defaultBtn {
+    margin-left: 0;
+  }
 }
