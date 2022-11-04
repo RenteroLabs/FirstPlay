@@ -8,6 +8,52 @@
     height: calc(100% - 6.67rem);
     overflow-y: scroll;
     // padding-bottom: 6.67rem;
+
+    .nftDetail {
+      height: 17.67rem;
+      border-radius: 1rem;
+      border: 0.08rem solid rgba(#979797, 0.3);
+
+      h3 {
+        background: #f4f4f9;
+        padding: 1.17rem 2.5rem 1.08rem;
+        border-radius: 1rem 1rem 0rem 0rem;
+        font-size: 1.75rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #222222;
+        line-height: 1.75rem;
+      }
+      & > div {
+        padding: 1.67rem 2.5rem;
+        .detailItem {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .detailKey {
+            font-size: 1.33rem;
+            font-family: Inter-Medium, Inter;
+            font-weight: 500;
+            color: #222222;
+            line-height: 1.33rem;
+          }
+
+          .detailValue {
+            font-size: 1.33rem;
+            font-family: Inter-MediumItalic, Inter;
+            font-weight: normal;
+            color: rgba(#222, 0.5);
+            line-height: 1.33rem;
+          }
+
+          & + .detailItem {
+            margin-top: 1.67rem;
+          }
+        }
+      }
+    }
+
     .infoBox {
       // width: 48.85%;
       max-width: 78.16rem;
@@ -32,51 +78,6 @@
             width: 100%;
             padding-bottom: 100%;
             position: relative;
-          }
-        }
-
-        .nftDetail {
-          height: 17.67rem;
-          border-radius: 1rem;
-          border: 0.08rem solid rgba(#979797, 0.3);
-
-          h3 {
-            background: #f4f4f9;
-            padding: 1.17rem 2.5rem 1.08rem;
-            border-radius: 1rem 1rem 0rem 0rem;
-            font-size: 1.75rem;
-            font-family: Inter-SemiBold, Inter;
-            font-weight: 600;
-            color: #222222;
-            line-height: 1.75rem;
-          }
-          & > div {
-            padding: 1.67rem 2.5rem;
-            .detailItem {
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-
-              .detailKey {
-                font-size: 1.33rem;
-                font-family: Inter-Medium, Inter;
-                font-weight: 500;
-                color: #222222;
-                line-height: 1.33rem;
-              }
-
-              .detailValue {
-                font-size: 1.33rem;
-                font-family: Inter-MediumItalic, Inter;
-                font-weight: normal;
-                color: rgba(#222, 0.5);
-                line-height: 1.33rem;
-              }
-
-              & + .detailItem {
-                margin-top: 1.67rem;
-              }
-            }
           }
         }
       }
@@ -245,6 +246,12 @@
         .infoRight {
           width: 100%;
         }
+
+        .infoRight {
+          .metaList {
+            margin-top: 2.5rem;
+          }
+        }
       }
     }
   }
@@ -264,8 +271,115 @@
   .drawerBox {
     height: calc(100vh - 9.34rem);
     .contentBox {
+      height: calc(100% - 5rem);
       .infoBox {
         width: 80%;
+        margin-bottom: 1.33rem;
+
+        .infoLeft {
+          .nftCover {
+            margin-bottom: 1.33rem;
+          }
+        }
+
+        .infoRight {
+          .nftInfo {
+            margin-bottom: 1.33rem;
+            padding: 1.67rem 1.33rem;
+            height: auto;
+            h4 {
+              font-size: 1.17rem;
+              font-family: Inter-SemiBold, Inter;
+              font-weight: 600;
+              color: rgba(#222, 0.5);
+              line-height: 1.17rem;
+            }
+            h3 {
+              font-size: 1.5rem;
+              font-family: Inter-SemiBold, Inter;
+              font-weight: 600;
+              color: #222222;
+              line-height: 1.5rem;
+              margin: 1.33rem auto;
+            }
+            .trialInfo {
+              margin-top: 1.25rem;
+              .trialKey {
+                font-size: 1.17rem;
+                font-family: Inter-Medium, Inter;
+                font-weight: 500;
+                color: #222222;
+                line-height: 1.17rem;
+              }
+              .trialValue {
+                font-size: 1.17rem;
+                font-family: Inter-Medium, Inter;
+                font-weight: 500;
+                color: #8e50e4;
+                line-height: 1.17rem;
+              }
+            }
+          }
+          .metaList {
+            margin-top: 1.33rem;
+
+            h3 {
+              font-size: 1.33rem;
+              font-family: Inter-SemiBold, Inter;
+              font-weight: 600;
+              color: #222222;
+              line-height: 1.33rem;
+              padding: 1rem 1.25rem;
+            }
+
+            .statusList {
+              padding: 1.33rem 1.25rem;
+              font-size: 1.17rem;
+              font-family: Inter-Medium, Inter;
+              font-weight: 500;
+              color: #222222;
+              line-height: 1.17rem;
+              & + .statusItem {
+                margin-top: 1.33rem;
+              }
+            }
+          }
+        }
+      }
+
+      .nftDetail {
+        height: auto;
+        h3 {
+          font-size: 1.33rem;
+          font-family: Inter-SemiBold, Inter;
+          font-weight: 600;
+          color: #222222;
+          line-height: 1.33rem;
+          padding: 1rem 1.25rem;
+        }
+        & > div {
+          padding: 1.33rem 1.25rem;
+          .detailItem {
+            .detailKey {
+              font-size: 1.17rem;
+              font-family: Inter-Medium, Inter;
+              font-weight: 500;
+              color: #222222;
+              line-height: 1.17rem;
+            }
+            .detailValue {
+              font-size: 1.17rem;
+              font-family: Inter-MediumItalic, Inter;
+              font-weight: normal;
+              color: rgba(#222, 0.5);
+              line-height: 1.17rem;
+            }
+
+            & + .detailItem {
+              margin-top: 1.33rem;
+            }
+          }
+        }
       }
     }
 

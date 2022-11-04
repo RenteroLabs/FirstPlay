@@ -1,4 +1,4 @@
-import { Box, Divider, Drawer, IconButton, Stack, Typography } from '@mui/material'
+import { Box, Divider, Drawer, IconButton, Stack, Typography, useMediaQuery } from '@mui/material'
 import React, { useContext, useMemo } from 'react'
 import styles from './style.module.scss'
 import Image from 'next/image'
@@ -16,6 +16,10 @@ import classnames from 'classnames/bind'
 
 const cx = classnames.bind(styles)
 
+
+
+
+
 interface GameNFTDetailProps {
   showDrawer: boolean
   setShowDrawer: (arg: boolean) => any
@@ -26,6 +30,8 @@ interface GameNFTDetailProps {
 
 const GameNFTDetail: React.FC<GameNFTDetailProps> = (props) => {
   const { showDrawer, setShowDrawer, metadata, packageInfo, chainId } = props
+
+  const isMobileSize = useMediaQuery("(max-width: 900px)")
 
   const { showConnect, setShowConnect } = useContext<WalletConnectParams>(WalletConnet)
   const { setTxHash, txHash, showTxLoading, setShowTxLoading } = useContext<TxLoadingParams>(TxLoading)
@@ -116,7 +122,29 @@ const GameNFTDetail: React.FC<GameNFTDetailProps> = (props) => {
 
   }
 
-
+  const nftDetail = () => {
+    return <Box className={styles.nftDetail}>
+    <Typography variant='h3'>Details</Typography>
+    <Stack>
+      <Box className={styles.detailItem}>
+        <Box className={styles.detailKey}>Blockchain</Box>
+        <Box className={styles.detailValue}>Polygon</Box>
+      </Box>
+      <Box className={styles.detailItem}>
+        <Box className={styles.detailKey}>Contract Address</Box>
+        <Box className={styles.detailValue}>{formatAddress(packageInfo?.nfts[0].nftAddress || "", 3)}</Box>
+      </Box>
+      <Box className={styles.detailItem}>
+        <Box className={styles.detailKey}>Token ID</Box>
+        <Box className={styles.detailValue}>{packageInfo?.nfts[0].tokenId}</Box>
+      </Box>
+      <Box className={styles.detailItem}>
+        <Box className={styles.detailKey}>Token Standard</Box>
+        <Box className={styles.detailValue}>ERC-721</Box>
+      </Box>
+    </Stack>
+  </Box>
+  }
 
   return <Drawer
     anchor="bottom"
@@ -135,27 +163,7 @@ const GameNFTDetail: React.FC<GameNFTDetailProps> = (props) => {
                 }
               </Box>
             </Box>
-            <Box className={styles.nftDetail}>
-              <Typography variant='h3'>Details</Typography>
-              <Stack>
-                <Box className={styles.detailItem}>
-                  <Box className={styles.detailKey}>Blockchain</Box>
-                  <Box className={styles.detailValue}>Polygon</Box>
-                </Box>
-                <Box className={styles.detailItem}>
-                  <Box className={styles.detailKey}>Contract Address</Box>
-                  <Box className={styles.detailValue}>{formatAddress(packageInfo?.nfts[0].nftAddress || "", 3)}</Box>
-                </Box>
-                <Box className={styles.detailItem}>
-                  <Box className={styles.detailKey}>Token ID</Box>
-                  <Box className={styles.detailValue}>{packageInfo?.nfts[0].tokenId}</Box>
-                </Box>
-                <Box className={styles.detailItem}>
-                  <Box className={styles.detailKey}>Token Standard</Box>
-                  <Box className={styles.detailValue}>ERC-721</Box>
-                </Box>
-              </Stack>
-            </Box>
+            { !isMobileSize && nftDetail()}
           </Box>
           <Box className={styles.infoRight}>
             <Box className={styles.nftInfo}>
@@ -167,6 +175,9 @@ const GameNFTDetail: React.FC<GameNFTDetailProps> = (props) => {
                 <Box className={styles.trialValue}>{packageInfo?.playDays} Days</Box>
               </Box>
             </Box>
+            {
+              isMobileSize && nftDetail()
+            }
             <Box className={styles.metaList}>
               <Typography variant='h3'>Status</Typography>
               <Stack className={styles.statusList}>
