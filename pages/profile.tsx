@@ -121,7 +121,7 @@ const Profile: NextPageWithLayout = () => {
           </Box>
         </Box>
         <Box className={styles.passNFTBox}>
-          <Image loader={imageKitLoader} layout="fill" src="https://rentero-resource.s3.ap-east-1.amazonaws.com/PassNFT.jpg" objectFit="cover" />
+          <Image loader={imageKitLoader} layout="fill" src="https://d2yhjjdyh5ugcy.cloudfront.net/PASS_NFT.jpg" objectFit="cover" />
           <Box className={styles.imageMask}> </Box>
           <Box className={styles.imageTokenId}>ID: XXX</Box>
         </Box>

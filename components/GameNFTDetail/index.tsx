@@ -1,5 +1,5 @@
 import { Box, Divider, Drawer, IconButton, Stack, Typography, useMediaQuery } from '@mui/material'
-import React, { useContext, useMemo } from 'react'
+import React, { useContext, useMemo, useState } from 'react'
 import styles from './style.module.scss'
 import Image from 'next/image'
 import CloseIcon from '@mui/icons-material/Close';
@@ -13,12 +13,9 @@ import { FIRSTPLYA_MARKET_ABI } from 'constants/abi';
 import { WalletConnectParams, WalletConnet } from 'pages/_app';
 import { TxLoading, TxLoadingParams } from 'pages/game/[uuid]';
 import classnames from 'classnames/bind'
+import TrialSuccessModal from '../PageModals/TrialSuccess';
 
 const cx = classnames.bind(styles)
-
-
-
-
 
 interface GameNFTDetailProps {
   showDrawer: boolean
@@ -34,6 +31,7 @@ const GameNFTDetail: React.FC<GameNFTDetailProps> = (props) => {
   const isMobileSize = useMediaQuery("(max-width: 900px)")
 
   const { showConnect, setShowConnect } = useContext<WalletConnectParams>(WalletConnet)
+  const [showTrialSuccess, setShowTrialSuccess] = useState<boolean>(false)
   const { setTxHash, txHash, showTxLoading, setShowTxLoading } = useContext<TxLoadingParams>(TxLoading)
 
   const { data: signer } = useSigner()
@@ -78,6 +76,9 @@ const GameNFTDetail: React.FC<GameNFTDetailProps> = (props) => {
       // setVisibile(false)
       // 刷新页面数据
       // reloadInfo()
+
+      // 展示成功获取试玩 NFT 弹窗
+      setShowTrialSuccess(true)
     },
     onSettled: () => {
       // setButtonLoading(false)
@@ -118,6 +119,8 @@ const GameNFTDetail: React.FC<GameNFTDetailProps> = (props) => {
     } catch (err) {
 
       setShowTxLoading(false)
+      // temp
+      setShowTrialSuccess(true)
     }
 
   }
@@ -206,6 +209,7 @@ const GameNFTDetail: React.FC<GameNFTDetailProps> = (props) => {
         })} onClick={trialNFT}>{trialBtnText}</Box>
       </Box>
     </Box>
+    <TrialSuccessModal showModal={showTrialSuccess} setShowModal={setShowTrialSuccess} />
   </Drawer>
 }
 

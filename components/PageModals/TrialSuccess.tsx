@@ -33,10 +33,10 @@ const TrialSuccessModal: React.FC<TrialSuccessProps> = (props) => {
       </Box>
       <Box className={styles.container}>
         <Box className={styles.successIllustration}>
-          <Image src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3yrt5tycej20nw0kxdh5.jpg" layout="fill" />
+          <Image src="/trial_NFT_success.png" layout="fill" objectFit='cover' />
         </Box>
-        <Typography variant='h3'>Successfully acquired an NFT!</Typography>
-        <Typography variant='h4'> Rewards available after automatic return.</Typography>
+        <Typography variant='h3'>Successfully acquired an NFT!  Rewards available after automatic return.</Typography>
+        {/* <Typography variant='h4'></Typography> */}
         {/* TODO: 此处需跳转到对应的游戏官网页 */}
         <a href='/' target="_blank" rel="noreferrer" onClick={() => setShowModal(false)}>
           <Box className={styles.playLink}>Play Now</Box>

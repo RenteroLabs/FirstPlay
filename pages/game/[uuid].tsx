@@ -136,7 +136,7 @@ const Game: NextPageWithLayout = () => {
       is600Width ?
         <Box className={styles.btnMobileBox}>
           <Box className={styles.gameStrategyBtn}>Game Strategy</Box>
-          <Box className={styles.trialBtn}>Start Free Trial</Box>
+          <Box className={styles.trialBtn} onClick={() => setShowQuickTrialModal(true)}>Start Free Trial</Box>
         </Box>
         :
         <Box className={styles.btnBox}>
