@@ -7,13 +7,14 @@ import { PackageRes } from 'types/graph';
 import { formatAddress } from 'util/format';
 import { useCountDown, useRequest } from 'ahooks';
 import { refreshNFTMetadata } from 'services/metadata';
-import { useAccount, useContract, useNetwork, useProvider, useSigner, useWaitForTransaction } from 'wagmi';
+import { useAccount, useContract, useNetwork, useProvider, useSigner, useSwitchNetwork, useWaitForTransaction } from 'wagmi';
 import { FIRSTPLAY_MARKET_CONTRACT, MARKET_CONTRACT } from 'constants/contract';
 import { FIRSTPLYA_MARKET_ABI } from 'constants/abi';
 import { WalletConnectParams, WalletConnet } from 'pages/_app';
 import { TxLoading, TxLoadingParams } from 'pages/game/[uuid]';
-import classnames from 'classnames/bind'
+import classnames from 'classnames/bind';
 import TrialSuccessModal from '../PageModals/TrialSuccess';
+import { toast } from 'react-toastify';
 
 const cx = classnames.bind(styles)
 
@@ -23,10 +24,11 @@ interface GameNFTDetailProps {
   metadata: Record<string, any>[]
   packageInfo: PackageRes
   chainId: number
+  reload: () => any
 }
 
 const GameNFTDetail: React.FC<GameNFTDetailProps> = (props) => {
-  const { showDrawer, setShowDrawer, metadata, packageInfo, chainId } = props
+  const { showDrawer, setShowDrawer, metadata, packageInfo, chainId, reload } = props
 
   const isMobileSize = useMediaQuery("(max-width: 900px)")
 
@@ -38,6 +40,7 @@ const GameNFTDetail: React.FC<GameNFTDetailProps> = (props) => {
   const provider = useProvider()
   const { address } = useAccount()
   const { chain } = useNetwork()
+  const { pendingChainId, switchNetwork } = useSwitchNetwork()
 
   const timestamp = useMemo(() => (Number(new Date) / 1000).toFixed(), [])
   const isTrialing = useMemo(() => {
@@ -47,8 +50,8 @@ const GameNFTDetail: React.FC<GameNFTDetailProps> = (props) => {
       return false
     }
   }, [timestamp, packageInfo])
-  const [_, { days, hours, minutes}] = useCountDown({
-    targetDate: Number(packageInfo?.expires || 0) * 1000 
+  const [_, { days, hours, minutes }] = useCountDown({
+    targetDate: Number(packageInfo?.expires || 0) * 1000
   })
 
   // 根据状态判断返回不同文案 1. 上架中 2. 试玩中
@@ -59,8 +62,6 @@ const GameNFTDetail: React.FC<GameNFTDetailProps> = (props) => {
       return <>Trialing <span>&nbsp;({days}Day {hours}Hour {minutes}Min Left)</span></>
     }
   }, [isTrialing])
-
-  // console.log(metadata)
 
   const MARKET = useContract({
     addressOrName: MARKET_CONTRACT[chainId] || "",
@@ -74,14 +75,14 @@ const GameNFTDetail: React.FC<GameNFTDetailProps> = (props) => {
     onSuccess: () => {
       // 关闭租借弹窗
       // setVisibile(false)
-      // 刷新页面数据
+      // TODO: 刷新页面数据
       // reloadInfo()
+      reload()
 
       // 展示成功获取试玩 NFT 弹窗
       setShowTrialSuccess(true)
     },
     onSettled: () => {
-      // setButtonLoading(false)
       setShowTxLoading(false)
       setTxHash("")
     }
@@ -107,46 +108,53 @@ const GameNFTDetail: React.FC<GameNFTDetailProps> = (props) => {
     if (!address) {
       setShowConnect(true)
     }
-    // 2. TODO:判断是否在正确链上
-    if (chainId !== chain?.id) {
-
+    // 2. 判断是否在正确链上
+    if ((chainId !== chain?.id || chainId !== pendingChainId) && switchNetwork) {
+      switchNetwork(chainId)
+      return
     }
 
     setShowTxLoading(true)
     try {
       const { hash } = await MARKET.play(packageInfo.id)
       setTxHash(hash)
-    } catch (err) {
-
+    } catch (err: any) {
       setShowTxLoading(false)
-      // temp
-      setShowTrialSuccess(true)
+      toast.error(err?.error?.message || err.toString(), {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+      });
     }
-
   }
 
   const nftDetail = () => {
     return <Box className={styles.nftDetail}>
-    <Typography variant='h3'>Details</Typography>
-    <Stack>
-      <Box className={styles.detailItem}>
-        <Box className={styles.detailKey}>Blockchain</Box>
-        <Box className={styles.detailValue}>Polygon</Box>
-      </Box>
-      <Box className={styles.detailItem}>
-        <Box className={styles.detailKey}>Contract Address</Box>
-        <Box className={styles.detailValue}>{formatAddress(packageInfo?.nfts[0].nftAddress || "", 3)}</Box>
-      </Box>
-      <Box className={styles.detailItem}>
-        <Box className={styles.detailKey}>Token ID</Box>
-        <Box className={styles.detailValue}>{packageInfo?.nfts[0].tokenId}</Box>
-      </Box>
-      <Box className={styles.detailItem}>
-        <Box className={styles.detailKey}>Token Standard</Box>
-        <Box className={styles.detailValue}>ERC-721</Box>
-      </Box>
-    </Stack>
-  </Box>
+      <Typography variant='h3'>Details</Typography>
+      <Stack>
+        <Box className={styles.detailItem}>
+          <Box className={styles.detailKey}>Blockchain</Box>
+          <Box className={styles.detailValue}>Polygon</Box>
+        </Box>
+        <Box className={styles.detailItem}>
+          <Box className={styles.detailKey}>Contract Address</Box>
+          <Box className={styles.detailValue}>{formatAddress(packageInfo?.nfts[0].nftAddress || "", 3)}</Box>
+        </Box>
+        <Box className={styles.detailItem}>
+          <Box className={styles.detailKey}>Token ID</Box>
+          <Box className={styles.detailValue}>{packageInfo?.nfts[0].tokenId}</Box>
+        </Box>
+        <Box className={styles.detailItem}>
+          <Box className={styles.detailKey}>Token Standard</Box>
+          <Box className={styles.detailValue}>ERC-721</Box>
+        </Box>
+      </Stack>
+    </Box>
   }
 
   return <Drawer
@@ -166,7 +174,7 @@ const GameNFTDetail: React.FC<GameNFTDetailProps> = (props) => {
                 }
               </Box>
             </Box>
-            { !isMobileSize && nftDetail()}
+            {!isMobileSize && nftDetail()}
           </Box>
           <Box className={styles.infoRight}>
             <Box className={styles.nftInfo}>

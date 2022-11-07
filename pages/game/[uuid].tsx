@@ -165,7 +165,8 @@ const Game: NextPageWithLayout = () => {
                 <TrialNFTCardSkeleton />
                 <TrialNFTCardSkeleton />
                 <TrialNFTCardSkeleton />
-              </> : packageList.map((item, index) => <TrialNFTCard key={index} chainId={chainId} packageInfo={item} />)
+              </> : packageList.map((item, index) =>
+                <TrialNFTCard key={index} chainId={chainId} packageInfo={item} reload={() => queryGamePackages()} />)
             }
           </Box>
         </TxLoading.Provider>

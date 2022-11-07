@@ -47,3 +47,36 @@ export const GET_GAME_PACKAGES = gql`
     }
   }
 `
+
+
+export const GET_USER_ACTIVITYS = gql`
+  query($player: String!) {
+    activities(where: {
+      player: $player
+    }) {
+      id
+      player
+      timestamp
+      type
+      packages {
+        expires
+        id
+        playDays
+        status
+        player
+        supplier
+        game {
+          id
+          listingPackageCount
+          maxPlayTimes
+          nftAddresses
+        }
+        nfts {
+          id
+          nftAddress
+          tokenId
+        }
+      }
+    }
+  }
+`

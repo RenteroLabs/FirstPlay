@@ -111,7 +111,7 @@
 
   .profileContent {
     max-width: 100rem;
-    min-height: 40rem;
+    min-height: 50rem;
     margin: auto;
     overflow: hidden;
 
@@ -147,22 +147,6 @@
     }
 
     .itemBox {
-      .trialGameBtn {
-        display: inline-block;
-        text-align: center;
-        background: rgba(#8e50e4, 0.1);
-        border-radius: 2.5rem;
-        width: 26.67rem;
-        font-size: 1.75rem;
-        font-family: Inter-Medium, Inter;
-        font-weight: 500;
-        color: #8e50e4;
-        line-height: 1.33rem;
-        padding: 1.67rem;
-        user-select: none;
-        cursor: pointer;
-      }
-
       margin-top: 2.5rem;
       margin-bottom: 6.67rem;
       display: flex;
@@ -173,6 +157,36 @@
         width: calc((100% - 6.18rem) / 4);
         margin: auto 0.77rem;
         margin-bottom: 2.08rem;
+      }
+
+      .passNFTTips {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        .trialGameBtn {
+          text-align: center;
+          background: rgba(#8e50e4, 0.1);
+          border-radius: 2.5rem;
+          width: 26.67rem;
+          font-size: 1.75rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #8e50e4;
+          line-height: 1.33rem;
+          padding: 1.67rem;
+          user-select: none;
+          cursor: pointer;
+          margin: 10rem auto 2.5rem;
+        }
+        p {
+          text-align: center;
+          font-size: 1.5rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: rgba(#222, 0.3);
+          line-height: 2.5rem;
+        }
       }
     }
 
@@ -303,6 +317,7 @@
 
 @media screen and (max-width: 680px) {
   .containerBox {
+    min-height: 50vh;
     .profileHeaderBox {
       height: auto;
       .profileHeader {
@@ -335,7 +350,6 @@
 
             .activeBtnList {
               flex-wrap: wrap;
-
             }
           }
           .integralItem {
@@ -355,6 +369,28 @@
         .passNFTBox {
           order: 0;
           margin-top: 2.5rem;
+        }
+      }
+    }
+    .profileContent {
+      min-height: 30rem;
+      .itemBox {
+        .passNFTTips {
+          .trialGameBtn {
+            font-size: 1.5rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #8e50e4;
+            line-height: 1.5rem;
+            padding: 1.25rem 4rem;
+            width: auto;
+            margin: 4rem auto 2rem;
+          }
+          p {
+            font-size: 1.33rem;
+            font-weight: 500;
+            line-height: 2rem;
+          }
         }
       }
     }

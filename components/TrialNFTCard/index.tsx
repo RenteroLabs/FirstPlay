@@ -13,11 +13,12 @@ const cx = classNames.bind(styles)
 interface TrialNFTCardProps {
   packageInfo: PackageRes
   chainId: number
+  reload: () => any
   type?: '@normal' | '@modal'
 }
 
 const TrialNFTCard: React.FC<TrialNFTCardProps> = (props) => {
-  const { type = '@normal', packageInfo, chainId } = props
+  const { type = '@normal', packageInfo, chainId , reload} = props
 
   const [showDrawer, setShowDrawer] = useState<boolean>(false)
   const [metadata, setMetadata] = useState<Record<string, any>[]>([])
@@ -83,6 +84,7 @@ const TrialNFTCard: React.FC<TrialNFTCardProps> = (props) => {
       metadata={metadata}
       chainId={chainId}
       packageInfo={packageInfo}
+      reload={reload}
     />
   </Box>
 }

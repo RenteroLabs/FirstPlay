@@ -5,7 +5,7 @@ import Layout from "@/components/Layout";
 import Image from 'next/image';
 import { GetStaticProps, GetStaticPropsContext } from "next";
 import styles from '../styles/profile.module.scss';
-import { useAccount } from "wagmi";
+import { useAccount, useContract, useEnsName, useSigner } from "wagmi";
 import { formatAddress } from "util/format";
 import CopyButton from "@/components/CopyButton";
 import { useIsMounted } from "hooks/useIsMounted";
@@ -20,6 +20,10 @@ import { useRouter } from "next/router";
 import { useLazyQuery } from "@apollo/client";
 import { GET_USER_TRIALING } from "services/documentNode";
 import { goerliGraph } from "services/graphql";
+import { useRequest } from "ahooks";
+import { getPassNFTByAddress } from "services/web3";
+import { MULTI_CHAIN_SWITCH_CONTRACT, PASS_NFT_CONTRACT } from "constants/contract";
+import { MULTI_CHAIN_SWITCH } from "constants/abi";
 
 enum TabItem {
   Items,
@@ -28,10 +32,15 @@ enum TabItem {
 
 const Profile: NextPageWithLayout = () => {
   const { address } = useAccount()
+  const { data: ensName } = useEnsName({ address: address, chainId: 1 })
+  const { data: signer } = useSigner()
+
   const isMounted = useIsMounted()
   const router = useRouter()
 
   const [activeTab, setActiveTab] = useState<number>(TabItem.Items)
+
+  const [passTokenId, setPassTokenId] = useState<string | number>(0)
 
   const [showConnect, setShowConnect] = useState<boolean>(false)
   const [showModal, setShowModal] = useState<boolean>(false)
@@ -43,6 +52,18 @@ const Profile: NextPageWithLayout = () => {
   const [trialList, setTrialList] = useState<Record<string, any>[]>([])
 
   const timestamp = useMemo(() => (Number(new Date) / 1000).toFixed(), [])
+
+  const { run: queryPassNFT } = useRequest(getPassNFTByAddress, {
+    manual: true,
+    onSuccess: ({ ownedNfts, totalCount }) => {
+      if (totalCount > 0) {
+        setPassTokenId(parseInt(ownedNfts[0]?.id?.tokenId, 16))
+      } else {
+        setPassTokenId(-1)
+      }
+    }
+  })
+
 
   const [getTrialingList, { refetch }] = useLazyQuery(GET_USER_TRIALING, {
     variables: {
@@ -63,11 +84,21 @@ const Profile: NextPageWithLayout = () => {
       setShowConnect(true)
     } else {
       getTrialingList()
+
+      // 判断用户是否拥有试玩 NFT
+      queryPassNFT({
+        contractAddresses: [PASS_NFT_CONTRACT],
+        withMetadata: false,
+        owner: address,
+        chainId: process.env.NEXT_PUBLIC_ENV === 'PRO' ? 137 : 5
+      })
     }
   }, [address])
 
   useEffect(() => {
     // 获取用户激活链数据
+
+    
   }, [])
 
 
@@ -98,11 +129,11 @@ const Profile: NextPageWithLayout = () => {
       <Box className={styles.profileHeader}>
         <Box className={styles.headerInfo}>
           <Box className={styles.addressItem}>
-            {address && isMounted && formatAddress(address, 8)}
+            {address && isMounted && (ensName || formatAddress(address, 8))}
             {address && isMounted && <CopyButton targetValue={address || ""} />}
             {!address && isMounted && <Typography>Not connect wallet yet !</Typography>}
           </Box>
-          <Box className={styles.chainsActiveItem}>
+          {passTokenId !== -1 && <Box className={styles.chainsActiveItem}>
             <Typography className={styles.chainsActiveDesc}>Trial qualification:</Typography>
             <Stack direction="row" className={styles.activeBtnList} >
               <ChainActiveButton
@@ -111,20 +142,22 @@ const Profile: NextPageWithLayout = () => {
                 setShowModal={setShowModal}
                 setActiveChainInfo={setActiveChainInfo}
               />
-              <ChainActiveButton chainId={56} isActived={false} setShowModal={setShowModal} setActiveChainInfo={setActiveChainInfo} />
+              <ChainActiveButton chainId={5} isActived={false} setShowModal={setShowModal} setActiveChainInfo={setActiveChainInfo} />
               <ChainActiveButton chainId={1} isActived={false} setShowModal={setShowModal} setActiveChainInfo={setActiveChainInfo} />
             </Stack>
-          </Box>
-          <Box className={styles.integralItem}>
-            <Typography className={styles.integralDesc}>Integration:</Typography>
-            <Typography><span>90</span> FP</Typography>
-          </Box>
+          </Box>}
+          {/* <Box className={styles.integralItem}> */}
+          {/* <Typography className={styles.integralDesc}>Pointers:</Typography> */}
+          {/* <Typography><span>90</span> FP</Typography> */}
+          {/* </Box>  */}
         </Box>
-        <Box className={styles.passNFTBox}>
-          <Image loader={imageKitLoader} layout="fill" src="https://d2yhjjdyh5ugcy.cloudfront.net/PASS_NFT.jpg" objectFit="cover" />
-          <Box className={styles.imageMask}> </Box>
-          <Box className={styles.imageTokenId}>ID: XXX</Box>
-        </Box>
+        {![0, -1].includes(passTokenId as number) &&
+          <Box className={styles.passNFTBox}>
+            <Image loader={imageKitLoader} layout="fill" src="https://d2yhjjdyh5ugcy.cloudfront.net/PASS_NFT.jpg" objectFit="cover" />
+            <Box className={styles.imageMask}> </Box>
+            <Box className={styles.imageTokenId}>ID: {passTokenId.toString().padStart(5, '0')}</Box>
+          </Box>
+        }
       </Box>
 
     </Box>
@@ -139,11 +172,19 @@ const Profile: NextPageWithLayout = () => {
       {
         activeTab === TabItem.Items &&
         <Box className={styles.itemBox}>
-          {/* <Box className={styles.trialGameBtn}>Trial Games</Box> */}
-
           {
             trialList.map((item, index) =>
               <ProfileNFTCard key={index} nftInfo={item} />)
+          }
+          {
+            passTokenId === -1 && <Box className={styles.passNFTTips}>
+              <Box className={styles.trialGameBtn}>
+                Claim Pass-NFT
+              </Box>
+              <Typography>Get the NFT first, then trial. </Typography>
+              <Typography>Continue to receive airdrop rewards. </Typography>
+              <Typography>You will have more benefits after being upgraded in the future.</Typography>
+            </Box>
           }
         </Box>
       }
@@ -160,6 +201,7 @@ const Profile: NextPageWithLayout = () => {
       setShowModal={setShowModal}
       setTxLoading={setShowTxLoading}
       setTxHash={setTxHash}
+      txHash={txHash}
       chainId={activeChainInfo.chainId || 0}
       chainName={activeChainInfo.chainName || ""}
     />

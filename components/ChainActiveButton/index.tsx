@@ -22,7 +22,7 @@ const CHINA_ID_MAP: Record<number, { name: string, icon: string }> = {
     icon: ETHEREUM_ICON,
   },
   5: {
-    name: "ETH",
+    name: "Goerli",
     icon: ETHEREUM_ICON,
   },
   56: {
@@ -30,7 +30,7 @@ const CHINA_ID_MAP: Record<number, { name: string, icon: string }> = {
     icon: BNB_ICON,
   },
   97: {
-    name: "BSC",
+    name: "BSC-Test",
     icon: BNB_ICON,
   },
   137: {
@@ -38,7 +38,7 @@ const CHINA_ID_MAP: Record<number, { name: string, icon: string }> = {
     icon: "/polygon-matic-logo.svg",
   },
   80001: {
-    name: 'Polygon',
+    name: 'Mumbai',
     icon: "/polygon-matic-logo.svg",
   }
 }

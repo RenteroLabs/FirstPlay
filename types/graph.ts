@@ -25,3 +25,14 @@ export interface GameRes {
 export interface GameDetailInfo extends GameRes {
   packages: PackageRes[]
 }
+
+
+export interface UserActivityItem {
+  id: string,
+  player: string,
+  timestamp: string,
+  type: string,
+  packages: PackageRes & {
+    game: GameRes
+  }
+}
