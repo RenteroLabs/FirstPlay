@@ -29,6 +29,7 @@ import { isEmpty } from "lodash";
 import { StringParam, useQueryParam } from "use-query-params";
 import { ProfilePackageRes } from "types/graph";
 import classNames from "classnames/bind";
+import Link from "next/link";
 
 const cx = classNames.bind(styles)
 
@@ -199,9 +200,9 @@ const Profile: NextPageWithLayout = () => {
         {
           // 无任何正在试玩游戏，引导去试玩
           !loading && isEmpty(trialList) && passTokenId > 0 && <Box className={styles.trialGameBtnBox}>
-            <a href="/" target="__blank">
+            <Link href="/" target="__blank">
               <Box className={styles.trialGameBtn}>Trial Games</Box>
-            </a>
+            </Link>
             <Typography>No trialing gmaes yet</Typography>
           </Box>
         }
