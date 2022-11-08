@@ -24,10 +24,17 @@ import { useRequest } from "ahooks";
 import { getPassNFTByAddress } from "services/web3";
 import { MULTI_CHAIN_SWITCH_CONTRACT, PASS_NFT_CONTRACT } from "constants/contract";
 import { MULTI_CHAIN_SWITCH } from "constants/abi";
+import TrialNFTCardSkeleton from "@/components/TrialNFTCard/TrialNFTCardSkeleton";
+import { isEmpty } from "lodash";
+import { StringParam, useQueryParam } from "use-query-params";
+import { ProfilePackageRes } from "types/graph";
+import classNames from "classnames/bind";
+
+const cx = classNames.bind(styles)
 
 enum TabItem {
-  Items,
-  Activity
+  Trialing,
+  Activity,
 }
 
 const Profile: NextPageWithLayout = () => {
@@ -38,7 +45,15 @@ const Profile: NextPageWithLayout = () => {
   const isMounted = useIsMounted()
   const router = useRouter()
 
-  const [activeTab, setActiveTab] = useState<number>(TabItem.Items)
+  const [paramTab, setParamTab] = useQueryParam('tab')
+
+  const [activeTab, setActiveTab] = useState<number>(TabItem.Trialing)
+
+  useEffect(() => {
+    if (router.query?.tab == 'Activity') {
+      setActiveTab(TabItem.Activity)
+    }
+  }, [router])
 
   const [passTokenId, setPassTokenId] = useState<string | number>(0)
 
@@ -49,7 +64,7 @@ const Profile: NextPageWithLayout = () => {
 
   const [activeChainInfo, setActiveChainInfo] = useState<{ chainId?: number, chainName?: string }>({})
 
-  const [trialList, setTrialList] = useState<Record<string, any>[]>([])
+  const [trialList, setTrialList] = useState<ProfilePackageRes[]>([])
 
   const timestamp = useMemo(() => (Number(new Date) / 1000).toFixed(), [])
 
@@ -64,15 +79,13 @@ const Profile: NextPageWithLayout = () => {
     }
   })
 
-
-  const [getTrialingList, { refetch }] = useLazyQuery(GET_USER_TRIALING, {
+  const [getTrialingList, { loading }] = useLazyQuery(GET_USER_TRIALING, {
     variables: {
       expires: timestamp,
       player: address
     },
     client: goerliGraph,
     onCompleted(data) {
-      console.log(data)
       setTrialList(data?.packages || [])
     }
   })
@@ -96,14 +109,10 @@ const Profile: NextPageWithLayout = () => {
   }, [address])
 
   useEffect(() => {
-    // 获取用户激活链数据
+    // TODO: 获取用户激活链数据
+    // 读取 market 合约的 playerWhitelist 方法
 
-    
   }, [])
-
-
-
-
 
 
 
@@ -143,7 +152,7 @@ const Profile: NextPageWithLayout = () => {
                 setActiveChainInfo={setActiveChainInfo}
               />
               <ChainActiveButton chainId={5} isActived={false} setShowModal={setShowModal} setActiveChainInfo={setActiveChainInfo} />
-              <ChainActiveButton chainId={1} isActived={false} setShowModal={setShowModal} setActiveChainInfo={setActiveChainInfo} />
+              <ChainActiveButton chainId={97} isActived={false} setShowModal={setShowModal} setActiveChainInfo={setActiveChainInfo} />
             </Stack>
           </Box>}
           {/* <Box className={styles.integralItem}> */}
@@ -159,41 +168,61 @@ const Profile: NextPageWithLayout = () => {
           </Box>
         }
       </Box>
-
     </Box>
     <Box className={styles.profileContent}>
       <Tabs
         className={styles.tabsHeader}
         value={activeTab}
-        onChange={(_: any, newItem: number) => setActiveTab(newItem)} >
-        <Tab label="Items" value={TabItem.Items} disableRipple />
+        onChange={(_: any, newItem: number) => {
+          setActiveTab(newItem)
+          setParamTab(newItem === 0 ? 'Trialing' : "Activity")
+        }} >
+        <Tab label="Trialing" value={TabItem.Trialing} disableRipple />
         <Tab label="Activity" value={TabItem.Activity} disableRipple />
       </Tabs>
-      {
-        activeTab === TabItem.Items &&
-        <Box className={styles.itemBox}>
-          {
-            trialList.map((item, index) =>
-              <ProfileNFTCard key={index} nftInfo={item} />)
-          }
-          {
-            passTokenId === -1 && <Box className={styles.passNFTTips}>
-              <Box className={styles.trialGameBtn}>
-                Claim Pass-NFT
-              </Box>
-              <Typography>Get the NFT first, then trial. </Typography>
-              <Typography>Continue to receive airdrop rewards. </Typography>
-              <Typography>You will have more benefits after being upgraded in the future.</Typography>
+      <Box className={cx({
+        itemBox: true,
+        hiddenTab: activeTab !== TabItem.Trialing
+      })}>
+        {
+          trialList.map((item, index) =>
+            <ProfileNFTCard key={index} nftInfo={item} />)
+        }
+        {
+          loading && <>
+            <TrialNFTCardSkeleton />
+            <TrialNFTCardSkeleton />
+            <TrialNFTCardSkeleton />
+            <TrialNFTCardSkeleton />
+          </>
+        }
+        {
+          // 无任何正在试玩游戏，引导去试玩
+          !loading && isEmpty(trialList) && passTokenId > 0 && <Box className={styles.trialGameBtnBox}>
+            <a href="/" target="__blank">
+              <Box className={styles.trialGameBtn}>Trial Games</Box>
+            </a>
+            <Typography>No trialing gmaes yet</Typography>
+          </Box>
+        }
+        {
+          passTokenId === -1 && <Box className={styles.passNFTTips}>
+            <Box className={styles.trialGameBtn}>
+              Claim Pass-NFT
             </Box>
-          }
-        </Box>
-      }
-      {
-        activeTab === TabItem.Activity &&
-        <Box className={styles.activityBox}>
-          <ProfileActivityTable />
-        </Box>
-      }
+            <Typography>Get the NFT first, then trial. </Typography>
+            <Typography>Continue to receive airdrop rewards. </Typography>
+            <Typography>You will have more benefits after being upgraded in the future.</Typography>
+          </Box>
+        }
+      </Box>
+
+      <Box className={cx({
+        activityBox: true,
+        hiddenTab: activeTab !== TabItem.Activity
+      })}>
+        <ProfileActivityTable />
+      </Box>
     </Box>
 
     <ActicvChainConfirm

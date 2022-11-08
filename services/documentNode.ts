@@ -19,6 +19,12 @@ export const GET_USER_TRIALING = gql`
         nftAddress
         tokenId
       }
+      game {
+        id
+        listingPackageCount
+        maxPlayTimes
+        nftAddresses
+      }
     }
   }
 `

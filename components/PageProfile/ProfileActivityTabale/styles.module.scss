@@ -1,5 +1,5 @@
 .tableBox {
-  box-shadow: none;
+  box-shadow: none !important;
   padding: 3rem 2rem;
   :global {
     .MuiTable-root {
@@ -88,6 +88,11 @@
       color: rgba(#222, 0.7);
       line-height: 1.33rem;
     }
+  }
+  .tableLoadingBox {
+    display: flex;
+    justify-content: center;
+    margin: 6rem auto; 
   }
 }
 

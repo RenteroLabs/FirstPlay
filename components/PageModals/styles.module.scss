@@ -318,13 +318,20 @@
 @media screen and (max-width: 375px) {
   .quickTrialBox {
     width: 95%;
+    .modalHeader {
+      p {
+        font-size: 1.75rem;
+        font-family: Inter-Bold, Inter;
+        font-weight: bold;
+        color: #222222;
+        line-height: 1.75rem;
+      }
+    }
   }
 }
 
-
 .activeChainConfirm {
   width: 32.5rem;
-  // height: 41rem;
   background: #ffffff;
   border-radius: 1.33rem;
   padding: 1.5rem 1rem 1.5rem;
@@ -368,6 +375,32 @@
     }
   }
 }
+
+@media screen and (max-width: 460px) {
+  .activeChainConfirm {
+    width: 100%;
+
+    .modalHeader {
+      p {
+        font-size: 1.75rem;
+        font-family: Inter-Bold, Inter;
+        font-weight: bold;
+        color: #222222;
+        line-height: 1.75rem;
+      }
+    }
+
+    .modalContent {
+      padding: 1rem 1.2rem;
+    }
+  }
+}
+
+
+
+
+
+
 
 .txDialogBox {
   width: 32.5rem;

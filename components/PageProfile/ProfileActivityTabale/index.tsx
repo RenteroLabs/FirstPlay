@@ -1,9 +1,9 @@
 
 import { useLazyQuery } from '@apollo/client'
-import { Box, Pagination, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material'
+import { Box, CircularProgress, Pagination, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Typography } from '@mui/material'
 import { useRequest } from 'ahooks'
 import { isEmpty } from 'lodash'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { GET_USER_ACTIVITYS } from 'services/documentNode'
 import { goerliGraph } from 'services/graphql'
 import { getGameInfo } from 'services/home'
@@ -24,7 +24,7 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
 
   const [gameInfo, setGameInfo] = useState<Record<string, Record<string, any>>>({})
 
-  const { run: queryGameInfo } = useRequest(getGameInfo, {
+  const { run: queryGameInfo, loading: gameInfoLoading } = useRequest(getGameInfo, {
     manual: true,
     onSuccess: ({ data }, [params]) => {
       console.log(data)
@@ -32,7 +32,7 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
       setGameInfo({ ...gameInfo, [params.game_id]: data })
     }
   })
-  const [queryUserActivities, { loading }] = useLazyQuery(GET_USER_ACTIVITYS, {
+  const [queryUserActivities, { loading: activityLoading }] = useLazyQuery(GET_USER_ACTIVITYS, {
     variables: { player: address },
     // TODO: 需查询多个链上的 graph 数据
     client: goerliGraph,
@@ -48,6 +48,10 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
       })
     }
   })
+
+  const loading = useMemo(() => {
+    return gameInfoLoading || activityLoading
+  }, [gameInfoLoading, activityLoading])
 
   useEffect(() => {
     if (address) {
@@ -76,7 +80,7 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
         </TableHead>
         <TableBody>
           {
-            activitiesList?.map((item, index) => {
+            !loading && activitiesList?.map((item, index) => {
               const gameId = item?.packages?.game?.id
               return (
                 <TableRow key={item.id}>
@@ -112,12 +116,20 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
       </Table>
     </Box>
 
-    {!isEmpty(activitiesList) ? <Box className={styles.paginationBox}>
-      {/* TODO: 目前直接展示全部数据，分页只有一页 */}
-      <Pagination count={1} variant="outlined" shape="rounded" className={styles.pagination} />
-    </Box> : <Box className={styles.empytTipBox}>
-      <Typography>No Activity Record Yet!</Typography>
-    </Box>}
+    {
+      loading && <Box className={styles.tableLoadingBox}>
+        <CircularProgress />
+      </Box>
+    }
+
+    {!loading && (!isEmpty(activitiesList) ?
+      <Box className={styles.paginationBox}>
+        {/* TODO: 目前直接展示全部数据，分页只有一页 */}
+        <Pagination count={1} variant="outlined" shape="rounded" className={styles.pagination} />
+      </Box> :
+      <Box className={styles.empytTipBox}>
+        <Typography>No Activity Record Yet!</Typography>
+      </Box>)}
 
   </TableContainer>
 }

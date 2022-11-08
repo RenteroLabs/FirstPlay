@@ -36,3 +36,8 @@ export interface UserActivityItem {
     game: GameRes
   }
 }
+
+
+export interface ProfilePackageRes extends PackageRes{
+  game: GameRes
+}

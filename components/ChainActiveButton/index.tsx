@@ -64,7 +64,7 @@ const ChainActiveButton: React.FC<ChainActiveButtonProps> = (props) => {
     <Box className={styles.chainIcon}>
       <Image src={CHINA_ID_MAP[chainId]?.icon} layout="fill" objectFit="cover" />
     </Box>
-    <Typography className={styles.chainName}>{CHINA_ID_MAP[chainId]?.name}</Typography>
+    <p className={styles.chainName}>{CHINA_ID_MAP[chainId]?.name}</p>
     {
       !isActived && <>
         <Divider orientation="vertical" sx={{ m: "0 0.6rem 0 0.8rem" }} />

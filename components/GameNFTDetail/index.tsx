@@ -81,13 +81,15 @@ const GameNFTDetail: React.FC<GameNFTDetailProps> = (props) => {
 
       // 展示成功获取试玩 NFT 弹窗
       setShowTrialSuccess(true)
+
+      // 关闭详情抽屉
+      setShowDrawer(false)
     },
     onSettled: () => {
       setShowTxLoading(false)
       setTxHash("")
     }
   })
-
 
 
 
@@ -108,7 +110,12 @@ const GameNFTDetail: React.FC<GameNFTDetailProps> = (props) => {
     if (!address) {
       setShowConnect(true)
     }
-    // 2. 判断是否在正确链上
+
+    // 2. TODO:判断用户是否持有 PassNFT
+
+    // 3. TODO: 判断用户试玩当前游戏对应链的试玩权限是否激活
+
+    // 4. 判断是否在正确链上
     if ((chainId !== chain?.id || chainId !== pendingChainId) && switchNetwork) {
       switchNetwork(chainId)
       return
@@ -120,7 +127,7 @@ const GameNFTDetail: React.FC<GameNFTDetailProps> = (props) => {
       setTxHash(hash)
     } catch (err: any) {
       setShowTxLoading(false)
-      toast.error(err?.error?.message || err.toString(), {
+      toast.error(err?.error?.message || err?.message || err.toString(), {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
