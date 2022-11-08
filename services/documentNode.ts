@@ -37,7 +37,7 @@ export const GET_GAME_PACKAGES = gql`
       id
       maxPlayTimes
       nftAddresses
-      packages {
+      packages(orderBy: expires, orderDirection: asc) {
         expires
         id
         playDays

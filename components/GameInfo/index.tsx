@@ -22,7 +22,7 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
         <Box className={styles.mobileBox}>
           <Box className={styles.mobileHeader}>
             <Box className={styles.imageCover}>
-              <Image src={gameInfo.image} layout='fill' />
+              {gameInfo.image && <Image src={gameInfo.image} layout='fill' />}
             </Box>
             <Stack direction="row" className={styles.socialList}>
               {
@@ -71,7 +71,7 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
         :
         <>
           <Box className={styles.gameCover}>
-            <Image src={gameInfo.image} layout="fill" />
+            {gameInfo.image && <Image src={gameInfo.image} layout='fill' />}
           </Box>
           <Box className={styles.infoBox}>
             <Box className={styles.infoHeader}>

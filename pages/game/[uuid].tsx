@@ -101,7 +101,7 @@ const Game: NextPageWithLayout = () => {
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Box className={styles.topCover}>
-      <Image src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3xhds6ikrj20zo0ibtcv.jpg" layout='fill' objectFit='cover' />
+      {gameInfo?.cover && <Image src={gameInfo?.cover} layout='fill' objectFit='cover' />}
     </Box>
     <Box className={styles.gameInfoBox}>
       <GameInfo gameInfo={gameInfo} />
@@ -113,8 +113,8 @@ const Game: NextPageWithLayout = () => {
             <Typography variant='h4'>Reward:</Typography>
             <img src={REWARD_ICON} />
           </Box>
-          <Typography className={styles.rewardDesc}>You can have more rights after upgrading in the future;</Typography>
-          <Typography className={styles.rewardVal}>200U / 3D <img src={MONEY_ICON} /></Typography>
+          <Typography className={styles.rewardDesc}>{gameInfo?.reward_requirement}</Typography>
+          <Typography className={styles.rewardVal}>{gameInfo?.reward} <img src={MONEY_ICON} /></Typography>
         </Box>
         :
         <Box className={styles.rewardBox}>
@@ -124,7 +124,7 @@ const Game: NextPageWithLayout = () => {
               <Box className={styles.rewardIcon}>
                 <Image src={REWARD_ICON} layout="fill" />
               </Box>
-              <Typography>Continue to rent after the trial to get rewards during the trial.</Typography>
+              <Typography>{gameInfo?.reward_requirement}</Typography>
             </Box>
             <Box className={styles.rewardValue}>
               <Typography>{gameInfo?.reward}</Typography>
