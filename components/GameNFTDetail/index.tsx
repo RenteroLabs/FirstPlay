@@ -8,7 +8,7 @@ import { formatAddress } from 'util/format';
 import { useCountDown, useRequest } from 'ahooks';
 import { refreshNFTMetadata } from 'services/metadata';
 import { useAccount, useContract, useNetwork, useProvider, useSigner, useSwitchNetwork, useWaitForTransaction } from 'wagmi';
-import { FIRSTPLAY_MARKET_CONTRACT, MARKET_CONTRACT } from 'constants/contract';
+import { MARKET_CONTRACT } from 'constants/contract';
 import { FIRSTPLYA_MARKET_ABI } from 'constants/abi';
 import { WalletConnectParams, WalletConnet } from 'pages/_app';
 import { TxLoading, TxLoadingParams } from 'pages/game/[uuid]';

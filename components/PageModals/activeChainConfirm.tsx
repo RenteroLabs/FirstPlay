@@ -1,11 +1,12 @@
 import { Box, Dialog, IconButton, Typography } from '@mui/material';
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import styles from './styles.module.scss'
 import { useContract, useNetwork, useSigner, useSwitchNetwork, useWaitForTransaction } from 'wagmi';
 import { MULTI_CHAIN_SWITCH_CHAINID, MULTI_CHAIN_SWITCH_CONTRACT } from 'constants/contract';
 import { MULTI_CHAIN_SWITCH } from 'constants/abi';
+import { toast } from 'react-toastify';
 
 interface ConfirmModal {
   showModal: boolean;
@@ -17,7 +18,11 @@ interface ConfirmModal {
   chainName: string;
 }
 
-
+/**
+ * 激活链试玩权限弹窗
+ * @param props 
+ * @returns 
+ */
 const ActicvChainConfirm: React.FC<ConfirmModal> = (props) => {
   const { showModal, setShowModal, chainId, chainName, setTxLoading, setTxHash, txHash } = props
 
@@ -36,11 +41,17 @@ const ActicvChainConfirm: React.FC<ConfirmModal> = (props) => {
   useWaitForTransaction({
     hash: txHash,
     onSuccess: () => {
-      // 刷新页面数据
-      // reloadInfo()
-
       // 成功提示 Toast
-
+      toast.success(`Congratulation! You've activated trial qualification on ${chainName}.\nStatus will be synced within 2 to 3 minutes`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+      })
     },
     onSettled: () => {
       setTxLoading(false)
@@ -50,7 +61,8 @@ const ActicvChainConfirm: React.FC<ConfirmModal> = (props) => {
 
   const handleActivateChain = async () => {
     // 判断当时是否在目标链上，否则需要切换链
-    if ((MULTI_CHAIN_SWITCH_CHAINID !== chain?.id || MULTI_CHAIN_SWITCH_CHAINID !== pendingChainId) && switchNetwork) {
+    if ((MULTI_CHAIN_SWITCH_CHAINID !== chain?.id || (pendingChainId && MULTI_CHAIN_SWITCH_CHAINID !== pendingChainId))
+      && switchNetwork) {
       switchNetwork(MULTI_CHAIN_SWITCH_CHAINID)
       return
     }
@@ -63,9 +75,19 @@ const ActicvChainConfirm: React.FC<ConfirmModal> = (props) => {
 
       const { hash } = await MultiChainSwitch.unlock(chainId)
       setTxHash(hash)
-    } catch (err) {
+
+    } catch (err: any) {
       setTxLoading(false)
-      console.log(err)
+      toast.error(err?.error?.message || err?.message || err.toString(), {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+      });
     }
   }
 
@@ -86,7 +108,6 @@ const ActicvChainConfirm: React.FC<ConfirmModal> = (props) => {
         <Box className={styles.activeBtn} onClick={handleActivateChain}>Confirm and Activate</Box>
       </Box>
     </Box>
-
   </Dialog>
 }
 

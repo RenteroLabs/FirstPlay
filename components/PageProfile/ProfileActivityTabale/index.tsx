@@ -27,8 +27,6 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
   const { run: queryGameInfo, loading: gameInfoLoading } = useRequest(getGameInfo, {
     manual: true,
     onSuccess: ({ data }, [params]) => {
-      console.log(data)
-      console.log(params.game_id)
       setGameInfo({ ...gameInfo, [params.game_id]: data })
     }
   })
@@ -37,7 +35,6 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
     // TODO: 需查询多个链上的 graph 数据
     client: goerliGraph,
     onCompleted: ({ activities }) => {
-      console.log(activities)
       setActivitiesList(activities)
 
       activities.forEach((activity: UserActivityItem) => {
@@ -73,7 +70,7 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
             <TableCell className={styles.tableHeaderCell}>Action</TableCell>
             <TableCell className={styles.tableHeaderCell}>Game</TableCell>
             <TableCell className={styles.tableHeaderCell}>Item</TableCell>
-            <TableCell className={styles.tableHeaderCell}>Time</TableCell>
+            <TableCell className={styles.tableHeaderCell}>Time</TableCell>            <TableCell className={styles.tableHeaderCell}>Trial</TableCell>
             <TableCell className={styles.tableHeaderCell}>Reward</TableCell>
             <TableCell className={styles.tableHeaderCell} align="center">Operate</TableCell>
           </TableRow>
@@ -95,6 +92,9 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
                   </TableCell>
                   <TableCell className={styles.tableBodyCell}>
                     {dateFormat("YYYY-mm-dd HH:MM", new Date(parseInt(item.timestamp) * 1000))}
+                  </TableCell>
+                  <TableCell className={styles.tableBodyCell}>
+                    {item?.packages?.playDays} Day
                   </TableCell>
                   <TableCell className={styles.tableBodyCell}>
                     {gameInfo[gameId]?.reward}

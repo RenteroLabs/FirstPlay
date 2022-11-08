@@ -5,7 +5,7 @@ import Layout from "@/components/Layout";
 import Image from 'next/image';
 import { GetStaticProps, GetStaticPropsContext } from "next";
 import styles from '../styles/profile.module.scss';
-import { useAccount, useContract, useEnsName, useSigner } from "wagmi";
+import { useAccount, useContract, useContractReads, useEnsName, useSigner } from "wagmi";
 import { formatAddress } from "util/format";
 import CopyButton from "@/components/CopyButton";
 import { useIsMounted } from "hooks/useIsMounted";
@@ -22,8 +22,8 @@ import { GET_USER_TRIALING } from "services/documentNode";
 import { goerliGraph } from "services/graphql";
 import { useRequest } from "ahooks";
 import { getPassNFTByAddress } from "services/web3";
-import { MULTI_CHAIN_SWITCH_CONTRACT, PASS_NFT_CONTRACT } from "constants/contract";
-import { MULTI_CHAIN_SWITCH } from "constants/abi";
+import { MARKET_CONTRACT, MULTI_CHAIN_SWITCH_CONTRACT, PASS_NFT_CONTRACT } from "constants/contract";
+import { FIRSTPLYA_MARKET_ABI, MULTI_CHAIN_SWITCH } from "constants/abi";
 import TrialNFTCardSkeleton from "@/components/TrialNFTCard/TrialNFTCardSkeleton";
 import { isEmpty } from "lodash";
 import { StringParam, useQueryParam } from "use-query-params";
@@ -41,7 +41,6 @@ enum TabItem {
 const Profile: NextPageWithLayout = () => {
   const { address } = useAccount()
   const { data: ensName } = useEnsName({ address: address, chainId: 1 })
-  const { data: signer } = useSigner()
 
   const isMounted = useIsMounted()
   const router = useRouter()
@@ -92,8 +91,6 @@ const Profile: NextPageWithLayout = () => {
   })
 
   useEffect(() => {
-    // 正常情况用户连接钱包后进入 Profile 页
-    // 需处理用户进入后断开钱包情况
     if (!address) {
       setShowConnect(true)
     } else {
@@ -109,13 +106,25 @@ const Profile: NextPageWithLayout = () => {
     }
   }, [address])
 
-  useEffect(() => {
-    // TODO: 获取用户激活链数据
-    // 读取 market 合约的 playerWhitelist 方法
-
-  }, [])
-
-
+  // 获取各链试玩权限激活状态
+  const { data: activeRes } = useContractReads({
+    contracts: [
+      {
+        addressOrName: MARKET_CONTRACT[5],
+        contractInterface: FIRSTPLYA_MARKET_ABI,
+        functionName: "playerWhitelist",
+        chainId: 5,
+        args: [address]
+      },
+      {
+        addressOrName: MARKET_CONTRACT[97],
+        contractInterface: FIRSTPLYA_MARKET_ABI,
+        functionName: "playerWhitelist",
+        chainId: 97,
+        args: [address]
+      },
+    ]
+  })
 
   const imageKitLoader = ({ src, width, quality = 100 }: any) => {
     const params = [`w-400`];
@@ -152,8 +161,8 @@ const Profile: NextPageWithLayout = () => {
                 setShowModal={setShowModal}
                 setActiveChainInfo={setActiveChainInfo}
               />
-              <ChainActiveButton chainId={5} isActived={false} setShowModal={setShowModal} setActiveChainInfo={setActiveChainInfo} />
-              <ChainActiveButton chainId={97} isActived={false} setShowModal={setShowModal} setActiveChainInfo={setActiveChainInfo} />
+              <ChainActiveButton chainId={5} isActived={activeRes?.[0] as unknown as boolean} setShowModal={setShowModal} setActiveChainInfo={setActiveChainInfo} />
+              <ChainActiveButton chainId={97} isActived={activeRes?.[1] as unknown as boolean} setShowModal={setShowModal} setActiveChainInfo={setActiveChainInfo} />
             </Stack>
           </Box>}
           {/* <Box className={styles.integralItem}> */}
@@ -241,9 +250,7 @@ const Profile: NextPageWithLayout = () => {
     <ConnectWallet
       showConnect={showConnect}
       setShowConnect={setShowConnect}
-      errorCallback={() => {
-        router.push('/')
-      }}
+      errorCallback={() => { router.push('/') }}
     />
   </Box>
 }
