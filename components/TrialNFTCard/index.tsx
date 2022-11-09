@@ -1,4 +1,4 @@
-import { Box, Drawer, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import React, { useEffect, useMemo, useState } from 'react'
 import GameNFTDetail from '../GameNFTDetail'
 import styles from './style.module.scss'
@@ -16,6 +16,11 @@ interface TrialNFTCardProps {
   type?: '@normal' | '@modal'
 }
 
+/**
+ * 试玩游戏 NFT 卡片
+ * @param props 
+ * @returns 
+ */
 const TrialNFTCard: React.FC<TrialNFTCardProps> = (props) => {
   const { type = '@normal', packageInfo, chainId } = props
 
@@ -42,12 +47,10 @@ const TrialNFTCard: React.FC<TrialNFTCardProps> = (props) => {
 
   useEffect(() => {
     queryNFTMeta({
-      // TODO: chain id name map list
-      chain: 'goerli',
+      chainId: chainId,
       nfts: packageInfo?.nfts?.map(({ nftAddress, tokenId }) => ({ contract: nftAddress, token_id: tokenId }))
     })
   }, [packageInfo])
-
 
   return <Box className={styles.nftBox}>
     <Box className={styles.coverBox}>

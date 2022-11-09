@@ -2,6 +2,11 @@ import '../styles/globals.css'
 import type { AppInitialProps, AppProps } from 'next/app'
 import Layout from '@/components/Layout'
 import { SUPPORT_CHAINS } from 'constants/index'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
+import { NextAdapter } from 'next-query-params';
+import { QueryParamProvider } from 'use-query-params';
 
 import { WagmiConfig, configureChains, createClient } from 'wagmi'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
@@ -64,11 +69,14 @@ function MyApp({ Component, pageProps }: AppPropsWithMessages) {
 
   return <WagmiConfig client={client}>
     <NextIntlProvider messages={pageProps.messages}>
-      <WalletConnet.Provider value={{ showConnect: showConnect, setShowConnect: setShowConnect }}>
-        {getLayout(<Component {...pageProps} />)}
-        <Analytics />
-        <ConnectWallet showConnect={showConnect} setShowConnect={setShowConnect} />
-      </WalletConnet.Provider>
+      <QueryParamProvider adapter={NextAdapter}>
+        <WalletConnet.Provider value={{ showConnect: showConnect, setShowConnect: setShowConnect }}>
+          {getLayout(<Component {...pageProps} />)}
+          <Analytics />
+          <ConnectWallet showConnect={showConnect} setShowConnect={setShowConnect} />
+          <ToastContainer />
+        </WalletConnet.Provider>
+      </QueryParamProvider>
     </NextIntlProvider>
   </WagmiConfig>
 }

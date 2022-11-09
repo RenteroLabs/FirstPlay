@@ -1,25 +1,24 @@
 import { Box, Drawer, Typography } from '@mui/material'
 import React, { useMemo, useState } from 'react'
-import GameNFTDetail from '../GameNFTDetail'
 import styles from './style.module.scss'
 import Image from 'next/image'
 import classNames from 'classnames/bind'
 import { TIME_ICON } from 'constants/static'
-import { PackageRes } from 'types/graph'
-import { formatLeftTime } from 'util/format'
+import { PackageRes, ProfilePackageRes } from 'types/graph'
 import { useCountDown, useRequest } from 'ahooks'
 import { getNFTsMetadata } from 'services/metadata'
+import { getGameInfo } from 'services/home'
 
 const cx = classNames.bind(styles)
 
 interface ProfileNFTCardProps {
-  nftInfo: PackageRes
+  nftInfo: ProfilePackageRes
 }
 
 const ProfileNFTCard: React.FC<ProfileNFTCardProps> = (props) => {
   const { nftInfo } = props
 
-  // const [showDrawer, setShowDrawer] = useState<boolean>(false)
+  const [websiteLink, setWebsiteLink] = useState<string>("")
   // TODO: 当前处理的都是 单 NFT package
   const [metadata, setMetadata] = useState<Record<string, any>[]>([])
 
@@ -29,7 +28,7 @@ const ProfileNFTCard: React.FC<ProfileNFTCardProps> = (props) => {
 
   const { loading } = useRequest(getNFTsMetadata, {
     defaultParams: [{
-      chain: "goerli",
+      chainId: 5,
       nfts: nftInfo?.nfts?.map(({ nftAddress, tokenId }) => ({ contract: nftAddress, token_id: tokenId }))
     }],
     ready: Boolean(nftInfo?.nfts),
@@ -38,11 +37,22 @@ const ProfileNFTCard: React.FC<ProfileNFTCardProps> = (props) => {
     })
   })
 
+  // 获取游戏详情
+  useRequest(getGameInfo, {
+    defaultParams: [{
+      game_id: nftInfo?.game?.id
+    }],
+    ready: Boolean(nftInfo?.game?.id),
+    onSuccess: (({ data }) => {
+      setWebsiteLink(data?.website)
+    })
+  })
+
   return <Box className={styles.nftBox}>
     <Box className={styles.coverBox}>
       <Box className={styles.coverType1}>
         {metadata.length == 1 &&
-          <Image width="300" height="300" src={metadata[0].metadata.image} layout="fill" />
+          <Image width="300" height="300" loader={undefined} src={metadata[0]?.metadata?.image} layout="fill" />
         }
       </Box>
     </Box>
@@ -57,13 +67,16 @@ const ProfileNFTCard: React.FC<ProfileNFTCardProps> = (props) => {
       </Box>
       <Box
         className={styles.trialBtn}
-        onClick={() => { }}
+        onClick={() => {
+          // 跳转至游戏官网
+          if (websiteLink) {
+            window.open(websiteLink, "__blank")
+          }
+        }}
       >
         Trial Game
       </Box>
     </Box>
-
-    {/* <GameNFTDetail showDrawer={showDrawer} setShowDrawer={setShowDrawer} /> */}
   </Box>
 }
 

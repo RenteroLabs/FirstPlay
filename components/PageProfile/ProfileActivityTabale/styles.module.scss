@@ -1,5 +1,5 @@
 .tableBox {
-  box-shadow: none;
+  box-shadow: none !important;
   padding: 3rem 2rem;
   :global {
     .MuiTable-root {
@@ -30,12 +30,69 @@
     font-weight: 400;
     color: #222222;
     line-height: 1.33rem;
+
+    .cellTrialBtn {
+      background: rgba(#8e50e4, 0.1);
+      border-radius: 1.33rem;
+      font-size: 1.17rem;
+      font-family: PingFangSC-Medium, PingFang SC;
+      font-weight: 500;
+      color: #8e50e4;
+      line-height: 1.17rem;
+      padding: 0.75rem;
+      max-width: 10rem;
+      text-align: center;
+      cursor: pointer;
+      margin: auto;
+    }
   }
 
   .paginationBox {
     display: flex;
     justify-content: center;
     margin-top: 3rem;
+    .pagination {
+      :global {
+        li {
+          button {
+            background-color: rgba(#222, 0.05);
+            border-radius: 0.33rem;
+            font-size: 1.17rem;
+            font-family: PingFangSC-Medium, PingFang SC;
+            font-weight: 500;
+            color: rgba(#222, 0.8);
+            line-height: 1.17rem;
+            border: none;
+          }
+        }
+        .Mui-selected {
+          background: #8e50e4;
+          border-radius: 0.33rem;
+          font-size: 1.17rem;
+          font-family: PingFangSC-Medium, PingFang SC;
+          font-weight: 500;
+          color: #ffffff;
+          line-height: 1.17rem;
+        }
+      }
+    }
+  }
+  .empytTipBox {
+    display: flex;
+    justify-content: center;
+    margin: 6rem auto;
+    p {
+      font-size: 1.33rem;
+      font-family: PingFangSC-Medium, PingFang SC;
+      font-weight: 500;
+      color: rgba(#222, 0.7);
+      line-height: 1.33rem;
+    }
+  }
+  .tableLoadingBox {
+    display: flex;
+    justify-content: center;
+    margin: 6rem auto; 
   }
 }
 

@@ -1,11 +1,11 @@
 import { NextPageWithLayout } from "./_app";
 import React, { ReactElement, useEffect, useMemo, useState } from 'react';
-import { Box, IconButton, Stack, Tab, Tabs, Typography } from "@mui/material";
+import { Box, Stack, Tab, Tabs, Typography } from "@mui/material";
 import Layout from "@/components/Layout";
 import Image from 'next/image';
 import { GetStaticProps, GetStaticPropsContext } from "next";
 import styles from '../styles/profile.module.scss';
-import { useAccount } from "wagmi";
+import { useAccount, useContract, useContractReads, useEnsName, useSigner } from "wagmi";
 import { formatAddress } from "util/format";
 import CopyButton from "@/components/CopyButton";
 import { useIsMounted } from "hooks/useIsMounted";
@@ -20,18 +20,42 @@ import { useRouter } from "next/router";
 import { useLazyQuery } from "@apollo/client";
 import { GET_USER_TRIALING } from "services/documentNode";
 import { goerliGraph } from "services/graphql";
+import { useRequest } from "ahooks";
+import { getPassNFTByAddress } from "services/web3";
+import { MARKET_CONTRACT, MULTI_CHAIN_SWITCH_CONTRACT, PASS_NFT_CONTRACT } from "constants/contract";
+import { FIRSTPLYA_MARKET_ABI, MULTI_CHAIN_SWITCH } from "constants/abi";
+import TrialNFTCardSkeleton from "@/components/TrialNFTCard/TrialNFTCardSkeleton";
+import { isEmpty } from "lodash";
+import { StringParam, useQueryParam } from "use-query-params";
+import { ProfilePackageRes } from "types/graph";
+import classNames from "classnames/bind";
+import Link from "next/link";
+
+const cx = classNames.bind(styles)
 
 enum TabItem {
-  Items,
-  Activity
+  Trialing,
+  Activity,
 }
 
 const Profile: NextPageWithLayout = () => {
   const { address } = useAccount()
+  const { data: ensName } = useEnsName({ address: address, chainId: 1 })
+
   const isMounted = useIsMounted()
   const router = useRouter()
 
-  const [activeTab, setActiveTab] = useState<number>(TabItem.Items)
+  const [paramTab, setParamTab] = useQueryParam('tab')
+
+  const [activeTab, setActiveTab] = useState<number>(TabItem.Trialing)
+
+  useEffect(() => {
+    if (router.query?.tab == 'Activity') {
+      setActiveTab(TabItem.Activity)
+    }
+  }, [router])
+
+  const [passTokenId, setPassTokenId] = useState<string | number>(0)
 
   const [showConnect, setShowConnect] = useState<boolean>(false)
   const [showModal, setShowModal] = useState<boolean>(false)
@@ -40,41 +64,67 @@ const Profile: NextPageWithLayout = () => {
 
   const [activeChainInfo, setActiveChainInfo] = useState<{ chainId?: number, chainName?: string }>({})
 
-  const [trialList, setTrialList] = useState<Record<string, any>[]>([])
+  const [trialList, setTrialList] = useState<ProfilePackageRes[]>([])
 
   const timestamp = useMemo(() => (Number(new Date) / 1000).toFixed(), [])
 
-  const [getTrialingList, { refetch }] = useLazyQuery(GET_USER_TRIALING, {
+  const { run: queryPassNFT } = useRequest(getPassNFTByAddress, {
+    manual: true,
+    onSuccess: ({ ownedNfts, totalCount }) => {
+      if (totalCount > 0) {
+        setPassTokenId(parseInt(ownedNfts[0]?.id?.tokenId, 16))
+      } else {
+        setPassTokenId(-1)
+      }
+    }
+  })
+
+  const [getTrialingList, { loading }] = useLazyQuery(GET_USER_TRIALING, {
     variables: {
       expires: timestamp,
       player: address
     },
     client: goerliGraph,
     onCompleted(data) {
-      console.log(data)
       setTrialList(data?.packages || [])
     }
   })
 
   useEffect(() => {
-    // 正常情况用户连接钱包后进入 Profile 页
-    // 需处理用户进入后断开钱包情况
     if (!address) {
       setShowConnect(true)
     } else {
       getTrialingList()
+
+      // 判断用户是否拥有试玩 NFT
+      queryPassNFT({
+        contractAddresses: [PASS_NFT_CONTRACT],
+        withMetadata: false,
+        owner: address,
+        chainId: process.env.NEXT_PUBLIC_ENV === 'PRO' ? 137 : 5
+      })
     }
   }, [address])
 
-  useEffect(() => {
-    // 获取用户激活链数据
-  }, [])
-
-
-
-
-
-
+  // 获取各链试玩权限激活状态
+  const { data: activeRes } = useContractReads({
+    contracts: [
+      {
+        addressOrName: MARKET_CONTRACT[5],
+        contractInterface: FIRSTPLYA_MARKET_ABI,
+        functionName: "playerWhitelist",
+        chainId: 5,
+        args: [address]
+      },
+      {
+        addressOrName: MARKET_CONTRACT[97],
+        contractInterface: FIRSTPLYA_MARKET_ABI,
+        functionName: "playerWhitelist",
+        chainId: 97,
+        args: [address]
+      },
+    ]
+  })
 
   const imageKitLoader = ({ src, width, quality = 100 }: any) => {
     const params = [`w-400`];
@@ -98,11 +148,11 @@ const Profile: NextPageWithLayout = () => {
       <Box className={styles.profileHeader}>
         <Box className={styles.headerInfo}>
           <Box className={styles.addressItem}>
-            {address && isMounted && formatAddress(address, 8)}
+            {address && isMounted && (ensName || formatAddress(address, 8))}
             {address && isMounted && <CopyButton targetValue={address || ""} />}
             {!address && isMounted && <Typography>Not connect wallet yet !</Typography>}
           </Box>
-          <Box className={styles.chainsActiveItem}>
+          {passTokenId !== -1 && <Box className={styles.chainsActiveItem}>
             <Typography className={styles.chainsActiveDesc}>Trial qualification:</Typography>
             <Stack direction="row" className={styles.activeBtnList} >
               <ChainActiveButton
@@ -111,48 +161,78 @@ const Profile: NextPageWithLayout = () => {
                 setShowModal={setShowModal}
                 setActiveChainInfo={setActiveChainInfo}
               />
-              <ChainActiveButton chainId={56} isActived={false} setShowModal={setShowModal} setActiveChainInfo={setActiveChainInfo} />
-              <ChainActiveButton chainId={1} isActived={false} setShowModal={setShowModal} setActiveChainInfo={setActiveChainInfo} />
+              <ChainActiveButton chainId={5} isActived={activeRes?.[0] as unknown as boolean} setShowModal={setShowModal} setActiveChainInfo={setActiveChainInfo} />
+              <ChainActiveButton chainId={97} isActived={activeRes?.[1] as unknown as boolean} setShowModal={setShowModal} setActiveChainInfo={setActiveChainInfo} />
             </Stack>
-          </Box>
-          <Box className={styles.integralItem}>
-            <Typography className={styles.integralDesc}>Integration:</Typography>
-            <Typography><span>90</span> FP</Typography>
-          </Box>
+          </Box>}
+          {/* <Box className={styles.integralItem}> */}
+          {/* <Typography className={styles.integralDesc}>Pointers:</Typography> */}
+          {/* <Typography><span>90</span> FP</Typography> */}
+          {/* </Box>  */}
         </Box>
-        <Box className={styles.passNFTBox}>
-          <Image loader={imageKitLoader} layout="fill" src="https://rentero-resource.s3.ap-east-1.amazonaws.com/PassNFT.jpg" objectFit="cover" />
-          <Box className={styles.imageMask}> </Box>
-          <Box className={styles.imageTokenId}>ID: XXX</Box>
-        </Box>
+        {![0, -1].includes(passTokenId as number) && isMounted &&
+          <Box className={styles.passNFTBox}>
+            <Image loader={imageKitLoader} layout="fill" src="https://d2yhjjdyh5ugcy.cloudfront.net/PASS_NFT.jpg" objectFit="cover" />
+            <Box className={styles.imageMask}> </Box>
+            <Box className={styles.imageTokenId}>ID: {passTokenId.toString().padStart(5, '0')}</Box>
+          </Box>
+        }
       </Box>
-
     </Box>
     <Box className={styles.profileContent}>
       <Tabs
         className={styles.tabsHeader}
         value={activeTab}
-        onChange={(_: any, newItem: number) => setActiveTab(newItem)} >
-        <Tab label="Items" value={TabItem.Items} disableRipple />
+        onChange={(_: any, newItem: number) => {
+          setActiveTab(newItem)
+          setParamTab(newItem === 0 ? 'Trialing' : "Activity")
+        }} >
+        <Tab label="Trialing" value={TabItem.Trialing} disableRipple />
         <Tab label="Activity" value={TabItem.Activity} disableRipple />
       </Tabs>
-      {
-        activeTab === TabItem.Items &&
-        <Box className={styles.itemBox}>
-          {/* <Box className={styles.trialGameBtn}>Trial Games</Box> */}
+      <Box className={cx({
+        itemBox: true,
+        hiddenTab: isMounted && activeTab !== TabItem.Trialing
+      })}>
+        {
+          isMounted && !loading && trialList.map((item, index) =>
+            <ProfileNFTCard key={index} nftInfo={item} />)
+        }
+        {
+          isMounted && loading && <>
+            <TrialNFTCardSkeleton />
+            <TrialNFTCardSkeleton />
+            <TrialNFTCardSkeleton />
+            <TrialNFTCardSkeleton />
+          </>
+        }
+        {
+          // 无任何正在试玩游戏，引导去试玩
+          isMounted && !loading && isEmpty(trialList) && passTokenId > 0 && <Box className={styles.trialGameBtnBox}>
+            <Link href="/" target="__blank">
+              <Box className={styles.trialGameBtn}>Trial Games</Box>
+            </Link>
+            <Typography>No trialing gmaes yet</Typography>
+          </Box>
+        }
+        {
+          passTokenId === -1 && <Box className={styles.passNFTTips}>
+            <Box className={styles.trialGameBtn}>
+              Claim Pass-NFT
+            </Box>
+            <Typography>Get the NFT first, then trial. </Typography>
+            <Typography>Continue to receive airdrop rewards. </Typography>
+            <Typography>You will have more benefits after being upgraded in the future.</Typography>
+          </Box>
+        }
+      </Box>
 
-          {
-            trialList.map((item, index) =>
-              <ProfileNFTCard key={index} nftInfo={item} />)
-          }
-        </Box>
-      }
-      {
-        activeTab === TabItem.Activity &&
-        <Box className={styles.activityBox}>
-          <ProfileActivityTable />
-        </Box>
-      }
+      <Box className={cx({
+        activityBox: true,
+        hiddenTab: isMounted && activeTab !== TabItem.Activity
+      })}>
+        <ProfileActivityTable />
+      </Box>
     </Box>
 
     <ActicvChainConfirm
@@ -160,6 +240,7 @@ const Profile: NextPageWithLayout = () => {
       setShowModal={setShowModal}
       setTxLoading={setShowTxLoading}
       setTxHash={setTxHash}
+      txHash={txHash}
       chainId={activeChainInfo.chainId || 0}
       chainName={activeChainInfo.chainName || ""}
     />
@@ -169,9 +250,7 @@ const Profile: NextPageWithLayout = () => {
     <ConnectWallet
       showConnect={showConnect}
       setShowConnect={setShowConnect}
-      errorCallback={() => {
-        router.push('/')
-      }}
+      errorCallback={() => { router.push('/') }}
     />
   </Box>
 }

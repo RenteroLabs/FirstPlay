@@ -6,6 +6,7 @@ import AddIcon from '@mui/icons-material/Add';
 import styles from './styles.module.scss'
 
 import classnames from 'classnames/bind'
+import { useIsMounted } from 'hooks/useIsMounted';
 
 const cx = classnames.bind(styles)
 
@@ -22,7 +23,7 @@ const CHINA_ID_MAP: Record<number, { name: string, icon: string }> = {
     icon: ETHEREUM_ICON,
   },
   5: {
-    name: "ETH",
+    name: "Goerli",
     icon: ETHEREUM_ICON,
   },
   56: {
@@ -30,7 +31,7 @@ const CHINA_ID_MAP: Record<number, { name: string, icon: string }> = {
     icon: BNB_ICON,
   },
   97: {
-    name: "BSC",
+    name: "BSC-Test",
     icon: BNB_ICON,
   },
   137: {
@@ -38,13 +39,14 @@ const CHINA_ID_MAP: Record<number, { name: string, icon: string }> = {
     icon: "/polygon-matic-logo.svg",
   },
   80001: {
-    name: 'Polygon',
+    name: 'Mumbai',
     icon: "/polygon-matic-logo.svg",
   }
 }
 
 const ChainActiveButton: React.FC<ChainActiveButtonProps> = (props) => {
   const { chainId, isActived, setShowModal, setActiveChainInfo } = props
+  const isMounted = useIsMounted()
 
   return <Box
     className={cx({
@@ -64,9 +66,9 @@ const ChainActiveButton: React.FC<ChainActiveButtonProps> = (props) => {
     <Box className={styles.chainIcon}>
       <Image src={CHINA_ID_MAP[chainId]?.icon} layout="fill" objectFit="cover" />
     </Box>
-    <Typography className={styles.chainName}>{CHINA_ID_MAP[chainId]?.name}</Typography>
+    <p className={styles.chainName}>{CHINA_ID_MAP[chainId]?.name}</p>
     {
-      !isActived && <>
+      !isActived && isMounted && <>
         <Divider orientation="vertical" sx={{ m: "0 0.6rem 0 0.8rem" }} />
         <AddIcon className={styles.activeIcon} />
       </>

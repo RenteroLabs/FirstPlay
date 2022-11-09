@@ -59,6 +59,16 @@ export const SUPPORT_CHAINS =
       BSC_TEST
     ]
 
+export enum CHAIN_ID_NAME{
+  Ethereum = 1,
+  Goerli = 5,
+  BSC = 56,
+  BSC_test = 97,
+  Polygon = 137,
+  PolygonMumbai = 80001,
+}
+
+
 const TEST_BACKEND_API = 'https://testapi.firstplay.app'
 const PRODUCTION_BACKEND_API = 'https://testapi.firstplay.app'
 export const BASE_BACKEND_API = process.env.NEXT_PUBLIC_ENV === 'PRO' ? PRODUCTION_BACKEND_API : TEST_BACKEND_API

@@ -14,17 +14,22 @@ enum META_CHAIN_NAME {
 type META_SUPPORT_CHAINS = "eth" | "goerli" | "matic" | "mumbai" | "bsc" | "bsc_testnet" | "rpg" | "rpg_testnet"
 
 interface NFTMetadataProps {
-  chain: META_SUPPORT_CHAINS
+  chainId: META_CHAIN_NAME,
   nfts: { contract: string, token_id: string }[]
+  chain?: META_SUPPORT_CHAINS
 }
 
 export const getNFTsMetadata = async (params: NFTMetadataProps) => {
+  const param = {
+    ...params,
+    chain: META_CHAIN_NAME[params.chainId]
+  }
   const data = await fetch(`${METADATA_SERVICE}/api/metadatas`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify(params)
+    body: JSON.stringify(param)
   })
 
   return data.json()

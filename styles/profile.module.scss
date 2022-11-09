@@ -75,7 +75,7 @@
         flex-shrink: 0;
         width: 13.33rem;
         height: 13.33rem;
-        background: linear-gradient(#70fac5, #9552eb);
+        background: linear-gradient(#7041b1, #0f1827);
         border-radius: 1rem;
         position: relative;
         overflow: hidden;
@@ -111,10 +111,13 @@
 
   .profileContent {
     max-width: 100rem;
-    min-height: 40rem;
+    min-height: 50rem;
     margin: auto;
     overflow: hidden;
 
+    .hiddenTab {
+      display: none !important;
+    }
     .tabsHeader {
       margin-top: 4rem;
 
@@ -147,22 +150,6 @@
     }
 
     .itemBox {
-      .trialGameBtn {
-        display: inline-block;
-        text-align: center;
-        background: rgba(#8e50e4, 0.1);
-        border-radius: 2.5rem;
-        width: 26.67rem;
-        font-size: 1.75rem;
-        font-family: Inter-Medium, Inter;
-        font-weight: 500;
-        color: #8e50e4;
-        line-height: 1.33rem;
-        padding: 1.67rem;
-        user-select: none;
-        cursor: pointer;
-      }
-
       margin-top: 2.5rem;
       margin-bottom: 6.67rem;
       display: flex;
@@ -173,6 +160,45 @@
         width: calc((100% - 6.18rem) / 4);
         margin: auto 0.77rem;
         margin-bottom: 2.08rem;
+      }
+
+      .passNFTTips,
+      .trialGameBtnBox {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        // justify-content: space-around;
+        justify-content: center;
+        align-items: center;
+        padding-top: 10rem;
+        .trialGameBtn {
+          text-align: center;
+          background: rgba(#8e50e4, 0.1);
+          border-radius: 2.5rem;
+          width: 26.67rem;
+          font-size: 1.75rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #8e50e4;
+          line-height: 1.33rem;
+          padding: 1.67rem;
+          user-select: none;
+          cursor: pointer;
+          // margin: 10rem auto 2.5rem;
+          display: inline-block;
+        }
+        p {
+          text-align: center;
+          font-size: 1.5rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: rgba(#222, 0.3);
+          line-height: 2.5rem;
+          margin-top: 2.5rem;
+        }
+        p + p {
+          margin-top: 0;
+        }
       }
     }
 
@@ -303,10 +329,12 @@
 
 @media screen and (max-width: 680px) {
   .containerBox {
+    min-height: 50vh;
     .profileHeaderBox {
       height: auto;
       .profileHeader {
         flex-direction: column;
+        padding-bottom: 1rem;
 
         .headerInfo {
           order: 1;
@@ -335,7 +363,6 @@
 
             .activeBtnList {
               flex-wrap: wrap;
-
             }
           }
           .integralItem {
@@ -355,6 +382,34 @@
         .passNFTBox {
           order: 0;
           margin-top: 2.5rem;
+        }
+      }
+    }
+    .profileContent {
+      min-height: 30rem;
+      .itemBox {
+        .passNFTTips,
+        .trialGameBtnBox {
+          padding-top: 4rem;
+          .trialGameBtn {
+            font-size: 1.5rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #8e50e4;
+            line-height: 1.5rem;
+            padding: 1.25rem 4rem;
+            width: auto;
+            // margin: 4rem auto 2rem;
+          }
+          p {
+            font-size: 1.33rem;
+            font-weight: 500;
+            line-height: 2rem;
+            margin-top: 1.2rem;
+          }
+          p + p {
+            margin-top: 0;
+          }
         }
       }
     }

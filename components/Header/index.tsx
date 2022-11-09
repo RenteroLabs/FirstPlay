@@ -86,29 +86,29 @@ const HeaderUserInfo: React.FC<HeaderUserInfoProps> = (props) => {
                 </Box>
               </Box>
               <Box className={styles.divider}></Box>
-              <MenuItem
-                className={cx({
-                  menuItem: true,
-                  disabled: true,
-                })}
-                disableRipple>
-                <Box>
-                  <Image src={HEADER_NAV_ITEM} layout="fill" />
-                </Box>
-                Items
-              </MenuItem>
-              <MenuItem
-                className={cx({
-                  menuItem: true,
-                  disabled: true,
-                })}
-                sx={{ marginBottom: '0.5rem' }}
-                disableRipple>
-                <Box>
-                  <Image src={HEADER_NAV_ACTIVITY} layout="fill" />
-                </Box>
-                Activity
-              </MenuItem>
+              <Link href={{ pathname: '/profile', query: { tab: 'Trialing' } }}>
+                <MenuItem
+                  className={cx({ menuItem: true, })}
+                  onClick={closeCallback}
+                  disableRipple>
+                  <Box>
+                    <Image src={HEADER_NAV_ITEM} layout="fill" />
+                  </Box>
+                  Trialing
+                </MenuItem>
+              </Link>
+              <Link href={{ pathname: '/profile', query: { tab: 'Activity' } }} >
+                <MenuItem
+                  className={cx({ menuItem: true, })}
+                  onClick={closeCallback}
+                  sx={{ marginBottom: '0.5rem' }}
+                  disableRipple>
+                  <Box>
+                    <Image src={HEADER_NAV_ACTIVITY} layout="fill" />
+                  </Box>
+                  Activity
+                </MenuItem>
+              </Link>
               <Box className={styles.divider}></Box>
               {chain && address &&
                 <MenuItem
