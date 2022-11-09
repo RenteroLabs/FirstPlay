@@ -1,4 +1,4 @@
-import { Box, Drawer, Typography } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import React, { useEffect, useMemo, useState } from 'react'
 import GameNFTDetail from '../GameNFTDetail'
 import styles from './style.module.scss'
@@ -13,12 +13,16 @@ const cx = classNames.bind(styles)
 interface TrialNFTCardProps {
   packageInfo: PackageRes
   chainId: number
-  reload: () => any
   type?: '@normal' | '@modal'
 }
 
+/**
+ * 试玩游戏 NFT 卡片
+ * @param props 
+ * @returns 
+ */
 const TrialNFTCard: React.FC<TrialNFTCardProps> = (props) => {
-  const { type = '@normal', packageInfo, chainId , reload} = props
+  const { type = '@normal', packageInfo, chainId } = props
 
   const [showDrawer, setShowDrawer] = useState<boolean>(false)
   const [metadata, setMetadata] = useState<Record<string, any>[]>([])
@@ -43,12 +47,10 @@ const TrialNFTCard: React.FC<TrialNFTCardProps> = (props) => {
 
   useEffect(() => {
     queryNFTMeta({
-      // TODO: chain id name map list
-      chain: 'goerli',
+      chainId: chainId,
       nfts: packageInfo?.nfts?.map(({ nftAddress, tokenId }) => ({ contract: nftAddress, token_id: tokenId }))
     })
   }, [packageInfo])
-
 
   return <Box className={styles.nftBox}>
     <Box className={styles.coverBox}>
@@ -84,7 +86,6 @@ const TrialNFTCard: React.FC<TrialNFTCardProps> = (props) => {
       metadata={metadata}
       chainId={chainId}
       packageInfo={packageInfo}
-      reload={reload}
     />
   </Box>
 }

@@ -6,6 +6,7 @@ import AddIcon from '@mui/icons-material/Add';
 import styles from './styles.module.scss'
 
 import classnames from 'classnames/bind'
+import { useIsMounted } from 'hooks/useIsMounted';
 
 const cx = classnames.bind(styles)
 
@@ -45,6 +46,7 @@ const CHINA_ID_MAP: Record<number, { name: string, icon: string }> = {
 
 const ChainActiveButton: React.FC<ChainActiveButtonProps> = (props) => {
   const { chainId, isActived, setShowModal, setActiveChainInfo } = props
+  const isMounted = useIsMounted()
 
   return <Box
     className={cx({
@@ -66,7 +68,7 @@ const ChainActiveButton: React.FC<ChainActiveButtonProps> = (props) => {
     </Box>
     <p className={styles.chainName}>{CHINA_ID_MAP[chainId]?.name}</p>
     {
-      !isActived && <>
+      !isActived && isMounted && <>
         <Divider orientation="vertical" sx={{ m: "0 0.6rem 0 0.8rem" }} />
         <AddIcon className={styles.activeIcon} />
       </>

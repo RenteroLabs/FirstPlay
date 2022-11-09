@@ -28,7 +28,7 @@ const ProfileNFTCard: React.FC<ProfileNFTCardProps> = (props) => {
 
   const { loading } = useRequest(getNFTsMetadata, {
     defaultParams: [{
-      chain: "goerli",
+      chainId: 5,
       nfts: nftInfo?.nfts?.map(({ nftAddress, tokenId }) => ({ contract: nftAddress, token_id: tokenId }))
     }],
     ready: Boolean(nftInfo?.nfts),

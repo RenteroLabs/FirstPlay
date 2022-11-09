@@ -1,6 +1,6 @@
 import { NextPageWithLayout } from "./_app";
 import React, { ReactElement, useEffect, useMemo, useState } from 'react';
-import { Box, IconButton, Stack, Tab, Tabs, Typography } from "@mui/material";
+import { Box, Stack, Tab, Tabs, Typography } from "@mui/material";
 import Layout from "@/components/Layout";
 import Image from 'next/image';
 import { GetStaticProps, GetStaticPropsContext } from "next";
@@ -170,7 +170,7 @@ const Profile: NextPageWithLayout = () => {
           {/* <Typography><span>90</span> FP</Typography> */}
           {/* </Box>  */}
         </Box>
-        {![0, -1].includes(passTokenId as number) &&
+        {![0, -1].includes(passTokenId as number) && isMounted &&
           <Box className={styles.passNFTBox}>
             <Image loader={imageKitLoader} layout="fill" src="https://d2yhjjdyh5ugcy.cloudfront.net/PASS_NFT.jpg" objectFit="cover" />
             <Box className={styles.imageMask}> </Box>
@@ -192,14 +192,14 @@ const Profile: NextPageWithLayout = () => {
       </Tabs>
       <Box className={cx({
         itemBox: true,
-        hiddenTab: activeTab !== TabItem.Trialing
+        hiddenTab: isMounted && activeTab !== TabItem.Trialing
       })}>
         {
-          trialList.map((item, index) =>
+          isMounted && !loading && trialList.map((item, index) =>
             <ProfileNFTCard key={index} nftInfo={item} />)
         }
         {
-          loading && <>
+          isMounted && loading && <>
             <TrialNFTCardSkeleton />
             <TrialNFTCardSkeleton />
             <TrialNFTCardSkeleton />
@@ -208,7 +208,7 @@ const Profile: NextPageWithLayout = () => {
         }
         {
           // 无任何正在试玩游戏，引导去试玩
-          !loading && isEmpty(trialList) && passTokenId > 0 && <Box className={styles.trialGameBtnBox}>
+          isMounted && !loading && isEmpty(trialList) && passTokenId > 0 && <Box className={styles.trialGameBtnBox}>
             <Link href="/" target="__blank">
               <Box className={styles.trialGameBtn}>Trial Games</Box>
             </Link>
@@ -229,7 +229,7 @@ const Profile: NextPageWithLayout = () => {
 
       <Box className={cx({
         activityBox: true,
-        hiddenTab: activeTab !== TabItem.Activity
+        hiddenTab: isMounted && activeTab !== TabItem.Activity
       })}>
         <ProfileActivityTable />
       </Box>

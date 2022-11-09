@@ -52,6 +52,7 @@
     .linkBtn {
       display: inline-flex;
       width: 15rem;
+      height: 3.67rem;
       border-radius: 1.83rem;
       border: 0.08rem solid rgba(228, 64, 91, 1);
       padding: 0px 1.67rem;
@@ -81,13 +82,16 @@
       }
 
       &:hover {
+
         color: white;
         -webkit-text-fill-color: white;
         border: none;
+        padding-top: 0.08rem;
+        padding-bottom: 0.08rem;
         background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
         box-shadow: 0rem 0.67rem 2.5rem 0rem rgba(142, 80, 228, 0.3);
         border-radius: 1.83rem;
-        filter: blur(0px);
+        // filter: blur(0px);
         svg {
           color: white;
         }

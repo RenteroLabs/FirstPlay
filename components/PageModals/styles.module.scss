@@ -396,12 +396,6 @@
   }
 }
 
-
-
-
-
-
-
 .txDialogBox {
   width: 32.5rem;
   min-height: 15rem;
@@ -437,4 +431,76 @@
     width: 100%;
     margin: auto;
   }
+}
+
+.trialConfirmModal {
+  width: 31.67rem;
+  background: #fcfcfc;
+  border-radius: 1.33rem;
+  padding: 2.42rem 2.5rem;
+  .modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+      font-size: 1.75rem;
+      font-family: Inter-Bold, Inter;
+      font-weight: bold;
+      color: rgba(#222, 0.5);
+      line-height: 1.75rem;
+    }
+  }
+
+  .modalContent {
+    .detailItem {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+      .trialPeriod {
+        font-size: 1.75rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #222222;
+        line-height: 1.75rem;
+      }
+      .trialDays {
+        font-size: 1.75rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #8e50e4;
+        line-height: 1.75rem;
+      }
+    }
+
+    .activeBtn {
+      display: flex;
+      justify-content: center;
+      width: 20rem;
+      text-align: center;
+      margin: auto;
+      margin-top: 2rem;
+      padding: 1.33rem;
+      font-size: 1.33rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.33rem;
+      background: linear-gradient(270deg, #f82757 0%, #984cec 100%);
+      border-radius: 2.42rem;
+      user-select: none;
+      cursor: pointer;
+    }
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .trialConfirmModal {
+    width: 80vw;
+    .modalContent {
+      .activeBtn {
+        width: auto;
+      }
+    }
+  } 
 }
