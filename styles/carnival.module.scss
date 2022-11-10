@@ -1,0 +1,351 @@
+.containBox {
+  min-height: 90vh;
+  padding: 2.5rem 0 8.42rem;
+  background: #e4405b;
+
+  .header {
+    height: 30rem;
+  }
+  .contianer {
+    width: 100rem;
+    margin: auto;
+
+    .trialNotify {
+      background: #ffffff;
+      border-radius: 1rem;
+      min-height: 5rem;
+    }
+    .taskProgress {
+      background: #ffffff;
+      border-radius: 1rem;
+      min-height: 50rem;
+      margin-top: 2.5rem;
+      padding: 2rem 3.33rem 3.33rem;
+      .cardHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 0.92rem;
+        border-bottom: 0.16rem solid rgba(#222, 0.2);
+        h3 {
+          font-size: 2rem;
+          font-family: Inter-SemiBold, Inter;
+          font-weight: 600;
+          color: #222222;
+          line-height: 2rem;
+        }
+        p {
+          font-size: 2rem;
+          font-family: Inter-SemiBold, Inter;
+          font-weight: 600;
+          color: #222222;
+          line-height: 2rem;
+          span {
+            display: inline-flex;
+            justify-content: center;
+            width: 3.33rem;
+            height: 3.33rem;
+            background: #8e50e4;
+            border-radius: 0.67rem;
+            font-size: 2rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 3.33rem;
+          }
+        }
+      }
+
+      .addressSection {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1.67rem;
+        p {
+          font-size: 1.5rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #222222;
+          line-height: 1.5rem;
+        }
+      }
+    }
+
+    .trialGames {
+      background: #ffffff;
+      border-radius: 1rem;
+      margin-top: 2.5rem;
+      min-height: 30rem;
+
+      padding: 2.58rem 1.66rem 0;
+
+      .cardTitle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 1.66rem 2.5rem;
+        h3 {
+          font-size: 2rem;
+          font-family: Inter-SemiBold, Inter;
+          font-weight: 600;
+          color: #222222;
+          line-height: 2rem;
+        }
+        p {
+          font-size: 1.17rem;
+          font-family: Inter-Regular, Inter;
+          font-weight: 400;
+          color: #222222;
+          line-height: 1.17rem;
+        }
+      }
+
+      .gameList {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        & > div {
+          width: calc(25% - 3.33rem);
+          margin: auto 1.66rem;
+          margin-bottom: 3.33rem;
+        }
+      }
+    }
+
+    .activityRules {
+      background: #ffffff;
+      border-radius: 1rem;
+      margin-top: 2.5rem;
+      min-height: 30rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .containBox {
+    padding: 0.83rem 0;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .containBox {
+    .container {
+      .nftInfo {
+        padding: 3rem;
+
+        .rewardBox {
+          padding: 2rem;
+          margin-top: 4rem;
+          .icon_1,
+          .icon_2,
+          .icon_3 {
+            display: none;
+          }
+        }
+      }
+      .progress {
+        padding: 3rem;
+      }
+      .taskBox {
+        padding: 3rem;
+
+        .taskDetail {
+          .taskIllustration {
+            div {
+              width: 30vw;
+              height: 30vw;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .containBox {
+    .container {
+      .taskBox {
+        .taskHeader {
+          h4 {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .containBox {
+    .container {
+      .taskBox {
+        .taskHeader {
+          h4 {
+            display: none;
+          }
+        }
+        .taskDetail {
+          .taskIllustration {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 700px) {
+  .containBox {
+    .container {
+      .nftInfo {
+        padding: 2rem;
+
+        .nftMetadata {
+          flex-direction: column;
+          .nftCover {
+            margin-top: 1.2rem;
+          }
+          .nftIntro {
+            width: 100%;
+            margin-left: 0;
+            margin-top: 2.58rem;
+
+            h2 {
+              font-size: 2.5rem;
+              font-family: Inter-Bold, Inter;
+              font-weight: bold;
+              color: #222222;
+              line-height: 2.5rem;
+            }
+
+            p {
+              margin-top: 0.83rem;
+              font-size: 1.33rem;
+              font-family: Inter-Medium, Inter;
+              font-weight: 500;
+              color: #222222;
+              line-height: 2rem;
+            }
+          }
+        }
+
+        .rewardBox {
+          margin-top: 1.58rem;
+          padding: 1.67rem 1.33rem;
+
+          .rewardItem {
+            align-items: flex-start;
+            padding: 0.5rem 0;
+            p {
+              font-size: 1.33rem;
+              font-family: Inter-MediumItalic, Inter;
+              font-weight: normal;
+              color: #8e50e4;
+              line-height: 1.33rem;
+            }
+            div {
+              width: 1.17rem;
+              height: 1.45rem;
+              position: relative;
+              margin-right: 0.67rem;
+            }
+          }
+        }
+      }
+
+      .progress {
+        padding: 2rem;
+
+        h3 {
+          font-size: 2rem;
+          font-family: Inter-Bold, Inter;
+          font-weight: bold;
+          color: #222222;
+          line-height: 2.5rem;
+        }
+        h4 {
+          font-size: 1.33rem;
+          font-family: Inter-Bold, Inter;
+          font-weight: bold;
+          color: #222222;
+          line-height: 1.5rem;
+          margin: 1.67rem 0 0.83rem;
+        }
+        p {
+          font-size: 1.33rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #222222;
+          line-height: 2rem;
+          margin-bottom: 2rem;
+        }
+        h6 {
+          font-size: 1.17rem;
+          font-family: Inter-Regular, Inter;
+          font-weight: 400;
+          color: rgba(#222, 0.5);
+          line-height: 1.67rem;
+        }
+        .progressBar {
+          flex-direction: column;
+          margin-bottom: 2rem;
+          .mintCount {
+            margin-top: 0.83rem;
+            align-self: flex-end;
+            font-size: 1.33rem;
+            font-family: Inter-Medium, Inter;
+            font-weight: 500;
+            line-height: 1.33rem;
+          }
+        }
+      }
+
+      .taskBox {
+        padding: 2rem;
+
+        .taskDetail {
+          .taskDetailInfo {
+            .taskLink {
+              font-size: 1.5rem;
+              font-family: Inter-SemiBold, Inter;
+              font-weight: 600;
+              color: #ffffff;
+              line-height: 1.5rem;
+
+              padding: 1.17rem 3rem;
+              text-align: center;
+              display: block;
+              max-width: 28.58rem;
+              margin: auto;
+              button {
+                padding: 0;
+                svg {
+                  color: white;
+                  font-size: 1.6rem;
+                  margin-left: 1rem;
+                }
+              }
+            }
+            p {
+              font-size: 1.17rem;
+              font-family: Inter-Regular, Inter;
+              font-weight: 400;
+              color: rgba(#222, 0.5);
+              line-height: 1.5rem;
+              margin: 1.67rem 0 1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .containBox {
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .containBox {
+  }
+}

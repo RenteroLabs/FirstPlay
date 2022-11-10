@@ -1,0 +1,78 @@
+.gameCard {
+  .gameCover {
+    position: relative;
+    padding-bottom: 100%;
+    background: #d8d8d8;
+    border-radius: 1rem;
+    & > span {
+      border-radius: 1rem;
+    }
+    .gameLogo {
+      width: 4rem;
+      height: 4rem;
+      position: absolute;
+      left: 0.83rem;
+      bottom: -2rem;
+      border-radius: 50%;
+      border: 0.3rem solid white;
+      overflow: hidden;
+    }
+
+    .gameTags {
+      position: absolute;
+      top: 0.83rem;
+      right: 0.83rem;
+      display: flex;
+
+      .gameTag {
+        padding: 0.33rem 0.67rem;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 0.33rem;
+        border: 0.08rem solid rgba($color: white, $alpha: 0.5);
+        font-size: 1rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: rgba($color: white, $alpha: 0.5);
+        line-height: 1rem;
+        margin-left: 0.5rem;
+      }
+    }
+  }
+  .gameContent {
+    margin-top: 3.75rem;
+    .gameTitle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      h3 {
+        font-size: 1.5rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #222222;
+        line-height: 1.75rem;
+      }
+    }
+    .gameRewardDesc {
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #222222;
+      line-height: 1.67rem;
+      margin: 0.75rem auto 0.83rem;
+    }
+  }
+  .trialBtn {
+    height: 3.33rem;
+    background: rgba(#8e50e4, 0.1);
+    border-radius: 0.67rem;
+    font-size: 1.17rem;
+    font-family: Inter-Medium, Inter;
+    font-weight: 500;
+    color: #8e50e4;
+    line-height: 1.17rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
