@@ -28,11 +28,11 @@
         padding: 0.33rem 0.67rem;
         background: rgba(0, 0, 0, 0.3);
         border-radius: 0.33rem;
-        border: 0.08rem solid rgba($color: white, $alpha: 0.5);
+        border: 0.08rem solid rgba($color: white, $alpha: 0.8);
         font-size: 1rem;
         font-family: Inter-Medium, Inter;
         font-weight: 500;
-        color: rgba($color: white, $alpha: 0.5);
+        color: rgba($color: white, $alpha: 0.8);
         line-height: 1rem;
         margin-left: 0.5rem;
       }
@@ -59,6 +59,7 @@
       color: #222222;
       line-height: 1.67rem;
       margin: 0.75rem auto 0.83rem;
+      height: 3.33rem;
     }
   }
   .trialBtn {
@@ -74,5 +75,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    &:hover {
+      background: rgba(#8e50e4, 1);
+      color: white;
+    }
+  }
+}
+
+.bigStyle {
+  width: calc(50% - 3.33rem) !important;
+  margin-top: 0px !important;
+  .gameCover {
+    padding-bottom: calc(50% - 1.67rem) !important;
   }
 }

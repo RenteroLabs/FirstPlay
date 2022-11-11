@@ -2,19 +2,26 @@ import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 import styles from './style.module.scss'
+import classNames from 'classnames/bind'
+
+const cx = classNames.bind(styles)
 
 interface GameCardProps {
 
+  isBig?: boolean
 }
 
 
 const CarnivalGameCard: React.FC<GameCardProps> = (props) => {
-  const { } = props
+  const { isBig = false } = props
 
-  return <Box className={styles.gameCard}>
+  return <Box className={cx({
+    gameCard: true,
+    bigStyle: isBig
+  })}>
 
     <Box className={styles.gameCover}>
-      <Image src="https://rentero-resource.s3.ap-east-1.amazonaws.com/CryptoBlades.jpg" layout="fill" />
+      <Image src="https://rentero-resource.s3.ap-east-1.amazonaws.com/CryptoBlades.jpg" layout="fill" objectFit="cover" />
       <Box className={styles.gameLogo}>
         <Image src="https://rentero-resource.s3.ap-east-1.amazonaws.com/AxieInfinity.jpg" layout="fill" />
       </Box>

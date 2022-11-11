@@ -1,14 +1,57 @@
 .containBox {
   min-height: 90vh;
-  padding: 2.5rem 0 8.42rem;
-  background: #e4405b;
+  padding: 0rem 0 8.42rem;
+  background: #FF3D5A;
 
   .header {
-    height: 30rem;
+    position: relative;
+    .topBackground {
+      position: relative;
+      height: 50rem;
+    }
+    .playGameIcon {
+      position: absolute; 
+      width: 21.39rem;
+      height: 20.08rem;
+      right: 30rem;
+      bottom: 12rem;
+    }
+
+    .icon3 {
+      position: absolute;
+      width: 9.3rem;
+      height: 5.45rem;
+      bottom: 10rem;
+      right: 40%;
+    }
+    .icon4 {
+      position: absolute;
+      width: 9.28rem;
+      height: 6.67rem;
+      top: 7.08rem;
+      right: 24.58rem;
+    }
+    .icon2 {
+      position: absolute;
+      width: 5.65rem;
+      height: 4.85rem;
+      top: 6.25rem;
+      right: 47.83rem;
+    }
+    .icon1 {
+      position: absolute;
+      width: 14.55rem;
+      height: 14.09rem;
+      top: 23.17rem;
+      left: 12.25rem;
+    }
   }
   .contianer {
+    position: relative;
+    z-index: 10;
     width: 100rem;
     margin: auto;
+    margin-top: -12rem;
 
     .trialNotify {
       background: #ffffff;
@@ -68,6 +111,56 @@
           line-height: 1.5rem;
         }
       }
+
+      .gamePanel {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-top: 2.5rem;
+        .rewardPool {
+          width: 34.96rem;
+          height: 27.33rem;
+          background: rgba(142, 80, 228, 0.22);
+          border-radius: 0.67rem;
+
+          .rewardTitle {
+            background: #8e50e4;
+            border-radius: 0.67rem 0.67rem 0rem 0rem;
+            font-size: 1.5rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.5rem;
+            text-align: center;
+            padding: 1.25rem;
+          }
+        }
+
+        .gameList {
+          margin-right: 2.5rem;
+          margin-left: -0.83rem;
+          flex-grow: 1;
+          display: flex;
+          flex-wrap: wrap;
+
+          & > div {
+            width: calc(25% - 1.67rem);
+            margin: auto 0.83rem;
+            margin-bottom: 1.67rem;
+          }
+        }
+      }
+
+      .rewardDesc {
+        margin-top: 1.67rem;
+        h4 {
+          font-size: 1.17rem;
+          font-family: PingFangSC-Medium, PingFang SC;
+          font-weight: 500;
+          color: #222222;
+          line-height: 2.17rem;
+        }
+      }
     }
 
     .trialGames {
@@ -102,6 +195,7 @@
       .gameList {
         display: flex;
         justify-content: flex-start;
+        align-items: flex-start;
         flex-wrap: wrap;
         & > div {
           width: calc(25% - 3.33rem);

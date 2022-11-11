@@ -1,6 +1,7 @@
 import { Box, Divider, IconButton, Link, Typography, useMediaQuery } from "@mui/material";
 import { GetStaticProps, GetStaticPropsContext, NextPage } from "next";
 import styles from '../styles/carnival.module.scss'
+import Image from "next/image";
 import { ReactElement, useEffect, useState } from "react";
 import Layout from "@/components/Layout";
 import { NextPageWithLayout } from "./_app";
@@ -8,11 +9,14 @@ import { erc721ABI, useAccount, useContractRead } from "wagmi";
 import Head from "next/head";
 import { useCountDown } from "ahooks";
 import CarnivalGameCard from "@/components/PageCarnival/GameCard";
+import GameSallCard from "@/components/PageCarnival/GameSmallCard";
+import { useIsMounted } from "hooks/useIsMounted";
 
 const Carnival_Activity_End_Time = '2022-12-03 24:00:00'
 
 const Carnival: NextPageWithLayout = () => {
 
+  const isMounted = useIsMounted()
   const { address } = useAccount()
   const [_, { days }] = useCountDown({
     targetDate: Carnival_Activity_End_Time
@@ -37,7 +41,24 @@ const Carnival: NextPageWithLayout = () => {
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Box className={styles.header}>
-
+      <Box className={styles.topBackground}>
+        <Image src="/carnival_bg.jpg" layout="fill" />
+      </Box>
+      <Box className={styles.playGameIcon}>
+        <Image src="/play_game.png" layout="fill" />
+      </Box>
+      <Box className={styles.icon1}>
+        <Image src="/carnival_icon1.png" layout="fill" />
+      </Box>
+      <Box className={styles.icon2}>
+        <Image src="/carnival_icon2.png" layout="fill" />
+      </Box>
+      <Box className={styles.icon3}>
+        <Image src="/carnival_icon3.png" layout="fill" />
+      </Box>
+      <Box className={styles.icon4}>
+        <Image src="/carnival_icon4.png" layout="fill" />
+      </Box>
     </Box>
     <Box className={styles.contianer}>
       <Box className={styles.trialNotify}></Box>
@@ -47,8 +68,29 @@ const Carnival: NextPageWithLayout = () => {
           <Typography>Distance draw left <span>{days}</span> day</Typography>
         </Box>
         <Box className={styles.addressSection}>
-          <Typography>ID: {address}</Typography>
+          {isMounted && <Typography>ID: {address || ""}</Typography>}
           <Link>No PassNFT ?</Link>
+        </Box>
+
+        <Box className={styles.gamePanel}>
+          <Box className={styles.gameList}>
+            <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
+            <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
+            <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
+            <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
+            <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
+            <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
+            <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
+            <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
+            <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
+            <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
+          </Box>
+          <Box className={styles.rewardPool}>
+            <Box className={styles.rewardTitle}>Reward Pool</Box>
+          </Box>
+        </Box>
+        <Box className={styles.rewardDesc}>
+          <Typography variant="h4">Reward Introduction:</Typography>
         </Box>
       </Box>
 
@@ -59,6 +101,11 @@ const Carnival: NextPageWithLayout = () => {
         </Box>
 
         <Box className={styles.gameList}>
+          <CarnivalGameCard isBig={true} />
+          <CarnivalGameCard />
+          <CarnivalGameCard />
+          <CarnivalGameCard />
+          <CarnivalGameCard />
           <CarnivalGameCard />
           <CarnivalGameCard />
           <CarnivalGameCard />
