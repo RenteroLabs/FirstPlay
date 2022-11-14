@@ -15,5 +15,24 @@
     font-weight: 500;
     color: #222222;
     line-height: 1.17rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .rewardInfo {
+      display: flex;
+      align-items: center;
+      color: #9C9C9C;
+
+      .iconBox {
+        position: relative;
+        width: 1.67rem;
+        height: 1.67rem;
+        margin-right: 0.33rem;
+      }
+      span {
+        color: #8e50e4;
+      }
+    }
   }
 }

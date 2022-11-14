@@ -1,7 +1,7 @@
 .containBox {
   min-height: 90vh;
   padding: 0rem 0 8.42rem;
-  background: #FF3D5A;
+  background: #ff3d5a;
 
   .header {
     position: relative;
@@ -10,7 +10,7 @@
       height: 50rem;
     }
     .playGameIcon {
-      position: absolute; 
+      position: absolute;
       width: 21.39rem;
       height: 20.08rem;
       right: 30rem;
@@ -46,18 +46,59 @@
       left: 12.25rem;
     }
   }
-  .contianer {
+  .container {
     position: relative;
     z-index: 10;
     width: 100rem;
     margin: auto;
     margin-top: -12rem;
 
-    .trialNotify {
+    .notifyBox {
       background: #ffffff;
+
       border-radius: 1rem;
       min-height: 5rem;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+
+      @keyframes messageAnimation {
+        0% {
+          margin-left: 0;
+        }
+        100% {
+          margin-left: -100%;
+        }
+      }
+      .trialNotify {
+        height: 6rem;
+
+        display: flex;
+        align-items: center;
+        animation: 20s messageAnimation linear infinite;
+
+        .messageItem {
+          font-size: 1.5rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #222222;
+          line-height: 3.33rem;
+
+          background: rgba(#8e50e4, 0.1);
+          border-radius: 0.67rem;
+          margin: auto 0.83rem;
+          padding: 0 1.67rem;
+          span {
+            font-size: 1.5rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #222222;
+            line-height: 1.5rem;
+          }
+        }
+      }
     }
+
     .taskProgress {
       background: #ffffff;
       border-radius: 1rem;
@@ -109,6 +150,26 @@
           font-weight: 500;
           color: #222222;
           line-height: 1.5rem;
+          display: flex;
+          align-items: center;
+          .rewardBox {
+            display: inline-flex;
+            align-items: center;
+            margin-left: 0.83rem;
+
+            font-size: 1.5rem;
+            font-family: Inter-Medium, Inter;
+            font-weight: 500;
+            color: #8e50e4;
+            line-height: 1.5rem;
+            user-select: none;
+            .iconBox {
+              position: relative;
+              width: 2rem;
+              height: 2rem;
+              margin-right: 0.33rem;
+            }
+          }
         }
       }
 
@@ -122,7 +183,7 @@
           height: 27.33rem;
           background: rgba(142, 80, 228, 0.22);
           border-radius: 0.67rem;
-
+          flex-shrink: 0;
           .rewardTitle {
             background: #8e50e4;
             border-radius: 0.67rem 0.67rem 0rem 0rem;
@@ -214,43 +275,69 @@
   }
 }
 
+@media screen and (max-width: 1200px) {
+  .containBox {
+    width: 100%;
+    .container {
+      width: auto;
+      margin-left: 5rem;
+      margin-right: 5rem;
+
+      .taskProgress {
+        .gamePanel {
+          .gameList {
+            & > div {
+              width: calc(33.3% - 1.67rem);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .containBox {
-    padding: 0.83rem 0;
+    .container {
+      .trialGames {
+        padding: 2.58rem 1.25rem 0;
+
+        .gameList {
+          & > div {
+            width: calc(33.3% - 2.5rem);
+            margin: auto 1.25rem;
+            margin-bottom: 2.5rem;
+          }
+        }
+      }
+      .taskProgress {
+        padding: 2rem 1.76rem 3.33rem;
+
+        .gamePanel {
+          flex-direction: column;
+          .gameList {
+            margin-right: 0;
+            margin-left: 0;
+            & > div {
+              width: calc(20% - 1.76rem);
+              margin: auto 0.87rem;
+              margin-bottom: 1.76rem;
+            } 
+          }
+          .rewardPool {
+            width: calc(100% - 1.76rem);
+            margin: auto ;
+          }
+        }
+      } 
+    }
   }
 }
 
 @media screen and (max-width: 900px) {
   .containBox {
     .container {
-      .nftInfo {
-        padding: 3rem;
 
-        .rewardBox {
-          padding: 2rem;
-          margin-top: 4rem;
-          .icon_1,
-          .icon_2,
-          .icon_3 {
-            display: none;
-          }
-        }
-      }
-      .progress {
-        padding: 3rem;
-      }
-      .taskBox {
-        padding: 3rem;
-
-        .taskDetail {
-          .taskIllustration {
-            div {
-              width: 30vw;
-              height: 30vw;
-            }
-          }
-        }
-      }
     }
   }
 }
@@ -258,184 +345,61 @@
 @media screen and (max-width: 950px) {
   .containBox {
     .container {
-      .taskBox {
-        .taskHeader {
-          h4 {
-            display: none;
-          }
-        }
-      }
     }
   }
 }
 
+@media screen and (max-width: 950px) {
+  .containBox {
+    .container {
+      margin-left: 2.5rem;
+      margin-right: 2.5rem;
+    }
+  }
+}
 @media screen and (max-width: 800px) {
   .containBox {
     .container {
-      .taskBox {
-        .taskHeader {
-          h4 {
-            display: none;
-          }
-        }
-        .taskDetail {
-          .taskIllustration {
-            display: none;
-          }
-        }
-      }
     }
   }
 }
 @media screen and (max-width: 700px) {
   .containBox {
     .container {
-      .nftInfo {
-        padding: 2rem;
-
-        .nftMetadata {
-          flex-direction: column;
-          .nftCover {
-            margin-top: 1.2rem;
-          }
-          .nftIntro {
-            width: 100%;
-            margin-left: 0;
-            margin-top: 2.58rem;
-
-            h2 {
-              font-size: 2.5rem;
-              font-family: Inter-Bold, Inter;
-              font-weight: bold;
-              color: #222222;
-              line-height: 2.5rem;
-            }
-
-            p {
-              margin-top: 0.83rem;
-              font-size: 1.33rem;
-              font-family: Inter-Medium, Inter;
-              font-weight: 500;
-              color: #222222;
-              line-height: 2rem;
-            }
-          }
-        }
-
-        .rewardBox {
-          margin-top: 1.58rem;
-          padding: 1.67rem 1.33rem;
-
-          .rewardItem {
-            align-items: flex-start;
-            padding: 0.5rem 0;
-            p {
-              font-size: 1.33rem;
-              font-family: Inter-MediumItalic, Inter;
-              font-weight: normal;
-              color: #8e50e4;
-              line-height: 1.33rem;
-            }
-            div {
-              width: 1.17rem;
-              height: 1.45rem;
-              position: relative;
-              margin-right: 0.67rem;
-            }
-          }
-        }
-      }
-
-      .progress {
-        padding: 2rem;
-
-        h3 {
-          font-size: 2rem;
-          font-family: Inter-Bold, Inter;
-          font-weight: bold;
-          color: #222222;
-          line-height: 2.5rem;
-        }
-        h4 {
-          font-size: 1.33rem;
-          font-family: Inter-Bold, Inter;
-          font-weight: bold;
-          color: #222222;
-          line-height: 1.5rem;
-          margin: 1.67rem 0 0.83rem;
-        }
-        p {
-          font-size: 1.33rem;
-          font-family: Inter-Medium, Inter;
-          font-weight: 500;
-          color: #222222;
-          line-height: 2rem;
-          margin-bottom: 2rem;
-        }
-        h6 {
-          font-size: 1.17rem;
-          font-family: Inter-Regular, Inter;
-          font-weight: 400;
-          color: rgba(#222, 0.5);
-          line-height: 1.67rem;
-        }
-        .progressBar {
-          flex-direction: column;
-          margin-bottom: 2rem;
-          .mintCount {
-            margin-top: 0.83rem;
-            align-self: flex-end;
-            font-size: 1.33rem;
-            font-family: Inter-Medium, Inter;
-            font-weight: 500;
-            line-height: 1.33rem;
-          }
-        }
-      }
-
-      .taskBox {
-        padding: 2rem;
-
-        .taskDetail {
-          .taskDetailInfo {
-            .taskLink {
-              font-size: 1.5rem;
-              font-family: Inter-SemiBold, Inter;
-              font-weight: 600;
-              color: #ffffff;
-              line-height: 1.5rem;
-
-              padding: 1.17rem 3rem;
-              text-align: center;
-              display: block;
-              max-width: 28.58rem;
-              margin: auto;
-              button {
-                padding: 0;
-                svg {
-                  color: white;
-                  font-size: 1.6rem;
-                  margin-left: 1rem;
-                }
-              }
-            }
-            p {
-              font-size: 1.17rem;
-              font-family: Inter-Regular, Inter;
-              font-weight: 400;
-              color: rgba(#222, 0.5);
-              line-height: 1.5rem;
-              margin: 1.67rem 0 1rem;
-            }
-          }
-        }
-      }
+      margin-left: 0;
+      margin-right: 0;
     }
   }
 }
 
 @media screen and (max-width: 600px) {
   .containBox {
+    background-color: #f4f4f9;
+    .container {
+      .trialGames {
+        border-radius: 0;
+        margin-top: 1rem;
+        padding: 0rem 0.66rem 0.33rem;
+        overflow: hidden;
+        .cardTitle {
+          margin: 1.42rem 0.66rem 1.42rem;
+          h3 {
+            font-size: 1.5rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #222222;
+            line-height: 1.5rem;
+          }
+        }
+        .gameList {
+          & > div {
+            width: calc(50% - 1.33rem);
+            margin: auto 0.66rem;
+            margin-bottom: 1.33rem;
+          }
+        }
+      }
+    }
   }
 }
 

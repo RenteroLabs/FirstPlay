@@ -2,6 +2,7 @@ import { Box, Typography } from '@mui/material'
 import React from 'react'
 import Image from 'next/image'
 import styles from './styles.module.scss'
+import { REWARD_ACTIVE_ICON, REWARD_INACTIVE_ICON } from 'constants/static'
 
 interface GameSamllCardProps {
   rewardCount: number,
@@ -10,7 +11,7 @@ interface GameSamllCardProps {
 }
 
 const GameSallCard: React.FC<GameSamllCardProps> = (props) => {
-  const { } = props
+  const { getRewarded, rewardCount } = props
 
   return <Box className={styles.smallGameCard}>
     <Box className={styles.gameCover}>
@@ -18,7 +19,10 @@ const GameSallCard: React.FC<GameSamllCardProps> = (props) => {
     </Box>
     <Box className={styles.cardContent}>
       <Typography>BigTime</Typography>
-      <Box></Box>
+      <Box className={styles.rewardInfo}>
+        <Box className={styles.iconBox}><Image src={getRewarded > 0 ? REWARD_ACTIVE_ICON : REWARD_INACTIVE_ICON} layout="fill" /></Box>
+        <span>{getRewarded}</span>/{rewardCount}
+      </Box>
     </Box>
   </Box>
 }

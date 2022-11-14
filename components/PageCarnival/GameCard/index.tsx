@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import styles from './style.module.scss'
 import classNames from 'classnames/bind'
+import { REWARD_ACTIVE_ICON } from "constants/static";
 
 const cx = classNames.bind(styles)
 
@@ -34,7 +35,10 @@ const CarnivalGameCard: React.FC<GameCardProps> = (props) => {
     <Box className={styles.gameContent}>
       <Box className={styles.gameTitle}>
         <Typography variant="h3">GameName</Typography>
-        <Box></Box>
+        <Box className={styles.rewardList}>
+          <Box className={styles.gameRewards}><Image src={REWARD_ACTIVE_ICON} layout="fill" /></Box>
+          <Typography className={styles.rewardNum}>+3</Typography>
+        </Box>
       </Box>
       <Box className={styles.gameRewardDesc}>
         Users who participate in the event can get a ruby card worth 20U!

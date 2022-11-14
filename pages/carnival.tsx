@@ -11,12 +11,15 @@ import { useCountDown } from "ahooks";
 import CarnivalGameCard from "@/components/PageCarnival/GameCard";
 import GameSallCard from "@/components/PageCarnival/GameSmallCard";
 import { useIsMounted } from "hooks/useIsMounted";
+import { formatAddress } from "util/format";
+import { REWARD_ACTIVE_ICON } from "constants/static";
 
 const Carnival_Activity_End_Time = '2022-12-03 24:00:00'
 
 const Carnival: NextPageWithLayout = () => {
 
   const isMounted = useIsMounted()
+  const is800Size = useMediaQuery("(max-width: 800px)")
   const { address } = useAccount()
   const [_, { days }] = useCountDown({
     targetDate: Carnival_Activity_End_Time
@@ -60,15 +63,45 @@ const Carnival: NextPageWithLayout = () => {
         <Image src="/carnival_icon4.png" layout="fill" />
       </Box>
     </Box>
-    <Box className={styles.contianer}>
-      <Box className={styles.trialNotify}></Box>
+    <Box className={styles.container}>
+      <Box className={styles.notifyBox}>
+        <Box className={styles.trialNotify}>
+          <Box className={styles.messageItem}><span>ID: 2343...8979</span> Tried: XXXX</Box>
+          <Box className={styles.messageItem}><span>ID: 8763...3677</span> Tried: BigTime</Box>
+          <Box className={styles.messageItem}><span>ID: 8763...3677</span> Tried: BigTime</Box>
+          <Box className={styles.messageItem}><span>ID: 8763...3677</span> Tried: BigTime</Box>
+          <Box className={styles.messageItem}><span>ID: 8763...3677</span> Tried: BigTime</Box>
+          <Box className={styles.messageItem}><span>ID: 8763...3677</span> Tried: BigTime</Box>
+          <Box className={styles.messageItem}><span>ID: 8763...3677</span> Tried: BigTime</Box>
+          <Box className={styles.messageItem}><span>ID: 8763...3677</span> Tried: BigTime</Box>
+          <Box className={styles.messageItem}><span>ID: 8763...3677</span> Tried: DeHero</Box>
+          <Box className={styles.messageItem}><span>ID: 8763...3677</span> Tried: XXXX</Box>
+          <Box className={styles.messageItem}><span>ID: 2343...8979</span> Tried: XXXX</Box>
+          <Box className={styles.messageItem}><span>ID: 8763...3677</span> Tried: BigTime</Box>
+          <Box className={styles.messageItem}><span>ID: 8763...3677</span> Tried: BigTime</Box>
+          <Box className={styles.messageItem}><span>ID: 8763...3677</span> Tried: BigTime</Box>
+          <Box className={styles.messageItem}><span>ID: 8763...3677</span> Tried: BigTime</Box>
+          <Box className={styles.messageItem}><span>ID: 8763...3677</span> Tried: BigTime</Box>
+          <Box className={styles.messageItem}><span>ID: 8763...3677</span> Tried: BigTime</Box>
+          <Box className={styles.messageItem}><span>ID: 8763...3677</span> Tried: BigTime</Box>
+          <Box className={styles.messageItem}><span>ID: 8763...3677</span> Tried: DeHero</Box>
+          <Box className={styles.messageItem}><span>ID: 8763...3677</span> Tried: XXXX</Box>
+        </Box>
+      </Box>
+
       <Box className={styles.taskProgress}>
         <Box className={styles.cardHeader}>
           <Typography variant="h3">Task Progress</Typography>
           <Typography>Distance draw left <span>{days}</span> day</Typography>
         </Box>
         <Box className={styles.addressSection}>
-          {isMounted && <Typography>ID: {address || ""}</Typography>}
+          {isMounted && <Typography>
+            ID: {formatAddress(address, 8) || ""}
+            <Typography className={styles.rewardBox}>
+              <Box className={styles.iconBox}><Image src={REWARD_ACTIVE_ICON} layout="fill" /> </Box>
+              7
+            </Typography>
+          </Typography>}
           <Link>No PassNFT ?</Link>
         </Box>
 
@@ -78,7 +111,7 @@ const Carnival: NextPageWithLayout = () => {
             <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
             <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
             <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
-            <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
+            <GameSallCard rewardCount={2} getRewarded={1} gameInfo={{}} />
             <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
             <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
             <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
@@ -97,7 +130,7 @@ const Carnival: NextPageWithLayout = () => {
       <Box className={styles.trialGames}>
         <Box className={styles.cardTitle}>
           <Typography variant="h3">Trial Games</Typography>
-          <Typography>Trial time 2022.11.21～12.03,After the end, the lottery will start.</Typography>
+          {isMounted && !is800Size && <Typography>Trial time 2022.11.21～12.03,After the end, the lottery will start.</Typography>}
         </Box>
 
         <Box className={styles.gameList}>
