@@ -173,6 +173,35 @@
         }
       }
 
+      .mobileMedals {
+        margin-left: 0.87rem;
+        margin-right: 0.87rem;
+        margin-top: 1.58rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .rewardIcon {
+          width: 5.33rem;
+          height: 5.33rem;
+          flex-shrink: 0;
+          position: relative;
+          margin-right: 1.08rem;
+        }
+        .rewardBox {
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          & > p {
+            font-size: 1.5rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #222222;
+            line-height: 1.5rem;
+            margin-bottom: 0.58rem;
+          }
+        }
+      }
+
       .gamePanel {
         display: flex;
         justify-content: space-between;
@@ -312,7 +341,12 @@
       }
       .taskProgress {
         padding: 2rem 1.76rem 3.33rem;
-
+        .cardHeader,
+        .addressSection,
+        .rewardDesc {
+          margin-left: 0.87rem;
+          margin-right: 0.87rem;
+        }
         .gamePanel {
           flex-direction: column;
           .gameList {
@@ -322,29 +356,14 @@
               width: calc(20% - 1.76rem);
               margin: auto 0.87rem;
               margin-bottom: 1.76rem;
-            } 
+            }
           }
           .rewardPool {
             width: calc(100% - 1.76rem);
-            margin: auto ;
+            margin: auto;
           }
         }
-      } 
-    }
-  }
-}
-
-@media screen and (max-width: 900px) {
-  .containBox {
-    .container {
-
-    }
-  }
-}
-
-@media screen and (max-width: 950px) {
-  .containBox {
-    .container {
+      }
     }
   }
 }
@@ -357,12 +376,25 @@
     }
   }
 }
-@media screen and (max-width: 800px) {
+
+@media screen and (max-width: 850px) {
   .containBox {
     .container {
+      .taskProgress {
+        .gamePanel {
+          .gameList {
+            & > div {
+              width: calc(25% - 1.76rem);
+              margin: auto 0.87rem;
+              margin-bottom: 1.76rem;
+            }
+          }
+        }
+      }
     }
   }
 }
+
 @media screen and (max-width: 700px) {
   .containBox {
     .container {
@@ -372,6 +404,23 @@
   }
 }
 
+@media screen and (max-width: 650px) {
+  .containBox {
+    .container {
+      .taskProgress {
+        .gamePanel {
+          .gameList {
+            & > div {
+              width: calc(33.3% - 1.76rem);
+              margin: auto 0.87rem;
+              margin-bottom: 1.76rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 @media screen and (max-width: 600px) {
   .containBox {
     background-color: #f4f4f9;
@@ -396,6 +445,65 @@
             width: calc(50% - 1.33rem);
             margin: auto 0.66rem;
             margin-bottom: 1.33rem;
+          }
+        }
+      }
+
+      .taskProgress {
+        border-radius: 0;
+        margin-top: 1rem;
+        padding: 1rem 0.66rem 0.33rem;
+
+        .cardHeader {
+          h3 {
+            font-size: 1.5rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #222222;
+            line-height: 1.5rem;
+          }
+          p {
+            font-size: 1.5rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #222222;
+            line-height: 1.5rem;
+            span {
+              font-size: 1.5rem;
+              font-family: Inter-SemiBold, Inter;
+              font-weight: 600;
+              color: #ffffff;
+              line-height: 1.5rem;
+              width: 2.33rem;
+              height: 2.33rem;
+              border-radius: 0.5rem;
+              line-height: 2.33rem;
+            }
+          }
+        }
+
+        .addressSection {
+          margin-top: 1.17rem;
+          p {
+            font-size: 1.33rem;
+            font-family: Inter-Medium, Inter;
+            font-weight: 500;
+            color: #222222;
+            line-height: 1.33rem;
+
+            .rewardBox {
+              display: none;
+            }
+          }
+        }
+
+        .gamePanel {
+          .gameList {
+            & > div {
+              width: calc(50% - 1.76rem);
+              margin: auto 0.87rem;
+              margin-bottom: 1.76rem;
+            }
           }
         }
       }

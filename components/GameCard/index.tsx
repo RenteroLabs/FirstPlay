@@ -27,10 +27,10 @@ const GameCard: React.FC<GameCardProps> = (props) => {
 
   // TODO: prefetch 预先请求页面
   const linkToGameDetail = () => {
-    router.push({
-      pathname: '/game/[uuid]',
-      query: { uuid: gameInfo.game_id}
-    })
+    // router.push({
+    //   pathname: '/game/[uuid]',
+    //   query: { uuid: gameInfo.game_id}
+    // })
   }
 
   return <Card className={styles.gameCard} onClick={linkToGameDetail}>

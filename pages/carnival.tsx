@@ -13,6 +13,7 @@ import GameSallCard from "@/components/PageCarnival/GameSmallCard";
 import { useIsMounted } from "hooks/useIsMounted";
 import { formatAddress } from "util/format";
 import { REWARD_ACTIVE_ICON } from "constants/static";
+import MedalProgress from "@/components/PageCarnival/MedalProgress";
 
 const Carnival_Activity_End_Time = '2022-12-03 24:00:00'
 
@@ -20,6 +21,7 @@ const Carnival: NextPageWithLayout = () => {
 
   const isMounted = useIsMounted()
   const is800Size = useMediaQuery("(max-width: 800px)")
+  const is600Size = useMediaQuery("(max-width: 600px)")
   const { address } = useAccount()
   const [_, { days }] = useCountDown({
     targetDate: Carnival_Activity_End_Time
@@ -92,17 +94,26 @@ const Carnival: NextPageWithLayout = () => {
       <Box className={styles.taskProgress}>
         <Box className={styles.cardHeader}>
           <Typography variant="h3">Task Progress</Typography>
-          <Typography>Distance draw left <span>{days}</span> day</Typography>
+          <Typography>{isMounted && !is600Size && <>Distance draw left</>} <span>{days}</span> day</Typography>
         </Box>
         <Box className={styles.addressSection}>
           {isMounted && <Typography>
-            ID: {formatAddress(address, 8) || ""}
+            ID: {formatAddress(address, is600Size ? 4 : 8) || ""}
             <Typography className={styles.rewardBox}>
               <Box className={styles.iconBox}><Image src={REWARD_ACTIVE_ICON} layout="fill" /> </Box>
               7
             </Typography>
           </Typography>}
           <Link>No PassNFT ?</Link>
+        </Box>
+        <Box className={styles.mobileMedals}>
+          <Box className={styles.rewardIcon}>
+            <Image src={REWARD_ACTIVE_ICON} layout="fill" />
+          </Box>
+          <Box className={styles.rewardBox}>
+            <Typography>Medal:</Typography>
+            <MedalProgress totalMedals={15} getMedals={3} />
+          </Box>
         </Box>
 
         <Box className={styles.gamePanel}>
