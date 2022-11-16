@@ -64,6 +64,22 @@ const Carnival: NextPageWithLayout = () => {
       <Box className={styles.icon4}>
         <Image src="/carnival_icon4.png" layout="fill" />
       </Box>
+
+      <Box className={styles.headerDesc}>
+        <Box className={styles.brandLogos}>
+          <Image src="/carnival_brand_logo.png" layout="fill" />
+        </Box>
+        {
+          is600Size ? <Typography variant="h2">First Play Game Carnival is coming! Total prize pool is up to $50,000！</Typography>
+            : <>
+              <Typography variant="h2">First Play Game Carnival is coming!</Typography>
+              <Typography variant="h2">Total prize pool is up to $50,000！</Typography>
+            </>
+        }
+
+        <Typography>2022.11.21 ~ 2022.12.03</Typography>
+        <Typography>Play games, win great rewards! { is600Size ? "P" : "With the medals accumulated by completing tasks, you can also p"}articipate in the final draw!</Typography>
+      </Box>
     </Box>
     <Box className={styles.container}>
       <Box className={styles.notifyBox}>
@@ -106,15 +122,15 @@ const Carnival: NextPageWithLayout = () => {
           </Typography>}
           <Link>No PassNFT ?</Link>
         </Box>
-        <Box className={styles.mobileMedals}>
+        {isMounted && is600Size && <Box className={styles.mobileMedals}>
           <Box className={styles.rewardIcon}>
             <Image src={REWARD_ACTIVE_ICON} layout="fill" />
           </Box>
           <Box className={styles.rewardBox}>
             <Typography>Medal:</Typography>
-            <MedalProgress totalMedals={15} getMedals={3} />
+            <MedalProgress totalMedals={15} getMedals={11} />
           </Box>
-        </Box>
+        </Box>}
 
         <Box className={styles.gamePanel}>
           <Box className={styles.gameList}>
@@ -131,6 +147,68 @@ const Carnival: NextPageWithLayout = () => {
           </Box>
           <Box className={styles.rewardPool}>
             <Box className={styles.rewardTitle}>Reward Pool</Box>
+            <Box className={styles.rewardItems}>
+              <Box className={styles.rewardItem}>
+                <Box className={styles.leftMedals}>
+                  <Box className={styles.medalIcon}>
+                    <Image src={REWARD_ACTIVE_ICON} layout="fill" />
+                  </Box>
+                  <Typography>5</Typography>
+                </Box>
+                <Divider orientation="vertical" />
+                <Box className={styles.rewardDesc}>
+
+                </Box>
+              </Box>
+              <Box className={styles.rewardItem}>
+                <Box className={styles.leftMedals}>
+                  <Box className={styles.medalIcon}>
+                    <Image src={REWARD_ACTIVE_ICON} layout="fill" />
+                  </Box>
+                  <Typography>8</Typography>
+                </Box>
+                <Divider orientation="vertical" />
+                <Box className={styles.rewardDesc}>
+
+                </Box>
+              </Box>
+              <Box className={styles.rewardItem}>
+                <Box className={styles.leftMedals}>
+                  <Box className={styles.medalIcon}>
+                    <Image src={REWARD_ACTIVE_ICON} layout="fill" />
+                  </Box>
+                  <Typography>10</Typography>
+                </Box>
+                <Divider orientation="vertical" />
+                <Box className={styles.rewardDesc}>
+
+                </Box>
+              </Box>
+              <Box className={styles.rewardItem}>
+                <Box className={styles.leftMedals}>
+                  <Box className={styles.medalIcon}>
+                    <Image src={REWARD_ACTIVE_ICON} layout="fill" />
+                  </Box>
+                  <Typography>12</Typography>
+                </Box>
+                <Divider orientation="vertical" />
+                <Box className={styles.rewardDesc}>
+
+                </Box>
+              </Box>
+              <Box className={styles.rewardItem}>
+                <Box className={styles.leftMedals}>
+                  <Box className={styles.medalIcon}>
+                    <Image src={REWARD_ACTIVE_ICON} layout="fill" />
+                  </Box>
+                  <Typography>15</Typography>
+                </Box>
+                <Divider orientation="vertical" />
+                <Box className={styles.rewardDesc}>
+
+                </Box>
+              </Box>
+            </Box>
           </Box>
         </Box>
         <Box className={styles.rewardDesc}>

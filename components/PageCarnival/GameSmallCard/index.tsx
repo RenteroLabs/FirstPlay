@@ -2,7 +2,10 @@ import { Box, Typography } from '@mui/material'
 import React from 'react'
 import Image from 'next/image'
 import styles from './styles.module.scss'
+import classNames from 'classnames/bind'
 import { REWARD_ACTIVE_ICON, REWARD_INACTIVE_ICON } from 'constants/static'
+
+const cx = classNames.bind(styles)
 
 interface GameSamllCardProps {
   rewardCount: number,
@@ -17,11 +20,16 @@ const GameSallCard: React.FC<GameSamllCardProps> = (props) => {
     <Box className={styles.gameCover}>
       <Image src="https://rentero-resource.s3.ap-east-1.amazonaws.com/AlongWithTheGods.jpg" layout="fill" objectFit='cover' />
     </Box>
-    <Box className={styles.cardContent}>
+    <Box className={cx({
+      cardContent: true,
+      defaultNone: getRewarded == 0,
+    })}>
       <Typography>BigTime</Typography>
       <Box className={styles.rewardInfo}>
-        <Box className={styles.iconBox}><Image src={getRewarded > 0 ? REWARD_ACTIVE_ICON : REWARD_INACTIVE_ICON} layout="fill" /></Box>
-        <span>{getRewarded}</span>/{rewardCount}
+        <Box className={styles.iconBox}>
+          <Image src={REWARD_ACTIVE_ICON} layout="fill" />
+        </Box>
+        {getRewarded > 0 ? <span>{getRewarded}</span> : 0}/{rewardCount}
       </Box>
     </Box>
   </Box>

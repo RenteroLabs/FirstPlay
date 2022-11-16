@@ -8,7 +8,7 @@ import styles from "../../styles/game.module.scss"
 import Layout from '@/components/Layout'
 import { NextPageWithLayout } from '../_app'
 import GameInfo from '@/components/GameInfo'
-import { MONEY_ICON, REWARD_ICON } from 'constants/static'
+import { MONEY_ICON, REWARD_ACTIVE_ICON, REWARD_ICON } from 'constants/static'
 import KeyboardDoubleArrowDownOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowDownOutlined';
 import TrialNFTCard from '@/components/TrialNFTCard'
 import TrialNFTCardSkeleton from '@/components/TrialNFTCard/TrialNFTCardSkeleton'
@@ -27,6 +27,7 @@ import { useAccount, useContractRead } from 'wagmi'
 import { MARKET_CONTRACT } from 'constants/contract'
 import { FIRSTPLYA_MARKET_ABI } from 'constants/abi'
 import { checkOwnPassNFT } from 'services/web3'
+import CarnivalRewardItem from '@/components/PageCarnival/RewardItem'
 
 export interface TxLoadingParams {
   txHash: string,
@@ -140,7 +141,51 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
           <Box className={styles.gameInfoBox}>
             <GameInfo gameInfo={gameInfo} />
           </Box>
-          {
+          {/* Carnival activity game detail style */}
+          <Box className={styles.carnivalRewrads}>
+            <Box className={styles.cardHeader}>
+              <Typography>Rewards</Typography>
+              <Box className={styles.mediaBox}>
+                <Box className={styles.rewardIcon}>
+                  <Image src={REWARD_ACTIVE_ICON} layout="fill" />
+                </Box>
+                3 Medals
+              </Box>
+            </Box>
+
+            <Typography className={styles.rewardDesc}>
+              After completing the corresponding task, you can register the address. After completing the verification, the reward will be sent to the address at 12:00 every day, and the game carnival medal reward will be obtained at the same time.
+            </Typography>
+            <CarnivalRewardItem
+              index={1}
+              medalNum={1}
+              isClaimed={true}
+              reward="Complete the game registration and get a ruby card reward worth 2U"
+              claimLink=""
+            />
+            <CarnivalRewardItem
+              index={2}
+              medalNum={1}
+              isClaimed={false}
+              reward="Complete the game registration and get a ruby card reward worth 2U"
+              claimLink=""
+            />
+          </Box>
+          <Box className={styles.gameStrategy}>
+            <Typography variant='h4'>Description</Typography>
+            <Box className={styles.strategyDesc}>
+              to download the game, or directly search for &#34;Big Time&#34; in the App Store to complete the downloadComplete the game download. Go to https://bigtime.gg/ to download the game, or directly search for &#34;Big Time&#34; in the App Store to complete the download
+
+              2. Register in the game. After completing the registration, register the address information at the bottom of this page to get a ruby reward worth 20U.
+              Register in the game. After completing the registration, register the address information at the bottom of this page to get a ruby reward worth 20U.
+
+              3. Complete the game download. Go to https://bigtime.gg/ to download the game, or directly search for &#34;Big Time&#34; in the App Store to complete the download
+
+              4. Register in the game. After completing the registration, register the address information at the bottom of this page to get a ruby reward worth 20U.
+            </Box>
+          </Box>
+
+          {/* {
             is700Width ?
               <Box className={styles.rewardMobileBox}>
                 <Box className={styles.cardHeader}>
@@ -165,8 +210,8 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                   </Box>
                 </Box>
               </Box>
-          }
-          {
+          } */}
+          {/* {
             is600Width ?
               <Box className={styles.btnMobileBox}>
                 <Box className={styles.gameStrategyBtn}>Game Strategy</Box>
@@ -187,14 +232,13 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                     <Box className={styles.trialBtn} onClick={() => setShowQuickTrialModal(true)}> Start Free Trial </Box>
                 }
 
-                {/* TODO: 点击后，滚动到指定位置 */}
                 <Box className={styles.downIcon} onClick={() => { }}>
                   <KeyboardDoubleArrowDownOutlinedIcon />
                 </Box>
               </Box>
-          }
+          } */}
 
-
+          {/* 
           <Box className={styles.cardBox}>
             <Box className={styles.cardContent}>
               <Typography variant='h3'>All Items</Typography>
@@ -220,7 +264,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                 }
               </Box>
             </Box>
-          </Box>
+          </Box> */}
           <QuickTrialNFT
             showModal={showQuickTrialModal}
             setShowModal={setShowQuickTrialModal}

@@ -11,6 +11,75 @@
     margin: 5.83rem auto 3.33rem;
   }
 
+  .carnivalRewrads {
+    max-width: 100rem;
+    margin: auto;
+    min-height: 10rem;
+    background: rgba(#e4405b, 0.05);
+    border-radius: 1rem;
+    padding: 2.5rem;
+    .cardHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      p {
+        font-size: 2rem;
+        font-family: Inter-Bold, Inter;
+        font-weight: bold;
+        color: #222222;
+        line-height: 2rem;
+      }
+      .mediaBox {
+        display: flex;
+        align-items: center;
+        font-size: 1.33rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 1.33rem;
+        .rewardIcon {
+          position: relative;
+          width: 2rem;
+          height: 2rem;
+          margin-right: 0.33rem;
+        }
+      }
+    }
+    .rewardDesc {
+      font-size: 1.33rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
+      color: #222222;
+      line-height: 2rem;
+      margin-top: 0.8rem;
+      margin-bottom: 2.5rem;
+      width: 80%;
+      text-align: left;
+    }
+  }
+  .gameStrategy {
+    max-width: 100rem;
+    margin: auto;
+    margin-top: 4.17rem;
+    margin-bottom: 6.67rem;
+
+    h4 {
+      font-size: 1.75rem;
+      font-family: Inter-Bold, Inter;
+      font-weight: bold;
+      color: #222222;
+      line-height: 1.75rem;
+      margin-bottom: 1.67rem;
+    }
+    .strategyDesc {
+      font-size: 1.33rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
+      color: #222222;
+      line-height: 2rem;
+    }
+  }
+
   .rewardBox {
     max-width: 100rem;
     margin: auto;
@@ -155,7 +224,7 @@
       line-height: 1.75rem;
       background: rgba(#222, 0.3);
       border-radius: 2.67rem;
-      user-select: none; 
+      user-select: none;
     }
 
     .downIcon {
@@ -208,7 +277,7 @@
       padding: 1.17rem 2rem;
       border-radius: 2rem;
       border: 0.16rem solid #bb489c;
-     
+
       font-size: 1.33rem;
       font-family: Inter-SemiBold, Inter;
       font-weight: 600;
@@ -297,7 +366,20 @@
 
 @media screen and (max-width: 1250px) {
   .gameBox {
-    .rewardBox, .gameInfoBox {
+    .carnivalRewrads {
+      width: calc(100% - 10rem);
+      margin: auto;
+
+      .rewardDesc {
+        width: 100%;
+      }
+    }
+    .gameStrategy {
+      width: calc(100% - 10rem);
+      margin: 3rem auto;
+    }
+    .rewardBox,
+    .gameInfoBox {
       width: calc(100% - 10rem);
     }
     .cardBox {
@@ -312,10 +394,24 @@
 
 @media screen and (max-width: 1050px) {
   .gameBox {
+    .carnivalRewrads {
+      width: calc(100% - 6rem);
+      margin: auto;
+
+      .rewardDesc {
+        width: 100%;
+      }
+    }
+    .gameStrategy {
+      width: calc(100% - 6rem);
+      margin: 2.5rem auto;
+    }
+
     .topCover {
       height: 18.33rem;
     }
-    .rewardBox , .gameInfoBox{
+    .rewardBox,
+    .gameInfoBox {
       width: calc(100% - 6rem);
     }
 
@@ -337,8 +433,23 @@
 
 @media screen and (max-width: 750px) {
   .gameBox {
+
+    .carnivalRewrads {
+      width: calc(100% - 4rem);
+      margin: auto;
+
+      .rewardDesc {
+        width: 100%;
+      }
+    }
+    .gameStrategy {
+      width: calc(100% - 4rem);
+      margin: 2.4rem auto;
+    }
+
     .rewardBox,
-    .rewardMobileBox, .gameInfoBox {
+    .rewardMobileBox,
+    .gameInfoBox {
       width: calc(100% - 4rem);
     }
 
@@ -371,6 +482,51 @@
 
 @media screen and (max-width: 600px) {
   .gameBox {
+    .carnivalRewrads {
+      width: 100%;
+      padding: 1.67rem 1.33rem;
+      .cardHeader {
+        p {
+          font-size: 1.75rem;
+          font-family: Inter-Bold, Inter;
+          font-weight: bold;
+          color: #222222;
+          line-height: 2rem;
+        }
+        .mediaBox {
+          font-size: 1.17rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #222222;
+          line-height: 1.17rem;
+        }
+      }
+
+      .rewardDesc {
+        font-size: 1.17rem;
+        font-family: Inter-Regular, Inter;
+        font-weight: 400;
+        color: #222222;
+        line-height: 2rem;
+      }
+    }
+
+    .gameStrategy {
+      width: 100%;
+      padding: 1.67rem 1.33rem;
+      margin-top: 1rem;
+      margin-bottom: 2.42rem;
+      h4 {
+        margin-bottom: 0.83rem;
+      }
+      .strategyDesc {
+        font-size: 1.17rem;
+        font-family: Inter-Regular, Inter;
+        font-weight: 400;
+        color: #222222;
+        line-height: 2rem;
+      }
+    }
     .topCover {
       height: 15rem;
     }

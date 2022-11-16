@@ -13,7 +13,7 @@
       position: absolute;
       width: 21.39rem;
       height: 20.08rem;
-      right: 30rem;
+      right: calc(50% - 48rem);
       bottom: 12rem;
     }
 
@@ -44,6 +44,41 @@
       height: 14.09rem;
       top: 23.17rem;
       left: 12.25rem;
+    }
+
+    .headerDesc {
+      position: absolute;
+      max-width: 100rem;
+      margin: auto;
+      top: 0;
+      left: 0;
+      right: 0;
+      user-select: none;
+      .brandLogos {
+        position: relative;
+        width: 29.27rem;
+        height: 4.37rem;
+        margin-top: 5.58rem;
+        margin-bottom: 2.58rem;
+      }
+      h2 {
+        font-size: 4.67rem;
+        font-family: Branding-Bold, Branding;
+        font-weight: bold;
+        color: #ffffff;
+        line-height: 5.33rem;
+        & + h2 {
+          margin-bottom: 1.67rem;
+        }
+      }
+      p {
+        width: 80%;
+        font-size: 2rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #ffffff;
+        line-height: 3rem;
+      }
     }
   }
   .container {
@@ -224,6 +259,47 @@
             text-align: center;
             padding: 1.25rem;
           }
+
+          .rewardItems {
+            padding: 0.75rem;
+
+            display: flex;
+            flex-direction: column;
+
+            .rewardItem {
+              height: 3.67rem;
+              background: #ffffff;
+              border-radius: 0.33rem;
+              padding: 0.33rem 0.58rem;
+              display: flex;
+              align-items: center;
+              & + .rewardItem {
+                margin-top: 0.83rem;
+              }
+
+              .leftMedals {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                .medalIcon {
+                  position: relative;
+                  width: 3rem;
+                  height: 3rem;
+                  margin-right: 0.42rem;
+                  flex-shrink: 0;
+                }
+                p {
+                  font-size: 1.5rem;
+                  font-family: Inter-Medium, Inter;
+                  font-weight: 500;
+                  color: #222222;
+                  line-height: 1.5rem;
+                  width: 2rem;
+                  margin-right: 1rem;
+                }
+              }
+            }
+          }
         }
 
         .gameList {
@@ -307,11 +383,50 @@
 @media screen and (max-width: 1200px) {
   .containBox {
     width: 100%;
+    min-height: 0;
+    // height: 50vh;
+
+    .header {
+      width: 100%;
+      .topBackground {
+        height: 33.3rem;
+      }
+      .playGameIcon {
+        bottom: 0;
+        right: 7rem;
+        width: 18.38rem;
+        height: 16.7rem;
+      }
+      .headerDesc {
+        left: 5rem;
+        right: 5rem;
+        .brandLogos {
+          margin-top: 3.42rem;
+          margin-bottom: 1.75rem;
+        }
+        h2 {
+          font-size: 3.33rem;
+          font-family: Branding-Bold, Branding;
+          font-weight: bold;
+          color: #ffffff;
+          line-height: 4rem;
+        }
+        p {
+          width: 60%;
+          font-size: 1.75rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #ffffff;
+          line-height: 2.67rem;
+        }
+      }
+    }
+
     .container {
       width: auto;
       margin-left: 5rem;
       margin-right: 5rem;
-
+      margin-top: 0rem;
       .taskProgress {
         .gamePanel {
           .gameList {
@@ -370,6 +485,12 @@
 
 @media screen and (max-width: 950px) {
   .containBox {
+    .header {
+      .headerDesc {
+        left: 2.5rem;
+        right: 2.5rem;
+      }
+    }
     .container {
       margin-left: 2.5rem;
       margin-right: 2.5rem;
@@ -379,6 +500,12 @@
 
 @media screen and (max-width: 850px) {
   .containBox {
+    .header {
+      .playGameIcon {
+        bottom: 0;
+        right: 4rem;
+      }
+    }
     .container {
       .taskProgress {
         .gamePanel {
@@ -395,6 +522,67 @@
   }
 }
 
+@media screen and (max-width: 750px) {
+  .containBox {
+    .header {
+      .headerDesc {
+        .brandLogos {
+          width: 22.43rem;
+          height: 3.33rem;
+          margin-top: 1.5rem;
+          margin-bottom: 2.33rem;
+        }
+        h2 {
+          font-size: 2.5rem;
+          font-family: Branding-Bold, Branding;
+          font-weight: bold;
+          color: #ffffff;
+          line-height: 3rem;
+          & + h2 {
+            margin-bottom: 2rem;
+          }
+        }
+        p {
+          width: 70%;
+          font-size: 1.5rem;
+          font-family: Inter-SemiBold, Inter;
+          font-weight: 600;
+          color: #ffffff;
+          line-height: 2.5rem;
+        }
+      }
+      .icon4 {
+        width: 6.15rem;
+        height: 4.42rem;
+        top: 2.5rem;
+        right: 0.42rem;
+      }
+      .playGameIcon {
+        bottom: 0;
+        right: 1.67rem;
+        width: 12.78rem;
+        height: 10.93rem;
+      }
+      .icon1 {
+        width: 8.54rem;
+        height: 8.99rem;
+        left: -0.5rem;
+        top: 10rem;
+      }
+      .icon2 {
+        width: 3.61rem;
+        height: 3.1rem;
+        top: 4.3rem;
+        right: 11rem;
+      }
+      .icon3 {
+        width: 5.94rem;
+        height: 3.48rem;
+        bottom: 1rem;
+      }
+    }
+  }
+}
 @media screen and (max-width: 700px) {
   .containBox {
     .container {
@@ -423,8 +611,64 @@
 }
 @media screen and (max-width: 600px) {
   .containBox {
+    .header {
+      .topBackground {
+        height: 34.17rem;
+      }
+      
+      
+      .headerDesc {
+        left: 1.33rem;
+        right: 1.33rem;
+        .brandLogos {
+          width: 22.43rem;
+          height: 3.33rem;
+          margin-top: 1.5rem;
+          margin-bottom: 2.33rem;
+        }
+        h2 {
+          font-size: 2.5rem;
+          font-family: Branding-Bold, Branding;
+          font-weight: bold;
+          color: #ffffff;
+          line-height: 3rem;
+          margin-bottom: 2rem;
+        }
+        p {
+          width: 70%;
+          font-size: 1.5rem;
+          font-family: Inter-SemiBold, Inter;
+          font-weight: 600;
+          color: #ffffff;
+          line-height: 2.5rem;
+        }
+      }
+    }
     background-color: #f4f4f9;
     .container {
+      .notifyBox {
+        width: calc(100% - 2.66rem);
+        height: 4rem;
+        min-height: 0;
+        margin: auto;
+        margin-top: -2rem;
+        border-radius: 0.67rem;
+        .trialNotify {
+          height: 4rem;
+          .messageItem {
+            margin: auto 0;
+            font-size: 1.33rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: rgba(#222222, 0.8);
+            line-height: 1.33rem;
+            background: white;
+            span {
+              color: rgba(#222222, 1);
+            }
+          }
+        }
+      }
       .trialGames {
         border-radius: 0;
         margin-top: 1rem;
@@ -500,9 +744,9 @@
         .gamePanel {
           .gameList {
             & > div {
-              width: calc(50% - 1.76rem);
+              width: calc(33.3% - 1.76rem);
               margin: auto 0.87rem;
-              margin-bottom: 1.76rem;
+              margin-bottom: 0.84rem;
             }
           }
         }
