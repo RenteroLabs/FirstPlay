@@ -51,7 +51,7 @@ const Dashboard: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
     functionName: "supply",
     args: [
       [AXE_NFT_CONTRACT],
-      [21],
+      [22],
       AXE_GAME_ID,
       1
     ]

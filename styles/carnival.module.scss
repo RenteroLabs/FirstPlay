@@ -1,0 +1,517 @@
+.containBox {
+  min-height: 90vh;
+  padding: 0rem 0 8.42rem;
+  background: #ff3d5a;
+
+  .header {
+    position: relative;
+    .topBackground {
+      position: relative;
+      height: 50rem;
+    }
+    .playGameIcon {
+      position: absolute;
+      width: 21.39rem;
+      height: 20.08rem;
+      right: 30rem;
+      bottom: 12rem;
+    }
+
+    .icon3 {
+      position: absolute;
+      width: 9.3rem;
+      height: 5.45rem;
+      bottom: 10rem;
+      right: 40%;
+    }
+    .icon4 {
+      position: absolute;
+      width: 9.28rem;
+      height: 6.67rem;
+      top: 7.08rem;
+      right: 24.58rem;
+    }
+    .icon2 {
+      position: absolute;
+      width: 5.65rem;
+      height: 4.85rem;
+      top: 6.25rem;
+      right: 47.83rem;
+    }
+    .icon1 {
+      position: absolute;
+      width: 14.55rem;
+      height: 14.09rem;
+      top: 23.17rem;
+      left: 12.25rem;
+    }
+  }
+  .container {
+    position: relative;
+    z-index: 10;
+    width: 100rem;
+    margin: auto;
+    margin-top: -12rem;
+
+    .notifyBox {
+      background: #ffffff;
+
+      border-radius: 1rem;
+      min-height: 5rem;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+
+      @keyframes messageAnimation {
+        0% {
+          margin-left: 0;
+        }
+        100% {
+          margin-left: -100%;
+        }
+      }
+      .trialNotify {
+        height: 6rem;
+
+        display: flex;
+        align-items: center;
+        animation: 20s messageAnimation linear infinite;
+
+        .messageItem {
+          font-size: 1.5rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #222222;
+          line-height: 3.33rem;
+
+          background: rgba(#8e50e4, 0.1);
+          border-radius: 0.67rem;
+          margin: auto 0.83rem;
+          padding: 0 1.67rem;
+          span {
+            font-size: 1.5rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #222222;
+            line-height: 1.5rem;
+          }
+        }
+      }
+    }
+
+    .taskProgress {
+      background: #ffffff;
+      border-radius: 1rem;
+      min-height: 50rem;
+      margin-top: 2.5rem;
+      padding: 2rem 3.33rem 3.33rem;
+      .cardHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 0.92rem;
+        border-bottom: 0.16rem solid rgba(#222, 0.2);
+        h3 {
+          font-size: 2rem;
+          font-family: Inter-SemiBold, Inter;
+          font-weight: 600;
+          color: #222222;
+          line-height: 2rem;
+        }
+        p {
+          font-size: 2rem;
+          font-family: Inter-SemiBold, Inter;
+          font-weight: 600;
+          color: #222222;
+          line-height: 2rem;
+          span {
+            display: inline-flex;
+            justify-content: center;
+            width: 3.33rem;
+            height: 3.33rem;
+            background: #8e50e4;
+            border-radius: 0.67rem;
+            font-size: 2rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 3.33rem;
+          }
+        }
+      }
+
+      .addressSection {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1.67rem;
+        p {
+          font-size: 1.5rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #222222;
+          line-height: 1.5rem;
+          display: flex;
+          align-items: center;
+          .rewardBox {
+            display: inline-flex;
+            align-items: center;
+            margin-left: 0.83rem;
+
+            font-size: 1.5rem;
+            font-family: Inter-Medium, Inter;
+            font-weight: 500;
+            color: #8e50e4;
+            line-height: 1.5rem;
+            user-select: none;
+            .iconBox {
+              position: relative;
+              width: 2rem;
+              height: 2rem;
+              margin-right: 0.33rem;
+            }
+          }
+        }
+      }
+
+      .mobileMedals {
+        margin-left: 0.87rem;
+        margin-right: 0.87rem;
+        margin-top: 1.58rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .rewardIcon {
+          width: 5.33rem;
+          height: 5.33rem;
+          flex-shrink: 0;
+          position: relative;
+          margin-right: 1.08rem;
+        }
+        .rewardBox {
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          & > p {
+            font-size: 1.5rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #222222;
+            line-height: 1.5rem;
+            margin-bottom: 0.58rem;
+          }
+        }
+      }
+
+      .gamePanel {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-top: 2.5rem;
+        .rewardPool {
+          width: 34.96rem;
+          height: 27.33rem;
+          background: rgba(142, 80, 228, 0.22);
+          border-radius: 0.67rem;
+          flex-shrink: 0;
+          .rewardTitle {
+            background: #8e50e4;
+            border-radius: 0.67rem 0.67rem 0rem 0rem;
+            font-size: 1.5rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.5rem;
+            text-align: center;
+            padding: 1.25rem;
+          }
+        }
+
+        .gameList {
+          margin-right: 2.5rem;
+          margin-left: -0.83rem;
+          flex-grow: 1;
+          display: flex;
+          flex-wrap: wrap;
+
+          & > div {
+            width: calc(25% - 1.67rem);
+            margin: auto 0.83rem;
+            margin-bottom: 1.67rem;
+          }
+        }
+      }
+
+      .rewardDesc {
+        margin-top: 1.67rem;
+        h4 {
+          font-size: 1.17rem;
+          font-family: PingFangSC-Medium, PingFang SC;
+          font-weight: 500;
+          color: #222222;
+          line-height: 2.17rem;
+        }
+      }
+    }
+
+    .trialGames {
+      background: #ffffff;
+      border-radius: 1rem;
+      margin-top: 2.5rem;
+      min-height: 30rem;
+
+      padding: 2.58rem 1.66rem 0;
+
+      .cardTitle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 1.66rem 2.5rem;
+        h3 {
+          font-size: 2rem;
+          font-family: Inter-SemiBold, Inter;
+          font-weight: 600;
+          color: #222222;
+          line-height: 2rem;
+        }
+        p {
+          font-size: 1.17rem;
+          font-family: Inter-Regular, Inter;
+          font-weight: 400;
+          color: #222222;
+          line-height: 1.17rem;
+        }
+      }
+
+      .gameList {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        & > div {
+          width: calc(25% - 3.33rem);
+          margin: auto 1.66rem;
+          margin-bottom: 3.33rem;
+        }
+      }
+    }
+
+    .activityRules {
+      background: #ffffff;
+      border-radius: 1rem;
+      margin-top: 2.5rem;
+      min-height: 30rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .containBox {
+    width: 100%;
+    .container {
+      width: auto;
+      margin-left: 5rem;
+      margin-right: 5rem;
+
+      .taskProgress {
+        .gamePanel {
+          .gameList {
+            & > div {
+              width: calc(33.3% - 1.67rem);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .containBox {
+    .container {
+      .trialGames {
+        padding: 2.58rem 1.25rem 0;
+
+        .gameList {
+          & > div {
+            width: calc(33.3% - 2.5rem);
+            margin: auto 1.25rem;
+            margin-bottom: 2.5rem;
+          }
+        }
+      }
+      .taskProgress {
+        padding: 2rem 1.76rem 3.33rem;
+        .cardHeader,
+        .addressSection,
+        .rewardDesc {
+          margin-left: 0.87rem;
+          margin-right: 0.87rem;
+        }
+        .gamePanel {
+          flex-direction: column;
+          .gameList {
+            margin-right: 0;
+            margin-left: 0;
+            & > div {
+              width: calc(20% - 1.76rem);
+              margin: auto 0.87rem;
+              margin-bottom: 1.76rem;
+            }
+          }
+          .rewardPool {
+            width: calc(100% - 1.76rem);
+            margin: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .containBox {
+    .container {
+      margin-left: 2.5rem;
+      margin-right: 2.5rem;
+    }
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .containBox {
+    .container {
+      .taskProgress {
+        .gamePanel {
+          .gameList {
+            & > div {
+              width: calc(25% - 1.76rem);
+              margin: auto 0.87rem;
+              margin-bottom: 1.76rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .containBox {
+    .container {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .containBox {
+    .container {
+      .taskProgress {
+        .gamePanel {
+          .gameList {
+            & > div {
+              width: calc(33.3% - 1.76rem);
+              margin: auto 0.87rem;
+              margin-bottom: 1.76rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  .containBox {
+    background-color: #f4f4f9;
+    .container {
+      .trialGames {
+        border-radius: 0;
+        margin-top: 1rem;
+        padding: 0rem 0.66rem 0.33rem;
+        overflow: hidden;
+        .cardTitle {
+          margin: 1.42rem 0.66rem 1.42rem;
+          h3 {
+            font-size: 1.5rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #222222;
+            line-height: 1.5rem;
+          }
+        }
+        .gameList {
+          & > div {
+            width: calc(50% - 1.33rem);
+            margin: auto 0.66rem;
+            margin-bottom: 1.33rem;
+          }
+        }
+      }
+
+      .taskProgress {
+        border-radius: 0;
+        margin-top: 1rem;
+        padding: 1rem 0.66rem 0.33rem;
+
+        .cardHeader {
+          h3 {
+            font-size: 1.5rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #222222;
+            line-height: 1.5rem;
+          }
+          p {
+            font-size: 1.5rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #222222;
+            line-height: 1.5rem;
+            span {
+              font-size: 1.5rem;
+              font-family: Inter-SemiBold, Inter;
+              font-weight: 600;
+              color: #ffffff;
+              line-height: 1.5rem;
+              width: 2.33rem;
+              height: 2.33rem;
+              border-radius: 0.5rem;
+              line-height: 2.33rem;
+            }
+          }
+        }
+
+        .addressSection {
+          margin-top: 1.17rem;
+          p {
+            font-size: 1.33rem;
+            font-family: Inter-Medium, Inter;
+            font-weight: 500;
+            color: #222222;
+            line-height: 1.33rem;
+
+            .rewardBox {
+              display: none;
+            }
+          }
+        }
+
+        .gamePanel {
+          .gameList {
+            & > div {
+              width: calc(50% - 1.76rem);
+              margin: auto 0.87rem;
+              margin-bottom: 1.76rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .containBox {
+  }
+}

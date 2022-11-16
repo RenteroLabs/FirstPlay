@@ -1,0 +1,38 @@
+.smallGameCard {
+  background: #ffffff;
+  border-radius: 0.67rem;
+  overflow: hidden;
+  border: 0.08rem solid rgba(#222, 0.2);
+  .gameCover {
+    position: relative;
+    height: 5.33rem;
+  }
+
+  .cardContent {
+    padding: 0.83rem 0.67rem;
+    font-size: 1.17rem;
+    font-family: Inter-Medium, Inter;
+    font-weight: 500;
+    color: #222222;
+    line-height: 1.17rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .rewardInfo {
+      display: flex;
+      align-items: center;
+      color: #9C9C9C;
+
+      .iconBox {
+        position: relative;
+        width: 1.67rem;
+        height: 1.67rem;
+        margin-right: 0.33rem;
+      }
+      span {
+        color: #8e50e4;
+      }
+    }
+  }
+}

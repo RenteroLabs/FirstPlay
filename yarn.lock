@@ -688,6 +688,11 @@
   resolved "https://registry.npmmirror.com/@graphql-typed-document-node/core/-/core-3.1.1.tgz#076d78ce99822258cf813ecc1e7fa460fa74d052"
   integrity sha512-NQ17ii0rK1b34VZonlmT2QMJFI70m0TRwbknO/ihlbatXyaktDhN/98vBiUU6kNBPljqGqyIrl2T4nY2RpFANg==
 
+"@homielab/react-native-auto-scroll@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.npmmirror.com/@homielab/react-native-auto-scroll/-/react-native-auto-scroll-0.0.8.tgz#845d838e18c873b9d6d1c5ff1dd1f6e2a5852ae9"
+  integrity sha512-wh2S0qj1udiLSnJc7aiEoxHx40Kwy7mTlnVehXvLxw3XUmS1G6iyviuuIMr/fpmLaSHR7Wf5Q52eQeQdm1LINg==
+
 "@humanwhocodes/config-array@^0.10.4":
   version "0.10.4"
   resolved "https://registry.npmmirror.com/@humanwhocodes/config-array/-/config-array-0.10.4.tgz#01e7366e57d2ad104feea63e72248f22015c520c"
