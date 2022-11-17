@@ -4,6 +4,7 @@ import React from "react";
 import styles from './style.module.scss'
 import classNames from 'classnames/bind'
 import { REWARD_ACTIVE_ICON } from "constants/static";
+import * as ga from '../../../util/ga'
 
 const cx = classNames.bind(styles)
 
@@ -15,6 +16,18 @@ interface GameCardProps {
 
 const CarnivalGameCard: React.FC<GameCardProps> = (props) => {
   const { isBig = false } = props
+
+  const sendTrialGameEvent = () => {
+    ga.event({ action: "click", params: { event_name: 'chooseGame' } })
+  }
+
+  const handleTrialGame = () => {
+    // 发送 ga 事件
+    sendTrialGameEvent()
+
+    // 跳转至游戏详情页
+
+  }
 
   return <Box className={cx({
     gameCard: true,
@@ -45,7 +58,7 @@ const CarnivalGameCard: React.FC<GameCardProps> = (props) => {
       </Box>
     </Box>
 
-    <Box className={styles.trialBtn}>
+    <Box className={styles.trialBtn} onClick={handleTrialGame}>
       Start Trial
     </Box>
   </Box>
