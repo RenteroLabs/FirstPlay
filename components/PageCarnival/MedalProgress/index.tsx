@@ -5,17 +5,16 @@ import styles from './styles.module.scss'
 interface MedalProgressProps {
   totalMedals: number,
   getMedals: number,
-  percent: number,
 }
 
 const MedalProgress: React.FC<MedalProgressProps> = (props) => {
-  const { totalMedals, getMedals, percent = 50} = props
+  const { totalMedals, getMedals} = props
 
   return <Box className={styles.progressBox}>
     <Box className={styles.linerProgress}>
-      <Box className={styles.activeLiner} sx={{ width: `${percent}%`}}></Box>
+      <Box className={styles.activeLiner} sx={{ width: `${Number((getMedals * 100) / totalMedals).toFixed(1)}%`}}></Box>
     </Box>
-    <Typography><span>3</span> / 23</Typography>
+    <Typography><span>{getMedals}</span> / {totalMedals}</Typography>
   </Box>
 }
 

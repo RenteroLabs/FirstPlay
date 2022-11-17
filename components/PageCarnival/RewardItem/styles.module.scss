@@ -1,0 +1,209 @@
+.carnivalRewardItem {
+  padding: 0.67rem;
+  background: rgba(#e4405b, 0.1);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  & + .carnivalRewardItem {
+    margin-top: 1.33rem;
+  }
+  .rewardIndex {
+    width: 4.67rem;
+    height: 4.67rem;
+    background: #8e50e4;
+    font-size: 2.5rem;
+    font-family: Inter-SemiBold, Inter;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    user-select: none;
+    flex-shrink: 0;
+    position: relative;
+
+    &::after {
+      display: inline-block;
+      content: '';
+      width: 0;
+      height: 0;
+      border: 6.72px solid transparent;
+      border-left-color: #8e50e4;
+      position: absolute;
+      right: -13px;
+    }
+  }
+  p {
+    flex-grow: 1;
+    font-size: 1.5rem;
+    font-family: Inter-SemiBold, Inter;
+    font-weight: 600;
+    color: #222222;
+    line-height: 1.5rem;
+    margin-left: 1.25rem;
+  }
+
+  .claimBtn {
+    flex-shrink: 0;
+    width: 10rem;
+    text-align: center;
+    margin-right: 3rem;
+    margin-left: 1.5rem;
+    background: rgba(255, 255, 255, 0);
+    border-radius: 1.67rem;
+    border: 1px solid #ba449a;
+    user-select: none;
+    padding: 0.92rem;
+
+    font-size: 1.17rem;
+    font-family: Inter-SemiBold, Inter;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.17rem;
+    background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    cursor: pointer;
+
+    &:hover {
+      background: linear-gradient(270deg, #f82757 0%, #984cec 100%);
+      border-color: transparent;
+      border: none;
+      -webkit-text-fill-color: white;
+    }
+  }
+  .claimedBtn {
+    cursor: default;
+    background: linear-gradient(270deg, #f82757 0%, #984cec 100%);
+    border-color: transparent;
+    border: none;
+    -webkit-text-fill-color: white;
+  }
+  .rewardIcon {
+    flex-shrink: 0;
+    position: relative;
+    width: 3rem;
+    height: 3rem;
+  }
+  span {
+    flex-shrink: 0;
+    font-size: 1.5rem;
+    font-family: Inter-SemiBold, Inter;
+    font-weight: 600;
+    color: #8e50e4;
+    line-height: 1.5rem;
+    margin-left: 0.33rem;
+    margin-right: 2rem;
+  }
+}
+
+.mobileCarnivalRewardItem {
+  position: relative;
+  padding: 1.67rem 1.33rem;
+  background-color: white;
+  box-shadow: 0rem 0.83rem 1.67rem 0rem rgba(255, 61, 90, 0.2);
+  border-radius: 0.67rem;
+  border-top: 0.83rem solid rgba(#ff3d5a, 0.3);
+
+  .itemLabel {
+    position: absolute;
+    width: 3.33rem;
+    height: 3rem;
+    background: #3c3c3c;
+    box-shadow: -0.17rem 0.17rem 0.33rem 0rem #222222;
+    border-radius: 0rem 1rem 0rem 1rem;
+    top: -1.5rem;
+    font-size: 1.75rem;
+    font-family: Inter-SemiBold, Inter;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-color: transparent;
+    &::before {
+      display: block;
+      content: '';
+      width: 0;
+      height: 0;
+      position: absolute;
+      border: 4px solid transparent;
+      border-right: 4px solid #3c3c3c;
+      border-bottom: 4px solid #3c3c3c;
+      left: -8px;
+      top: 0px;
+    }
+  }
+  p {
+    font-size: 1.5rem;
+    font-family: Inter-SemiBold, Inter;
+    font-weight: 600;
+    color: #222222;
+    line-height: 2.33rem;
+  }
+  .actionArea {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.17rem;
+
+    .claimBtn {
+      flex-shrink: 0;
+      width: 10rem;
+      text-align: center;
+      margin-right: 1rem;
+      background: rgba(255, 255, 255, 0);
+      border-radius: 1.67rem;
+      border: 1px solid #ba449a;
+      user-select: none;
+      padding: 0.92rem;
+
+      font-size: 1.17rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.17rem;
+      background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      cursor: pointer;
+
+      &:hover {
+        background: linear-gradient(270deg, #f82757 0%, #984cec 100%);
+        border-color: transparent;
+        -webkit-text-fill-color: white;
+      }
+    }
+    .claimedBtn {
+      cursor: default;
+      background: linear-gradient(270deg, #f82757 0%, #984cec 100%);
+      border-color: transparent;
+      border: none;
+      -webkit-text-fill-color: white;
+    }
+    .rewardIcon {
+      flex-shrink: 0;
+      position: relative;
+      width: 3rem;
+      height: 3rem;
+    }
+    span {
+      flex-shrink: 0;
+      font-size: 1.5rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #8e50e4;
+      line-height: 1.5rem;
+      margin-left: 0.33rem;
+      margin-right: 0.33rem;
+    }
+  }
+
+  & + .mobileCarnivalRewardItem {
+    margin-top: 2.33rem;
+  }
+}

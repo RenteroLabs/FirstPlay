@@ -22,7 +22,7 @@
     .rewardInfo {
       display: flex;
       align-items: center;
-      color: #9C9C9C;
+      color: #9c9c9c;
 
       .iconBox {
         position: relative;
@@ -34,5 +34,36 @@
         color: #8e50e4;
       }
     }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .smallGameCard {
+    border: none;
+    .gameCover {
+      padding-bottom: 100%;
+    }
+
+    .cardContent {
+      flex-direction: column;
+      user-select: none;
+      p, .rewardInfo {
+        font-size: 1.33rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 1.33rem;
+      }
+      .rewardInfo {
+        margin-top: 0.92rem;
+        span {
+          color: #FF3D5A;
+        }
+      }
+    }
+  }
+
+  .defaultNone {
+    opacity: 0.3;
   }
 }

@@ -10,7 +10,7 @@ interface HotGamesProps {
 
 const HotGames: React.FC<HotGamesProps> = (props) => {
   const { hotGames } = props
-  console.log(hotGames)
+  
   return <Box className={styles.hotGames}>
     <Box className={styles.hotGamesBox}>
       <SectionTitle normal="Games" emphasize="Hot" />

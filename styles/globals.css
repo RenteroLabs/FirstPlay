@@ -16,6 +16,11 @@ a {
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "Branding-Bold";
+  src: url(../public/fonts/Branding\ Bold.otf);
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     /* color-scheme: dark; */
