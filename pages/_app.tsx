@@ -89,7 +89,7 @@ function MyApp({ Component, pageProps }: AppPropsWithMessages) {
       <QueryParamProvider adapter={NextAdapter}>
         <WalletConnet.Provider value={{ showConnect: showConnect, setShowConnect: setShowConnect }}>
           {getLayout(<Component {...pageProps} />)}
-          {/* <Analytics /> */}
+          <Analytics />
           <ConnectWallet showConnect={showConnect} setShowConnect={setShowConnect} />
           <ToastContainer />
         </WalletConnet.Provider>
