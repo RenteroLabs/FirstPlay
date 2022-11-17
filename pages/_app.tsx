@@ -16,10 +16,13 @@ import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 
 import { AbstractIntlMessages, NextIntlProvider } from 'next-intl'
 import { NextComponentType, NextPage } from 'next/types'
-import { createContext, ReactElement, ReactNode, useState } from 'react'
+import { createContext, ReactElement, ReactNode, useEffect, useState } from 'react'
 
 import { Analytics } from '@vercel/analytics/react';
 import ConnectWallet from '@/components/ConnectWallet'
+import { useRouter } from 'next/router';
+
+import * as ga from '../util/ga'
 
 // connect wallet config
 const { chains, provider, webSocketProvider } = configureChains(SUPPORT_CHAINS, [
@@ -62,17 +65,31 @@ export interface WalletConnectParams {
 export const WalletConnet = createContext<WalletConnectParams>({ showConnect: false, setShowConnect: () => { } })
 
 function MyApp({ Component, pageProps }: AppPropsWithMessages) {
+  const router = useRouter()
 
   const [showConnect, setShowConnect] = useState<boolean>(false)
 
   const getLayout = Component.getLayout ?? ((page) => page)
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      console.log('post')
+      ga.pageview(url)
+    }
+
+    router.events.on('routeChangeComplete', handleRouteChange)
+
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router])
 
   return <WagmiConfig client={client}>
     <NextIntlProvider messages={pageProps.messages}>
       <QueryParamProvider adapter={NextAdapter}>
         <WalletConnet.Provider value={{ showConnect: showConnect, setShowConnect: setShowConnect }}>
           {getLayout(<Component {...pageProps} />)}
-          <Analytics />
+          {/* <Analytics /> */}
           <ConnectWallet showConnect={showConnect} setShowConnect={setShowConnect} />
           <ToastContainer />
         </WalletConnet.Provider>
