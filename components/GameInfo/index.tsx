@@ -66,7 +66,7 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
             </Box>
           </Box>
           <Typography className={styles.gameDesc}>{gameInfo?.description}</Typography>
-
+          <Box className={styles.strategyBtn}>Game Strategy</Box>
         </Box>
         :
         <>
@@ -114,7 +114,10 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
                 gameInfo?.game_types?.map((item: string, index: number) => <Box key={index} className={styles.tagItem}>{item}</Box>)
               }
             </Box>
-            <Typography className={styles.gameDesc}>{gameInfo.description}</Typography>
+            <Box className={styles.gameDescBox}>
+              <Typography className={styles.gameDesc}>{gameInfo.description}</Typography>
+              <Box className={styles.strategyBtn}>Game Strategy</Box>
+            </Box>
           </Box>
         </>
     }

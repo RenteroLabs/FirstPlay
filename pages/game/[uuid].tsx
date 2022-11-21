@@ -142,34 +142,46 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
             <GameInfo gameInfo={gameInfo} />
           </Box>
           {/* Carnival activity game detail style */}
-          <Box className={styles.carnivalRewrads}>
-            <Box className={styles.cardHeader}>
-              <Typography>Rewards</Typography>
-              <Box className={styles.mediaBox}>
-                <Box className={styles.rewardIcon}>
-                  <Image src={REWARD_ACTIVE_ICON} layout="fill" />
+          <Box className={styles.rewardMainBox}>
+            <Box className={styles.carnivalRewrads}>
+              <Box className={styles.cardHeader}>
+                <Typography>Rewards</Typography>
+                <Box className={styles.mediaBox}>
+                  <Box className={styles.rewardIcon}>
+                    <Image src={REWARD_ACTIVE_ICON} layout="fill" />
+                  </Box>
+                  3 Medals
                 </Box>
-                3 Medals
+              </Box>
+              <Typography className={styles.rewardDesc}>
+                After completing the corresponding task, you can register the address. After completing the verification, the reward will be sent to the address at 12:00 every day, and the game carnival medal reward will be obtained at the same time.
+              </Typography>
+              <CarnivalRewardItem
+                index={1}
+                medalNum={1}
+                isClaimed={true}
+                reward="Complete the game registration and get a ruby card reward worth 2U"
+                claimLink=""
+              />
+              <CarnivalRewardItem
+                index={2}
+                medalNum={1}
+                isClaimed={false}
+                reward="Complete the game registration and get a ruby card reward worth 2U"
+                claimLink=""
+              />
+            </Box>
+            <Box className={styles.rewardDrop}>
+              <Typography variant='h4'>Items drop reward</Typography>
+              <Box className={styles.dropDesc}>
+                <Typography>
+                  BigTime During the game trial Items worth 300U will be randomly dropped during the experience of the game
+                </Typography>
+
+                <Box className={styles.bg}></Box>
+                <Box className={styles.bg_ill}></Box>
               </Box>
             </Box>
-
-            <Typography className={styles.rewardDesc}>
-              After completing the corresponding task, you can register the address. After completing the verification, the reward will be sent to the address at 12:00 every day, and the game carnival medal reward will be obtained at the same time.
-            </Typography>
-            <CarnivalRewardItem
-              index={1}
-              medalNum={1}
-              isClaimed={true}
-              reward="Complete the game registration and get a ruby card reward worth 2U"
-              claimLink=""
-            />
-            <CarnivalRewardItem
-              index={2}
-              medalNum={1}
-              isClaimed={false}
-              reward="Complete the game registration and get a ruby card reward worth 2U"
-              claimLink=""
-            />
           </Box>
           <Box className={styles.gameStrategy}>
             <Typography variant='h4'>Description</Typography>
@@ -182,6 +194,12 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
               3. Complete the game download. Go to https://bigtime.gg/ to download the game, or directly search for &#34;Big Time&#34; in the App Store to complete the download
 
               4. Register in the game. After completing the registration, register the address information at the bottom of this page to get a ruby reward worth 20U.
+            </Box>
+            <Box className={styles.strategyLink}>
+              See More
+            </Box>
+            <Box className={styles.carnivalHome}>
+              Event homepage
             </Box>
           </Box>
 

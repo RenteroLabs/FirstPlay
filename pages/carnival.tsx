@@ -1,5 +1,5 @@
-import { Box, Divider, IconButton, Link, Typography, useMediaQuery } from "@mui/material";
-import { GetStaticProps, GetStaticPropsContext, NextPage } from "next";
+import { Box, Divider, IconButton, Link, Stack, Typography, useMediaQuery } from "@mui/material";
+import { GetStaticProps, GetStaticPropsContext, InferGetStaticPropsType, NextPage } from "next";
 import styles from '../styles/carnival.module.scss'
 import Image from "next/image";
 import { ReactElement, useEffect, useState } from "react";
@@ -7,17 +7,22 @@ import Layout from "@/components/Layout";
 import { NextPageWithLayout } from "./_app";
 import { erc721ABI, useAccount, useContractRead } from "wagmi";
 import Head from "next/head";
-import { useCountDown } from "ahooks";
+import { useCountDown, useRequest } from "ahooks";
 import CarnivalGameCard from "@/components/PageCarnival/GameCard";
 import GameSallCard from "@/components/PageCarnival/GameSmallCard";
 import { useIsMounted } from "hooks/useIsMounted";
 import { formatAddress } from "util/format";
-import { REWARD_ACTIVE_ICON } from "constants/static";
+import { MONEY_ICON, REWARD_ACTIVE_ICON } from "constants/static";
 import MedalProgress from "@/components/PageCarnival/MedalProgress";
+import { queryCarnivalGamesInfo, queryCarnivalProgress } from "services/carnival";
+import OrganizerCard from "@/components/PageCarnival/OrganizerCard";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-const Carnival_Activity_End_Time = '2022-12-03 24:00:00'
+const Carnival_Activity_End_Time = '2022-12-05 24:00:00'
 
-const Carnival: NextPageWithLayout = () => {
+const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
+  const { gamesInfo } = props
 
   const isMounted = useIsMounted()
   const is800Size = useMediaQuery("(max-width: 800px)")
@@ -26,6 +31,23 @@ const Carnival: NextPageWithLayout = () => {
   const [_, { days }] = useCountDown({
     targetDate: Carnival_Activity_End_Time
   })
+
+  const [showMoreRule, setShowMoreRule] = useState<boolean>(false)
+
+  const [taskProgress, setTaskProgress] = useState<Record<string, any>>({})
+
+  const { run: getTaskProgress } = useRequest(queryCarnivalProgress, {
+    manual: true,
+    onSuccess: ({ data }) => {
+      console.log(data)
+      setTaskProgress(data)
+    }
+  })
+  useEffect(() => {
+    if (address) {
+      getTaskProgress({ address })
+    }
+  }, [address])
 
   const imageKitLoader = ({ src, width, quality = 100 }: any) => {
     const params = [`w-400`];
@@ -78,7 +100,7 @@ const Carnival: NextPageWithLayout = () => {
         }
 
         <Typography>2022.11.21 ~ 2022.12.03</Typography>
-        <Typography>Play games, win great rewards! { is600Size ? "P" : "With the medals accumulated by completing tasks, you can also p"}articipate in the final draw!</Typography>
+        <Typography>Play games, win great rewards! {is600Size ? "P" : "With the medals accumulated by completing tasks, you can also p"}articipate in the final draw!</Typography>
       </Box>
     </Box>
     <Box className={styles.container}>
@@ -120,9 +142,9 @@ const Carnival: NextPageWithLayout = () => {
               7
             </Typography>
           </Typography>}
-          <Link>No PassNFT ?</Link>
+          {/* <Link>No PassNFT ?</Link> */}
         </Box>
-        {isMounted && is600Size && <Box className={styles.mobileMedals}>
+        {/* {isMounted && is600Size && <Box className={styles.mobileMedals}>
           <Box className={styles.rewardIcon}>
             <Image src={REWARD_ACTIVE_ICON} layout="fill" />
           </Box>
@@ -130,90 +152,77 @@ const Carnival: NextPageWithLayout = () => {
             <Typography>Medal:</Typography>
             <MedalProgress totalMedals={15} getMedals={11} />
           </Box>
-        </Box>}
+        </Box>} */}
 
         <Box className={styles.gamePanel}>
           <Box className={styles.gameList}>
             <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
             <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
-            <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
+            <GameSallCard rewardCount={2} getRewarded={2} gameInfo={{}} />
             <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
             <GameSallCard rewardCount={2} getRewarded={1} gameInfo={{}} />
             <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
-            <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
-            <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
-            <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
-            <GameSallCard rewardCount={2} getRewarded={0} gameInfo={{}} />
-          </Box>
-          <Box className={styles.rewardPool}>
-            <Box className={styles.rewardTitle}>Reward Pool</Box>
-            <Box className={styles.rewardItems}>
-              <Box className={styles.rewardItem}>
-                <Box className={styles.leftMedals}>
-                  <Box className={styles.medalIcon}>
-                    <Image src={REWARD_ACTIVE_ICON} layout="fill" />
-                  </Box>
-                  <Typography>5</Typography>
-                </Box>
-                <Divider orientation="vertical" />
-                <Box className={styles.rewardDesc}>
-
-                </Box>
-              </Box>
-              <Box className={styles.rewardItem}>
-                <Box className={styles.leftMedals}>
-                  <Box className={styles.medalIcon}>
-                    <Image src={REWARD_ACTIVE_ICON} layout="fill" />
-                  </Box>
-                  <Typography>8</Typography>
-                </Box>
-                <Divider orientation="vertical" />
-                <Box className={styles.rewardDesc}>
-
-                </Box>
-              </Box>
-              <Box className={styles.rewardItem}>
-                <Box className={styles.leftMedals}>
-                  <Box className={styles.medalIcon}>
-                    <Image src={REWARD_ACTIVE_ICON} layout="fill" />
-                  </Box>
-                  <Typography>10</Typography>
-                </Box>
-                <Divider orientation="vertical" />
-                <Box className={styles.rewardDesc}>
-
-                </Box>
-              </Box>
-              <Box className={styles.rewardItem}>
-                <Box className={styles.leftMedals}>
-                  <Box className={styles.medalIcon}>
-                    <Image src={REWARD_ACTIVE_ICON} layout="fill" />
-                  </Box>
-                  <Typography>12</Typography>
-                </Box>
-                <Divider orientation="vertical" />
-                <Box className={styles.rewardDesc}>
-
-                </Box>
-              </Box>
-              <Box className={styles.rewardItem}>
-                <Box className={styles.leftMedals}>
-                  <Box className={styles.medalIcon}>
-                    <Image src={REWARD_ACTIVE_ICON} layout="fill" />
-                  </Box>
-                  <Typography>15</Typography>
-                </Box>
-                <Divider orientation="vertical" />
-                <Box className={styles.rewardDesc}>
-
-                </Box>
-              </Box>
-            </Box>
           </Box>
         </Box>
         <Box className={styles.rewardDesc}>
-          <Typography variant="h4">Reward Introduction:</Typography>
+          <Typography>Medal rewards: Play the game to accumulate medals, participate in the lottery after the game is over,and have the opportunity to get multiple game NFTs. The more badges you accumulate, the more rewards you have the chance to win~</Typography>
         </Box>
+        <Stack className={styles.rewardList}>
+          <Box className={styles.rewardItem}>
+            <Box className={styles.rewardLevel}>
+              <Box className={styles.rewardIcon}>
+                <Image src={REWARD_ACTIVE_ICON} layout="fill" />
+              </Box>
+              <Typography>Reach 6:</Typography>
+            </Box>
+            <Box className={styles.rewardBox}>
+              <Box className={styles.rewardValue}>
+                <Box>
+                  <Image src={MONEY_ICON} layout="fill" />
+                </Box>
+                <Typography>Neo Fantancy NFT * 1</Typography>
+              </Box>
+              <Box className={styles.rewardValue}>
+                <Box>
+                  <Image src={MONEY_ICON} layout="fill" />
+                </Box>
+                <Typography>Share 1000U</Typography>
+              </Box>
+            </Box>
+          </Box>
+          <Box className={styles.rewardItem}>
+            <Box className={styles.rewardLevel}>
+              <Box className={styles.rewardIcon}>
+                <Image src={REWARD_ACTIVE_ICON} layout="fill" />
+              </Box>
+              <Typography>Reach 9:</Typography>
+            </Box>
+            <Box className={styles.rewardBox}>
+              <Box className={styles.rewardValue}>
+                <Box>
+                  <Image src={MONEY_ICON} layout="fill" />
+                </Box>
+                <Typography>Neo Fantancy NFT * 1</Typography>
+              </Box>
+            </Box>
+          </Box>
+          <Box className={styles.rewardItem}>
+            <Box className={styles.rewardLevel}>
+              <Box className={styles.rewardIcon}>
+                <Image src={REWARD_ACTIVE_ICON} layout="fill" />
+              </Box>
+              <Typography>Reach 12:</Typography>
+            </Box>
+            <Box className={styles.rewardBox}>
+              <Box className={styles.rewardValue}>
+                <Box>
+                  <Image src={MONEY_ICON} layout="fill" />
+                </Box>
+                <Typography>Neo Fantancy NFT * 1</Typography>
+              </Box>
+            </Box>
+          </Box>
+        </Stack>
       </Box>
 
       <Box className={styles.trialGames}>
@@ -224,19 +233,54 @@ const Carnival: NextPageWithLayout = () => {
 
         <Box className={styles.gameList}>
           <CarnivalGameCard isBig={true} />
-          <CarnivalGameCard />
-          <CarnivalGameCard />
-          <CarnivalGameCard />
-          <CarnivalGameCard />
-          <CarnivalGameCard />
-          <CarnivalGameCard />
-          <CarnivalGameCard />
-          <CarnivalGameCard />
-          <CarnivalGameCard />
-          <CarnivalGameCard />
+          <CarnivalGameCard isBig={true} />
+          <CarnivalGameCard isBig={true} />
+          <CarnivalGameCard isBig={true} />
+          <CarnivalGameCard isBig={true} />
+          <CarnivalGameCard isBig={true} />
         </Box>
       </Box>
-      <Box className={styles.activityRules}></Box>
+      <Box className={styles.activityRules}>
+        <Typography variant="h3">Rules of play</Typography>
+        <Typography variant="h4">1. Activity Time</Typography>
+        <Typography>Users who participate in the event can get a ruby card worth 20U!Users who participate in the event can get a ruby card worth 20U!Users who participate in the event can get a ruby card worth 20U!Users who participate in the event can get a ruby card worth 20U!Users who participate in the event can get a ruby card worth 20U!</Typography>
+        <Typography variant="h4">2. Activity Time</Typography>
+        <Typography>Users who participate in the event can get a ruby card worth 20U!Users who participate in the event can get a ruby card worth 20U!Users who participate in the event can get a ruby card worth 20U!Users who participate in the event can get a ruby card worth 20U!Users who participate in the event can get a ruby card worth 20U!</Typography>
+        {
+          isMounted && showMoreRule && <>
+            <Typography variant="h4">3. Activity Time</Typography>
+            <Typography>Users who participate in the event can get a ruby card worth 20U!Users who participate in the event can get a ruby card worth 20U!Users who participate in the event can get a ruby card worth 20U!Users who participate in the event can get a ruby card worth 20U!Users who participate in the event can get a ruby card worth 20U!</Typography>
+            <Typography variant="h4">4. Activity Time</Typography>
+            <Typography>Users who participate in the event can get a ruby card worth 20U!Users who participate in the event can get a ruby card worth 20U!Users who participate in the event can get a ruby card worth 20U!Users who participate in the event can get a ruby card worth 20U!Users who participate in the event can get a ruby card worth 20U!</Typography>
+          </>
+        }
+        <Box
+          component="span"
+          className={styles.showmoreBtn}
+          onClick={() => setShowMoreRule(!showMoreRule)}
+        >{isMounted && showMoreRule ? <>
+          less <KeyboardArrowUpIcon />
+        </> : <>more <KeyboardArrowDownIcon /></>} </Box>
+      </Box>
+
+      <Box className={styles.organizerBox}>
+        <OrganizerCard
+          websiteLink="https://firstplay.app"
+          cardImage="http://d2yhjjdyh5ugcy.cloudfront.net/carnival_firstplay_card.jpg"
+          badge="Organizer"
+          twitterLink="https://twitter.com/FirstPlay2022"
+          discordLink="https://discord.com/invite/84mhbPXFUu"
+          telegramLink="https://t.me/firstplay2022"
+        />
+        <OrganizerCard
+          websiteLink="https://degame.com"
+          cardImage="http://d2yhjjdyh5ugcy.cloudfront.net/carnival_degame_card.jpg"
+          badge="Co-Organizer"
+          twitterLink="https://twitter.com/degame_l2y"
+          discordLink="https://discord.gg/xWdNUfw4Ec"
+          telegramLink="https://t.me/+24BjBavdif9mZmNl"
+        />
+      </Box>
     </Box>
 
   </Box>
@@ -248,13 +292,18 @@ Carnival.getLayout = function getLayout(page: ReactElement) {
 
 export default Carnival
 
-
 export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsContext) => {
+
+  // 获取嘉年华所有游戏信息
+  const { data } = await queryCarnivalGamesInfo()
+  console.log(data)
+
 
   return {
     props: {
       // 获取国际化文案
-      messages: (await import(`../i18n/${locale}.json`)).default
+      messages: (await import(`../i18n/${locale}.json`)).default,
+      gamesInfo: data
     }
   }
 }

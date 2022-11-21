@@ -118,7 +118,7 @@
 
 @media screen and (max-width: 1024px) {
   .bigStyle {
-    width: calc(66.6% - 2.5rem) !important;
+    width: calc(50% - 2.5rem) !important;
     .gameCover {
       padding-bottom: calc(50% - 1.25rem) !important;
     }
@@ -127,6 +127,15 @@
   .gameCard {
     .gameContent {
       margin-top: 2.83rem;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .bigStyle {
+    width: calc(100% - 1.33rem) !important;
+    .gameCover {
+      padding-bottom: calc(50% - 1.25rem) !important;
     }
   }
 }

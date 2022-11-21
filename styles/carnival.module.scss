@@ -242,75 +242,17 @@
         justify-content: space-between;
         align-items: flex-start;
         margin-top: 2.5rem;
-        .rewardPool {
-          width: 34.96rem;
-          height: 27.33rem;
-          background: rgba(142, 80, 228, 0.22);
-          border-radius: 0.67rem;
-          flex-shrink: 0;
-          .rewardTitle {
-            background: #8e50e4;
-            border-radius: 0.67rem 0.67rem 0rem 0rem;
-            font-size: 1.5rem;
-            font-family: Inter-SemiBold, Inter;
-            font-weight: 600;
-            color: #ffffff;
-            line-height: 1.5rem;
-            text-align: center;
-            padding: 1.25rem;
-          }
-
-          .rewardItems {
-            padding: 0.75rem;
-
-            display: flex;
-            flex-direction: column;
-
-            .rewardItem {
-              height: 3.67rem;
-              background: #ffffff;
-              border-radius: 0.33rem;
-              padding: 0.33rem 0.58rem;
-              display: flex;
-              align-items: center;
-              & + .rewardItem {
-                margin-top: 0.83rem;
-              }
-
-              .leftMedals {
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-                .medalIcon {
-                  position: relative;
-                  width: 3rem;
-                  height: 3rem;
-                  margin-right: 0.42rem;
-                  flex-shrink: 0;
-                }
-                p {
-                  font-size: 1.5rem;
-                  font-family: Inter-Medium, Inter;
-                  font-weight: 500;
-                  color: #222222;
-                  line-height: 1.5rem;
-                  width: 2rem;
-                  margin-right: 1rem;
-                }
-              }
-            }
-          }
-        }
 
         .gameList {
-          margin-right: 2.5rem;
+          // margin-right: 2.5rem;
           margin-left: -0.83rem;
+          margin-right: -0.83rem;
           flex-grow: 1;
           display: flex;
           flex-wrap: wrap;
 
           & > div {
-            width: calc(25% - 1.67rem);
+            width: calc(33.3% - 1.67rem);
             margin: auto 0.83rem;
             margin-bottom: 1.67rem;
           }
@@ -318,13 +260,82 @@
       }
 
       .rewardDesc {
-        margin-top: 1.67rem;
-        h4 {
+        margin-top: 0.83rem;
+        p {
           font-size: 1.17rem;
-          font-family: PingFangSC-Medium, PingFang SC;
+          font-family: Inter-Medium, Inter;
           font-weight: 500;
           color: #222222;
-          line-height: 2.17rem;
+          line-height: 1.83rem;
+        }
+      }
+
+      .rewardList {
+        margin-top: 1.67rem;
+
+        .rewardItem {
+          height: 4.67rem;
+          background: rgba(#222, 0.05);
+          border-radius: 0.67rem;
+
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          padding: 0.67rem 0.83rem;
+
+          .rewardLevel {
+            display: flex;
+            align-items: center;
+            .rewardIcon {
+              position: relative;
+              width: 3.33rem;
+              height: 3.33rem;
+              margin-right: 0.67rem;
+            }
+            p {
+              font-size: 1.5rem;
+              font-family: Inter-SemiBold, Inter;
+              font-weight: 600;
+              color: #222222;
+              line-height: 1.5rem;
+            }
+          }
+
+          .rewardBox {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-left: 1.67rem;
+            .rewardValue {
+              padding: 0.5rem 2rem 0.5rem 0.67rem;
+              // background-color: white;
+              background: linear-gradient(270deg, #ffffff 0%, #ffffff 100%);
+              border-radius: 1.67rem;
+              display: flex;
+              align-items: center;
+              & > div {
+                position: relative;
+                width: 2.33rem;
+                height: 2.33rem;
+                border-radius: 50%;
+                margin-right: 0.83rem;
+              }
+              p {
+                font-size: 1.17rem;
+                font-family: Inter-Medium, Inter;
+                font-weight: 500;
+                color: #222222;
+                line-height: 1.17rem;
+              }
+              & + .rewardValue {
+                margin-left: 0.83rem;
+              }
+            }
+          }
+
+          & + .rewardItem {
+            margin-top: 1rem;
+          }
         }
       }
     }
@@ -375,7 +386,54 @@
       background: #ffffff;
       border-radius: 1rem;
       margin-top: 2.5rem;
-      min-height: 30rem;
+      padding: 2.25rem 2.75rem;
+      h3 {
+        font-size: 2rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #222222;
+        line-height: 2rem;
+      }
+      h4 {
+        font-size: 1.33rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #222222;
+        margin-top: 1.33rem;
+      }
+      p {
+        font-size: 1.17rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 1.67rem;
+      }
+
+      .showmoreBtn {
+        font-size: 1.17rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 1.67rem;
+        display: inline-flex;
+        align-items: flex-end;
+        user-select: none;
+        margin-top: 1rem;
+        cursor: pointer;
+      }
+    }
+
+    .organizerBox {
+      height: 21.67rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 1rem;
+      margin-top: 3.33rem;
+
+      & > div {
+        width: calc(50% - 1.67rem);
+      }
     }
   }
 }
@@ -442,6 +500,8 @@
 
 @media screen and (max-width: 1024px) {
   .containBox {
+    padding-bottom: 2.75rem;
+
     .container {
       .trialGames {
         padding: 2.58rem 1.25rem 0;
@@ -468,7 +528,7 @@
             margin-right: 0;
             margin-left: 0;
             & > div {
-              width: calc(20% - 1.76rem);
+              width: calc(50% - 1.76rem);
               margin: auto 0.87rem;
               margin-bottom: 1.76rem;
             }
@@ -477,6 +537,14 @@
             width: calc(100% - 1.76rem);
             margin: auto;
           }
+        }
+      }
+
+      .organizerBox {
+        height: auto;
+        flex-direction: column;
+        & > div {
+          width: calc(100%);
         }
       }
     }
@@ -511,7 +579,7 @@
         .gamePanel {
           .gameList {
             & > div {
-              width: calc(25% - 1.76rem);
+              width: calc(100% - 1.76rem);
               margin: auto 0.87rem;
               margin-bottom: 1.76rem;
             }
@@ -599,7 +667,7 @@
         .gamePanel {
           .gameList {
             & > div {
-              width: calc(33.3% - 1.76rem);
+              width: calc(50% - 1.76rem);
               margin: auto 0.87rem;
               margin-bottom: 1.76rem;
             }
@@ -609,14 +677,15 @@
     }
   }
 }
+
 @media screen and (max-width: 600px) {
   .containBox {
+    padding-bottom: 1.75rem;
     .header {
       .topBackground {
         height: 34.17rem;
       }
-      
-      
+
       .headerDesc {
         left: 1.33rem;
         right: 1.33rem;
@@ -696,7 +765,7 @@
       .taskProgress {
         border-radius: 0;
         margin-top: 1rem;
-        padding: 1rem 0.66rem 0.33rem;
+        padding: 1rem 0.66rem 0.83rem;
 
         .cardHeader {
           h3 {
@@ -742,13 +811,78 @@
         }
 
         .gamePanel {
+          margin-top: 1rem;
           .gameList {
             & > div {
-              width: calc(33.3% - 1.76rem);
-              margin: auto 0.87rem;
+              width: calc(100vw - 2rem);
+              // margin: auto 0.87rem;
+              margin: auto;
+              margin-left: 0.33rem;
+              margin-right: 0.33rem;
               margin-bottom: 0.84rem;
             }
           }
+        }
+
+        .rewardList {
+          .rewardItem {
+            height: auto;
+            padding: 1.17rem 0.83rem;
+            .rewardLevel {
+              width: 6.4rem;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              border-image: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1), rgba(255, 255, 255, 1)) 0.08 0.08;
+
+              .rewardIcon {
+                margin-right: 0;
+              }
+              p {
+                font-size: 1.33rem;
+                font-family: Inter-SemiBold, Inter;
+                font-weight: 600;
+                color: #222222;
+                line-height: 1.33rem;
+                margin-top: 0.33rem;
+              }
+            }
+            .rewardBox {
+              flex-direction: column;
+              align-items: flex-start;
+              justify-content: flex-start;
+
+              .rewardValue {
+                & + .rewardValue {
+                  margin-left: 0;
+                }
+              }
+            }
+            .rewardValue {
+              background: transparent !important;
+              // flex-direction: column;
+            }
+          }
+        }
+      }
+
+      .activityRules {
+        padding: 1.67rem 1.33rem;
+        h3 {
+          font-size: 1.5rem;
+          font-family: Inter-SemiBold, Inter;
+          font-weight: 600;
+          color: #222222;
+          line-height: 1.5rem;
+        }
+      }
+      .organizerBox {
+        height: auto;
+        flex-direction: column;
+        margin-top: 1.67rem;
+        padding: 0 1rem;
+        & > div {
+          width: 100%;
         }
       }
     }

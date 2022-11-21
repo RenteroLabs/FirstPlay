@@ -31,7 +31,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           claimBtn: true,
           claimedBtn: isClaimed
         })}>
-          {isClaimed ? "Claimed" : 'Claim'}
+          {isClaimed ? "Completed" : 'Claim'}
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Box className={styles.rewardIcon}>
@@ -49,7 +49,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
         claimBtn: true,
         claimedBtn: isClaimed
       })}>
-        {isClaimed ? "Claimed" : 'Claim'}
+        {isClaimed ? "Completed" : 'Claim'}
       </Box>
       <Box className={styles.rewardIcon}>
         <Image src={REWARD_ACTIVE_ICON} layout="fill" />

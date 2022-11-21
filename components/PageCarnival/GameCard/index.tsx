@@ -13,7 +13,6 @@ interface GameCardProps {
   isBig?: boolean
 }
 
-
 const CarnivalGameCard: React.FC<GameCardProps> = (props) => {
   const { isBig = false } = props
 

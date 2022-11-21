@@ -8,16 +8,20 @@
 
   .gameInfoBox {
     max-width: 100rem;
-    margin: 5.83rem auto 3.33rem;
+    margin: 5.83rem auto 5.33rem;
   }
 
+  .rewardMainBox {
+    background: rgba(#e4405b, 0.08);
+    overflow: hidden;
+  }
   .carnivalRewrads {
     max-width: 100rem;
     margin: auto;
     min-height: 10rem;
-    background: rgba(#e4405b, 0.05);
+    // background: rgba(#E4405B, 0.08);
     border-radius: 1rem;
-    padding: 2.5rem;
+    padding: 5rem 0 2.5rem;
     .cardHeader {
       display: flex;
       justify-content: space-between;
@@ -57,11 +61,66 @@
       text-align: left;
     }
   }
+
+  .rewardDrop {
+    max-width: 100rem;
+    margin: auto;
+    margin-bottom: 5rem;
+    h4 {
+      font-size: 1.5rem;
+      font-family: Inter-Bold, Inter;
+      font-weight: bold;
+      color: rgba(#222, 0.5);
+      line-height: 1.5rem;
+      margin-bottom: 1.67rem;
+    }
+    .dropDesc {
+      background: #8e50e4;
+      border-radius: 1rem;
+      height: 10.83rem;
+      background-repeat: no-repeat;
+      position: relative;
+      overflow: hidden;
+      padding: 2.17rem 1.83rem;
+      display: flex;
+      align-items: center;
+      p {
+        font-size: 1.5rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #ffffff;
+        line-height: 2.17rem;
+        width: 70%;
+      }
+
+      .bg_ill {
+        position: absolute;
+        background-image: url('/game_drop_reward.png');
+        width: 14.87rem;
+        height: 10.83rem;
+        right: 3rem;
+        object-fit: cover;
+        background-size: 100% 120%;
+      }
+      .bg {
+        width: 10.87rem;
+        height: 10.83rem;
+        position: absolute;
+        right: 4rem;
+        // top: 0;
+        bottom: -20px;
+        background: radial-gradient(#984cec, #6effc4);
+        border-radius: 50%;
+        filter: blur(6px);
+      }
+    }
+  }
+
   .gameStrategy {
     max-width: 100rem;
     margin: auto;
     margin-top: 4.17rem;
-    margin-bottom: 6.67rem;
+    margin-bottom: 3.67rem;
 
     h4 {
       font-size: 1.75rem;
@@ -77,6 +136,41 @@
       font-weight: 400;
       color: #222222;
       line-height: 2rem;
+    }
+    .strategyLink {
+      display: inline-flex;
+      width: 11.33rem;
+      height: 3.33rem;
+      border-radius: 2rem;
+      border: 0.08rem solid rgba(#222, 0.3);
+      filter: blur(0px);
+      font-size: 1.17rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #222222;
+      line-height: 1.17rem;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin-top: 3.33rem;
+      user-select: none;
+    }
+    .carnivalHome {
+      background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
+      border-radius: 2rem;
+      filter: blur(0px);
+      padding: 1.33rem 7rem;
+      text-align: center;
+      font-size: 1.33rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.33rem;
+      max-width: 25rem;
+      margin: auto;
+      cursor: pointer;
+      margin-top: 5rem;
+      user-select: none;
     }
   }
 
@@ -374,6 +468,11 @@
         width: 100%;
       }
     }
+    .rewardDrop {
+      width: calc(100% - 10rem);
+      margin: auto;
+      margin-bottom: 5rem;
+    }
     .gameStrategy {
       width: calc(100% - 10rem);
       margin: 3rem auto;
@@ -401,6 +500,9 @@
       .rewardDesc {
         width: 100%;
       }
+    }
+    .rewardDrop {
+      width: calc(100% - 6rem);
     }
     .gameStrategy {
       width: calc(100% - 6rem);
@@ -433,7 +535,6 @@
 
 @media screen and (max-width: 750px) {
   .gameBox {
-
     .carnivalRewrads {
       width: calc(100% - 4rem);
       margin: auto;
@@ -441,6 +542,9 @@
       .rewardDesc {
         width: 100%;
       }
+    }
+    .rewardDrop {
+      width: calc(100% - 4rem);
     }
     .gameStrategy {
       width: calc(100% - 4rem);
@@ -511,6 +615,26 @@
       }
     }
 
+    .rewardDrop {
+      width: 100%;
+      padding: 1.67rem 1.33rem;
+      margin-bottom: 0;
+      .dropDesc {
+        align-items: flex-start;
+        height: 20rem;
+        padding: 1.67rem 1.33rem;
+        p {
+          width: 80%;
+        }
+        .bg {
+          right: 0;
+        }
+        .bg_ill {
+          right: -1rem;
+          bottom: 2rem;
+        }
+      }
+    }
     .gameStrategy {
       width: 100%;
       padding: 1.67rem 1.33rem;
@@ -525,6 +649,27 @@
         font-weight: 400;
         color: #222222;
         line-height: 2rem;
+      }
+      .strategyLink {
+        width: 100%;
+        margin-top: 2.5rem;
+        height: 3.33rem;
+        padding: 1.08rem 0;
+        font-size: 1.17rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        line-height: 1.17rem;
+      }
+      .carnivalHome {
+        width: 100%;
+        max-width: none;
+        margin-top: 1.67rem;
+        padding: 1.08rem 0;
+        font-size: 1.17rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #ffffff;
+        line-height: 1.17rem;
       }
     }
     .topCover {
