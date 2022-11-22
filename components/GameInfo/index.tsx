@@ -66,7 +66,7 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
             </Box>
           </Box>
           <Typography className={styles.gameDesc}>{gameInfo?.description}</Typography>
-          <Box className={styles.strategyBtn}>Game Strategy</Box>
+          <Box className={styles.strategyBtn}>Guide</Box>
         </Box>
         :
         <>
@@ -116,7 +116,7 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
             </Box>
             <Box className={styles.gameDescBox}>
               <Typography className={styles.gameDesc}>{gameInfo.description}</Typography>
-              <Box className={styles.strategyBtn}>Game Strategy</Box>
+              <Box className={styles.strategyBtn}>Guide</Box>
             </Box>
           </Box>
         </>

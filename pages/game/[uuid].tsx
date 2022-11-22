@@ -28,6 +28,8 @@ import { MARKET_CONTRACT } from 'constants/contract'
 import { FIRSTPLYA_MARKET_ABI } from 'constants/abi'
 import { checkOwnPassNFT } from 'services/web3'
 import CarnivalRewardItem from '@/components/PageCarnival/RewardItem'
+import Link from 'next/link'
+import { queryCarnivalGameMedals } from 'services/carnival'
 
 export interface TxLoadingParams {
   txHash: string,
@@ -48,7 +50,7 @@ export const UserInfo = createContext<UserInfoParams>({ ownPassNFt: false, isAct
 
 // 游戏详情页
 const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = ({ gameInfo }) => {
-
+  // console.log(gameInfo)
   const router = useRouter()
   const { address } = useAccount()
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false)
@@ -67,6 +69,41 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
   const [ownPassNFt, setOwnPassNFT] = useState<boolean>(false)
 
   const timestamp = useMemo(() => (Number(new Date) / 1000).toFixed(), [])
+
+
+
+
+  /**
+   * Carnival Part Start
+   */
+  const [carnivalGame, setCarnivalGame] = useState<Record<string, any>>({})
+
+  useEffect(() => {
+    if (router.query?.uuid && address) {
+      getCarnivalGameInfo({ address, game_id: router.query?.uuid as string })
+    }
+  }, [router.query?.uuid, address])
+
+  const { run: getCarnivalGameInfo } = useRequest(queryCarnivalGameMedals, {
+    manual: true,
+    onSuccess: (data) => {
+      console.log(data)
+    }
+  })
+
+  /**
+   * Carnival Part End
+   */
+
+
+
+
+
+
+
+
+
+
 
   // 统计可试玩的 NFT package
   const trialablePackageList = useMemo(() => {
@@ -123,6 +160,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
       setPackageList(packages)
     }
   })
+
 
   return <UserInfo.Provider
     value={{ isActived: isActived as unknown as boolean, ownPassNFt }}>
@@ -198,9 +236,12 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
             <Box className={styles.strategyLink}>
               See More
             </Box>
-            <Box className={styles.carnivalHome}>
-              Event homepage
-            </Box>
+            <Link href="/carnival">
+              <Box className={styles.carnivalHome}>
+                Event homepage
+              </Box>
+            </Link>
+
           </Box>
 
           {/* {

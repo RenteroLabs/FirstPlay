@@ -17,6 +17,7 @@
   }
 
   .cardContent {
+    width: calc(100% - 6.67rem);
     font-size: 1.17rem;
     font-family: Inter-Medium, Inter;
     font-weight: 500;
@@ -52,6 +53,7 @@
       }
     }
     .rewardDesc {
+      height: 3.33rem;
       p {
         font-size: 1.17rem;
         font-family: Inter-Medium, Inter;

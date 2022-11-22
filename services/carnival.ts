@@ -6,7 +6,7 @@ import { BASE_BACKEND_API } from './../constants/index';
  * @returns 
  */
 export const queryCarnivalProgress = async ({ address }: { address: string }) => {
-  const res = await fetch(`${BASE_BACKEND_API}/carnival/progress?address=${address}`)
+  const res = await fetch(`${BASE_BACKEND_API}/carnival/carnival?address=${address}`)
   return res.json()
 }
 
@@ -15,7 +15,7 @@ export const queryCarnivalProgress = async ({ address }: { address: string }) =>
  * query all carnival games info
  */
 export const queryCarnivalGamesInfo = async () => {
-  const res = await fetch(`${BASE_BACKEND_API}/carnival/games`)
+  const res = await fetch(`${BASE_BACKEND_API}/carnival/home`)
   return res.json()
 }
 

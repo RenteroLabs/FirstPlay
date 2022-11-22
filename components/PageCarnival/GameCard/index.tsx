@@ -9,13 +9,13 @@ import * as ga from '../../../util/ga'
 const cx = classNames.bind(styles)
 
 interface GameCardProps {
-
+  gameInfo: Record<string, any>
   isBig?: boolean
 }
 
 const CarnivalGameCard: React.FC<GameCardProps> = (props) => {
-  const { isBig = false } = props
-
+  const { isBig = false, gameInfo } = props
+  console.log(gameInfo)
   const sendTrialGameEvent = () => {
     ga.event({ action: "click", params: { event_name: 'chooseGame' } })
   }
@@ -23,10 +23,10 @@ const CarnivalGameCard: React.FC<GameCardProps> = (props) => {
   const handleTrialGame = () => {
     // 发送 ga 事件
     sendTrialGameEvent()
-
     // 跳转至游戏详情页
-
+    window.open(`/game/${gameInfo?.game_id}`)
   }
+
 
   return <Box className={cx({
     gameCard: true,
@@ -34,26 +34,37 @@ const CarnivalGameCard: React.FC<GameCardProps> = (props) => {
   })}>
 
     <Box className={styles.gameCover}>
-      <Image src="https://rentero-resource.s3.ap-east-1.amazonaws.com/CryptoBlades.jpg" layout="fill" objectFit="cover" />
+      <Image src={gameInfo.image} layout="fill" objectFit="cover" quality={100} />
       <Box className={styles.gameLogo}>
-        <Image src="https://rentero-resource.s3.ap-east-1.amazonaws.com/AxieInfinity.jpg" layout="fill" />
+        <Image src={gameInfo.logo} layout="fill" quality={100} />
       </Box>
       <Box className={styles.gameTags}>
-        <Box className={styles.gameTag}>APP</Box>
-        <Box className={styles.gameTag}>RPG</Box>
+        {
+          gameInfo?.types?.map((item: string, index: number) => <Box key={index} className={styles.gameTag} >{item}</Box>)
+        }
+        {
+          gameInfo?.platforms?.map((item: string, index: number) => <Box key={index} className={styles.gameTag} >{item}</Box>)
+        }
       </Box>
     </Box>
 
     <Box className={styles.gameContent}>
       <Box className={styles.gameTitle}>
-        <Typography variant="h3">GameName</Typography>
+        <Typography variant="h3">{gameInfo?.name}</Typography>
         <Box className={styles.rewardList}>
           <Box className={styles.gameRewards}><Image src={REWARD_ACTIVE_ICON} layout="fill" /></Box>
-          <Typography className={styles.rewardNum}>+3</Typography>
+          <Typography className={styles.rewardNum}>+{gameInfo?.medal}</Typography>
         </Box>
       </Box>
-      <Box className={styles.gameRewardDesc}>
-        Users who participate in the event can get a ruby card worth 20U!
+
+      <Box className={styles.rewardDescList}>
+        {
+          gameInfo?.requirements?.map((item: string, index: number) => <Box key={index} className={styles.taskDesc}>
+            <Typography>{item}</Typography></Box>)
+        }
+        {
+          gameInfo?.gifts?.map((item: string, index: number) => <Box key={index} className={styles.rewardDesc}><Typography>{item}</Typography></Box>)
+        }
       </Box>
     </Box>
 

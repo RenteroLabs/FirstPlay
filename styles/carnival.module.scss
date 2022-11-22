@@ -134,6 +134,115 @@
       }
     }
 
+    .dailyActivity {
+      background: #ffffff;
+      border-radius: 1rem;
+
+      // border-radius: 1rem 1rem 0rem 0rem;
+
+      padding: 2.5rem 3.33rem 0rem;
+      padding-bottom: 1.67rem;
+      
+      overflow: hidden;
+
+      .dailyHeader {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 1.83rem;
+        border-bottom: 0.16rem solid rgba(#222, 0.2);
+
+        h3 {
+          font-size: 2rem;
+          font-family: Inter-SemiBold, Inter;
+          font-weight: 600;
+          color: #222222;
+          line-height: 2rem;
+        }
+        .headerDiscord {
+          display: flex;
+          align-items: center;
+          p {
+            font-size: 1.33rem;
+            font-family: Inter-Medium, Inter;
+            font-weight: 500;
+            color: #222222;
+            line-height: 1.33rem;
+            margin-right: 0.83rem;
+          }
+          .discordBtn {
+            padding: 0.42rem 1.42rem 0.42rem 1rem;
+            background: #222222;
+            border-radius: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            user-select: none;
+            cursor: pointer;
+
+            & > div {
+              position: relative;
+              width: 2.17rem;
+              height: 2.17rem;
+              margin-right: 0.75rem;
+              background-color: #222;
+            }
+
+            p {
+              font-size: 1.17rem;
+              font-family: Inter-Medium, Inter;
+              font-weight: 500;
+              color: #ffffff;
+              line-height: 1.17rem;
+            }
+          }
+        }
+      }
+
+      .todayActivity {
+        margin: 1.67rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        .activityLogo {
+          position: relative;
+          width: 3.33rem;
+          height: 3.33rem;
+          border-radius: 50%;
+          overflow: hidden;
+          margin-right: 0.83rem;
+        }
+        p {
+          font-size: 1.5rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #222222;
+          line-height: 1.5rem;
+        }
+        .highlight {
+          color: #8e50e4;
+        }
+      }
+    }
+    .winnerList {
+      height: 5.33rem;
+      background: #f2edfb;
+      border-radius: 0rem 0rem 1rem 1rem;
+      display: flex;
+      align-items: center;
+      padding: 0 3.33rem;
+      .winerLabel {
+        display: flex;
+        align-items: center;
+        p {
+          font-size: 1.17rem;
+          font-family: Inter-SemiBold, Inter;
+          font-weight: 600;
+          color: #222222;
+          line-height: 1.17rem;
+        }
+      }
+    }
+
     .taskProgress {
       background: #ffffff;
       border-radius: 1rem;
@@ -179,6 +288,10 @@
         display: flex;
         justify-content: space-between;
         margin-top: 1.67rem;
+        .textConnect {
+          margin-left: 1rem;
+          cursor: pointer;
+        }
         p {
           font-size: 1.5rem;
           font-family: Inter-Medium, Inter;
@@ -400,6 +513,12 @@
         font-weight: 600;
         color: #222222;
         margin-top: 1.33rem;
+        margin-bottom: 0.5rem;
+      }
+      .gapLine {
+        display: block;
+        width: 100%;
+        height: 3px !important;
       }
       p {
         font-size: 1.17rem;
@@ -407,6 +526,7 @@
         font-weight: 500;
         color: #222222;
         line-height: 1.67rem;
+        margin: 0.2rem auto;
       }
 
       .showmoreBtn {
@@ -833,7 +953,13 @@
               flex-direction: column;
               align-items: center;
               justify-content: center;
-              border-image: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1), rgba(255, 255, 255, 1)) 0.08 0.08;
+              border-image: linear-gradient(
+                  180deg,
+                  rgba(0, 0, 0, 0),
+                  rgba(0, 0, 0, 1),
+                  rgba(255, 255, 255, 1)
+                )
+                0.08 0.08;
 
               .rewardIcon {
                 margin-right: 0;

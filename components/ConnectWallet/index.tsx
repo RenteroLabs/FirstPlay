@@ -40,6 +40,10 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
     await connect({ connector: selectedConnector })
   }
 
+  const handleLinkMetamask = () => {
+    window.open("", "__blank")
+  }
+
   return <Dialog open={showConnect} className={styles.container} >
     <DialogTitle className={styles.dialogTitle} >
       Connect Wallet
@@ -69,6 +73,15 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
           <span className={styles.itemWalletConnectLogo}></span>
           <p>WalletConnect</p>
           {WalletConnectConnecting ? <CircularProgress /> : <ArrowRightAltRoundedIcon sx={{ color: '#8E50E4' }} />}
+        </Box>
+
+        <Box className={styles.noWalletTip}>
+          Don&#39;t have a wallet yet?
+        </Box>
+        <Box className={styles.walletItem} onClick={handleLinkMetamask}>
+          <span className={styles.itemBeginnerLogo}></span>
+          <p>Beginner&#39;s Guide</p>
+          <ArrowRightAltRoundedIcon sx={{ color: '#222' }} />
         </Box>
       </Box>
     </div>

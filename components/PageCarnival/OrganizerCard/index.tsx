@@ -27,17 +27,17 @@ const OrganizerCard: React.FC<OrganizerCardProps> = (props) => {
     <Box className={styles.mediaList}>
       <Box className={styles.mediaItem}>
         <a href={twitterLink} target="_blank" rel="noreferrer">
-          <Image src="/media_twitter.webp" layout="fill" />
+          <Image src="/Twitter-Logo-Carnival.png" layout="fill" />
         </a>
       </Box>
       <Box className={styles.mediaItem}>
         <a href={telegramLink} target="_blank" rel="noreferrer">
-          <Image src="/media_telegram.webp" layout="fill" />
+          <Image src="/Telegram-Logo-Carnival.png" layout="fill" />
         </a>
       </Box>
       <Box className={styles.mediaItem}>
         <a href={discordLink} target="_blank" rel="noreferrer">
-          <Image src="/media_discord.webp" layout="fill" />
+          <Image src="/Discord-Logo-Carnival.png" layout="fill" />
         </a>
       </Box>
     </Box>

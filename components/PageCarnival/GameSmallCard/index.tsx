@@ -14,18 +14,18 @@ interface GameSamllCardProps {
 }
 
 const GameSallCard: React.FC<GameSamllCardProps> = (props) => {
-  const { getRewarded, rewardCount } = props
+  const { getRewarded, rewardCount, gameInfo } = props
 
   return <Box className={cx({
     smallGameCard: true,
     activeCard: getRewarded != 0
   })}>
     <Box className={styles.gameCover}>
-      <Image src="https://rentero-resource.s3.ap-east-1.amazonaws.com/AlongWithTheGods.jpg" layout="fill" objectFit='cover' />
+      <Image src={gameInfo.image} layout="fill" objectFit='cover' quality={100} />
     </Box>
 
     <Box className={cx({ cardContent: true, })}>
-      <Typography variant='h3'>BigTime</Typography>
+      <Typography variant='h3'>{gameInfo?.name}</Typography>
       <Box className={styles.rewardInfo}>
         <Box className={styles.iconBox}>
           <Image src={REWARD_ACTIVE_ICON} layout="fill" />
@@ -33,8 +33,13 @@ const GameSallCard: React.FC<GameSamllCardProps> = (props) => {
         {getRewarded > 0 ? <span>{getRewarded}</span> : 0}/{rewardCount}
       </Box>
       <Box className={styles.rewardDesc}>
-        <Typography>Reward 1 : Share 500U </Typography>
-        <Typography>Reward 2 : Share 500U </Typography>
+        {
+          gameInfo?.rewards?.map((item: string, index: number) =>
+            <Typography key={index}>Reward{index + 1}: {item}</Typography>
+          )
+        }
+        {/* <Typography>Reward 1 : Share 500U </Typography> */}
+        {/* <Typography>Reward 2 : Share 500U </Typography> */}
       </Box>
     </Box>
   </Box>
