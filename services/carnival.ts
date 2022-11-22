@@ -14,10 +14,10 @@ export const queryCarnivalProgress = async ({ address }: { address: string }) =>
 /**
  * query all carnival games info
  */
-export const queryCarnivalGamesInfo = async () => {
-  const res = await fetch(`${BASE_BACKEND_API}/carnival/home`)
-  return res.json()
-}
+// export const queryCarnivalGamesInfo = async () => {
+//   const res = await fetch(`${BASE_BACKEND_API}/carnival/home`)
+//   return res.json()
+// }
 
 
 /**
@@ -25,7 +25,7 @@ export const queryCarnivalGamesInfo = async () => {
  * @param param0 
  * @returns 
  */
-export const queryCarnivalGameMedals = async ({ address, game_id }: { address: string, game_id: string }) => {
+export const queryCarnivalGamesInfo = async ({ address, game_id }: { address: string, game_id: string }) => {
   const res = await fetch(`${BASE_BACKEND_API}/carnival/game?address=${address}&game_id=${game_id}`)
   return res.json()
 }

@@ -419,12 +419,8 @@ export default Carnival
 
 export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsContext) => {
 
-  // 获取嘉年华所有游戏信息
-  // const { data } = await queryCarnivalGamesInfo()
-  // console.log(data)
   const { data: { progresses, games } } = await queryCarnivalProgress({ address: '0x00' })
-  // console.log(initTaskProgress)
-
+  console.log(progresses, games)
   return {
     props: {
       // 获取国际化文案

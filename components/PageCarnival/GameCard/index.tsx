@@ -15,7 +15,7 @@ interface GameCardProps {
 
 const CarnivalGameCard: React.FC<GameCardProps> = (props) => {
   const { isBig = false, gameInfo } = props
-  console.log(gameInfo)
+
   const sendTrialGameEvent = () => {
     ga.event({ action: "click", params: { event_name: 'chooseGame' } })
   }
@@ -34,7 +34,7 @@ const CarnivalGameCard: React.FC<GameCardProps> = (props) => {
   })}>
 
     <Box className={styles.gameCover}>
-      <Image src={gameInfo.image} layout="fill" objectFit="cover" quality={100} />
+      <Image src={gameInfo.cover} layout="fill" objectFit="cover" quality={100} />
       <Box className={styles.gameLogo}>
         <Image src={gameInfo.logo} layout="fill" quality={100} />
       </Box>

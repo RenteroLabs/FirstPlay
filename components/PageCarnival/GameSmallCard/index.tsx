@@ -15,13 +15,13 @@ interface GameSamllCardProps {
 
 const GameSallCard: React.FC<GameSamllCardProps> = (props) => {
   const { getRewarded, rewardCount, gameInfo } = props
-
+  console.log(gameInfo)
   return <Box className={cx({
     smallGameCard: true,
     activeCard: getRewarded != 0
   })}>
     <Box className={styles.gameCover}>
-      <Image src={gameInfo.image} layout="fill" objectFit='cover' quality={100} />
+      <Image src={gameInfo.thumbnail} layout="fill" objectFit='cover' quality={100} />
     </Box>
 
     <Box className={cx({ cardContent: true, })}>

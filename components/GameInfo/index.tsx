@@ -16,6 +16,7 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
   const { gameInfo = {} } = props
   const isMobileSize = useMediaQuery('(max-width: 750px)')
 
+  console.log(gameInfo)
   return <Box className={styles.gameinfoBox}>
     {
       isMobileSize ?

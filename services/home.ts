@@ -24,3 +24,11 @@ export const getAllGamesInfo = async () => {
   const data = await fetch(`${BASE_BACKEND_API}/api/games`)
   return data.json()
 }
+
+
+// 嘉年华获取全部游戏
+
+export const getAllGames= async () => {
+  const data = await fetch(`${BASE_BACKEND_API}/carnival/home`)
+  return data.json()
+}
