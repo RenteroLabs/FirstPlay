@@ -35,7 +35,12 @@ const GameCard: React.FC<GameCardProps> = (props) => {
 
   return <Card className={styles.gameCard} onClick={linkToGameDetail}>
     <Box className={styles.gameImage}>
-      <Image priority src={gameInfo?.image} layout="fill" objectFit="cover" loader={imageKitLoader} />
+      <Image
+        priority
+        src={gameInfo?.image}
+        layout="fill"
+        objectFit="cover"
+        loader={({ src }) => src} />
     </Box>
 
     <CardContent className={styles.gameContent}>

@@ -50,7 +50,6 @@ export const UserInfo = createContext<UserInfoParams>({ ownPassNFt: false, isAct
 
 // 游戏详情页
 const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = ({ gameInfo }) => {
-  // console.log(gameInfo)
   const router = useRouter()
   const { address } = useAccount()
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false)
@@ -87,7 +86,6 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
   const { run: getCarnivalGameInfo } = useRequest(queryCarnivalGamesInfo, {
     manual: true,
     onSuccess: ({ data }) => {
-      console.log(data)
       setCarnivalGame(data)
     }
   })
@@ -178,7 +176,14 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
             <link rel="icon" href="/favicon.ico" />
           </Head>
           <Box className={styles.topCover}>
-            {gameInfo?.background && <Image src={gameInfo?.background} layout='fill' objectFit='cover' />}
+            {gameInfo?.background &&
+              <Image
+                src={gameInfo?.background}
+                layout='fill'
+                objectFit='cover'
+                quality={100}
+                loader={({ src }) => src}
+              />}
           </Box>
           <Box className={styles.gameInfoBox}>
             <GameInfo gameInfo={gameInfo} />

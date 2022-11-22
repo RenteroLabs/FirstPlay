@@ -8,7 +8,7 @@ import Support from "@/components/PageHome/Support";
 import GameStrategy from "@/components/PageHome/GameStrategy";
 import GudeStep from "@/components/PageHome/GuideStep";
 import TrialGame from "@/components/PageHome/TrialingGame";
-import { getHomeInfo } from "services/home";
+import { getAllGames, getHomeInfo } from "services/home";
 import { useTranslations } from "next-intl";
 import { ReactElement, useMemo } from "react";
 import Layout from "@/components/Layout";
@@ -69,7 +69,7 @@ export default FirstPlay
 
 export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsContext) => {
   // 获取首页数据
-  const result = await getHomeInfo()
+  const result = await getAllGames()
   const { popular_games = [], banners = [], strategies = [], upcoming_games = [] } = result.data || {}
 
   return {

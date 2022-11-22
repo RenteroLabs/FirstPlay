@@ -21,16 +21,24 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
   const isMobileSize = useMediaQuery("(max-width:600px)")
   const isMounted = useIsMounted()
 
+  const linkToForm = () => {
+    if (!isClaimed) {
+      window.open(claimLink)
+    }
+  }
 
   return isMounted && isMobileSize ?
     <Box className={styles.mobileCarnivalRewardItem}>
       <Box className={styles.itemLabel}>{index.toString().padStart(2, '0')}</Box>
       <Typography>{reward}</Typography>
       <Box className={styles.actionArea}>
-        <Box className={cx({
-          claimBtn: true,
-          claimedBtn: isClaimed
-        })}>
+        <Box
+          className={cx({
+            claimBtn: true,
+            claimedBtn: isClaimed
+          })}
+          onClick={linkToForm}
+        >
           {isClaimed ? "Completed" : 'Claim'}
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -48,7 +56,9 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       <Box className={cx({
         claimBtn: true,
         claimedBtn: isClaimed
-      })}>
+      })}
+        onClick={linkToForm}
+      >
         {isClaimed ? "Completed" : 'Claim'}
       </Box>
       <Box className={styles.rewardIcon}>

@@ -75,7 +75,6 @@ function MyApp({ Component, pageProps }: AppPropsWithMessages) {
 
   useEffect(() => {
     const handleRouteChange = (url: string) => {
-      console.log('post')
       ga.pageview(url)
     }
 

@@ -134,14 +134,16 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
         </Box>
       </Box> */}
 
-      <Box className={styles.dailyActivity}>
+      { !is600Size && <Box className={styles.dailyActivity}>
         <Box className={styles.dailyHeader}>
           <Typography variant="h3">Daily surprise draw</Typography>
           <Box className={styles.headerDiscord}>
             <Typography>Enter Discord to draw more surprise rewards</Typography>
-            <Box className={styles.discordBtn}>
+            <Box className={styles.discordBtn} onClick={() => {
+              window.open('https://discord.com/invite/84mhbPXFUu')
+            }}>
               <Box>
-                <Image src="/discord_footer.png" layout="fill" />
+                <Image src="/Discord-Logo-Carnival.png" layout="fill" />
               </Box>
               <Typography>Go and see</Typography>
             </Box>
@@ -149,7 +151,7 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
         </Box>
         <Box className={styles.todayActivity}>
           <Box className={styles.activityLogo}>
-            <Image src="https://rentero-resource.s3.ap-east-1.amazonaws.com/AlongWithTheGods.jpg" layout="fill" />
+            <Image src="/BigTime.jpg" layout="fill" />
           </Box>
           <Typography>
             [<span className={styles.highlight}>BigTime</span>]
@@ -157,7 +159,7 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
             <span className={styles.highlight}>Draw 10 NFTs from trial users</span>
           </Typography>
         </Box>
-      </Box>
+      </Box>}
       {/* <Box className={styles.winnerList}>
         <Box className={styles.winerLabel}>
           <Typography>Yesterday Winner :</Typography>
@@ -167,8 +169,8 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
 
       <Box className={styles.taskProgress}>
         <Box className={styles.cardHeader}>
-          <Typography variant="h3">Task Progress</Typography>
-          <Typography>{isMounted && !is600Size && <>Distance draw left</>} <span>{days}</span> day</Typography>
+          <Typography variant="h3">Task</Typography>
+          <Typography><span>{days}</span> day left</Typography>
         </Box>
         <Box className={styles.addressSection}>
           {isMounted && <Typography>
@@ -218,26 +220,26 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
           </Box>
         </Box>
         <Box className={styles.rewardDesc}>
-          <Typography>Medal rewards: Play the game to accumulate medals, participate in the lottery after the game is over,and have the opportunity to get multiple game NFTs. The more badges you accumulate, the more rewards you have the chance to win~</Typography>
+          <Typography>Prize Pool: After collecting medals, we will draw prizes in official Discord on December 8th. The winning address will receive the NFT and share the cash reward.</Typography>
         </Box>
         <Stack className={styles.rewardList}>
           <Box className={styles.rewardItem}>
             <Box className={styles.rewardLevel}>
               <Box className={styles.rewardIcon}>
-                <Image src={REWARD_ACTIVE_ICON} layout="fill" />
+                <Image src={REWARD_ACTIVE_ICON} layout="fill" quality={100} />
               </Box>
               <Typography>Reach 6:</Typography>
             </Box>
             <Box className={styles.rewardBox}>
               <Box className={styles.rewardValue}>
-                <Box>
-                  <Image src={MONEY_ICON} layout="fill" />
+                <Box sx={{ borderRadius: '50%' }}>
+                  <Image src="/NeoFantasy.jpg" layout="fill" quality={100} />
                 </Box>
-                <Typography>Neo Fantancy NFT * 1</Typography>
+                <Typography>{!is600Size && "Neo Fantancy: "}Ordinary Mystery Box*1</Typography>
               </Box>
               <Box className={styles.rewardValue}>
                 <Box>
-                  <Image src={MONEY_ICON} layout="fill" />
+                  <Image src={MONEY_ICON} layout="fill" quality={100} />
                 </Box>
                 <Typography>Share 1000U</Typography>
               </Box>
@@ -246,48 +248,44 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
           <Box className={styles.rewardItem}>
             <Box className={styles.rewardLevel}>
               <Box className={styles.rewardIcon}>
-                <Image src={REWARD_ACTIVE_ICON} layout="fill" />
+                <Image src={REWARD_ACTIVE_ICON} layout="fill" quality={100} />
               </Box>
               <Typography>Reach 9:</Typography>
             </Box>
             <Box className={styles.rewardBox}>
               <Box className={styles.rewardValue}>
                 <Box>
-                  <Image src={MONEY_ICON} layout="fill" />
+                  <Image src="/BigTime.jpg" layout="fill" quality={100} />
                 </Box>
-                <Typography>BigTime军械库或熔炉盲盒*1</Typography>
+                <Typography>{!is600Size && "BigTime: "}Forge Mystery Box*1</Typography>
               </Box>
             </Box>
           </Box>
           <Box className={styles.rewardItem}>
             <Box className={styles.rewardLevel}>
               <Box className={styles.rewardIcon}>
-                <Image src={REWARD_ACTIVE_ICON} layout="fill" />
+                <Image src={REWARD_ACTIVE_ICON} layout="fill" quality={100} />
               </Box>
               <Typography>Reach 12:</Typography>
             </Box>
             <Box className={styles.rewardBox}>
               <Box className={styles.rewardValue}>
                 <Box>
-                  <Image src={MONEY_ICON} layout="fill" />
+                  <Image src="/BigTime.jpg" layout="fill" quality={100} />
                 </Box>
-                <Typography>BigTime军械库或熔炉盲盒*1</Typography>
+                <Typography>{!is600Size && 'BigTime: '}Forge Mystery Box*1</Typography>
               </Box>
-            </Box>
-            <Box className={styles.rewardBox}>
               <Box className={styles.rewardValue}>
                 <Box>
-                  <Image src={MONEY_ICON} layout="fill" />
+                  <Image src="/DarkThrone.jpg" layout="fill" quality={100} />
                 </Box>
-                <Typography>Dark Throne NFT*1</Typography>
+                <Typography>{!is600Size && 'Dark Throne: '}Totem Box*1</Typography>
               </Box>
-            </Box>
-            <Box className={styles.rewardBox}>
               <Box className={styles.rewardValue}>
                 <Box>
-                  <Image src={MONEY_ICON} layout="fill" />
+                  <Image src="/NeoFantasy.jpg" layout="fill" quality={100} />
                 </Box>
-                <Typography>Neo Fantancy NFT*1</Typography>
+                <Typography>{!is600Size && 'Neo Fantancy: '}Ordinary Mystery Box*1</Typography>
               </Box>
             </Box>
           </Box>
@@ -297,16 +295,10 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
       <Box className={styles.trialGames}>
         <Box className={styles.cardTitle}>
           <Typography variant="h3">Trial Games</Typography>
-          {isMounted && !is800Size && <Typography>Trial time 2022.11.25～12.05,After the end, the lottery will start.</Typography>}
+          {/* {isMounted && !is800Size && <Typography>Trial time 2022.11.25～12.05,After the end, the lottery will start.</Typography>} */}
         </Box>
 
         <Box className={styles.gameList}>
-          {/* <CarnivalGameCard isBig={true} />
-          <CarnivalGameCard isBig={true} />
-          <CarnivalGameCard isBig={true} />
-          <CarnivalGameCard isBig={true} />
-          <CarnivalGameCard isBig={true} />
-          <CarnivalGameCard isBig={true} /> */}
           {
             gamesInfo?.map((item: Record<string, any>, index: number) => <CarnivalGameCard key={index} isBig={true} gameInfo={item} />)
           }
@@ -420,7 +412,6 @@ export default Carnival
 export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsContext) => {
 
   const { data: { progresses, games } } = await queryCarnivalProgress({ address: '0x00' })
-  console.log(progresses, games)
   return {
     props: {
       // 获取国际化文案

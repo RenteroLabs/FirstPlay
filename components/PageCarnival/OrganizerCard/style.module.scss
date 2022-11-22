@@ -40,11 +40,16 @@
       width: 3.33rem;
       height: 3.33rem;
       position: relative;
-      background-color: rgba(#be9dea, 0.37);
+
+      background: rgba(white, 0.5);
       border-radius: 50%;
       cursor: pointer;
       & + .mediaItem {
         margin-left: 1.67rem;
+      }
+
+      &:hover {
+        background: rgba(white, 0.3);
       }
     }
   }
@@ -60,7 +65,6 @@
 }
 
 @media screen and (max-width: 850px) {
-
   .organizerCard {
     height: 35vw;
     .mediaList {

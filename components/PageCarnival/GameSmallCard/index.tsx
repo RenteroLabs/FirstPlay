@@ -15,7 +15,7 @@ interface GameSamllCardProps {
 
 const GameSallCard: React.FC<GameSamllCardProps> = (props) => {
   const { getRewarded, rewardCount, gameInfo } = props
-  console.log(gameInfo)
+
   return <Box className={cx({
     smallGameCard: true,
     activeCard: getRewarded != 0
