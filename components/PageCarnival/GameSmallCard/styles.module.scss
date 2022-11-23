@@ -9,7 +9,7 @@
   &:hover {
     cursor: pointer;
   }
-  
+
   .gameCover {
     width: 6.67rem;
     height: 6.67rem;
@@ -29,7 +29,10 @@
     line-height: 1.17rem;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    // align-items: center;
+    justify-content: center;
+    // justify-content: flex-start;
+    
     flex-grow: 0;
     h3 {
       font-size: 1.5rem;

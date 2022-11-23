@@ -95,6 +95,7 @@
         height: 1.42rem;
         position: relative;
         margin-right: 0.67rem;
+        flex-shrink: 0;
       }
     }
   }
@@ -250,6 +251,7 @@
           overflow: visible;
           text-overflow: unset;
           line-height: 1.33rem;
+          font-size: 1.17rem;
           // font-size: 1rem;
           // line-height: 1rem;
           // font-weight: 400;

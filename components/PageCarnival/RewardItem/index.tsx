@@ -38,31 +38,36 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
   }
 
   const [localGiftCode, setLocalGiftCode] = useLocalStorageState("GIFTCODE")
+  const [recordTime, setRecordTime] = useLocalStorageState("RECORD_TIME")
 
 
   // const 
   const { run: getGiftCode } = useRequest(queryGameGiftCode, {
     manual: true,
-    onSuccess: (data) => {
-      console.log(data)
+    onSuccess: ({ data }) => {
+      console.log(data, data.key, new Date().getTime())
+      setGiftCode(data.key)
+      setLocalGiftCode(data?.key)
+      setRecordTime(new Date().getTime())
     }
   })
 
-  // 首先判断本地有没有 giftcode
+  // 首先判断本地存不存在有效 giftcode
   useEffect(() => {
-
+    console.log(localGiftCode, recordTime)
+    if (localGiftCode && recordTime) {
+      if (new Date().getTime() - Number(recordTime) < (86400 * 1000)) {
+        setGiftCode(localGiftCode as string)
+      }
+    }
   }, [])
-
-  useEffect(() => {
-    // if (gameId) {
-    //   getGiftCode({ game_id: gameId })
-    // }
-  }, [gameId])
-
 
   const handleClickGiftBtn = () => {
     // 判断本地有没有
-    
+    if (giftCode === "XXXXXXX") {
+      getGiftCode({ game_id: gameId}) 
+    }
+    setShowGiftModal(true)
   }
 
   return isMounted && isMobileSize ?
@@ -79,6 +84,11 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
         >
           {isClaimed ? "Completed" : 'Claim'}
         </Box>
+        {index === 1 &&
+          gameId === GiftbagGame &&
+          <Box className={styles.giftBtn} onClick={handleClickGiftBtn}>
+            Gift Code
+          </Box>}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Box className={styles.rewardIcon}>
             <Image src={REWARD_ACTIVE_ICON} layout="fill" />
@@ -98,7 +108,10 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       <Typography>{reward}</Typography>
       {index === 1 &&
         gameId === GiftbagGame &&
-        <Box className={styles.giftBtn} onClick={() => setShowGiftModal(true)}>
+        <Box className={styles.giftBtn} onClick={handleClickGiftBtn}>
+          <Box>
+            <Image src="/gift_code.png" layout="fill" />
+          </Box>
           Gift Code
         </Box>}
       <Box className={cx({

@@ -49,15 +49,26 @@
   .giftBtn {
     cursor: pointer;
     border-radius: 1.67rem;
-    border: 0.08rem solid rgba(#222, 0.3);
+    border: 1px solid rgba(#222, 0.3);
     filter: blur(0px);
     font-size: 1.17rem;
     font-family: Inter-SemiBold, Inter;
     font-weight: 600;
-    color: #343434;
+    color: #222;
     line-height: 1.17rem;
-    padding: 1.08rem 1.17rem;
+    padding: 0.62rem 1.17rem;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    & > div {
+      position: relative;
+      width: 2rem;
+      height: 2rem;
+      margin-right: 0.33rem;
+      img {
+        transform: scale(0.7);
+      }
+    }
   }
 
   .claimBtn {
@@ -176,9 +187,9 @@
 
     .claimBtn {
       flex-shrink: 0;
-      width: 10rem;
+      width: 8rem;
       text-align: center;
-      margin-right: 1rem;
+      margin-right: 0.5rem;
       background: rgba(255, 255, 255, 0);
       border-radius: 1.67rem;
       border: 1px solid #ba449a;
@@ -207,6 +218,33 @@
       border-color: transparent;
       border: none;
       -webkit-text-fill-color: white;
+    }
+
+    .giftBtn {
+      cursor: pointer;
+      border-radius: 1.67rem;
+      border: 1px solid rgba(#222, 0.3);
+      filter: blur(0px);
+      font-size: 1.17rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #222;
+      line-height: 1.17rem;
+      padding: 0.92rem 1.17rem;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      // flex-grow: 1;
+      width: 8rem;
+      & > div {
+        position: relative;
+        width: 2rem;
+        height: 2rem;
+        margin-right: 0.33rem;
+        img {
+          transform: scale(0.7);
+        }
+      }
     }
     .rewardIcon {
       flex-shrink: 0;
