@@ -201,7 +201,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                 </Box>
               </Box>
               <Typography className={styles.rewardDesc}>
-                After completing the corresponding task, you can register the address. After completing the verification, the reward will be sent to the address at 12:00 every day, and the game carnival medal reward will be obtained at the same time.
+                {carnivalGame?.task_description} 
               </Typography>
               {
                 carnivalGame?.tasks?.map((item: Record<string, any>, index: number) =>

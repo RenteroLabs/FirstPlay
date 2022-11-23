@@ -1,0 +1,20 @@
+
+.giftBox {
+  width: 34.17rem;
+  padding: 2.5rem;
+  background-color: white;
+  border-radius: 1.33rem;
+
+  .modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+      font-size: 1.75rem;
+      font-family: Inter-Bold, Inter;
+      font-weight: bold;
+      color: rgba(#222, 0.8);
+      line-height: 1.75rem;
+    }
+  }
+}

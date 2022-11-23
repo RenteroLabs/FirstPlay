@@ -1,10 +1,11 @@
 import { Box, Typography, useMediaQuery } from '@mui/material'
 import { REWARD_ACTIVE_ICON } from 'constants/static'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './styles.module.scss'
 import classname from 'classnames/bind'
 import { useIsMounted } from 'hooks/useIsMounted'
+import GiftCodeModal from '../GiftCodeModal'
 
 const cx = classname.bind(styles)
 
@@ -24,7 +25,10 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
   const isMobileSize = useMediaQuery("(max-width:600px)")
   const isMounted = useIsMounted()
 
-  console.log(gameId)
+  const [showGiftModal, setShowGiftModal] = useState<boolean>(false)
+
+  const [giftCode, setGiftCode] = useState<string>("")
+
   const linkToForm = () => {
     if (!isClaimed) {
       window.open(claimLink)
@@ -59,8 +63,8 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       <Typography>{reward}</Typography>
       {index === 1 &&
         gameId === GiftbagGame &&
-        <Box className={styles.giftBtn}>
-          Gift bag code
+        <Box className={styles.giftBtn} onClick={() => setShowGiftModal(true)}>
+          Gift Code
         </Box>}
       <Box className={cx({
         claimBtn: true,
@@ -74,6 +78,11 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
         <Image src={REWARD_ACTIVE_ICON} layout="fill" />
       </Box>
       <Box component="span">+ {medalNum}</Box>
+      <GiftCodeModal
+        showGiftModal={showGiftModal}
+        setShowGiftModal={setShowGiftModal}
+        giftCode={giftCode}
+      />
     </Box>
 }
 
