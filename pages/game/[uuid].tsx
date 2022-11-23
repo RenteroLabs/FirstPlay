@@ -212,7 +212,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                     isClaimed={item?.status !== 'uncompleted'}
                     reward={item?.description}
                     claimLink={item?.form}
-                    gameId={router.query?.uuid}
+                    gameId={router.query?.uuid as string}
                   />
                 )
               }

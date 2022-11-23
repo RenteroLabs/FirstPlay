@@ -57,11 +57,11 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
     <Box className={styles.carnivalRewardItem}>
       <Box className={styles.rewardIndex}>{index.toString().padStart(2, '0')}</Box>
       <Typography>{reward}</Typography>
-      {/* {index === 1 &&
+      {index === 1 &&
         gameId === GiftbagGame &&
         <Box className={styles.giftBtn}>
           Gift bag code
-        </Box>} */}
+        </Box>}
       <Box className={cx({
         claimBtn: true,
         claimedBtn: isClaimed

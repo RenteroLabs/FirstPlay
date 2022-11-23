@@ -10,7 +10,7 @@ interface GameCardProps {
 
 const GameCard: React.FC<GameCardProps> = (props) => {
   const { gameInfo } = props
-
+console.log(gameInfo)
   const router = useRouter()
 
   const imageKitLoader = ({ src, width, quality = 100 }: any) => {
@@ -61,7 +61,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
           <Box className={styles.rewardIcon}>
             <Image src={REWARD_ICON} layout="fill" />
           </Box>
-          <Typography>Rewards: {gameInfo?.reward || '-'}</Typography>
+          <Typography>Rewards: {gameInfo?.rewards || '-'}</Typography>
         </Box>
       </Stack>
     </CardContent>
