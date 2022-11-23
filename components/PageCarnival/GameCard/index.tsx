@@ -34,7 +34,9 @@ const CarnivalGameCard: React.FC<GameCardProps> = (props) => {
   })}>
 
     <Box className={styles.gameCover}>
-      <Image src={gameInfo.cover} layout="fill" objectFit="cover" quality={100} />
+      <Image
+        src={gameInfo.cover} layout="fill" objectFit="cover" quality={100}
+        loader={({ src }) => src} />
       <Box className={styles.gameLogo}>
         <Image src={gameInfo.logo} layout="fill" quality={100} />
       </Box>
