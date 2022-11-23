@@ -1,11 +1,13 @@
 import { Box, Typography, useMediaQuery } from '@mui/material'
 import { REWARD_ACTIVE_ICON } from 'constants/static'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './styles.module.scss'
 import classname from 'classnames/bind'
 import { useIsMounted } from 'hooks/useIsMounted'
 import GiftCodeModal from '../GiftCodeModal'
+import { useLocalStorageState, useRequest } from 'ahooks'
+import { queryGameGiftCode } from 'services/carnival'
 
 const cx = classname.bind(styles)
 
@@ -27,12 +29,40 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
 
   const [showGiftModal, setShowGiftModal] = useState<boolean>(false)
 
-  const [giftCode, setGiftCode] = useState<string>("")
+  const [giftCode, setGiftCode] = useState<string>("XXXXXXX")
 
   const linkToForm = () => {
     if (!isClaimed) {
       window.open(claimLink)
     }
+  }
+
+  const [localGiftCode, setLocalGiftCode] = useLocalStorageState("GIFTCODE")
+
+
+  // const 
+  const { run: getGiftCode } = useRequest(queryGameGiftCode, {
+    manual: true,
+    onSuccess: (data) => {
+      console.log(data)
+    }
+  })
+
+  // 首先判断本地有没有 giftcode
+  useEffect(() => {
+
+  }, [])
+
+  useEffect(() => {
+    // if (gameId) {
+    //   getGiftCode({ game_id: gameId })
+    // }
+  }, [gameId])
+
+
+  const handleClickGiftBtn = () => {
+    // 判断本地有没有
+    
   }
 
   return isMounted && isMobileSize ?
@@ -56,6 +86,11 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           <Box component="span">+ {medalNum}</Box>
         </Box>
       </Box>
+      <GiftCodeModal
+        showGiftModal={showGiftModal}
+        setShowGiftModal={setShowGiftModal}
+        giftCode={giftCode}
+      />
     </Box>
     :
     <Box className={styles.carnivalRewardItem}>

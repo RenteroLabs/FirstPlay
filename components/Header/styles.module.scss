@@ -247,7 +247,10 @@
     .walletMenuBox {
       display: block;
       position: absolute;
-      top: 66px;
+      // top: 66px;
+      top: 58px;
+      box-shadow: rgb(0 0 0 / 8%) 0px 4px 8px;
+
       right: -100%;
       width: 22.58rem;
       background: #ffffff;
@@ -305,8 +308,10 @@
     background: #ffffff;
     border-radius: 0.83rem;
     padding: 0.88rem 0;
-    top: 84px;
+    // top: 84px;
+    top: 72px;
     right: -50%;
+    box-shadow: rgb(0 0 0 / 8%) 0px 4px 8px;
 
     .mediaItem {
       font-size: 1.5rem;

@@ -29,3 +29,11 @@ export const queryCarnivalGamesInfo = async ({ address, game_id }: { address: st
   const res = await fetch(`${BASE_BACKEND_API}/carnival/game?address=${address}&game_id=${game_id}`)
   return res.json()
 }
+
+
+
+
+export const queryGameGiftCode = async ({ game_id }: {game_id: string}) => {
+  const res = await fetch(`${BASE_BACKEND_API}/carnival/game-key?game_id=${game_id}`)
+  return res.json()
+}

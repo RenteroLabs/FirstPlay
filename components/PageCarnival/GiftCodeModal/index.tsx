@@ -12,7 +12,7 @@ interface GiftCodeProps {
 }
 
 const GiftCodeModal: React.FC<GiftCodeProps> = (props) => {
-  const { setShowGiftModal, showGiftModal } = props
+  const { setShowGiftModal, showGiftModal, giftCode } = props
 
   return <Dialog
     open={showGiftModal}
@@ -20,8 +20,10 @@ const GiftCodeModal: React.FC<GiftCodeProps> = (props) => {
     <Box className={styles.giftBox}>
       <Box className={styles.modalHeader}>
         <IconButton
+          sx={{ opacity: 0, cursor: "default"}}
           disableRipple
-          onClick={() => setShowGiftModal(false)}>
+          // onClick={() => setShowGiftModal(false)}
+          >
           <ArrowBackIosNewIcon />
         </IconButton>
         <Typography>Gift Code</Typography>
@@ -31,6 +33,10 @@ const GiftCodeModal: React.FC<GiftCodeProps> = (props) => {
         ><CloseIcon /></IconButton>
       </Box>
       <Box className={styles.container}>
+        <Box className={styles.giftBox}>
+          {giftCode}
+        </Box>
+        <Typography>Gift code updated every 24 hours</Typography>
       </Box>
     </Box>
   </Dialog>
