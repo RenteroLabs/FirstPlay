@@ -212,6 +212,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                     isClaimed={item?.status !== 'uncompleted'}
                     reward={item?.description}
                     claimLink={item?.form}
+                    gameId={router.query?.uuid}
                   />
                 )
               }
@@ -229,9 +230,10 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
           </Box>
           <Box className={styles.gameStrategy}>
             <Typography variant='h4'>Description</Typography>
-            <Box className={styles.strategyDesc}>
-              {carnivalGame?.tutorial}
-            </Box>
+            <div className={styles.strategyDesc} dangerouslySetInnerHTML={{
+              __html: carnivalGame?.tutorial
+            }}>
+            </div>
             <Box className={styles.strategyLink} onClick={linkToStrategy}>
               See More
             </Box>

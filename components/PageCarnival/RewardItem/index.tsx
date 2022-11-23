@@ -13,14 +13,18 @@ interface RewardItemProps {
   reward: string,
   isClaimed: boolean,
   claimLink: string,
-  medalNum: number
+  medalNum: number,
+  gameId: string
 }
 
+const GiftbagGame = '740a1e44-fd84-433e-98df-be90d650eb51'
+
 const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
-  const { index, reward, isClaimed, claimLink, medalNum } = props
+  const { index, reward, isClaimed, claimLink, medalNum, gameId } = props
   const isMobileSize = useMediaQuery("(max-width:600px)")
   const isMounted = useIsMounted()
 
+  console.log(gameId)
   const linkToForm = () => {
     if (!isClaimed) {
       window.open(claimLink)
@@ -53,6 +57,11 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
     <Box className={styles.carnivalRewardItem}>
       <Box className={styles.rewardIndex}>{index.toString().padStart(2, '0')}</Box>
       <Typography>{reward}</Typography>
+      {/* {index === 1 &&
+        gameId === GiftbagGame &&
+        <Box className={styles.giftBtn}>
+          Gift bag code
+        </Box>} */}
       <Box className={cx({
         claimBtn: true,
         claimedBtn: isClaimed

@@ -46,6 +46,20 @@
     margin-left: 1.25rem;
   }
 
+  .giftBtn {
+    cursor: pointer;
+    border-radius: 1.67rem;
+    border: 0.08rem solid rgba(#222, 0.3);
+    filter: blur(0px);
+    font-size: 1.17rem;
+    font-family: Inter-SemiBold, Inter;
+    font-weight: 600;
+    color: #222222;
+    line-height: 1.17rem;
+    padding: 1.08rem 1.17rem;
+    flex-shrink: 0;
+  }
+
   .claimBtn {
     flex-shrink: 0;
     width: 10rem;

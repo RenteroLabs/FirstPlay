@@ -6,6 +6,10 @@
   align-items: center;
   background-color: rgba(#000, 0.05);
 
+  &:hover {
+    cursor: pointer;
+  }
+  
   .gameCover {
     width: 6.67rem;
     height: 6.67rem;

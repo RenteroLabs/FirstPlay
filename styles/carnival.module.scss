@@ -375,6 +375,13 @@
 
       .rewardDesc {
         margin-top: 0.83rem;
+        h4 {
+          font-size: 1.17rem;
+          font-family: Inter-Bold, Inter;
+          font-weight: bold;
+          color: #222222;
+          line-height: 1.83rem;
+        }
         p {
           font-size: 1.17rem;
           font-family: Inter-Medium, Inter;
@@ -530,7 +537,18 @@
         font-weight: 500;
         color: #222222;
         line-height: 1.67rem;
-        margin: 0.2rem auto;
+        margin: 0.5rem auto;
+
+        li {
+          margin-left: 2.5rem;
+          line-height: 2rem;
+        }
+        ol {
+          margin-left: -2rem;
+          margin-top: 0;
+          margin-bottom: 0;
+          line-height: 2rem;
+        }
       }
 
       .showmoreBtn {

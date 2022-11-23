@@ -38,7 +38,7 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
     <Box className={styles.coverBox}>
       {coverSize === 1920 && <Image priority src={`/headerCover1920.jpg`} layout="fill" objectFit="cover" />}
       {coverSize === 900 && <Image priority src={`/headerCover900.jpg`} layout="fill" objectFit="cover" />}
-      {coverSize === 375 && <Image priority src={`/headerCover375.jpg`}  layout="fill" objectFit="cover" />}
+      {coverSize === 375 && <Image priority src={`/headerCover375.jpg`} layout="fill" objectFit="cover" />}
     </Box>
     <GudeStep />
     {/* <TrialGame /> */}
@@ -74,7 +74,8 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
 
   return {
     props: {
-      hotGames: reverse(popular_games),
+      // hotGames: reverse(popular_games),
+      hotGames: popular_games,
       comingGames: upcoming_games,
       strategys: strategies,
 

@@ -134,7 +134,7 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
         </Box>
       </Box> */}
 
-      { !is600Size && <Box className={styles.dailyActivity}>
+      {!is600Size && <Box className={styles.dailyActivity}>
         <Box className={styles.dailyHeader}>
           <Typography variant="h3">Daily surprise draw</Typography>
           <Box className={styles.headerDiscord}>
@@ -220,7 +220,9 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
           </Box>
         </Box>
         <Box className={styles.rewardDesc}>
-          <Typography>Prize Pool: After collecting medals, we will draw prizes in official Discord on December 8th. The winning address will receive the NFT and share the cash reward.</Typography>
+          <Typography variant="h4">Prize Pool:</Typography>
+          <Typography>After collecting medals, we will draw prizes in official Discord on December 8th. The winning address will receive the NFT and share the cash reward.</Typography>
+          <Typography>Reach 6 medals, everyone can get prizes.Reach 9 medals, draw 5 addresses to get the following rewards.Reach 12 medals, draw 5 addresses to get the following rewards.</Typography>
         </Box>
         <Stack className={styles.rewardList}>
           <Box className={styles.rewardItem}>
@@ -238,10 +240,10 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
                 <Typography>{!is600Size && "Neo Fantancy: "}Ordinary Mystery Box*1</Typography>
               </Box>
               <Box className={styles.rewardValue}>
-                <Box>
-                  <Image src={MONEY_ICON} layout="fill" quality={100} />
+                <Box sx={{ "& img": { transform: "scale(0.8)"}}}>
+                  <Image src="/carnival_money.png" layout="fill" quality={100} />
                 </Box>
-                <Typography>Share 1000U</Typography>
+                <Typography>Share $1,000</Typography>
               </Box>
             </Box>
           </Box>
@@ -317,46 +319,81 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
         <Typography className={styles.gapLine}></Typography>
 
         <Typography><b>2.1 Single task reward</b></Typography>
-        <Typography className={styles.gapLine}></Typography>
+        {/* <Typography className={styles.gapLine}></Typography> */}
 
         <Typography>after participating in the task and claiming the task and passing the verification, the task will be regarded as completed, and the task medal will be obtained immediately after passing the verification. The rewards of U, game token and NFT will be given out uniformly on December 9, 2022. The single tasks are as follows:</Typography>
         <Typography className={styles.gapLine}></Typography>
 
         {
           isMounted && showMoreRule && <>
-            <Typography>BigTime Task 1 - Register a game account and submit the application to obtain 20U ruby card permission and 1 activity task medal</Typography>
-
-            <Typography>BigTime task 2 - Players who reach level 10 during the activity will carve up 500U with those who meet the task requirements, with a maximum of 1U per person and 2 activity medals</Typography>
-            <Typography>Dark Throne Task 1 - Players play games and pass the third level will carve up 1000U with those who meet the task requirements, with a maximum of 1U per person and an activity medal</Typography>
-            <Typography>Dark Throne Task 2 - Players play games and pass the 20th level, and get 2 activity medals</Typography>
-            <Typography>NEO FANTANCY Task 1 - Players who register for the game will carve up 500U with those who meet the task requirements, with a maximum of 1U per person. Each user who meets the task requirements can receive a game experience gift pack worth 100U (limited time experience champions, game props) and an activity medal</Typography>
-            <Typography>NEO FANTANCY Task 2 - Players with a fighting capacity of 20000 in the game will carve up 100000 FTS with those who meet the task requirements, with a maximum of 200 FTS  and three activity medals for each address</Typography>
-            <Typography>NEO FANTANCY Task 3 - Players who buy NFT game will carve up10000ERT with those who meet the task requirements, with a maximum of 100ERT , and 3 activity medals per address</Typography>
-            <Typography>Mirror Planet Task 1 - Players who register to log in to the game and carve up 500U with those who meet the task requirements, with a maximum of 1U and an activity medal per person</Typography>
-            <Typography>Mirror Planet Task 2 - Players who reach Lv5 during the activity will carve up 500U with those who meet the task requirements,with a maximum of 1U and an activity medal per person</Typography>
-            <Typography>Matr1x Task 1 - players who pre register the game will get Pioneer series NFT  (the highest value is 60U) and 1 task medal</Typography>
-            <Typography>Bless Global Task 1 - Players who register to log in to the game will get a close beta Pass card  and a task medal</Typography>
+            <Typography>
+              <li> BigTime Task 1 - Register a game account and submit the application to obtain 20U ruby card permission and 1 activity task medal</li>
+            </Typography>
+            <Typography>
+              <li>BigTime task 2 - Players who reach level 10 during the activity will carve up 500U with those who meet the task requirements, with a maximum of 1U per person and 2 activity medals</li>
+            </Typography>
+            <Typography>
+              <li>Dark Throne Task 1 - Players play games and pass the third level will carve up 1000U with those who meet the task requirements, with a maximum of 1U per person and an activity medal</li>
+            </Typography>
+            <Typography>
+              <li>Dark Throne Task 2 - Players play games and pass the 20th level, and get 2 activity medals</li>
+            </Typography>
+            <Typography>
+              <li>
+                NEO FANTANCY Task 1 - Players who register for the game will carve up 500U with those who meet the task requirements, with a maximum of 1U per person. Each user who meets the task requirements can receive a game experience gift pack worth 100U (limited time experience champions, game props) and an activity medal
+              </li>
+            </Typography>
+            <Typography>
+              <li>
+                NEO FANTANCY Task 2 - Players with a fighting capacity of 20000 in the game will carve up 100000 FTS with those who meet the task requirements, with a maximum of 200 FTS  and three activity medals for each address
+              </li>
+            </Typography>
+            <Typography>
+              <li>
+                NEO FANTANCY Task 3 - Players who buy NFT game will carve up10000ERT with those who meet the task requirements, with a maximum of 100ERT , and 3 activity medals per address
+              </li>
+            </Typography>
+            <Typography>
+              <li>
+                Mirror Planet Task 1 - Players who register to log in to the game and carve up 500U with those who meet the task requirements, with a maximum of 1U and an activity medal per person
+              </li>
+            </Typography>
+            <Typography>
+              <li>
+                Mirror Planet Task 2 - Players who reach Lv5 during the activity will carve up 500U with those who meet the task requirements,with a maximum of 1U and an activity medal per person
+              </li>
+            </Typography>
+            <Typography>
+              <li>
+                Matr1x Task 1 - players who pre register the game will get Pioneer series NFT  (the highest value is 60U) and 1 task medal
+              </li>
+            </Typography>
+            <Typography>
+              <li>
+                Bless Global Task 1 - Players who register to log in to the game will get a close beta Pass card  and a task medal
+              </li>
+            </Typography>
             <Typography className={styles.gapLine}></Typography>
             <Typography className={styles.gapLine}></Typography>
 
             <Typography> <b>2.2 Prize pool lottery</b> </Typography>
-            <Typography className={styles.gapLine}></Typography>
+            {/* <Typography className={styles.gapLine}></Typography> */}
 
             <Typography> Players who complete a task during the opening period of the activity task will receive a single task reward, and will participate in the lottery on December 8, 2022, according to the number of accumulated activity medals, and will be awarded on December 9, 2022</Typography>
 
             <Typography className={styles.gapLine}></Typography>
             {/* <Typography className={styles.gapLine}></Typography> */}
 
-            <Typography>First prize: 5 candidates, during the activity, 5 players with 12 or more task medals will be selected. The prize will be BigTime Armory or Furnace Blind Box+1 Dark ThroneNFT+1 NEO FANTANCY NFT+1</Typography>
-            <Typography>Second prize: 5 candidates. During the activity, 5 players with 9 or more task medals will be selected. The prize will be BigTime Armory or Furnace Blind Box+1</Typography>
-            <Typography>Third prize: unlimited. Players with 6 or more  task medals during the activity will carve up 1000U with those who meet the requirements, and 15 of them will be awarded NEO FANTANCY NFT+1</Typography>
+            <Typography><b>First prize</b>: 5 candidates, during the activity, 5 players with 12 or more task medals will be selected. The prize will be BigTime Armory or Furnace Blind Box+1 Dark ThroneNFT+1 NEO FANTANCY NFT+1</Typography>
+            <Typography><b>Second prize</b>: 5 candidates. During the activity, 5 players with 9 or more task medals will be selected. The prize will be BigTime Armory or Furnace Blind Box+1</Typography>
+            <Typography><b>Third prize</b>: unlimited. Players with 6 or more  task medals during the activity will carve up 1000U with those who meet the requirements, and 15 of them will be awarded NEO FANTANCY NFT+1</Typography>
             <Typography>Those who have won medals and met the requirements of lottery of 3 prize pools will participate in lottery of 3 prize pools at the same time. If you win more than one award, you will only get high-level awards. For example, when user A has won 13 medals in the activity and won the 1st, 2nd and 3rd prizes in the lottery, the final reward is the 1st prize.</Typography>
 
             <Typography className={styles.gapLine}></Typography>
             <Typography className={styles.gapLine}></Typography>
 
             <Typography><b>2.3 Daily surprise task</b></Typography>
-            <Typography className={styles.gapLine}></Typography>
+            {/* <Typography className={styles.gapLine}></Typography> */}
 
             <Typography>During the activity, the content of the surprise task will be announced every day. Users who complete the surprise task on the day will receive rewards in the form of a lottery. The daily surprise task will be announced on the day of the activity, and the winner of the surprise will be announced the next day. The rewards will be given out on December 9, 2022</Typography>
             <Typography className={styles.gapLine}></Typography>
@@ -364,11 +401,11 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
             <Typography variant="h4">3. Matters needing attention</Typography>
             <Typography>Users who participate in the event can get a ruby card worth 20U!Users who participate in the event can get a ruby card worth 20U!Users who participate in the event can get a ruby card worth 20U!Users who participate in the event can get a ruby card worth 20U!Users who participate in the event can get a ruby card worth 20U!</Typography>
             <Typography className={styles.gapLine}></Typography>
-            <Typography>1. One blockchain wallet address is considered as one user</Typography>
-            <Typography>2. Users with FirstPlay passnft in the address can receive rewards</Typography>
-            <Typography>3. The price of the game token and NFT rewarded will fluctuate with the market quotation</Typography>
-            <Typography>4. If the event needs to be stopped or adjusted due to force majeure or changes in circumstances (including major disasters, events that need to be stopped or adjusted under the instructions of government agencies, events that suffer from serious network attacks or system failures, etc.), we have the right to terminate the activity without compensation to users</Typography>
-            <Typography>5. In the process of participating in activities, we have the right to revoke the user&#39;s qualification to participate in activities and make use of rewards, and to reclaim the rights and interests that the user has already obtained, if the user has cheating and other illegal behaviors</Typography>
+            <Typography><ol>1. One blockchain wallet address is considered as one user</ol></Typography>
+            <Typography><ol>2. Users with FirstPlay passnft in the address can receive rewards</ol></Typography>
+            <Typography><ol>3. The price of the game token and NFT rewarded will fluctuate with the market quotation</ol></Typography>
+            <Typography><ol>4. If the event needs to be stopped or adjusted due to force majeure or changes in circumstances (including major disasters, events that need to be stopped or adjusted under the instructions of government agencies, events that suffer from serious network attacks or system failures, etc.), we have the right to terminate the activity without compensation to users</ol></Typography>
+            <Typography><ol>5. In the process of participating in activities, we have the right to revoke the user&#39;s qualification to participate in activities and make use of rewards, and to reclaim the rights and interests that the user has already obtained, if the user has cheating and other illegal behaviors</ol></Typography>
           </>
         }
         <Box
