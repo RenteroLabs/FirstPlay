@@ -10,7 +10,6 @@ export const queryCarnivalProgress = async ({ address }: { address: string }) =>
   return res.json()
 }
 
-
 /**
  * query all carnival games info
  */
