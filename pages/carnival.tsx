@@ -222,7 +222,7 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
         <Box className={styles.rewardDesc}>
           <Typography variant="h4">Prize Pool:</Typography>
           <Typography>After collecting medals, we will draw prizes in official Discord on December 8th. The winning address will receive the NFT and share the cash reward.</Typography>
-          <Typography>Reach 6 medals, everyone can get prizes.Reach 9 medals, draw 5 addresses to get the following rewards.Reach 12 medals, draw 5 addresses to get the following rewards.</Typography>
+          <Typography>Reach 6 medals, everyone can get rewards.Reach 9 medals, draw 5 addresses to get rewards.Reach 12 medals, draw 5 addresses to get rewards.</Typography>
         </Box>
         <Stack className={styles.rewardList}>
           <Box className={styles.rewardItem}>

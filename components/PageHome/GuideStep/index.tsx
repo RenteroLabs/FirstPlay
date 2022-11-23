@@ -30,16 +30,17 @@ const GudeStep: React.FC = () => {
     }
   }, [address])
 
-  const [firstStepStatus, secondeStepStatus] = useMemo(() => {
-    let first = "Pendding", second = 'Waitting'
+  const [firstStepStatus, secondeStepStatus, thirdStepStatus] = useMemo(() => {
+    let first = "Pendding", second = 'Waitting', third = "Waitting"
     if (address) {
       first = 'Done'
       second = "Pendding"
       if (mintedNumber > 0) {
         second = 'Done'
+        third = "Pendding"
       }
     }
-    return [first, second]
+    return [first, second, third]
   }, [address, mintedNumber])
 
   return <Box className={styles.guidestep}>
@@ -60,14 +61,14 @@ const GudeStep: React.FC = () => {
         />
         <UserStep
           stepIndex={3}
-          stepTitle="Try A Game"
-          stepDesc="0 barriers to entry a game, provide game guidance and walkthroughs"
-          stepStatus="Waitting"
+          stepTitle="Get The Role"
+          stepDesc="Go to Discord and get the Pass-NFT hold role，enjoy more rights"
+          stepStatus={thirdStepStatus}
         />
         <UserStep
           stepIndex={4}
-          stepTitle="Get Rewards"
-          stepDesc="Get game rewards, welcome to experience more games"
+          stepTitle="Trial A Game"
+          stepDesc="0 barriers to entry a game provide guide and walkthrough"
           stepStatus="Waitting"
         />
       </Box>

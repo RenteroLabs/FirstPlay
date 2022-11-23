@@ -7,7 +7,7 @@ import ConnectWallet from "@/components/ConnectWallet";
 import { useMemo, useState } from "react";
 import { useIsMounted } from "hooks/useIsMounted";
 import Link from "next/link";
-import { STEP_1, STEP_2, STEP_3 , STEP_4} from "constants/static";
+import { STEP_1, STEP_2, STEP_3, STEP_4 } from "constants/static";
 
 const cx = classname.bind(styles)
 
@@ -67,11 +67,13 @@ const UserStep: React.FC<UserStepProps> = (props) => {
           text = <DoneIcon sx={{ color: 'white' }} />
           btnStyle = styles.doneBtn
         } else if (stepStatus === 'Pendding') {
-          text = "Trial"
+          text = "Claim"
           btnStyle = styles.activeBtn
+          clickCallback = () => { window.open("https://discord.com/invite/84mhbPXFUu") }
         } else {
           // text = "Trial"
-          text = isMobileSize && isMounted ? "Coming" : 'Coming Soon'
+          // text = isMobileSize && isMounted ? "Coming" : 'Coming Soon'
+          text = "Claim"
           btnStyle = styles.waittingBtn
         }
         break;
