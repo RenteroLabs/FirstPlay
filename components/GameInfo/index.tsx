@@ -19,7 +19,7 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
   const linkToStrategy = () => {
     window.open(gameInfo?.strategy)
   }
-  
+
   return <Box className={styles.gameinfoBox}>
     {
       isMobileSize ?
@@ -80,7 +80,7 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
         :
         <>
           <Box className={styles.gameCover}>
-            {gameInfo.image && <Image src={gameInfo.image} layout='fill' />}
+            {gameInfo.image && <Image src={gameInfo.image} layout='fill' loader={({ src }) => src} />}
           </Box>
           <Box className={styles.infoBox}>
             <Box className={styles.infoHeader}>
