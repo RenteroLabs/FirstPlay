@@ -16,6 +16,8 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
   const { gameInfo = {} } = props
   const isMobileSize = useMediaQuery('(max-width: 750px)')
 
+  console.log(gameInfo)
+
   const linkToStrategy = () => {
     window.open(gameInfo?.strategy)
   }
@@ -70,7 +72,10 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
             <Typography variant='h3'>{gameInfo?.name}</Typography>
             <Box className={styles.tagList}>
               {
-                gameInfo?.game_types?.map((item: string, index: number) => <Box key={index} className={styles.tagItem}>{item}</Box>)
+                gameInfo?.types?.map((item: string, index: number) => <Box key={index} className={styles.tagItem}>{item}</Box>)
+              }
+              {
+                gameInfo?.platforms?.map((item: string, index: number) => <Box key={index} className={styles.tagItem}>{item}</Box>)
               }
             </Box>
           </Box>
@@ -120,7 +125,10 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
             </Box>
             <Box className={styles.tagList}>
               {
-                gameInfo?.game_types?.map((item: string, index: number) => <Box key={index} className={styles.tagItem}>{item}</Box>)
+                gameInfo?.types?.map((item: string, index: number) => <Box key={index} className={styles.tagItem}>{item}</Box>)
+              }
+              {
+                gameInfo?.platforms?.map((item: string, index: number) => <Box key={index} className={styles.tagItem}>{item}</Box>)
               }
             </Box>
             <Box className={styles.gameDescBox}>
