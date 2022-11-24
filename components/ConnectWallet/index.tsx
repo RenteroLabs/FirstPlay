@@ -41,7 +41,7 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
   }
 
   const handleLinkMetamask = () => {
-    window.open("", "__blank")
+    window.open("/strategy/Get-Started-With-Metamask-Quickly", "__blank")
   }
 
   return <Dialog open={showConnect} className={styles.container} >
