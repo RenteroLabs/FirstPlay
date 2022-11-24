@@ -30,6 +30,8 @@ import { checkOwnPassNFT } from 'services/web3'
 import CarnivalRewardItem from '@/components/PageCarnival/RewardItem'
 import Link from 'next/link'
 import { queryCarnivalGamesInfo } from 'services/carnival'
+import { Carnival_Games } from 'constants/index'
+import CampaignIcon from '@mui/icons-material/Campaign';
 
 export interface TxLoadingParams {
   txHash: string,
@@ -76,6 +78,10 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
    * Carnival Part Start
    */
   const [carnivalGame, setCarnivalGame] = useState<Record<string, any>>({})
+
+  const isCarnivalGame = useMemo(() => {
+    return Carnival_Games.includes(router.query?.uuid as string)
+  }, [router.query?.uuid])
 
   useEffect(() => {
     if (router.query?.uuid) {
@@ -189,7 +195,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
             <GameInfo gameInfo={gameInfo} />
           </Box>
           {/* Carnival activity game detail style */}
-          <Box className={styles.rewardMainBox}>
+          {isCarnivalGame && <Box className={styles.rewardMainBox}>
             <Box className={styles.carnivalRewrads}>
               <Box className={styles.cardHeader}>
                 <Typography>Rewards</Typography>
@@ -201,7 +207,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                 </Box>
               </Box>
               <Typography className={styles.rewardDesc}>
-                {carnivalGame?.task_description} 
+                {carnivalGame?.task_description}
               </Typography>
               {
                 carnivalGame?.tasks?.map((item: Record<string, any>, index: number) =>
@@ -227,16 +233,22 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                 <Box className={styles.bg_ill}></Box>
               </Box>
             </Box>
-          </Box>
+          </Box>}
           <Box className={styles.gameStrategy}>
-            <Typography variant='h4'>Description</Typography>
-            <div className={styles.strategyDesc} dangerouslySetInnerHTML={{
-              __html: carnivalGame?.tutorial
-            }}>
-            </div>
-            <Box className={styles.strategyLink} onClick={linkToStrategy}>
-              See More
-            </Box>
+            {isCarnivalGame &&
+              <>
+                <Typography variant='h4'>Description</Typography>
+                <div className={styles.strategyDesc} dangerouslySetInnerHTML={{
+                  __html: carnivalGame?.tutorial
+                }}>
+                </div>
+                <Box className={styles.strategyLink} onClick={linkToStrategy}>
+                  See More
+                </Box>
+              </>}
+            {!isCarnivalGame && <Box className={styles.comingSoonTip}>
+              <CampaignIcon sx={{ mr: '2rem' }} fontSize="large" /> Coming Soon
+            </Box>}
             <Link href="/carnival">
               <Box className={styles.carnivalHome}>
                 Event homepage
