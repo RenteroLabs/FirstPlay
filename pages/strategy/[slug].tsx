@@ -29,7 +29,7 @@ const StrategyArticle: NextPageWithLayout<{ content: string, post: Record<string
 
   return <Box>
     <Head>
-      <title>Strategy | FirstPlay</title>
+      <title>Strategy | FirstPlay {gameInfo?.name && `| ${gameInfo?.name}`}</title>
       <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
@@ -52,7 +52,10 @@ const StrategyArticle: NextPageWithLayout<{ content: string, post: Record<string
     <Divider />
     <Box className={styles.contentBox}>
       <div dangerouslySetInnerHTML={{ __html: content }} />
-      <div dangerouslySetInnerHTML={{ __html: post.comment }} />
+      {post?.comment && <div dangerouslySetInnerHTML={{ __html: post.comment }} />}
+      <br/>
+      <br/>
+      <br/>
     </Box>
   </Box>
 }

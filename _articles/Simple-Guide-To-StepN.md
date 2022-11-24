@@ -3,8 +3,9 @@ title: 'Simplest guide to help you from downloading StepN App to start playing'
 excerpt: ''
 date: '2022-10-21'
 author: Dawn
-comment: '<iframe src="https://embed.0xecho.com.ipns.page?color-theme=light&desc=&has-h-padding=false&has-v-padding=false&modules=comment%2Clike%2Ctip&receiver=firstplay.bit&target_uri=https%3A%2F%2Ffirstplay.app%2Fstrategy%2FSimple-Guide-To-StepN" frameborder="0"></iframe>'
-gameId: 'ce11cfb8-c638-4b11-9760-cff4b39471be'
+# comment: '<iframe src="https://embed.0xecho.com.ipns.page?color-theme=light&desc=&has-h-padding=false&has-v-padding=false&modules=comment%2Clike%2Ctip&receiver=firstplay.bit&target_uri=https%3A%2F%2Ffirstplay.app%2Fstrategy%2FSimple-Guide-To-StepN" frameborder="0"></iframe>'
+comment: ""
+gameId: 'e123a78e-bd4b-4165-b815-1ea67c4cdd30'
 coverImage: "https://rentero-resource.s3.ap-east-1.amazonaws.com/StepN_1920x240.jpg"
 ---
 
