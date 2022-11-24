@@ -177,7 +177,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
       <PackageListRefresh.Provider value={{ refreshList: queryGamePackages }}>
         <Box className={styles.gameBox}>
           <Head>
-            <title>Games | FirstPlay</title>
+            <title>Games | FirstPlay {gameInfo?.name && `| ${gameInfo?.name}`}</title>
             <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
             <link rel="icon" href="/favicon.ico" />
           </Head>

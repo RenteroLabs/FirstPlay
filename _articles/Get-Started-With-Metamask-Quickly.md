@@ -31,14 +31,67 @@ Key steps: Before clicking Next Step below, please remember the mnemonic phrase,
 
 After confirming the mnemonic, complete the wallet creation and click Finish.![img](https://lh4.googleusercontent.com/8XnVw0estG2dFnYjm6Hbs9ip-kB3puIzB_vBuf4Ap_osWwKL1eQZ6PQ4vvXfRyTHVOBiruU94-8VYH0x2q6CsfJEriKA0ZwzrXiNpU40GwGFqj5qsrxg0KyGOjBAJWGu3nsrTjOMo7TvH8JdgsiA5ibkaDRmia75fPqnlgnppem09KwuyMfZ6BbGhkIr_g)
 
-### 3. Create an address and get rewards
+### 3. Create an address and connect to First Play
 
-After the wallet is successfully created, an address will be automatically generated. You can also create a new address yourself, export the private key after generating the address and save it properly!
+After the wallet is successfully created, an address will be automatically generated. You can also create a new address by yourself.
 
-![img](https://lh4.googleusercontent.com/cIkEy2Wpa_yTEZkXx-MavSkxoqYTSJrORyjzi1nQXEmFe6oipnlvOTAEshc043-KDBhRmwxV3Wy5fXpU5KPpooe87pE64sJk6b4xqj3txYAUBqAvGAfAt0FcLWEoSBEn2EtytJgeMgugXDQq7SOBi-FO2DIfW6dz2f5pxwsg0Yl8BWb5Kg08msqkF9Mfzg)![img](https://lh3.googleusercontent.com/X3r8-I9ciqW_gwGPBzJ1yvJopmd3EBNSwP_LTOMmF2ZXwRZRAEAIB0Vod_PwIt9_pZX_SwIxK4XaGxQ5yBeWcMC4L7j9iuut3tl712b6MjR_QotP0uquctdzUkiwDDjJ_B9GZCi07gW33yzMFd2UPoYU0EGV_moHrRb_dkrIV1e1cmD8-7t0zMSCQwSHtA)
+Use this address to visit [https://firstplay.app/carnival](https://firstplay.app/carnival) and start trial!
 
-Use this address to visit [https://firstplay.app/carnival](https://firstplay.app/carnival) and click the Claim registration address and email address after completing the game mission to get game rewards! Please make sure that the address filled in is the same as the address to connect to FirstPlay.
+![img](https://lh6.googleusercontent.com/XaAqpJk-qDwI5xmLJIpmWIUb5CzloYvWNOniTKmzaR2lSq9tmOyK_wRxCcbUAB-kgseApbQac2faFwaJT1zn33R3wU2ZGrx08PwCJ1NFxchOsSXRryZyg6E6-_ggmJPF9UGbPhDshbCezKos5jw9Bb30bNE98yHcQQ7aY-SKW1lvF1Q6ya1xGpNmTf3MgQ)
 
-![img](https://lh4.googleusercontent.com/PvrAgAj9knYEoFAe341KcIDtszNi3KatpHg0iCjsqHn9OvVmWCjxq0BWvi5Rs9Ly9UIeFfOqPWGXhDXDWISarhauO5QYH51YozyrupROeCfjGzBhhLSTDg54NwzyWShxOZuZTw3QDroUL9L86JLDIrjKszxBxJbnNxkZqNuo_Ugl6CYDXa_nJ5gxZxiLcg)![img](https://lh3.googleusercontent.com/L3A-zpRVOCoQRXZ_DM3lOtBdnuQ5i3CYcclMYBOW8qxfSBctLoYJ7IMVPhyGBcvV3E05BFg-6D0CmC7DEaEQUijGdJQjt4fxs-oMpo6eai5MkCoCrk4K_VTNdainNEs-Py7NEybimJqLVxLlhnHnbT8-1ZtMM6rlaRq7WdOfWyr4yVnu_hceELzq7cCO_A)
+![img](https://lh5.googleusercontent.com/pGvmW9kVC9OV9DyYIxfVXdPr66DlRZDjoUyLl9BfBdA30Uw7HJx8OiyGVpomX8WOMVQdJYMxj5D4SrC_ikkSm-jWGjX42t1hbmz6uYH2sZMQ9UO-6JJ8m-1uUifxQJq5jSxGokRfgcrREz8PfW3kEzjtDsFbpoKQwNA_s3nfgwEBo4DFeRJybXvz2BDj7g)
 
+### 4. Fill out the form and get rewards
+
+Choose any game (take Big Time as an example), after completing the task, click Claim to start filling out the form.
+
+![img](https://lh3.googleusercontent.com/42F-qhsfp0o0EL8IWw4Ak_rFtwecbCo3fob4vurlRfY0OKRhCELHucViJyYahjINFor1q35sxgJvnDHNahQrakYxoUgrIzUGC75e-2N4N0lhOUU-Jom6ojMjEiV1Ssl0ag1DZrW3Kg2ikIyyLU9dzUmu104k9Z_4EVexTPJp9wwWknmTZr422timZ7v7uA)
+
+How to get the wallet address that connect to firstplay**？**On First Play,click the Profile button in the upper right corner to copy the address.
+
+![img](https://lh6.googleusercontent.com/wETICMQPfxvkoOmZrGJnMC5w5QJp6fh7F7HmOJDS0WSMWJ2XR06Ty6zWveANduFmxZR_2u60-K_v6qoU01K_iZ_0Nhfatw4PBrCoNq303O35bUAneBDwgNkWXBgSgd2PRDxKQB--n_tyGnh8t_a-GAnOQpksWIBnBQt8SpMFptoTSkg-QIEvVfOPfT_CbQ)
+![img](https://lh3.googleusercontent.com/Qxp0iWAs3e0fCqx68fHhcqMhebGn2ElkjQpfWNqrZNGW3a79A0BNMQ2cHRiN5VlPathVtWBkZs5y0cg5WFqH3zjp4LbOqXq4WFUCD3QjB4U9B_V6kqf3-0ti_bsSfNoDXdmLCpY5s77z0RQ_N8_CwlVHcBMjBw2bOdIUYI2spzkqoHJZdMf815PTUhMDKQ)
+
+## Mobile
+
+### 1. Metamask download and installation
+
+On the mobile terminal, you need to search for "Metamask" in the app store or visit [https://metamask.io/download/](https://metamask.io/download/) and select Android or IOS to complete the download
+
+### 2. How to use Metamask wallet
+
+After downloading, create a wallet, enter the password, and follow the prompts to create a mnemonic phrase and save it properly
+
+![img](https://lh5.googleusercontent.com/hKpVXluu1tmGXnSEOlfMExSlYfx5QENKL8yWWaMSQMY_3i-Mr29oESaFMWx4BS-c2q1nLwn-IGX5QsyyHH7QSYbfgHohdWXGffzPt2fAZpoiZqUHrYMmsppkjIaLP8kGayf3lznNcxdGWcqHaAgBnROM9uZ9gyimeAe7tOAHmVdjNlxem8vtRllQ-FQIJA)
+
+![img](https://lh6.googleusercontent.com/goUO6r2fSybk_j-YUmKPnfivQJ5aThSKTfYjr17LFgMJSs3zx7sICFouQHhWPA1I_S9t0W01kZTqY1DmjBpONtKCiRD-Okm21qyB0jz_JjstSijc7tY0CQG1B_rSSG0jEAiSz0G58aGMwbHhwH7ngMh-9ztjY4tNrWHIu1eCIql87ZDMC9gqH7DzL7gJdQ)
+
+![img](https://lh5.googleusercontent.com/SY7D_Wc8nMX2iQp5v_UFLg7rTGrMcZN_IBFGEwAPN7vnyBI8w0HWc6ZhwyIPyickYbP6zo0GEUPmUcNy_wUqCV8pXj7C4KMckvAD2oztrOFKOaB8xgAemYRvGcp-r9oyqSj3HqkkiqpvrCldw_mPBfUiAVktLr390scVwOUd4jIkvw99DG-yxsJTkhtKYA)
+
+![img](https://lh4.googleusercontent.com/ZvCC54IC4zCJtmZBvqpH-meGnQmvewISFUILBgsvwEvT8kSRcvwbMdCYVSTd0tgsrPKXeS_DR_wdbuZFRF1Nd9lb-tmjb4nhaMJp_JWYgCY6njgOUiJh-79JzefrG684CUrCqg7X-DCBOQuAxB0k8UcZJrq0OG5SpbBMkednXXFB_kC3itT4T1A8GQivDg)
+
+![img](https://lh3.googleusercontent.com/v6PEnOQAQfi_ALsFDqEP2uWu49IJSajTabfn4AYetvoIr1oLRJEGeJGFIybmnOsHLR63UWPVq_pQB7dhrrpVz-4v8dioKBKcSOzcNOyYhdN1QPMnMGHhc4HpgfbdfjY94KYxefGNc91uWjGN1Fwpov7zClQqnFzEhYzKTfuNwAtstOF17txVs5z9G4qxSQ)
+
+### 3. Create an address and connect to First Play
+
+Open metamask，Click Browser，visit https://firstplay.app/carnival**.**Then connect to your address, and participate in the event carnival.
+
+![img](https://lh3.googleusercontent.com/xeSFpjDN8iQRmzjJmDr5d-tOrruGJMsyJApMUu1T9aknjAyctsmgap7pu58RmCjtdGVYoQP3QFzX0IpDzP-k8AO5qS-F3iB4siuIN4RqpnevJYWUKNhEbOr1ldr4K6QmaLtmgkLGdcS9rvzv4C-F6F7AQRdfkEH7Lw_AxPEIoazZkrBxnwcRXe_LiB1O5g)
+![img](https://lh3.googleusercontent.com/GpFUBYvwaAJU6OMSjMqwNzSnL8kMq9qMoIcg-3B5GVabNxw8jIaXTln90yUg4MgDpeOWAO2LXofnYRiZ36MudzzFf06IJdux26z8-IaIuW08jO3w9N1MK5SzMqlfW7clVfOLcXvIWQiVvHg1ZV5zGVGpEFgoAH4R8ED82c1MpVWFu3pivOHNADIzd3MPgw)
+
+![img](https://lh4.googleusercontent.com/kH9V23Og216g4uyjneDsw_YjNXymn2EQNYCAqPji9Ici3SK_CW7p5J6f6hxygk6A1Ta0fwyk3PDI1ay13pwB1nvXbGNVIYDJFJB6K2603L2vnOfhhcD83UwLIscK9bEWIzhK0chHcHziq2dQtZu9_1XM0NKXS_r8KPwjl_frAzmtorQmWvnVBW7SxD2Bug)
+![img](https://lh5.googleusercontent.com/yF4IwFiKA_AiD2u_kuNwOjHrPYHDZ0l7BrgclDnKX_WeAhd0BZxxbaXaemC0B_Hj7AmBHWblS_60W-JlUWpE7663YJYJb3oQvny7XGrqwG1oOCDa4R3HOXxPE4WQP6Gcb9dclBWuleGgYZrFhRMGiV6nJiIfyx4a0jRc9XZFmxe2hhjrnh5HLypGDZdezA)
+![img](https://lh6.googleusercontent.com/Rm-YgP3uD7LxKTzfRPyqmUmhQ2Be19LPPrVTChx8K9NuzZBxwSK4qtfOUzVXFLAmJb1CA8-JmuQhPcByiq4plWfoEh3z4bATt57UqXFH9wBem61CCdM3ozpcseDV2_D9sQ4xLVjZQwI74KwILVc7DC9NpUDb3My4aPuhM0N2bgprkDjRAIEzhivTienprw)
+
+### 4. Fill out the form and get rewards
+
+After completing the game tasks, click the Claim registration address/email to get game rewards!
+
+![img](https://lh5.googleusercontent.com/lUyVD8WGw4WFVbHK7E_g_qzcBwCqh6bIsNIqrksw5H-JTGgeHFWKeTJTR5Q3D5GGK6S4v_LNY1AG0BoJmkeKdP1TmLpceSL_NV6FDKlSNQ_qNzCsx5pogFJdGSjPPA65qrAse-lYXVftY0sOYWGiKCLEN3Aiu7VvfJApW7vnjc0xcm-UuD9gtIfDUmzOGA)
+
+How to get the wallet address that connect to firstplay**？**On First Play,click the Profile button in the upper right corner to copy the address.
+
+![img](https://lh4.googleusercontent.com/3dkV4kexkp4M47u__Z-C72JlXDnH8QzXEp7ck3V5-0U9nxsYD0X2mUt4kQxL04l4P3-c6b768rUibdi_8l5XSThL_5hlwwdb429t1OUZhaq3F5gYmfekbC_EIdFcNVysT4iMIbESnxBxIOYiHsBauY8I80YRMH6VOGRwK9ywFzBtDTf9m9FugN6yRUZJbA)
+
+![img](https://lh3.googleusercontent.com/k-HiZZ2bnqVS3yugbv8dlE3e1d-e876eKWLw5w6vK5yjuDdJD9LWnq8S1T7nluBlQaLWHP2J2BNrd2AO9Kop0twmvu7gb_s7PpmFXeKtxFiBIhh80AgOmBXhq_URCroaHBRE6Bc9LbguTOC7zGQnru_7EtualMQISBB4M9T9zxxjYWrBAjChgYEnjFWPDA)
 
