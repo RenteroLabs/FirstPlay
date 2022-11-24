@@ -16,13 +16,22 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
   const { gameInfo = {} } = props
   const isMobileSize = useMediaQuery('(max-width: 750px)')
 
+  const linkToStrategy = () => {
+    window.open(gameInfo?.strategy)
+  }
+  
   return <Box className={styles.gameinfoBox}>
     {
       isMobileSize ?
         <Box className={styles.mobileBox}>
           <Box className={styles.mobileHeader}>
             <Box className={styles.imageCover}>
-              {gameInfo.image && <Image src={gameInfo.image} layout='fill' />}
+              {gameInfo.image &&
+                <Image
+                  src={gameInfo.image}
+                  layout='fill'
+                  loader={({ src }) => src}
+                />}
             </Box>
             <Stack direction="row" className={styles.socialList}>
               {
@@ -66,7 +75,7 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
             </Box>
           </Box>
           <Typography className={styles.gameDesc}>{gameInfo?.description}</Typography>
-
+          <Box className={styles.strategyBtn} onClick={linkToStrategy}>Guide</Box>
         </Box>
         :
         <>
@@ -114,7 +123,10 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
                 gameInfo?.game_types?.map((item: string, index: number) => <Box key={index} className={styles.tagItem}>{item}</Box>)
               }
             </Box>
-            <Typography className={styles.gameDesc}>{gameInfo.description}</Typography>
+            <Box className={styles.gameDescBox}>
+              <Typography className={styles.gameDesc}>{gameInfo.description}</Typography>
+              <Box className={styles.strategyBtn} onClick={linkToStrategy}>Guide</Box>
+            </Box>
           </Box>
         </>
     }

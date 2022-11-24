@@ -14,7 +14,7 @@ export const getPassNFTByAddress = async (params: PassNFTParams) => {
     5: "https://eth-goerli.g.alchemy.com/nft/v2",
     137: "https://polygon-mainnet.g.alchemy.com/nft/v2"
   }
-  const data = await fetch(`${baseUrl[params?.chainId || 137]}/${process.env.NEXT_PUBLIC_ALCHEMY_ID}/getNFTs?${qs.stringify(params, { arrayFormat: 'brackets' })}`, {
+  const data = await fetch(`${baseUrl[PASS_NFT_CHAIN]}/${process.env.NEXT_PUBLIC_ALCHEMY_ID}/getNFTs?${qs.stringify(params, { arrayFormat: 'brackets' })}`, {
     headers: {
       'accept': 'application/json'
     }

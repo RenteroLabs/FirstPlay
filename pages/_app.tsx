@@ -22,6 +22,8 @@ import { Analytics } from '@vercel/analytics/react';
 import ConnectWallet from '@/components/ConnectWallet'
 import { useRouter } from 'next/router';
 
+import TagManager from 'react-gtm-module'
+
 import * as ga from '../util/ga'
 
 // connect wallet config
@@ -73,7 +75,6 @@ function MyApp({ Component, pageProps }: AppPropsWithMessages) {
 
   useEffect(() => {
     const handleRouteChange = (url: string) => {
-      console.log('post')
       ga.pageview(url)
     }
 
@@ -83,6 +84,10 @@ function MyApp({ Component, pageProps }: AppPropsWithMessages) {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
   }, [router])
+
+  useEffect(() => {
+    TagManager.initialize({ gtmId: process.env.NEXT_PUBLIC_GOOGLE_TAGMANAGER as string})
+  }, [])
 
   return <WagmiConfig client={client}>
     <NextIntlProvider messages={pageProps.messages}>

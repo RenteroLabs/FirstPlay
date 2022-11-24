@@ -15,19 +15,21 @@ import TrialNFTCardSkeleton from '@/components/TrialNFTCard/TrialNFTCardSkeleton
 import QuickTrialNFT from '@/components/PageModals/quickTrialNFT'
 import Head from 'next/head'
 import { useRequest } from 'ahooks'
-import { getAllGamesInfo, getGameInfo } from 'services/home'
+import { getAllGames, getAllGamesInfo, getGameInfo } from 'services/home'
 import { useLazyQuery, useQuery } from '@apollo/client'
 import { GET_GAME_PACKAGES } from 'services/documentNode'
 import { goerliGraph } from 'services/graphql'
 import { PackageRes } from 'types/graph'
 import ContractTxLoading from '@/components/PageModals/ContractTxLoading'
 import { createContext } from 'react'
-import { isEmpty } from 'lodash'
+import { isEmpty, sumBy } from 'lodash'
 import { useAccount, useContractRead } from 'wagmi'
 import { MARKET_CONTRACT } from 'constants/contract'
 import { FIRSTPLYA_MARKET_ABI } from 'constants/abi'
 import { checkOwnPassNFT } from 'services/web3'
 import CarnivalRewardItem from '@/components/PageCarnival/RewardItem'
+import Link from 'next/link'
+import { queryCarnivalGamesInfo } from 'services/carnival'
 
 export interface TxLoadingParams {
   txHash: string,
@@ -48,7 +50,6 @@ export const UserInfo = createContext<UserInfoParams>({ ownPassNFt: false, isAct
 
 // 游戏详情页
 const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = ({ gameInfo }) => {
-
   const router = useRouter()
   const { address } = useAccount()
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false)
@@ -67,6 +68,41 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
   const [ownPassNFt, setOwnPassNFT] = useState<boolean>(false)
 
   const timestamp = useMemo(() => (Number(new Date) / 1000).toFixed(), [])
+
+
+
+
+  /**
+   * Carnival Part Start
+   */
+  const [carnivalGame, setCarnivalGame] = useState<Record<string, any>>({})
+
+  useEffect(() => {
+    if (router.query?.uuid) {
+      getCarnivalGameInfo({ address: address || '0x00', game_id: router.query?.uuid as string })
+    }
+  }, [router.query?.uuid, address])
+
+  const { run: getCarnivalGameInfo } = useRequest(queryCarnivalGamesInfo, {
+    manual: true,
+    onSuccess: ({ data }) => {
+      setCarnivalGame(data)
+    }
+  })
+
+  /**
+   * Carnival Part End
+   */
+
+
+
+
+
+
+
+
+
+
 
   // 统计可试玩的 NFT package
   const trialablePackageList = useMemo(() => {
@@ -104,7 +140,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
   }, [showTxLoading])
 
   useEffect(() => {
-    if (gameInfo) {
+    if (gameInfo && gameInfo?.game_chains) {
       setChainId(gameInfo?.game_chains[0]?.chain_id)
     }
   }, [gameInfo])
@@ -124,6 +160,10 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
     }
   })
 
+  const linkToStrategy = () => {
+    window.open(carnivalGame?.strategy)
+  }
+
   return <UserInfo.Provider
     value={{ isActived: isActived as unknown as boolean, ownPassNFt }}>
     <TxLoading.Provider value={{ txHash, setTxHash, showTxLoading, setShowTxLoading }}>
@@ -136,53 +176,72 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
             <link rel="icon" href="/favicon.ico" />
           </Head>
           <Box className={styles.topCover}>
-            {gameInfo?.cover && <Image src={gameInfo?.cover} layout='fill' objectFit='cover' />}
+            {gameInfo?.background &&
+              <Image
+                src={gameInfo?.background}
+                layout='fill'
+                objectFit='cover'
+                quality={100}
+                loader={({ src }) => src}
+              />}
           </Box>
           <Box className={styles.gameInfoBox}>
             <GameInfo gameInfo={gameInfo} />
           </Box>
           {/* Carnival activity game detail style */}
-          <Box className={styles.carnivalRewrads}>
-            <Box className={styles.cardHeader}>
-              <Typography>Rewards</Typography>
-              <Box className={styles.mediaBox}>
-                <Box className={styles.rewardIcon}>
-                  <Image src={REWARD_ACTIVE_ICON} layout="fill" />
+          <Box className={styles.rewardMainBox}>
+            <Box className={styles.carnivalRewrads}>
+              <Box className={styles.cardHeader}>
+                <Typography>Rewards</Typography>
+                <Box className={styles.mediaBox}>
+                  <Box className={styles.rewardIcon}>
+                    <Image src={REWARD_ACTIVE_ICON} layout="fill" />
+                  </Box>
+                  {sumBy(carnivalGame?.tasks, 'medal') || 0} Medals
                 </Box>
-                3 Medals
+              </Box>
+              <Typography className={styles.rewardDesc}>
+                {carnivalGame?.task_description} 
+              </Typography>
+              {
+                carnivalGame?.tasks?.map((item: Record<string, any>, index: number) =>
+                  <CarnivalRewardItem
+                    key={index}
+                    index={index + 1}
+                    medalNum={item?.medal}
+                    isClaimed={item?.status !== 'uncompleted'}
+                    reward={item?.description}
+                    claimLink={item?.form}
+                    gameId={router.query?.uuid as string}
+                  />
+                )
+              }
+            </Box>
+            <Box className={styles.rewardDrop}>
+              <Typography variant='h4'>{carnivalGame?.gifts?.[0]?.title}</Typography>
+              <Box className={styles.dropDesc}>
+                <Typography>
+                  {carnivalGame?.gifts?.[0]?.description}
+                </Typography>
+                <Box className={styles.bg}></Box>
+                <Box className={styles.bg_ill}></Box>
               </Box>
             </Box>
-
-            <Typography className={styles.rewardDesc}>
-              After completing the corresponding task, you can register the address. After completing the verification, the reward will be sent to the address at 12:00 every day, and the game carnival medal reward will be obtained at the same time.
-            </Typography>
-            <CarnivalRewardItem
-              index={1}
-              medalNum={1}
-              isClaimed={true}
-              reward="Complete the game registration and get a ruby card reward worth 2U"
-              claimLink=""
-            />
-            <CarnivalRewardItem
-              index={2}
-              medalNum={1}
-              isClaimed={false}
-              reward="Complete the game registration and get a ruby card reward worth 2U"
-              claimLink=""
-            />
           </Box>
           <Box className={styles.gameStrategy}>
             <Typography variant='h4'>Description</Typography>
-            <Box className={styles.strategyDesc}>
-              to download the game, or directly search for &#34;Big Time&#34; in the App Store to complete the downloadComplete the game download. Go to https://bigtime.gg/ to download the game, or directly search for &#34;Big Time&#34; in the App Store to complete the download
-
-              2. Register in the game. After completing the registration, register the address information at the bottom of this page to get a ruby reward worth 20U.
-              Register in the game. After completing the registration, register the address information at the bottom of this page to get a ruby reward worth 20U.
-
-              3. Complete the game download. Go to https://bigtime.gg/ to download the game, or directly search for &#34;Big Time&#34; in the App Store to complete the download
-
-              4. Register in the game. After completing the registration, register the address information at the bottom of this page to get a ruby reward worth 20U.
+            <div className={styles.strategyDesc} dangerouslySetInnerHTML={{
+              __html: carnivalGame?.tutorial
+            }}>
+            </div>
+            <Box className={styles.strategyLink} onClick={linkToStrategy}>
+              See More
             </Box>
+            <Link href="/carnival">
+              <Box className={styles.carnivalHome}>
+                Event homepage
+              </Box>
+            </Link>
           </Box>
 
           {/* {
@@ -285,8 +344,9 @@ Game.getLayout = function getLayout(page: ReactElement) {
 export default Game
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data } = await getAllGamesInfo()
-  const gamePaths = data.map((item: any) => ({ params: { uuid: item.game_id } }))
+  // const { data } = await getAllGamesInfo()
+  const { data } = await getAllGames()
+  const gamePaths = data?.popular_games?.map((item: any) => ({ params: { uuid: item.game_id } }))
 
   return {
     paths: gamePaths,
@@ -296,7 +356,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ locale, params }: GetStaticPropsContext) => {
 
-  const res = await getGameInfo({ game_id: params?.uuid as string })
+  // const res = await getGameInfo({ game_id: params?.uuid as string })
+
+  const res = await queryCarnivalGamesInfo({ address: "0x00", game_id: params?.uuid as string })
+  // console.log(res.data)
 
   return {
     props: {

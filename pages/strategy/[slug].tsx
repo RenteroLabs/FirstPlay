@@ -32,12 +32,17 @@ const StrategyArticle: NextPageWithLayout<{ content: string, post: Record<string
       <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <Box className={styles.topCover}>
-      <Image priority loader={imageKitLoader} src={post.coverImage} layout='fill' objectFit='cover' />
-    </Box>
-    <Box className={styles.gameInfoBox}>
-      <GameInfo gameInfo={gameInfo} />
-    </Box>
+    {
+      gameInfo && <>
+        <Box className={styles.topCover}>
+          <Image priority loader={imageKitLoader} src={post.coverImage} layout='fill' objectFit='cover' />
+        </Box>
+        <Box className={styles.gameInfoBox}>
+          <GameInfo gameInfo={gameInfo} />
+        </Box>
+      </>
+    }
+
     <Divider />
     <Box className={styles.contentBox}>
       <div dangerouslySetInnerHTML={{ __html: content }} />
@@ -66,7 +71,10 @@ export const getStaticProps = async ({ locale, params }: GetStaticPropsContext<{
     "gameId"
   ])
   const content = await markdownToHtml(post.content || '')
-  const game = await getGameInfo({ game_id: post.gameId })
+  let game
+  if (post.gameId) {
+    game = await getGameInfo({ game_id: post.gameId })
+  }
 
   return {
     props: {
@@ -76,7 +84,7 @@ export const getStaticProps = async ({ locale, params }: GetStaticPropsContext<{
       post,
       content,
 
-      gameInfo: game.data
+      gameInfo: game?.data || null
     }
   }
 }

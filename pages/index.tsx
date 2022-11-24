@@ -8,7 +8,7 @@ import Support from "@/components/PageHome/Support";
 import GameStrategy from "@/components/PageHome/GameStrategy";
 import GudeStep from "@/components/PageHome/GuideStep";
 import TrialGame from "@/components/PageHome/TrialingGame";
-import { getHomeInfo } from "services/home";
+import { getAllGames, getHomeInfo } from "services/home";
 import { useTranslations } from "next-intl";
 import { ReactElement, useMemo } from "react";
 import Layout from "@/components/Layout";
@@ -38,7 +38,7 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
     <Box className={styles.coverBox}>
       {coverSize === 1920 && <Image priority src={`/headerCover1920.jpg`} layout="fill" objectFit="cover" />}
       {coverSize === 900 && <Image priority src={`/headerCover900.jpg`} layout="fill" objectFit="cover" />}
-      {coverSize === 375 && <Image priority src={`/headerCover375.jpg`}  layout="fill" objectFit="cover" />}
+      {coverSize === 375 && <Image priority src={`/headerCover375.jpg`} layout="fill" objectFit="cover" />}
     </Box>
     <GudeStep />
     {/* <TrialGame /> */}
@@ -69,12 +69,13 @@ export default FirstPlay
 
 export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsContext) => {
   // 获取首页数据
-  const result = await getHomeInfo()
+  const result = await getAllGames()
   const { popular_games = [], banners = [], strategies = [], upcoming_games = [] } = result.data || {}
 
   return {
     props: {
-      hotGames: reverse(popular_games),
+      // hotGames: reverse(popular_games),
+      hotGames: popular_games,
       comingGames: upcoming_games,
       strategys: strategies,
 

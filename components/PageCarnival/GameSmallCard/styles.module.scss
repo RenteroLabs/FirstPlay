@@ -1,28 +1,53 @@
 .smallGameCard {
-  background: #ffffff;
   border-radius: 0.67rem;
   overflow: hidden;
-  border: 0.08rem solid rgba(#222, 0.2);
+  padding: 1.67rem;
+  display: flex;
+  align-items: center;
+  background-color: rgba(#000, 0.05);
+
+  &:hover {
+    cursor: pointer;
+  }
+
   .gameCover {
+    width: 6.67rem;
+    height: 6.67rem;
     position: relative;
-    height: 5.33rem;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 1.67rem;
   }
 
   .cardContent {
-    padding: 0.83rem 0.67rem;
+    width: calc(100% - 6.67rem);
     font-size: 1.17rem;
     font-family: Inter-Medium, Inter;
     font-weight: 500;
     color: #222222;
     line-height: 1.17rem;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-
+    flex-direction: column;
+    // align-items: center;
+    justify-content: center;
+    // justify-content: flex-start;
+    
+    flex-grow: 0;
+    h3 {
+      font-size: 1.5rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #222222;
+      line-height: 1.5rem;
+    }
     .rewardInfo {
       display: flex;
+      justify-content: flex-start;
       align-items: center;
       color: #9c9c9c;
+      margin-top: 0.67rem;
+      margin-bottom: 0.42rem;
 
       .iconBox {
         position: relative;
@@ -31,8 +56,34 @@
         margin-right: 0.33rem;
       }
       span {
-        color: #8e50e4;
+        color: #ff3d5a;
       }
+    }
+    .rewardDesc {
+      height: 3.33rem;
+      p {
+        font-size: 1.17rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 1.67rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+.activeCard {
+  background-color: rgba(#8e50e4, 0.1);
+}
+
+@media screen and (max-width: 1200px) {
+  .smallGameCard {
+    .gameCover {
+      width: 5.2rem;
+      height: 5.2rem;
     }
   }
 }
@@ -40,24 +91,41 @@
 @media screen and (max-width: 600px) {
   .smallGameCard {
     border: none;
+    padding: 1.5rem;
     .gameCover {
-      padding-bottom: 100%;
+      // padding-bottom: 100%;
+      width: 6.67rem;
+      height: 6.67rem;
     }
 
     .cardContent {
       flex-direction: column;
       user-select: none;
-      p, .rewardInfo {
+
+      h3 {
         font-size: 1.33rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #222222;
+        line-height: 1.33rem;
+      }
+      p,
+      .rewardInfo {
+        font-size: 1.17rem;
         font-family: Inter-Medium, Inter;
         font-weight: 500;
         color: #222222;
-        line-height: 1.33rem;
+        line-height: 1.5rem;
       }
       .rewardInfo {
         margin-top: 0.92rem;
         span {
-          color: #FF3D5A;
+          color: #ff3d5a;
+        }
+      }
+      .rewardDesc {
+        p {
+          font-size: 1rem;
         }
       }
     }

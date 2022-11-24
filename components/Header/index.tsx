@@ -131,12 +131,12 @@ const HeaderUserInfo: React.FC<HeaderUserInfoProps> = (props) => {
             isMobileHeaderNav &&
             <>
               {address && <Box className={styles.divider} />}
-              <Link href="/pass">
-                <a target="__blank">
-                  <MenuItem className={styles.menuItem} disableRipple>
-                    {t('passNFT')}
-                  </MenuItem>
-                </a>
+              <Link href="/carnival">
+                {/* <a target="__blank"> */}
+                <MenuItem className={styles.menuItem} disableRipple>
+                  {t('passNFT')}
+                </MenuItem>
+                {/* </a> */}
               </Link>
 
               <MenuItem className={cx({
@@ -188,8 +188,10 @@ const Header: React.FC = () => {
         <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
           <Stack direction="row" className={styles.headerNavs} >
             <Box>
-              <Link href="/pass" >
-                <a target="_blank">{t('passNFT')}</a>
+              <Link href="/carnival" >
+                {/* <a target="_blank"> */}
+                  {t('passNFT')}
+                {/* </a> */}
               </Link>
             </Box>
             <Box className={styles.disabled}>{t('games')}</Box>
