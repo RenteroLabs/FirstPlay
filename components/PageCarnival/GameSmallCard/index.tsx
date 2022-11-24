@@ -24,7 +24,13 @@ const GameSallCard: React.FC<GameSamllCardProps> = (props) => {
     })}>
 
       <Box className={styles.gameCover}>
-        <Image src={gameInfo.thumbnail} layout="fill" objectFit='cover' quality={100} />
+        <Image
+          src={gameInfo.thumbnail}
+          layout="fill"
+          objectFit='cover'
+          quality={100}
+          loader={({ src }) => src}
+        />
       </Box>
 
       <Box className={cx({ cardContent: true, })}>
