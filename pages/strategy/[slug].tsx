@@ -10,6 +10,7 @@ import { getGameInfo } from 'services/home'
 import { getAllPosts, getPostBySlug, markdownToHtml } from 'util/markdown'
 import styles from '../../styles/strategy.module.scss'
 import Head from 'next/head'
+import { queryCarnivalGamesInfo } from 'services/carnival'
 
 const StrategyArticle: NextPageWithLayout<{ content: string, post: Record<string, any>, gameInfo: Record<string, any> }> = (props) => {
   const { content, post, gameInfo } = props
@@ -35,7 +36,12 @@ const StrategyArticle: NextPageWithLayout<{ content: string, post: Record<string
     {
       gameInfo && <>
         <Box className={styles.topCover}>
-          <Image priority loader={imageKitLoader} src={post.coverImage} layout='fill' objectFit='cover' />
+          <Image
+            priority
+            loader={({ src }) => src}
+            src={gameInfo?.background || post.coverImage}
+            layout='fill'
+            objectFit='cover' />
         </Box>
         <Box className={styles.gameInfoBox}>
           <GameInfo gameInfo={gameInfo} />
@@ -55,7 +61,6 @@ StrategyArticle.getLayout = function getLayout(page: ReactElement) {
   return <LayoutWithoutFooter>{page}</LayoutWithoutFooter>
 }
 
-
 export default StrategyArticle
 
 export const getStaticProps = async ({ locale, params }: GetStaticPropsContext<{ slug: string }>) => {
@@ -73,7 +78,8 @@ export const getStaticProps = async ({ locale, params }: GetStaticPropsContext<{
   const content = await markdownToHtml(post.content || '')
   let game
   if (post.gameId) {
-    game = await getGameInfo({ game_id: post.gameId })
+    // game = await getGameInfo({ game_id: post.gameId })
+    game = await queryCarnivalGamesInfo({ game_id: post.gameId, address: '0x00' })
   }
 
   return {

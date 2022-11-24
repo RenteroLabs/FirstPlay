@@ -59,7 +59,7 @@ export const SUPPORT_CHAINS =
       BSC_TEST
     ]
 
-export enum CHAIN_ID_NAME{
+export enum CHAIN_ID_NAME {
   Ethereum = 1,
   Goerli = 5,
   BSC = 56,
@@ -70,7 +70,7 @@ export enum CHAIN_ID_NAME{
 
 
 const TEST_BACKEND_API = 'https://testapi.firstplay.app'
-const PRODUCTION_BACKEND_API = 'https://testapi.firstplay.app'
+const PRODUCTION_BACKEND_API = 'https://api.firstplay.app'
 export const BASE_BACKEND_API = process.env.NEXT_PUBLIC_ENV === 'PRO' ? PRODUCTION_BACKEND_API : TEST_BACKEND_API
 
 // 暂时关闭，支持多语言时需要开启
@@ -80,3 +80,25 @@ export const SUPPORT_LANGUAGE: string[] = ["en-US"]
 
 // 后端 metadata 服务地址
 export const METADATA_SERVICE = "https://metadata.rentero.io"
+
+
+
+
+
+
+
+
+
+export const Carnival_Games = [
+  'a10fe616-6da7-4f88-bb5b-8e27b3adedad',
+
+  '740a1e44-fd84-433e-98df-be90d650eb51',
+
+  '8489b4b1-ed82-451d-96b6-46fe199b2fe8',
+
+  '11ec241d-c889-4f54-8656-b5f7b1598300',
+
+  'd56f4b3a-d7b7-4abf-935f-574546d4e958',
+
+  '32605c7c-45d3-49f4-9923-b3a51816d1df'
+]

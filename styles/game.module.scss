@@ -166,6 +166,20 @@
       margin-top: 3.33rem;
       user-select: none;
     }
+
+    .comingSoonTip {
+      background: rgba(#e4405b, 0.08);
+      padding: 1.67rem;
+      text-align: center;
+      font-size: 1.75rem;
+      font-family: Inter-SemiBoldItalic, Inter;
+      font-weight: normal;
+      color: #222222;
+      line-height: 1.75rem;
+      font-style:italic;
+      display: flex;
+      align-items: center;
+    }
     .carnivalHome {
       background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
       border-radius: 2rem;
@@ -676,6 +690,11 @@
         font-family: Inter-SemiBold, Inter;
         font-weight: 600;
         line-height: 1.17rem;
+      }
+
+      .comingSoonTip {
+        font-size: 1.33rem;
+        margin-top: -2.4rem;
       }
       .carnivalHome {
         width: 100%;

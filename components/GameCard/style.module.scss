@@ -5,6 +5,7 @@
   border-radius: 1rem !important;
   position: relative;
   box-shadow: none;
+  cursor: pointer;
   &:hover {
     box-shadow: 0 6px 18px #1d293924;
   }
@@ -17,6 +18,15 @@
 
     img {
       object-fit: cover;
+    }
+
+    .carnivalTag {
+      position: absolute;
+      width: 53%;
+      height: 14.2%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
     }
   }
 

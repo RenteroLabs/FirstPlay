@@ -8,7 +8,7 @@ import Support from "@/components/PageHome/Support";
 import GameStrategy from "@/components/PageHome/GameStrategy";
 import GudeStep from "@/components/PageHome/GuideStep";
 import TrialGame from "@/components/PageHome/TrialingGame";
-import { getAllGames, getHomeInfo } from "services/home";
+import { getAllGames } from "services/home";
 import { useTranslations } from "next-intl";
 import { ReactElement, useMemo } from "react";
 import Layout from "@/components/Layout";
@@ -65,7 +65,6 @@ FirstPlay.getLayout = function getLayout(page: ReactElement) {
 }
 
 export default FirstPlay
-
 
 export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsContext) => {
   // 获取首页数据
