@@ -8,6 +8,8 @@ import { useIsMounted } from 'hooks/useIsMounted'
 import GiftCodeModal from '../GiftCodeModal'
 import { useLocalStorageState, useRequest } from 'ahooks'
 import { queryGameGiftCode } from 'services/carnival'
+import * as ga from '../../../util/ga'
+import  { GAME_EVENT_NAME } from 'constants/index'
 
 const cx = classname.bind(styles)
 
@@ -33,6 +35,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
 
   const linkToForm = () => {
     if (!isClaimed) {
+      ga.event({ action: `${GAME_EVENT_NAME[gameId]}_${index}`, params: { gameId: gameId, task: index } })
       window.open(claimLink)
     }
   }

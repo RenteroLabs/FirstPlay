@@ -12,7 +12,7 @@ interface GameCardProps {
 
 const GameCard: React.FC<GameCardProps> = (props) => {
   const { gameInfo } = props
-  // console.log(gameInfo)
+  console.log(gameInfo)
   const router = useRouter()
 
   const imageKitLoader = ({ src, width, quality = 100 }: any) => {

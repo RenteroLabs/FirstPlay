@@ -243,7 +243,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                 }}>
                 </div>
                 <Box className={styles.strategyLink} onClick={linkToStrategy}>
-                  See More
+                  Task Walkthrough
                 </Box>
               </>}
             {!isCarnivalGame && <Box className={styles.comingSoonTip}>

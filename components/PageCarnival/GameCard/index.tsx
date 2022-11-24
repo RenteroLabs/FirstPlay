@@ -22,7 +22,7 @@ const CarnivalGameCard: React.FC<GameCardProps> = (props) => {
 
   const handleTrialGame = () => {
     // 发送 ga 事件
-    sendTrialGameEvent()
+    // sendTrialGameEvent()
     // 跳转至游戏详情页
     window.open(`/game/${gameInfo?.game_id}`)
   }
