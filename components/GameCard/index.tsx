@@ -4,24 +4,11 @@ import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import styles from './style.module.scss'
+import { Carnival_Games } from '../../constants/index'
 
 interface GameCardProps {
   gameInfo: Record<string, any>
 }
-
-const Carnival_Games = [
-  'a10fe616-6da7-4f88-bb5b-8e27b3adedad',
-
-  '740a1e44-fd84-433e-98df-be90d650eb51',
-
-  '8489b4b1-ed82-451d-96b6-46fe199b2fe8',
-
-  '11ec241d-c889-4f54-8656-b5f7b1598300',
-
-  'd56f4b3a-d7b7-4abf-935f-574546d4e958',
-
-  '32605c7c-45d3-49f4-9923-b3a51816d1df'
-]
 
 const GameCard: React.FC<GameCardProps> = (props) => {
   const { gameInfo } = props

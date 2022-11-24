@@ -2,14 +2,9 @@ import { BASE_BACKEND_API } from './../constants/index';
 import qs from 'qs'
 
 
-export const getHomeInfo = async () => {
-  const data = await fetch(`${BASE_BACKEND_API}/api/home`)
-  return data.json()
-}
-
-// 嘉年华获取全部游戏
+// 获取首页全部游戏
 export const getAllGames= async () => {
-  const data = await fetch(`${BASE_BACKEND_API}/carnival/home`)
+  const data = await fetch(`${BASE_BACKEND_API}/api/home`)
   return data.json()
 }
 
@@ -20,6 +15,7 @@ export const getGameInfo = async (params: GameInfoParams) => {
   const data = await fetch(`${BASE_BACKEND_API}/api/game?${qs.stringify(params)}`)
   return data.json()
 }
+
 
 /**
  * 获取平台全部游戏数据

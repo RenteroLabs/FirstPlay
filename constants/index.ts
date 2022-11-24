@@ -70,7 +70,7 @@ export enum CHAIN_ID_NAME {
 
 
 const TEST_BACKEND_API = 'https://testapi.firstplay.app'
-const PRODUCTION_BACKEND_API = 'https://testapi.firstplay.app'
+const PRODUCTION_BACKEND_API = 'https://api.firstplay.app'
 export const BASE_BACKEND_API = process.env.NEXT_PUBLIC_ENV === 'PRO' ? PRODUCTION_BACKEND_API : TEST_BACKEND_API
 
 // 暂时关闭，支持多语言时需要开启
