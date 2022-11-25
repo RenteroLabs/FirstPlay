@@ -82,7 +82,7 @@ const HeaderUserInfo: React.FC<HeaderUserInfoProps> = (props) => {
                   <Typography>{formatAddress(address, 4)}</Typography>
                   <CopyButton targetValue={address} />
                 </Box>
-                <Box sx={{ cursor: 'pointer' }} onClick={() => {
+                <Box className={styles.exitIcon} onClick={() => {
                   disconnect()
                   closeCallback()
                 }}>
