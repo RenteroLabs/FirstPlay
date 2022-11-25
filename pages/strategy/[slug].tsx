@@ -11,6 +11,7 @@ import { getAllPosts, getPostBySlug, markdownToHtml } from 'util/markdown'
 import styles from '../../styles/strategy.module.scss'
 import Head from 'next/head'
 import { queryCarnivalGamesInfo } from 'services/carnival'
+import ReactMarkdown from 'react-markdown'
 
 const StrategyArticle: NextPageWithLayout<{ content: string, post: Record<string, any>, gameInfo: Record<string, any> }> = (props) => {
   const { content, post, gameInfo } = props
@@ -51,11 +52,12 @@ const StrategyArticle: NextPageWithLayout<{ content: string, post: Record<string
 
     <Divider />
     <Box className={styles.contentBox}>
-      <div dangerouslySetInnerHTML={{ __html: content }} />
+      {/* <div dangerouslySetInnerHTML={{ __html: content }} /> */}
+      <ReactMarkdown linkTarget="_blank" >{content}</ReactMarkdown>
       {post?.comment && <div dangerouslySetInnerHTML={{ __html: post.comment }} />}
-      <br/>
-      <br/>
-      <br/>
+      <br />
+      <br />
+      <br />
     </Box>
   </Box>
 }
@@ -78,7 +80,7 @@ export const getStaticProps = async ({ locale, params }: GetStaticPropsContext<{
     'comment',
     "gameId"
   ])
-  const content = await markdownToHtml(post.content || '')
+  // const content = await markdownToHtml(post.content || '')
   let game
   if (post.gameId) {
     // game = await getGameInfo({ game_id: post.gameId })
@@ -91,7 +93,7 @@ export const getStaticProps = async ({ locale, params }: GetStaticPropsContext<{
       messages: (await import(`../../i18n/${locale}.json`)).default,
 
       post,
-      content,
+      content: post.content,
 
       gameInfo: game?.data || null
     }

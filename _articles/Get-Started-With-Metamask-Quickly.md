@@ -50,7 +50,8 @@ Choose any game (take Big Time as an example), after completing the task, click 
 How to get the wallet address that connect to firstplay**？**On First Play,click the Profile button in the upper right corner to copy the address.
 
 ![img](https://lh6.googleusercontent.com/wETICMQPfxvkoOmZrGJnMC5w5QJp6fh7F7HmOJDS0WSMWJ2XR06Ty6zWveANduFmxZR_2u60-K_v6qoU01K_iZ_0Nhfatw4PBrCoNq303O35bUAneBDwgNkWXBgSgd2PRDxKQB--n_tyGnh8t_a-GAnOQpksWIBnBQt8SpMFptoTSkg-QIEvVfOPfT_CbQ)
-![img](https://lh3.googleusercontent.com/Qxp0iWAs3e0fCqx68fHhcqMhebGn2ElkjQpfWNqrZNGW3a79A0BNMQ2cHRiN5VlPathVtWBkZs5y0cg5WFqH3zjp4LbOqXq4WFUCD3QjB4U9B_V6kqf3-0ti_bsSfNoDXdmLCpY5s77z0RQ_N8_CwlVHcBMjBw2bOdIUYI2spzkqoHJZdMf815PTUhMDKQ)
+
+![img](https://lh5.googleusercontent.com/10Jhwvm3kBnf4XuOYNfMmnoSPgjVDPtnriTRAHuUqAynIqv_D9cOy-snS5tGabH4qZqMDwAyCDUymZ90MegwbUXjO1kGAiYlrhSs3_i_TecCcM2jc2XImLDo4UG8ncEC8FrmlZQNZ1odCGqMyJ5EVfcpOMCi0t1be36kzLTMACP6BkFmOcsGyKrYIwTsCA)
 
 ## Mobile
 
@@ -93,5 +94,5 @@ How to get the wallet address that connect to firstplay**？**On First Play,clic
 
 ![img](https://lh4.googleusercontent.com/3dkV4kexkp4M47u__Z-C72JlXDnH8QzXEp7ck3V5-0U9nxsYD0X2mUt4kQxL04l4P3-c6b768rUibdi_8l5XSThL_5hlwwdb429t1OUZhaq3F5gYmfekbC_EIdFcNVysT4iMIbESnxBxIOYiHsBauY8I80YRMH6VOGRwK9ywFzBtDTf9m9FugN6yRUZJbA)
 
-![img](https://lh3.googleusercontent.com/k-HiZZ2bnqVS3yugbv8dlE3e1d-e876eKWLw5w6vK5yjuDdJD9LWnq8S1T7nluBlQaLWHP2J2BNrd2AO9Kop0twmvu7gb_s7PpmFXeKtxFiBIhh80AgOmBXhq_URCroaHBRE6Bc9LbguTOC7zGQnru_7EtualMQISBB4M9T9zxxjYWrBAjChgYEnjFWPDA)
+![img](https://lh6.googleusercontent.com/DDeaF8Kb2xjaFiQdWz2Fkx1C3N1HunuTS-hdGwTV1kwkJZdxcGoXgBdj0FBGJ533AEKDtwZzHa1PWUX9U8rMzDW8l6nDzVj4RiCdtw6BlUmZ0KAO_khknAFPrqkt58MbXHQntrlP8gqtTnXxyevInm4TCbIxJtKViaqoDqzQqfXGw_Qhtu2hTDAIyySUIw)
 
