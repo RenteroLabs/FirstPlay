@@ -223,6 +223,8 @@
         .highlight {
           color: #8e50e4;
         }
+        .mobileDailyReward {
+        }
       }
     }
     .winnerList {
@@ -709,7 +711,7 @@
   }
 }
 
-@media screen and (max-width: 900px){
+@media screen and (max-width: 900px) {
   .containBox {
     .container {
       .dailyActivity {
@@ -723,7 +725,6 @@
       }
     }
   }
-  
 }
 @media screen and (max-width: 850px) {
   .containBox {
@@ -874,6 +875,56 @@
     }
     background-color: #f4f4f9;
     .container {
+      .dailyActivity {
+        // width: calc(100% - 2.66rem);
+        padding: 1.33rem 1rem 1rem;
+        border-radius: 0;
+
+        .dailyHeader {
+          flex-direction: column;
+          padding-bottom: 1.5rem;
+          h3 {
+            font-size: 1.5rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #222222;
+            line-height: 1.5rem;
+            margin-bottom: 0.83rem;
+          }
+          .headerDiscord {
+            flex-direction: column;
+            p {
+              display: block;
+              font-size: 1.17rem;
+              font-family: Inter-Regular, Inter;
+              font-weight: 400;
+              color: #222222;
+              line-height: 1.17rem;
+              text-align: center;
+            }
+            .discordBtn {
+              margin-top: 0.83rem;
+              padding-right: 0.5rem;
+              width: 11.67rem;
+              height: 3rem;
+            }
+          }
+        }
+        .todayActivity {
+          align-items: flex-start;
+          margin: 1.25rem auto;
+          p {
+            font-size: 1.33rem;
+            font-family: Inter-Medium, Inter;
+            font-weight: 500;
+            color: #222222;
+            line-height: 2rem;
+          }
+          .activityLogo {
+            margin-top: 3px;
+          }
+        }
+      }
       .notifyBox {
         width: calc(100% - 2.66rem);
         height: 4rem;
