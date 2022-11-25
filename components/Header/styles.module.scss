@@ -115,13 +115,19 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 1.67rem;
-    p {
-      font-size: 1.5rem;
-      font-family: Inter-Medium, Inter;
-      font-weight: 500;
-      color: #222222;
-      line-height: 1.5rem;
+    .addressBox {
+      display: inline-flex;
+      align-items: center;
+      p {
+        font-size: 1.5rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 1.5rem;
+        margin-right: 0.5rem;
+      }
     }
+
     & > div {
       position: relative;
       width: 2rem;

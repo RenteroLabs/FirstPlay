@@ -211,13 +211,14 @@
           border-radius: 50%;
           overflow: hidden;
           margin-right: 0.83rem;
+          flex-shrink: 0;
         }
         p {
           font-size: 1.5rem;
           font-family: Inter-Medium, Inter;
           font-weight: 500;
           color: #222222;
-          line-height: 1.5rem;
+          line-height: 2rem;
         }
         .highlight {
           color: #8e50e4;
