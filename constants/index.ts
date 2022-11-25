@@ -112,3 +112,12 @@ export const GAME_EVENT_NAME: Record<string, string> = {
   'd56f4b3a-d7b7-4abf-935f-574546d4e958': "Matr1x_Claim",
   '32605c7c-45d3-49f4-9923-b3a51816d1df': "Bless_Claim"
 }
+
+export const GAME_TASK_MODAL_NAME: Record<string, string> = {
+  "8489b4b1-ed82-451d-96b6-46fe199b2fe8": "Dark_Modal",
+  'a10fe616-6da7-4f88-bb5b-8e27b3adedad': "BigTime_Modal",
+  '740a1e44-fd84-433e-98df-be90d650eb51': "NEO_Modal",
+  '11ec241d-c889-4f54-8656-b5f7b1598300': "Mirror_Modal",
+  'd56f4b3a-d7b7-4abf-935f-574546d4e958': "Matr1x_Modal",
+  '32605c7c-45d3-49f4-9923-b3a51816d1df': "Bless_Modal"
+}

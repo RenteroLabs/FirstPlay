@@ -9,7 +9,7 @@ import GiftCodeModal from '../GiftCodeModal'
 import { useLocalStorageState, useRequest } from 'ahooks'
 import { queryGameGiftCode } from 'services/carnival'
 import * as ga from '../../../util/ga'
-import { GAME_EVENT_NAME } from 'constants/index'
+import { GAME_EVENT_NAME, GAME_TASK_MODAL_NAME } from 'constants/index'
 import VerifyTaskModal from '../VerifyTaskModal'
 
 const cx = classname.bind(styles)
@@ -27,7 +27,7 @@ interface RewardItemProps {
 const GiftbagGame = '740a1e44-fd84-433e-98df-be90d650eb51'
 
 const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
-  const { index, reward, isClaimed, claimLink, medalNum, gameId , strategyLink} = props
+  const { index, reward, isClaimed, claimLink, medalNum, gameId, strategyLink } = props
   const isMobileSize = useMediaQuery("(max-width:600px)")
   const isMounted = useIsMounted()
 
@@ -40,7 +40,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
     if (!isClaimed) {
       setShowTaskModal(true)
 
-      // ga.event({ action: `${GAME_EVENT_NAME[gameId]}_${index}`, params: { gameId: gameId, task: index } })
+      ga.event({ action: `${GAME_TASK_MODAL_NAME[gameId]}`, params: { gameId: gameId } })
       // window.open(claimLink)
     }
   }
