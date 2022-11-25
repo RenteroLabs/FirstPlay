@@ -9,7 +9,8 @@ import GiftCodeModal from '../GiftCodeModal'
 import { useLocalStorageState, useRequest } from 'ahooks'
 import { queryGameGiftCode } from 'services/carnival'
 import * as ga from '../../../util/ga'
-import  { GAME_EVENT_NAME } from 'constants/index'
+import { GAME_EVENT_NAME } from 'constants/index'
+import VerifyTaskModal from '../VerifyTaskModal'
 
 const cx = classname.bind(styles)
 
@@ -19,24 +20,28 @@ interface RewardItemProps {
   isClaimed: boolean,
   claimLink: string,
   medalNum: number,
-  gameId: string
+  gameId: string,
+  strategyLink: string
 }
 
 const GiftbagGame = '740a1e44-fd84-433e-98df-be90d650eb51'
 
 const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
-  const { index, reward, isClaimed, claimLink, medalNum, gameId } = props
+  const { index, reward, isClaimed, claimLink, medalNum, gameId , strategyLink} = props
   const isMobileSize = useMediaQuery("(max-width:600px)")
   const isMounted = useIsMounted()
 
   const [showGiftModal, setShowGiftModal] = useState<boolean>(false)
+  const [showTaskModal, setShowTaskModal] = useState<boolean>(false)
 
   const [giftCode, setGiftCode] = useState<string>("XXXXXXX")
 
   const linkToForm = () => {
     if (!isClaimed) {
-      ga.event({ action: `${GAME_EVENT_NAME[gameId]}_${index}`, params: { gameId: gameId, task: index } })
-      window.open(claimLink)
+      setShowTaskModal(true)
+
+      // ga.event({ action: `${GAME_EVENT_NAME[gameId]}_${index}`, params: { gameId: gameId, task: index } })
+      // window.open(claimLink)
     }
   }
 
@@ -68,7 +73,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
   const handleClickGiftBtn = () => {
     // 判断本地有没有
     if (giftCode === "XXXXXXX") {
-      getGiftCode({ game_id: gameId}) 
+      getGiftCode({ game_id: gameId })
     }
     setShowGiftModal(true)
   }
@@ -104,6 +109,14 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
         setShowGiftModal={setShowGiftModal}
         giftCode={giftCode}
       />
+      <VerifyTaskModal
+        showTaskModal={showTaskModal}
+        setShowTaskModal={setShowTaskModal}
+        index={index}
+        claimLink={claimLink}
+        gameId={gameId}
+        strategyLink={strategyLink}
+      />
     </Box>
     :
     <Box className={styles.carnivalRewardItem}>
@@ -133,6 +146,14 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
         showGiftModal={showGiftModal}
         setShowGiftModal={setShowGiftModal}
         giftCode={giftCode}
+      />
+      <VerifyTaskModal
+        showTaskModal={showTaskModal}
+        setShowTaskModal={setShowTaskModal}
+        index={index}
+        claimLink={claimLink}
+        gameId={gameId}
+        strategyLink={strategyLink}
       />
     </Box>
 }

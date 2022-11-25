@@ -219,6 +219,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                     reward={item?.description}
                     claimLink={item?.form}
                     gameId={router.query?.uuid as string}
+                    strategyLink={carnivalGame?.strategy}
                   />
                 )
               }
