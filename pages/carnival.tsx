@@ -134,7 +134,7 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
         </Box>
       </Box> */}
 
-      {!is600Size && <Box className={styles.dailyActivity}>
+      <Box className={styles.dailyActivity}>
         <Box className={styles.dailyHeader}>
           <Typography variant="h3">Daily surprise draw</Typography>
           <Box className={styles.headerDiscord}>
@@ -153,13 +153,24 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
           <Box className={styles.activityLogo}>
             <Image src="/DarkThrone.jpg" layout="fill" />
           </Box>
-          <Typography>
-            [<span className={styles.highlight}>Dark Throne</span>]
-            Today: &nbsp;
-            <span className={styles.highlight}>Draw 1 person from all addresses who reached 3 levels today with a new account, reward Totem Box*1</span>
-          </Typography>
+          {
+            is600Size ?
+              <Box className={styles.mobileDailyReward}>
+                <Typography>
+                  [<span className={styles.highlight}>Dark Throne</span>] Today:</Typography>
+                <Typography>
+                  <span className={styles.highlight}>Draw 1 person from all addresses who reached 3 levels today with a new account, reward Totem Box*1</span>
+                </Typography>
+              </Box>
+              :
+              <Typography>
+                [<span className={styles.highlight}>Dark Throne</span>]
+                Today: &nbsp;
+                <span className={styles.highlight}>Draw 1 person from all addresses who reached 3 levels today with a new account, reward Totem Box*1</span>
+              </Typography>
+          }
         </Box>
-      </Box>}
+      </Box>
       {/* <Box className={styles.winnerList}>
         <Box className={styles.winerLabel}>
           <Typography>Yesterday Winner :</Typography>
@@ -240,7 +251,7 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
                 <Typography>{!is600Size && "Neo Fantancy: "}Ordinary Mystery Box*1</Typography>
               </Box>
               <Box className={styles.rewardValue}>
-                <Box sx={{ "& img": { transform: "scale(0.8)"}}}>
+                <Box sx={{ "& img": { transform: "scale(0.8)" } }}>
                   <Image src="/carnival_money.png" layout="fill" quality={100} />
                 </Box>
                 <Typography>Share $1,000</Typography>
