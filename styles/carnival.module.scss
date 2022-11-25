@@ -204,6 +204,7 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
+        position: relative;
         .activityLogo {
           position: relative;
           width: 3.33rem;
@@ -222,8 +223,34 @@
         }
         .highlight {
           color: #8e50e4;
+          position: relative;
+          z-index: 10;
         }
         .mobileDailyReward {
+        }
+
+        .element1 {
+          position: absolute;
+          width: 3.58rem;
+          height: 3.75rem;
+          right: 0;
+          z-index: 0;
+        }
+        .element2 {
+          position: absolute;
+          width: 1.75rem;
+          height: 1.58rem;
+          left: -1.5rem;
+          bottom: -45%;
+          z-index: 0;
+        }
+        .element3 {
+          position: absolute;
+          width: 2rem;
+          height: 1.75rem;
+          right: 11rem;
+          bottom: -65%;
+          z-index: 0;
         }
       }
     }
@@ -922,6 +949,19 @@
           }
           .activityLogo {
             margin-top: 3px;
+          }
+
+          .element1 {
+            top: -6rem;
+          }
+          .element2 {
+            top: -7rem;
+            left: 0;
+          }
+          .element3 {
+            top: -2rem;
+            right: 7.5rem;
+            transform: rotate(20deg);
           }
         }
       }

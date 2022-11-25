@@ -169,6 +169,16 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
                 <span className={styles.highlight}>Draw 1 person from all addresses who reached 3 levels today with a new account, reward Totem Box*1</span>
               </Typography>
           }
+
+          <Box className={styles.element1}>
+            <Image src="/Daily_Surprise_Element1.png" layout="fill"/>
+          </Box>
+          <Box className={styles.element2}>
+            <Image src="/Daily_Surprise_Element2.png" layout="fill"/>
+          </Box>
+          <Box className={styles.element3}>
+            <Image src="/Daily_Surprise_Element3.png" layout="fill"/>
+          </Box>
         </Box>
       </Box>
       {/* <Box className={styles.winnerList}>
