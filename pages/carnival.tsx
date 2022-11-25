@@ -151,12 +151,12 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
         </Box>
         <Box className={styles.todayActivity}>
           <Box className={styles.activityLogo}>
-            <Image src="/BigTime.jpg" layout="fill" />
+            <Image src="/DarkThrone.jpg" layout="fill" />
           </Box>
           <Typography>
-            [<span className={styles.highlight}>BigTime</span>]
+            [<span className={styles.highlight}>Dark Throne</span>]
             Today: &nbsp;
-            <span className={styles.highlight}>Draw 10 NFTs from trial users</span>
+            <span className={styles.highlight}>Draw 1 person from all addresses who reached 3 levels today with a new account, reward Totem Box*1</span>
           </Typography>
         </Box>
       </Box>}

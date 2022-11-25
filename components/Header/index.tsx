@@ -20,6 +20,7 @@ import { useRouter } from 'next/router'
 import { useTranslations } from 'next-intl'
 import DnsIcon from '@mui/icons-material/Dns';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
+import CopyButton from '../CopyButton'
 
 const cx = classNames.bind(styles)
 
@@ -77,7 +78,10 @@ const HeaderUserInfo: React.FC<HeaderUserInfoProps> = (props) => {
             address &&
             <>
               <Box className={styles.addressItem} >
-                <Typography>{formatAddress(address, 4)}</Typography>
+                <Box className={styles.addressBox}>
+                  <Typography>{formatAddress(address, 4)}</Typography>
+                  <CopyButton targetValue={address} />
+                </Box>
                 <Box sx={{ cursor: 'pointer' }} onClick={() => {
                   disconnect()
                   closeCallback()
@@ -190,7 +194,7 @@ const Header: React.FC = () => {
             <Box>
               <Link href="/carnival" >
                 {/* <a target="_blank"> */}
-                  {t('passNFT')}
+                {t('passNFT')}
                 {/* </a> */}
               </Link>
             </Box>
