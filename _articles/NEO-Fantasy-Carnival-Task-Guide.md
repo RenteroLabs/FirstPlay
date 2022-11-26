@@ -12,7 +12,7 @@ coverImage: ""
 
 Email is required to register a game account, and a crypto wallet and an Android phone are required to play the game.
 
-Optional: Create a wallet that supports the Binance Smart Chain (BSC) and get the address on the BSC chain (please follow the instructions to create a wallet: [Download Tutorial](https://metamask.io/download/) [MetaMask Setup Tutorial](https://academy.binance.com/cn/articles/connecting-metamask-to-binance-smart-chain)) (if you already have a wallet, please proceed to the next step)
+Optional: Create a wallet that supports the Binance Smart Chain (BSC) and get the address on the BSC chain (please follow the instructions to create a wallet: [Download Tutorial](https://firstplay.app/strategy/Get-Started-With-Metamask-Quickly) , [MetaMask Setup Tutorial](https://academy.binance.com/cn/articles/connecting-metamask-to-binance-smart-chain)) (if you already have a wallet, please proceed to the next step)
 
 ## Task 1 (estimated 2 minutes)
 
