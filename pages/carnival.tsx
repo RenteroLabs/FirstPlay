@@ -151,33 +151,33 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
         </Box>
         <Box className={styles.todayActivity}>
           <Box className={styles.activityLogo}>
-            <Image src="/DarkThrone.jpg" layout="fill" />
+            <Image src="/BigTime.jpg" layout="fill" />
           </Box>
           {
             is600Size ?
               <Box className={styles.mobileDailyReward}>
                 <Typography>
-                  [<span className={styles.highlight}>Dark Throne</span>] Today:</Typography>
+                  [<span className={styles.highlight}>Big Time</span>] Today:</Typography>
                 <Typography>
-                  <span className={styles.highlight}>Draw 1 person from all addresses who reached 3 levels today with a new account, reward Totem Box*1</span>
+                  <span className={styles.highlight}>Draw 3 person from all addresses who complete Big Time Task2  today with a new account, reward Forge Mystery Box worth $150</span>
                 </Typography>
               </Box>
               :
               <Typography>
-                [<span className={styles.highlight}>Dark Throne</span>]
+                [<span className={styles.highlight}>Big Time</span>]
                 Today: &nbsp;
-                <span className={styles.highlight}>Draw 1 person from all addresses who reached 3 levels today with a new account, reward Totem Box*1</span>
+                <span className={styles.highlight}>Draw 3 person from all addresses who complete Big Time Task2  today with a new account, reward Forge Mystery Box worth $150</span>
               </Typography>
           }
 
           <Box className={styles.element1}>
-            <Image src="/Daily_Surprise_Element1.png" layout="fill"/>
+            <Image src="/Daily_Surprise_Element1.png" layout="fill" />
           </Box>
           <Box className={styles.element2}>
-            <Image src="/Daily_Surprise_Element2.png" layout="fill"/>
+            <Image src="/Daily_Surprise_Element2.png" layout="fill" />
           </Box>
           <Box className={styles.element3}>
-            <Image src="/Daily_Surprise_Element3.png" layout="fill"/>
+            <Image src="/Daily_Surprise_Element3.png" layout="fill" />
           </Box>
         </Box>
       </Box>
