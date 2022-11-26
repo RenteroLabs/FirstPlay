@@ -18,15 +18,15 @@ Optional: Create a wallet that supports the Binance Smart Chain (BSC) and get th
 
 ### Step 1: Register to download and log in to the game
 
-1. Visit NEO FANTASY Gateway to register an account [https://neofantasy.nextype.finance/gateway/min](https://neofantasy.nextype.finance/gateway/min)
+1. Visit NEO FANTASY Gateway to register an account [https://neofantasy.nextype.finance/gateway/mine](https://neofantasy.nextype.finance/gateway/mine)
 
-2. Click on the upper right corner of the [login], and in the pop-up window click below [register now].
+2. Click on the upper right corner of the [login],eand in the pop-up window click below [register now].
 
 3. Fill in the email, complete the verification, and receive the mailbox verification code, to register the game account
 
 4. Click <bound> to bind the wallet address (optional)![img](https://lh3.googleusercontent.com/U0OqP-8BUbreiEVRFaNKeEES1To6PEWBrenamMbt0RcQghM90IUOgzlNHeKWUCOg1Fx9tRU69nU-c1TOEDuIunsrAU3B4646Z45K8DxFCbWPlTUwC6dHQS-IM9GAr9JH3PBndwnXL6gSKg0Xi-jHVxq5Un1wg8rRMp4ixFofVDE3xixpWs2i2QZITEstoQ)![img](https://lh5.googleusercontent.com/sHsbfbnjZvK2XhjLIRayCrOt7ELRDUGJxDWzD7Y3OdSBtNphmqIfud7rWDpLHdbpnMIA8I_TVnPmZ8N854krQFK9A9hMzmHtOrEqi7LbaUQUkV7obmBP-lkKs23K51nbcUkj5oncdfXcfzzt7cxVIWU4XOd0OR9giT5SHXab5mQ7_-RDrhO9XEeH7JXGEA)![img](https://lh6.googleusercontent.com/wGfRo_0R06tISTzyI_mNg720R1aetf0upsqrlJa10rxs9gJR-qtHG-p8RTp10NGYykeitRgusHzIqfJlsF-lqwDpXRUo99V1qqVSKIhwCdCDY7l069wywVrZ72ce2IlKiT10Lu6fxDIPBU4JUH7VnNIp049lhjKLpFsN3wWKcZFHZOJyPcepIAwoKUCLuw)![img](https://lh5.googleusercontent.com/mXueG_528q7mbmMioNA3igSJYi00rNEoB1Q_uibcmElFEcw9ITV3WLAftSXKsKFoSbMihUT8IobD2PDpgZlNUOWrLPZAJoBMDujYqRMawAEheO0uoIF-awcWNgAHu4HVBm0j79DbmhZU0IVE0iGCCVXTOFgI94ivpRoItf8dMsID2-YC3IXVblE4LL0czw)
 
-5. Visit the link https://neofantasy.nextype.finance/gateway/invite?isTab=2 Click [Download the game] (currently only the Android version APK available)
+5. Visit the link [https://neofantasy.nextype.finance/gateway/invite?isTab=2](https://neofantasy.nextype.finance/gateway/invite?isTab=2) Click [Download the game] (currently only the Android version APK available)
 ![img](https://lh3.googleusercontent.com/KmV5y2IpwyfzkLFkSYGv1FmisogUVw_9aGuBW1-8xdmZbRkbvRZlBZNYRZ1ge_bMq9uQ8FG_jLW7zYOAxvoSfdq5W2ke7gxoOGr5sadD25X-NCK6JreQT1UfsjSLpOS36ZBojSz-erHwoAyJI9uGNptbOTckRSl7BF1rGZwFYb6yNr7i9UUl6U-EzGwyzw)
 
 6. Install the game and log in to the game with the registered account after success.
