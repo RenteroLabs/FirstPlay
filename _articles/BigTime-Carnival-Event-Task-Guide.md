@@ -31,7 +31,7 @@ If you do not have a wallet address or do not know what the wallet address is, p
 
 7. Wait for Big Time official to add Ruby Pass to your account, and get 1 task medal. (confirmation is usually completed within 24 hours) 
 
-8. Click [http://play.bigtime.gg](http://play.bigtime.gg) to down load Big Time client
+8. Click [https://play.bigtime.gg](https://play.bigtime.gg) to down load Big Time client
 
 ## Task 2
 
