@@ -14,7 +14,7 @@ Mirror Planet is a virtual reality Web3 game. We built a mirror world of the wor
 
 ## Task 1:.Estimated 3-5 minutes
 
-1: Click [http://account.mirrorplanet.com/influence?influenceCode=I3355](http://account.mirrorplanet.com/influence?influenceCode=I3355) to Download App
+1: Click [http://account.mirrorplanet.com/influence?influenceCode=qqk9tq6](http://account.mirrorplanet.com/influence?influenceCode=qqk9tq6) to Download App
 notes for download
 
 Android:
@@ -33,7 +33,7 @@ Download via the link [https://testflight.apple.com/join/UdeKRKtV](https://testf
 
 ![img](https://lh5.googleusercontent.com/P3HecRprsif05XYb-sYzUClWf-wlkPrIqYHNKKjNWYf_AvoZnWr0CPNKik8wUFFiiSRA7yYqbS3F7PY6xfEphrLZeecMqb3drXK-IqvyCWNoNtF6TT0i9fRcTkF8g72MxRFbhBkqfr68jr603ju4-ND97g27E4uTulpST3l1GdN49cc_wbqkmW1T8fKu9sdUn_Cwh_SDWg)![img](https://lh5.googleusercontent.com/KNmSydEtXz5-STldkb0ssaZleD6XNfZBaEJctZOXUAjPDzkvQpXx7miJ3aOi3YLeJyC1sUW6031BlcZ7FgY1JATrrz6bH3FZk3tkVXdXPl1foKFVKvZ4dNJi7RYG30BOxa7eXf5i-qdaXnusSX2dWHSlsPoNEStzTYcuCnxMqOZo6qRuHo-wfXDF25BlcJ_Qu2OXuFJv1w)
 
-2: You need to enter activation code(activation code:**I3355**) to start playing the game..And then set the initial image in the game.
+2: You need to enter activation code(activation code: **qqk9tq6**) to start playing the game..And then set the initial image in the game.
 ![img](https://lh4.googleusercontent.com/DPZSSM2seHECEm3BLEg9IKhUEz6iM5iYwBhyHci_BLRCLgOmQWVC8ZXkTH8LhyhP-79d3ca1zEfv4tkxpvK2_0PXRmMS3x4DgdtshU6lUIJNh5mbAua6rHBU5_aomOhgeyFwK6iMi32u74PW9fmCqq53Xug194-wn_qKtej2IXmm8YwkeX5IwQnboAjJBF9HqQ8_hqhT9w)![img](https://lh6.googleusercontent.com/_AFBKkwr77LrtaFRUb362V08zDGKrhkHnKsB8NSbJ49bdRi8n9cGlYTMP0EDWSNoXfG7_K9PWilaO_Ge9XXCjVnK1HI2Gin59pddT_SrvpmR8zbtzeoCe1b_ptqotiHEFwJU4p1KPHu6go55FygvoVaRbL0WvNvXXn17-qOXvMVWSCYWPLO02Xf74db3C2pv71a4vKEqwA)![img](https://lh5.googleusercontent.com/vxGwOGklaJ2jzBomQ3lnvZp2YaSQZjTMM3X0k2XCJe1WQgBK5vA8bPAxJpDR_ypYlIux1RchHPk3yVX9EaJS_Y3bV4x2XgXEASmauSguRmAUvSaDhKws9r8bwtkCtvHLVbXLsaaF6tMOQnytXET5Vvy-1kGekESjc-Res8SP3gZAFiNMbjhcPJpfN6M-bGMuvey7m4sROQ)
 
 3: Bind the mailbox in the settings and complete the registration.![img](https://lh6.googleusercontent.com/_pkPEfs_GDCiy6dfQDYhUhKjl-AqJtLZ0S9D1n8HMswZZu5ycTftKMzzuYNgPZj4Rkt9GsqVTyiXwPLVMJWLuOJft7xhy-W1Atw2xsLPQIbAGyak88-95q6Lnx_TeeHPx03ity5nMSKH0vHqZZX1LSde3vhnscAqw9l3pSkk3p5u2U1EWJ_hbE_z0S8O9I6wyuBvIWk9_w)![img](https://lh4.googleusercontent.com/tstoFyERCAQBnf_F_ZTo3E8AoBXutE6QYHZHHDK-1atDLHRnoZB-W7NtJt4TnSLb8WXllpl5SppTwXP4nyZ3qMkfDFQvtWkDvIWtZP8D9p2GxPNsl2JvurkdNxO3OC0Z0HxBf24mDqgKSL8IFK6rF0vaC8Y82ZKFwQ2H8RrGxJiy5tDeQOISJBeatRluqC1f7W3TmBmdEg)
