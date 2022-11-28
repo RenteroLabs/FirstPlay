@@ -137,7 +137,7 @@ const HeaderUserInfo: React.FC<HeaderUserInfoProps> = (props) => {
               {address && <Box className={styles.divider} />}
               <Link href="/carnival">
                 {/* <a target="__blank"> */}
-                <MenuItem className={styles.menuItem} disableRipple>
+                <MenuItem className={styles.menuItem} onClick={closeCallback} disableRipple>
                   {t('passNFT')}
                 </MenuItem>
                 {/* </a> */}
@@ -281,7 +281,9 @@ const Header: React.FC = () => {
       onClose={() => setMobileDrawer(false)}
     >
       <Box className={styles.drawer}>
-        <HeaderUserInfo closeCallback={() => setMobileDrawer(false)} connectWallet={() => setShowConnect(true)} />
+        <HeaderUserInfo
+          closeCallback={() => setMobileDrawer(false)}
+          connectWallet={() => setShowConnect(true)} />
       </Box>
     </Drawer>
   </Box>
