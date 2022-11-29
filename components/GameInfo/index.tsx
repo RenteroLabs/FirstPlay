@@ -9,14 +9,13 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import { SportsRugbySharp } from '@mui/icons-material'
 
 interface GameInfoProps {
-  gameInfo: Record<string, any>
+  gameInfo: Record<string, any>,
+  timestamp: number
 }
 
 const GameInfo: React.FC<GameInfoProps> = (props) => {
-  const { gameInfo = {} } = props
+  const { gameInfo = {}, timestamp } = props
   const isMobileSize = useMediaQuery('(max-width: 750px)')
-
-  console.log(gameInfo)
 
   const linkToStrategy = () => {
     window.open(gameInfo?.strategy)
@@ -32,7 +31,8 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
                 <Image
                   src={gameInfo.image}
                   layout='fill'
-                  loader={({ src }) => src}
+                  // loader={({ src }) => src}
+                  loader={({ src }) => `${src}?timestamp=${timestamp}`}
                 />}
             </Box>
             <Stack direction="row" className={styles.socialList}>
@@ -85,7 +85,13 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
         :
         <>
           <Box className={styles.gameCover}>
-            {gameInfo.image && <Image src={gameInfo.image} layout='fill' loader={({ src }) => src} />}
+            {gameInfo.image &&
+              <Image
+                src={gameInfo.image}
+                layout='fill'
+                // loader={({ src }) => src} 
+                loader={({ src }) => `${src}?timestamp=${timestamp}`}
+              />}
           </Box>
           <Box className={styles.infoBox}>
             <Box className={styles.infoHeader}>

@@ -10,11 +10,12 @@ const cx = classNames.bind(styles)
 
 interface GameCardProps {
   gameInfo: Record<string, any>
+  timestamp: string,
   isBig?: boolean
 }
 
 const CarnivalGameCard: React.FC<GameCardProps> = (props) => {
-  const { isBig = false, gameInfo } = props
+  const { isBig = false, gameInfo, timestamp } = props
 
   const sendTrialGameEvent = () => {
     ga.event({ action: "click", params: { event_name: 'chooseGame' } })
@@ -32,13 +33,17 @@ const CarnivalGameCard: React.FC<GameCardProps> = (props) => {
     gameCard: true,
     bigStyle: isBig
   })}>
-
     <Box className={styles.gameCover}>
       <Image
         src={gameInfo.cover} layout="fill" objectFit="cover" quality={100}
-        loader={({ src }) => src} />
+        loader={({ src }) => `${src}?timestamp=${timestamp}`} />
       <Box className={styles.gameLogo}>
-        <Image src={gameInfo.logo} layout="fill" quality={100} />
+        <Image
+          src={gameInfo.logo}
+          layout="fill"
+          quality={100}
+          loader={({ src }) => `${src}?timestamp=${timestamp}`}
+        />
       </Box>
       <Box className={styles.gameTags}>
         {
