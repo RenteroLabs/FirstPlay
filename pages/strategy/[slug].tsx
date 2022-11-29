@@ -13,8 +13,8 @@ import Head from 'next/head'
 import { queryCarnivalGamesInfo } from 'services/carnival'
 import ReactMarkdown from 'react-markdown'
 
-const StrategyArticle: NextPageWithLayout<{ content: string, post: Record<string, any>, gameInfo: Record<string, any> }> = (props) => {
-  const { content, post, gameInfo } = props
+const StrategyArticle: NextPageWithLayout<{ content: string, post: Record<string, any>, gameInfo: Record<string, any>, timestamp: number }> = (props) => {
+  const { content, post, gameInfo, timestamp } = props
 
   const imageKitLoader = ({ src, width, quality = 100 }: any) => {
     const params = [`w-${width}`];
@@ -39,13 +39,14 @@ const StrategyArticle: NextPageWithLayout<{ content: string, post: Record<string
         <Box className={styles.topCover}>
           <Image
             priority
-            loader={({ src }) => src}
+            // loader={({ src }) => src}
+            loader={({ src }) => `${src}?timestamp=${timestamp}`}
             src={gameInfo?.background || post.coverImage}
             layout='fill'
             objectFit='cover' />
         </Box>
         <Box className={styles.gameInfoBox}>
-          <GameInfo gameInfo={gameInfo} />
+          <GameInfo gameInfo={gameInfo} timestamp={timestamp} />
         </Box>
       </>
     }
@@ -95,7 +96,8 @@ export const getStaticProps = async ({ locale, params }: GetStaticPropsContext<{
       post,
       content: post.content,
 
-      gameInfo: game?.data || null
+      gameInfo: game?.data || null,
+      timestamp: new Date().getTime()
     }
   }
 }

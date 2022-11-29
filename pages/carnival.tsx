@@ -23,7 +23,7 @@ import { sumBy } from 'lodash'
 const Carnival_Activity_End_Time = '2022-12-05 24:00:00'
 
 const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-  const { gamesInfo, initTaskProgress } = props
+  const { gamesInfo, initTaskProgress, timestamp } = props
   // console.log(gamesInfo, initTaskProgress)
   const isMounted = useIsMounted()
   const is800Size = useMediaQuery("(max-width: 800px)")
@@ -229,6 +229,7 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
                   rewardCount={item?.medal || 0}
                   getRewarded={item?.own_medal || 0}
                   gameInfo={item}
+                  timestamp={timestamp}
                 />
               )
             }
@@ -323,7 +324,8 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
 
         <Box className={styles.gameList}>
           {
-            gamesInfo?.map((item: Record<string, any>, index: number) => <CarnivalGameCard key={index} isBig={true} gameInfo={item} />)
+            gamesInfo?.map((item: Record<string, any>, index: number) =>
+              <CarnivalGameCard key={index} isBig={true} gameInfo={item} timestamp={timestamp} />)
           }
         </Box>
       </Box>
@@ -475,8 +477,11 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
       // 获取国际化文案
       messages: (await import(`../i18n/${locale}.json`)).default,
       gamesInfo: games || [],
-      initTaskProgress: progresses || []
+      initTaskProgress: progresses || [],
       // initTaskProgress,
+
+      // 时间戳
+      timestamp: new Date().getTime()
     }
   }
 }

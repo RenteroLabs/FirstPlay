@@ -8,10 +8,11 @@ import { Carnival_Games } from '../../constants/index'
 
 interface GameCardProps {
   gameInfo: Record<string, any>
+  timestamp: number
 }
 
 const GameCard: React.FC<GameCardProps> = (props) => {
-  const { gameInfo } = props
+  const { gameInfo, timestamp } = props
   console.log(gameInfo)
   const router = useRouter()
 
@@ -43,7 +44,9 @@ const GameCard: React.FC<GameCardProps> = (props) => {
           src={gameInfo?.image}
           layout="fill"
           objectFit="cover"
-          loader={({ src }) => src} />
+          // loader={({ src }) => src} 
+          loader={({ src }) => `${src}?timestamp=${timestamp}`}
+        />
         {
           gameInfo &&
           Carnival_Games.includes(gameInfo?.game_id) &&

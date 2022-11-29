@@ -51,7 +51,7 @@ export interface UserInfoParams {
 export const UserInfo = createContext<UserInfoParams>({ ownPassNFt: false, isActived: false })
 
 // 游戏详情页
-const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = ({ gameInfo }) => {
+const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = ({ gameInfo, init_timestamp }) => {
   const router = useRouter()
   const { address } = useAccount()
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false)
@@ -188,11 +188,12 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                 layout='fill'
                 objectFit='cover'
                 quality={100}
-                loader={({ src }) => src}
+                // loader={({ src }) => src}
+                loader={({ src }) => `${src}?timestamp=${init_timestamp}`}
               />}
           </Box>
           <Box className={styles.gameInfoBox}>
-            <GameInfo gameInfo={gameInfo} />
+            <GameInfo gameInfo={gameInfo} timestamp={init_timestamp} />
           </Box>
           {/* Carnival activity game detail style */}
           {isCarnivalGame && <Box className={styles.rewardMainBox}>
@@ -378,7 +379,8 @@ export const getStaticProps: GetStaticProps = async ({ locale, params }: GetStat
     props: {
       // 获取国际化文案
       messages: (await import(`../../i18n/${locale}.json`)).default,
-      gameInfo: res.data
+      gameInfo: res.data,
+      init_timestamp: new Date().getTime()
     }
   }
 }

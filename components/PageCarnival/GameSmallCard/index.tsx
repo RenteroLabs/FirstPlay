@@ -11,11 +11,12 @@ const cx = classNames.bind(styles)
 interface GameSamllCardProps {
   rewardCount: number,
   getRewarded: number,
-  gameInfo: Record<string, any>
+  gameInfo: Record<string, any>,
+  timestamp: number,
 }
 
 const GameSallCard: React.FC<GameSamllCardProps> = (props) => {
-  const { getRewarded, rewardCount, gameInfo } = props
+  const { getRewarded, rewardCount, gameInfo, timestamp } = props
 
   return <Link href={`/game/${gameInfo?.game_id}`}>
     <Box className={cx({
@@ -29,7 +30,7 @@ const GameSallCard: React.FC<GameSamllCardProps> = (props) => {
           layout="fill"
           objectFit='cover'
           quality={100}
-          loader={({ src }) => src}
+          loader={({ src }) => `${src}?timestamp=${timestamp}`}
         />
       </Box>
 

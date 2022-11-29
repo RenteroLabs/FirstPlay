@@ -17,7 +17,7 @@ import { reverse } from 'lodash'
 import Head from "next/head";
 
 const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-  const { hotGames, strategys, comingGames } = props
+  const { hotGames, strategys, comingGames, timestamp } = props
 
   const isMiddleSize = useMediaQuery("(max-width: 900px)")
   const isMobileSize = useMediaQuery("(max-width: 450px)")
@@ -44,7 +44,7 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
     {/* <TrialGame /> */}
 
     <Box className={styles.mainBox}>
-      <HotGames hotGames={hotGames} />
+      <HotGames hotGames={hotGames} timestamp={timestamp} />
       <GameStrategy gameStrategy={strategys} />
       {/* <ComingGames comingGames={comingGames} /> */}
       <Support />
@@ -79,7 +79,8 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
       strategys: strategies,
 
       // 获取国际化文案
-      messages: (await import(`../i18n/${locale}.json`)).default
+      messages: (await import(`../i18n/${locale}.json`)).default,
+      timestamp: new Date().getTime()
     }
   }
 }
