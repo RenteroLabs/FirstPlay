@@ -87,7 +87,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
         {
           gameId === BlessGlobal ?
             <Box className={cx({ claimBtn: true, claimedBtn: true })} >
-              End
+              Ended
             </Box>
             :
             <Box className={cx({
@@ -140,7 +140,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       {
         gameId === BlessGlobal ?
           <Box className={cx({ claimBtn: true, claimedBtn: true })} >
-            End
+            Ended
           </Box>
           :
           <Box className={cx({
