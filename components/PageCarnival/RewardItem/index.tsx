@@ -25,6 +25,7 @@ interface RewardItemProps {
 }
 
 const GiftbagGame = '740a1e44-fd84-433e-98df-be90d650eb51'
+const BlessGlobal = "32605c7c-45d3-49f4-9923-b3a51816d1df"
 
 const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
   const { index, reward, isClaimed, claimLink, medalNum, gameId, strategyLink } = props
@@ -83,15 +84,21 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       <Box className={styles.itemLabel}>{index.toString().padStart(2, '0')}</Box>
       <Typography>{reward}</Typography>
       <Box className={styles.actionArea}>
-        <Box
-          className={cx({
-            claimBtn: true,
-            claimedBtn: isClaimed
-          })}
-          onClick={linkToForm}
-        >
-          {isClaimed ? "Completed" : 'Claim'}
-        </Box>
+        {
+          gameId === BlessGlobal ?
+            <Box className={cx({ claimBtn: true, claimedBtn: true })} >
+              Ended
+            </Box>
+            :
+            <Box className={cx({
+              claimBtn: true,
+              claimedBtn: isClaimed
+            })}
+              onClick={linkToForm}
+            >
+              {isClaimed ? "Completed" : 'Claim'}
+            </Box>
+        }
         {index === 1 &&
           gameId === GiftbagGame &&
           <Box className={styles.giftBtn} onClick={handleClickGiftBtn}>
@@ -130,14 +137,21 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           </Box>
           Gift Code
         </Box>}
-      <Box className={cx({
-        claimBtn: true,
-        claimedBtn: isClaimed
-      })}
-        onClick={linkToForm}
-      >
-        {isClaimed ? "Completed" : 'Claim'}
-      </Box>
+      {
+        gameId === BlessGlobal ?
+          <Box className={cx({ claimBtn: true, claimedBtn: true })} >
+            Ended
+          </Box>
+          :
+          <Box className={cx({
+            claimBtn: true,
+            claimedBtn: isClaimed
+          })}
+            onClick={linkToForm}
+          >
+            {isClaimed ? "Completed" : 'Claim'}
+          </Box>
+      }
       <Box className={styles.rewardIcon}>
         <Image src={REWARD_ACTIVE_ICON} layout="fill" />
       </Box>

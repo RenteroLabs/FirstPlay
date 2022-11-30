@@ -214,10 +214,15 @@
     }
     .claimedBtn {
       cursor: default;
-      background: linear-gradient(270deg, #f82757 0%, #984cec 100%);
+      // background: linear-gradient(270deg, #f82757 0%, #984cec 100%);
+      background: rgba(#222, 0.2);
+
       border-color: transparent;
       border: none;
       -webkit-text-fill-color: white;
+      &:hover {
+        background: rgba(#222, 0.2);
+      }
     }
 
     .giftBtn {
