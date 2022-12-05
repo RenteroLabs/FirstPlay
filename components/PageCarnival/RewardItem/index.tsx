@@ -84,12 +84,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       <Box className={styles.itemLabel}>{index.toString().padStart(2, '0')}</Box>
       <Typography>{reward}</Typography>
       <Box className={styles.actionArea}>
-        {
-          gameId === BlessGlobal ?
-            <Box className={cx({ claimBtn: true, claimedBtn: true })} >
-              Ended
-            </Box>
-            :
+        {/* {
             <Box className={cx({
               claimBtn: true,
               claimedBtn: isClaimed
@@ -98,12 +93,17 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
             >
               {isClaimed ? "Completed" : 'Claim'}
             </Box>
-        }
-        {index === 1 &&
+        } */}
+
+        <Box className={cx({ claimBtn: true, claimedBtn: true })} >
+          Ended
+        </Box>
+
+        {/* {index === 1 &&
           gameId === GiftbagGame &&
           <Box className={styles.giftBtn} onClick={handleClickGiftBtn}>
             Gift Code
-          </Box>}
+          </Box>} */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <Box className={styles.rewardIcon}>
             <Image src={REWARD_ACTIVE_ICON} layout="fill" />
@@ -129,29 +129,29 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
     <Box className={styles.carnivalRewardItem}>
       <Box className={styles.rewardIndex}>{index.toString().padStart(2, '0')}</Box>
       <Typography>{reward}</Typography>
-      {index === 1 &&
+      {/* {index === 1 &&
         gameId === GiftbagGame &&
         <Box className={styles.giftBtn} onClick={handleClickGiftBtn}>
           <Box>
             <Image src="/gift_code.png" layout="fill" />
           </Box>
           Gift Code
-        </Box>}
-      {
-        gameId === BlessGlobal ?
-          <Box className={cx({ claimBtn: true, claimedBtn: true })} >
-            Ended
-          </Box>
-          :
-          <Box className={cx({
-            claimBtn: true,
-            claimedBtn: isClaimed
-          })}
-            onClick={linkToForm}
-          >
-            {isClaimed ? "Completed" : 'Claim'}
-          </Box>
-      }
+        </Box>} */}
+      {/* {
+        <Box className={cx({
+          claimBtn: true,
+          claimedBtn: isClaimed
+        })}
+          onClick={linkToForm}
+        >
+          {isClaimed ? "Completed" : 'Claim'}
+        </Box>
+      } */}
+
+      <Box className={cx({ claimBtn: true, claimedBtn: true })} >
+        Ended
+      </Box>
+
       <Box className={styles.rewardIcon}>
         <Image src={REWARD_ACTIVE_ICON} layout="fill" />
       </Box>

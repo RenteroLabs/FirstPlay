@@ -22,6 +22,7 @@ const CarnivalGameCard: React.FC<GameCardProps> = (props) => {
   }
 
   const handleTrialGame = () => {
+    return
     // 发送 ga 事件
     // sendTrialGameEvent()
     // 跳转至游戏详情页
@@ -76,7 +77,7 @@ const CarnivalGameCard: React.FC<GameCardProps> = (props) => {
     </Box>
 
     <Box className={styles.trialBtn} onClick={handleTrialGame}>
-      Start Trial
+      Ended
     </Box>
   </Box>
 }

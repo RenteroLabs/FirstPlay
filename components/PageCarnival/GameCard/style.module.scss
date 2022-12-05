@@ -139,22 +139,20 @@
   }
   .trialBtn {
     height: 3.33rem;
-    background: rgba(#8e50e4, 0.1);
+    // background: rgba(#8e50e4, 0.1);
+    background: rgba(#222, 0.2);
     border-radius: 0.67rem;
     font-size: 1.17rem;
     font-family: Inter-Medium, Inter;
     font-weight: 500;
-    color: #8e50e4;
+    color: white;
     line-height: 1.17rem;
-    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 1.58rem;
-    &:hover {
-      background: rgba(#8e50e4, 1);
-      color: white;
-    }
+    cursor: no-drop;
+    user-select: none;
   }
 }
 
