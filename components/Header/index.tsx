@@ -135,13 +135,14 @@ const HeaderUserInfo: React.FC<HeaderUserInfoProps> = (props) => {
             isMobileHeaderNav &&
             <>
               {address && <Box className={styles.divider} />}
-              <Link href="/carnival">
-                {/* <a target="__blank"> */}
-                <MenuItem className={styles.menuItem} onClick={closeCallback} disableRipple>
-                  {t('passNFT')}
-                </MenuItem>
-                {/* </a> */}
-              </Link>
+              
+              {/* <Link href="/carnival"> */}
+              {/* <a target="__blank"> */}
+              {/* <MenuItem className={styles.menuItem} onClick={closeCallback} disableRipple> */}
+              {/* {t('passNFT')} */}
+              {/* </MenuItem> */}
+              {/* </a> */}
+              {/* </Link> */}
 
               <MenuItem className={cx({
                 menuItem: true,
@@ -191,13 +192,13 @@ const Header: React.FC = () => {
       {!isMobileHeaderNav && isMounted &&
         <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
           <Stack direction="row" className={styles.headerNavs} >
-            <Box>
-              <Link href="/carnival" >
-                {/* <a target="_blank"> */}
-                {t('passNFT')}
-                {/* </a> */}
-              </Link>
-            </Box>
+            {/* <Box> */}
+            {/* <Link href="/carnival" > */}
+            {/* <a target="_blank"> */}
+            {/* {t('passNFT')} */}
+            {/* </a> */}
+            {/* </Link> */}
+            {/* </Box>  */}
             <Box className={styles.disabled}>{t('games')}</Box>
             <Box className={styles.disabled}>{t('strategy')}</Box>
           </Stack>

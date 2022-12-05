@@ -134,11 +134,11 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
         </Box>
       </Box> */}
 
-      <Box className={styles.dailyActivity}>
+      {/* <Box className={styles.dailyActivity}>
         <Box className={styles.dailyHeader}>
-          <Typography variant="h3">Daily surprise draw</Typography>
+          <Typography variant="h3">Publicity of lottery results</Typography>
           <Box className={styles.headerDiscord}>
-            <Typography>Enter Discord to draw more surprise rewards</Typography>
+            <Typography>Enter Discord to follow more activities</Typography>
             <Box className={styles.discordBtn} onClick={() => {
               window.open('https://discord.com/invite/84mhbPXFUu')
             }}>
@@ -181,6 +181,7 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
           </Box>
         </Box>
       </Box>
+       */}
       {/* <Box className={styles.winnerList}>
         <Box className={styles.winerLabel}>
           <Typography>Yesterday Winner :</Typography>
