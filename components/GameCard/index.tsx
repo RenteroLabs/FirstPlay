@@ -47,14 +47,13 @@ const GameCard: React.FC<GameCardProps> = (props) => {
           // loader={({ src }) => src} 
           loader={({ src }) => `${src}?timestamp=${timestamp}`}
         />
-        {
+        {/* {
           gameInfo &&
           Carnival_Games.includes(gameInfo?.game_id) &&
           <Box className={styles.carnivalTag}>
             <Image src="/carnival_game_tag.png" layout="fill" />
           </Box>
-        }
-
+        } */}
       </Box>
 
       <CardContent className={styles.gameContent}>
