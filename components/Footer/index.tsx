@@ -33,11 +33,11 @@ const Footer: React.FC = () => {
       <Box className={styles.linkList}>
         <Stack className={styles.platform}>
           <Typography variant="h4">{t('platform')}</Typography>
-          {/* <Link href="/carnival" >
+          <Link href="/carnival" >
             <a target="_blank">
               <Typography variant="body1">{t('passNFT')}</Typography>
             </a>
-          </Link> */}
+          </Link>
           <Typography variant="body1" className={styles.disabled}>{t('games')}</Typography>
           <Typography variant="body1" className={styles.disabled}>{t('strategy')}</Typography>
         </Stack>
