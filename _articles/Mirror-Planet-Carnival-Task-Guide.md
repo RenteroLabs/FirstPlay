@@ -12,10 +12,9 @@ coverImage: ""
 
 Mirror Planet is a virtual reality Web3 game. We built a mirror world of the world map based on Google Map, encouraging players to integrate real life into the game and gain economic benefits through exploration.Equipment required to experience the game: Android/IOS mobile phone
 
-## Task 1:.Estimated 3-5 minutes
+## Step1: Download the game and register.Estimated to take 8 minutes.
 
-1: Click [http://account.mirrorplanet.com/influence?influenceCode=qqk9tq6](http://account.mirrorplanet.com/influence?influenceCode=qqk9tq6) to Download App
-notes for download
+1: Click [https://account.mirrorplanet.com/influence?influenceCode=qqk9tq6](https://account.mirrorplanet.com/influence?influenceCode=qqk9tq6) to Download App
 
 Android:
 
@@ -38,13 +37,7 @@ Download via the link [https://testflight.apple.com/join/UdeKRKtV](https://testf
 
 3: Bind the mailbox in the settings and complete the registration.![img](https://lh6.googleusercontent.com/_pkPEfs_GDCiy6dfQDYhUhKjl-AqJtLZ0S9D1n8HMswZZu5ycTftKMzzuYNgPZj4Rkt9GsqVTyiXwPLVMJWLuOJft7xhy-W1Atw2xsLPQIbAGyak88-95q6Lnx_TeeHPx03ity5nMSKH0vHqZZX1LSde3vhnscAqw9l3pSkk3p5u2U1EWJ_hbE_z0S8O9I6wyuBvIWk9_w)![img](https://lh4.googleusercontent.com/tstoFyERCAQBnf_F_ZTo3E8AoBXutE6QYHZHHDK-1atDLHRnoZB-W7NtJt4TnSLb8WXllpl5SppTwXP4nyZ3qMkfDFQvtWkDvIWtZP8D9p2GxPNsl2JvurkdNxO3OC0Z0HxBf24mDqgKSL8IFK6rF0vaC8Y82ZKFwQ2H8RrGxJiy5tDeQOISJBeatRluqC1f7W3TmBmdEg)
 
-4: On the Mirror Planet activity task page, claim task 1, click the Claim button as shown in the figure below![img](https://lh3.googleusercontent.com/6HOGeHTixPAOzNkqguNEI80buW3NX12R0JpwgLfdWVdbjeZlgNCQq6WYEj4pJDJBAA8sYFPfMPEvhDkfaLVuOqDNanbLQeYLb0p0UgqI2IKTPTPLIQwvlRIrK7ZlAVaaQd7NzuNQ1qhIZ75Xr5MjejweLObwP0_wGMGQbOZCjC5GAK8dRlUoJmAkkcemxdp_)
-
-5: Fill in the email account used for login and the wallet address connect to First Play![img](https://lh6.googleusercontent.com/9sRK9RKxJzLpEPRuEBz-8vtNo5ak0j-n11_SYBUG2FbjmUtkwkyA-uKpHQMa7MOEFc-69xuXNxY-4wDF-bnsSHeEK1rCI6n9wYUv5JeJ-0GZ8VXj7PEuiiKbx0-Szs6r77Z4ctKXxGMoOxDvdwvvJbP1HIK0bg8sAp9-sHIkUtHeZm7-Z37w5oDf4Ze3Dbj1)
-
-6: Wait for the official confirmation from the Mirror Planet. (confirmation is usually completed within 48 hours)
-
-## Task 2: Estimated 10 minutes
+## Step 2: Reach LV5.Estimated to take 10 minutes
 
 1. Follow the instructions in the game and complete the corresponding operations and tasks to reach the L3 level
 
@@ -53,9 +46,14 @@ You can also earn $REAL when you walk.
 
 3. Reach to L5 level
 
-4. On the Mirror Planet activity task page, claim task 2, click the Claim button as shown in the figure below
-**![img](https://lh6.googleusercontent.com/wXKDOejhqsub-sah5p23nILoR8ueKqDJ9Bgy9NqmwBGLutEWrZe8UUUDtQnWbJA-bIpqFlRqsM3GvVCwmlX2zNjCQuE53Yv1hIiigVdOMusrZT02plVHZVyD6v8q6eUMa1UKvYOHVYzzMVCvph_32WZWQQ2DXWpg8Ymf__iMuqGNgrZ84KqbLkiWYwCoRR8L)**
+## Step 3: Claim
 
-5. Fill in the email account used for login and the wallet address connect to First Play![img](https://lh6.googleusercontent.com/p6DujZ-8AT68r6taijOsZVvwaaOfxCv5h7TNoGVSpfUZK0cc4pErGtY-EYvts8mXAVxTVt7lKuuMeoW_Tsm0fheuvpSkWSj4Z3aBVas5zG15mjneqYp7G9qgEGsUM11qvE8j9AAvNw68U56Q0s-_qMRP0Uxu7-EkWAxLMgcAsXXsRWsKiLXakJ91nimszkT6)
+1. Claim task 1,fill in the email account used for login，the username and the wallet address.
 
-6. Wait for the official confirmation from the Mirror Planet. (confirmation is usually completed within 48 hours)
+![img](https://lh5.googleusercontent.com/6UxlOubTNyHz2x1wavtiqhIKh_dia-6QyMZYUuj7Z-2Tq-KWVfjdlBppDH682Po2_c6wnczoJ0gQqdMjiq6AxHjAR8TtPLTuKCiSQGqZN5Wz4TDC7HD785Cios-NnBp38YbmzYKreQ_HgWZ8_CC1q8NKcCkb0BSDBXu_QulpSoQGepVLHFZ5YfIjpwTUUKsO)
+![img](https://lh6.googleusercontent.com/dkxu4wH_Uyyp9BIRnFRoz0r0GEltl_wHKYN1eL1fzvNtyu7f5tXWyscyAjXytPwqU5J2s7Ma5U_4Ms6GYamVMIEYjUrpfvG6XB3k9hySVDES-TuNVeVrI6lZqqAbPTiJ1_EI1VgF8rYH-UZV8-2bhpBkLSclm3lpO3LSrFtwhlfGEGB-N4z_8n9O6NZdccv1)
+
+2. Wait for the official confirmation from Mirror Planet. After confirmation, complete the task and get $1.
+
+Submit the information before the end of every Sunday, rewards will be issued next Tuesday after verifying.
+
