@@ -201,10 +201,10 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
               <Box className={styles.cardHeader}>
                 <Typography>Rewards</Typography>
                 <Box className={styles.mediaBox}>
-                  <Box className={styles.rewardIcon}>
+                  {/* <Box className={styles.rewardIcon}>
                     <Image src={REWARD_ACTIVE_ICON} layout="fill" />
-                  </Box>
-                  {sumBy(carnivalGame?.tasks, 'medal') || 0} Medals
+                  </Box> */}
+                  {/* {sumBy(carnivalGame?.tasks, 'medal') || 0} Medals */}
                 </Box>
               </Box>
               <Typography className={styles.rewardDesc}>
