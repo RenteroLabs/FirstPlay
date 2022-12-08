@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import styles from './style.module.scss'
-import { Carnival_Games } from '../../constants/index'
+import { Carnival_Games, Reward_Games } from '../../constants/index'
 
 interface GameCardProps {
   gameInfo: Record<string, any>
@@ -47,13 +47,13 @@ const GameCard: React.FC<GameCardProps> = (props) => {
           // loader={({ src }) => src} 
           loader={({ src }) => `${src}?timestamp=${timestamp}`}
         />
-        {/* {
+        {
           gameInfo &&
-          Carnival_Games.includes(gameInfo?.game_id) &&
+          Reward_Games.includes(gameInfo?.game_id) &&
           <Box className={styles.carnivalTag}>
-            <Image src="/carnival_game_tag.png" layout="fill" />
+            <Image src="/game_reward.png" layout="fill" />
           </Box>
-        } */}
+        }
       </Box>
 
       <CardContent className={styles.gameContent}>

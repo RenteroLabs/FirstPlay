@@ -9,7 +9,7 @@ import GiftCodeModal from '../GiftCodeModal'
 import { useLocalStorageState, useRequest } from 'ahooks'
 import { queryGameGiftCode } from 'services/carnival'
 import * as ga from '../../../util/ga'
-import { GAME_EVENT_NAME, GAME_TASK_MODAL_NAME } from 'constants/index'
+import { Carnival_Games, GAME_EVENT_NAME, GAME_TASK_MODAL_NAME, Reward_Games } from 'constants/index'
 import VerifyTaskModal from '../VerifyTaskModal'
 
 const cx = classname.bind(styles)
@@ -54,7 +54,6 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
   const { run: getGiftCode } = useRequest(queryGameGiftCode, {
     manual: true,
     onSuccess: ({ data }) => {
-      console.log(data, data.key, new Date().getTime())
       setGiftCode(data.key)
       setLocalGiftCode(data?.key)
       setRecordTime(new Date().getTime())
@@ -84,7 +83,8 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       <Box className={styles.itemLabel}>{index.toString().padStart(2, '0')}</Box>
       <Typography>{reward}</Typography>
       <Box className={styles.actionArea}>
-        {/* {
+        {
+          Reward_Games.includes(gameId) ?
             <Box className={cx({
               claimBtn: true,
               claimedBtn: isClaimed
@@ -93,11 +93,11 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
             >
               {isClaimed ? "Completed" : 'Claim'}
             </Box>
-        } */}
-
-        <Box className={cx({ claimBtn: true, claimedBtn: true })} >
-          Ended
-        </Box>
+            :
+            <Box className={cx({ claimBtn: true, claimedBtn: true })} >
+              Ended
+            </Box>
+        }
 
         {/* {index === 1 &&
           gameId === GiftbagGame &&
@@ -105,10 +105,10 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
             Gift Code
           </Box>} */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Box className={styles.rewardIcon}>
+          {/* <Box className={styles.rewardIcon}>
             <Image src={REWARD_ACTIVE_ICON} layout="fill" />
           </Box>
-          <Box component="span">+ {medalNum}</Box>
+          <Box component="span">+ {medalNum}</Box> */}
         </Box>
       </Box>
       <GiftCodeModal
@@ -137,25 +137,26 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           </Box>
           Gift Code
         </Box>} */}
-      {/* {
-        <Box className={cx({
-          claimBtn: true,
-          claimedBtn: isClaimed
-        })}
-          onClick={linkToForm}
-        >
-          {isClaimed ? "Completed" : 'Claim'}
-        </Box>
-      } */}
 
-      <Box className={cx({ claimBtn: true, claimedBtn: true })} >
-        Ended
-      </Box>
+      {
+        Reward_Games.includes(gameId) ?
+          <Box className={cx({
+            claimBtn: true,
+            claimedBtn: isClaimed
+          })}
+            onClick={linkToForm}
+          >
+            {isClaimed ? "Completed" : 'Claim'}
+          </Box> :
+          <Box className={cx({ claimBtn: true, claimedBtn: true })} >
+            Ended
+          </Box>
+      }
 
-      <Box className={styles.rewardIcon}>
+      {/* <Box className={styles.rewardIcon}>
         <Image src={REWARD_ACTIVE_ICON} layout="fill" />
       </Box>
-      <Box component="span">+ {medalNum}</Box>
+      <Box component="span">+ {medalNum}</Box> */}
       <GiftCodeModal
         showGiftModal={showGiftModal}
         setShowGiftModal={setShowGiftModal}
