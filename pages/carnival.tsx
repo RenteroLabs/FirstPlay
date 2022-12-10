@@ -134,7 +134,7 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
         </Box>
       </Box> */}
 
-      {/* <Box className={styles.dailyActivity}>
+      <Box className={styles.dailyActivity}>
         <Box className={styles.dailyHeader}>
           <Typography variant="h3">Publicity of lottery results</Typography>
           <Box className={styles.headerDiscord}>
@@ -150,23 +150,25 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
           </Box>
         </Box>
         <Box className={styles.todayActivity}>
-          <Box className={styles.activityLogo}>
-            <Image src="/BigTime.jpg" layout="fill" />
-          </Box>
+          {/* <Box className={styles.activityLogo}> */}
+          {/* <Image src="/BigTime.jpg" layout="fill" /> */}
+          {/* </Box> */}
           {
             is600Size ?
               <Box className={styles.mobileDailyReward}>
                 <Typography>
-                  [<span className={styles.highlight}>Big Time</span>] Today:</Typography>
+                  [<span className={styles.highlight}>List of winning users</span>] :</Typography>
+                <Link href="https://bit.ly/3UNgevU" target="__blank">https://bit.ly/3UNgevU</Link>
                 <Typography>
-                  <span className={styles.highlight}>Draw 3 person from all addresses who complete Big Time Task2  today with a new account, reward Forge Mystery Box worth $150</span>
+                  <span className={styles.highlight}>Please look forward to the next event of FirstPlay!</span>
                 </Typography>
               </Box>
               :
               <Typography>
-                [<span className={styles.highlight}>Big Time</span>]
-                Today: &nbsp;
-                <span className={styles.highlight}>Draw 3 person from all addresses who complete Big Time Task2  today with a new account, reward Forge Mystery Box worth $150</span>
+                [<span className={styles.highlight}>List of winning users</span>]: &nbsp;
+                <a href="https://bit.ly/3UNgevU" target="__blank">https://bit.ly/3UNgevU</a>
+                &nbsp;
+                <span className={styles.highlight}>Please look forward to the next event of FirstPlay!</span>
               </Typography>
           }
 
@@ -181,7 +183,7 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
           </Box>
         </Box>
       </Box>
-       */}
+
       {/* <Box className={styles.winnerList}>
         <Box className={styles.winerLabel}>
           <Typography>Yesterday Winner :</Typography>
