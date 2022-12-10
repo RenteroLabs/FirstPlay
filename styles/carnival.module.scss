@@ -214,6 +214,9 @@
           margin-right: 0.83rem;
           flex-shrink: 0;
         }
+        a {
+          text-decoration: underline;
+        }
         p {
           font-size: 1.5rem;
           font-family: Inter-Medium, Inter;
@@ -225,8 +228,6 @@
           color: #8e50e4;
           position: relative;
           z-index: 10;
-        }
-        .mobileDailyReward {
         }
 
         .element1 {
@@ -949,6 +950,16 @@
           }
           .activityLogo {
             margin-top: 3px;
+          }
+          .mobileDailyReward {
+            a {
+              text-decoration: underline;
+              font-size: 1.33rem;
+              font-family: Inter-Medium, Inter;
+              font-weight: 500;
+              color: #222222;
+              line-height: 2rem;
+            }
           }
 
           .element1 {
