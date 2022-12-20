@@ -208,7 +208,8 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                 </Box>
               </Box>
               <Typography className={styles.rewardDesc}>
-                {carnivalGame?.task_description}
+                {carnivalGame?.task_description &&
+                  <> Trial reason: {carnivalGame?.task_description}</>}
               </Typography>
               {
                 carnivalGame?.tasks?.map((item: Record<string, any>, index: number) =>
@@ -221,11 +222,12 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                     claimLink={item?.form}
                     gameId={router.query?.uuid as string}
                     strategyLink={carnivalGame?.strategy}
+                    taskInfo={item}
                   />
                 )
               }
             </Box>
-            <Box className={styles.rewardDrop}>
+            {/* <Box className={styles.rewardDrop}>
               <Typography variant='h4'>{carnivalGame?.gifts?.[0]?.title}</Typography>
               <Box className={styles.dropDesc}>
                 <Typography>
@@ -234,9 +236,9 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                 <Box className={styles.bg}></Box>
                 <Box className={styles.bg_ill}></Box>
               </Box>
-            </Box>
+            </Box> */}
           </Box>}
-          <Box className={styles.gameStrategy}>
+          {/* <Box className={styles.gameStrategy}>
             {isCarnivalGame &&
               <>
                 <Typography variant='h4'>Description</Typography>
@@ -256,7 +258,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                 Event homepage
               </Box>
             </Link>
-          </Box>
+          </Box> */}
 
           {/* {
             is700Width ?

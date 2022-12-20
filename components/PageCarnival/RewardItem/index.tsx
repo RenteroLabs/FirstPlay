@@ -11,6 +11,7 @@ import { queryGameGiftCode } from 'services/carnival'
 import * as ga from '../../../util/ga'
 import { Carnival_Games, GAME_EVENT_NAME, GAME_TASK_MODAL_NAME, Reward_Games } from 'constants/index'
 import VerifyTaskModal from '../VerifyTaskModal'
+import GameTaskDrawer from '@/components/GameTaskDrawer'
 
 const cx = classname.bind(styles)
 
@@ -21,19 +22,21 @@ interface RewardItemProps {
   claimLink: string,
   medalNum: number,
   gameId: string,
-  strategyLink: string
+  strategyLink: string,
+  taskInfo: Record<string, any>
 }
 
 const GiftbagGame = '740a1e44-fd84-433e-98df-be90d650eb51'
 const BlessGlobal = "32605c7c-45d3-49f4-9923-b3a51816d1df"
 
 const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
-  const { index, reward, isClaimed, claimLink, medalNum, gameId, strategyLink } = props
+  const { index, reward, isClaimed, claimLink, medalNum, gameId, strategyLink, taskInfo } = props
   const isMobileSize = useMediaQuery("(max-width:600px)")
   const isMounted = useIsMounted()
 
   const [showGiftModal, setShowGiftModal] = useState<boolean>(false)
   const [showTaskModal, setShowTaskModal] = useState<boolean>(false)
+  const [showTaskDrawer, setShowTaskDrawer] = useState<boolean>(false)
 
   const [giftCode, setGiftCode] = useState<string>("XXXXXXX")
 
@@ -81,8 +84,13 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
   return isMounted && isMobileSize ?
     <Box className={styles.mobileCarnivalRewardItem}>
       <Box className={styles.itemLabel}>{index.toString().padStart(2, '0')}</Box>
+      <Typography className={styles.spendTime}>Complete task {index.toString().padStart(2, '0')}, it takes about 10 minutes</Typography>
       <Typography>{reward}</Typography>
       <Box className={styles.actionArea}>
+        <Box
+          className={styles.startBtn}
+          onClick={() => setShowTaskDrawer(true)}
+        >Start</Box>
         {
           Reward_Games.includes(gameId) ?
             <Box className={cx({
@@ -91,7 +99,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
             })}
               onClick={linkToForm}
             >
-              {isClaimed ? "Completed" : 'Claim'}
+              {isClaimed ? "Completed" : 'Verify'}
             </Box>
             :
             <Box className={cx({ claimBtn: true, claimedBtn: true })} >
@@ -104,18 +112,19 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           <Box className={styles.giftBtn} onClick={handleClickGiftBtn}>
             Gift Code
           </Box>} */}
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          {/* <Box className={styles.rewardIcon}>
+
+        {/* <Box sx={{ display: 'flex', alignItems: 'center' }}> */}
+        {/* <Box className={styles.rewardIcon}>
             <Image src={REWARD_ACTIVE_ICON} layout="fill" />
           </Box>
           <Box component="span">+ {medalNum}</Box> */}
-        </Box>
+        {/* </Box> */}
       </Box>
-      <GiftCodeModal
+      {/* <GiftCodeModal
         showGiftModal={showGiftModal}
         setShowGiftModal={setShowGiftModal}
         giftCode={giftCode}
-      />
+      /> */}
       <VerifyTaskModal
         showTaskModal={showTaskModal}
         setShowTaskModal={setShowTaskModal}
@@ -123,6 +132,15 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
         claimLink={claimLink}
         gameId={gameId}
         strategyLink={strategyLink}
+      />
+
+      <GameTaskDrawer
+        showTaskDrawer={showTaskDrawer}
+        setShowTaskDrawer={setShowTaskDrawer}
+        taskInfo={taskInfo}
+        index={index}
+        reward={reward}
+        setShowTaskModal={setShowTaskModal}
       />
     </Box>
     :
@@ -146,7 +164,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           })}
             onClick={linkToForm}
           >
-            {isClaimed ? "Completed" : 'Claim'}
+            {isClaimed ? "Completed" : 'Verify'}
           </Box> :
           <Box className={cx({ claimBtn: true, claimedBtn: true })} >
             Ended
@@ -157,11 +175,11 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
         <Image src={REWARD_ACTIVE_ICON} layout="fill" />
       </Box>
       <Box component="span">+ {medalNum}</Box> */}
-      <GiftCodeModal
+      {/* <GiftCodeModal
         showGiftModal={showGiftModal}
         setShowGiftModal={setShowGiftModal}
         giftCode={giftCode}
-      />
+      /> */}
       <VerifyTaskModal
         showTaskModal={showTaskModal}
         setShowTaskModal={setShowTaskModal}

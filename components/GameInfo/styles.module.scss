@@ -26,21 +26,26 @@
     margin: 1.67rem 0 2.5rem;
 
     .tagItem {
-      border-radius: 1.83rem;
-      opacity: 0.5;
-      border: 0.04rem solid #222222;
+      background: rgba(#222222, 0.08);
+      border-radius: 0.33rem;
       font-size: 1rem;
       font-family: Inter-Medium, Inter;
       font-weight: 500;
       color: #222222;
-      height: 2rem;
+      line-height: 1rem;
       display: inline-flex;
       align-items: center;
-      padding: 0 1.25rem;
+      padding: 0.33rem 0.67rem;
 
       & + .tagItem {
-        margin-left: 0.83rem;
+        margin-left: 0.67rem;
       }
+    }
+
+    .platformTagItem {
+      @extend .tagItem;
+      background: rgba(#8e50e4, 0.1);
+      color: #8e50e4;
     }
   }
 
@@ -95,19 +100,15 @@
 
   .mobileHeader {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: space-between;
 
     .imageCover {
-      width: 24vw;
-      height: 24vw;
-      max-width: 12rem;
-      max-height: 12rem;
-      min-width: 8rem;
-      min-height: 8rem;
+      width: 4.67rem;
+      height: 4.67rem;
       position: relative;
       background: #efe5e5;
-      border-radius: 1rem;
+      border-radius: 50%;
       border: 0.25rem solid #ffffff;
       overflow: hidden;
       margin-right: 3vw;
@@ -116,17 +117,18 @@
   }
   .mobileBox {
     .gameTitle {
-      margin-top: 2.5rem;
+      margin-top: 1.33rem;
       display: flex;
       flex-direction: column;
       align-self: flex-end;
 
       h3 {
-        font-size: 2rem;
+        height: 1.75rem;
+        font-size: 1.75rem;
         font-family: Inter-Bold, Inter;
         font-weight: bold;
         color: #222222;
-        line-height: 2rem;
+        line-height: 1.75rem;
       }
 
       .tagList {
@@ -134,37 +136,63 @@
       }
     }
     .gameDesc {
-      font-size: 1.33rem;
+      font-size: 1.17rem;
       font-family: Inter-Regular, Inter;
       font-weight: 400;
       color: #222222;
-      line-height: 2rem;
-      margin: 1.67rem auto;
+      line-height: 1.83rem;
+      margin: 1.33rem auto 0.83rem;
       display: -webkit-box;
       overflow: hidden;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 3;
+    }
+    .gameDescTwoLine {
+      -webkit-line-clamp: 2;
+    }
+    .showMoreBtn {
+      display: inline-block;
+      height: 18px;
+      font-size: 1.17rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
+      color: #222222;
+      line-height: 1.17rem;
+      display: inline-flex;
+      align-items: center;
+      span {
+        height: 18px;
+      }
     }
     .socialList {
+      margin-top: -1rem;
       button {
         width: 3rem;
         height: 3rem;
         background-color: rgba($color: #4a99e9, $alpha: 0.1);
+        width: 2.67rem;
+        height: 2.67rem;
+        background-color: white;
+      }
+      a + a {
+        margin-left: 1rem;
       }
     }
     .strategyBtn {
-      width: 100%;
+      display: block;
+      width: 10.83rem;
+      // float: right;
+      margin: auto 0 auto auto;
       font-size: 1.17rem;
-      font-family: Inter-SemiBold, Inter;
-      font-weight: 600;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
       color: #222222;
       line-height: 1.17rem;
-      padding: 1.08rem 0;
+      padding: 0.75rem 1.83rem;
       cursor: pointer;
-      border-radius: 2rem;
+      border-radius: 1.67rem;
       text-align: center;
       border: 0.08rem solid rgba($color: #222, $alpha: 0.3);
-      margin-bottom: 1.67rem;
+      margin-bottom: 2.5rem;
       user-select: none;
     }
   }

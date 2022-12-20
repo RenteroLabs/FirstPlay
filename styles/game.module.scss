@@ -12,7 +12,7 @@
   }
 
   .rewardMainBox {
-    background: rgba(#e4405b, 0.08);
+    background: rgba(#8e50e4, 0.08);
     overflow: hidden;
   }
   .carnivalRewrads {
@@ -32,6 +32,14 @@
         font-weight: bold;
         color: #222222;
         line-height: 2rem;
+        // font-size: 1.75rem;
+        // font-family: Inter-SemiBold, Inter;
+        // font-weight: 600;
+        // color: #222222;
+        // line-height: 1.75rem;
+        background: linear-gradient(270deg, #f82757 0%, #984cec 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
       .mediaBox {
         display: flex;
@@ -53,7 +61,7 @@
       font-size: 1.33rem;
       font-family: Inter-Regular, Inter;
       font-weight: 400;
-      color: #222222;
+      color: #8e50e4;
       line-height: 2rem;
       margin-top: 0.8rem;
       margin-bottom: 2.5rem;
@@ -176,7 +184,7 @@
       font-weight: normal;
       color: #222222;
       line-height: 1.75rem;
-      font-style:italic;
+      font-style: italic;
       display: flex;
       align-items: center;
     }
@@ -635,7 +643,7 @@
         font-size: 1.17rem;
         font-family: Inter-Regular, Inter;
         font-weight: 400;
-        color: #222222;
+        color: #8e50e4;
         line-height: 2rem;
       }
     }
@@ -715,7 +723,7 @@
     .gameInfoBox {
       width: calc(100% - 2.66rem);
       margin: auto;
-      margin-top: -3.33rem;
+      margin-top: -2.33rem;
     }
     .btnBox {
       display: none;

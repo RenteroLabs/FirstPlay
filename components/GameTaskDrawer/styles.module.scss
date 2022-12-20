@@ -1,0 +1,246 @@
+.taskBox {
+  height: 90vh;
+  background: #f6f1fd;
+  padding: 1.5rem 1.33rem;
+  overflow-y: scroll;
+
+  .taskInfoBox {
+    position: relative;
+    width: 100%;
+    display: block;
+    min-height: calc(50vh - 3rem);
+    background-color: white;
+    border-radius: 0.67rem 0.67rem 0rem 0rem;
+    padding-top: 3.17rem;
+
+    .itemLabel {
+      position: absolute;
+      width: 3.33rem;
+      height: 3rem;
+      top: -0.67rem;
+      left: 1.5rem;
+      font-size: 1.75rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-color: transparent;
+      background: linear-gradient(180deg, #6effc4 0%, #984cec 100%);
+      box-shadow: -0.17rem 0.17rem 0.33rem 0rem rgba(142, 80, 228, 0.3);
+      border-radius: 0rem 1rem 0rem 1rem;
+      user-select: none;
+      &::before {
+        display: block;
+        content: '';
+        width: 0;
+        height: 0;
+        position: absolute;
+        border: 4px solid transparent;
+        border-right: 4px solid #4d3372;
+        border-bottom: 4px solid #4d3372;
+        left: -8px;
+        top: 0px;
+      }
+    }
+
+    .taskHeader {
+      margin: 0rem 1rem 2.67rem;
+      p {
+        font-size: 1.33rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 2rem;
+      }
+
+      .stepPannel {
+        margin-top: 2.5rem;
+        display: flex;
+        justify-content: space-between;
+
+        .baseBtn {
+          width: 2.67rem;
+          height: 2.67rem;
+          background: #8e50e4;
+          border-radius: 1.5rem;
+          border: 0.08rem solid #8e50e4;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          color: white;
+          cursor: pointer;
+          flex-shrink: 0;
+        }
+
+        .stepBack,
+        .stepNext {
+          @extend .baseBtn;
+        }
+
+        .disableBtn {
+          background: rgba(#222, 0.2);
+          border-radius: 1.5rem;
+          border: none;
+          cursor: default;
+        }
+
+        .stepBox {
+          display: flex;
+          flex-grow: 0.85;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+
+    .stepDesc {
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #222222;
+      line-height: 2rem;
+      margin: 1.67rem 1rem;
+    }
+
+    .btnList {
+      display: flex;
+      margin: auto 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .imageList {
+      display: flex;
+      flex-direction: column;
+
+      .imageBox {
+        position: relative;
+        width: 100%;
+        height: auto;
+        img {
+          width: 100%;
+          object-fit: contain;
+        }
+
+        & + .imageBox {
+          margin-top: 0.92rem;
+        }
+      }
+    }
+  }
+  .stepBtns {
+    margin-top: 1.67rem;
+    margin-bottom: 1.17rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .backBtn {
+      width: 7.33rem;
+      height: 2.67rem;
+      background: #ffffff;
+      border-radius: 1.5rem;
+      border: 0.04rem solid #222222;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #222222;
+      line-height: 1.17rem;
+    }
+
+    .nextBtn {
+      width: 7.33rem;
+      height: 2.67rem;
+      background: #ffffff;
+      border-radius: 1.5rem;
+      border: 0.04rem solid #222222;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #222222;
+      line-height: 1.17rem;
+    }
+    .verifyBtn {
+      width: 7.33rem;
+      height: 2.67rem;
+      background: #8e50e4;
+      border-radius: 1.5rem;
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #ffffff;
+      line-height: 1.17rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+}
+
+.taskStepItem {
+  position: relative;
+  font-size: 1rem;
+  font-family: Inter-Medium, Inter;
+  font-weight: 500;
+  color: rgba(#222, 0.5);
+  line-height: 1rem;
+  padding-bottom: 0.9rem;
+  user-select: none;
+  flex-grow: 1;
+  // max-width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 0.16rem dotted #a0a0a0;
+
+  &::after {
+    display: inline-block;
+    position: absolute;
+    content: '';
+    width: 0.67rem;
+    height: 0.67rem;
+    background: #d8d8d8;
+    border-radius: 50%;
+    bottom: -0.38rem;
+  }
+}
+.activeStep {
+  color: #222222;
+  &::after {
+    background: #222222;
+  }
+}
+
+.stepBtnItem {
+  border-radius: 1.5rem;
+  border: 0.04rem solid #222222;
+  font-size: 1.17rem;
+  font-family: Inter-Medium, Inter;
+  font-weight: 500;
+  color: #222222;
+  line-height: 1.17rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.67rem 1.2rem;
+  margin: 0.5rem 0.5rem;
+  cursor: pointer;
+
+  & + .stepBtnItem {
+    // margin-left: 1rem;
+  }
+}
