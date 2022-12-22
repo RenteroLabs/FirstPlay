@@ -22,6 +22,7 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
   const { gameInfo = {}, timestamp } = props
   const isMobileSize = useMediaQuery('(max-width: 750px)')
   const [showMoreDesc, setShowMoreDesc] = useState<boolean>(false)
+  const [showMoreDescPC, setShowMoreDescPC] = useState<boolean>(false)
 
   const linkToStrategy = () => {
     window.open(gameInfo?.strategy)
@@ -108,7 +109,6 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
               <Image
                 src={gameInfo.image}
                 layout='fill'
-                // loader={({ src }) => src} 
                 loader={({ src }) => `${src}?timestamp=${timestamp}`}
               />}
           </Box>
@@ -126,7 +126,7 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
                 {
                   gameInfo?.twitter && <a href={gameInfo.twitter} target="_blank" rel="noreferrer">
                     <IconButton disableRipple>
-                      <TwitterIcon sx={{ color: '#4A99E9', fontSize: '2rem' }} />
+                      <TwitterIcon sx={{ color: '#4A99E9', fontSize: '1.6rem' }} />
                     </IconButton>
                   </a>
                 }
@@ -142,7 +142,7 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
                 {
                   gameInfo?.telegram && <a href={gameInfo?.telegram} target="_blank" rel="noreferrer">
                     <IconButton disableRipple>
-                      <TelegramIcon sx={{ color: '#54A3DB', fontSize: '2.2rem' }} />
+                      <TelegramIcon sx={{ color: '#54A3DB', fontSize: '1.6rem' }} />
                     </IconButton>
                   </a>
                 }
@@ -153,12 +153,24 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
                 gameInfo?.types?.map((item: string, index: number) => <Box key={index} className={styles.tagItem}>{item}</Box>)
               }
               {
-                gameInfo?.platforms?.map((item: string, index: number) => <Box key={index} className={styles.tagItem}>{item}</Box>)
+                gameInfo?.platforms?.map((item: string, index: number) => <Box key={index} className={styles.platformTagItem}>{item}</Box>)
               }
             </Box>
             <Box className={styles.gameDescBox}>
-              <Typography className={styles.gameDesc}>{gameInfo.description}</Typography>
-              <Box className={styles.strategyBtn} onClick={linkToStrategy}>Guide</Box>
+              <Box className={styles.descBox}>
+                <Typography className={cx({
+                  gameDesc: true,
+                  gameDescTwoLine: !showMoreDescPC
+                })}>{gameInfo.description}</Typography>
+                <Box className={styles.showMoreDescBtnPC} onClick={() => setShowMoreDescPC(!showMoreDescPC)}>
+                  {
+                    showMoreDescPC ?
+                      <>less <KeyboardArrowUpIcon /></> :
+                      <>more <KeyboardArrowDownIcon /></>
+                  }
+                </Box>
+              </Box>
+              <Box className={styles.strategyBtn} onClick={linkToStrategy}>Workthrough</Box>
             </Box>
           </Box>
         </>

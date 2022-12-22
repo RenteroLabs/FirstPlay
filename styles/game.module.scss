@@ -8,7 +8,10 @@
 
   .gameInfoBox {
     max-width: 100rem;
-    margin: 5.83rem auto 5.33rem;
+    // margin: 5.83rem auto 5.33rem;
+    margin: auto;
+    margin-top: -4rem;
+    margin-bottom: 4rem;
   }
 
   .rewardMainBox {
@@ -592,6 +595,8 @@
 
     .gameInfoBox {
       margin: 2rem auto 0;
+      margin: auto;
+      margin-top: -2.33rem;
     }
     .btnBox {
       margin-top: 4rem;

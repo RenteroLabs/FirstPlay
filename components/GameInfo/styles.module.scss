@@ -1,22 +1,24 @@
 .gameinfoBox {
   display: flex;
+  flex-direction: column;
 
   .gameCover {
-    width: 16.67rem;
-    height: 16.67rem;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    border: 2.5px solid white;
     position: relative;
     margin-right: 2.5rem;
     flex-shrink: 0;
     flex-grow: 0;
 
     background: #efe5e5;
-    border-radius: 1rem;
     overflow: hidden;
   }
 
   .socialList {
     a + a {
-      margin-left: 1.67rem;
+      margin-left: 0.83rem;
     }
   }
 
@@ -56,17 +58,18 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin: 1.67rem auto;
 
       h3 {
         font-size: 2.5rem;
-        font-family: Inter-Bold, Inter;
-        font-weight: bold;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
         color: #222222;
         line-height: 2.5rem;
       }
       button {
-        width: 3.33rem;
-        height: 3.33rem;
+        width: 2.67rem;
+        height: 2.67rem;
         background-color: rgba($color: #4a99e9, $alpha: 0.1);
       }
     }
@@ -75,23 +78,44 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    .descBox {
+      // flex-grow: 0.9;
+    }
     .gameDesc {
-      font-size: 1.5rem;
-      font-family: Inter-Medium, Inter;
-      font-weight: 500;
+      font-size: 1.33rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
       color: #222222;
-      line-height: 2.5rem;
+      line-height: 2rem;
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+    }
+    .gameDescTwoLine {
+      -webkit-line-clamp: 2;
+    }
+    .showMoreDescBtnPC {
+      font-size: 1.33rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
+      color: #222222;
+      line-height: 1.33rem;
+      display: inline-flex;
+      align-items: center;
+      margin-top: 0.67rem;
+      cursor: pointer;
+      user-select: none;
     }
     .strategyBtn {
       user-select: none;
       flex-shrink: 0;
-      margin-left: 1rem;
+      margin-left: 1.5rem;
       font-size: 1.17rem;
-      font-family: Inter-SemiBold, Inter;
-      font-weight: 600;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
       color: #222222;
       line-height: 1.17rem;
-      padding: 0.92rem 3.75rem;
+      padding: 0.92rem 1.75rem;
       border-radius: 2rem;
       cursor: pointer;
       border: 0.08rem solid rgba($color: #222, $alpha: 0.3);
@@ -210,14 +234,15 @@
 //   }
 // }
 
+// @media screen and (max-width: 750px) {
+//   .gameinfoBox {
+//   }
+// }
+
 @media screen and (max-width: 750px) {
   .gameinfoBox {
     flex-direction: column;
-  }
-}
 
-@media screen and (max-width: 600px) {
-  .gameinfoBox {
     .gameCover {
       width: 8rem;
       height: 8rem;

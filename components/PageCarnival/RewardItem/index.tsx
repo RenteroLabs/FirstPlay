@@ -1,7 +1,7 @@
 import { Box, Typography, useMediaQuery } from '@mui/material'
 import { REWARD_ACTIVE_ICON } from 'constants/static'
 import Image from 'next/image'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import styles from './styles.module.scss'
 import classname from 'classnames/bind'
 import { useIsMounted } from 'hooks/useIsMounted'
@@ -34,9 +34,20 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
   const isMobileSize = useMediaQuery("(max-width:600px)")
   const isMounted = useIsMounted()
 
+  console.log(taskInfo)
+
   const [showGiftModal, setShowGiftModal] = useState<boolean>(false)
   const [showTaskModal, setShowTaskModal] = useState<boolean>(false)
   const [showTaskDrawer, setShowTaskDrawer] = useState<boolean>(false)
+
+  const taskSpendTime = useMemo(() => {
+    const time = taskInfo?.complete_time || 0
+    if (time <= 60 && time >= 0) {
+      return `${time} minutes`
+    } else {
+      return `${(time / 60).toFixed(1)} hours`
+    }
+  }, [taskInfo])
 
   const [giftCode, setGiftCode] = useState<string>("XXXXXXX")
 
@@ -84,7 +95,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
   return isMounted && isMobileSize ?
     <Box className={styles.mobileCarnivalRewardItem}>
       <Box className={styles.itemLabel}>{index.toString().padStart(2, '0')}</Box>
-      <Typography className={styles.spendTime}>Complete task {index.toString().padStart(2, '0')}, it takes about 10 minutes</Typography>
+      <Typography className={styles.spendTime}>Complete task {index.toString().padStart(2, '0')}, it takes about {taskSpendTime}</Typography>
       <Typography>{reward}</Typography>
       <Box className={styles.actionArea}>
         <Box
