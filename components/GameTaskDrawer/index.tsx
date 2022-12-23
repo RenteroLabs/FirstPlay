@@ -154,7 +154,6 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
             taskInfo?.steps[activeStep - 1]?.buttons.map((item: StepButtonProps, index: number) => <StepButton {...item} key={index} />)
           }
         </Box>
-        {/* <Box className={styles.stepDesc} >{taskInfo?.steps[activeStep - 1]?.description}</Box> */}
         <div
           className={styles.stepDesc}
           dangerouslySetInnerHTML={{ __html: taskInfo?.steps[activeStep - 1]?.description }}

@@ -21,6 +21,9 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import DoneIcon from '@mui/icons-material/Done';
 import DownloadIcon from '@mui/icons-material/Download';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import RcImage from 'rc-image'
 
 const cx = classname.bind(styles)
 
@@ -237,9 +240,10 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
               <Typography variant='h4'>Step{index + 1}:</Typography>
               <Box className={styles.stepContent}>
                 <Box className={styles.descBtnBox}>
-                  <Box className={styles.stepDesc}>
-                    {item?.description}
-                  </Box>
+                  <div
+                    className={styles.stepDesc}
+                    dangerouslySetInnerHTML={{ __html: item?.description }}
+                  ></div>
                   <Box className={styles.btnList}>
                     {
                       item?.buttons.map((btnConfig: StepButtonProps, index: number) =>
@@ -249,7 +253,16 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
                   </Box>
                 </Box>
                 <Box className={styles.imageList}>
-
+                  <RcImage.PreviewGroup icons={{
+                    left: <KeyboardArrowLeftIcon />,
+                    right: <KeyboardArrowRightIcon />
+                  }}>
+                    {
+                      item?.images.map((url: string, index: number) =>
+                        <RcImage src={url} key={index} className={styles.imageItem} />
+                      )
+                    }
+                  </RcImage.PreviewGroup>
                 </Box>
               </Box>
             </Box>

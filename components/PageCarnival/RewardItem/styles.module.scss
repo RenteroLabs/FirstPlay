@@ -88,6 +88,8 @@
         flex-grow: 1;
 
         .descBtnBox {
+          // width: calc(100% - 18rem);
+          flex-grow: 1;
           .stepDesc {
             margin-bottom: 1.17rem;
             font-size: 1.33rem;
@@ -98,6 +100,22 @@
           }
           .btnList {
             margin-left: -0.5rem;
+          }
+        }
+
+        .imageList {
+          width: 24rem;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-end;
+          flex-grow: 0;
+          flex-shrink: 0;
+          .imageItem {
+            width: 6rem;
+            height: 6rem;
+            object-fit: cover;
+            cursor: pointer;
+            margin: 0.5rem 0.88rem;
           }
         }
       }
@@ -113,10 +131,14 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    margin-top: 2rem;
     p {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       width: 10rem;
-      // margin: auto;
+      flex-grow: 0;
+      text-align: center;
       font-size: 1.33rem;
       font-family: Inter-SemiBold, Inter;
       font-weight: 600;
@@ -424,3 +446,4 @@
     }
   }
 }
+
