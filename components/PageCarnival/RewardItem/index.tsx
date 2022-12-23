@@ -18,29 +18,65 @@ import AppleIcon from '@mui/icons-material/Apple';
 import AndroidIcon from '@mui/icons-material/Android';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import DoneIcon from '@mui/icons-material/Done';
+import DownloadIcon from '@mui/icons-material/Download';
 
 const cx = classname.bind(styles)
+
+type ButtonType = "download" | "copy" | 'visit'
 
 interface StepButtonProps {
   text: string,
   link: string,
-  perform: string,
+  perform: ButtonType,
 }
 
 const StepButton: React.FC<StepButtonProps> = (props) => {
   const { text, link, perform } = props
 
+  const [isCopyed, setIsCopyed] = useState<boolean>(false)
+  const isMounted = useIsMounted()
+
+  useEffect(() => {
+    if (isCopyed) {
+      setTimeout(() => {
+        setIsCopyed(false)
+      }, 1000)
+    }
+  }, [isCopyed])
+
   const handleClick = () => {
     window.open(link)
   }
 
-  return <Box
-    className={styles.stepBtnItem}
-    onClick={handleClick}
-  >
-    <OpenInNewIcon />
-    &nbsp;{text}
-  </Box>
+  const buttonIcon = useMemo(() => {
+    switch (perform) {
+      case "copy": return <ContentCopyIcon />
+      case "download": return <DownloadIcon />
+      default: return <OpenInNewIcon />
+    }
+  }, [perform])
+
+  return isMounted && perform === 'copy' ?
+    <CopyToClipboard text={link} onCopy={() => setIsCopyed(true)}>
+      <Box className={styles.stepBtnItem}>
+        {
+          isMounted && isCopyed ?
+            <DoneIcon color="success" /> :
+            <ContentCopyIcon />
+        }
+        &nbsp;{text}
+      </Box>
+    </CopyToClipboard>
+    :
+    <Box
+      className={styles.stepBtnItem}
+      onClick={handleClick}
+    >
+      {buttonIcon}
+      &nbsp;{text}
+    </Box>
 }
 
 interface RewardItemProps {

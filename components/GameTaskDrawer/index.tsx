@@ -1,14 +1,18 @@
 import { Box, Drawer, Step, StepLabel, Stepper, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import styles from './styles.module.scss'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import DownloadIcon from '@mui/icons-material/Download';
 import AppleIcon from '@mui/icons-material/Apple';
 import AndroidIcon from '@mui/icons-material/Android';
 import classNames from 'classnames/bind';
 import Image from 'next/image';
+import { CopyToClipboard } from 'react-copy-to-clipboard'
+import DoneIcon from '@mui/icons-material/Done';
+import { useIsMounted } from 'hooks/useIsMounted';
 
 const cx = classNames.bind(styles)
 
@@ -37,17 +41,48 @@ interface StepButtonProps {
 const StepButton: React.FC<StepButtonProps> = (props) => {
   const { text, link, perform } = props
 
+  const [isCopyed, setIsCopyed] = useState<boolean>(false)
+  const isMounted = useIsMounted()
+
+  useEffect(() => {
+    if (isCopyed) {
+      setTimeout(() => {
+        setIsCopyed(false)
+      }, 1000)
+    }
+  }, [isCopyed])
+
   const handleClick = () => {
     window.open(link)
   }
 
-  return <Box
-    className={styles.stepBtnItem}
-    onClick={handleClick}
-  >
-    <OpenInNewIcon />
-    &nbsp;{text}
-  </Box>
+  const buttonIcon = useMemo(() => {
+    switch (perform) {
+      case "copy": return <ContentCopyIcon />
+      case "download": return <DownloadIcon />
+      default: return <OpenInNewIcon />
+    }
+  }, [perform])
+
+  return isMounted && perform === 'copy' ?
+    <CopyToClipboard text={link} onCopy={() => setIsCopyed(true)}>
+      <Box className={styles.stepBtnItem}>
+        {
+          isMounted && isCopyed ?
+            <DoneIcon color="success" /> :
+            <ContentCopyIcon />
+        }
+        &nbsp;{text}
+      </Box>
+    </CopyToClipboard>
+    :
+    <Box
+      className={styles.stepBtnItem}
+      onClick={handleClick}
+    >
+      {buttonIcon}
+      &nbsp;{text}
+    </Box>
 }
 
 
