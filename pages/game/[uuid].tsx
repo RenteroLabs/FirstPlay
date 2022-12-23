@@ -207,10 +207,15 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                   {/* {sumBy(carnivalGame?.tasks, 'medal') || 0} Medals */}
                 </Box>
               </Box>
-              <Typography className={styles.rewardDesc}>
-                {carnivalGame?.task_description &&
-                  <> Trial reason: {carnivalGame?.task_description}</>}
-              </Typography>
+              <Box className={styles.rewardDesc}>
+                <Typography>
+                  {carnivalGame?.task_description &&
+                    <> Trial reason: {carnivalGame?.task_description}</>}
+                </Typography>
+                {/* <Box className={styles.imageBox}>
+                  <Image src="https://tva1.sinaimg.cn/large/008vxvgGly1h9dsgpe38dj307a04ydfw.jpg" layout='fill'  />
+                </Box> */}
+              </Box>
               {
                 carnivalGame?.tasks?.map((item: Record<string, any>, index: number) =>
                   <CarnivalRewardItem

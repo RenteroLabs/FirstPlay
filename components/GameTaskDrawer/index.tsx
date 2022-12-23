@@ -36,10 +36,16 @@ interface StepButtonProps {
   text: string,
   link: string,
   perform: string,
+  platform?: {
+    android: string,
+    ios: string,
+    mac: string,
+    windows: string
+  }
 }
 
 const StepButton: React.FC<StepButtonProps> = (props) => {
-  const { text, link, perform } = props
+  const { text, link, perform, platform } = props
 
   const [isCopyed, setIsCopyed] = useState<boolean>(false)
   const isMounted = useIsMounted()
@@ -53,7 +59,18 @@ const StepButton: React.FC<StepButtonProps> = (props) => {
   }, [isCopyed])
 
   const handleClick = () => {
-    window.open(link)
+    if (perform === 'download') {
+      // 判断是 IOS 还是安卓环境
+      let openLinst: any
+      if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+        openLinst = platform?.ios
+      } else {
+        openLinst = platform?.android
+      }
+      window.open(openLinst)
+    } else {
+      window.open(link)
+    }
   }
 
   const buttonIcon = useMemo(() => {
@@ -96,11 +113,12 @@ interface GameTaskDrawerProps {
 }
 
 const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
-
   const { showTaskDrawer, setShowTaskDrawer, taskInfo, index, reward, setShowTaskModal } = props
 
   const [stepNums, setStepNums] = useState<number>(3)
   const [activeStep, setActiveStep] = useState<number>(1)
+
+  console.log(taskInfo)
 
   useEffect(() => {
     setStepNums(taskInfo?.steps.length)
