@@ -38,7 +38,6 @@ const StepButton: React.FC<StepButtonProps> = (props) => {
   const { text, link, perform } = props
 
   const handleClick = () => {
-
     window.open(link)
   }
 
@@ -120,7 +119,11 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
             taskInfo?.steps[activeStep - 1]?.buttons.map((item: StepButtonProps, index: number) => <StepButton {...item} key={index} />)
           }
         </Box>
-        <Box className={styles.stepDesc}>{taskInfo?.steps[activeStep - 1]?.description}</Box>
+        {/* <Box className={styles.stepDesc} >{taskInfo?.steps[activeStep - 1]?.description}</Box> */}
+        <div
+          className={styles.stepDesc}
+          dangerouslySetInnerHTML={{ __html: taskInfo?.steps[activeStep - 1]?.description }}
+        ></div>
         <Box className={styles.imageList}>
           {
             taskInfo?.steps[activeStep - 1]?.images.map((url: string, index: number) => <Box className={styles.imageBox} key={index}>

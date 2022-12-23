@@ -12,8 +12,36 @@ import * as ga from '../../../util/ga'
 import { Carnival_Games, GAME_EVENT_NAME, GAME_TASK_MODAL_NAME, Reward_Games } from 'constants/index'
 import VerifyTaskModal from '../VerifyTaskModal'
 import GameTaskDrawer from '@/components/GameTaskDrawer'
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import AppleIcon from '@mui/icons-material/Apple';
+import AndroidIcon from '@mui/icons-material/Android';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const cx = classname.bind(styles)
+
+interface StepButtonProps {
+  text: string,
+  link: string,
+  perform: string,
+}
+
+const StepButton: React.FC<StepButtonProps> = (props) => {
+  const { text, link, perform } = props
+
+  const handleClick = () => {
+    window.open(link)
+  }
+
+  return <Box
+    className={styles.stepBtnItem}
+    onClick={handleClick}
+  >
+    <OpenInNewIcon />
+    &nbsp;{text}
+  </Box>
+}
 
 interface RewardItemProps {
   index: number,
@@ -39,6 +67,8 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
   const [showGiftModal, setShowGiftModal] = useState<boolean>(false)
   const [showTaskModal, setShowTaskModal] = useState<boolean>(false)
   const [showTaskDrawer, setShowTaskDrawer] = useState<boolean>(false)
+
+  const [showTaskMore, setShowTaskMore] = useState<boolean>(false)
 
   const taskSpendTime = useMemo(() => {
     const time = taskInfo?.complete_time || 0
@@ -117,25 +147,8 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
               Ended
             </Box>
         }
-
-        {/* {index === 1 &&
-          gameId === GiftbagGame &&
-          <Box className={styles.giftBtn} onClick={handleClickGiftBtn}>
-            Gift Code
-          </Box>} */}
-
-        {/* <Box sx={{ display: 'flex', alignItems: 'center' }}> */}
-        {/* <Box className={styles.rewardIcon}>
-            <Image src={REWARD_ACTIVE_ICON} layout="fill" />
-          </Box>
-          <Box component="span">+ {medalNum}</Box> */}
-        {/* </Box> */}
       </Box>
-      {/* <GiftCodeModal
-        showGiftModal={showGiftModal}
-        setShowGiftModal={setShowGiftModal}
-        giftCode={giftCode}
-      /> */}
+
       <VerifyTaskModal
         showTaskModal={showTaskModal}
         setShowTaskModal={setShowTaskModal}
@@ -155,42 +168,77 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       />
     </Box>
     :
-    <Box className={styles.carnivalRewardItem}>
-      <Box className={styles.rewardIndex}>{index.toString().padStart(2, '0')}</Box>
-      <Typography>{reward}</Typography>
-      {/* {index === 1 &&
-        gameId === GiftbagGame &&
-        <Box className={styles.giftBtn} onClick={handleClickGiftBtn}>
-          <Box>
-            <Image src="/gift_code.png" layout="fill" />
-          </Box>
-          Gift Code
-        </Box>} */}
+    <Box className={cx({
+      carnivalRewardItem: true,
+      carnivalRewardItemLess: !showTaskMore
+    })}>
+      <Box className={styles.itemLabel}>{index.toString().padStart(2, '0')}</Box>
+      <Typography className={styles.spendTime}>Complete task {index.toString().padStart(2, '0')}, it takes about {taskSpendTime}</Typography>
 
-      {
-        Reward_Games.includes(gameId) ?
-          <Box className={cx({
-            claimBtn: true,
-            claimedBtn: isClaimed
-          })}
-            onClick={linkToForm}
-          >
-            {isClaimed ? "Completed" : 'Verify'}
-          </Box> :
-          <Box className={cx({ claimBtn: true, claimedBtn: true })} >
-            Ended
-          </Box>
-      }
-
-      {/* <Box className={styles.rewardIcon}>
-        <Image src={REWARD_ACTIVE_ICON} layout="fill" />
+      <Box className={styles.rewardBox}>
+        <Typography>{reward}</Typography>
+        {
+          Reward_Games.includes(gameId) ?
+            <Box className={cx({
+              claimBtn: true,
+              claimedBtn: isClaimed
+            })}
+              onClick={linkToForm}
+            >
+              {isClaimed ? "Completed" : 'Verify'}
+            </Box> :
+            <Box className={cx({ claimBtn: true, claimedBtn: true })} >
+              Ended
+            </Box>
+        }
       </Box>
-      <Box component="span">+ {medalNum}</Box> */}
-      {/* <GiftCodeModal
-        showGiftModal={showGiftModal}
-        setShowGiftModal={setShowGiftModal}
-        giftCode={giftCode}
-      /> */}
+
+      <Box className={styles.stepList}>
+        {
+          taskInfo?.steps.map((item: Record<string, any>, index: number) => {
+
+            return <Box className={styles.stepItem} key={index}>
+              <Typography variant='h4'>Step{index + 1}:</Typography>
+              <Box className={styles.stepContent}>
+                <Box className={styles.descBtnBox}>
+                  <Box className={styles.stepDesc}>
+                    {item?.description}
+                  </Box>
+                  <Box className={styles.btnList}>
+                    {
+                      item?.buttons.map((btnConfig: StepButtonProps, index: number) =>
+                        <StepButton {...btnConfig} key={index} />
+                      )
+                    }
+                  </Box>
+                </Box>
+                <Box className={styles.imageList}>
+
+                </Box>
+              </Box>
+            </Box>
+          })
+        }
+      </Box>
+
+      <Box className={cx({
+        showMoreBtn: true,
+        stepDetailMask: !showTaskMore
+      })} onClick={() => setShowTaskMore(!showTaskMore)}>
+        <Typography>
+          {
+            showTaskMore ?
+              <>
+                See Less <KeyboardArrowUpIcon />
+              </>
+              :
+              <>
+                See All <KeyboardArrowDownIcon />
+              </>
+          }
+        </Typography>
+      </Box>
+
       <VerifyTaskModal
         showTaskModal={showTaskModal}
         setShowTaskModal={setShowTaskModal}
