@@ -212,9 +212,9 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                   {carnivalGame?.task_description &&
                     <> Trial reason: {carnivalGame?.task_description}</>}
                 </Typography>
-                {/* <Box className={styles.imageBox}>
-                  <Image src="https://tva1.sinaimg.cn/large/008vxvgGly1h9dsgpe38dj307a04ydfw.jpg" layout='fill'  />
-                </Box> */}
+                <Box className={styles.imageBox}>
+                  <img src="/game_reward_ill.png"  />
+                </Box>
               </Box>
               {
                 carnivalGame?.tasks?.map((item: Record<string, any>, index: number) =>

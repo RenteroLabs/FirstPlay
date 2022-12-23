@@ -68,11 +68,12 @@
     .rewardDesc {
       display: flex;
       justify-content: space-between;
+      align-items: flex-end;
       margin-top: 0.8rem;
       margin-bottom: 2.5rem;
-      width: 80%;
       text-align: left;
       p {
+        width: 80%;
         font-size: 1.33rem;
         font-family: Inter-Regular, Inter;
         font-weight: 400;
@@ -80,12 +81,16 @@
         line-height: 2rem;
       }
       .imageBox {
+        text-align: center;
         position: relative;
         width: 262px;
-        height: 178px;
+        // height: 5.93rem;
+        margin-top: -1.8rem;
+        img {
+          height: 5.93rem;
+          object-fit: contain;
+        }
       }
-
-  
     }
   }
 
@@ -554,6 +559,12 @@
 
       .rewardDesc {
         width: 100%;
+        p {
+          width: 100%;
+        }
+        .imageBox {
+          display: none;
+        }
       }
     }
     .rewardDrop {
