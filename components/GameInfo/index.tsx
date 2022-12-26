@@ -86,21 +86,25 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
               }
             </Box>
           </Box>
-          <Typography className={cx({
-            gameDesc: true,
-            gameDescTwoLine: !showMoreDesc
-          })}>
-            {gameInfo?.description}
-          </Typography>
-          <Box className={styles.showMoreBtn} component="span" onClick={() => setShowMoreDesc(!showMoreDesc)}>
+          <Box className={styles.gameDescBox}>
+            <Typography className={cx({
+              gameDesc: true,
+              gameDescTwoLine: !showMoreDesc
+            })}>
+              {gameInfo?.description}
+              <Box className={styles.showMoreBtn} component="span" onClick={() => setShowMoreDesc(!showMoreDesc)}>
+                {
+                  showMoreDesc &&
+                  <> &nbsp;&nbsp; less <KeyboardArrowUpIcon sx={{ cursor: 'pointer' }}/></>
+                }
+              </Box>
+            </Typography>
             {
-              showMoreDesc ?
-                <><span>less</span> <KeyboardArrowUpIcon /></>
-                :
-                <><span>more</span> <KeyboardArrowDownIcon /></>
+              !showMoreDesc && <KeyboardArrowDownIcon
+                sx={{ cursor: 'pointer' }}
+                onClick={() => setShowMoreDesc(!showMoreDesc)} />
             }
           </Box>
-          <Box className={styles.strategyBtn} onClick={linkToStrategy}>Walkthrough</Box>
         </Box>
         :
         <>
@@ -170,7 +174,7 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
                   }
                 </Box>
               </Box>
-              <Box className={styles.strategyBtn} onClick={linkToStrategy}>Workthrough</Box>
+              {/* <Box className={styles.strategyBtn} onClick={linkToStrategy}>Workthrough</Box> */}
             </Box>
           </Box>
         </>

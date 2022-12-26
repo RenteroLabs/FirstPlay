@@ -28,8 +28,8 @@
     margin: 1.67rem 0 2.5rem;
 
     .tagItem {
-      background: rgba(#222222, 0.08);
       border-radius: 0.33rem;
+      border: 0.08rem solid rgba($color: #222, $alpha: 0.5);
       font-size: 1rem;
       font-family: Inter-Medium, Inter;
       font-weight: 500;
@@ -37,7 +37,7 @@
       line-height: 1rem;
       display: inline-flex;
       align-items: center;
-      padding: 0.33rem 0.67rem;
+      padding: 0.33rem 0.75rem;
 
       & + .tagItem {
         margin-left: 0.67rem;
@@ -46,8 +46,6 @@
 
     .platformTagItem {
       @extend .tagItem;
-      background: rgba(#8e50e4, 0.1);
-      color: #8e50e4;
     }
   }
 
@@ -156,8 +154,18 @@
       }
 
       .tagList {
-        margin: 1rem 0 0 0;
+        margin: 0.83rem 0 0 0;
       }
+    }
+    .gameDescBox {
+      display: flex;
+      align-items: center;
+      font-size: 1.17rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
+      color: #222222;
+      line-height: 1.83rem;
+      margin: 0.83rem 0 1.75rem;
     }
     .gameDesc {
       font-size: 1.17rem;
@@ -165,13 +173,13 @@
       font-weight: 400;
       color: #222222;
       line-height: 1.83rem;
-      margin: 1.33rem auto 0.83rem;
       display: -webkit-box;
       overflow: hidden;
       -webkit-box-orient: vertical;
     }
     .gameDescTwoLine {
-      -webkit-line-clamp: 2;
+      width: calc(100% - 2rem);
+      -webkit-line-clamp: 1;
     }
     .showMoreBtn {
       display: inline-block;
@@ -249,11 +257,12 @@
     }
 
     .gameDesc {
-      font-size: 1.33rem;
+      // margin: 0.87rem auto 1.75rem;
+      font-size: 1.17rem;
       font-family: Inter-Regular, Inter;
       font-weight: 400;
       color: #222222;
-      line-height: 2rem;
+      line-height: 1.83rem;
     }
   }
 }

@@ -199,21 +199,17 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
           {isCarnivalGame && <Box className={styles.rewardMainBox}>
             <Box className={styles.carnivalRewrads}>
               <Box className={styles.cardHeader}>
-                <Typography>Rewards</Typography>
+                <Typography>Task</Typography>
                 <Box className={styles.mediaBox}>
-                  {/* <Box className={styles.rewardIcon}>
-                    <Image src={REWARD_ACTIVE_ICON} layout="fill" />
-                  </Box> */}
-                  {/* {sumBy(carnivalGame?.tasks, 'medal') || 0} Medals */}
                 </Box>
               </Box>
               <Box className={styles.rewardDesc}>
                 <Typography>
                   {carnivalGame?.task_description &&
-                    <> Trial reason: {carnivalGame?.task_description}</>}
+                  carnivalGame?.task_description}
                 </Typography>
                 <Box className={styles.imageBox}>
-                  <img src="/game_reward_ill.png"  />
+                  <img src="/game_reward_ill.png" />
                 </Box>
               </Box>
               {

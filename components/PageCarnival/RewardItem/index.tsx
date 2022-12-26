@@ -164,7 +164,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
   return isMounted && isMobileSize ?
     <Box className={styles.mobileCarnivalRewardItem}>
       <Box className={styles.itemLabel}>{index.toString().padStart(2, '0')}</Box>
-      <Typography className={styles.spendTime}>Complete task {index.toString().padStart(2, '0')}, it takes about {taskSpendTime}</Typography>
+      <Typography className={styles.spendTime}>Completed in {taskSpendTime}</Typography>
       <Typography>{reward}</Typography>
       <Box className={styles.actionArea}>
         <Box

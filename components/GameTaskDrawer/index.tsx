@@ -134,7 +134,7 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
       <Box className={styles.taskInfoBox}>
         <Box className={styles.itemLabel}>{index.toString().padStart(2, '0')}</Box>
         <Box className={styles.taskHeader}>
-          <Typography>{reward}</Typography>
+          {/* <Typography>{reward}</Typography> */}
           <Box className={styles.stepPannel}>
             <Box
               className={cx({
