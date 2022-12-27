@@ -266,7 +266,7 @@
 }
 
 .drawerBox {
-  z-index: 1600;
+  z-index: 1600 !important;
   top: 9rem;
   border-top-right-radius: 1rem;
   border-top-left-radius: 1rem;
@@ -280,7 +280,7 @@
       overscroll-behavior: none;
     }
     .MuiBackdrop-root {
-      z-index: 1550;
+      z-index: 1550 !important;
     }
   }
 }
