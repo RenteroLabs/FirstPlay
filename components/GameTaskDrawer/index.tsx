@@ -13,21 +13,26 @@ import Image from 'next/image';
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import DoneIcon from '@mui/icons-material/Done';
 import { useIsMounted } from 'hooks/useIsMounted';
+import { isEmpty } from 'lodash';
 
 const cx = classNames.bind(styles)
 
 interface TaskStepItemProps {
   index: number
   isActive: boolean
+  handleActive: (index: number) => any
 }
 
 const TaskStepItem: React.FC<TaskStepItemProps> = (props) => {
-  const { index, isActive } = props
+  const { index, isActive, handleActive } = props
 
-  return <Box className={cx({
-    taskStepItem: true,
-    activeStep: isActive
-  })}>
+  return <Box
+    className={cx({
+      taskStepItem: true,
+      activeStep: isActive
+    })}
+    onClick={() => handleActive(index)}
+  >
     Step{index}
   </Box>
 }
@@ -134,44 +139,38 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
       <Box className={styles.taskInfoBox}>
         <Box className={styles.itemLabel}>{index.toString().padStart(2, '0')}</Box>
         <Box className={styles.taskHeader}>
-          {/* <Typography>{reward}</Typography> */}
           <Box className={styles.stepPannel}>
-            <Box
-              className={cx({
-                stepBack: true,
-                disableBtn: activeStep <= 1
-              })}
-              onClick={() => {
-                if (activeStep > 1) {
-                  setActiveStep(activeStep - 1)
-                }
-              }}
-            ><KeyboardArrowLeftIcon /> </Box>
             <Box className={styles.stepBox}>
               {
-                taskInfo?.steps.map((_: any, index: number) =>
-                  <TaskStepItem key={index} index={index + 1} isActive={activeStep === (index + 1)} />)
+                taskInfo?.steps.map((_: any, index: number) => {
+                  const isLast = taskInfo?.steps && (taskInfo?.steps.length - 1 === index)
+                  return <>
+                    <TaskStepItem
+                      key={index}
+                      index={index + 1}
+                      isActive={activeStep === (index + 1)}
+                      handleActive={setActiveStep}
+                    />
+                    {!isLast &&
+                      <KeyboardArrowRightIcon
+                        sx={{ fontSize: 24 }}
+                        className={cx({ activeNextIcon: activeStep === (index + 1) })} />}
+                  </>
+                }
+                )
               }
             </Box>
-            <Box
-              className={cx({
-                stepNext: true,
-                disableBtn: activeStep >= stepNums
-              })}
-              onClick={() => {
-                if (activeStep < stepNums) {
-                  setActiveStep(activeStep + 1)
-                }
-              }}
-            ><KeyboardArrowRightIcon /></Box>
           </Box>
         </Box>
 
-        <Box className={styles.btnList}>
-          {
-            taskInfo?.steps[activeStep - 1]?.buttons.map((item: StepButtonProps, index: number) => <StepButton {...item} key={index} />)
-          }
-        </Box>
+        {!isEmpty(taskInfo?.steps[activeStep - 1]?.buttons || []) &&
+          <Box className={styles.btnList}>
+            {
+              taskInfo?.steps[activeStep - 1]?.buttons.map((item: StepButtonProps, index: number) => <StepButton {...item} key={index} />)
+            }
+          </Box>}
+
+
         <div
           className={styles.stepDesc}
           dangerouslySetInnerHTML={{ __html: taskInfo?.steps[activeStep - 1]?.description }}

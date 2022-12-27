@@ -12,8 +12,9 @@
     min-height: calc(50vh - 3rem);
     background-color: white;
     border-radius: 0.67rem 0.67rem 0rem 0rem;
-    padding-top: 3.17rem;
-
+    // padding-top: 3.17rem;
+    margin-bottom: 5rem;
+    
     .itemLabel {
       position: absolute;
       width: 3.33rem;
@@ -48,7 +49,8 @@
     }
 
     .taskHeader {
-      margin: 0rem 1rem 2.58rem;
+      margin: 0rem 1rem 1.75rem;
+      overflow: hidden;
       p {
         font-size: 1.33rem;
         font-family: Inter-Medium, Inter;
@@ -58,7 +60,7 @@
       }
 
       .stepPannel {
-        margin-top: 2.5rem;
+        margin-top: 3.92rem;
         display: flex;
         justify-content: space-between;
 
@@ -90,9 +92,17 @@
 
         .stepBox {
           display: flex;
-          flex-grow: 0.85;
+          flex-grow: 1;
           justify-content: center;
-          align-items: center;
+          align-items: flex-start;
+          svg {
+            height: 1.17rem;
+            line-height: 1.17rem;
+            color: rgba(#222, 0.2);
+          }
+          .activeNextIcon {
+            color: #8E50E4;
+          }
         }
       }
     }
@@ -103,12 +113,12 @@
       font-weight: 500;
       color: #222222;
       line-height: 2rem;
-      margin: 1.67rem 1rem;
+      margin: 0rem 1rem 1.67rem;
     }
 
     .btnList {
       display: flex;
-      margin: auto 0.5rem;
+      margin: auto 0.5rem 1.67rem;
       flex-wrap: wrap;
     }
 
@@ -132,8 +142,12 @@
     }
   }
   .stepBtns {
-    margin-top: 1.67rem;
-    margin-bottom: 1.17rem;
+    position: fixed;
+    bottom: 2rem;
+    left: 0.83rem;
+    right: 0.83rem;
+    // margin-top: 1.67rem;
+    // margin-bottom: 1.17rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -141,9 +155,9 @@
     .backBtn {
       width: 7.33rem;
       height: 2.67rem;
-      background: #ffffff;
+      background: #222222;
       border-radius: 1.5rem;
-      border: 0.04rem solid #222222;
+      border: 0.08rem solid #FFFFFF;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -152,25 +166,26 @@
       font-size: 1.17rem;
       font-family: Inter-Medium, Inter;
       font-weight: 500;
-      color: #222222;
+      color: #FFFFFF;
       line-height: 1.17rem;
     }
 
     .nextBtn {
       width: 7.33rem;
       height: 2.67rem;
-      background: #ffffff;
+      background: #222222;
       border-radius: 1.5rem;
-      border: 0.04rem solid #222222;
+      border: 0.08rem solid #FFFFFF;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       user-select: none;
+
       font-size: 1.17rem;
       font-family: Inter-Medium, Inter;
       font-weight: 500;
-      color: #222222;
+      color: #FFFFFF;
       line-height: 1.17rem;
     }
     .verifyBtn {
@@ -193,12 +208,14 @@
 }
 
 .taskStepItem {
+  cursor: pointer;
   position: relative;
-  font-size: 1rem;
-  font-family: Inter-Medium, Inter;
-  font-weight: 500;
+  font-size: 1.17rem;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
   color: rgba(#222, 0.5);
-  line-height: 1rem;
+  line-height: 1.17rem;
+
   padding-bottom: 0.9rem;
   user-select: none;
   flex-grow: 1;
@@ -206,23 +223,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 0.16rem dotted #a0a0a0;
-
+}
+.activeStep {
+  color: #8e50e4;
   &::after {
     display: inline-block;
     position: absolute;
     content: '';
-    width: 0.67rem;
-    height: 0.67rem;
-    background: #d8d8d8;
-    border-radius: 50%;
-    bottom: -0.38rem;
-  }
-}
-.activeStep {
-  color: #222222;
-  &::after {
-    background: #222222;
+    bottom: 0.08rem;
+    width: 3rem;
+    height: 0.33rem;
+    background: #8e50e4;
+    opacity: 0.8;
+    border-radius: 60%;
+    filter: blur(2px);
   }
 }
 
