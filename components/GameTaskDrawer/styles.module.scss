@@ -4,6 +4,7 @@
   padding: 1.5rem 1.33rem;
   padding-top: 2.33rem;
   overflow-y: scroll;
+  overscroll-behavior: none;
 
   .taskInfoBox {
     position: relative;
@@ -267,11 +268,13 @@
   top: 9rem;
   border-top-right-radius: 1rem;
   border-top-left-radius: 1rem;
+  overscroll-behavior: none;
 
   :global {
     .MuiPaper-root {
       border-top-right-radius: 1rem;
       border-top-left-radius: 1rem;
+      overscroll-behavior: none;
     }
   }
 }
