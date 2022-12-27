@@ -169,7 +169,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
 
       <Box className={styles.taskReward}>
         <img src={COIN_ICON} />
-        Game Task Reward
+        {taskInfo?.reward}
       </Box>
 
       <Box className={styles.actionArea}>
