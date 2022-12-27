@@ -224,6 +224,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                     gameId={router.query?.uuid as string}
                     strategyLink={carnivalGame?.strategy}
                     taskInfo={item}
+                    timestamp={timestamp}
                   />
                 )
               }

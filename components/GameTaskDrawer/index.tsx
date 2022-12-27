@@ -1,5 +1,5 @@
 import { Box, Drawer, Step, StepLabel, Stepper, Typography } from '@mui/material'
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import styles from './styles.module.scss'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
@@ -114,16 +114,17 @@ interface GameTaskDrawerProps {
   taskInfo: Record<string, any>
   index: number
   reward: string
+  timestamp: number
   setShowTaskModal: (arg: boolean) => any
 }
 
 const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
-  const { showTaskDrawer, setShowTaskDrawer, taskInfo, index, reward, setShowTaskModal } = props
+  const { showTaskDrawer, setShowTaskDrawer, taskInfo, index, reward, setShowTaskModal, timestamp } = props
 
   const [stepNums, setStepNums] = useState<number>(3)
   const [activeStep, setActiveStep] = useState<number>(1)
 
-  console.log(taskInfo)
+  const taskBox = useRef()
 
   useEffect(() => {
     setStepNums(taskInfo?.steps.length)
@@ -135,7 +136,7 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
     onClose={() => setShowTaskDrawer(false)}
     className={styles.drawerBox}
   >
-    <Box className={styles.taskBox}>
+    <Box className={`${styles.taskBox} taskBoxClass`} ref={taskBox}>
 
       <Box className={styles.taskInfoBox}>
         <Box className={styles.itemLabel}>{index.toString().padStart(2, '0')}</Box>
@@ -171,7 +172,6 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
             }
           </Box>}
 
-
         <div
           className={styles.stepDesc}
           dangerouslySetInnerHTML={{ __html: taskInfo?.steps[activeStep - 1]?.description }}
@@ -179,7 +179,7 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
         <Box className={styles.imageList}>
           {
             taskInfo?.steps[activeStep - 1]?.images.map((url: string, index: number) => <Box className={styles.imageBox} key={index}>
-              <img src={url} />
+              <img src={`${url}?timestamp=${timestamp}`} />
             </Box>)
           }
         </Box>
@@ -192,6 +192,8 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
             onClick={() => {
               if (activeStep > 1) {
                 setActiveStep(activeStep - 1)
+                // @ts-ignore
+                taskBox?.current.scrollTo({ top: 0 })
               }
             }}>
             <KeyboardArrowLeftIcon /> Back
@@ -201,6 +203,8 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
           onClick={() => {
             if (activeStep < stepNums) {
               setActiveStep(activeStep + 1)
+              // @ts-ignore
+              taskBox?.current.scrollTo({ top: 0 })
             }
           }}
         >

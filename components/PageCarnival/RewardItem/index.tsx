@@ -91,13 +91,14 @@ interface RewardItemProps {
   gameId: string,
   strategyLink: string,
   taskInfo: Record<string, any>
+  timestamp: number
 }
 
 const GiftbagGame = '740a1e44-fd84-433e-98df-be90d650eb51'
 const BlessGlobal = "32605c7c-45d3-49f4-9923-b3a51816d1df"
 
 const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
-  const { index, reward, isClaimed, claimLink, medalNum, gameId, strategyLink, taskInfo } = props
+  const { index, reward, isClaimed, claimLink, medalNum, gameId, strategyLink, taskInfo , timestamp} = props
   const isMobileSize = useMediaQuery("(max-width:600px)")
   const isMounted = useIsMounted()
 
@@ -220,6 +221,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
         index={index}
         reward={reward}
         setShowTaskModal={setShowTaskModal}
+        timestamp={timestamp}
       />
     </Box>
     :
@@ -275,7 +277,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
                   }}>
                     {
                       item?.images.map((url: string, index: number) =>
-                        <RcImage src={url} key={index} className={styles.imageItem} />
+                        <RcImage src={`${url}?timestamp=${timestamp}`} key={index} className={styles.imageItem} />
                       )
                     }
                   </RcImage.PreviewGroup>
