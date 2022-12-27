@@ -1,5 +1,4 @@
 .taskBox {
-  height: 90vh;
   height: calc(100vh - 9rem);
   background: #f6f1fd;
   padding: 1.5rem 1.33rem;
@@ -14,7 +13,8 @@
     border-radius: 0.67rem 0.67rem 0rem 0rem;
     // padding-top: 3.17rem;
     margin-bottom: 5rem;
-    
+    padding-top: 3.92rem;
+
     .itemLabel {
       position: absolute;
       width: 3.33rem;
@@ -49,8 +49,9 @@
     }
 
     .taskHeader {
+      display: flex;
       margin: 0rem 1rem 1.75rem;
-      overflow: hidden;
+
       p {
         font-size: 1.33rem;
         font-family: Inter-Medium, Inter;
@@ -60,8 +61,8 @@
       }
 
       .stepPannel {
-        margin-top: 3.92rem;
         display: flex;
+        flex-grow: 1;
         justify-content: space-between;
 
         .baseBtn {
