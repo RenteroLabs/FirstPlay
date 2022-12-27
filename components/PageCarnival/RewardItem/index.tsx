@@ -98,7 +98,7 @@ const GiftbagGame = '740a1e44-fd84-433e-98df-be90d650eb51'
 const BlessGlobal = "32605c7c-45d3-49f4-9923-b3a51816d1df"
 
 const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
-  const { index, reward, isClaimed, claimLink, medalNum, gameId, strategyLink, taskInfo , timestamp} = props
+  const { index, reward, isClaimed, claimLink, medalNum, gameId, strategyLink, taskInfo, timestamp } = props
   const isMobileSize = useMediaQuery("(max-width:600px)")
   const isMounted = useIsMounted()
 
@@ -184,10 +184,13 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       </Box>
 
       <Box className={styles.actionArea}>
-        <Box
-          className={styles.startBtn}
-          onClick={() => setShowTaskDrawer(true)}
-        >Start</Box>
+        {
+          Reward_Games.includes(gameId) &&
+          <Box
+            className={styles.startBtn}
+            onClick={() => setShowTaskDrawer(true)}
+          >Start</Box>
+        }
         {
           Reward_Games.includes(gameId) ?
             <Box className={cx({

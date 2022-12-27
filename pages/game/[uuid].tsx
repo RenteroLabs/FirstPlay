@@ -206,7 +206,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
               <Box className={styles.rewardDesc}>
                 <Typography>
                   {carnivalGame?.task_description &&
-                  carnivalGame?.task_description}
+                    carnivalGame?.task_description}
                 </Typography>
                 <Box className={styles.imageBox}>
                   <img src="/game_reward_ill.png" />
@@ -224,7 +224,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                     gameId={router.query?.uuid as string}
                     strategyLink={carnivalGame?.strategy}
                     taskInfo={item}
-                    timestamp={timestamp}
+                    timestamp={timestamp as unknown as number}
                   />
                 )
               }
@@ -240,27 +240,12 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
               </Box>
             </Box> */}
           </Box>}
-          {/* <Box className={styles.gameStrategy}>
-            {isCarnivalGame &&
-              <>
-                <Typography variant='h4'>Description</Typography>
-                <div className={styles.strategyDesc} dangerouslySetInnerHTML={{
-                  __html: carnivalGame?.tutorial
-                }}>
-                </div>
-                <Box className={styles.strategyLink} onClick={linkToStrategy}>
-                  Task Walkthrough
-                </Box>
-              </>}
-            {!isCarnivalGame && <Box className={styles.comingSoonTip}>
-              <CampaignIcon sx={{ mr: '2rem' }} fontSize="large" /> Coming Soon
-            </Box>}
-            <Link href="/carnival">
-              <Box className={styles.carnivalHome}>
-                Event homepage
+          {!isCarnivalGame &&
+            <Box className={styles.gameStrategy}>
+              <Box className={styles.comingSoonTip}>
+                <CampaignIcon sx={{ mr: '2rem' }} fontSize="large" /> Coming Soon
               </Box>
-            </Link>
-          </Box> */}
+            </Box>}
 
           {/* {
             is700Width ?
