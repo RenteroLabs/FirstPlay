@@ -109,6 +109,16 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
 
   const [showTaskMore, setShowTaskMore] = useState<boolean>(false)
 
+
+  useEffect(() => {
+    if (showTaskDrawer && isMobileSize) {
+      console.log("teset")
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "visible"
+    }
+  }, [showTaskDrawer])
+
   const taskSpendTime = useMemo(() => {
     const time = taskInfo?.complete_time || 0
     if (time <= 60 && time >= 0) {
