@@ -267,7 +267,7 @@
 
 .drawerBox {
   z-index: 1600 !important;
-  top: 9rem;
+  top: 9rem !important;
   border-top-right-radius: 1rem;
   border-top-left-radius: 1rem;
   overscroll-behavior: none;
@@ -275,6 +275,7 @@
   :global {
     .MuiPaper-root {
       z-index: 1600;
+      top: 9rem !important;
       border-top-right-radius: 1rem;
       border-top-left-radius: 1rem;
       overscroll-behavior: none;
