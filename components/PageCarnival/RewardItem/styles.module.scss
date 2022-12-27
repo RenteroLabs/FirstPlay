@@ -302,6 +302,26 @@
     margin-top: -1rem;
     margin-bottom: 1.5rem;
   }
+
+  .taskReward {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    font-size: 1.33rem;
+    font-family: Inter-Medium, Inter;
+    font-weight: 500;
+    color: #f2a63b;
+    line-height: 1.33rem;
+    margin: 1.67rem auto;
+
+    img {
+      width: 1.67rem;
+      height: 1.67rem;
+      margin-right: 0.67rem;
+    }
+  }
+
   p {
     font-size: 1.33rem;
     font-family: Inter-Medium, Inter;
@@ -313,7 +333,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 2.5rem;
+    // margin-top: 2.5rem;
 
     .startBtn {
       width: 55%;
@@ -451,4 +471,3 @@
     }
   }
 }
-
