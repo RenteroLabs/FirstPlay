@@ -2,6 +2,7 @@
   height: calc(100vh - 9rem);
   background: #f6f1fd;
   padding: 1.5rem 1.33rem;
+  padding-top: 2.33rem;
   overflow-y: scroll;
 
   .taskInfoBox {
@@ -102,7 +103,7 @@
             color: rgba(#222, 0.2);
           }
           .activeNextIcon {
-            color: #8E50E4;
+            color: #8e50e4;
           }
         }
       }
@@ -158,7 +159,7 @@
       height: 2.67rem;
       background: #222222;
       border-radius: 1.5rem;
-      border: 0.08rem solid #FFFFFF;
+      border: 0.08rem solid #ffffff;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -167,7 +168,7 @@
       font-size: 1.17rem;
       font-family: Inter-Medium, Inter;
       font-weight: 500;
-      color: #FFFFFF;
+      color: #ffffff;
       line-height: 1.17rem;
     }
 
@@ -176,7 +177,7 @@
       height: 2.67rem;
       background: #222222;
       border-radius: 1.5rem;
-      border: 0.08rem solid #FFFFFF;
+      border: 0.08rem solid #ffffff;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -186,7 +187,7 @@
       font-size: 1.17rem;
       font-family: Inter-Medium, Inter;
       font-weight: 500;
-      color: #FFFFFF;
+      color: #ffffff;
       line-height: 1.17rem;
     }
     .verifyBtn {
@@ -258,5 +259,19 @@
 
   & + .stepBtnItem {
     // margin-left: 1rem;
+  }
+}
+
+.drawerBox {
+  z-index: 1600;
+  top: 9rem;
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+
+  :global {
+    .MuiPaper-root {
+      border-top-right-radius: 1rem;
+      border-top-left-radius: 1rem;
+    }
   }
 }

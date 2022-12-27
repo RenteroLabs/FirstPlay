@@ -133,6 +133,7 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
     anchor='bottom'
     open={showTaskDrawer}
     onClose={() => setShowTaskDrawer(false)}
+    className={styles.drawerBox}
   >
     <Box className={styles.taskBox}>
 
