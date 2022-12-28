@@ -49,7 +49,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = (props) => {
       case 'ios':
         // text = 'IOS'
         text = 'Download'
-        buttonIcon = <Image src="/IOS.png" layout='fill' />
+        buttonIcon = <Image src="/IOS_icon.png" layout='fill' />
         break;
       case 'android':
         text = 'Android'
