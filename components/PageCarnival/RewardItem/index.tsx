@@ -211,7 +211,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
   const isMobileSize = useMediaQuery("(max-width:600px)")
   const isMounted = useIsMounted()
 
-  console.log(taskInfo)
+  // console.log(taskInfo)
 
   const [showGiftModal, setShowGiftModal] = useState<boolean>(false)
   const [showTaskModal, setShowTaskModal] = useState<boolean>(false)
