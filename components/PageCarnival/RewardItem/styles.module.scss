@@ -97,6 +97,10 @@
             font-weight: 400;
             color: rgba(#222, 0.7);
             line-height: 2rem;
+
+            a {
+              text-decoration: underline;
+            }
           }
           .btnList {
             margin-left: -0.5rem;
@@ -453,6 +457,12 @@
   svg {
     width: 1.33rem;
     height: 1.33rem;
+  }
+
+  .iconBox {
+    position: relative;
+    width: 1.8rem;
+    height: 1.8rem;
   }
 }
 

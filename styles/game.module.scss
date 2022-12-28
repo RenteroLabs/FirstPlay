@@ -24,7 +24,7 @@
     min-height: 10rem;
     // background: rgba(#E4405B, 0.08);
     border-radius: 1rem;
-    padding: 5rem 0 2.5rem;
+    padding: 4.17rem 0 8.33rem;
     .cardHeader {
       display: flex;
       justify-content: space-between;
@@ -68,9 +68,9 @@
     .rewardDesc {
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
+      align-items: flex-start;
       margin-top: 0.8rem;
-      margin-bottom: 2.5rem;
+      margin-bottom: 4.17rem;
       text-align: left;
       p {
         width: 80%;
@@ -85,7 +85,7 @@
         position: relative;
         width: 262px;
         // height: 5.93rem;
-        margin-top: -1.8rem;
+        margin-top: -2rem;
         img {
           height: 5.93rem;
           object-fit: contain;

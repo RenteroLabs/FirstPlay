@@ -98,7 +98,8 @@ export const Reward_Games = [
   '11ec241d-c889-4f54-8656-b5f7b1598300',
   'd56f4b3a-d7b7-4abf-935f-574546d4e958',
   'a10fe616-6da7-4f88-bb5b-8e27b3adedad',
-  "8489b4b1-ed82-451d-96b6-46fe199b2fe8"
+  "8489b4b1-ed82-451d-96b6-46fe199b2fe8",
+  "51037586-1947-4bab-9ad8-4c8eb4791050"
 ]
 
 

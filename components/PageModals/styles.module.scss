@@ -163,6 +163,7 @@
   }
 }
 
+
 @media screen and (max-width: 480px) {
   .trialSuccessBox {
     // width: calc(100% - 3.34rem);
@@ -502,5 +503,44 @@
         width: auto;
       }
     }
-  } 
+  }
+}
+
+
+
+.qrcodeBox {
+  width: 34.17rem;
+  padding: 2.5rem;
+  background-color: white;
+  border-radius: 1.33rem;
+
+  .modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+      font-size: 1.75rem;
+      font-family: Inter-Bold, Inter;
+      font-weight: bold;
+      color: rgba(#222, 0.8);
+      line-height: 1.75rem;
+    }
+  }
+
+  .container {
+    text-align: center;
+    padding: 7.5rem 0 ;
+    .qrcode {
+      width: 11rem;
+      height: 11rem;
+    }
+    p {
+      font-size: 1.17rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
+      color: rgba(#222, 0.5);
+      line-height: 1.17rem;
+      margin-top: 0.83rem;
+    }
+  }
 }

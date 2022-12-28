@@ -1,7 +1,7 @@
-import { Box, Typography, useMediaQuery } from '@mui/material'
+import { Box, Dialog, IconButton, Typography, useMediaQuery } from '@mui/material'
 import { COIN_ICON, MOBILE_CARNIVAL_REWARD_ITEM, MONEY_ICON, REWARD_ACTIVE_ICON, REWARD_ICON } from 'constants/static'
 import Image from 'next/image'
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styles from './styles.module.scss'
 import classname from 'classnames/bind'
 import { useIsMounted } from 'hooks/useIsMounted'
@@ -24,22 +24,109 @@ import DownloadIcon from '@mui/icons-material/Download';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import RcImage from 'rc-image'
+import QRCodeDownloadModal from '@/components/PageModals/QRCodeDownload'
+import { FormatColorResetRounded } from '@mui/icons-material'
+import QRCode from 'react-qr-code'
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import CloseIcon from '@mui/icons-material/Close';
 
 const cx = classname.bind(styles)
 
+
+interface DownloadButtonProps {
+  platform: PlatformType,
+  url: string
+}
+
+const DownloadButton: React.FC<DownloadButtonProps> = (props) => {
+  const { platform, url } = props
+  const [showModal, setShowModal] = useState<boolean>(false)
+
+  const [text, buttonIcon] = useMemo(() => {
+    let text, buttonIcon
+    switch (platform) {
+      case 'ios':
+        // text = 'IOS'
+        text = 'Download'
+        buttonIcon = <Image src="/IOS.png" layout='fill' />
+        break;
+      case 'android':
+        text = 'Android'
+        buttonIcon = <Image src="/Android.png" layout='fill' />
+        break;
+      case 'mac':
+        text = 'PC'
+        buttonIcon = <Image src="/PC.png" layout='fill' />
+        break;
+      case 'windows':
+        text = 'PC'
+        buttonIcon = <Image src="/PC.png" layout='fill' />
+        break;
+      default:
+        break;
+    }
+
+    return [text, buttonIcon]
+  }, [platform])
+
+  const handleClick = () => {
+    if (!['ios', 'android'].includes(platform)) {
+      window.open(url)
+    } else {
+      if (!showModal) {
+        setShowModal(true)
+      }
+    }
+  }
+
+  return <Box
+    className={styles.stepBtnItem}
+    onClick={handleClick}
+  >
+    <Box className={styles.iconBox}>
+      {buttonIcon}
+    </Box>
+    &nbsp;Download
+
+    <QRCodeDownloadModal
+      showModal={showModal}
+      setShowModal={setShowModal}
+      url={url}
+    />
+  </Box>
+}
+
 type ButtonType = "download" | "copy" | 'visit'
+type PlatformType = 'android' | 'ios' | 'mac' | 'windows'
 
 interface StepButtonProps {
   text: string,
   link: string,
   perform: ButtonType,
+  platform?: {
+    android: string,
+    ios: string,
+    mac: string,
+    windows: string
+  }
 }
 
 const StepButton: React.FC<StepButtonProps> = (props) => {
-  const { text, link, perform } = props
+  const { text, link, perform, platform } = props
 
   const [isCopyed, setIsCopyed] = useState<boolean>(false)
   const isMounted = useIsMounted()
+
+  const [isIos, setIsIos] = useState<boolean>(false)
+
+  useEffect(() => {
+    console.log(navigator.userAgent)
+    if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+      setIsIos(true)
+    } else {
+      setIsIos(false)
+    }
+  }, [navigator.userAgent])
 
   useEffect(() => {
     if (isCopyed) {
@@ -50,36 +137,57 @@ const StepButton: React.FC<StepButtonProps> = (props) => {
   }, [isCopyed])
 
   const handleClick = () => {
-    window.open(link)
+    if (perform === 'download') {
+      window.open(isIos ? platform?.ios : platform?.android)
+    } else {
+      window.open(link)
+    }
   }
 
   const buttonIcon = useMemo(() => {
     switch (perform) {
       case "copy": return <ContentCopyIcon />
-      case "download": return <DownloadIcon />
+      case "download": return isIos ? <AppleIcon /> : <AndroidIcon />
+      case "visit": return <OpenInNewIcon />
       default: return <OpenInNewIcon />
     }
-  }, [perform])
+  }, [perform, isIos])
 
-  return isMounted && perform === 'copy' ?
-    <CopyToClipboard text={link} onCopy={() => setIsCopyed(true)}>
-      <Box className={styles.stepBtnItem}>
-        {
-          isMounted && isCopyed ?
-            <DoneIcon color="success" /> :
-            <ContentCopyIcon />
+  return <>
+    {
+      perform === 'copy' &&
+      <CopyToClipboard text={link} onCopy={() => setIsCopyed(true)}>
+        <Box className={styles.stepBtnItem}>
+          {
+            isMounted && isCopyed ?
+              <DoneIcon color="success" /> :
+              <ContentCopyIcon />
+          }
+          &nbsp;{isMounted && isCopyed ? <Box component="i" sx={{ opacity: '0.8' }}>Copy !</Box> : text}
+        </Box>
+      </CopyToClipboard>
+    }
+    {
+      perform === 'download' &&
+      Object.entries(platform || {}).map(([key, url], index) => {
+        if (url) {
+          return <DownloadButton platform={key as PlatformType} url={url} key={index} />
+        } else {
+          return <></>
         }
+      })
+    }
+    {
+      perform === 'visit' &&
+      <Box
+        className={styles.stepBtnItem}
+        onClick={handleClick}
+      >
+        {buttonIcon}
         &nbsp;{text}
       </Box>
-    </CopyToClipboard>
-    :
-    <Box
-      className={styles.stepBtnItem}
-      onClick={handleClick}
-    >
-      {buttonIcon}
-      &nbsp;{text}
-    </Box>
+    }
+  </>
 }
 
 interface RewardItemProps {

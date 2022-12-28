@@ -55,6 +55,17 @@ const StepButton: React.FC<StepButtonProps> = (props) => {
   const [isCopyed, setIsCopyed] = useState<boolean>(false)
   const isMounted = useIsMounted()
 
+  const [isIos, setIsIos] = useState<boolean>(false)
+
+  useEffect(() => {
+    console.log(navigator.userAgent)
+    if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+      setIsIos(true)
+    } else {
+      setIsIos(false)
+    }
+  }, [navigator.userAgent])
+
   useEffect(() => {
     if (isCopyed) {
       setTimeout(() => {
@@ -65,14 +76,7 @@ const StepButton: React.FC<StepButtonProps> = (props) => {
 
   const handleClick = () => {
     if (perform === 'download') {
-      // 判断是 IOS 还是安卓环境
-      let openLinst: any
-      if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
-        openLinst = platform?.ios
-      } else {
-        openLinst = platform?.android
-      }
-      window.open(openLinst)
+      window.open(isIos ? platform?.ios : platform?.android)
     } else {
       window.open(link)
     }
@@ -81,30 +85,48 @@ const StepButton: React.FC<StepButtonProps> = (props) => {
   const buttonIcon = useMemo(() => {
     switch (perform) {
       case "copy": return <ContentCopyIcon />
-      case "download": return <DownloadIcon />
+      case "download": return isIos ? <AppleIcon /> : <AndroidIcon />
+      case "visit": return <OpenInNewIcon />
       default: return <OpenInNewIcon />
     }
-  }, [perform])
+  }, [perform, isIos])
 
-  return isMounted && perform === 'copy' ?
-    <CopyToClipboard text={link} onCopy={() => setIsCopyed(true)}>
-      <Box className={styles.stepBtnItem}>
-        {
-          isMounted && isCopyed ?
-            <DoneIcon color="success" /> :
-            <ContentCopyIcon />
-        }
+  return <>
+    {
+      perform === 'copy' &&
+      <CopyToClipboard text={link} onCopy={() => setIsCopyed(true)}>
+        <Box className={styles.stepBtnItem}>
+          {
+            isMounted && isCopyed ?
+              <DoneIcon color="success" /> :
+              <ContentCopyIcon />
+          }
+          &nbsp;{isMounted && isCopyed ? <Box component="i" sx={{ opacity: '0.8' }}>Copy !</Box> : text}
+        </Box>
+      </CopyToClipboard>
+    }
+    {
+      perform === 'download' &&
+      (isIos && platform?.ios || !isIos && platform?.android) &&
+      <Box
+        className={styles.stepBtnItem}
+        onClick={handleClick}
+      >
+        {buttonIcon}
         &nbsp;{text}
       </Box>
-    </CopyToClipboard>
-    :
-    <Box
-      className={styles.stepBtnItem}
-      onClick={handleClick}
-    >
-      {buttonIcon}
-      &nbsp;{text}
-    </Box>
+    }
+    {
+      perform === 'visit' &&
+      <Box
+        className={styles.stepBtnItem}
+        onClick={handleClick}
+      >
+        {buttonIcon}
+        &nbsp;{text}
+      </Box>
+    }
+  </>
 }
 
 
