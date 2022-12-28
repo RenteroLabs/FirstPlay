@@ -1,6 +1,6 @@
 .carnivalRewardItem {
   position: relative;
-  padding: 2.5rem 2.5rem;
+  padding: 6.83rem 2.5rem 2.5rem;
 
   background: #ffffff;
   box-shadow: 0rem 0.83rem 1.67rem 0rem rgba(142, 80, 228, 0.2);
@@ -16,6 +16,7 @@
 
   .itemLabel {
     position: absolute;
+    z-index: 10;
     width: 3.33rem;
     height: 3rem;
     top: -0.65rem;
@@ -28,7 +29,8 @@
     align-items: center;
     justify-content: center;
     border-color: transparent;
-    background: linear-gradient(180deg, #6effc4 0%, #984cec 100%);
+    background: linear-gradient(180deg, #984cec 0%, #6effc4 100%);
+
     box-shadow: -0.17rem 0.17rem 0.33rem 0rem rgba(142, 80, 228, 0.3);
     border-radius: 0rem 1rem 0rem 1rem;
     &::before {
@@ -46,37 +48,72 @@
   }
 
   .spendTime {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4rem;
+    background: #8e50e4;
+    border-radius: 1rem 1rem 0rem 0rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 2.75rem;
     font-size: 1.17rem;
-    font-family: Inter-Regular, Inter;
-    font-weight: 400;
-    color: rgba(#222, 0.5);
+    font-family: Inter-Medium, Inter;
+    font-weight: 500;
+    color: #ffffff;
     line-height: 1.17rem;
-    margin: 2rem auto 1.33rem;
   }
 
   .rewardBox {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    // margin-top: 6.83rem;
+
+    .leftText {
+      .taskDesc {
+        display: flex;
+        align-items: center;
+      }
+      .taskRewardDesc {
+        display: flex;
+        align-items: center;
+        margin-top: 1.08rem;
+      }
+      .iconBox {
+        flex-shrink: 0;
+        position: relative;
+        width: 2.33rem;
+        height: 2.33rem;
+        margin-right: 0.83rem;
+      }
+    }
   }
   p {
     flex-grow: 1;
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-family: Inter-Medium, Inter;
     font-weight: 500;
     color: #222222;
-    line-height: 2rem;
+    line-height: 1.75rem;
+  }
+
+  .taskDivider {
+    margin-top: 2.5rem;
+    border-top: 1px solid rgba(#222, 0.1);
   }
 
   .stepList {
-    margin-top: 4.83rem;
+    margin-top: 2.5rem;
     overflow: hidden;
     .stepItem {
       h4 {
         font-size: 1.33rem;
         font-family: Inter-Bold, Inter;
         font-weight: bold;
-        color: #222222;
+        color: rgba(#222, 0.3);
         line-height: 1.33rem;
       }
 
@@ -159,6 +196,7 @@
       width: 100%;
       height: 12.42rem;
       top: -12.42rem;
+      // top: -8rem;
       background: linear-gradient(
         180deg,
         rgba(255, 255, 255, 0) 0%,
@@ -311,27 +349,43 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-
-    font-size: 1.33rem;
-    font-family: Inter-Medium, Inter;
-    font-weight: 500;
-    color: #f2a63b;
-    line-height: 1.33rem;
-    margin: 1.67rem auto;
-
-    img {
-      width: 1.67rem;
-      height: 1.67rem;
-      margin-right: 0.67rem;
-    }
-  }
-
-  p {
     font-size: 1.33rem;
     font-family: Inter-Medium, Inter;
     font-weight: 500;
     color: #222222;
-    line-height: 2rem;
+    line-height: 1.67rem;
+    margin-top: 1.25rem;
+    margin-bottom: 2.5rem;
+    .iconBox {
+      position: relative;
+      width: 2rem;
+      height: 2rem;
+      margin-right: 0.42rem;
+    }
+
+  }
+  .taskDesc {
+    display: flex;
+    align-items: center;
+    font-size: 1.33rem;
+    font-family: Inter-Medium, Inter;
+    font-weight: 500;
+    color: #222222;
+    line-height: 1.67rem;
+    .iconBox {
+      position: relative;
+      width: 2rem;
+      height: 2rem;
+      margin-right: 0.42rem;
+    }
+  }
+
+  p {
+    // font-size: 1.33rem;
+    // font-family: Inter-Medium, Inter;
+    // font-weight: 500;
+    // color: #222222;
+    // line-height: 2rem;
   }
   .actionArea {
     display: flex;
@@ -340,7 +394,7 @@
     // margin-top: 2.5rem;
 
     .startBtn {
-      width: 55%;
+      width: calc(100% - 11rem);
       display: inline-block;
       height: 3.33rem;
       background: #8e50e4;
@@ -470,7 +524,7 @@
   .mobileCarnivalRewardItem {
     .actionArea {
       .startBtn {
-        width: 55%;
+        width: calc(65% - 1rem);
         padding: 0;
       }
       .claimBtn {

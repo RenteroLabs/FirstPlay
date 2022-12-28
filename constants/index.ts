@@ -91,7 +91,8 @@ export const Carnival_Games = [
   '740a1e44-fd84-433e-98df-be90d650eb51',
   '11ec241d-c889-4f54-8656-b5f7b1598300',
   'd56f4b3a-d7b7-4abf-935f-574546d4e958',
-  '32605c7c-45d3-49f4-9923-b3a51816d1df'
+  '32605c7c-45d3-49f4-9923-b3a51816d1df',
+  "51037586-1947-4bab-9ad8-4c8eb4791050"
 ]
 
 export const Reward_Games = [

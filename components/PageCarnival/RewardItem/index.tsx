@@ -1,5 +1,5 @@
 import { Box, Dialog, IconButton, Typography, useMediaQuery } from '@mui/material'
-import { COIN_ICON, MOBILE_CARNIVAL_REWARD_ITEM, MONEY_ICON, REWARD_ACTIVE_ICON, REWARD_ICON } from 'constants/static'
+import { COIN_ICON, MOBILE_CARNIVAL_REWARD_ITEM, MONEY_ICON, REWARD_ACTIVE_ICON, REWARD_ICON, STAR_LABEL, TASK_COIN } from 'constants/static'
 import Image from 'next/image'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styles from './styles.module.scss'
@@ -29,6 +29,7 @@ import { FormatColorResetRounded } from '@mui/icons-material'
 import QRCode from 'react-qr-code'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import CloseIcon from '@mui/icons-material/Close';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 const cx = classname.bind(styles)
 
@@ -284,10 +285,17 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
     <Box className={styles.mobileCarnivalRewardItem}>
       <Box className={styles.itemLabel}>{index.toString().padStart(2, '0')}</Box>
       <Typography className={styles.spendTime}>Completed in {taskSpendTime}</Typography>
-      <Typography>{reward}</Typography>
-
+      <Typography className={styles.taskDesc}>
+        <Box className={styles.iconBox}>
+          <Image src={STAR_LABEL} layout="fill" />
+        </Box>
+        {reward}
+      </Typography>
       <Box className={styles.taskReward}>
-        <img src={COIN_ICON} />
+        {/* <img src={COIN_ICON} /> */}
+        <Box className={styles.iconBox}>
+          <Image src={TASK_COIN} layout="fill" />
+        </Box>
         {taskInfo?.reward}
       </Box>
 
@@ -341,10 +349,26 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       carnivalRewardItemLess: !showTaskMore
     })}>
       <Box className={styles.itemLabel}>{index.toString().padStart(2, '0')}</Box>
-      <Typography className={styles.spendTime}>Complete task {index.toString().padStart(2, '0')}, it takes about {taskSpendTime}</Typography>
+      <Typography className={styles.spendTime}>
+        <AccessTimeIcon /> &nbsp;
+        Complete task {index.toString().padStart(2, '0')}, it takes about {taskSpendTime}
+      </Typography>
 
       <Box className={styles.rewardBox}>
-        <Typography>{reward}</Typography>
+        <Box className={styles.leftText}>
+          <Typography className={styles.taskDesc}>
+            <Box className={styles.iconBox}>
+              <Image src={STAR_LABEL} layout="fill" />
+            </Box>
+            {reward}
+          </Typography>
+          <Typography className={styles.taskRewardDesc}>
+            <Box className={styles.iconBox}>
+              <Image src={TASK_COIN} layout="fill" />
+            </Box>
+            {taskInfo?.reward}
+          </Typography>
+        </Box>
         {
           Reward_Games.includes(gameId) ?
             <Box className={cx({
@@ -360,6 +384,8 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
             </Box>
         }
       </Box>
+
+      <Box className={styles.taskDivider}></Box>
 
       <Box className={styles.stepList}>
         {
