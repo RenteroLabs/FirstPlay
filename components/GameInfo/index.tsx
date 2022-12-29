@@ -34,9 +34,9 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
         <Box className={styles.mobileBox}>
           <Box className={styles.mobileHeader}>
             <Box className={styles.imageCover}>
-              {gameInfo.image &&
+              {gameInfo.logo &&
                 <Image
-                  src={gameInfo.image}
+                  src={gameInfo.logo}
                   layout='fill'
                   // loader={({ src }) => src}
                   loader={({ src }) => `${src}?timestamp=${timestamp}`}
@@ -95,7 +95,7 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
               <Box className={styles.showMoreBtn} component="span" onClick={() => setShowMoreDesc(!showMoreDesc)}>
                 {
                   showMoreDesc &&
-                  <> &nbsp;&nbsp; less <KeyboardArrowUpIcon sx={{ cursor: 'pointer' }}/></>
+                  <> &nbsp;&nbsp; less <KeyboardArrowUpIcon sx={{ cursor: 'pointer' }} /></>
                 }
               </Box>
             </Typography>
@@ -109,9 +109,9 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
         :
         <>
           <Box className={styles.gameCover}>
-            {gameInfo.image &&
+            {gameInfo.logo &&
               <Image
-                src={gameInfo.image}
+                src={gameInfo.logo}
                 layout='fill'
                 loader={({ src }) => `${src}?timestamp=${timestamp}`}
               />}
