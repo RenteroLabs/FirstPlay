@@ -250,20 +250,28 @@
 }
 
 .stepBtnItem {
+  height: 2.67rem;
   border-radius: 1.5rem;
   border: 0.04rem solid #222222;
+
   font-size: 1.17rem;
   font-family: Inter-Medium, Inter;
   font-weight: 500;
   color: #222222;
   line-height: 1.17rem;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.67rem 1.2rem;
+  padding: 0rem 1.2rem;
   margin: 0.5rem 0.5rem;
   cursor: pointer;
 
+  .iconBox {
+    position: relative;
+    width: 1.67rem;
+    height: 1.67rem;
+  }
   & + .stepBtnItem {
     // margin-left: 1rem;
   }

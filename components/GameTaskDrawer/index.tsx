@@ -85,7 +85,9 @@ const StepButton: React.FC<StepButtonProps> = (props) => {
   const buttonIcon = useMemo(() => {
     switch (perform) {
       case "copy": return <ContentCopyIcon />
-      case "download": return isIos ? <AppleIcon /> : <AndroidIcon />
+      case "download": return isIos ?
+        <Box className={styles.iconBox}><Image src="/IOS_icon.png" layout='fill' /></Box> :
+        <Box className={styles.iconBox}><Image src="/Android.png" layout='fill' /></Box>
       case "visit": return <OpenInNewIcon />
       default: return <OpenInNewIcon />
     }
