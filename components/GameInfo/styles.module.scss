@@ -126,12 +126,12 @@
     justify-content: space-between;
 
     .imageCover {
-      width: 4.67rem;
-      height: 4.67rem;
+      width: 60px;
+      height: 60px;
       position: relative;
       background: #efe5e5;
+      border: 2px solid #ffffff;
       border-radius: 50%;
-      border: 0.25rem solid #ffffff;
       overflow: hidden;
       margin-right: 3vw;
       flex-shrink: 0;
