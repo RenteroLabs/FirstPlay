@@ -199,17 +199,19 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
           {isCarnivalGame && <Box className={styles.rewardMainBox}>
             <Box className={styles.carnivalRewrads}>
               <Box className={styles.cardHeader}>
-                <Typography>Rewards</Typography>
+                <Typography>Task</Typography>
                 <Box className={styles.mediaBox}>
-                  {/* <Box className={styles.rewardIcon}>
-                    <Image src={REWARD_ACTIVE_ICON} layout="fill" />
-                  </Box> */}
-                  {/* {sumBy(carnivalGame?.tasks, 'medal') || 0} Medals */}
                 </Box>
               </Box>
-              <Typography className={styles.rewardDesc}>
-                {carnivalGame?.task_description}
-              </Typography>
+              <Box className={styles.rewardDesc}>
+                <Typography>
+                  {carnivalGame?.task_description &&
+                    carnivalGame?.task_description}
+                </Typography>
+                <Box className={styles.imageBox}>
+                  <img src="/game_reward_ill.png" />
+                </Box>
+              </Box>
               {
                 carnivalGame?.tasks?.map((item: Record<string, any>, index: number) =>
                   <CarnivalRewardItem
@@ -221,11 +223,13 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                     claimLink={item?.form}
                     gameId={router.query?.uuid as string}
                     strategyLink={carnivalGame?.strategy}
+                    taskInfo={item}
+                    timestamp={timestamp as unknown as number}
                   />
                 )
               }
             </Box>
-            <Box className={styles.rewardDrop}>
+            {/* <Box className={styles.rewardDrop}>
               <Typography variant='h4'>{carnivalGame?.gifts?.[0]?.title}</Typography>
               <Box className={styles.dropDesc}>
                 <Typography>
@@ -234,29 +238,14 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                 <Box className={styles.bg}></Box>
                 <Box className={styles.bg_ill}></Box>
               </Box>
-            </Box>
+            </Box> */}
           </Box>}
-          <Box className={styles.gameStrategy}>
-            {isCarnivalGame &&
-              <>
-                <Typography variant='h4'>Description</Typography>
-                <div className={styles.strategyDesc} dangerouslySetInnerHTML={{
-                  __html: carnivalGame?.tutorial
-                }}>
-                </div>
-                <Box className={styles.strategyLink} onClick={linkToStrategy}>
-                  Task Walkthrough
-                </Box>
-              </>}
-            {!isCarnivalGame && <Box className={styles.comingSoonTip}>
-              <CampaignIcon sx={{ mr: '2rem' }} fontSize="large" /> Coming Soon
-            </Box>}
-            <Link href="/carnival">
-              <Box className={styles.carnivalHome}>
-                Event homepage
+          {!isCarnivalGame &&
+            <Box className={styles.gameStrategy}>
+              <Box className={styles.comingSoonTip}>
+                <CampaignIcon sx={{ mr: '2rem' }} fontSize="large" /> Coming Soon
               </Box>
-            </Link>
-          </Box>
+            </Box>}
 
           {/* {
             is700Width ?

@@ -8,11 +8,14 @@
 
   .gameInfoBox {
     max-width: 100rem;
-    margin: 5.83rem auto 5.33rem;
+    // margin: 5.83rem auto 5.33rem;
+    margin: auto;
+    margin-top: -4rem;
+    margin-bottom: 4rem;
   }
 
   .rewardMainBox {
-    background: rgba(#e4405b, 0.08);
+    background: #f4f4f9;
     overflow: hidden;
   }
   .carnivalRewrads {
@@ -21,7 +24,7 @@
     min-height: 10rem;
     // background: rgba(#E4405B, 0.08);
     border-radius: 1rem;
-    padding: 5rem 0 2.5rem;
+    padding: 3.33rem 0 8.33rem;
     .cardHeader {
       display: flex;
       justify-content: space-between;
@@ -32,6 +35,9 @@
         font-weight: bold;
         color: #222222;
         line-height: 2rem;
+        background: linear-gradient(270deg, #f82757 0%, #984cec 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
       .mediaBox {
         display: flex;
@@ -50,15 +56,31 @@
       }
     }
     .rewardDesc {
-      font-size: 1.33rem;
-      font-family: Inter-Regular, Inter;
-      font-weight: 400;
-      color: #222222;
-      line-height: 2rem;
-      margin-top: 0.8rem;
-      margin-bottom: 2.5rem;
-      width: 80%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 1.33rem;
+      margin-bottom: 3.25rem;
       text-align: left;
+      p {
+        width: 80%;
+        font-size: 1.75rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #8e50e4;
+        line-height: 2.33rem;
+      }
+      .imageBox {
+        text-align: center;
+        position: relative;
+        width: 262px;
+        // height: 5.93rem;
+        margin-top: -4rem;
+        img {
+          height: 5.93rem;
+          object-fit: contain;
+        }
+      }
     }
   }
 
@@ -176,7 +198,7 @@
       font-weight: normal;
       color: #222222;
       line-height: 1.75rem;
-      font-style:italic;
+      font-style: italic;
       display: flex;
       align-items: center;
     }
@@ -277,11 +299,14 @@
       }
     }
     .rewardDesc {
-      font-size: 1.33rem;
-      font-family: Inter-Medium, Inter;
-      font-weight: 500;
-      color: #222222;
-      line-height: 1.67rem;
+      p {
+        font-size: 1.33rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 1.67rem;
+      }
+
       margin-top: 1rem;
     }
     .rewardVal {
@@ -524,6 +549,12 @@
 
       .rewardDesc {
         width: 100%;
+        p {
+          width: 100%;
+        }
+        .imageBox {
+          display: none;
+        }
       }
     }
     .rewardDrop {
@@ -584,6 +615,8 @@
 
     .gameInfoBox {
       margin: 2rem auto 0;
+      margin: auto;
+      margin-top: -2.33rem;
     }
     .btnBox {
       margin-top: 4rem;
@@ -621,6 +654,9 @@
           font-weight: bold;
           color: #222222;
           line-height: 2rem;
+          &::after {
+            display: none;
+          }
         }
         .mediaBox {
           font-size: 1.17rem;
@@ -632,11 +668,13 @@
       }
 
       .rewardDesc {
-        font-size: 1.17rem;
-        font-family: Inter-Regular, Inter;
-        font-weight: 400;
-        color: #222222;
-        line-height: 2rem;
+        P {
+          font-size: 1.33rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #8e50e4;
+          line-height: 2rem;
+        }
       }
     }
 
@@ -669,43 +707,15 @@
     .gameStrategy {
       width: 100%;
       padding: 1.67rem 1.33rem;
-      margin-top: 1rem;
-      margin-bottom: 2.42rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
       h4 {
         margin-bottom: 0.83rem;
-      }
-      .strategyDesc {
-        font-size: 1.17rem;
-        font-family: Inter-Regular, Inter;
-        font-weight: 400;
-        color: #222222;
-        line-height: 2rem;
-      }
-      .strategyLink {
-        width: 100%;
-        margin-top: 2.5rem;
-        height: 3.33rem;
-        padding: 1.08rem 0;
-        font-size: 1.17rem;
-        font-family: Inter-SemiBold, Inter;
-        font-weight: 600;
-        line-height: 1.17rem;
       }
 
       .comingSoonTip {
         font-size: 1.33rem;
         margin-top: -2.4rem;
-      }
-      .carnivalHome {
-        width: 100%;
-        max-width: none;
-        margin-top: 1.67rem;
-        padding: 1.08rem 0;
-        font-size: 1.17rem;
-        font-family: Inter-SemiBold, Inter;
-        font-weight: 600;
-        color: #ffffff;
-        line-height: 1.17rem;
       }
     }
     .topCover {
@@ -715,7 +725,7 @@
     .gameInfoBox {
       width: calc(100% - 2.66rem);
       margin: auto;
-      margin-top: -3.33rem;
+      margin-top: -2.33rem;
     }
     .btnBox {
       display: none;

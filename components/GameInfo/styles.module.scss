@@ -1,22 +1,24 @@
 .gameinfoBox {
   display: flex;
+  flex-direction: column;
 
   .gameCover {
-    width: 16.67rem;
-    height: 16.67rem;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    border: 2.5px solid white;
     position: relative;
     margin-right: 2.5rem;
     flex-shrink: 0;
     flex-grow: 0;
 
     background: #efe5e5;
-    border-radius: 1rem;
     overflow: hidden;
   }
 
   .socialList {
     a + a {
-      margin-left: 1.67rem;
+      margin-left: 0.83rem;
     }
   }
 
@@ -26,21 +28,24 @@
     margin: 1.67rem 0 2.5rem;
 
     .tagItem {
-      border-radius: 1.83rem;
-      opacity: 0.5;
-      border: 0.04rem solid #222222;
+      border-radius: 0.33rem;
+      border: 0.08rem solid rgba($color: #222, $alpha: 0.5);
       font-size: 1rem;
       font-family: Inter-Medium, Inter;
       font-weight: 500;
       color: #222222;
-      height: 2rem;
+      line-height: 1rem;
       display: inline-flex;
       align-items: center;
-      padding: 0 1.25rem;
+      padding: 0.33rem 0.75rem;
 
       & + .tagItem {
-        margin-left: 0.83rem;
+        margin-left: 0.67rem;
       }
+    }
+
+    .platformTagItem {
+      @extend .tagItem;
     }
   }
 
@@ -51,17 +56,18 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin: 1.67rem auto;
 
       h3 {
         font-size: 2.5rem;
-        font-family: Inter-Bold, Inter;
-        font-weight: bold;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
         color: #222222;
         line-height: 2.5rem;
       }
       button {
-        width: 3.33rem;
-        height: 3.33rem;
+        width: 2.67rem;
+        height: 2.67rem;
         background-color: rgba($color: #4a99e9, $alpha: 0.1);
       }
     }
@@ -70,23 +76,44 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    .descBox {
+      // flex-grow: 0.9;
+    }
     .gameDesc {
-      font-size: 1.5rem;
-      font-family: Inter-Medium, Inter;
-      font-weight: 500;
+      font-size: 1.33rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
       color: #222222;
-      line-height: 2.5rem;
+      line-height: 2rem;
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+    }
+    .gameDescTwoLine {
+      -webkit-line-clamp: 2;
+    }
+    .showMoreDescBtnPC {
+      font-size: 1.33rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
+      color: #222222;
+      line-height: 1.33rem;
+      display: inline-flex;
+      align-items: center;
+      margin-top: 0.67rem;
+      cursor: pointer;
+      user-select: none;
     }
     .strategyBtn {
       user-select: none;
       flex-shrink: 0;
-      margin-left: 1rem;
+      margin-left: 1.5rem;
       font-size: 1.17rem;
-      font-family: Inter-SemiBold, Inter;
-      font-weight: 600;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
       color: #222222;
       line-height: 1.17rem;
-      padding: 0.92rem 3.75rem;
+      padding: 0.92rem 1.75rem;
       border-radius: 2rem;
       cursor: pointer;
       border: 0.08rem solid rgba($color: #222, $alpha: 0.3);
@@ -95,20 +122,16 @@
 
   .mobileHeader {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     justify-content: space-between;
 
     .imageCover {
-      width: 24vw;
-      height: 24vw;
-      max-width: 12rem;
-      max-height: 12rem;
-      min-width: 8rem;
-      min-height: 8rem;
+      width: 60px;
+      height: 60px;
       position: relative;
       background: #efe5e5;
-      border-radius: 1rem;
-      border: 0.25rem solid #ffffff;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
       overflow: hidden;
       margin-right: 3vw;
       flex-shrink: 0;
@@ -116,55 +139,92 @@
   }
   .mobileBox {
     .gameTitle {
-      margin-top: 2.5rem;
+      margin-top: 1.33rem;
       display: flex;
       flex-direction: column;
       align-self: flex-end;
 
       h3 {
-        font-size: 2rem;
+        height: 1.75rem;
+        font-size: 1.75rem;
         font-family: Inter-Bold, Inter;
         font-weight: bold;
         color: #222222;
-        line-height: 2rem;
+        line-height: 1.75rem;
       }
 
       .tagList {
-        margin: 1rem 0 0 0;
+        margin: 0.83rem 0 0 0;
       }
     }
-    .gameDesc {
-      font-size: 1.33rem;
+    .gameDescBox {
+      display: flex;
+      align-items: center;
+      font-size: 1.17rem;
       font-family: Inter-Regular, Inter;
       font-weight: 400;
       color: #222222;
-      line-height: 2rem;
-      margin: 1.67rem auto;
+      line-height: 1.83rem;
+      margin: 0.83rem 0 1.75rem;
+    }
+    .gameDesc {
+      font-size: 1.17rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
+      color: #222222;
+      line-height: 1.83rem;
       display: -webkit-box;
       overflow: hidden;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 3;
+    }
+    .gameDescTwoLine {
+      width: calc(100% - 2rem);
+      -webkit-line-clamp: 1;
+    }
+    .showMoreBtn {
+      display: inline-block;
+      height: 18px;
+      font-size: 1.17rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
+      color: #222222;
+      line-height: 1.17rem;
+      display: inline-flex;
+      align-items: center;
+      span {
+        height: 18px;
+      }
     }
     .socialList {
+      margin-top: -1rem;
       button {
         width: 3rem;
         height: 3rem;
         background-color: rgba($color: #4a99e9, $alpha: 0.1);
+        width: 2.67rem;
+        height: 2.67rem;
+        background-color: white;
+      }
+      a + a {
+        margin-left: 1rem;
       }
     }
     .strategyBtn {
-      width: 100%;
+      display: block;
+      width: 10.83rem;
+      // float: right;
+      margin: auto 0 auto auto;
       font-size: 1.17rem;
-      font-family: Inter-SemiBold, Inter;
-      font-weight: 600;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
       color: #222222;
       line-height: 1.17rem;
-      padding: 1.08rem 0;
+      padding: 0.75rem 1.83rem;
       cursor: pointer;
-      border-radius: 2rem;
+      border-radius: 1.67rem;
       text-align: center;
       border: 0.08rem solid rgba($color: #222, $alpha: 0.3);
-      margin-bottom: 1.67rem;
+      margin-bottom: 2.5rem;
       user-select: none;
     }
   }
@@ -182,25 +242,27 @@
 //   }
 // }
 
+// @media screen and (max-width: 750px) {
+//   .gameinfoBox {
+//   }
+// }
+
 @media screen and (max-width: 750px) {
   .gameinfoBox {
     flex-direction: column;
-  }
-}
 
-@media screen and (max-width: 600px) {
-  .gameinfoBox {
     .gameCover {
       width: 8rem;
       height: 8rem;
     }
 
     .gameDesc {
-      font-size: 1.33rem;
+      // margin: 0.87rem auto 1.75rem;
+      font-size: 1.17rem;
       font-family: Inter-Regular, Inter;
       font-weight: 400;
       color: #222222;
-      line-height: 2rem;
+      line-height: 1.83rem;
     }
   }
 }

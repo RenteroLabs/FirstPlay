@@ -1,49 +1,213 @@
 .carnivalRewardItem {
-  padding: 0.67rem;
-  background: rgba(#e4405b, 0.1);
+  position: relative;
+  padding: 6.83rem 2.5rem 2.5rem;
+
+  background: #ffffff;
+  // box-shadow: 0rem 0.83rem 1.67rem 0rem rgba(142, 80, 228, 0.2);
+  box-shadow: 0rem 0.83rem 1.67rem 0rem #eaeaf3;
   border-radius: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+
+  // display: flex;
+  // align-items: center;
+  // justify-content: space-between;
+
   & + .carnivalRewardItem {
-    margin-top: 1.33rem;
+    margin-top: 4rem;
   }
-  .rewardIndex {
-    width: 4.67rem;
-    height: 4.67rem;
-    background: #8e50e4;
-    font-size: 2.5rem;
+
+  .itemLabel {
+    position: absolute;
+    z-index: 10;
+    width: 3.33rem;
+    height: 3rem;
+    top: -0.65rem;
+    font-size: 1.75rem;
     font-family: Inter-SemiBold, Inter;
     font-weight: 600;
     color: #ffffff;
-    line-height: 2.5rem;
+    line-height: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 1rem;
-    user-select: none;
-    flex-shrink: 0;
-    position: relative;
+    border-color: transparent;
+    background: linear-gradient(180deg, #984cec 0%, #6effc4 100%);
 
-    &::after {
-      display: inline-block;
+    box-shadow: -0.17rem 0.17rem 0.33rem 0rem rgba(142, 80, 228, 0.3);
+    border-radius: 0rem 1rem 0rem 1rem;
+    &::before {
+      display: block;
       content: '';
       width: 0;
       height: 0;
-      border: 6.72px solid transparent;
-      border-left-color: #8e50e4;
       position: absolute;
-      right: -13px;
+      border: 4px solid transparent;
+      border-right: 4px solid #4d3372;
+      border-bottom: 4px solid #4d3372;
+      left: -8px;
+      top: 0px;
+    }
+  }
+
+  .spendTime {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4rem;
+    background: #8e50e4;
+    border-radius: 1rem 1rem 0rem 0rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 2.75rem;
+    font-size: 1.17rem;
+    font-family: Inter-Medium, Inter;
+    font-weight: 500;
+    color: #ffffff;
+    line-height: 1.17rem;
+  }
+
+  .rewardBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // margin-top: 6.83rem;
+
+    .leftText {
+      .taskDesc {
+        display: flex;
+        align-items: center;
+      }
+      .taskRewardDesc {
+        display: flex;
+        align-items: center;
+        margin-top: 1.08rem;
+      }
+      .iconBox {
+        flex-shrink: 0;
+        position: relative;
+        width: 2.33rem;
+        height: 2.33rem;
+        margin-right: 0.83rem;
+      }
     }
   }
   p {
     flex-grow: 1;
-    font-size: 1.5rem;
-    font-family: Inter-SemiBold, Inter;
-    font-weight: 600;
+    font-size: 1.75rem;
+    font-family: Inter-Medium, Inter;
+    font-weight: 500;
     color: #222222;
-    line-height: 1.5rem;
-    margin-left: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  .taskDivider {
+    margin-top: 2.5rem;
+    border-top: 1px solid rgba(#222, 0.1);
+  }
+
+  .stepList {
+    margin-top: 2.5rem;
+    overflow: hidden;
+    .stepItem {
+      h4 {
+        font-size: 1.33rem;
+        font-family: Inter-Bold, Inter;
+        font-weight: bold;
+        color: rgba(#222222, 0.3);
+        line-height: 1.33rem;
+      }
+
+      .stepContent {
+        margin-top: 1.67rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-grow: 1;
+
+        .descBtnBox {
+          // width: calc(100% - 18rem);
+          flex-grow: 1;
+          .stepDesc {
+            margin-bottom: 1.17rem;
+
+            font-family: Inter-Regular, Inter;
+            font-weight: 400;
+            font-size: 1.33rem;
+            color: #222222;
+            line-height: 2rem;
+            a {
+              text-decoration: underline;
+            }
+            b {
+              font-family: Inter-SemiBold, Inter;
+              font-weight: 600;
+            }
+          }
+          .btnList {
+            margin-left: -0.5rem;
+          }
+        }
+
+        .imageList {
+          width: 24rem;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-end;
+          flex-grow: 0;
+          flex-shrink: 0;
+          .imageItem {
+            width: 6rem;
+            height: 6rem;
+            object-fit: cover;
+            cursor: pointer;
+            margin: 0.5rem 0.88rem;
+          }
+        }
+      }
+
+      & + .stepItem {
+        margin-top: 5rem;
+      }
+    }
+  }
+
+  .showMoreBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-top: 2rem;
+    p {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 10rem;
+      flex-grow: 0;
+      text-align: center;
+      font-size: 1.33rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #8e50e4;
+      line-height: 1.17rem;
+      cursor: pointer;
+    }
+  }
+  .stepDetailMask {
+    &::before {
+      display: block;
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 12.42rem;
+      top: -12.42rem;
+      // top: -8rem;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0) 0%,
+        #ffffff 100%
+      );
+    }
   }
 
   .giftBtn {
@@ -75,31 +239,26 @@
     flex-shrink: 0;
     width: 10rem;
     text-align: center;
-    margin-right: 3rem;
+    margin-right: 0.83rem;
     margin-left: 1.5rem;
-    background: rgba(255, 255, 255, 0);
+    background: rgba(142, 80, 228, 0.1);
     border-radius: 1.67rem;
-    border: 1px solid #ba449a;
+    filter: blur(0px);
     user-select: none;
-    padding: 0.92rem;
+    padding: 1rem;
 
     font-size: 1.17rem;
     font-family: Inter-SemiBold, Inter;
     font-weight: 600;
-    color: #ffffff;
-    line-height: 1.17rem;
-    background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #8e50e4;
+    line-height: 1.33rem;
     cursor: pointer;
 
     &:hover {
-      background: linear-gradient(270deg, #f82757 0%, #984cec 100%);
-      border-color: transparent;
-      border: none;
-      -webkit-text-fill-color: white;
+      box-shadow: 0.2rem 0.4rem 0.4rem 0rem rgba(142, 80, 228, 0.2);
     }
   }
+
   .claimedBtn {
     cursor: default;
     // background: linear-gradient(270deg, #f82757 0%, #984cec 100%);
@@ -134,21 +293,25 @@
   }
 }
 
+.carnivalRewardItemLess {
+  // height: 25rem;
+  .stepList {
+    height: 10rem;
+  }
+}
+
 .mobileCarnivalRewardItem {
   position: relative;
   padding: 1.67rem 1.33rem;
   background-color: white;
-  box-shadow: 0rem 0.83rem 1.67rem 0rem rgba(255, 61, 90, 0.2);
+  box-shadow: 0rem 0.83rem 1.67rem 0rem rgba(142, 80, 228, 0.2);
   border-radius: 0.67rem;
-  border-top: 0.83rem solid rgba(#ff3d5a, 0.3);
+  border-top: 0.83rem solid white;
 
   .itemLabel {
     position: absolute;
     width: 3.33rem;
     height: 3rem;
-    background: #3c3c3c;
-    box-shadow: -0.17rem 0.17rem 0.33rem 0rem #222222;
-    border-radius: 0rem 1rem 0rem 1rem;
     top: -1.5rem;
     font-size: 1.75rem;
     font-family: Inter-SemiBold, Inter;
@@ -159,6 +322,9 @@
     align-items: center;
     justify-content: center;
     border-color: transparent;
+    background: linear-gradient(180deg, #6effc4 0%, #984cec 100%);
+    box-shadow: -0.17rem 0.17rem 0.33rem 0rem rgba(142, 80, 228, 0.3);
+    border-radius: 0rem 1rem 0rem 1rem;
     &::before {
       display: block;
       content: '';
@@ -166,51 +332,107 @@
       height: 0;
       position: absolute;
       border: 4px solid transparent;
-      border-right: 4px solid #3c3c3c;
-      border-bottom: 4px solid #3c3c3c;
+      border-right: 4px solid #4d3372;
+      border-bottom: 4px solid #4d3372;
       left: -8px;
       top: 0px;
     }
   }
-  p {
-    font-size: 1.5rem;
-    font-family: Inter-SemiBold, Inter;
-    font-weight: 600;
+  .spendTime {
+    text-align: right;
+    font-size: 1rem;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: rgba(#222, 0.5);
+    line-height: 1rem;
+    // margin: 1.67rem auto 0.83rem;
+    margin-top: -1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .taskReward {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1.33rem;
+    font-family: Inter-Medium, Inter;
+    font-weight: 500;
     color: #222222;
-    line-height: 2.33rem;
+    line-height: 1.67rem;
+    margin-top: 1.25rem;
+    margin-bottom: 2.5rem;
+    .iconBox {
+      position: relative;
+      width: 2rem;
+      height: 2rem;
+      margin-right: 0.42rem;
+    }
+  }
+  .taskDesc {
+    display: flex;
+    align-items: center;
+    font-size: 1.33rem;
+    font-family: Inter-Medium, Inter;
+    font-weight: 500;
+    color: #222222;
+    line-height: 1.67rem;
+    .iconBox {
+      position: relative;
+      width: 2rem;
+      height: 2rem;
+      margin-right: 0.42rem;
+    }
+  }
+
+  p {
+    // font-size: 1.33rem;
+    // font-family: Inter-Medium, Inter;
+    // font-weight: 500;
+    // color: #222222;
+    // line-height: 2rem;
   }
   .actionArea {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 1.17rem;
+    // margin-top: 2.5rem;
+
+    .startBtn {
+      width: calc(100% - 11rem);
+      display: inline-block;
+      height: 3.33rem;
+      background: #8e50e4;
+      text-align: center;
+      border-radius: 1.67rem;
+      filter: blur(0px);
+      font-size: 1.17rem;
+      font-family: PingFangSC-Medium, PingFang SC;
+      font-weight: 500;
+      color: #ffffff;
+      line-height: 3.33rem;
+      padding: 0 5rem;
+      cursor: pointer;
+    }
 
     .claimBtn {
-      flex-shrink: 0;
-      width: 8rem;
+      // flex-shrink: 0;
+      width: 10rem;
       text-align: center;
-      margin-right: 0.5rem;
-      background: rgba(255, 255, 255, 0);
+
       border-radius: 1.67rem;
-      border: 1px solid #ba449a;
       user-select: none;
-      padding: 0.92rem;
 
+      height: 3.33rem;
+      background: rgba(#8e50e4, 0.1);
+      border-radius: 1.67rem;
+      filter: blur(0px);
       font-size: 1.17rem;
-      font-family: Inter-SemiBold, Inter;
-      font-weight: 600;
-      color: #ffffff;
-      line-height: 1.17rem;
-      background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      cursor: pointer;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #8e50e4;
+      line-height: 3.33rem;
 
-      &:hover {
-        background: linear-gradient(270deg, #f82757 0%, #984cec 100%);
-        border-color: transparent;
-        -webkit-text-fill-color: white;
-      }
+      cursor: pointer;
     }
     .claimedBtn {
       cursor: default;
@@ -271,5 +493,49 @@
 
   & + .mobileCarnivalRewardItem {
     margin-top: 2.33rem;
+  }
+}
+
+.stepBtnItem {
+  height: 2.67rem;
+  border-radius: 1.5rem;
+  border: 0.04rem solid #222222;
+  font-size: 1.17rem;
+  font-family: Inter-Medium, Inter;
+  font-weight: 500;
+  color: #222222;
+  line-height: 1.17rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.67rem 1.42rem;
+  cursor: pointer;
+  user-select: none;
+  margin: 0.5rem;
+  svg {
+    width: 1.33rem;
+    height: 1.33rem;
+  }
+
+  .iconBox {
+    position: relative;
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .mobileCarnivalRewardItem {
+    .actionArea {
+      .startBtn {
+        width: calc(65% - 1rem);
+        padding: 0;
+      }
+      .claimBtn {
+        width: 35%;
+        min-width: 7rem;
+        padding: 0;
+      }
+    }
   }
 }

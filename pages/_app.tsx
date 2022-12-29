@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import "../styles/rc-image.scss"
 import type { AppInitialProps, AppProps } from 'next/app'
 import Layout from '@/components/Layout'
 import { SUPPORT_CHAINS } from 'constants/index'

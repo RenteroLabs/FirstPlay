@@ -6,6 +6,7 @@
 .gameInfoBox {
   max-width: 83.33rem;
   margin: 5.83rem auto;
+  margin-top: -4rem;
 }
 
 .contentBox {
@@ -74,14 +75,19 @@
     width: calc(100% - 5rem);
   }
 }
-
+@media screen and (max-width: 750px){
+  .gameInfoBox {
+    margin: auto;
+    margin-top: -2.33rem;
+  }
+}
 @media screen and (max-width: 600px) {
   .topCover {
     height: 15rem;
   }
   .gameInfoBox {
     width: calc(100% - 2.66rem);
-    margin: 1rem 1.33rem 1.5rem !important;
+    // margin: 1rem 1.33rem 1.5rem !important;
   }
   .contentBox {
     width: calc(100% - 2.66rem);
@@ -97,6 +103,6 @@
 @media screen and (max-width: 600px) {
   .gameInfoBox {
     width: calc(100% - 2.66rem);
-    margin: 1rem 1.33rem 1.5rem !important;
+    // margin: 1rem 1.33rem 1.5rem !important;
   }
 }
