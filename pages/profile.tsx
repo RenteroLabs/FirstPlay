@@ -212,7 +212,7 @@ const Profile: NextPageWithLayout = () => {
             <Link href="/" target="__blank">
               <Box className={styles.trialGameBtn}>Trial Games</Box>
             </Link>
-            <Typography>No trialing gmaes yet</Typography>
+            <Typography>No trialing games yet</Typography>
           </Box>
         }
         {
