@@ -16,17 +16,17 @@ const GameCard: React.FC<GameCardProps> = (props) => {
   console.log(gameInfo)
   const router = useRouter()
 
-  const imageKitLoader = ({ src, width, quality = 100 }: any) => {
-    const params = [`w-320`];
-    if (quality) {
-      params.push(`q-${quality}`);
-    }
-    const paramsString = params.join(",");
-    var urlEndpoint = "https://ik.imagekit.io/jnznr24q9";
-    const imagePaths = src.split('/')
-    const imageHash = imagePaths[imagePaths.length - 1]
-    return `${urlEndpoint}/${imageHash}?tr=${paramsString}`
-  }
+  // const imageKitLoader = ({ src, width, quality = 100 }: any) => {
+  //   const params = [`w-320`];
+  //   if (quality) {
+  //     params.push(`q-${quality}`);
+  //   }
+  //   const paramsString = params.join(",");
+  //   var urlEndpoint = "https://ik.imagekit.io/jnznr24q9";
+  //   const imagePaths = src.split('/')
+  //   const imageHash = imagePaths[imagePaths.length - 1]
+  //   return `${urlEndpoint}/${imageHash}?tr=${paramsString}`
+  // }
 
   // TODO: prefetch 预先请求页面
   // const linkToGameDetail = () => {
@@ -70,23 +70,16 @@ const GameCard: React.FC<GameCardProps> = (props) => {
                 <Typography key={index} component="span" className={styles.gameTag}>{item}</Typography>)
             }
           </Box>
-          <Box className={styles.gameRewards}>
+          {/* <Box className={styles.gameRewards}>
             <Box className={styles.rewardIcon}>
               <Image src={REWARD_ICON} layout="fill" />
             </Box>
             <Typography>Rewards: {gameInfo?.rewards || '-'}</Typography>
-          </Box>
+          </Box> */}
         </Stack>
       </CardContent>
-      {/* <Box className={styles.gameHot}>
-      <Box>
-        <Image src={HOT_GAME_ICON} layout="fill" />
-      </Box>
-      {gameInfo?.view}
-    </Box> */}
-      <Box className={styles.topMask}>
-
-      </Box>
+ 
+      <Box className={styles.topMask}> </Box>
     </Card>
   </Link>
 }

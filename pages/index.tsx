@@ -15,12 +15,15 @@ import Layout from "@/components/Layout";
 import { NextPageWithLayout } from "./_app";
 import { reverse } from 'lodash'
 import Head from "next/head";
+import JoinCommunity from "@/components/PageHome/JoinCommunity";
+import RewardGames from "@/components/PageHome/RewardGames";
 
 const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   const { hotGames, strategys, comingGames, timestamp } = props
 
   const isMiddleSize = useMediaQuery("(max-width: 900px)")
   const isMobileSize = useMediaQuery("(max-width: 450px)")
+  const is600Size = useMediaQuery("(max-width: 600px)")
   const t = useTranslations('Index.Contact')
 
   const coverSize = useMemo(() => {
@@ -42,6 +45,8 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
     </Box>
     {/* <GudeStep /> */}
     {/* <TrialGame /> */}
+    <RewardGames timestamp={timestamp} rewardGames={hotGames} />
+    {!isMiddleSize && <JoinCommunity />}
 
     <Box className={styles.mainBox}>
       <HotGames hotGames={hotGames} timestamp={timestamp} />
