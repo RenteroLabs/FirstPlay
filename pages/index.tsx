@@ -43,7 +43,7 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
       {coverSize === 900 && <Image priority src={`/headerCover900.jpg`} layout="fill" objectFit="cover" />}
       {coverSize === 375 && <Image priority src={`/headerCover375.jpg`} layout="fill" objectFit="cover" />}
     </Box>
-    {/* <GudeStep /> */}
+    <GudeStep />
     {/* <TrialGame /> */}
     <RewardGames timestamp={timestamp} rewardGames={hotGames} />
     {!isMiddleSize && <JoinCommunity />}

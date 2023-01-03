@@ -13,6 +13,20 @@
     img {
       object-fit: cover;
     }
+
+    .cardTag {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: linear-gradient(180deg, #fad961 0%, #f76b1c 100%);
+      border-radius: 0.67rem 0rem 1.67rem 0rem;
+      font-size: 1.17rem;
+      font-family: Inter-Bold, Inter;
+      font-weight: bold;
+      color: #ffffff;
+      line-height: 1.17rem;
+      padding: 0.67rem 1.17rem 0.83rem 1rem;
+    }
   }
 
   .gameContent {
@@ -68,6 +82,52 @@
         margin-right: 0.67rem;
         img {
           object-fit: contain;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .gameCard {
+    .gameContent {
+      padding: 1rem 1rem 1.33rem;
+
+      .cardTitle {
+        p {
+          font-size: 1.5rem;
+          font-family: Inter-Bold, Inter;
+          font-weight: bold;
+          color: #222222;
+          line-height: 1.5rem;
+        }
+
+        .tagList {
+          .tagItem {
+            padding: 0.25rem 0.58rem;
+            font-size: 0.83rem;
+            font-family: Inter-Medium, Inter;
+            font-weight: 500;
+            color: #222222;
+            line-height: 0.83rem;
+
+            & + .tagItem {
+              margin-left: 0.33rem;
+            }
+          }
+        }
+      }
+
+      .rewardItem {
+        font-size: 1.17rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #8e50e4;
+        line-height: 1.5rem;
+        margin-top: 1rem;
+
+        .iconBox {
+          display: none;
         }
       }
     }

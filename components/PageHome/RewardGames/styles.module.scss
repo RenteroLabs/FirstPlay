@@ -68,15 +68,9 @@
       padding-top: 5rem;
 
       .cardList {
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .rewardGames {
-    .rewardGamesBox {
-      .cardList {
+        & > div {
+          width: calc((100% - 2.08rem) / 2);
+        }
       }
     }
   }
@@ -84,6 +78,8 @@
 
 @media screen and (max-width: 600px) {
   .rewardGames {
+    padding-bottom: 0;
+    
     .rewardGamesBox {
       width: calc(100% - 2.66rem);
       padding-top: 2.5rem;

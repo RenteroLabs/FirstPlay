@@ -8,6 +8,7 @@ interface RewardGameCardProps {
   timestamp: number
 }
 
+// 有奖励活动的游戏卡片
 const RewardGameCard: React.FC<RewardGameCardProps> = (props) => {
   const { gameInfo, timestamp } = props
 
@@ -21,6 +22,8 @@ const RewardGameCard: React.FC<RewardGameCardProps> = (props) => {
           objectFit="cover"
           loader={({ src }) => `${src}?timestamp=${timestamp}`}
         />
+        <Box className={styles.cardTag}>Popular</Box>
+
       </Box>
       <CardContent className={styles.gameContent}>
         <Box className={styles.cardTitle}>
@@ -38,6 +41,7 @@ const RewardGameCard: React.FC<RewardGameCardProps> = (props) => {
           Reward: {gameInfo?.rewards}
         </Box>
       </CardContent>
+
     </Card>
   </Link>
 }
