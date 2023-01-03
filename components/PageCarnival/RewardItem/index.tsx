@@ -211,7 +211,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
   const isMobileSize = useMediaQuery("(max-width:600px)")
   const isMounted = useIsMounted()
 
-  // console.log(taskInfo)
+  console.log(taskInfo)
 
   const [showGiftModal, setShowGiftModal] = useState<boolean>(false)
   const [showTaskModal, setShowTaskModal] = useState<boolean>(false)
@@ -308,7 +308,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           >Start</Box>
         }
         {
-          Reward_Games.includes(gameId) ?
+          taskInfo?.form && (Reward_Games.includes(gameId) ?
             <Box className={cx({
               claimBtn: true,
               claimedBtn: isClaimed
@@ -320,7 +320,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
             :
             <Box className={cx({ claimBtn: true, claimedBtn: true })} >
               Ended
-            </Box>
+            </Box>)
         }
       </Box>
 
@@ -370,7 +370,8 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           </Typography>
         </Box>
         {
-          Reward_Games.includes(gameId) ?
+          // 无表单链接不显示 Verify 按钮
+          taskInfo?.form && (Reward_Games.includes(gameId) ?
             <Box className={cx({
               claimBtn: true,
               claimedBtn: isClaimed
@@ -381,7 +382,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
             </Box> :
             <Box className={cx({ claimBtn: true, claimedBtn: true })} >
               Ended
-            </Box>
+            </Box>)
         }
       </Box>
 
