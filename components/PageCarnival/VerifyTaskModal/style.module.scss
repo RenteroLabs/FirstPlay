@@ -3,6 +3,14 @@
   padding: 2.5rem 3.33rem;
   background-color: white;
   border-radius: 1.33rem;
+  position: relative;
+  z-index: 100000;
+
+  :global {
+    .MuiDialog-root {
+      z-index: 1700 !important;
+    }
+  }
 
   .modalHeader {
     display: flex;

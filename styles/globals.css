@@ -35,3 +35,7 @@ a {
   background-color: transparent;
   overflow: hidden;
 }
+
+.MuiDialog-root {
+  z-index: 1700 !important;
+}

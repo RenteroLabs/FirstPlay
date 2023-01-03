@@ -234,7 +234,7 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
         >
           Next <KeyboardArrowRightIcon />
         </Box> :
-          <Box
+          taskInfo?.form && <Box
             className={styles.verifyBtn}
             onClick={() => setShowTaskModal(true)}
           >
