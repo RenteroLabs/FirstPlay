@@ -30,6 +30,9 @@ import QRCode from 'react-qr-code'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import CloseIcon from '@mui/icons-material/Close';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import { useAccount } from 'wagmi'
+import ConnectWallet from '@/components/ConnectWallet'
+import { startGameTask } from 'services/home'
 
 const cx = classname.bind(styles)
 
@@ -211,7 +214,9 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
   const isMobileSize = useMediaQuery("(max-width:600px)")
   const isMounted = useIsMounted()
 
+  const { address } = useAccount()
   console.log(taskInfo)
+  const [showConnectWallet, setShowConnectWallet] = useState<boolean>(false)
 
   const [showGiftModal, setShowGiftModal] = useState<boolean>(false)
   const [showTaskModal, setShowTaskModal] = useState<boolean>(false)
@@ -265,7 +270,6 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
 
   // 首先判断本地存不存在有效 giftcode
   useEffect(() => {
-    console.log(localGiftCode, recordTime)
     if (localGiftCode && recordTime) {
       if (new Date().getTime() - Number(recordTime) < (86400 * 1000)) {
         setGiftCode(localGiftCode as string)
@@ -279,6 +283,21 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       getGiftCode({ game_id: gameId })
     }
     setShowGiftModal(true)
+  }
+
+  const handleStartGameTask = async () => {
+    // check connect wallet
+    if (!address) {
+      setShowConnectWallet(true)
+      return
+    }
+    // send reqeust
+    startGameTask({
+      task_id: taskInfo?.task_id,
+      address: address
+    })
+    // open drawer
+    setShowTaskDrawer(true)
   }
 
   return isMounted && isMobileSize ?
@@ -304,7 +323,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           Reward_Games.includes(gameId) &&
           <Box
             className={styles.startBtn}
-            onClick={() => setShowTaskDrawer(true)}
+            onClick={() => handleStartGameTask()}
           >Start</Box>
         }
         {
@@ -342,6 +361,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
         setShowTaskModal={setShowTaskModal}
         timestamp={timestamp}
       />
+      <ConnectWallet showConnect={showConnectWallet} setShowConnect={setShowConnectWallet} />
     </Box>
     :
     <Box className={cx({

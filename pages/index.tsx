@@ -17,9 +17,14 @@ import { reverse } from 'lodash'
 import Head from "next/head";
 import JoinCommunity from "@/components/PageHome/JoinCommunity";
 import RewardGames from "@/components/PageHome/RewardGames";
+import { useAccount } from "wagmi";
+import { useIsMounted } from "hooks/useIsMounted";
 
 const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   const { hotGames, strategys, comingGames, timestamp } = props
+
+  const { address } = useAccount()
+  const isMounted = useIsMounted()
 
   const isMiddleSize = useMediaQuery("(max-width: 900px)")
   const isMobileSize = useMediaQuery("(max-width: 450px)")
@@ -43,8 +48,11 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
       {coverSize === 900 && <Image priority src={`/headerCover900.jpg`} layout="fill" objectFit="cover" />}
       {coverSize === 375 && <Image priority src={`/headerCover375.jpg`} layout="fill" objectFit="cover" />}
     </Box>
-    <GudeStep />
-    {/* <TrialGame /> */}
+    {
+      isMounted && (address ?
+        <TrialGame /> :
+        <GudeStep />)
+    }
     <RewardGames timestamp={timestamp} rewardGames={hotGames} />
     {!isMiddleSize && <JoinCommunity />}
 

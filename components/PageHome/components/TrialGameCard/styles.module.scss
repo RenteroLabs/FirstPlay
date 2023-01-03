@@ -1,7 +1,9 @@
 .trialGameCard {
-  background: #f4f4f4;
+  background: #ffffff;
   border-radius: 1rem;
-  padding: 1.67rem;
+  border: 0.16rem solid rgba($color: #222, $alpha: 0.1);
+  // padding: 1.67rem;
+  padding: 2.5rem 1.67rem;
 
   display: flex;
   justify-content: space-between;
@@ -9,10 +11,10 @@
   .gameCover {
     flex-shrink: 0;
     position: relative;
-    width: 10.33rem;
-    height: 10.33rem;
+    width: 8rem;
+    height: 8rem;
     img {
-      border-radius: 1rem;
+      border-radius: 50% !important;
     }
   }
 
@@ -20,39 +22,65 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    margin: 0 2.5rem;
+    margin: 0 1.67rem;
 
     h3 {
-      font-size: 2rem;
+      font-size: 1.75rem;
       font-family: Inter-SemiBold, Inter;
       font-weight: 600;
       color: #222222;
-      line-height: 2rem;
-      margin-top: 0.83rem;
+      line-height: 1.75rem;
+      margin-top: 0.58rem;
+    }
+
+    .gameTask {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: rgba($color: #222, $alpha: 0.5);
+      line-height: 1.17rem;
+
+      margin-top: 0.33rem;
+
+      .playBtn {
+        height: 2.67rem;
+        display: inline-flex;
+        align-items: center;
+        background: #8e50e4;
+        border-radius: 1.83rem;
+
+        font-size: 1.17rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #ffffff;
+        line-height: 1.17rem;
+        padding: 0 1.33rem;
+
+        cursor: pointer;
+        user-select: none;
+      }
     }
     .gameReward {
-      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+
+      font-size: 1.17rem;
       font-family: Inter-Medium, Inter;
       font-weight: 500;
       color: #8e50e4;
-      line-height: 1.5rem;
-      margin-top: 2.42rem;
-      margin-bottom: 1.58rem;
-    }
-    .timeleft {
-      font-size: 1.33rem;
-      font-family: Inter-Medium, Inter;
-      font-weight: 500;
-      color: #222222;
-      line-height: 1.33rem;
-      display: flex;
-      align-items: center;
-      div {
+      line-height: 1.17rem;
+
+      margin-top: 0.75rem;
+
+      .iconBox {
         position: relative;
-        width: 1.5rem;
-        height: 1.5rem;
-        margin-right: 0.67rem;
-        user-select: none;
+        width: 1.17rem;
+        height: 1.42rem;
+        margin-right: 0.5rem;
       }
     }
   }
@@ -63,123 +91,53 @@
     flex-shrink: 0;
     flex-grow: 0;
     align-items: center;
-    .guideBtn {
-      font-size: 1.33rem;
-      font-family: Inter-SemiBold, Inter;
-      font-weight: 600;
-      color: #222222;
-      line-height: 1.33rem;
-
-      border-radius: 1.83rem;
-      border: 0.08rem solid rgba(34, 34, 34, 0.2);
-      padding: 1.17rem 3rem;
-      cursor: pointer;
-    }
-    .playBtn {
-      font-size: 1.33rem;
-      font-family: Inter-SemiBold, Inter;
-      font-weight: 600;
-      color: #ffffff;
-      line-height: 1.33rem;
-
-      padding: 1.17rem 3.33rem;
-      background: linear-gradient(270deg, #f82757 0%, #984cec 100%);
-      border-radius: 1.83rem;
-      margin-left: 1.67rem;
-      cursor: pointer;
-    }
   }
 }
 
 .mobileTrialGameCard {
-  background: rgba($color: #222222, $alpha: 0.05);
-  border-radius: 1rem;
-  padding: 1.33rem;
+  background: rgba($color: #8e50e4, $alpha: 0.08);
+  border-radius: 0.67rem;
+  padding: 1rem 1rem 1.33rem;
 
-  .timeleft {
-    font-size: 1.33rem;
-    font-family: Inter-Medium, Inter;
-    font-weight: 500;
-    color: #222222;
-    line-height: 1.33rem;
+  .cardHeader {
     display: flex;
     align-items: center;
-    padding-bottom: 1.42rem;
-    border-bottom: 0.16rem solid rgba($color: #222, $alpha: 0.1);
-
-    div {
-      position: relative;
-      width: 1.5rem;
-      height: 1.5rem;
-      margin-right: 0.5rem;
-      user-select: none;
-    }
-  }
-
-  .gameInfo {
-    display: flex;
-    margin: 1.33rem auto;
-    .gameCover {
-      width: 6.67rem;
-      height: 6.67rem;
-      position: relative;
-      background: #d2d2d2;
-      border-radius: 0.67rem;
-      overflow: hidden;
-      flex-shrink: 0;
-      margin-right: 1rem;
-    }
-    .infoDetail {
-      h3 {
-        font-size: 1.5rem;
-        font-family: Inter-SemiBold, Inter;
-        font-weight: 600;
-        color: #222222;
-        line-height: 1.5rem;
-        margin: 0.42rem auto 1rem;
-      }
-      .gameReward {
-        font-size: 1.17rem;
-        font-family: Inter-Medium, Inter;
-        font-weight: 500;
-        color: #8e50e4;
-        line-height: 1.67rem;
-      }
-    }
-  }
-
-  .btnList {
-    display: flex;
-    justify-content: center;
-    flex-shrink: 0;
-    flex-grow: 0;
-    align-items: center;
-    .guideBtn {
-      font-size: 1.17rem;
-      font-family: Inter-SemiBold, Inter;
-      font-weight: 600;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    border-bottom: 1px dotted rgba($color: #222, $alpha: 0.2);
+    h3 {
+      font-size: 1.5rem;
+      font-family: Inter-Bold, Inter;
+      font-weight: bold;
       color: #222222;
-      line-height: 1.33rem;
-
-      border-radius: 1.83rem;
-      border: 0.08rem solid rgba(34, 34, 34, 0.2);
-      padding: 1rem 2.25rem;
-      cursor: pointer;
-
-      white-space: nowrap;
+      line-height: 1.5rem;
     }
-    .playBtn {
-      font-size: 1.33rem;
-      font-family: Inter-SemiBold, Inter;
-      font-weight: 600;
-      color: #ffffff;
-      line-height: 1.33rem;
 
-      padding: 1.17rem 3.33rem;
-      background: linear-gradient(270deg, #f82757 0%, #984cec 100%);
-      border-radius: 1.83rem;
-      margin-left: 1.42rem;
-      cursor: pointer;
+    .gameCover {
+      position: relative;
+      width: 6rem;
+      height: 6rem;
+      flex-shrink: 0;
+      img {
+        border-radius: 50%;
+      }
+    }
+  }
+  .gameInfo {
+    .gameTask {
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: rgba($color: #222, $alpha: 0.5);
+      line-height: 1.17rem;
+      margin: 0.92rem auto 0.5rem;
+    }
+    .gameReward {
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #8e50e4;
+      line-height: 1.67rem;
     }
   }
 }

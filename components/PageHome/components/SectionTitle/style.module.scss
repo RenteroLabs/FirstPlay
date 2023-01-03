@@ -2,10 +2,11 @@
   display: flex;
   justify-content: flex-start;
   .emphasize {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-family: Montserrat-Black, Montserrat;
     font-weight: 900;
     color: #222222;
+    line-height: 2.5rem;
     // line-height: 3rem;
     // background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
     // -webkit-background-clip: text;
@@ -14,10 +15,12 @@
   }
 
   .normal {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-family: Montserrat-Black, Montserrat;
     font-weight: 900;
     color: #222222;
+    line-height: 2.5rem;
+
     // line-height: 3rem;
     white-space: nowrap;
   }
@@ -28,7 +31,6 @@
     .emphasize,
     .normal {
       font-size: 2.5rem;
-      // line-height: 2.5rem;
     }
   }
 }
@@ -37,8 +39,11 @@
   .sectionTitleBox {
     .emphasize,
     .normal {
-      font-size: 2rem;
-      // line-height: 2rem;
+      font-size: 1.75rem;
+      font-family: Montserrat-Black, Montserrat;
+      font-weight: 900;
+      color: #222222;
+      line-height: 1.75rem;
     }
   }
 }
