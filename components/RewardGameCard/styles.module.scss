@@ -1,6 +1,6 @@
 .gameCard {
   background: #ffffff;
-  border-radius: 1rem;
+  border-radius: 1rem !important;
   filter: blur(0px);
   cursor: pointer;
 
@@ -90,6 +90,7 @@
 
 @media screen and (max-width: 600px) {
   .gameCard {
+    border-radius: 0.67rem !important;
     .gameContent {
       padding: 1rem 1rem 1.33rem;
 

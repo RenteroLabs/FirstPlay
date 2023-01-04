@@ -3,13 +3,14 @@
     height: 100%;
     width: 78.2%;
     margin: auto;
-    padding-top: 6.75rem;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
 
     .cardList {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      margin-top: 3.33rem;
+      margin-top: 2.5rem;
 
       & > div {
         width: calc((100% - 8.32rem) / 5);
@@ -45,7 +46,7 @@
   .hotGames {
     .hotGamesBox {
       width: 83.3%;
-      padding-top: 6.67rem;
+      // padding-top: 6.67rem;
       .cardList {
         // max-height: calc((83vw - 6rem) / 2 + 300px);
         max-height: calc((83vw - 6rem) / 2 + 238px);
@@ -107,6 +108,7 @@
     .hotGamesBox {
       width: calc(100% - 2.66rem);
       padding-top: 2.5rem;
+      padding-bottom: 1.17rem;
 
       .cardList {
         margin-top: 1.67rem;

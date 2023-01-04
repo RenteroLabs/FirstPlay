@@ -21,7 +21,7 @@ import { useAccount } from "wagmi";
 import { useIsMounted } from "hooks/useIsMounted";
 
 const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-  const { hotGames, strategys, comingGames, timestamp } = props
+  const { hotGames, strategys, comingGames, timestamp , rewardedGames} = props
 
   const { address } = useAccount()
   const isMounted = useIsMounted()
@@ -53,7 +53,7 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
         <TrialGame /> :
         <GudeStep />)
     }
-    <RewardGames timestamp={timestamp} rewardGames={hotGames} />
+    <RewardGames timestamp={timestamp} rewardGames={rewardedGames} />
     {!isMiddleSize && <JoinCommunity />}
 
     <Box className={styles.mainBox}>
@@ -82,7 +82,7 @@ export default FirstPlay
 export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsContext) => {
   // 获取首页数据
   const result = await getAllGames()
-  const { popular_games = [], banners = [], strategies = [], upcoming_games = [] } = result.data || {}
+  const { popular_games = [], banners = [], rewarded_games = [], strategies = [], upcoming_games = [] } = result.data || {}
 
   return {
     props: {
@@ -90,6 +90,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
       hotGames: popular_games,
       comingGames: upcoming_games,
       strategys: strategies,
+      rewardedGames: rewarded_games,
 
       // 获取国际化文案
       messages: (await import(`../i18n/${locale}.json`)).default,

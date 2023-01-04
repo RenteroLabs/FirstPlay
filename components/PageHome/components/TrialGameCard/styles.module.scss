@@ -16,6 +16,13 @@
     img {
       border-radius: 50% !important;
     }
+
+    .imageTag {
+      position: absolute;
+      width: 2.67rem;
+      height: 1.33rem;
+      
+    }
   }
 
   .gameInfo {
@@ -120,6 +127,13 @@
       flex-shrink: 0;
       img {
         border-radius: 50%;
+      }
+
+      .imageTag {
+        width: 2.67rem;
+        height: 1.33rem;
+        position: absolute;
+        left: -0.92rem;
       }
     }
   }

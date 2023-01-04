@@ -3,26 +3,28 @@
   .supportBox {
     width: 78.2%;
     margin: auto;
-    padding-top: 6.75rem;
-    padding-bottom: 6.58rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
 
     .cardList {
       display: flex;
       // flex-wrap: wrap;
       justify-content: space-between;
-      margin-top: 3.33rem;
+      margin-top: 2.5rem;
 
       .brandItem {
         width: calc((100% - 8.32rem) / 5);
         height: 8rem;
 
         border-radius: 1rem;
-        border: 0.08rem solid rgba(#222, 0.2);
+        background: #ffffff;
+
+        // border: 0.08rem solid rgba(#222, 0.2);
+
         & > div {
           position: relative;
           height: 100%;
         }
-
 
         img {
           transform: scale(0.8);
@@ -53,7 +55,6 @@
   .support {
     .supportBox {
       width: 83.3%;
-      padding-top: 6.67rem;
       .cardList {
         .brandItem {
           height: 6.83rem;
@@ -67,10 +68,10 @@
   .support {
     .supportBox {
       width: 89%;
-      padding-top: 5rem;
+      // padding-top: 5rem;
 
       .cardList {
-        margin-top: 2.5rem;
+        // margin-top: 2.5rem;
       }
     }
   }
@@ -80,11 +81,9 @@
   .support {
     .supportBox {
       width: 92.2%;
-      padding-top: 5rem;
-      padding-bottom: 5rem;
 
       .cardList {
-        margin-top: 2.5rem;
+        // margin-top: 2.5rem;
         .brandItem {
           height: 5.33rem;
           border-radius: 0.67rem;
@@ -113,17 +112,18 @@
   .support {
     .supportBox {
       padding-top: 2.5rem;
-      padding-bottom: 2.58rem;
+      padding-bottom: 1.17rem;
 
       .cardList {
         flex-wrap: wrap;
-        justify-content: flex-start;
-        margin-top: 1.75rem;
+        // justify-content: flex-start;
+        justify-content: space-between;
+        margin-top: 1.67rem;
         .brandItem {
           width: calc((100% - 1.66rem) / 2);
           height: 4.33rem;
-          margin: 0 0.27rem 0.83rem;
-          // margin-bottom: 0.83rem;
+          // margin: 0 0.27rem 0.83rem;
+          margin-bottom: 1.33rem;
         }
       }
     }
