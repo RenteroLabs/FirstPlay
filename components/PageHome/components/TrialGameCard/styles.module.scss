@@ -21,7 +21,9 @@
       position: absolute;
       width: 2.67rem;
       height: 1.33rem;
-      
+      img {
+        transform: scale(1.2);
+      }
     }
   }
 
@@ -105,6 +107,7 @@
   background: rgba($color: #8e50e4, $alpha: 0.08);
   border-radius: 0.67rem;
   padding: 1rem 1rem 1.33rem;
+  cursor: pointer;
 
   .cardHeader {
     display: flex;

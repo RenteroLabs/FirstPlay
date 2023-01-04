@@ -31,13 +31,27 @@
     }
     .cardList {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
+      // flex-direction: column;
+
       margin-top: 0.92rem;
 
       & > div {
-        & + div {
-          margin-top: 2rem;
-        }
+        // flex-grow: 0.5;
+        width: calc(50% - 1.04rem) !important;
+      }
+
+      .emptyDesc {
+        font-size: 1.33rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: rgba(#222, 0.3);
+        line-height: 1.33rem;
+      }
+    }
+    .oneCard {
+      & > div {
+        width: 100% !important;
       }
     }
   }
@@ -115,11 +129,18 @@
       }
 
       .cardList {
+        flex-direction: column;
         margin-top: 0.83rem;
         & > div {
+          width: 100% !important;
           & + div {
             margin-top: 1.33rem;
           }
+        }
+
+        .emptyDesc {
+          line-height: 1.5rem;
+          margin-bottom: 1.17rem;
         }
       }
     }

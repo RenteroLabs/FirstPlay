@@ -74,8 +74,8 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
 
 
   const handleTrialBtn = (gameId: string) => {
-    // 试玩游戏，跳转至游戏官网
-    window.open(gameInfo[gameId]?.website, '__blank')
+    // 跳转至游戏详情页
+    window.open(`/game/${gameId}`, '__blank')
   }
 
   return <TableContainer component={Paper} className={styles.tableBox}>
@@ -133,26 +133,26 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
             taskRecordList.map((item, index) =>
               <TableRow key={index}>
                 <TableCell className={styles.tableBodyCell}>
-                  {item.type}
+                  {item?.user_task_status === 'uncompleted' ? 'Start' : "Completed"}
                 </TableCell>
                 <TableCell className={styles.tableBodyCell}>
                   {item?.name}
                 </TableCell>
                 <TableCell className={styles.tableBodyCell}>
-                  {/* {item.packages.nfts.map((nft) => `#${nft.tokenId}`).join(',')} */}
                   {item?.task}
                 </TableCell>
                 <TableCell className={styles.tableBodyCell}>
                   {dateFormat("YYYY-mm-dd HH:MM", new Date(parseInt(item?.time) * 1000))}
                 </TableCell>
                 <TableCell className={styles.tableBodyCell}>
-                  {item?.rewards} 
+                  {item?.rewards}
                 </TableCell>
                 <TableCell className={styles.tableBodyCell} align="center" >
                   {
-                    item.type === 'play' &&
-                    <Box className={styles.cellTrialBtn} onClick={() => handleTrialBtn("")}>
-                      Trial
+                    <Box
+                      className={styles.cellTrialBtn}
+                      onClick={() => handleTrialBtn(item?.game_id)}>
+                      {item?.user_task_status === 'uncompleted' ? 'Continue' : "Detail"}
                     </Box>
                   }
                 </TableCell>
@@ -163,15 +163,15 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
     </Box>
 
     {
-      loading && <Box className={styles.tableLoadingBox}>
-        <CircularProgress />
-      </Box>
+      // loading && <Box className={styles.tableLoadingBox}>
+      //   <CircularProgress />
+      // </Box>
     }
 
     {!loading && (!isEmpty(taskRecordList) ?
       <Box className={styles.paginationBox}>
         {/* TODO: 目前直接展示全部数据，分页只有一页 */}
-        <Pagination count={1} variant="outlined" shape="rounded" className={styles.pagination} />
+        {/* <Pagination count={1} variant="outlined" shape="rounded" className={styles.pagination} /> */}
       </Box> :
       <Box className={styles.empytTipBox}>
         <Typography>No Activity Record Yet!</Typography>

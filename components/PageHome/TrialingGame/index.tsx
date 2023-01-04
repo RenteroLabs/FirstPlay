@@ -9,6 +9,9 @@ import { useIsMounted } from "hooks/useIsMounted"
 import { useEffect, useState } from "react"
 import { useRequest } from "ahooks"
 import { getTrialingTasks } from "services/home"
+import classNames from "classnames/bind"
+
+const cx = classNames.bind(styles)
 
 interface TrialGameProps {
 
@@ -20,7 +23,7 @@ const TrialGame: React.FC<TrialGameProps> = (props) => {
 
   const [trialingTasks, setTrialingTasks] = useState<Record<string, any>[]>([])
 
-  const { run: queryTrialingTask } = useRequest(getTrialingTasks, {
+  const { run: queryTrialingTask, loading } = useRequest(getTrialingTasks, {
     manual: true,
     onSuccess: ({ data }) => {
       console.log(data)
@@ -43,10 +46,17 @@ const TrialGame: React.FC<TrialGameProps> = (props) => {
         </Box>
         {isMounted && address && formatAddress(address, 4)}
       </Box>
-      <Box className={styles.cardList}>
+      <Box className={cx({
+        cardList: true,
+        oneCard: trialingTasks.length === 1
+      })}>
         {
           trialingTasks.map((item, index: number) =>
             <TrialGameCard key={index} trialTask={item} />)
+        }
+        {
+          !loading && trialingTasks.length === 0 &&
+          <Typography className={styles.emptyDesc}>No games currently trialing, start a game you like now!</Typography>
         }
       </Box>
     </Box>

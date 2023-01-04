@@ -9,7 +9,7 @@ import GiftCodeModal from '../GiftCodeModal'
 import { useLocalStorageState, useRequest } from 'ahooks'
 import { queryGameGiftCode } from 'services/carnival'
 import * as ga from '../../../util/ga'
-import { Carnival_Games, GAME_EVENT_NAME, GAME_TASK_MODAL_NAME, Reward_Games } from 'constants/index'
+import { Carnival_Games, GAME_EVENT_NAME, GAME_TASK_MODAL_NAME } from 'constants/index'
 import VerifyTaskModal from '../VerifyTaskModal'
 import GameTaskDrawer from '@/components/GameTaskDrawer'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -124,7 +124,6 @@ const StepButton: React.FC<StepButtonProps> = (props) => {
   const [isIos, setIsIos] = useState<boolean>(false)
 
   useEffect(() => {
-    console.log(navigator.userAgent)
     if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
       setIsIos(true)
     } else {
@@ -320,14 +319,14 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
 
       <Box className={styles.actionArea}>
         {
-          Reward_Games.includes(gameId) &&
+          taskInfo?.task_status === 'on' &&
           <Box
             className={styles.startBtn}
             onClick={() => handleStartGameTask()}
           >Start</Box>
         }
         {
-          taskInfo?.form && (Reward_Games.includes(gameId) ?
+          taskInfo?.form && (taskInfo?.task_status === 'on' ?
             <Box className={cx({
               claimBtn: true,
               claimedBtn: isClaimed
@@ -391,7 +390,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
         </Box>
         {
           // 无表单链接不显示 Verify 按钮
-          taskInfo?.form && (Reward_Games.includes(gameId) ?
+          taskInfo?.form && (taskInfo?.task_status === 'on' ?
             <Box className={cx({
               claimBtn: true,
               claimedBtn: isClaimed
@@ -449,7 +448,14 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       <Box className={cx({
         showMoreBtn: true,
         stepDetailMask: !showTaskMore
-      })} onClick={() => setShowTaskMore(!showTaskMore)}>
+      })} onClick={() => {
+        if (!showTaskMore) {
+          handleStartGameTask()
+          setShowTaskMore(true)
+        } else {
+          setShowTaskMore(false)
+        }
+      }}>
         <Typography>
           {
             showTaskMore ?
@@ -463,6 +469,8 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           }
         </Typography>
       </Box>
+
+      <ConnectWallet showConnect={showConnectWallet} setShowConnect={setShowConnectWallet} />
 
       <VerifyTaskModal
         showTaskModal={showTaskModal}

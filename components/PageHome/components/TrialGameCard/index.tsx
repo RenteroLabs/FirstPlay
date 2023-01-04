@@ -10,8 +10,14 @@ const TrialGameCard: React.FC<TrialGameCardProp> = (props) => {
   const { trialTask } = props
   const isMobileLayout = useMediaQuery("(max-width: 900px)")
 
+  const handleLinkToGameDetail = () => {
+    window.open(`/game/${trialTask?.game_id}`)
+  }
+
   // TODO: 移动端正在试玩游戏点击跳转
-  const mobileTrialGameCard = <Box className={styles.mobileTrialGameCard}>
+  const mobileTrialGameCard = <Box
+    className={styles.mobileTrialGameCard}
+    onClick={handleLinkToGameDetail}>
     <Box className={styles.cardHeader}>
       <Typography variant="h3">{trialTask?.name}</Typography>
       <Box className={styles.gameCover}>
@@ -38,8 +44,7 @@ const TrialGameCard: React.FC<TrialGameCardProp> = (props) => {
       <Typography variant="h3">{trialTask?.name}</Typography>
       <Box className={styles.gameTask}>
         {trialTask?.task}
-        <Box className={styles.playBtn}>Continue</Box>
-
+        <Box className={styles.playBtn} onClick={handleLinkToGameDetail}>Continue</Box>
       </Box>
       <Typography className={styles.gameReward}>
         <Box className={styles.iconBox}>
