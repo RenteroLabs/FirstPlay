@@ -6,7 +6,7 @@ import { isEmpty } from 'lodash'
 import { useEffect, useMemo, useState } from 'react'
 import { GET_USER_ACTIVITYS } from 'services/documentNode'
 import { goerliGraph } from 'services/graphql'
-import { getGameInfo } from 'services/home'
+import { getGameInfo, getTrialTaskRecordList } from 'services/home'
 import { UserActivityItem } from 'types/graph'
 import { dateFormat } from 'util/format'
 import { useAccount } from 'wagmi'
@@ -21,6 +21,7 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
   const { address } = useAccount()
 
   const [activitiesList, setActivitiesList] = useState<UserActivityItem[]>([])
+  const [taskRecordList, setTaskRecordList] = useState<Record<string, any>[]>([])
 
   const [gameInfo, setGameInfo] = useState<Record<string, Record<string, any>>>({})
 
@@ -53,8 +54,23 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
   useEffect(() => {
     if (address) {
       queryUserActivities()
+
+
+      queryTaskRecordList(address)
     }
   }, [address])
+
+
+  /**
+   * game task play history record
+   */
+  const { run: queryTaskRecordList, loading: taskRecordLoading } = useRequest(getTrialTaskRecordList, {
+    manual: true,
+    onSuccess: ({ data }) => {
+      console.log(data)
+      setTaskRecordList(data || [])
+    }
+  })
 
 
   const handleTrialBtn = (gameId: string) => {
@@ -69,14 +85,15 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
           <TableRow>
             <TableCell className={styles.tableHeaderCell}>Action</TableCell>
             <TableCell className={styles.tableHeaderCell}>Game</TableCell>
-            <TableCell className={styles.tableHeaderCell}>Item</TableCell>
-            <TableCell className={styles.tableHeaderCell}>Time</TableCell>            <TableCell className={styles.tableHeaderCell}>Trial</TableCell>
+            <TableCell className={styles.tableHeaderCell}>Task</TableCell>
+            <TableCell className={styles.tableHeaderCell}>Time</TableCell>
+            {/* <TableCell className={styles.tableHeaderCell}>Trial</TableCell> */}
             <TableCell className={styles.tableHeaderCell}>Reward</TableCell>
             <TableCell className={styles.tableHeaderCell} align="center">Operate</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {
+          {/* {
             !loading && activitiesList?.map((item, index) => {
               const gameId = item?.packages?.game?.id
               return (
@@ -100,7 +117,6 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
                     {gameInfo[gameId]?.reward}
                   </TableCell>
                   <TableCell className={styles.tableBodyCell} align="center" >
-                    {/* 目前三种操作类型：play、abort、reclaim */}
                     {
                       item.type === 'play' &&
                       <Box className={styles.cellTrialBtn} onClick={() => handleTrialBtn(gameId)}>
@@ -111,7 +127,37 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
                 </TableRow>
               )
             })
-          }
+          } */}
+          {
+            !taskRecordLoading &&
+            taskRecordList.map((item, index) =>
+              <TableRow key={index}>
+                <TableCell className={styles.tableBodyCell}>
+                  {item.type}
+                </TableCell>
+                <TableCell className={styles.tableBodyCell}>
+                  {item?.name}
+                </TableCell>
+                <TableCell className={styles.tableBodyCell}>
+                  {/* {item.packages.nfts.map((nft) => `#${nft.tokenId}`).join(',')} */}
+                  {item?.task}
+                </TableCell>
+                <TableCell className={styles.tableBodyCell}>
+                  {dateFormat("YYYY-mm-dd HH:MM", new Date(parseInt(item?.time) * 1000))}
+                </TableCell>
+                <TableCell className={styles.tableBodyCell}>
+                  {item?.rewards} 
+                </TableCell>
+                <TableCell className={styles.tableBodyCell} align="center" >
+                  {
+                    item.type === 'play' &&
+                    <Box className={styles.cellTrialBtn} onClick={() => handleTrialBtn("")}>
+                      Trial
+                    </Box>
+                  }
+                </TableCell>
+              </TableRow>
+            )}
         </TableBody>
       </Table>
     </Box>
@@ -122,7 +168,7 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
       </Box>
     }
 
-    {!loading && (!isEmpty(activitiesList) ?
+    {!loading && (!isEmpty(taskRecordList) ?
       <Box className={styles.paginationBox}>
         {/* TODO: 目前直接展示全部数据，分页只有一页 */}
         <Pagination count={1} variant="outlined" shape="rounded" className={styles.pagination} />

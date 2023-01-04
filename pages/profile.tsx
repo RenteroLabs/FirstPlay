@@ -138,6 +138,9 @@ const Profile: NextPageWithLayout = () => {
     return `${urlEndpoint}/${imageHash}?tr=${paramsString}`
   }
 
+
+
+  
   return <Box className={styles.containerBox}>
     <Head>
       <title>Profile | FirstPlay</title>

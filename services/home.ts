@@ -52,3 +52,12 @@ export const getTrialingTasks = async (address: string) => {
   const data = await fetch(`${BASE_BACKEND_API}/api/home?address=${address}`)
   return data.json()
 }
+
+
+/**
+ * 历史进行游戏 Task 记录
+ */
+export const getTrialTaskRecordList = async (address: string) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/user-tasks?address=${address}`)
+  return data.json()
+}
