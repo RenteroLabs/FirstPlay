@@ -331,16 +331,19 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           taskInfo?.form && (taskInfo?.task_status === 'on' ?
             <Box className={cx({
               claimBtn: true,
-              claimedBtn: isClaimed
+              claimedBtn: isClaimed && isStarted
             })}
               onClick={linkToForm}
             >
-              {isClaimed ? "Completed" : 'Verify'}
+              {(isClaimed && isStarted) ? "Completed" : 'Verify'}
             </Box>
             :
             <Box className={cx({ claimBtn: true, claimedBtn: true })} >
               Ended
             </Box>)
+        }
+        {
+
         }
       </Box>
 
