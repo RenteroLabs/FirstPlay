@@ -197,19 +197,21 @@ interface RewardItemProps {
   index: number,
   reward: string,
   isClaimed: boolean,
+  isStarted: boolean,
   claimLink: string,
   medalNum: number,
   gameId: string,
   strategyLink: string,
   taskInfo: Record<string, any>
   timestamp: number
+  reloadData: () => any
 }
 
 const GiftbagGame = '740a1e44-fd84-433e-98df-be90d650eb51'
 const BlessGlobal = "32605c7c-45d3-49f4-9923-b3a51816d1df"
 
 const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
-  const { index, reward, isClaimed, claimLink, medalNum, gameId, strategyLink, taskInfo, timestamp } = props
+  const { index, reward, isClaimed, claimLink, medalNum, gameId, strategyLink, taskInfo, timestamp, isStarted, reloadData } = props
   const isMobileSize = useMediaQuery("(max-width:600px)")
   const isMounted = useIsMounted()
 
@@ -291,7 +293,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       return
     }
     // send reqeust
-    startGameTask({
+    await startGameTask({
       task_id: taskInfo?.task_id,
       address: address
     })
@@ -390,19 +392,32 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
         </Box>
         {
           // 无表单链接不显示 Verify 按钮
-          taskInfo?.form && (taskInfo?.task_status === 'on' ?
-            <Box className={cx({
-              claimBtn: true,
-              claimedBtn: isClaimed
-            })}
-              onClick={linkToForm}
-            >
-              {isClaimed ? "Completed" : 'Verify'}
-            </Box> :
-            <Box className={cx({ claimBtn: true, claimedBtn: true })} >
-              Ended
-            </Box>)
+          taskInfo?.form && isStarted && taskInfo?.task_status === 'on' &&
+          <Box className={cx({
+            claimBtn: true,
+            claimedBtn: isStarted && isClaimed
+          })}
+            onClick={linkToForm}
+          >
+            {(isStarted && isClaimed) ? "Completed" : 'Verify'}
+          </Box>
         }
+        {
+          taskInfo?.task_status === 'off' &&
+          <Box className={cx({ claimBtn: true, claimedBtn: true })} >
+            Ended
+          </Box>
+        }
+        {/* 没有开始，任务还在进行中 */}
+        {!isStarted && taskInfo?.task_status === 'on' && taskInfo?.form &&
+          <Box
+            className={styles.claimBtn}
+            onClick={async () => {
+              await handleStartGameTask()
+              reloadData()
+            }}>
+            Start
+          </Box>}
       </Box>
 
       <Box className={styles.taskDivider}></Box>
@@ -450,7 +465,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
         stepDetailMask: !showTaskMore
       })} onClick={() => {
         if (!showTaskMore) {
-          handleStartGameTask()
+          // handleStartGameTask()
           setShowTaskMore(true)
         } else {
           setShowTaskMore(false)

@@ -218,6 +218,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                     key={index}
                     index={index + 1}
                     medalNum={item?.medal}
+                    isStarted={item?.user_task_status !== 'not started'}
                     isClaimed={item?.user_task_status !== 'uncompleted'}
                     reward={item?.description}
                     claimLink={item?.form}
@@ -225,6 +226,9 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                     strategyLink={carnivalGame?.strategy}
                     taskInfo={item}
                     timestamp={timestamp as unknown as number}
+                    reloadData={() => {
+                      getCarnivalGameInfo({ address: address || '0x00', game_id: router.query?.uuid as string })
+                    }}
                   />
                 )
               }
