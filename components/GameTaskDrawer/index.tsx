@@ -1,4 +1,4 @@
-import { Box, Drawer, Step, StepLabel, Stepper, Typography } from '@mui/material'
+import { Box, Drawer, IconButton, Step, StepLabel, Stepper, Typography } from '@mui/material'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import styles from './styles.module.scss'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
@@ -13,6 +13,7 @@ import Image from 'next/image';
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import DoneIcon from '@mui/icons-material/Done';
 import { useIsMounted } from 'hooks/useIsMounted';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { isEmpty } from 'lodash';
 
 const cx = classNames.bind(styles)
@@ -161,9 +162,14 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
     className={styles.drawerBox}
   >
     <Box className={`${styles.taskBox} taskBoxClass`} ref={taskBox}>
-
+      <Box className={styles.itemLabel}>{index.toString().padStart(2, '0')}</Box>
+      <IconButton
+        className={styles.closeBtn}
+        onClick={() => setShowTaskDrawer(false)}
+      >
+        <HighlightOffIcon />
+      </IconButton>
       <Box className={styles.taskInfoBox}>
-        <Box className={styles.itemLabel}>{index.toString().padStart(2, '0')}</Box>
         <Box className={styles.taskHeader}>
           <Box className={styles.stepPannel}>
             <Box className={styles.stepBox}>
