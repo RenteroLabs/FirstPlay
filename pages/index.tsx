@@ -21,7 +21,7 @@ import { useAccount } from "wagmi";
 import { useIsMounted } from "hooks/useIsMounted";
 
 const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-  const { hotGames, strategys, comingGames, timestamp , rewardedGames} = props
+  const { hotGames, strategys, comingGames, timestamp, rewardedGames } = props
 
   const { address } = useAccount()
   const isMounted = useIsMounted()
@@ -49,9 +49,8 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
       {coverSize === 375 && <Image priority src={`/headerCover375.jpg`} layout="fill" objectFit="cover" />}
     </Box>
     {
-      isMounted && (address ?
-        <TrialGame /> :
-        <GudeStep />)
+      isMounted && address &&
+      <TrialGame />
     }
     <RewardGames timestamp={timestamp} rewardGames={rewardedGames} />
     {!isMiddleSize && <JoinCommunity />}

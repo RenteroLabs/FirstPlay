@@ -23,7 +23,7 @@ const RewardGameCard: React.FC<RewardGameCardProps> = (props) => {
           objectFit="cover"
           loader={({ src }) => `${src}?timestamp=${timestamp}`}
         />
-        <Box className={styles.cardTag}>Popular</Box>
+        <Box className={styles.cardTag}>{gameInfo?.game_status[0]}</Box>
       </Box>
       <CardContent className={styles.gameContent}>
         <Box className={styles.cardTitle}>

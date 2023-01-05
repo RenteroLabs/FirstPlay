@@ -7,17 +7,24 @@
     width: 78.2%;
     margin: auto;
     padding-top: 5rem;
-    padding-bottom: 3rem;
+    padding-bottom: 5rem;
 
     .cardList {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
+      flex-direction: column;
+      // flex-wrap: wrap;
+      // justify-content: space-between;
+      justify-content: flex-start;
       margin-top: 2.5rem;
       & > div {
-        width: calc(50% - 1rem);
+        // width: calc(50% - 1rem);
 
         box-shadow: none;
+      }
+
+      .divider {
+        border-bottom: 1px solid rgba($color: #222, $alpha: 0.1);
+        margin: 2.5rem 0;
       }
     }
   }
@@ -89,7 +96,13 @@
   .gameStrategy {
     .gameStrategyBox {
       padding-top: 2.5rem;
-      padding-bottom: 1.17rem;
+      padding-bottom: 2.5rem;
+
+      .cardList {
+        .divider {
+          margin: 1.58rem 0;
+        }
+      }
     }
   }
 }

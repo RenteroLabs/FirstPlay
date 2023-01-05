@@ -139,8 +139,12 @@
         }
 
         .emptyDesc {
-          line-height: 1.5rem;
-          margin-bottom: 1.17rem;
+          font-size: 1.17rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: rgba(#222, 0.3);
+          line-height: 1.67rem;
+          margin-bottom: 1.09rem;
         }
       }
     }
