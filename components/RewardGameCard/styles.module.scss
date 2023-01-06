@@ -92,7 +92,7 @@
   .gameCard {
     border-radius: 0.67rem !important;
     .gameContent {
-      padding: 1rem 1rem 1.33rem;
+      padding: 1rem 1rem 1.33rem !important;
 
       .cardTitle {
         p {
@@ -125,7 +125,7 @@
         font-weight: 500;
         color: #8e50e4;
         line-height: 1.5rem;
-        margin-top: 1rem;
+        margin-top: 1rem !important;
 
         .iconBox {
           display: none;
