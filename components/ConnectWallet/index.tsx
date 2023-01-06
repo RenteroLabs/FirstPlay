@@ -4,6 +4,7 @@ import ArrowRightAltRoundedIcon from '@mui/icons-material/ArrowRightAltRounded';
 import CloseIcon from '@mui/icons-material/Close';
 import styles from './style.module.scss'
 import { Connector, useConnect } from 'wagmi';
+import detectEthereumProvider from '@metamask/detect-provider'
 
 interface ConnectWalletProps {
   showConnect: boolean;
@@ -15,7 +16,14 @@ interface ConnectWalletProps {
 const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
   const { showConnect, setShowConnect, callback = () => { }, errorCallback = () => { } } = props
 
-  const is600Size = useMediaQuery("(max-width: 600px)")
+  const [isEthEnv, setIsEthEnv] = useState<boolean>(false)
+
+  useEffect(() => {
+    (async () => {
+      const provider = await detectEthereumProvider()
+      setIsEthEnv(Boolean(provider))
+    })()
+  }, [])
 
   const { connect, connectors, error, isLoading, pendingConnector } = useConnect({
     onSuccess() {
@@ -65,7 +73,7 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
           <Alert severity="error" sx={{ display: 'flex', alignItems: 'center' }}>
             {error.message}
           </Alert>}
-        <Box className={styles.walletItem} onClick={() => handleConnect(is600Size ? WalletConnectConnector : MetaMaskConnector)}>
+        <Box className={styles.walletItem} onClick={() => handleConnect(!isEthEnv ? WalletConnectConnector : MetaMaskConnector)}>
           <span className={styles.itemMetamaskLogo}></span>
           <p>MetaMask</p>
           {MetaMaskConnecting ? <CircularProgress /> : <ArrowRightAltRoundedIcon sx={{ color: '#8E50E4' }} />}

@@ -69,6 +69,10 @@ const GameCard: React.FC<GameCardProps> = (props) => {
               gameInfo?.game_types.map((item: string, index: number) =>
                 <Typography key={index} component="span" className={styles.gameTag}>{item}</Typography>)
             }
+            {/* {
+              gameInfo?.platforms.map((item: string, index: number) =>
+                <Typography key={index} component="span" className={styles.gameTag}>{item}</Typography>)
+            } */}
           </Box>
           {/* <Box className={styles.gameRewards}>
             <Box className={styles.rewardIcon}>
@@ -78,7 +82,7 @@ const GameCard: React.FC<GameCardProps> = (props) => {
           </Box> */}
         </Stack>
       </CardContent>
- 
+
       <Box className={styles.topMask}> </Box>
     </Card>
   </Link>

@@ -13,6 +13,7 @@
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@homielab/react-native-auto-scroll": "^0.0.8",
+    "@metamask/detect-provider": "^2.0.0",
     "@mui/icons-material": "^5.10.6",
     "@mui/material": "^5.10.5",
     "@vercel/analytics": "^0.1.1",

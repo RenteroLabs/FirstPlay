@@ -29,9 +29,16 @@ const RewardGameCard: React.FC<RewardGameCardProps> = (props) => {
         <Box className={styles.cardTitle}>
           <Typography>{gameInfo?.name}</Typography>
           <Box className={styles.tagList}>
+            {/* {
+              [...(gameInfo?.game_types || []), ...(gameInfo?.platforms || [])].slice(0, 3).map((item: string, index: number) => <Box className={styles.tagItem} key={index}>{item}</Box>)
+            } */}
             {
               gameInfo?.game_types.map((item: string, index: number) => <Box className={styles.tagItem} key={index}>{item}</Box>)
             }
+            {/* 
+            {
+              gameInfo?.platforms.map((item: string, index: number) => <Box className={styles.tagItem} key={index}>{item}</Box>)
+            } */}
           </Box>
         </Box>
         <Box className={styles.rewardItem}>
