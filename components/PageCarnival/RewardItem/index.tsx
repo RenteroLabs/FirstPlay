@@ -416,6 +416,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           <Box
             className={styles.claimBtn}
             onClick={async () => {
+              setShowTaskMore(true)
               await handleStartGameTask()
               reloadData()
             }}>

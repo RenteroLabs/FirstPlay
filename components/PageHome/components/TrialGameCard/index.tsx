@@ -22,9 +22,9 @@ const TrialGameCard: React.FC<TrialGameCardProp> = (props) => {
       <Typography variant="h3">{trialTask?.name}</Typography>
       <Box className={styles.gameCover}>
         <Image src={trialTask?.logo} layout="fill" objectFit="cover" />
-        <Box className={styles.imageTag}>
+        {/* <Box className={styles.imageTag}>
           <Image src="/trialing_task_tag.png" layout="fill" objectFit="cover" />
-        </Box>
+        </Box> */}
       </Box>
     </Box>
     <Box className={styles.gameInfo}>
@@ -36,9 +36,9 @@ const TrialGameCard: React.FC<TrialGameCardProp> = (props) => {
   const trialGameCard = < Box className={styles.trialGameCard} >
     <Box className={styles.gameCover}>
       <Image src={trialTask?.logo} layout="fill" objectFit="cover" />
-      <Box className={styles.imageTag}>
+      {/* <Box className={styles.imageTag}>
         <Image src="/trialing_task_tag.png" layout="fill" objectFit="cover" />
-      </Box>
+      </Box> */}
     </Box>
     <Box className={styles.gameInfo}>
       <Typography variant="h3">{trialTask?.name}</Typography>
