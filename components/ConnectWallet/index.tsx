@@ -63,7 +63,7 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
           <Alert severity="error" sx={{ display: 'flex', alignItems: 'center' }}>
             {error.message}
           </Alert>}
-        <Box className={styles.walletItem} onClick={() => handleConnect(connectors[0])}>
+        <Box className={styles.walletItem} onClick={() => handleConnect(MetaMaskConnector)}>
           <span className={styles.itemMetamaskLogo}></span>
           <p>MetaMask</p>
           {MetaMaskConnecting ? <CircularProgress /> : <ArrowRightAltRoundedIcon sx={{ color: '#8E50E4' }} />}
