@@ -15,6 +15,8 @@ interface ConnectWalletProps {
 const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
   const { showConnect, setShowConnect, callback = () => { }, errorCallback = () => { } } = props
 
+  const is600Size = useMediaQuery("(max-width: 600px)")
+
   const { connect, connectors, error, isLoading, pendingConnector } = useConnect({
     onSuccess() {
       setShowConnect(false)
@@ -63,7 +65,7 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
           <Alert severity="error" sx={{ display: 'flex', alignItems: 'center' }}>
             {error.message}
           </Alert>}
-        <Box className={styles.walletItem} onClick={() => handleConnect(MetaMaskConnector)}>
+        <Box className={styles.walletItem} onClick={() => handleConnect(is600Size ? WalletConnectConnector : MetaMaskConnector)}>
           <span className={styles.itemMetamaskLogo}></span>
           <p>MetaMask</p>
           {MetaMaskConnecting ? <CircularProgress /> : <ArrowRightAltRoundedIcon sx={{ color: '#8E50E4' }} />}

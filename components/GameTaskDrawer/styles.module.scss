@@ -287,10 +287,10 @@
 }
 
 .closeBtn {
-  position: absolute;
-  top: 0.83rem;
-  right: 0.83rem;
-  padding: 0;
+  position: absolute !important;
+  top: 0.83rem !important;
+  right: 0.83rem !important;
+  padding: 0 !important;
   svg {
     width: 1.5rem !important;
     height: 1.5rem !important;
