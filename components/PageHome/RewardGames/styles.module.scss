@@ -26,6 +26,27 @@
       }
     }
   }
+
+  .showMoreBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.33rem;
+    font-family: Inter-Medium, Inter;
+    font-weight: 500;
+    color: #222222;
+    line-height: 1.33rem;
+
+    border-radius: 0.67rem;
+    border: 0.08rem solid rgba(#222, 0.5);
+    height: 3.33rem;
+    margin: auto;
+    margin-top: 1.33rem;
+    width: calc(100% - 2.66rem);
+    cursor: pointer;
+    user-select: none;
+  }
 }
 
 @media screen and (max-width: 1650px) {
@@ -79,7 +100,7 @@
 @media screen and (max-width: 600px) {
   .rewardGames {
     padding-bottom: 0;
-    
+
     .rewardGamesBox {
       width: calc(100% - 2.66rem);
       padding-top: 2.5rem;

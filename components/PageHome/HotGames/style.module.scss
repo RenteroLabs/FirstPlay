@@ -23,6 +23,26 @@
       }
     }
   }
+  .showMoreBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.33rem;
+    font-family: Inter-Medium, Inter;
+    font-weight: 500;
+    color: #222222;
+    line-height: 1.33rem;
+
+    border-radius: 0.67rem;
+    border: 0.08rem solid rgba(#222, 0.5);
+    height: 3.33rem;
+    margin: auto;
+    margin-bottom: 2.5rem;
+    width: calc(100% - 2.66rem);
+    cursor: pointer;
+    user-select: none;
+  }
 }
 
 @media screen and (max-width: 1650px) {
@@ -108,7 +128,8 @@
     .hotGamesBox {
       width: calc(100% - 2.66rem);
       padding-top: 2.5rem;
-      padding-bottom: 1.17rem;
+      // padding-bottom: 1.17rem;
+      padding-bottom: 0;
 
       .cardList {
         margin-top: 1.67rem;
