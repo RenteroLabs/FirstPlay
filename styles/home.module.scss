@@ -12,34 +12,30 @@
 }
 
 .contactUs {
-  height: 17.5rem;
-  background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
+  height: 16.67rem;
+  background: #8e50e4;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 
   span {
     text-decoration: underline;
   }
 
   h3 {
-    // font-size: 4rem;
-    // font-family: Inter-Bold, Inter;
-    // font-weight: bold;
-    // color: #ffffff;
-    // line-height: 4rem;
-    font-size: 3rem;
-    font-family: Montserrat-Black, Montserrat;
-    font-weight: 900;
+    font-size: 4rem;
+    font-family: Montserrat-ExtraBold, Montserrat;
+    font-weight: 800;
     color: #ffffff;
-    line-height: 3rem;
-    margin-bottom: 1.67rem;
+    line-height: 4rem;
+
+    margin-top: 4.17rem;
+    margin-bottom: 1.5rem;
   }
   p {
     font-size: 1.75rem;
-    font-family: Inter-Regular, Inter;
-    font-weight: 400;
+    font-family: Inter-Medium, Inter;
+    font-weight: 500;
     color: #ffffff;
     line-height: 1.75rem;
     text-align: center;
@@ -69,17 +65,17 @@
     height: 14.5rem;
     h3 {
       font-size: 3.33rem;
-      font-family: Inter-Bold, Inter;
-      font-weight: bold;
+      // font-family: Inter-Bold, Inter;
+      // font-weight: bold;
       color: #ffffff;
-      line-height: 3.33rem;
+      // line-height: 3.33rem;
       margin-bottom: 1.33rem;
     }
     p {
       font-size: 1.5rem;
-      font-family: Inter-Medium, Inter;
-      font-weight: 500;
-      color: #ffffff;
+      // font-family: Inter-Medium, Inter;
+      // font-weight: 500;
+      // color: #ffffff;
       line-height: 1.5rem;
     }
   }
@@ -98,19 +94,21 @@
   }
   .contactUs {
     h3 {
-      font-size: 2rem;
-      font-family: Montserrat-Black, Montserrat;
-      font-weight: 900;
+      font-size: 2.67rem;
+      font-family: Montserrat-ExtraBold, Montserrat;
+      font-weight: 800;
       color: #ffffff;
-      line-height: 2rem;
+      line-height: 2.67rem;
+      margin-top: 3.67rem;
+      margin-bottom: 1.25rem;
     }
     p {
-      font-size: 1.33rem;
-      font-family: Inter-Regular, Inter;
-      font-weight: 400;
+      font-size: 17px;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
       color: #ffffff;
       line-height: 2rem;
-      max-width: 86%;
+      max-width: 98%;
       text-align: center;
     }
   }

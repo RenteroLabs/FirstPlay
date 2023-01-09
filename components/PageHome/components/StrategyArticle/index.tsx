@@ -13,6 +13,7 @@ const cardBgColor = ['#F0E3CC', '#C6F2F2', '#E5E5F3', '#EBEADE']
 const StrategyArticle: React.FC<StrategyArticleProp> = (props) => {
   const { articleInfo } = props
 
+  // console.log(articleInfo)
   const imageKitLoader = ({ src, width, quality = 100 }: any) => {
     const params = [`w-300`];
     if (quality) {
@@ -27,18 +28,17 @@ const StrategyArticle: React.FC<StrategyArticleProp> = (props) => {
 
   return <Card className={styles.articleCard}>
     < a href={articleInfo.link} target="_blank" rel="noreferrer" >
-      <Box className={styles.articleInfo} sx={{ backgroundColor: cardBgColor[articleInfo.key] }}>
-        <Typography variant="h4">
-          {articleInfo.game_name}
-          <Box><Image src={BADGE_ICON} layout="fill" /></Box>
-        </Typography>
-        <Typography variant="h3">{articleInfo.title}</Typography>
-        <Box className={styles.linkBtn}>View Tutorial <EastIcon /></Box>
-      </Box>
       <Box className={styles.gameCover}>
         <Box className={styles.imaegBox} >
           <Image loader={imageKitLoader} src={articleInfo.image} layout="fill" objectFit="cover" />
         </Box>
+      </Box>
+      <Box className={styles.articleInfo} >
+        <Typography variant="h4">
+          {articleInfo.game_name}
+        </Typography>
+        <Typography variant="h3">{articleInfo.title}</Typography>
+        <Typography>{articleInfo?.description}</Typography>
       </Box>
     </a >
   </Card >

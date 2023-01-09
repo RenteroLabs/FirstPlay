@@ -1,11 +1,10 @@
 .articleCard {
-  border-radius: 1rem !important;
-  margin-bottom: 2rem;
+  // margin-bottom: 2rem;
   box-shadow: none;
 
   a {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
   }
 
   &:hover {
@@ -13,108 +12,75 @@
   }
 
   .articleInfo {
-    padding: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+    // display: flex;
+    // flex-direction: column;
+    // flex-grow: 1;
+    margin-left: 1.67rem;
+    // border: 1px solid gray;
 
     h4 {
-      font-size: 1.5rem;
-      font-family: Inter-SemiBold, Inter;
-      font-weight: 600;
-      color: rgba(#222222, 0.5);
-      line-height: 1.5rem;
-      display: flex;
-      align-items: center;
-      div {
-        position: relative;
-        width: 1.61rem;
-        height: 1.61rem;
-        margin-left: 0.83rem;
-      }
+      display: inline-flex;
+      min-width: 5rem;
+      background: #222222;
+      border-radius: 0rem 8.33rem 8.33rem 0rem;
+      font-size: 1.33rem;
+      font-family: Inter-Bold, Inter;
+      font-weight: bold;
+      color: #96fcc8;
+      line-height: 1.33rem;
+
+      padding: 0.5rem 1.08rem 0.5rem 0.83rem;
     }
     h3 {
-      font-size: 2.5rem;
-      font-family: Inter-Medium, Inter;
-      font-weight: 500;
+      font-size: 2rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
       color: #222222;
-      line-height: 3.33rem;
+      line-height: 2rem;
       text-align: left;
 
-      margin: 2.33rem 0;
+      margin: 2.33rem 0 1rem;
+      &:hover {
+        color: rgba(#222, 0.8);
+      }
+    }
+    p {
+      max-width: 60rem;
+      font-size: 1.33rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
+      color: rgba(#222, 0.7);
+      line-height: 2rem;
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
     }
-
-    .linkBtn {
-      display: inline-flex;
-      width: 15rem;
-      height: 3.67rem;
-      border-radius: 1.83rem;
-      border: 0.08rem solid rgba(228, 64, 91, 1);
-      padding: 0px 1.67rem;
-
-      font-size: 1.33rem;
-      font-family: Inter-SemiBold, Inter;
-      font-weight: 600;
-      // color: rgba(142, 80, 228, 1);
-      color: rgba($color: #e4405b, $alpha: 0.8);
-      // color: white;
-      line-height: 3.3rem;
-      background-image: -webkit-linear-gradient(
-        270deg,
-        #e4405b 0%,
-        #8e50e4 100%
-      );
-      -webkit-background-clip: text;
-      // -webkit-text-fill-color: #e4405b;
-      -webkit-text-fill-color: transparent;
-      // width: 38%;
-      align-items: center;
-
-      cursor: pointer;
-      svg {
-        color: #e4405b;
-        margin-left: 1rem;
-      }
-
-      &:hover {
-
-        color: white;
-        -webkit-text-fill-color: white;
-        border: none;
-        padding-top: 0.08rem;
-        padding-bottom: 0.08rem;
-        background: linear-gradient(270deg, #e4405b 0%, #8e50e4 100%);
-        box-shadow: 0rem 0.67rem 2.5rem 0rem rgba(142, 80, 228, 0.3);
-        border-radius: 1.83rem;
-        // filter: blur(0px);
-        svg {
-          color: white;
-        }
-      }
-    }
   }
   .gameCover {
     flex-grow: 0;
     flex-shrink: 0;
-    width: 21.5rem;
+    // width: 21.5rem;
+    width: 11.67rem;
+    height: 11.67rem;
+    background: #ffffff;
     .imaegBox {
       position: relative;
       height: 100%;
       width: 100%;
+      img {
+        border-radius: 3.33rem 0rem 3.33rem 0rem !important;
+      }
     }
   }
 }
 
-@media screen and (min-width: 1921px){
+@media screen and (min-width: 1921px) {
   .articleCard {
     .articleInfo {
       h3 {
-        height: 6.66rem;
+        // height: 6.66rem;
       }
     }
   }
@@ -123,29 +89,10 @@
   .articleCard {
     height: auto;
     .gameCover {
-      width: 19.17rem;
+      // width: 19.17rem;
     }
     .articleInfo {
-      padding: 2.5rem 1.67rem;
-
-      h3 {
-        font-size: 1.75rem;
-        font-family: Inter-Medium, Inter;
-        font-weight: 500;
-        color: #222222;
-        line-height: 2.33rem;
-        margin: 1.67rem 0 0;
-      }
-      h4 {
-        font-size: 1.33rem;
-        font-family: Inter-SemiBold, Inter;
-        font-weight: 600;
-        line-height: 1.33rem;
-      }
-      .linkBtn {
-        margin-top: 2.33rem;
-        // width: 44%;
-      }
+      // padding: 2.5rem 1.67rem;
     }
   }
 }
@@ -154,28 +101,10 @@
   .articleCard {
     height: auto;
     .gameCover {
-      width: 11.67rem;
+      // width: 11.67rem;
     }
     .articleInfo {
-      padding: 1.67rem;
-
-      h3 {
-        font-size: 1.75rem;
-        font-family: Inter-Medium, Inter;
-        font-weight: 500;
-        color: #222222;
-        line-height: 2.33rem;
-        margin: 1.67rem 0 0;
-      }
-      h4 {
-        font-size: 1.33rem;
-        font-family: Inter-SemiBold, Inter;
-        font-weight: 600;
-        line-height: 1.33rem;
-      }
-      .linkBtn {
-        display: none;
-      }
+      // padding: 1.67rem;
     }
   }
 }
@@ -183,18 +112,15 @@
 @media screen and (max-width: 800px) {
   .articleCard {
     height: auto;
-    margin-bottom: 1.33rem;
+    // margin-bottom: 1.33rem;
     max-height: 160px;
     .gameCover {
-      width: 32vw;
-
-      .imaegBox {
-        height: 32vw;
-      }
+      display: none;
     }
 
     .articleInfo {
-      padding: 1.67rem 1.33rem 1.75rem;
+      // padding: 1.67rem 1.33rem 1.75rem;
+      margin-left: 0;
 
       h4 {
         font-size: 1.33rem;
@@ -205,23 +131,38 @@
         line-height: 2rem;
         margin: 1.25rem 0 0;
       }
-      .linkBtn {
-        // margin-top: 1.67rem;
-        display: none;
-      }
     }
   }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 600px) {
   .articleCard {
     .articleInfo {
-      .linkBtn {
-        display: none;
-      }
-
       h3 {
-        font-weight: 500;
+        font-size: 1.5rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #222222;
+        line-height: 2rem;
+        margin-top: 1rem;
+        margin-bottom: 0.83rem;
+      }
+      h4 {
+        font-size: 1.17rem;
+        font-family: Inter-Bold, Inter;
+        font-weight: bold;
+        color: #96fcc8;
+        line-height: 1.17rem;
+        padding: 0.42rem 1.17rem 0.42rem 0.75rem;
+      }
+      p {
+        font-size: 1.17rem;
+        font-family: Inter-Regular, Inter;
+        font-weight: 400;
+        line-height: 1.67rem;
+
+        -webkit-line-clamp: 3;
+ 
       }
     }
   }

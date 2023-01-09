@@ -9,7 +9,7 @@ import GiftCodeModal from '../GiftCodeModal'
 import { useLocalStorageState, useRequest } from 'ahooks'
 import { queryGameGiftCode } from 'services/carnival'
 import * as ga from '../../../util/ga'
-import { Carnival_Games, GAME_EVENT_NAME, GAME_TASK_MODAL_NAME, Reward_Games } from 'constants/index'
+import { Carnival_Games, GAME_EVENT_NAME, GAME_TASK_MODAL_NAME } from 'constants/index'
 import VerifyTaskModal from '../VerifyTaskModal'
 import GameTaskDrawer from '@/components/GameTaskDrawer'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -30,9 +30,12 @@ import QRCode from 'react-qr-code'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import CloseIcon from '@mui/icons-material/Close';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import { useAccount } from 'wagmi'
+import ConnectWallet from '@/components/ConnectWallet'
+import { startGameTask } from 'services/home'
+import CircularProgress from '@mui/material/CircularProgress';
 
 const cx = classname.bind(styles)
-
 
 interface DownloadButtonProps {
   platform: PlatformType,
@@ -121,7 +124,6 @@ const StepButton: React.FC<StepButtonProps> = (props) => {
   const [isIos, setIsIos] = useState<boolean>(false)
 
   useEffect(() => {
-    console.log(navigator.userAgent)
     if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
       setIsIos(true)
     } else {
@@ -195,29 +197,35 @@ interface RewardItemProps {
   index: number,
   reward: string,
   isClaimed: boolean,
+  isStarted: boolean,
   claimLink: string,
   medalNum: number,
   gameId: string,
   strategyLink: string,
   taskInfo: Record<string, any>
   timestamp: number
+  reloadData: () => any
 }
 
 const GiftbagGame = '740a1e44-fd84-433e-98df-be90d650eb51'
 const BlessGlobal = "32605c7c-45d3-49f4-9923-b3a51816d1df"
 
 const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
-  const { index, reward, isClaimed, claimLink, medalNum, gameId, strategyLink, taskInfo, timestamp } = props
+  const { index, reward, isClaimed, claimLink, medalNum, gameId, strategyLink, taskInfo, timestamp, isStarted, reloadData } = props
   const isMobileSize = useMediaQuery("(max-width:600px)")
   const isMounted = useIsMounted()
 
+  const { address } = useAccount()
   console.log(taskInfo)
+  const [showConnectWallet, setShowConnectWallet] = useState<boolean>(false)
 
   const [showGiftModal, setShowGiftModal] = useState<boolean>(false)
   const [showTaskModal, setShowTaskModal] = useState<boolean>(false)
   const [showTaskDrawer, setShowTaskDrawer] = useState<boolean>(false)
 
   const [showTaskMore, setShowTaskMore] = useState<boolean>(false)
+
+  const [isStartTaskLoading, setStartTaskLoading] = useState<boolean>(false)
 
 
   useEffect(() => {
@@ -265,7 +273,6 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
 
   // 首先判断本地存不存在有效 giftcode
   useEffect(() => {
-    console.log(localGiftCode, recordTime)
     if (localGiftCode && recordTime) {
       if (new Date().getTime() - Number(recordTime) < (86400 * 1000)) {
         setGiftCode(localGiftCode as string)
@@ -279,6 +286,25 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       getGiftCode({ game_id: gameId })
     }
     setShowGiftModal(true)
+  }
+
+  const handleStartGameTask = async () => {
+    // check connect wallet
+    if (!address) {
+      setShowConnectWallet(true)
+      return
+    }
+
+    await setStartTaskLoading(true)
+    // send reqeust
+    await startGameTask({
+      task_id: taskInfo?.task_id,
+      address: address
+    })
+    await setStartTaskLoading(false)
+
+    // open drawer
+    setShowTaskDrawer(true)
   }
 
   return isMounted && isMobileSize ?
@@ -301,26 +327,29 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
 
       <Box className={styles.actionArea}>
         {
-          Reward_Games.includes(gameId) &&
+          taskInfo?.task_status === 'on' &&
           <Box
             className={styles.startBtn}
-            onClick={() => setShowTaskDrawer(true)}
+            onClick={() => handleStartGameTask()}
           >Start</Box>
         }
         {
-          taskInfo?.form && (Reward_Games.includes(gameId) ?
+          taskInfo?.form && (taskInfo?.task_status === 'on' ?
             <Box className={cx({
               claimBtn: true,
-              claimedBtn: isClaimed
+              claimedBtn: isClaimed && isStarted
             })}
               onClick={linkToForm}
             >
-              {isClaimed ? "Completed" : 'Verify'}
+              {(isClaimed && isStarted) ? "Completed" : 'Verify'}
             </Box>
             :
             <Box className={cx({ claimBtn: true, claimedBtn: true })} >
               Ended
             </Box>)
+        }
+        {
+
         }
       </Box>
 
@@ -342,6 +371,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
         setShowTaskModal={setShowTaskModal}
         timestamp={timestamp}
       />
+      <ConnectWallet showConnect={showConnectWallet} setShowConnect={setShowConnectWallet} />
     </Box>
     :
     <Box className={cx({
@@ -371,19 +401,33 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
         </Box>
         {
           // 无表单链接不显示 Verify 按钮
-          taskInfo?.form && (Reward_Games.includes(gameId) ?
-            <Box className={cx({
-              claimBtn: true,
-              claimedBtn: isClaimed
-            })}
-              onClick={linkToForm}
-            >
-              {isClaimed ? "Completed" : 'Verify'}
-            </Box> :
-            <Box className={cx({ claimBtn: true, claimedBtn: true })} >
-              Ended
-            </Box>)
+          taskInfo?.form && isStarted && taskInfo?.task_status === 'on' &&
+          <Box className={cx({
+            claimBtn: true,
+            claimedBtn: isStarted && isClaimed
+          })}
+            onClick={linkToForm}
+          >
+            {(isStarted && isClaimed) ? "Completed" : 'Verify'}
+          </Box>
         }
+        {
+          taskInfo?.task_status === 'off' &&
+          <Box className={cx({ claimBtn: true, claimedBtn: true })} >
+            Ended
+          </Box>
+        }
+        {/* 没有开始，任务还在进行中 */}
+        {!isStarted && taskInfo?.task_status === 'on' && taskInfo?.form &&
+          <Box
+            className={styles.claimBtn}
+            onClick={async () => {
+              setShowTaskMore(true)
+              await handleStartGameTask()
+              reloadData()
+            }}>
+            Start {isStartTaskLoading && <CircularProgress className={styles.btnLoading} />}
+          </Box>}
       </Box>
 
       <Box className={styles.taskDivider}></Box>
@@ -429,7 +473,14 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       <Box className={cx({
         showMoreBtn: true,
         stepDetailMask: !showTaskMore
-      })} onClick={() => setShowTaskMore(!showTaskMore)}>
+      })} onClick={() => {
+        if (!showTaskMore) {
+          // handleStartGameTask()
+          setShowTaskMore(true)
+        } else {
+          setShowTaskMore(false)
+        }
+      }}>
         <Typography>
           {
             showTaskMore ?
@@ -443,6 +494,8 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           }
         </Typography>
       </Box>
+
+      <ConnectWallet showConnect={showConnectWallet} setShowConnect={setShowConnectWallet} />
 
       <VerifyTaskModal
         showTaskModal={showTaskModal}

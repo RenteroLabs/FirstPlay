@@ -31,15 +31,15 @@
   }
 
   .gameContent {
-    // padding: 1.67rem;
-    padding: 1rem 1.67rem 1.67rem;
+    padding: 14px 1.33rem 20px;
 
     .gameName {
       display: flex;
       align-items: center;
       justify-content: space-between;
       p {
-        font-size: 1.75rem;
+        // height: 1.75rem;
+        font-size: 21px;
         font-family: Inter-SemiBold, Inter;
         font-weight: 600;
         color: #222222;
@@ -59,17 +59,16 @@
     }
 
     .gameTags {
-      margin: 1rem 0 1.2rem;
+      margin-top: 8px;
 
       .gameTag {
         display: inline-block;
-        border-radius: 1.83rem;
-        opacity: 0.5;
-        border: 0.04rem solid #222222;
+        border-radius: 0.33rem;
+        border: 0.04rem solid rgba(#222222, 0.5);
 
         font-size: 1rem;
-        font-family: Inter-Regular, Inter;
-        font-weight: 400;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
         color: #222222;
         line-height: 1rem;
 
@@ -191,7 +190,7 @@
 @media screen and (max-width: 1024px) {
   .gameCard {
     .gameContent {
-      padding: 0.3rem 0.83rem 0.83rem;
+      // padding: 0.3rem 0.83rem 0.83rem;
 
       .gameName {
         p {
@@ -201,7 +200,7 @@
       }
 
       .gameTags {
-        margin: 0.5rem 0;
+        margin: 0.5rem 0 0;
       }
 
       .gameRewards {
@@ -239,21 +238,28 @@
 
     .gameContent {
       .gameTags {
-        margin: 0.5rem 0;
+        margin-top: 0.83rem;
         .gameTag {
-          font-size: 10px;
-          padding: 2px 4px;
+          font-size: 0.83rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #222222;
+          line-height: 0.83rem;
+          padding: 0.25rem 0.58rem;
 
           & + .gameTag {
-            margin-left: 0.33rem;
+            margin-left: 0.5rem;
           }
         }
       }
       .gameName {
-        // p {
-        //   font-size: 1.2rem;
-        //   line-height: 1.2rem;
-        // }
+        p {
+          font-size: 1.33rem;
+          font-family: Inter-Bold, Inter;
+          font-weight: bold;
+          color: #222222;
+          line-height: 1.33rem;
+        }
       }
       .gameRewards {
         p {

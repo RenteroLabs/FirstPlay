@@ -1,0 +1,73 @@
+.communityBox {
+  height: 20rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-image: url(../../../public/community_section_bg.png);
+  background-size: 100% 100%;
+
+  h2 {
+    margin-top: 3.75rem;
+    font-size: 4rem;
+    font-family: Montserrat-ExtraBold, Montserrat;
+    font-weight: 800;
+    color: #222222;
+    line-height: 4rem;
+  }
+
+  p {
+    font-size: 1.75rem;
+    font-family: Inter-SemiBold, Inter;
+    font-weight: 600;
+    color: #222222;
+    line-height: 1.75rem;
+    margin-top: 0.83rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .discordBtn {
+    background: #222222;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 13.33rem;
+    height: 3.33rem;
+    cursor: pointer;
+    user-select: none;
+
+    font-size: 1.33rem;
+    font-family: Inter-Medium, Inter;
+    font-weight: 500;
+    color: #ffffff;
+    line-height: 1.33rem;
+
+    .iconBox {
+      position: relative;
+      width: 2.33rem;
+      height: 2.33rem;
+      margin-right: 1rem;
+
+      img {
+        transform: scale(1.4);
+      }
+    }
+
+    &:hover {
+      background: #8e50e4;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .communityBox {
+    h2 {
+      font-size: 3rem;
+    }
+    p {
+      font-size: 1.33rem;
+    }
+  }
+}

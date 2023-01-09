@@ -1,60 +1,35 @@
 .taskBox {
   // position: relative;
   // z-index: 1800;
-  height: calc(100vh - 9rem);
-  background: #f6f1fd;
-  padding: 1.5rem 1.33rem;
-  padding-top: 2.33rem;
-  overflow-y: scroll;
+  border-radius: 0.67rem 0.67rem 0rem 0rem;
+
+  height: calc(100vh - 5.83rem);
+  // background: #f6f1fd;
+  background: white;
+  // padding: 1.5rem 1.33rem;
+  // padding-top: 3.92rem;
+  padding: 3.92rem 0 1.5rem;
+  // overflow-y: scroll;
   overscroll-behavior: none;
 
   .taskInfoBox {
     position: relative;
     width: 100%;
     display: block;
-    min-height: calc(50vh - 3rem);
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    // min-height: calc(50vh - 3rem);
     background-color: white;
     border-radius: 0.67rem 0.67rem 0rem 0rem;
     // padding-top: 3.17rem;
     margin-bottom: 5rem;
-    padding-top: 3.92rem;
-
-    .itemLabel {
-      position: absolute;
-      width: 3.33rem;
-      height: 3rem;
-      top: -0.67rem;
-      left: 1.5rem;
-      font-size: 1.75rem;
-      font-family: Inter-SemiBold, Inter;
-      font-weight: 600;
-      color: #ffffff;
-      line-height: 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-color: transparent;
-      background: linear-gradient(180deg, #6effc4 0%, #984cec 100%);
-      box-shadow: -0.17rem 0.17rem 0.33rem 0rem rgba(142, 80, 228, 0.3);
-      border-radius: 0rem 1rem 0rem 1rem;
-      user-select: none;
-      &::before {
-        display: block;
-        content: '';
-        width: 0;
-        height: 0;
-        position: absolute;
-        border: 4px solid transparent;
-        border-right: 4px solid #4d3372;
-        border-bottom: 4px solid #4d3372;
-        left: -8px;
-        top: 0px;
-      }
-    }
+    padding: 0 1.33rem;
+    padding-bottom: 5rem;
 
     .taskHeader {
       display: flex;
-      margin: 0rem 1rem 1.75rem;
+      margin: 0rem 0rem 1.75rem;
 
       p {
         font-size: 1.33rem;
@@ -118,7 +93,7 @@
       font-weight: 500;
       color: #222222;
       line-height: 2rem;
-      margin: 0rem 1rem 1.67rem;
+      margin: 0rem 0rem 1.67rem;
 
       a {
         text-decoration: underline;
@@ -127,7 +102,7 @@
 
     .btnList {
       display: flex;
-      margin: auto 0.5rem 1.67rem;
+      margin: auto -0.5rem 1.67rem;
       flex-wrap: wrap;
     }
 
@@ -277,20 +252,67 @@
   }
 }
 
+.itemLabel {
+  position: absolute;
+  z-index: 1900;
+  width: 3.33rem;
+  height: 3rem;
+  top: -0.67rem;
+  left: 1.5rem;
+  font-size: 1.75rem;
+  font-family: Inter-SemiBold, Inter;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-color: transparent;
+  background: linear-gradient(180deg, #6effc4 0%, #984cec 100%);
+  box-shadow: -0.17rem 0.17rem 0.33rem 0rem rgba(142, 80, 228, 0.3);
+  border-radius: 0rem 1rem 0rem 1rem;
+  user-select: none;
+  &::before {
+    display: block;
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    border: 4px solid transparent;
+    border-right: 4px solid #4d3372;
+    border-bottom: 4px solid #4d3372;
+    left: -8px;
+    top: 0px;
+  }
+}
+
+.closeBtn {
+  position: absolute !important;
+  top: 0.83rem !important;
+  right: 0.83rem !important;
+  padding: 0 !important;
+  svg {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+  }
+}
 .drawerBox {
   z-index: 1600 !important;
-  top: 9rem !important;
-  border-top-right-radius: 1rem;
-  border-top-left-radius: 1rem;
+  top: 5.83rem !important;
+  // border-top-right-radius: 1rem;
+  // border-top-left-radius: 1rem;
+  border-radius: 0.67rem 0.67rem 0rem 0rem;
   overscroll-behavior: none;
 
   :global {
     .MuiPaper-root {
       z-index: 1600;
-      top: 9rem !important;
-      border-top-right-radius: 1rem;
-      border-top-left-radius: 1rem;
+      top: 5.83rem !important;
+      border-top-right-radius: 0.67rem !important;
+      border-top-left-radius: 0.67rem !important;
       overscroll-behavior: none;
+      overflow-y: visible;
+      background-color: transparent;
     }
     .MuiBackdrop-root {
       z-index: 1550 !important;

@@ -218,13 +218,17 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                     key={index}
                     index={index + 1}
                     medalNum={item?.medal}
-                    isClaimed={item?.status !== 'uncompleted'}
+                    isStarted={item?.user_task_status !== 'not started'}
+                    isClaimed={item?.user_task_status !== 'uncompleted'}
                     reward={item?.description}
                     claimLink={item?.form}
                     gameId={router.query?.uuid as string}
                     strategyLink={carnivalGame?.strategy}
                     taskInfo={item}
                     timestamp={timestamp as unknown as number}
+                    reloadData={() => {
+                      getCarnivalGameInfo({ address: address || '0x00', game_id: router.query?.uuid as string })
+                    }}
                   />
                 )
               }
@@ -349,7 +353,8 @@ export default Game
 export const getStaticPaths: GetStaticPaths = async () => {
   // const { data } = await getAllGamesInfo()
   const { data } = await getAllGames()
-  const gamePaths = data?.popular_games?.map((item: any) => ({ params: { uuid: item.game_id } }))
+
+  const gamePaths = [...data?.popular_games, ...data?.rewarded_games].map((item: any) => ({ params: { uuid: item.game_id } }))
 
   return {
     paths: gamePaths,

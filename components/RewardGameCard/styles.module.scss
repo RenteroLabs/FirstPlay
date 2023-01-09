@@ -1,0 +1,137 @@
+.gameCard {
+  background: #ffffff;
+  border-radius: 1rem !important;
+  filter: blur(0px);
+  cursor: pointer;
+
+  .gameImage {
+    position: relative;
+    width: 100%;
+    padding-bottom: 46.16%;
+    overflow: hidden;
+
+    img {
+      object-fit: cover;
+    }
+
+    .cardTag {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: linear-gradient(180deg, #fad961 0%, #f76b1c 100%);
+      border-radius: 0.67rem 0rem 1.67rem 0rem;
+      font-size: 1.17rem;
+      font-family: Inter-Bold, Inter;
+      font-weight: bold;
+      color: #ffffff;
+      line-height: 1.17rem;
+      padding: 0.67rem 1.17rem 0.83rem 1rem;
+    }
+  }
+
+  .gameContent {
+    padding: 1.67rem 1.33rem;
+
+    .cardTitle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      p {
+        font-size: 1.75rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #222222;
+        line-height: 1.75rem;
+      }
+
+      .tagList {
+        display: inline-flex;
+
+        .tagItem {
+          border-radius: 0.33rem;
+          border: 1px solid rgba(#222222, 0.5);
+          font-size: 1rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #222222;
+          line-height: 1rem;
+          padding: 0.33rem 0.67rem;
+
+          & + .tagItem {
+            margin-left: 0.67rem;
+          }
+        }
+      }
+    }
+
+    .rewardItem {
+      display: flex;
+      align-items: center;
+      margin-top: 1.25rem;
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #8e50e4;
+      line-height: 1.17rem;
+
+      .iconBox {
+        position: relative;
+        width: 15px;
+        height: 17px;
+        margin-right: 0.67rem;
+        img {
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .gameCard {
+    border-radius: 0.67rem !important;
+    .gameContent {
+      padding: 1rem 1rem 1.33rem !important;
+
+      .cardTitle {
+        p {
+          font-size: 1.5rem;
+          font-family: Inter-Bold, Inter;
+          font-weight: bold;
+          color: #222222;
+          line-height: 1.5rem;
+        }
+
+        .tagList {
+          .tagItem {
+            padding: 0.25rem 0.58rem;
+            font-size: 0.83rem;
+            font-family: Inter-Medium, Inter;
+            font-weight: 500;
+            color: #222222;
+            line-height: 0.83rem;
+
+            & + .tagItem {
+              margin-left: 0.33rem;
+            }
+          }
+        }
+      }
+
+      .rewardItem {
+        font-size: 1.17rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #8e50e4;
+        line-height: 1.5rem;
+        // margin-top: 1rem !important;
+        margin-top: 10px !important;
+
+        .iconBox {
+          display: none;
+        }
+      }
+    }
+  }
+}
