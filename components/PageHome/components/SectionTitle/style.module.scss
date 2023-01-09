@@ -1,6 +1,12 @@
 .sectionTitleBox {
   display: flex;
-  justify-content: flex-start;
+  // justify-content: flex-start;
+  justify-content: space-between;
+
+  .titleBox {
+    display: inline-flex;
+    align-items: center;
+  }
   .emphasize {
     font-size: 2.5rem;
     font-family: Montserrat-Black, Montserrat;
@@ -24,6 +30,24 @@
     // line-height: 3rem;
     white-space: nowrap;
   }
+
+  .moreLink {
+    display: inline-flex;
+    align-items: center;
+    p {
+      font-size: 1.33rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: rgba(#222, 0.8);
+      line-height: 1.33rem;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    svg {
+      // background: rgba(#222, 0.8);
+      color: rgba(#222, 0.8);
+    }
+  }
 }
 
 @media screen and (max-width: 1024px) {
@@ -44,6 +68,16 @@
       font-weight: 900;
       color: #222222;
       line-height: 1.75rem;
+    }
+
+    .moreLink {
+      p {
+        font-size: 1.17rem;
+        line-height: 1.17rem;
+      }
+      svg {
+        font-size: 1.8rem;
+      }
     }
   }
 }

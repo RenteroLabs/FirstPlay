@@ -135,16 +135,16 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
                 <TableCell className={styles.tableBodyCell}>
                   {item?.user_task_status === 'uncompleted' ? 'Start' : "Completed"}
                 </TableCell>
-                <TableCell className={styles.tableBodyCell}>
+                <TableCell className={styles.tableBodyCell} sx={{ minWidth: '10rem'}}>
                   {item?.name}
                 </TableCell>
-                <TableCell className={styles.tableBodyCell}>
+                <TableCell className={styles.tableBodyCell} sx={{ minWidth: '20rem'}}>
                   {item?.task}
                 </TableCell>
-                <TableCell className={styles.tableBodyCell}>
+                <TableCell className={styles.tableBodyCell} sx={{ minWidth: '13rem'}}>
                   {dateFormat("YYYY-mm-dd HH:MM", new Date(parseInt(item?.time) * 1000))}
                 </TableCell>
-                <TableCell className={styles.tableBodyCell}>
+                <TableCell className={styles.tableBodyCell} sx={{ minWidth: '15rem'}}>
                   {item?.rewards}
                 </TableCell>
                 <TableCell className={styles.tableBodyCell} align="center" >

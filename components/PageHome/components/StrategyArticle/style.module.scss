@@ -40,6 +40,9 @@
       text-align: left;
 
       margin: 2.33rem 0 1rem;
+      &:hover {
+        color: rgba(#222, 0.8);
+      }
     }
     p {
       max-width: 60rem;

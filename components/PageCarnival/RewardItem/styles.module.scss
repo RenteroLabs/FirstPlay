@@ -237,7 +237,7 @@
 
   .claimBtn {
     flex-shrink: 0;
-    width: 10rem;
+    min-width: 10rem;
     text-align: center;
     margin-right: 0.83rem;
     margin-left: 1.5rem;
@@ -254,6 +254,15 @@
     line-height: 1.33rem;
     cursor: pointer;
 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    .btnLoading {
+      width: 1.33rem !important;
+      height: 1.33rem !important;
+      margin-left: 1rem;
+      margin-right: 0;
+    }
     &:hover {
       box-shadow: 0.2rem 0.4rem 0.4rem 0rem rgba(142, 80, 228, 0.2);
     }

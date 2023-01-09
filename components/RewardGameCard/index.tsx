@@ -11,14 +11,14 @@ interface RewardGameCardProps {
 // 有奖励活动的游戏卡片
 const RewardGameCard: React.FC<RewardGameCardProps> = (props) => {
   const { gameInfo, timestamp } = props
-  // console.log(gameInfo)
+  console.log(gameInfo)
 
   return <Link href={`/game/${gameInfo?.game_id}`}>
     <Card className={styles.gameCard}>
       <Box className={styles.gameImage}>
         <Image
           priority
-          src={gameInfo?.image}
+          src={gameInfo?.cover}
           layout="fill"
           objectFit="cover"
           loader={({ src }) => `${src}?timestamp=${timestamp}`}

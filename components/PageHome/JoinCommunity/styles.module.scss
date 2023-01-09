@@ -54,10 +54,14 @@
         transform: scale(1.4);
       }
     }
+
+    &:hover {
+      background: #8e50e4;
+    }
   }
 }
 
-@media screen and (max-width: 1200px){
+@media screen and (max-width: 1200px) {
   .communityBox {
     h2 {
       font-size: 3rem;

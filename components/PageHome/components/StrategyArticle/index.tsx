@@ -13,7 +13,7 @@ const cardBgColor = ['#F0E3CC', '#C6F2F2', '#E5E5F3', '#EBEADE']
 const StrategyArticle: React.FC<StrategyArticleProp> = (props) => {
   const { articleInfo } = props
 
-  console.log(articleInfo)
+  // console.log(articleInfo)
   const imageKitLoader = ({ src, width, quality = 100 }: any) => {
     const params = [`w-300`];
     if (quality) {

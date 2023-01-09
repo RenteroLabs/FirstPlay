@@ -33,9 +33,9 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { useAccount } from 'wagmi'
 import ConnectWallet from '@/components/ConnectWallet'
 import { startGameTask } from 'services/home'
+import CircularProgress from '@mui/material/CircularProgress';
 
 const cx = classname.bind(styles)
-
 
 interface DownloadButtonProps {
   platform: PlatformType,
@@ -225,6 +225,8 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
 
   const [showTaskMore, setShowTaskMore] = useState<boolean>(false)
 
+  const [isStartTaskLoading, setStartTaskLoading] = useState<boolean>(false)
+
 
   useEffect(() => {
     if (showTaskDrawer && isMobileSize) {
@@ -292,11 +294,15 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       setShowConnectWallet(true)
       return
     }
+
+    await setStartTaskLoading(true)
     // send reqeust
     await startGameTask({
       task_id: taskInfo?.task_id,
       address: address
     })
+    await setStartTaskLoading(false)
+
     // open drawer
     setShowTaskDrawer(true)
   }
@@ -420,7 +426,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
               await handleStartGameTask()
               reloadData()
             }}>
-            Start
+            Start {isStartTaskLoading && <CircularProgress className={styles.btnLoading} />}
           </Box>}
       </Box>
 
