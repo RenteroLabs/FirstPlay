@@ -58,7 +58,7 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
   }
 
   const WalletIntro = <Box className={styles.walletIntro}>
-    <Typography variant='h4'>Don't have a wallet yet?</Typography>
+    <Typography variant='h4'>Don&#39;t have a wallet yet?</Typography>
     <Typography className={styles.subtitle}>Connecting wallet is like“logging in” to Web3. You can visit every website without  creating new accounts and passwords.</Typography>
 
     <Box className={styles.downItem}>
