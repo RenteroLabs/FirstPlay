@@ -141,10 +141,12 @@ interface GameTaskDrawerProps {
   reward: string
   timestamp: number
   setShowTaskModal: (arg: boolean) => any
+  isStarted: boolean
+  isClaimed: boolean
 }
 
 const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
-  const { showTaskDrawer, setShowTaskDrawer, taskInfo, index, reward, setShowTaskModal, timestamp } = props
+  const { showTaskDrawer, setShowTaskDrawer, taskInfo, index, reward, setShowTaskModal, timestamp, isStarted, isClaimed } = props
 
   const [stepNums, setStepNums] = useState<number>(3)
   const [activeStep, setActiveStep] = useState<number>(1)
@@ -228,6 +230,7 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
             }}>
             <KeyboardArrowLeftIcon /> Back
           </Box> : <Box></Box>}
+
         {activeStep !== stepNums ? <Box
           className={styles.nextBtn}
           onClick={() => {
@@ -240,7 +243,7 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
         >
           Next <KeyboardArrowRightIcon />
         </Box> :
-          taskInfo?.form && <Box
+          taskInfo?.form && !isClaimed && taskInfo?.task_status === 'on' && <Box
             className={styles.verifyBtn}
             onClick={() => setShowTaskModal(true)}
           >

@@ -2,6 +2,7 @@ import { Box, Button, MenuItem, Stack, Typography, Slide, useMediaQuery, Drawer 
 import styles from './styles.module.scss'
 import Image from 'next/image'
 import ConnectWallet from '../ConnectWallet'
+// import ConnectWallet from '../NewConnectWallet'
 import { useState, useMemo } from 'react'
 import { useAccount, useDisconnect, useNetwork, useSwitchNetwork } from 'wagmi'
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';

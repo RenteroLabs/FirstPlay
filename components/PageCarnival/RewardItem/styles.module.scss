@@ -413,7 +413,35 @@
     // margin-top: 2.5rem;
 
     .startBtn {
-      width: calc(100% - 11rem);
+      // width: calc(100% - 11rem);
+      width: 100%;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      height: 3.33rem;
+      background: #8e50e4;
+      text-align: center;
+      border-radius: 1.67rem;
+      filter: blur(0px);
+      font-size: 1.17rem;
+      font-family: PingFangSC-Medium, PingFang SC;
+      font-weight: 500;
+      color: #ffffff;
+      line-height: 3.33rem;
+      padding: 0 5rem;
+      cursor: pointer;
+
+      .btnLoading {
+        width: 1.33rem !important;
+        height: 1.33rem !important;
+        margin-left: 1rem;
+        margin-right: 0;
+        color: white;
+      }
+    }
+
+    .middleBtn {
+      width: calc(100% - 11rem) !important;
       display: inline-block;
       height: 3.33rem;
       background: #8e50e4;
@@ -543,8 +571,11 @@
   .mobileCarnivalRewardItem {
     .actionArea {
       .startBtn {
-        width: calc(65% - 1rem);
+        // width: calc(65% - 1rem);
         padding: 0;
+      }
+      .middleBtn {
+        width: calc(65% - 1rem);
       }
       .claimBtn {
         width: 35%;
