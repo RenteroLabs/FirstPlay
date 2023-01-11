@@ -374,8 +374,36 @@
     color: #ffffff;
     line-height: 1.33rem;
     text-align: center;
-    margin-top: 5vh;
+    // margin-top: 5vh;
     cursor: pointer;
+  }
+
+  .connectBox {
+    // width: 100%;
+    position: absolute;
+    left: 2rem;
+    right: 2rem;
+    bottom: 3.33rem;
+  }
+
+  .walletIntro {
+    text-align: center;
+    h4 {
+      font-size: 1.17rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #222222;
+      line-height: 1.33rem;
+      margin-top: 2.5rem;
+    }
+    p {
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: rgba($color: #222, $alpha: 0.8);
+      line-height: 1.67rem;
+      margin-top: 0.67rem;
+    }
   }
 }
 
@@ -438,6 +466,13 @@
   .drawer {
     width: 100vw;
     margin-top: 5.33rem;
+    height: 100%;
+
+
+    // .connectBox {
+    //   position: absolute;
+    //   bottom: 2rem;
+    // }
   }
   .header {
     height: 4.67rem;

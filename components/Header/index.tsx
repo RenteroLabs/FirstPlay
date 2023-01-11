@@ -1,8 +1,8 @@
 import { Box, Button, MenuItem, Stack, Typography, Slide, useMediaQuery, Drawer } from '@mui/material'
 import styles from './styles.module.scss'
 import Image from 'next/image'
-import ConnectWallet from '../ConnectWallet'
-// import ConnectWallet from '../NewConnectWallet'
+// import ConnectWallet from '../ConnectWallet'
+import ConnectWallet from '../NewConnectWallet'
 import { useState, useMemo } from 'react'
 import { useAccount, useDisconnect, useNetwork, useSwitchNetwork } from 'wagmi'
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
@@ -160,10 +160,24 @@ const HeaderUserInfo: React.FC<HeaderUserInfoProps> = (props) => {
             </>
           }
 
-          {!address && <Box
+          {
+            !address && <Box className={styles.connectBox}>
+              <Box
+                className={styles.userInfoConnect}
+                onClick={() => { if (connectWallet) connectWallet() }}
+              >{t("connectWallet")}</Box>
+
+              <Box className={styles.walletIntro}>
+                <Typography variant='h4'>What is Wallet ?</Typography>
+                <Typography>Connecting wallet is like “logging in” to Web3. You can visit every website without  creating new accounts and passwords.</Typography>
+              </Box>
+            </Box>
+          }
+          {/* {!address && <Box
             className={styles.userInfoConnect}
             onClick={() => { if (connectWallet) connectWallet() }}
-          >{t("connectWallet")}</Box>}
+          >{t("connectWallet")}</Box>} */}
+
         </Box>
     }
   </Box>

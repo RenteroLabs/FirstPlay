@@ -63,8 +63,9 @@
 
   .itemWalletConnectLogo {
     @extend .logoBase;
-    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNDBweCIgaGVpZ2h0PSI0MHB4IiB2aWV3Qm94PSIwIDAgNDAgNDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8dGl0bGU+cG5nX3dhbGxldGNvbm5lY3Q8L3RpdGxlPgogICAgPGRlZnM+CiAgICAgICAgPHJhZGlhbEdyYWRpZW50IGN4PSIwJSIgY3k9IjUwJSIgZng9IjAlIiBmeT0iNTAlIiByPSIxMDAlIiBpZD0icmFkaWFsR3JhZGllbnQtMSI+CiAgICAgICAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiM1RDlERjYiIG9mZnNldD0iMCUiPjwvc3RvcD4KICAgICAgICAgICAgPHN0b3Agc3RvcC1jb2xvcj0iIzAwNkZGRiIgb2Zmc2V0PSIxMDAlIj48L3N0b3A+CiAgICAgICAgPC9yYWRpYWxHcmFkaWVudD4KICAgIDwvZGVmcz4KICAgIDxnIGlkPSJNYXJrZXQrTGVuZCIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9IkxlbmQtTkZUcy01IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTEyLjAwMDAwMCwgLTU4OC4wMDAwMDApIiBmaWxsLXJ1bGU9Im5vbnplcm8iPgogICAgICAgICAgICA8ZyBpZD0i57yW57uELTMiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQ0MC4wMDAwMDAsIDMzMi4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSJJdGVtcyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDAuMDAwMDAwLCAxMjAuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICAgICAgPGcgaWQ9IlAtMiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMC4wMDAwMDAsIDExMi4wMDAwMDApIj4KICAgICAgICAgICAgICAgICAgICAgICAgPGcgaWQ9Iue8lue7hCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzIuMDAwMDAwLCAyNC4wMDAwMDApIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0yMCwwIEMzMS4wNDU2OTUsMCA0MCw4Ljk1NDMwNSA0MCwyMCBDNDAsMzEuMDQ1Njk1IDMxLjA0NTY5NSw0MCAyMCw0MCBDOC45NTQzMDUsNDAgMCwzMS4wNDU2OTUgMCwyMCBDMCw4Ljk1NDMwNSA4Ljk1NDMwNSwwIDIwLDAgWiIgaWQ9Iui3r+W+hCIgZmlsbD0idXJsKCNyYWRpYWxHcmFkaWVudC0xKSI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTEyLjcxMDI5MzQsMTUuNDQ2MDAyMyBDMTYuNzM2Mjk0LDExLjUxNzk5OTIgMjMuMjYzNzMwNSwxMS41MTc5OTkyIDI3LjI4OTczMDksMTUuNDQ2MDAyMyBMMjcuNzc0MjY2NiwxNS45MTg3NDM4IEMyNy45NzU1NjY2LDE2LjExNTE0MzkgMjcuOTc1NTY2NiwxNi40MzM1NzE1IDI3Ljc3NDI2NjYsMTYuNjI5OTcxNyBMMjYuMTE2NzY2NywxOC4yNDcxMjYxIEMyNi4wMTYxMTY2LDE4LjM0NTMyNjIgMjUuODUyOTMwOCwxOC4zNDUzMjYyIDI1Ljc1MjI4MDcsMTguMjQ3MTI2MSBMMjUuMDg1NTAyMSwxNy41OTY1Nzc2IEMyMi4yNzY4NjM2LDE0Ljg1NjMwNDUgMTcuNzIzMTYwOCwxNC44NTYzMDQ1IDE0LjkxNDUyMjEsMTcuNTk2NTc3NiBMMTQuMjAwNDU3NCwxOC4yOTMyNjE0IEMxNC4wOTk4MDczLDE4LjM5MTQ2MTQgMTMuOTM2NjIxMywxOC4zOTE0NjE0IDEzLjgzNTk3MTQsMTguMjkzMjYxNCBMMTIuMTc4NDcxNiwxNi42NzYxMDcgQzExLjk3NzE3MTYsMTYuNDc5NzA2OCAxMS45NzcxNzE2LDE2LjE2MTI3OTIgMTIuMTc4NDcxNiwxNS45NjQ4NzkgTDEyLjcxMDI5MzQsMTUuNDQ2MDAyMyBaIE0zMC43MTc1OTcsMTguNzkwNDQ4NiBMMzIuMTkyNzc1LDIwLjIyOTcyNCBDMzIuMzk0MDc0LDIwLjQyNjEyMzMgMzIuMzk0MDc1MiwyMC43NDQ1NDkgMzIuMTkyNzc3NSwyMC45NDA5NDk1IEwyNS41NDEwOTgsMjcuNDMwODIxMyBDMjUuMzM5Nzk5MywyNy42MjcyMjI5IDI1LjAxMzQyNzUsMjcuNjI3MjI1MSAyNC44MTIxMjYxLDI3LjQzMDgyNjQgQzI0LjgxMjEyNTMsMjcuNDMwODI1NiAyNC44MTIxMjQzLDI3LjQzMDgyNDYgMjQuODEyMTIzNSwyNy40MzA4MjM4IEwyMC4wOTExNjYsMjIuODI0NzcyOSBDMjAuMDQwODQxLDIyLjc3NTY3MjggMTkuOTU5MjQ4LDIyLjc3NTY3MjggMTkuOTA4OTIzLDIyLjgyNDc3MjkgQzE5LjkwODkyMjcsMjIuODI0NzczMiAxOS45MDg5MjI0LDIyLjgyNDc3MzQgMTkuOTA4OTIyMSwyMi44MjQ3NzM4IEwxNS4xODgwNjUyLDI3LjQzMDgyMTMgQzE0Ljk4Njc2NzIsMjcuNjI3MjIzNCAxNC42NjAzOTUzLDI3LjYyNzIyNjcgMTQuNDU5MDkzMywyNy40MzA4Mjg0IEMxNC40NTkwOTIxLDI3LjQzMDgyNzMgMTQuNDU5MDkwOSwyNy40MzA4MjYyIDE0LjQ1OTA4OTYsMjcuNDMwODI0OCBMNy44MDcyMjQ5NiwyMC45NDA4NjY4IEM3LjYwNTkyNTAxLDIwLjc0NDQ2NjcgNy42MDU5MjUwMSwyMC40MjYwMzkxIDcuODA3MjI0OTYsMjAuMjI5NjM5IEw5LjI4MjQwNTYzLDE4Ljc5MDM2NTkgQzkuNDgzNzA1NTgsMTguNTkzOTY1NyA5LjgxMDA3NzQ1LDE4LjU5Mzk2NTcgMTAuMDExMzc3NSwxOC43OTAzNjU5IEwxNC43MzI0MDM2LDIzLjM5NjQ4MTIgQzE0Ljc4MjcyODcsMjMuNDQ1NTgxMiAxNC44NjQzMjE2LDIzLjQ0NTU4MTIgMTQuOTE0NjQ2NiwyMy4zOTY0ODEyIEMxNC45MTQ2NDc0LDIzLjM5NjQ4MDUgMTQuOTE0NjQ4LDIzLjM5NjQ3OTggMTQuOTE0NjQ4OCwyMy4zOTY0NzkyIEwxOS42MzU0Mzg0LDE4Ljc5MDM2NTkgQzE5LjgzNjczMzgsMTguNTkzOTYxMiAyMC4xNjMxMDU3LDE4LjU5Mzk1MzggMjAuMzY0NDEwMiwxOC43OTAzNDk0IEMyMC4zNjQ0MTMxLDE4Ljc5MDM1MjIgMjAuMzY0NDE1OSwxOC43OTAzNTUgMjAuMzY0NDE4NiwxOC43OTAzNTc3IEwyNS4wODU0Mzg2LDIzLjM5NjQ3OTIgQzI1LjEzNTc2MzUsMjMuNDQ1NTc5MSAyNS4yMTczNTY1LDIzLjQ0NTU3OTEgMjUuMjY3NjgxNSwyMy4zOTY0NzkyIEwyOS45ODg2MjUyLDE4Ljc5MDQ0ODYgQzMwLjE4OTkyNTIsMTguNTk0MDQ4MyAzMC41MTYyOTcsMTguNTk0MDQ4MyAzMC43MTc1OTcsMTguNzkwNDQ4NiBaIiBpZD0i5b2i54q2IiBmaWxsPSIjRkZGRkZGIj48L3BhdGg+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==);
+    background: url(/walletconnect_logo.svg);
   }
+
   .itemMetamaskLogo {
     @extend .logoBase;
     border-radius: 50%;
@@ -165,6 +166,7 @@
     padding: 0 1.17rem;
 
     margin-top: 3.33rem;
+    position: relative;
 
     img {
       height: 3rem;
@@ -198,6 +200,35 @@
       user-select: none;
       cursor: pointer;
     }
+
+    .beginnerBadge {
+      position: absolute;
+      top: -0.75rem;
+      width: 7.83rem;
+      height: 1.5rem;
+      background: #222222;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      font-family: PingFangSC-Semibold, PingFang SC;
+      font-weight: 600;
+      color: #96fcc8;
+      line-height: 1.5rem;
+      text-align: center;
+      user-select: none;
+
+      &::after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-top: 0.58rem solid #222;
+        border-left: 0.66rem solid transparent;
+        border-right: 0.66rem solid transparent;
+        position: absolute;
+        bottom: -0.3rem;
+        left: 0.83rem;
+      }
+    }
   }
 
   .metamaskGuide {
@@ -223,7 +254,7 @@
 
 .mobileConnect {
   .drawerBox {
-    padding-top: 4.67rem;
+    padding-top: 6rem;
 
     .drawerHeader {
       display: flex;
@@ -239,6 +270,89 @@
         font-weight: 600;
         color: #222222;
         line-height: 1.5rem;
+      }
+    }
+    .mobileWalletList {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f4f4f9;
+      padding-bottom: 1.67rem;
+
+      .mobileWalletItem {
+        width: 8.83rem;
+        height: 8.83rem;
+        background: #ffffff;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 1.5rem;
+        margin-top: 1.67rem;
+        position: relative;
+        cursor: pointer;
+
+        & + .mobileWalletItem {
+          margin-left: 1rem;
+        }
+        .baseMobileLogo {
+          width: 4rem;
+          height: 4rem;
+          border-radius: 50%;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .unipassLogo {
+          @extend .baseMobileLogo;
+          border: 0.08rem solid #e6e6e6;
+          img {
+            width: 3rem;
+            height: 3rem;
+          }
+        }
+        .metamaskLogo {
+          @extend .baseMobileLogo;
+          background: #ffe9d3;
+          img {
+            transform: scale(0.85);
+          }
+        }
+        .walletConnectLogo {
+          @extend .baseMobileLogo;
+          img {
+            width: 4rem;
+            height: 4rem;
+          }
+        }
+
+        p {
+          font-size: 14px;
+          font-family: Inter-SemiBold, Inter;
+          font-weight: 600;
+          color: #222222;
+          line-height: 14px;
+          margin-top: 0.67rem;
+          user-select: none;
+        }
+
+        .recentBadge {
+          position: absolute;
+          top: 0.5rem;
+          left: 0.5rem;
+          width: 3.83rem;
+          height: 1.33rem;
+          background: #222222;
+          border-radius: 0.67rem;
+          font-size: 0.83rem;
+          font-family: PingFangSC-Semibold, PingFang SC;
+          font-weight: 600;
+          color: #ffffff;
+          line-height: 0.83rem;
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+        }
       }
     }
   }
@@ -335,5 +449,25 @@
 
   .walletList {
     padding: 0 2rem 3rem;
+  }
+
+  .mobileConnect {
+    .drawerBox {
+      padding-top: 4.67rem;
+    }
+  }
+}
+
+@media screen and (max-width: 374px) {
+  .mobileConnect {
+    .drawerBox {
+      .mobileWalletList {
+        .mobileWalletItem {
+          & + .mobileWalletItem {
+            margin-left: 0.5rem;
+          }
+        }
+      }
+    }
   }
 }
