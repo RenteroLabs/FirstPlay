@@ -41,7 +41,7 @@ const unipassOption: PopupSDKOption = {
   chainType: "polygon",
   appSettings: {
     appName: "UniPass Wallet",
-    appIcon: "",
+    appIcon: "/favicon.ico",
   },
 }
 

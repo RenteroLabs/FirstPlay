@@ -67,7 +67,7 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
     <Box className={styles.downItem}>
       <img src='/unipass_logo.svg' />
       <Typography>Unipass</Typography>
-      <a href='https://wallet.unipass.id/register' target="_blank" rel="noreferrer"> 
+      <a href='https://wallet.unipass.id/register' target="_blank" rel="noreferrer">
         <Box className={styles.getBtn}>Get</Box>
       </a>
       <Box className={styles.beginnerBadge}>For beginners</Box>
@@ -114,7 +114,14 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
         </Box>
         <Box
           className={styles.mobileWalletItem}
-          onClick={() => handleConnect(!isEthEnv ? WalletConnectConnector : MetaMaskConnector)}>
+          onClick={() => {
+            if (isEthEnv) {
+              handleConnect(MetaMaskConnector)
+            } else {
+              window.open('https://metamask.app.link/dapp/test.firstplay.app')
+            }
+          }}
+        >
           <Box className={styles.metamaskLogo}>
             <img src='/metamask_logo.svg' />
           </Box>
@@ -170,7 +177,8 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
 
           <Box
             className={styles.walletItem}
-            onClick={() => handleConnect(!isEthEnv ? WalletConnectConnector : MetaMaskConnector)}>
+            onClick={() => handleConnect(!isEthEnv ? WalletConnectConnector : MetaMaskConnector)}
+          >
             <span className={styles.itemMetamaskLogo}>
               <img src='/metamask_logo.svg' />
             </span>
