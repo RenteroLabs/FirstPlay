@@ -123,3 +123,10 @@ export const GAME_TASK_MODAL_NAME: Record<string, string> = {
   'd56f4b3a-d7b7-4abf-935f-574546d4e958': "Matr1x_Modal",
   '32605c7c-45d3-49f4-9923-b3a51816d1df': "Bless_Modal"
 }
+
+
+
+export const MetamaskDeeplink: string =
+  process.env.NEXT_PUBLIC_ENV === 'PRO' ?
+    "https://metamask.app.link/dapp/firstplay.app" :
+    "https://metamask.app.link/dapp/test.firstplay.app"
