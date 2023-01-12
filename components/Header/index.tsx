@@ -199,7 +199,10 @@ const Header: React.FC = () => {
   return <Box className={styles.header}>
     <Box className={styles.headerBox}>
       <Link href="/">
-        <Box className={styles.headerLogo} onClick={() => setMobileDrawer(false)}>
+        <Box className={styles.headerLogo} onClick={() => {
+          setMobileDrawer(false)
+          setShowConnect(false)
+        }}>
           <Image src={FIRSTPLAY_LOGO} alt="header logo" layout='fill' objectFit='contain' />
         </Box>
       </Link>
