@@ -199,7 +199,7 @@ const Header: React.FC = () => {
   return <Box className={styles.header}>
     <Box className={styles.headerBox}>
       <Link href="/">
-        <Box className={styles.headerLogo}>
+        <Box className={styles.headerLogo} onClick={() => setMobileDrawer(false)}>
           <Image src={FIRSTPLAY_LOGO} alt="header logo" layout='fill' objectFit='contain' />
         </Box>
       </Link>
@@ -284,7 +284,10 @@ const Header: React.FC = () => {
         </Box>}
 
       {isMobileHeaderNav && isMounted &&
-        <Box className={styles.mobileMenuIcon} onClick={() => setMobileDrawer(!mobileDrawer)}>
+        <Box className={styles.mobileMenuIcon} onClick={() => {
+          setMobileDrawer(!mobileDrawer)
+          setShowConnect(false)
+        }}>
           {mobileDrawer ? <CloseIcon /> : <MenuIcon />}
         </Box>}
     </Box>
@@ -294,7 +297,11 @@ const Header: React.FC = () => {
     <Drawer
       anchor='right'
       open={mobileDrawer && isMobileHeaderNav}
-      onClose={() => setMobileDrawer(false)}
+      onClose={() => {
+        setMobileDrawer(false)
+        // console.log("test")
+        // setShowConnect(false)
+      }}
     >
       <Box className={styles.drawer}>
         <HeaderUserInfo
