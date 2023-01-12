@@ -130,7 +130,8 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
             if (isEthEnv) {
               handleConnect(MetaMaskConnector)
             } else {
-              window.open(MetamaskDeeplink)
+              // window.open(MetamaskDeeplink)
+              window.location.href = MetamaskDeeplink
             }
           }}
         >
