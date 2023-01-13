@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import styles from './style.module.scss'
-import { Carnival_Games, Reward_Games } from '../../constants/index'
+import {  Reward_Games } from '../../constants/index'
 
 interface GameCardProps {
   gameInfo: Record<string, any>

@@ -3,29 +3,95 @@
   background: #f4f4f9;
 
   .profileHeaderBox {
-    height: 23.33rem;
+    // height: 23.33rem;
     background-color: white;
+
+    .profileCover {
+      height: 20rem;
+      position: relative;
+    }
 
     .profileHeader {
       max-width: 100rem;
       margin: auto;
       height: 100%;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      justify-content: flex-start;
+      // align-items: center;
 
+      .profileAvatar {
+        position: relative;
+        width: 8.66rem;
+        height: 8.66rem;
+        border: 4px solid white;
+        border-radius: 50%;
+        margin-top: -4.33rem;
+        img {
+          border-radius: 50%;
+        }
+      }
       .headerInfo {
         flex-grow: 1;
 
         display: flex;
         flex-direction: column;
+        padding-bottom: 2.67rem;
+
+        .mobileInfo {
+          padding: 1.67rem 0 1.33rem;
+          .mobileUserInfo {
+            display: flex;
+            align-items: center;
+
+            .mobileAvatar {
+              width: 4.67rem;
+              height: 4.67rem;
+              position: relative;
+              margin-right: 0.83rem;
+              img {
+                border-radius: 50%;
+              }
+            }
+
+            .infoBox {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              .addressItem {
+                font-size: 1.75rem;
+                font-family: Inter-Medium, Inter;
+                font-weight: 500;
+                color: #222222;
+                line-height: 1.5rem;
+                margin-top: 0;
+              }
+              .passNFTInfo {
+                font-size: 1.17rem;
+                font-family: Inter-Medium, Inter;
+                font-weight: 500;
+                color: rgba(#222, 0.5);
+                line-height: 1.17rem;
+                margin-top: 0.83rem;
+                .iconBox {
+                  width: 1.17rem;
+                  height: 1.17rem;
+                  position: relative;
+                  margin-left: 0.33rem;
+                }
+              }
+            }
+          }
+        }
 
         .addressItem {
-          font-size: 3rem;
-          font-family: Inter-Medium, Inter;
-          font-weight: 500;
+          margin-top: 1.33rem;
+          font-size: 2.5rem;
+          font-family: Inter-SemiBold, Inter;
+          font-weight: 600;
           color: #222222;
-          line-height: 2.83rem;
+          line-height: 2.17rem;
+
           display: flex;
           align-items: center;
 
@@ -33,6 +99,58 @@
             opacity: 0.75;
             font-style: italic;
             font-size: 2.4rem;
+          }
+        }
+
+        .passNFTInfo {
+          display: inline-flex;
+          align-items: center;
+          font-size: 1.33rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: rgba(#222, 0.5);
+          line-height: 1.17rem;
+
+          margin-top: 1.08rem;
+          .iconBox {
+            width: 1.33rem;
+            height: 1.33rem;
+            position: relative;
+            margin-left: 0.42rem;
+          }
+        }
+
+        .unipassLink {
+          margin-top: 1.75rem;
+          // cursor: pointer;
+          font-size: 1.33rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #222222;
+          line-height: 1.33rem;
+
+          background: rgba(#8e50e4, 0.08);
+          border-radius: 0.5rem;
+          padding: 1.33rem 1.25rem;
+
+          a {
+            display: inline-flex;
+            align-items: center;
+          }
+
+          .arrowIcon {
+            width: 1.67rem;
+            height: 1.67rem;
+            margin-left: 0.83rem;
+            border-radius: 50%;
+            color: #8e50e4;
+            background: rgba(#8e50e4, 0.2);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            svg {
+              transform: scale(0.8);
+            }
           }
         }
 
@@ -68,42 +186,6 @@
           .integralDesc {
             margin-right: 0.83rem;
           }
-        }
-      }
-
-      .passNFTBox {
-        flex-shrink: 0;
-        width: 13.33rem;
-        height: 13.33rem;
-        background: linear-gradient(#7041b1, #0f1827);
-        border-radius: 1rem;
-        position: relative;
-        overflow: hidden;
-
-        .imageMask {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          height: 4.25rem;
-          background: linear-gradient(
-            180deg,
-            rgba(0, 0, 0, 0) 0%,
-            #000000 100%
-          );
-          opacity: 0.55;
-        }
-        .imageTokenId {
-          position: absolute;
-          bottom: 0.67rem;
-          left: 0;
-          right: 0;
-          text-align: center;
-          font-size: 1.5rem;
-          font-family: Inter-SemiBold, Inter;
-          font-weight: 600;
-          color: #ffffff;
-          line-height: 1.5rem;
         }
       }
     }
@@ -214,15 +296,15 @@
 @media screen and (max-width: 1440px) {
   .containerBox {
     .profileHeaderBox {
-      height: 21.67rem;
+      // height: 21.67rem;
       .profileHeader {
         .headerInfo {
           .addressItem {
-            font-size: 2.5rem;
-            font-family: Inter-Medium, Inter;
-            font-weight: 500;
-            color: #222222;
-            line-height: 2.5rem;
+            // font-size: 2.5rem;
+            // font-family: Inter-Medium, Inter;
+            // font-weight: 500;
+            // color: #222222;
+            // line-height: 2.5rem;
           }
         }
       }
@@ -246,7 +328,7 @@
 @media screen and (max-width: 1024px) {
   .containerBox {
     .profileHeaderBox {
-      height: 20rem;
+      // height: 20rem;
       .profileHeader {
         .headerInfo {
           .chainsActiveItem {
@@ -333,23 +415,13 @@
     .profileHeaderBox {
       height: auto;
       .profileHeader {
-        flex-direction: column;
-        padding-bottom: 1rem;
+        // flex-direction: column;
+        // padding-bottom: 1rem;
 
         .headerInfo {
           order: 1;
           width: 100%;
-
-          .addressItem {
-            font-size: 1.75rem;
-            font-family: Inter-Medium, Inter;
-            font-weight: 500;
-            color: #222222;
-            line-height: 1.75rem;
-            margin-top: 2.5rem;
-            padding-bottom: 1.58rem;
-            border-bottom: 0.16rem solid rgba($color: #222, $alpha: 0.1);
-          }
+          padding-bottom: 0;
 
           .chainsActiveItem {
             margin-top: 1.68rem;

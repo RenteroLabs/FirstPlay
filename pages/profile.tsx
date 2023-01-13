@@ -1,6 +1,6 @@
 import { NextPageWithLayout } from "./_app";
 import React, { ReactElement, useEffect, useMemo, useState } from 'react';
-import { Box, Stack, Tab, Tabs, Typography } from "@mui/material";
+import { Box, Stack, Tab, Tabs, Typography, useMediaQuery } from "@mui/material";
 import Layout from "@/components/Layout";
 import Image from 'next/image';
 import { GetStaticProps, GetStaticPropsContext } from "next";
@@ -31,6 +31,9 @@ import { ProfilePackageRes } from "types/graph";
 import classNames from "classnames/bind";
 import Link from "next/link";
 
+import EastIcon from '@mui/icons-material/East';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
 const cx = classNames.bind(styles)
 
 enum TabItem {
@@ -44,6 +47,8 @@ const Profile: NextPageWithLayout = () => {
 
   const isMounted = useIsMounted()
   const router = useRouter()
+
+  const is680Size = useMediaQuery("(max-width: 680px)")
 
   const [paramTab, setParamTab] = useQueryParam('tab')
 
@@ -140,7 +145,7 @@ const Profile: NextPageWithLayout = () => {
 
 
 
-  
+
   return <Box className={styles.containerBox}>
     <Head>
       <title>Profile | FirstPlay</title>
@@ -148,14 +153,66 @@ const Profile: NextPageWithLayout = () => {
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Box className={styles.profileHeaderBox}>
+      {isMounted && !is680Size &&
+        <Box className={styles.profileCover}>
+          <Image src="https://rentero-resource.s3.ap-east-1.amazonaws.com/firstplay/background/Big%20Time.jpg?timestamp=1673577264450" layout="fill" />
+        </Box>}
+
       <Box className={styles.profileHeader}>
-        <Box className={styles.headerInfo}>
-          <Box className={styles.addressItem}>
-            {address && isMounted && (ensName || formatAddress(address, 8))}
-            {address && isMounted && <CopyButton targetValue={address || ""} />}
-            {!address && isMounted && <Typography>Not connect wallet yet !</Typography>}
+        {
+          isMounted && !is680Size &&
+          <Box className={styles.profileAvatar}>
+            <Image src="https://rentero-resource.s3.ap-east-1.amazonaws.com/firstplay/background/Big%20Time.jpg?timestamp=1673577264450" layout="fill" />
           </Box>
-          {passTokenId !== -1 && <Box className={styles.chainsActiveItem}>
+        }
+
+        <Box className={styles.headerInfo}>
+          {
+            isMounted && (is680Size ?
+              <Box className={styles.mobileInfo}>
+                <Box className={styles.mobileUserInfo}>
+                  <Box className={styles.mobileAvatar}>
+                    <Image src="https://rentero-resource.s3.ap-east-1.amazonaws.com/firstplay/background/Big%20Time.jpg?timestamp=1673577264450" layout="fill" />
+                  </Box>
+                  <Box className={styles.infoBox}>
+                    <Box className={styles.addressItem}>
+                      {address && isMounted && (ensName || formatAddress(address, 4))}
+                      {address && isMounted && <CopyButton targetValue={address || ""} />}
+                      {/* {!address && isMounted && <Typography>Not connect wallet yet !</Typography>} */}
+                    </Box>
+                    {true && <Typography className={styles.passNFTInfo}>
+                      Pass-NFT: #00002
+                      <Box className={styles.iconBox}>
+                        <Image src="/polygon-matic-logo.svg" layout="fill" />
+                      </Box>
+                    </Typography>}
+                  </Box>
+                </Box>
+              </Box>
+              :
+              <>
+                <Box className={styles.addressItem}>
+                  {isMounted && address && (ensName || formatAddress(address, 4))}
+                  {isMounted && address && <CopyButton targetValue={address || ""} />}
+                  {isMounted && !address && <Typography>Not connect wallet yet !</Typography>}
+                </Box>
+                <Typography className={styles.passNFTInfo}>
+                  Pass-NFT: #00002
+                  <Box className={styles.iconBox}>
+                    <Image src="/polygon-matic-logo.svg" layout="fill" />
+                  </Box>
+                </Typography>
+                <Box className={styles.unipassLink}>
+                  <a href="https://wallet.unipass.id/" target="_blank" rel="noreferrer">
+                    Visit UniPass wallet  to your asset after withdraw.Login email: XXXXXXXX
+                    <Box className={styles.arrowIcon}><ArrowForwardIcon /></Box>
+                  </a>
+                </Box>
+              </>
+            )}
+
+
+          {/* {passTokenId !== -1 && <Box className={styles.chainsActiveItem}>
             <Typography className={styles.chainsActiveDesc}>Trial qualification:</Typography>
             <Stack direction="row" className={styles.activeBtnList} >
               <ChainActiveButton
@@ -167,19 +224,8 @@ const Profile: NextPageWithLayout = () => {
               <ChainActiveButton chainId={5} isActived={activeRes?.[0] as unknown as boolean} setShowModal={setShowModal} setActiveChainInfo={setActiveChainInfo} />
               <ChainActiveButton chainId={97} isActived={activeRes?.[1] as unknown as boolean} setShowModal={setShowModal} setActiveChainInfo={setActiveChainInfo} />
             </Stack>
-          </Box>}
-          {/* <Box className={styles.integralItem}> */}
-          {/* <Typography className={styles.integralDesc}>Pointers:</Typography> */}
-          {/* <Typography><span>90</span> FP</Typography> */}
-          {/* </Box>  */}
+          </Box>} */}
         </Box>
-        {![0, -1].includes(passTokenId as number) && isMounted &&
-          <Box className={styles.passNFTBox}>
-            <Image loader={imageKitLoader} layout="fill" src="https://d2yhjjdyh5ugcy.cloudfront.net/PASS_NFT.jpg" objectFit="cover" />
-            <Box className={styles.imageMask}> </Box>
-            <Box className={styles.imageTokenId}>ID: {passTokenId.toString().padStart(5, '0')}</Box>
-          </Box>
-        }
       </Box>
     </Box>
     <Box className={styles.profileContent}>
