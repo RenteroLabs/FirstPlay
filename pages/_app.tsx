@@ -23,15 +23,29 @@ import { Analytics } from '@vercel/analytics/react';
 import ConnectWallet from '@/components/ConnectWallet'
 import { useRouter } from 'next/router';
 
+import { PopupSDKOption, UniPassPopupSDK } from '@unipasswallet/popup-sdk'
+
 import TagManager from 'react-gtm-module'
 
 import * as ga from '../util/ga'
+import { UnipassConnector } from 'lib/UnipassConnector'
 
 // connect wallet config
 const { chains, provider, webSocketProvider } = configureChains(SUPPORT_CHAINS, [
   alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID }),
   publicProvider()
 ])
+
+const unipassOption: PopupSDKOption = {
+  env: 'prod',
+  chainType: "polygon",
+  appSettings: {
+    appName: "UniPass Wallet",
+    appIcon: "https://firstplay.app/favicon.ico",
+  },
+}
+
+const unipassInstance = new UniPassPopupSDK(unipassOption) 
 
 const client = createClient({
   autoConnect: true,
@@ -44,6 +58,11 @@ const client = createClient({
       options: {
         qrcode: true
       }
+    }),
+    new UnipassConnector({
+      chains,
+      options: unipassOption,
+      unipass: unipassInstance
     })
   ],
   provider,

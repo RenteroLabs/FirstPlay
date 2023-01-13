@@ -160,10 +160,24 @@ const HeaderUserInfo: React.FC<HeaderUserInfoProps> = (props) => {
             </>
           }
 
-          {!address && <Box
+          {
+            !address && <Box className={styles.connectBox}>
+              <Box
+                className={styles.userInfoConnect}
+                onClick={() => { if (connectWallet) connectWallet() }}
+              >{t("connectWallet")}</Box>
+
+              <Box className={styles.walletIntro}>
+                <Typography variant='h4'>What is Wallet ?</Typography>
+                <Typography>Connecting wallet is like “logging in” to Web3. You can visit every website without  creating new accounts and passwords.</Typography>
+              </Box>
+            </Box>
+          }
+          {/* {!address && <Box
             className={styles.userInfoConnect}
             onClick={() => { if (connectWallet) connectWallet() }}
-          >{t("connectWallet")}</Box>}
+          >{t("connectWallet")}</Box>} */}
+
         </Box>
     }
   </Box>
@@ -185,7 +199,10 @@ const Header: React.FC = () => {
   return <Box className={styles.header}>
     <Box className={styles.headerBox}>
       <Link href="/">
-        <Box className={styles.headerLogo}>
+        <Box className={styles.headerLogo} onClick={() => {
+          setMobileDrawer(false)
+          setShowConnect(false)
+        }}>
           <Image src={FIRSTPLAY_LOGO} alt="header logo" layout='fill' objectFit='contain' />
         </Box>
       </Link>
@@ -270,7 +287,10 @@ const Header: React.FC = () => {
         </Box>}
 
       {isMobileHeaderNav && isMounted &&
-        <Box className={styles.mobileMenuIcon} onClick={() => setMobileDrawer(!mobileDrawer)}>
+        <Box className={styles.mobileMenuIcon} onClick={() => {
+          setMobileDrawer(!mobileDrawer)
+          setShowConnect(false)
+        }}>
           {mobileDrawer ? <CloseIcon /> : <MenuIcon />}
         </Box>}
     </Box>
@@ -280,7 +300,11 @@ const Header: React.FC = () => {
     <Drawer
       anchor='right'
       open={mobileDrawer && isMobileHeaderNav}
-      onClose={() => setMobileDrawer(false)}
+      onClose={() => {
+        setMobileDrawer(false)
+        // console.log("test")
+        // setShowConnect(false)
+      }}
     >
       <Box className={styles.drawer}>
         <HeaderUserInfo
