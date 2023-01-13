@@ -75,24 +75,25 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
     <Typography variant='h4'>Don&#39;t have a wallet yet?</Typography>
     <Typography className={styles.subtitle}>Connecting wallet is like“logging in” to Web3. You can visit every website without  creating new accounts and passwords.</Typography>
 
-    <Box className={styles.downItem}>
-      <img src='/unipass_logo.svg' />
-      <Typography>Unipass</Typography>
-      <a href='https://wallet.unipass.id/register' target="_blank" rel="noreferrer">
+    <a href='https://wallet.unipass.id/register' target="_blank" rel="noreferrer">
+      <Box className={styles.downItem}>
+        <img src='/unipass_logo.svg' />
+        <Typography>Unipass</Typography>
         <Box className={styles.getBtn}>Get</Box>
-      </a>
-      <Box className={styles.beginnerBadge}>For beginners</Box>
-    </Box>
+        <Box className={styles.beginnerBadge}>For beginners</Box>
+      </Box>
+    </a>
 
     <Typography className={styles.unipassGuide}>Quick login with email in 3 minutes on the web.</Typography>
 
-    <Box className={styles.downItem}>
-      <img src='/metamask_logo.svg' />
-      <Typography>MetaMask</Typography>
-      <a href='https://metamask.io/download/' target="_blank" rel="noreferrer">
+    <a href='https://metamask.io/download/' target="_blank" rel="noreferrer">
+      <Box className={styles.downItem}>
+        <img src='/metamask_logo.svg' />
+        <Typography>MetaMask</Typography>
         <Box className={styles.getBtn}>Get</Box>
-      </a>
-    </Box>
+      </Box>
+    </a>
+    
     <a
       className={styles.metamaskGuide}
       href="/strategy/Get-Started-With-Metamask-Quickly"
