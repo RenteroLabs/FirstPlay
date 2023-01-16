@@ -33,6 +33,7 @@ import Link from "next/link";
 
 import EastIcon from '@mui/icons-material/East';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import BalanceTokenItem from "@/components/PageProfile/BalanceTokenItem";
 
 const cx = classNames.bind(styles)
 
@@ -144,9 +145,6 @@ const Profile: NextPageWithLayout = () => {
     return `${urlEndpoint}/${imageHash}?tr=${paramsString}`
   }
 
-
-
-
   return <Box className={styles.containerBox}>
     <Head>
       <title>Profile | FirstPlay</title>
@@ -238,6 +236,7 @@ const Profile: NextPageWithLayout = () => {
     <Box className={styles.profileContent}>
       <Box className={styles.balanceSection}>
         <Typography variant="h3">Reward Balance</Typography>
+        <BalanceTokenItem tokenInfo={{}} />
       </Box>
 
       <Tabs

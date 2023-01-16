@@ -1,0 +1,53 @@
+.tokenItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .tokenInfo {
+    display: flex;
+    align-items: center;
+    flex-grow: 0;
+
+    .tokenLogo {
+      width: 2.33rem;
+      height: 2.33rem;
+      position: relative;
+      margin-right: 0.83rem;
+    }
+    .tokenSymbol {
+      font-size: 1.33rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #222222;
+      line-height: 1.33rem;
+      margin-right: 0.5rem;
+    }
+    .tokenName {
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: rgba(#222, 0.3);
+      line-height: 1rem;
+    }
+  }
+
+  .withdrawBtn {
+    background: #8e50e4;
+    border-radius: 1.33rem;
+    filter: blur(0px);
+    font-size: 1.17rem;
+    font-family: Inter-SemiBold, Inter;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.17rem;
+    padding: 0.75rem 2.25rem;
+    user-select: none;
+    cursor: pointer;
+  }
+
+  .balanceInfo {
+    .amountText {
+      
+    }
+  }
+}
