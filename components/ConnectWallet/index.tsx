@@ -75,14 +75,14 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
     <Typography variant='h4'>Don&#39;t have a wallet yet?</Typography>
     <Typography className={styles.subtitle}>Connecting wallet is like“logging in” to Web3. You can visit every website without  creating new accounts and passwords.</Typography>
 
-    <a href='https://wallet.unipass.id/register' target="_blank" rel="noreferrer">
-      <Box className={styles.downItem}>
-        <img src='/unipass_logo.svg' />
-        <Typography>Unipass</Typography>
-        <Box className={styles.getBtn}>Get</Box>
-        <Box className={styles.beginnerBadge}>For beginners</Box>
-      </Box>
-    </a>
+    {/* <a href='https://wallet.unipass.id/register' target="_blank" rel="noreferrer"> */}
+    <Box className={styles.downItem} onClick={() => handleConnect(UnipassConnector)}>
+      <img src='/unipass_logo.svg' />
+      <Typography>Unipass</Typography>
+      <Box className={styles.getBtn}>Get</Box>
+      <Box className={styles.beginnerBadge}>For beginners</Box>
+    </Box>
+    {/* </a> */}
 
     <Typography className={styles.unipassGuide}>Quick login with email in 3 minutes on the web.</Typography>
 
@@ -93,7 +93,7 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
         <Box className={styles.getBtn}>Get</Box>
       </Box>
     </a>
-    
+
     <a
       className={styles.metamaskGuide}
       href="/strategy/Get-Started-With-Metamask-Quickly"
