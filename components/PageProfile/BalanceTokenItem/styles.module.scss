@@ -32,6 +32,7 @@
   }
 
   .withdrawBtn {
+    flex-shrink: 0;
     background: #8e50e4;
     border-radius: 1.33rem;
     filter: blur(0px);
@@ -46,8 +47,64 @@
   }
 
   .balanceInfo {
+    flex-grow: 1;
+    display: inline-flex;
+    align-items: center;
+    padding-left: 10.92rem;
+    h4 {
+      font-size: 1.33rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #222222;
+      line-height: 1.33rem;
+    }
     .amountText {
-      
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: rgba(#222, 0.3);
+      line-height: 1rem;
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .tokenItem {
+    .tokenInfo {
+      .tokenLogo {
+        width: 2rem;
+        height: 2rem;
+        margin-right: 0.67rem;
+      }
+      .tokenSymbol {
+        font-size: 1.17rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #222222;
+        line-height: 1.17rem;
+      }
+      .tokenName {
+        font-size: 1rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: rgba(#222, 0.3);
+        line-height: 1rem;
+      }
+    }
+    .withdrawBtn {
+      height: 2.67rem;
+      font-size: 1.17rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.17rem;
+      padding: 0.75rem 1.58rem;
+    }
+    .balanceInfo {
+      padding-left: 0rem;
+      display: inline-flex;
+      justify-content: center;
     }
   }
 }

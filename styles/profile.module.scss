@@ -523,3 +523,23 @@
     }
   }
 }
+
+@media screen and (max-width: 600px) {
+  .containerBox {
+    .profileContent {
+      .balanceSection {
+        margin-top: 0.83rem;
+        border-radius: 0;
+        padding: 1.67rem 1.33rem;
+        h3 {
+          font-size: 1.33rem;
+          font-family: Inter-SemiBold, Inter;
+          font-weight: 600;
+          color: #222222;
+          line-height: 1.17rem;
+          margin-bottom: 1.67rem;
+        }
+      }
+    }
+  }
+}

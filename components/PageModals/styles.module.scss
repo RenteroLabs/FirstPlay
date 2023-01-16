@@ -163,7 +163,6 @@
   }
 }
 
-
 @media screen and (max-width: 480px) {
   .trialSuccessBox {
     // width: calc(100% - 3.34rem);
@@ -506,8 +505,6 @@
   }
 }
 
-
-
 .qrcodeBox {
   width: 34.17rem;
   padding: 2.5rem;
@@ -529,7 +526,7 @@
 
   .container {
     text-align: center;
-    padding: 7.5rem 0 ;
+    padding: 7.5rem 0;
     .qrcode {
       width: 11rem;
       height: 11rem;
@@ -541,6 +538,134 @@
       color: rgba(#222, 0.5);
       line-height: 1.17rem;
       margin-top: 0.83rem;
+    }
+  }
+}
+
+.withdrawModal {
+  background: #ffffff;
+  border-radius: 1.33rem;
+  width: 39.67rem;
+  position: relative;
+  padding: 3.75rem 3.33rem 3.42rem;
+
+  .closeBtn {
+    position: absolute;
+    top: 0.67rem;
+    right: 0.67rem;
+  }
+  h3 {
+    font-size: 2rem;
+    font-family: Inter-Bold, Inter;
+    font-weight: bold;
+    color: #222222;
+    line-height: 1.67rem;
+    // margin-top: 3.75rem;
+    text-align: center;
+    margin-bottom: 5.92rem;
+  }
+  p {
+    font-size: 1.33rem;
+    font-family: Inter-Regular, Inter;
+    font-weight: 400;
+    color: #222222;
+    line-height: 2rem;
+    margin-bottom: 1.67rem;
+  }
+
+  .balanceItem,
+  .networkItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1.58rem;
+    border-bottom: 1px solid rgba(#222, 0.1);
+
+    .itemKey {
+      font-size: 1.33rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #222222;
+      line-height: 1.17rem;
+    }
+    .itemValue {
+      font-size: 1.33rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
+      color: #222222;
+      line-height: 1.17rem;
+    }
+  }
+
+  .networkItem {
+    margin-top: 1.67rem;
+    margin-bottom: 4.17rem;
+  }
+
+  .withdrawBtn {
+    background: #8e50e4;
+    border-radius: 2rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.33rem;
+    font-family: Inter-SemiBold, Inter;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.33rem;
+    cursor: pointer;
+    user-select: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .withdrawModal {
+    width: 100%;
+    padding: 3.58rem 1.33rem 2.5rem;
+
+    h3 {
+      font-size: 1.5rem;
+      font-family: Inter-Bold, Inter;
+      font-weight: bold;
+      color: #222222;
+      line-height: 1.33rem;
+      margin-bottom: 5rem;
+    }
+    p {
+      font-size: 1.17rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
+      color: #222222;
+      line-height: 1.67rem;
+    }
+
+    .balanceItem,
+    .networkItem {
+      padding-bottom: 1.25rem;
+    }
+
+    .networkItem {
+      margin-top: 1.25rem;
+      margin-bottom: 3.33rem;
+    }
+    .withdrawBtn {
+      height: 3.33rem;
+      font-size: 1.33rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.33rem;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .withdrawBalanceBox {
+    :global {
+      .MuiPaper-root {
+        margin: 1.33rem;
+      }
     }
   }
 }
