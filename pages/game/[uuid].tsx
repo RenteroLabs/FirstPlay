@@ -354,8 +354,21 @@ export const getStaticPaths: GetStaticPaths = async () => {
   // const { data } = await getAllGamesInfo()
   const { data } = await getAllGames()
 
-  const gamePaths = [...data?.popular_games, ...data?.rewarded_games].map((item: any) => ({ params: { uuid: item.game_id } }))
+  const addGameUID = [
+    // Bless Global
+    { game_id: '32605c7c-45d3-49f4-9923-b3a51816d1df' },
+    // NEO FANTASY
+    { game_id: '740a1e44-fd84-433e-98df-be90d650eb51' },
+    // Mirror Planet
+    { game_id: '11ec241d-c889-4f54-8656-b5f7b1598300' }
+  ]
 
+  const gamePaths = [
+    ...data?.popular_games,
+    ...data?.rewarded_games,
+    ...addGameUID].map((item: any) => ({ params: { uuid: item.game_id } }))
+
+  console.log(gamePaths)
   return {
     paths: gamePaths,
     fallback: false
