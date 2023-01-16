@@ -79,9 +79,14 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
    */
   const [carnivalGame, setCarnivalGame] = useState<Record<string, any>>({})
 
+  // const isCarnivalGame = useMemo(() => {
+  //   return Carnival_Games.includes(router.query?.uuid as string)
+  // }, [router.query?.uuid])
+
   const isCarnivalGame = useMemo(() => {
-    return Carnival_Games.includes(router.query?.uuid as string)
-  }, [router.query?.uuid])
+    return gameInfo?.tasks.length > 0
+  }, gameInfo)
+
 
   useEffect(() => {
     if (router.query?.uuid) {
