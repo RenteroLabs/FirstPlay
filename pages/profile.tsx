@@ -39,6 +39,7 @@ const cx = classNames.bind(styles)
 enum TabItem {
   Trialing,
   Activity,
+  Balance,
 }
 
 const Profile: NextPageWithLayout = () => {
@@ -188,6 +189,12 @@ const Profile: NextPageWithLayout = () => {
                     </Typography>}
                   </Box>
                 </Box>
+                {false && <Box className={styles.unipassLink}>
+                  <a href="https://wallet.unipass.id/" target="_blank" rel="noreferrer">
+                    Visit UniPass wallet  to your asset after withdraw.Login email: XXXXXXXX
+                    <Box className={styles.arrowIcon}><ArrowForwardIcon /></Box>
+                  </a>
+                </Box>}
               </Box>
               :
               <>
@@ -229,15 +236,20 @@ const Profile: NextPageWithLayout = () => {
       </Box>
     </Box>
     <Box className={styles.profileContent}>
+      <Box className={styles.balanceSection}>
+        <Typography variant="h3">Reward Balance</Typography>
+      </Box>
+
       <Tabs
         className={styles.tabsHeader}
         value={activeTab}
         onChange={(_: any, newItem: number) => {
           setActiveTab(newItem)
-          setParamTab(newItem === 0 ? 'Trialing' : "Activity")
+          setParamTab(TabItem[newItem])
         }} >
         <Tab label="Trialing" value={TabItem.Trialing} disableRipple />
         <Tab label="Activity" value={TabItem.Activity} disableRipple />
+        <Tab label="Balance" value={TabItem.Balance} disableRipple />
       </Tabs>
       <Box className={cx({
         itemBox: true,
