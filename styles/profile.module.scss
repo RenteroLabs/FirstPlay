@@ -237,6 +237,7 @@
       display: none !important;
     }
     .tabsHeader {
+
       margin-top: 4rem;
 
       :global {
@@ -268,16 +269,15 @@
     }
 
     .itemBox {
-      margin-top: 2.5rem;
+      margin-top: 2rem;
       margin-bottom: 6.67rem;
       display: flex;
       flex-wrap: wrap;
-      justify-content: flex-start;
+      justify-content: space-between;
 
       & > div {
-        width: calc((100% - 6.18rem) / 4);
-        margin: auto 0.77rem;
-        margin-bottom: 2.08rem;
+        width: calc((100% - 2.67rem) / 2);
+        margin-bottom: 2.67rem;
       }
 
       .passNFTTips,
@@ -389,9 +389,9 @@
     .profileContent {
       .itemBox {
         & > div {
-          width: calc((100% - 4rem) / 3);
-          margin: auto 0.6rem;
-          margin-bottom: 1.42rem;
+          width: calc((100% - 1.67rem) / 2);
+          // margin: auto 0.6rem;
+          margin-bottom: 1.67rem;
         }
       }
     }
@@ -400,6 +400,17 @@
 
 @media screen and (max-width: 800px) {
   .containerBox {
+
+    .profileContent {
+      .itemBox {
+        // padding: 0 0.6rem;
+        // margin-top: 1.17rem;
+        // margin-bottom: 2rem;
+        & > div {
+          width: 100%;
+        }
+      }
+    }
     .profileHeaderBox {
       .profileHeader {
         .headerInfo {
@@ -422,16 +433,7 @@
     .profileContent {
       width: 100%;
 
-      .itemBox {
-        padding: 0 0.6rem;
-        margin-top: 1.17rem;
-        margin-bottom: 2rem;
-        & > div {
-          width: calc((100% - 2.9rem) / 2);
-          margin: auto 0.6rem;
-          margin-bottom: 1.42rem;
-        }
-      }
+
       .activityBox {
         margin-bottom: 2rem;
         margin-top: 1rem;
@@ -527,6 +529,20 @@
 @media screen and (max-width: 600px) {
   .containerBox {
     .profileContent {
+
+      .tabsHeader {
+        background-color: white;
+        margin-top: 0.83rem;
+
+      }
+
+      .itemBox {
+        background-color: white;
+        margin-top: 0;
+        padding-top: 1.75rem;
+        padding-left: 1.33rem;
+        padding-right: 1.33rem;
+      }
       .balanceSection {
         margin-top: 0.83rem;
         border-radius: 0;

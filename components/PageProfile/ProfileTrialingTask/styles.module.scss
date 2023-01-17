@@ -1,0 +1,117 @@
+.trialingTask {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 1.33rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  cursor: pointer;
+
+  .taskInfo {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-right: 1.5rem;
+    max-width: calc(100% - 14.83rem);
+
+    .starLabelIcon {
+      position: absolute;
+      top: -2px;
+      left: 1.33rem;
+      width: 1.67rem;
+      height: 1.95rem;
+    }
+    h4 {
+      font-size: 1.75rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #222222;
+      line-height: 1.5rem;
+      margin-top: 3.08rem;
+      margin-bottom: 2.42rem;
+    }
+
+    .divider {
+      border-top: 1px dotted rgba($color: #222, $alpha: 0.2);
+      margin-bottom: 1.58rem;
+    }
+    .taskName {
+      // max-width: calc(100% - 17.5rem);
+
+      font-size: 1.33rem;
+      color: #222222;
+      line-height: 1.33rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      span {
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+      }
+    }
+    .rewardInfo {
+      margin-top: 0.83rem;
+      font-family: Inter-Regular, Inter;
+      font-size: 1.33rem;
+      font-weight: 400;
+      color: #8e50e4;
+      line-height: 1.33rem;
+      span {
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .gameLogo {
+    flex-shrink: 0;
+    position: relative;
+    width: 13.33rem;
+    height: 13.33rem;
+    background: #d2d2d2;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .trialingTask {
+    background: #f4f4f9;
+    border-radius: 0.67rem;
+
+    padding: 1rem 1rem 1.67rem;
+
+
+    .gameLogo {
+      display: none;
+    }
+    .taskInfo {
+      max-width: none;
+      width: 100%;
+      margin-right: 0;
+
+      .divider {
+        // margin-top: 0.92rem;
+        margin-bottom: 1.67rem;
+      }
+
+      .starLabelIcon {
+        left: 1rem;
+      }
+      .rewardInfo {
+        font-size: 1.17rem;
+        line-height: 1.17rem;
+      }
+      .taskName {
+        font-size: 1.17rem;
+        line-height: 1.17rem; 
+      }
+    }
+  }
+}

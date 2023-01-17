@@ -1,6 +1,6 @@
 .tableBox {
   box-shadow: none !important;
-  padding: 3rem 2rem;
+  padding: 2.5rem 2rem;
   :global {
     .MuiTable-root {
       .MuiTableHead-root,
@@ -22,6 +22,10 @@
     color: #222222;
     line-height: 1.5rem;
     user-select: none;
+  }
+
+  .tableRow {
+    border-top: 1px solid rgba(#222, 0.1);
   }
 
   .tableBodyCell {

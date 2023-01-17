@@ -34,6 +34,7 @@ import Link from "next/link";
 import EastIcon from '@mui/icons-material/East';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import BalanceTokenItem from "@/components/PageProfile/BalanceTokenItem";
+import ProfileTrialingTask from "@/components/PageProfile/ProfileTrialingTask";
 
 const cx = classNames.bind(styles)
 
@@ -254,6 +255,14 @@ const Profile: NextPageWithLayout = () => {
         itemBox: true,
         hiddenTab: isMounted && activeTab !== TabItem.Trialing
       })}>
+
+        <ProfileTrialingTask />
+        <ProfileTrialingTask />
+        <ProfileTrialingTask />
+        <ProfileTrialingTask />
+        <ProfileTrialingTask />
+
+        {/* 
         {
           isMounted && !loading && trialList.map((item, index) =>
             <ProfileNFTCard key={index} nftInfo={item} />)
@@ -265,7 +274,7 @@ const Profile: NextPageWithLayout = () => {
             <TrialNFTCardSkeleton />
             <TrialNFTCardSkeleton />
           </>
-        }
+        } */}
         {
           // 无任何正在试玩游戏，引导去试玩
           isMounted && !loading && isEmpty(trialList) && passTokenId > 0 && <Box className={styles.trialGameBtnBox}>

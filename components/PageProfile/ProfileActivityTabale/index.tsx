@@ -83,13 +83,13 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
       <Table >
         <TableHead>
           <TableRow>
-            <TableCell className={styles.tableHeaderCell}>Action</TableCell>
             <TableCell className={styles.tableHeaderCell}>Game</TableCell>
-            <TableCell className={styles.tableHeaderCell}>Task</TableCell>
-            <TableCell className={styles.tableHeaderCell}>Time</TableCell>
+            <TableCell className={styles.tableHeaderCell}>Action</TableCell>
+            {/* <TableCell className={styles.tableHeaderCell}>Task</TableCell> */}
             {/* <TableCell className={styles.tableHeaderCell}>Trial</TableCell> */}
             <TableCell className={styles.tableHeaderCell}>Reward</TableCell>
-            <TableCell className={styles.tableHeaderCell} align="center">Operate</TableCell>
+            <TableCell className={styles.tableHeaderCell}>Time</TableCell>
+            {/* <TableCell className={styles.tableHeaderCell} align="center">Operate</TableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -131,23 +131,21 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
           {
             !taskRecordLoading &&
             taskRecordList.map((item, index) =>
-              <TableRow key={index}>
-                <TableCell className={styles.tableBodyCell}>
-                  {item?.user_task_status === 'uncompleted' ? 'Start' : "Completed"}
-                </TableCell>
-                <TableCell className={styles.tableBodyCell} sx={{ minWidth: '10rem'}}>
+              <TableRow key={index} className={styles.tableRow}>
+                <TableCell className={styles.tableBodyCell} sx={{ minWidth: '13rem'}}>
                   {item?.name}
                 </TableCell>
                 <TableCell className={styles.tableBodyCell} sx={{ minWidth: '20rem'}}>
-                  {item?.task}
+                  {item?.user_task_status === 'uncompleted' ? 'Start' : "Completed"}: {item?.task}
                 </TableCell>
-                <TableCell className={styles.tableBodyCell} sx={{ minWidth: '13rem'}}>
-                  {dateFormat("YYYY-mm-dd HH:MM", new Date(parseInt(item?.time) * 1000))}
-                </TableCell>
+                
                 <TableCell className={styles.tableBodyCell} sx={{ minWidth: '15rem'}}>
                   {item?.rewards}
                 </TableCell>
-                <TableCell className={styles.tableBodyCell} align="center" >
+                <TableCell className={styles.tableBodyCell} sx={{ minWidth: '15rem'}}>
+                  {dateFormat("YYYY-mm-dd HH:MM", new Date(parseInt(item?.time) * 1000))}
+                </TableCell>
+                {/* <TableCell className={styles.tableBodyCell} align="center" >
                   {
                     <Box
                       className={styles.cellTrialBtn}
@@ -155,7 +153,7 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
                       {item?.user_task_status === 'uncompleted' ? 'Continue' : "Detail"}
                     </Box>
                   }
-                </TableCell>
+                </TableCell> */}
               </TableRow>
             )}
         </TableBody>
