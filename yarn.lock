@@ -1394,27 +1394,27 @@
     "@typescript-eslint/types" "5.37.0"
     eslint-visitor-keys "^3.3.0"
 
-"@unipasswallet/popup-sdk@^0.0.12":
-  version "0.0.12"
-  resolved "https://registry.npmmirror.com/@unipasswallet/popup-sdk/-/popup-sdk-0.0.12.tgz#e11064610dd66a131c5054672950dac40c715422"
-  integrity sha512-b634bhGQ9Tq1ltBQFNX1yQRC4JF2fMTWvsp3dbcHc+QQywSTMx5ouj/DYaM6alf2lReDLUFuyVh5c9GI1HZkig==
+"@unipasswallet/popup-sdk@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.npmmirror.com/@unipasswallet/popup-sdk/-/popup-sdk-0.0.13.tgz#16a1c93e45129a7a3a2515ff23b647700e89b62f"
+  integrity sha512-Pd+xyo6kd5L/kdnQoaEvmgmdELPMWMCov16fkrU+ljIyVMhd8dbwIWggcnxDpr0V+DP1d+x0Df3hecR5Z6G0Tg==
   dependencies:
-    "@unipasswallet/popup-types" "^0.0.12"
-    "@unipasswallet/popup-utils" "^0.0.12"
+    "@unipasswallet/popup-types" "^0.0.13"
+    "@unipasswallet/popup-utils" "^0.0.13"
     buffer "^6.0.3"
     ethers "^5.7.1"
 
-"@unipasswallet/popup-types@^0.0.12":
-  version "0.0.12"
-  resolved "https://registry.npmmirror.com/@unipasswallet/popup-types/-/popup-types-0.0.12.tgz#d71656f3449db5b63be68d912211e94c6a2a0a98"
-  integrity sha512-gosXqu8yNCTdGzEgSND5teTvwqtcXsor7F8Y1zfnIMHbIU9vjSDmeABMwGB4vMLpvU06ljMM9wjpkPrixnIA6w==
+"@unipasswallet/popup-types@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.npmmirror.com/@unipasswallet/popup-types/-/popup-types-0.0.13.tgz#d02072d91bd19894ac42fe933f9a2c6bb7ac10cd"
+  integrity sha512-Y5BZvX6SE0AikWIbPmtbLm0jzyNSkr6hdCGW8GBNSIz0ejVEXGaNruQRi3Y3ZtMW9B7vFC2QSuSh14NQ78c9XA==
 
-"@unipasswallet/popup-utils@^0.0.12":
-  version "0.0.12"
-  resolved "https://registry.npmmirror.com/@unipasswallet/popup-utils/-/popup-utils-0.0.12.tgz#b4b2dda1e2785c4819004d0fc4980a981d836474"
-  integrity sha512-c0gH9wfYa285eaqVKhwQlpNXjRYpBQjSiWXrLT9YP62agmkdLlhi/Nm6RzZ3AGEtla+qNwY+ELi2VVwq5fXD7Q==
+"@unipasswallet/popup-utils@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.npmmirror.com/@unipasswallet/popup-utils/-/popup-utils-0.0.13.tgz#400e3f2acbd4680e802d3c573b2b1611c43447c8"
+  integrity sha512-NLae5O7xA6hOXRzCFJFbffDWCVp4oRIwL4ck0Gj1E9Yabq06xDWBtfR14lSm2mLUnylJCLIIBw2ZpMrJav0qLA==
   dependencies:
-    "@unipasswallet/popup-types" "^0.0.12"
+    "@unipasswallet/popup-types" "^0.0.13"
     bn.js "^4.11.8"
     concurrently "^7.4.0"
     ethereum-cryptography "^1.1.2"
@@ -5577,7 +5577,7 @@ tsconfig-paths@^3.14.1:
     minimist "^1.2.6"
     strip-bom "^3.0.0"
 
-tslib@2.4.0, tslib@^2.0.0, tslib@^2.1.0, tslib@^2.4.0:
+tslib@2.4.0, tslib@^2.0.0, tslib@^2.4.0:
   version "2.4.0"
   resolved "https://registry.npmmirror.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
@@ -5587,7 +5587,7 @@ tslib@^1.8.1, tslib@^1.9.0:
   resolved "https://registry.npmmirror.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tslib@^2.0.3, tslib@^2.3.0:
+tslib@^2.0.3, tslib@^2.1.0, tslib@^2.3.0:
   version "2.4.1"
   resolved "https://registry.npmmirror.com/tslib/-/tslib-2.4.1.tgz#0d0bfbaac2880b91e22df0768e55be9753a5b17e"
   integrity sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==
