@@ -35,6 +35,8 @@ import EastIcon from '@mui/icons-material/East';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import BalanceTokenItem from "@/components/PageProfile/BalanceTokenItem";
 import ProfileTrialingTask from "@/components/PageProfile/ProfileTrialingTask";
+import { getProfileTrialingTaskList } from "services/home";
+import ProfileBalanceSection from "@/components/PageProfile/ProfileBalanceSection";
 
 const cx = classNames.bind(styles)
 
@@ -74,6 +76,10 @@ const Profile: NextPageWithLayout = () => {
 
   const [trialList, setTrialList] = useState<ProfilePackageRes[]>([])
 
+
+  // 正在试玩游戏任务列表
+  const [trialingTaskList, setTrialingTaskList] = useState<Record<string, any>[]>([])
+
   const timestamp = useMemo(() => (Number(new Date) / 1000).toFixed(), [])
 
   const { run: queryPassNFT } = useRequest(getPassNFTByAddress, {
@@ -84,6 +90,15 @@ const Profile: NextPageWithLayout = () => {
       } else {
         setPassTokenId(-1)
       }
+    }
+  })
+
+  // 获取 Profile 页中正在试玩游戏任务列表
+  const { run: queryProfileTrialingTaskList, loading: trialingTaskListLoading } = useRequest(getProfileTrialingTaskList, {
+    manual: true,
+    onSuccess: ({ data }) => {
+      console.log(data)
+      setTrialingTaskList(data)
     }
   })
 
@@ -103,6 +118,8 @@ const Profile: NextPageWithLayout = () => {
       setShowConnect(true)
     } else {
       getTrialingList()
+
+      queryProfileTrialingTaskList(address)
 
       // 判断用户是否拥有试玩 NFT
       queryPassNFT({
@@ -162,7 +179,7 @@ const Profile: NextPageWithLayout = () => {
         {
           isMounted && !is680Size &&
           <Box className={styles.profileAvatar}>
-            <Image src="https://rentero-resource.s3.ap-east-1.amazonaws.com/firstplay/background/Big%20Time.jpg?timestamp=1673577264450" layout="fill" />
+            <Image src="/profile_avatar.png" layout="fill" />
           </Box>
         }
 
@@ -172,7 +189,7 @@ const Profile: NextPageWithLayout = () => {
               <Box className={styles.mobileInfo}>
                 <Box className={styles.mobileUserInfo}>
                   <Box className={styles.mobileAvatar}>
-                    <Image src="https://rentero-resource.s3.ap-east-1.amazonaws.com/firstplay/background/Big%20Time.jpg?timestamp=1673577264450" layout="fill" />
+                    <Image src="/profile_avatar.png" layout="fill" />
                   </Box>
                   <Box className={styles.infoBox}>
                     <Box className={styles.addressItem}>
@@ -255,12 +272,9 @@ const Profile: NextPageWithLayout = () => {
         itemBox: true,
         hiddenTab: isMounted && activeTab !== TabItem.Trialing
       })}>
-
-        <ProfileTrialingTask />
-        <ProfileTrialingTask />
-        <ProfileTrialingTask />
-        <ProfileTrialingTask />
-        <ProfileTrialingTask />
+        {
+          trialingTaskList.map((item, index) => <ProfileTrialingTask key={index} taskInfo={item} />)
+        }
 
         {/* 
         {
@@ -275,16 +289,31 @@ const Profile: NextPageWithLayout = () => {
             <TrialNFTCardSkeleton />
           </>
         } */}
-        {
+
+
+        {/* 无任何正在试玩的任务 */}
+        {!trialingTaskListLoading &&
+          isEmpty(trialingTaskList) &&
+          <Box className={styles.emptyTrialingTask}>
+            <Box className={styles.emptyIllustration}>
+              <Image src="/empty_trialing.png" layout="fill" />
+            </Box>
+            <Typography>No games currently trialing, start a game you like now!</Typography>
+          </Box>}
+
+        {/* {
           // 无任何正在试玩游戏，引导去试玩
-          isMounted && !loading && isEmpty(trialList) && passTokenId > 0 && <Box className={styles.trialGameBtnBox}>
+          isMounted && !loading && isEmpty(trialList) && passTokenId > 0 &&
+          <Box className={styles.trialGameBtnBox}>
             <Link href="/" target="__blank">
               <Box className={styles.trialGameBtn}>Trial Games</Box>
             </Link>
             <Typography>No trialing games yet</Typography>
           </Box>
-        }
-        {
+        } */}
+
+        {/* 无 PassNFT，无试玩资格 */}
+        {/* {
           passTokenId === -1 && <Box className={styles.passNFTTips}>
             <Box className={styles.trialGameBtn}>
               Claim Pass-NFT
@@ -293,7 +322,7 @@ const Profile: NextPageWithLayout = () => {
             <Typography>Continue to receive airdrop rewards. </Typography>
             <Typography>You will have more benefits after being upgraded in the future.</Typography>
           </Box>
-        }
+        } */}
       </Box>
 
       <Box className={cx({
@@ -301,6 +330,13 @@ const Profile: NextPageWithLayout = () => {
         hiddenTab: isMounted && activeTab !== TabItem.Activity
       })}>
         <ProfileActivityTable />
+      </Box>
+
+      <Box className={cx({
+        balanceBox: true,
+        hiddenTab: isMounted && activeTab !== TabItem.Balance
+      })}>
+        <ProfileBalanceSection />
       </Box>
     </Box>
 

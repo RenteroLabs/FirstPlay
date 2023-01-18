@@ -58,6 +58,23 @@ export const getTrialingTasks = async (address: string) => {
  * 历史进行游戏 Task 记录
  */
 export const getTrialTaskRecordList = async (address: string) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/user-task-details?address=${address}`)
+  return data.json()
+}
+
+
+/**
+ * 获取个人页正在试玩任务列表
+ */
+export const getProfileTrialingTaskList = async (address: string) => {
   const data = await fetch(`${BASE_BACKEND_API}/api/user-tasks?address=${address}`)
+  return data.json()
+}
+
+/**
+ * 获取个人页余额变动历史记录列表
+ */
+export const getProfileBalanceRecordList = async (address: string) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/user-balance-details?address=${address.toLowerCase()}`)
   return data.json()
 }

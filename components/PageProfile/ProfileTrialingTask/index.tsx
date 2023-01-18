@@ -1,36 +1,51 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import React from "react";
 import styles from './styles.module.scss'
 import Image from "next/image";
+import Link from "next/link";
 
 interface TrialingTask {
-
+  taskInfo: Record<string, any>
 }
 
 const ProfileTrialingTask: React.FC<TrialingTask> = (props) => {
-  const { } = props
+  const { taskInfo } = props
 
-  return <Box className={styles.trialingTask}>
-    <Box className={styles.taskInfo}>
-      <Box className={styles.starLabelIcon}>
-        <Image src="/reward_game_card_star_label.png" layout="fill" />
+  const is600Size = useMediaQuery('(max-width: 600px)')
+
+  return <Link href={`/game/${taskInfo?.game_id}`} target="_blank">
+    <Box className={styles.trialingTask}>
+      <Box className={styles.taskInfo}>
+        <Box className={styles.starLabelIcon}>
+          <Image src="/reward_game_card_star_label.png" layout="fill" />
+        </Box>
+
+        {
+          is600Size ?
+            <Box className={styles.mobileGameTask}>
+              <Typography variant="h4">{taskInfo?.name}</Typography>
+              <Box className={styles.mobileGameLogo}>
+                <Image src={taskInfo?.logo} layout="fill" />
+              </Box>
+            </Box> :
+            <Typography variant="h4">{taskInfo?.name}</Typography>
+        }
+
+        <Box className={styles.divider}></Box>
+        <Typography className={styles.taskName}>
+          <span>Task: </span>
+          {taskInfo?.task}
+        </Typography>
+        <Typography className={styles.rewardInfo}>
+          <span>Rewards: </span>
+          {taskInfo?.rewards}
+        </Typography>
       </Box>
-      <Typography variant="h4">Dark Throne</Typography>
-
-      <Box className={styles.divider}></Box>
-      <Typography className={styles.taskName}>
-        <span>Task: </span>
-        Clear the first 10 stages with a aa aaa new accountadsfd
-      </Typography>
-      <Typography className={styles.rewardInfo}>
-        <span>Rewards: </span>
-        Get an NFT worth $1~$60
-      </Typography>
+      <Box className={styles.gameLogo}>
+        <Image src={taskInfo?.logo} layout="fill" />
+      </Box>
     </Box>
-    <Box className={styles.gameLogo}>
-      <Image src="https://rentero-resource.s3.ap-east-1.amazonaws.com/firstplay/image/Gods-Unchained.jpg" layout="fill" />
-    </Box>
-  </Box>
+  </Link>
 }
 
 export default ProfileTrialingTask

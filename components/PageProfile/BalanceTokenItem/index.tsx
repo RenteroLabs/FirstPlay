@@ -22,7 +22,7 @@ const BalanceTokenItem: React.FC<BalanceTokenItemProps> = (props) => {
   return <Box className={styles.tokenItem}>
     <Box className={styles.tokenInfo}>
       <Box className={styles.tokenLogo}>
-        <Image src="/usdt_logo.svg" layout="fill" />
+        <Image src="/usdt_logo_circle.png" layout="fill" />
       </Box>
       <Typography variant="h4" className={styles.tokenSymbol}>USDT</Typography>
       <Typography variant="subtitle1" className={styles.tokenName}>TetherUS</Typography>

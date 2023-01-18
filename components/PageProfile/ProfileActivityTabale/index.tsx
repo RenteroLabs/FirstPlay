@@ -10,6 +10,7 @@ import { getGameInfo, getTrialTaskRecordList } from 'services/home'
 import { UserActivityItem } from 'types/graph'
 import { dateFormat } from 'util/format'
 import { useAccount } from 'wagmi'
+import Image from 'next/image'
 import styles from './styles.module.scss'
 
 interface ProfileActivityTableProps {
@@ -80,9 +81,9 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
 
   return <TableContainer component={Paper} className={styles.tableBox}>
     <Box>
-      <Table >
+      {(taskRecordLoading || (!taskRecordLoading && !isEmpty(taskRecordList))) && <Table >
         <TableHead>
-          <TableRow>
+          <TableRow className={styles.tableHeaderRow}>
             <TableCell className={styles.tableHeaderCell}>Game</TableCell>
             <TableCell className={styles.tableHeaderCell}>Action</TableCell>
             {/* <TableCell className={styles.tableHeaderCell}>Task</TableCell> */}
@@ -132,17 +133,17 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
             !taskRecordLoading &&
             taskRecordList.map((item, index) =>
               <TableRow key={index} className={styles.tableRow}>
-                <TableCell className={styles.tableBodyCell} sx={{ minWidth: '13rem'}}>
+                <TableCell className={styles.tableBodyCell} sx={{ minWidth: '13rem' }}>
                   {item?.name}
                 </TableCell>
-                <TableCell className={styles.tableBodyCell} sx={{ minWidth: '20rem'}}>
+                <TableCell className={styles.tableBodyCell} sx={{ minWidth: '20rem' }}>
                   {item?.user_task_status === 'uncompleted' ? 'Start' : "Completed"}: {item?.task}
                 </TableCell>
-                
-                <TableCell className={styles.tableBodyCell} sx={{ minWidth: '15rem'}}>
+
+                <TableCell className={styles.tableBodyCell} sx={{ minWidth: '15rem' }}>
                   {item?.rewards}
                 </TableCell>
-                <TableCell className={styles.tableBodyCell} sx={{ minWidth: '15rem'}}>
+                <TableCell className={styles.tableBodyCell} sx={{ minWidth: '15rem' }}>
                   {dateFormat("YYYY-mm-dd HH:MM", new Date(parseInt(item?.time) * 1000))}
                 </TableCell>
                 {/* <TableCell className={styles.tableBodyCell} align="center" >
@@ -157,7 +158,7 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
               </TableRow>
             )}
         </TableBody>
-      </Table>
+      </Table>}
     </Box>
 
     {
@@ -166,14 +167,26 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
       // </Box>
     }
 
-    {!loading && (!isEmpty(taskRecordList) ?
+    {/* TODO: 目前直接展示全部数据，分页只有一页 */}
+    {/* {!loading && (!isEmpty(taskRecordList) ?
       <Box className={styles.paginationBox}>
-        {/* TODO: 目前直接展示全部数据，分页只有一页 */}
-        {/* <Pagination count={1} variant="outlined" shape="rounded" className={styles.pagination} /> */}
+        <Pagination count={1} variant="outlined" shape="rounded" className={styles.pagination} />
       </Box> :
       <Box className={styles.empytTipBox}>
         <Typography>No Activity Record Yet!</Typography>
-      </Box>)}
+      </Box>)} */}
+
+
+    {/* 列表无数据 */}
+    {
+      !loading && isEmpty(taskRecordList) &&
+      <Box className={styles.emptyList}>
+        <Box className={styles.emptyIllustration}>
+          <Image src="/empty_trialing.png" layout="fill" />
+        </Box>
+        <Typography>Oh, there is no activity now.</Typography>
+      </Box>
+    }
 
   </TableContainer>
 }

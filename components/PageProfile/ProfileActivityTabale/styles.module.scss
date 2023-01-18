@@ -1,6 +1,6 @@
 .tableBox {
   box-shadow: none !important;
-  padding: 2.5rem 2rem;
+  padding: 1.5rem 2rem;
   :global {
     .MuiTable-root {
       .MuiTableHead-root,
@@ -96,13 +96,39 @@
   .tableLoadingBox {
     display: flex;
     justify-content: center;
-    margin: 6rem auto; 
+    margin: 6rem auto;
+  }
+
+  .emptyList {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7.5rem;
+
+    .emptyIllustration {
+      margin: 0 auto;
+      position: relative;
+      width: 9.25rem;
+      height: 6.42rem;
+    }
+    p {
+      margin-top: 1.67rem;
+      font-size: 1.5rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
+      color: rgba(#222, 0.3);
+      line-height: 1.33rem;
+      text-align: center;
+    }
   }
 }
 
 @media screen and (max-width: 600px) {
   .tableBox {
-    padding: 0.5rem 0rem 1rem;
+    // padding: 0.5rem 0rem 1rem;
+    padding: 0;
 
     table {
       min-width: 600px;
@@ -112,6 +138,9 @@
       margin-top: 1rem;
       margin-bottom: 0.5rem;
     }
+    .tableHeaderRow {
+      background: #f4f4f9;
+    }
 
     .tableHeaderCell {
       font-size: 1.33rem;
@@ -119,7 +148,7 @@
       font-weight: 600;
       color: #222222;
       line-height: 1.33rem;
-      padding: 1.17rem;
+      padding: 1rem 1.17rem;
     }
     .tableBodyCell {
       font-size: 1.17rem;
@@ -128,6 +157,19 @@
       color: #222222;
       line-height: 1.17rem;
       padding: 1.17rem;
+    }
+
+    .emptyList {
+      margin-top: 4rem;
+      p {
+        font-size: 1.17rem;
+        font-family: Inter-Regular, Inter;
+        font-weight: 400;
+        line-height: 1.5rem;
+        width: 80%;
+        margin-top: 0.92rem;
+        margin-bottom: 2rem;
+      }
     }
   }
 }
