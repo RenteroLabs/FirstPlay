@@ -16,7 +16,7 @@
     "@metamask/detect-provider": "^2.0.0",
     "@mui/icons-material": "^5.10.6",
     "@mui/material": "^5.10.5",
-    "@unipasswallet/popup-sdk": "^0.0.12",
+    "@unipasswallet/popup-sdk": "^0.0.13",
     "@vercel/analytics": "^0.1.1",
     "ahooks": "^3.7.1",
     "classnames": "^2.3.2",
