@@ -46,6 +46,14 @@
     cursor: pointer;
   }
 
+  .disableWithdrawBtn {
+    cursor: not-allowed;
+    background: #222222;
+    border-radius: 1.33rem;
+    opacity: 0.2;
+    filter: blur(0px);
+  }
+
   .balanceInfo {
     flex-grow: 1;
     display: inline-flex;

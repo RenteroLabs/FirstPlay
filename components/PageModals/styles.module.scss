@@ -616,6 +616,18 @@
     line-height: 1.33rem;
     cursor: pointer;
     user-select: none;
+
+    span {
+      margin-left: 1rem;
+      font-size: 1.33rem;
+      width: 16px !important;
+      height: 16px !important;
+      color: white;
+    }
+  }
+  .loadingBtn {
+    cursor: not-allowed;
+    opacity: 0.8;
   }
 }
 

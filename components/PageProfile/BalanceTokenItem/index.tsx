@@ -1,23 +1,38 @@
 import { Box, Typography, useMediaQuery } from "@mui/material";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import styles from './styles.module.scss'
 import Image from "next/image";
 import WithdrawBalanceModal from "@/components/PageModals/WithdrawBalance";
+import classNames from "classnames/bind";
+
+const cx = classNames.bind(styles)
 
 interface BalanceTokenItemProps {
   tokenInfo: Record<string, any>
+  reload: (arg?: any) => any
 }
 
 const BalanceTokenItem: React.FC<BalanceTokenItemProps> = (props) => {
-  const { } = props
+  const { tokenInfo, reload } = props
 
   const is600Size = useMediaQuery("(max-width: 600px)")
   const [showModal, setShowModal] = useState<boolean>(false)
 
   const handleWithdrawBalance = () => {
-
+    if (disableBtn) return
     setShowModal(true)
   }
+
+  const disableBtn = useMemo(() => {
+    if (tokenInfo?.balance == 0) {
+      return true
+    }
+    if (tokenInfo?.status != 'withdrawable') {
+      return true
+    }
+
+    return false
+  }, [tokenInfo])
 
   return <Box className={styles.tokenItem}>
     <Box className={styles.tokenInfo}>
@@ -29,13 +44,23 @@ const BalanceTokenItem: React.FC<BalanceTokenItemProps> = (props) => {
     </Box>
     <Box className={styles.balanceInfo}>
       {!is600Size && <Typography variant="subtitle1" className={styles.amountText}>Amount</Typography>}
-      <Typography variant="h4">3</Typography>
+      <Typography variant="h4">{tokenInfo?.balance}</Typography>
     </Box>
-    <Box className={styles.withdrawBtn} onClick={handleWithdrawBalance}>
-      Withdraw
+    <Box
+      className={cx({
+        withdrawBtn: true,
+        disableWithdrawBtn: disableBtn
+      })}
+      onClick={handleWithdrawBalance}>
+      {tokenInfo?.status == 'withdrawing' ? 'Withdrawing' : 'Withdraw'}
     </Box>
 
-    <WithdrawBalanceModal showModal={showModal} setShowModal={setShowModal} />
+    <WithdrawBalanceModal
+      showModal={showModal}
+      setShowModal={setShowModal}
+      tokenInfo={tokenInfo}
+      reload={reload}
+    />
   </Box>
 }
 

@@ -53,7 +53,6 @@ export const getTrialingTasks = async (address: string) => {
   return data.json()
 }
 
-
 /**
  * 历史进行游戏 Task 记录
  */
@@ -76,5 +75,38 @@ export const getProfileTrialingTaskList = async (address: string) => {
  */
 export const getProfileBalanceRecordList = async (address: string) => {
   const data = await fetch(`${BASE_BACKEND_API}/api/user-balance-details?address=${address.toLowerCase()}`)
+  return data.json()
+}
+
+
+/**
+ * 用户余额列表
+ */
+export const getUserTokenBalances = async (address: string) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/user-balances?address=${address.toLowerCase()}`)
+  return data.json()
+}
+
+
+export interface withdrawTokenParams {
+  signature: string,
+  address: string,
+  token: string,
+  timestamp: number 
+}
+/**
+ * 用户提现余额
+ */
+export const withdrawTokenBalance = async (params: withdrawTokenParams) => {
+  // const { signature, ...bodyParams } = params
+
+  const data = await fetch(`${BASE_BACKEND_API}/api/withdraw-balance`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(params)
+  })
+
   return data.json()
 }

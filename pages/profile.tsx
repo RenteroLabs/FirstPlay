@@ -1,4 +1,4 @@
-import { NextPageWithLayout } from "./_app";
+import { NextPageWithLayout, unipassInstance } from "./_app";
 import React, { ReactElement, useEffect, useMemo, useState } from 'react';
 import { Box, Stack, Tab, Tabs, Typography, useMediaQuery } from "@mui/material";
 import Layout from "@/components/Layout";
@@ -35,7 +35,7 @@ import EastIcon from '@mui/icons-material/East';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import BalanceTokenItem from "@/components/PageProfile/BalanceTokenItem";
 import ProfileTrialingTask from "@/components/PageProfile/ProfileTrialingTask";
-import { getProfileTrialingTaskList } from "services/home";
+import { getProfileTrialingTaskList, getUserTokenBalances } from "services/home";
 import ProfileBalanceSection from "@/components/PageProfile/ProfileBalanceSection";
 
 const cx = classNames.bind(styles)
@@ -77,6 +77,10 @@ const Profile: NextPageWithLayout = () => {
   const [trialList, setTrialList] = useState<ProfilePackageRes[]>([])
 
 
+  const [unipassMail, setUnipassMail] = useState<string>()
+  const [tokenBalances, setTokenBalances] = useState<Record<string, any>[]>([])
+
+
   // 正在试玩游戏任务列表
   const [trialingTaskList, setTrialingTaskList] = useState<Record<string, any>[]>([])
 
@@ -102,6 +106,15 @@ const Profile: NextPageWithLayout = () => {
     }
   })
 
+  // 获取用户 Token 余额列表
+  const { run: queryUserTokenBalances, refresh } = useRequest(getUserTokenBalances, {
+    manual: true,
+    onSuccess: ({ data }) => {
+      console.log(data)
+      setTokenBalances(data)
+    }
+  })
+
   const [getTrialingList, { loading }] = useLazyQuery(GET_USER_TRIALING, {
     variables: {
       expires: timestamp,
@@ -113,6 +126,9 @@ const Profile: NextPageWithLayout = () => {
     }
   })
 
+
+
+
   useEffect(() => {
     if (!address) {
       setShowConnect(true)
@@ -121,6 +137,8 @@ const Profile: NextPageWithLayout = () => {
 
       queryProfileTrialingTaskList(address)
 
+      queryUserTokenBalances(address)
+
       // 判断用户是否拥有试玩 NFT
       queryPassNFT({
         contractAddresses: [PASS_NFT_CONTRACT],
@@ -128,6 +146,16 @@ const Profile: NextPageWithLayout = () => {
         owner: address,
         chainId: process.env.NEXT_PUBLIC_ENV === 'PRO' ? 137 : 5
       })
+
+      // 判断是否由 Unipass 登录，获取邮箱信息
+      const connectType = window.localStorage.getItem("wagmi.wallet")
+      if (connectType === '"Unipass"') {
+        // @ts-ignore
+        const { email } = unipassInstance.getAccount()
+        setUnipassMail(email)
+      } else {
+        setUnipassMail("")
+      }
     }
   }, [address])
 
@@ -197,17 +225,17 @@ const Profile: NextPageWithLayout = () => {
                       {address && isMounted && <CopyButton targetValue={address || ""} />}
                       {/* {!address && isMounted && <Typography>Not connect wallet yet !</Typography>} */}
                     </Box>
-                    {true && <Typography className={styles.passNFTInfo}>
-                      Pass-NFT: #00002
+                    {Number(passTokenId) > 0 && <Typography className={styles.passNFTInfo}>
+                      Pass-NFT: #{String(passTokenId).padStart(5, "0")}
                       <Box className={styles.iconBox}>
                         <Image src="/polygon-matic-logo.svg" layout="fill" />
                       </Box>
                     </Typography>}
                   </Box>
                 </Box>
-                {false && <Box className={styles.unipassLink}>
+                {unipassMail && <Box className={styles.unipassLink}>
                   <a href="https://wallet.unipass.id/" target="_blank" rel="noreferrer">
-                    Visit UniPass wallet  to your asset after withdraw.Login email: XXXXXXXX
+                    Visit UniPass wallet  to your asset after withdraw.Login email: {unipassMail}
                     <Box className={styles.arrowIcon}><ArrowForwardIcon /></Box>
                   </a>
                 </Box>}
@@ -219,18 +247,20 @@ const Profile: NextPageWithLayout = () => {
                   {isMounted && address && <CopyButton targetValue={address || ""} />}
                   {isMounted && !address && <Typography>Not connect wallet yet !</Typography>}
                 </Box>
-                <Typography className={styles.passNFTInfo}>
-                  Pass-NFT: #00002
+                {Number(passTokenId) > 0 && <Typography className={styles.passNFTInfo}>
+                  Pass-NFT: #{String(passTokenId).padStart(5, "0")}
                   <Box className={styles.iconBox}>
                     <Image src="/polygon-matic-logo.svg" layout="fill" />
                   </Box>
-                </Typography>
-                <Box className={styles.unipassLink}>
-                  <a href="https://wallet.unipass.id/" target="_blank" rel="noreferrer">
-                    Visit UniPass wallet  to your asset after withdraw.Login email: XXXXXXXX
-                    <Box className={styles.arrowIcon}><ArrowForwardIcon /></Box>
-                  </a>
-                </Box>
+                </Typography>}
+                {
+                  unipassMail && <Box className={styles.unipassLink}>
+                    <a href="https://wallet.unipass.id/" target="_blank" rel="noreferrer">
+                      Visit UniPass wallet  to your asset after withdraw.Login email: {unipassMail}
+                      <Box className={styles.arrowIcon}><ArrowForwardIcon /></Box>
+                    </a>
+                  </Box>
+                }
               </>
             )}
 
@@ -254,7 +284,7 @@ const Profile: NextPageWithLayout = () => {
     <Box className={styles.profileContent}>
       <Box className={styles.balanceSection}>
         <Typography variant="h3">Reward Balance</Typography>
-        <BalanceTokenItem tokenInfo={{}} />
+        <BalanceTokenItem tokenInfo={tokenBalances[0]} reload={refresh} />
       </Box>
 
       <Tabs
