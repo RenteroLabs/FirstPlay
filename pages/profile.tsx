@@ -200,7 +200,7 @@ const Profile: NextPageWithLayout = () => {
     <Box className={styles.profileHeaderBox}>
       {isMounted && !is680Size &&
         <Box className={styles.profileCover}>
-          <Image src="https://rentero-resource.s3.ap-east-1.amazonaws.com/firstplay/background/Big%20Time.jpg?timestamp=1673577264450" layout="fill" />
+          <Image src="/profile_banner.jpg" layout="fill" />
         </Box>}
 
       <Box className={styles.profileHeader}>
