@@ -67,12 +67,14 @@ const WithdrawBalanceModal: React.FC<WithdrawBalanceProps> = (props) => {
   const handleUnipassSign = async () => {
     try {
       const signdata = await unipassInstance.signMessage(formatMessage as string)
+      // const signdata = await unipassInstance.signMessage("123" as string)
       console.log(signdata)
       postWithdrawBalance({
         address: address as string,
         signature: signdata as string,
         timestamp: Number(timestamp),
         token: tokenInfo?.token_symbol,
+        wallet: 'unipass',
       })
     } catch (err) {
       console.error(err)

@@ -92,7 +92,8 @@ export interface withdrawTokenParams {
   signature: string,
   address: string,
   token: string,
-  timestamp: number 
+  timestamp: number,
+  wallet?: string
 }
 /**
  * 用户提现余额
