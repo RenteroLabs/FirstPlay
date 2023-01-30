@@ -284,15 +284,22 @@
         width: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        // justify-content: center;
+        padding-top: 9rem;
         align-items: center;
-        margin-top: 5rem;
+        background-color: white;
+        margin-bottom: 0rem;
+        background-color: white;
+        border-radius: 1rem;
+        min-height: 28rem;
 
         .emptyIllustration {
           margin: 0 auto;
           position: relative;
-          width: 9.25rem;
-          height: 6.42rem;
+          // width: 9.25rem;
+          // height: 6.42rem;
+          width: 111px;
+          height: 77px;
         }
         p {
           margin-top: 1.67rem;
@@ -351,6 +358,7 @@
       background-color: white;
       border-radius: 1rem;
       min-height: 28rem;
+      overflow: hidden;
     }
 
     .balanceBox {

@@ -137,7 +137,7 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
                   {item?.name}
                 </TableCell>
                 <TableCell className={styles.tableBodyCell} sx={{ minWidth: '20rem' }}>
-                  {item?.user_task_status === 'uncompleted' ? 'Start' : "Completed"}: {item?.task}
+                  {item?.type === 'start task' ? 'Start' : "Completed"}: {item?.task}
                 </TableCell>
 
                 <TableCell className={styles.tableBodyCell} sx={{ minWidth: '15rem' }}>
