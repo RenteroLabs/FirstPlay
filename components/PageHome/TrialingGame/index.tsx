@@ -39,7 +39,7 @@ const TrialGame: React.FC<TrialGameProps> = (props) => {
 
   return <Box className={styles.trialgame}>
     <Box className={styles.trialgameBox}>
-      <SectionTitle normal="Trialing Games" sort="last" moreLink="/profile?tab=Activity" />
+      <SectionTitle normal="Trialing Games" sort="last" moreLink="/profile?tab=Trialing" />
       <Box className={styles.addressInfo}>
         <Box className={styles.iconBox}>
           <PersonIcon />
