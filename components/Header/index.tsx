@@ -244,7 +244,7 @@ const Header: React.FC = () => {
                 <Image src={HEADER_SHARE} layout="fill" objectFit='contain' />
               </Box>
               <Box className={styles.socialMediaBox}>
-                <a href="https://twitter.com/FirstPlay2022" target="_blank" rel="noreferrer">
+                <a href="https://twitter.com/FirstPlayApp" target="_blank" rel="noreferrer">
                   <Box className={styles.mediaItem}>
                     <Box><Image src="/media_twitter.webp" layout='fill' /></Box>
                     Twitter
