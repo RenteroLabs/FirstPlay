@@ -1,0 +1,36 @@
+.headerBox {
+  height: 6rem;
+  background: linear-gradient(153deg, #000000 0%, #203f2f 49%, #000000 100%);
+
+  .header {
+    max-width: 100rem;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .gameBox {
+      p {
+        font-size: 2rem;
+        font-family: Inter-Bold, Inter;
+        font-weight: bold;
+        color: #ffffff;
+        line-height: 1.83rem;
+        user-select: none;
+      }
+    }
+
+    .navList {
+      .navItem {
+        font-size: 1.33rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #ffffff;
+        line-height: 1.33rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 0.17rem solid white;
+      }
+    }
+  }
+}
