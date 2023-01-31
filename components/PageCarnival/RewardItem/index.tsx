@@ -9,7 +9,7 @@ import GiftCodeModal from '../GiftCodeModal'
 import { useLocalStorageState, useRequest } from 'ahooks'
 import { queryGameGiftCode } from 'services/carnival'
 import * as ga from '../../../util/ga'
-import { Carnival_Games, GAME_EVENT_NAME, GAME_TASK_MODAL_NAME } from 'constants/index'
+import { GAME_TASK_MODAL_NAME } from 'constants/index'
 import VerifyTaskModal from '../VerifyTaskModal'
 import GameTaskDrawer from '@/components/GameTaskDrawer'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';

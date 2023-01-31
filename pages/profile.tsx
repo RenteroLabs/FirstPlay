@@ -1,6 +1,6 @@
-import { NextPageWithLayout } from "./_app";
+import { NextPageWithLayout, unipassInstance } from "./_app";
 import React, { ReactElement, useEffect, useMemo, useState } from 'react';
-import { Box, Stack, Tab, Tabs, Typography } from "@mui/material";
+import { Box, Stack, Tab, Tabs, Typography, useMediaQuery } from "@mui/material";
 import Layout from "@/components/Layout";
 import Image from 'next/image';
 import { GetStaticProps, GetStaticPropsContext } from "next";
@@ -31,11 +31,19 @@ import { ProfilePackageRes } from "types/graph";
 import classNames from "classnames/bind";
 import Link from "next/link";
 
+import EastIcon from '@mui/icons-material/East';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import BalanceTokenItem from "@/components/PageProfile/BalanceTokenItem";
+import ProfileTrialingTask from "@/components/PageProfile/ProfileTrialingTask";
+import { getProfileTrialingTaskList, getUserTokenBalances } from "services/home";
+import ProfileBalanceSection from "@/components/PageProfile/ProfileBalanceSection";
+
 const cx = classNames.bind(styles)
 
 enum TabItem {
   Trialing,
   Activity,
+  Balance,
 }
 
 const Profile: NextPageWithLayout = () => {
@@ -44,6 +52,8 @@ const Profile: NextPageWithLayout = () => {
 
   const isMounted = useIsMounted()
   const router = useRouter()
+
+  const is680Size = useMediaQuery("(max-width: 680px)")
 
   const [paramTab, setParamTab] = useQueryParam('tab')
 
@@ -66,6 +76,14 @@ const Profile: NextPageWithLayout = () => {
 
   const [trialList, setTrialList] = useState<ProfilePackageRes[]>([])
 
+
+  const [unipassMail, setUnipassMail] = useState<string>()
+  const [tokenBalances, setTokenBalances] = useState<Record<string, any>[]>([])
+
+
+  // 正在试玩游戏任务列表
+  const [trialingTaskList, setTrialingTaskList] = useState<Record<string, any>[]>([])
+
   const timestamp = useMemo(() => (Number(new Date) / 1000).toFixed(), [])
 
   const { run: queryPassNFT } = useRequest(getPassNFTByAddress, {
@@ -76,6 +94,24 @@ const Profile: NextPageWithLayout = () => {
       } else {
         setPassTokenId(-1)
       }
+    }
+  })
+
+  // 获取 Profile 页中正在试玩游戏任务列表
+  const { run: queryProfileTrialingTaskList, loading: trialingTaskListLoading } = useRequest(getProfileTrialingTaskList, {
+    manual: true,
+    onSuccess: ({ data }) => {
+      console.log(data)
+      setTrialingTaskList(data)
+    }
+  })
+
+  // 获取用户 Token 余额列表
+  const { run: queryUserTokenBalances, refresh } = useRequest(getUserTokenBalances, {
+    manual: true,
+    onSuccess: ({ data }) => {
+      console.log(data)
+      setTokenBalances(data)
     }
   })
 
@@ -90,11 +126,18 @@ const Profile: NextPageWithLayout = () => {
     }
   })
 
+
+
+
   useEffect(() => {
     if (!address) {
       setShowConnect(true)
     } else {
       getTrialingList()
+
+      queryProfileTrialingTaskList(address)
+
+      queryUserTokenBalances(address)
 
       // 判断用户是否拥有试玩 NFT
       queryPassNFT({
@@ -103,6 +146,16 @@ const Profile: NextPageWithLayout = () => {
         owner: address,
         chainId: process.env.NEXT_PUBLIC_ENV === 'PRO' ? 137 : 5
       })
+
+      // 判断是否由 Unipass 登录，获取邮箱信息
+      const connectType = window.localStorage.getItem("wagmi.wallet")
+      if (connectType === '"Unipass"') {
+        // @ts-ignore
+        const { email } = unipassInstance.getAccount()
+        setUnipassMail(email)
+      } else {
+        setUnipassMail("")
+      }
     }
   }, [address])
 
@@ -138,9 +191,6 @@ const Profile: NextPageWithLayout = () => {
     return `${urlEndpoint}/${imageHash}?tr=${paramsString}`
   }
 
-
-
-  
   return <Box className={styles.containerBox}>
     <Head>
       <title>Profile | FirstPlay</title>
@@ -148,14 +198,74 @@ const Profile: NextPageWithLayout = () => {
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Box className={styles.profileHeaderBox}>
+      {isMounted && !is680Size &&
+        <Box className={styles.profileCover}>
+          <Image src="/profile_banner.jpg" layout="fill" />
+        </Box>}
+
       <Box className={styles.profileHeader}>
-        <Box className={styles.headerInfo}>
-          <Box className={styles.addressItem}>
-            {address && isMounted && (ensName || formatAddress(address, 8))}
-            {address && isMounted && <CopyButton targetValue={address || ""} />}
-            {!address && isMounted && <Typography>Not connect wallet yet !</Typography>}
+        {
+          isMounted && !is680Size &&
+          <Box className={styles.profileAvatar}>
+            <Image src="/profile_avatar.png" layout="fill" />
           </Box>
-          {passTokenId !== -1 && <Box className={styles.chainsActiveItem}>
+        }
+
+        <Box className={styles.headerInfo}>
+          {
+            isMounted && (is680Size ?
+              <Box className={styles.mobileInfo}>
+                <Box className={styles.mobileUserInfo}>
+                  <Box className={styles.mobileAvatar}>
+                    <Image src="/profile_avatar.png" layout="fill" />
+                  </Box>
+                  <Box className={styles.infoBox}>
+                    <Box className={styles.addressItem}>
+                      {address && isMounted && (ensName || formatAddress(address, 4))}
+                      {address && isMounted && <CopyButton targetValue={address || ""} />}
+                      {/* {!address && isMounted && <Typography>Not connect wallet yet !</Typography>} */}
+                    </Box>
+                    {Number(passTokenId) > 0 && <Typography className={styles.passNFTInfo}>
+                      Pass-NFT: #{String(passTokenId).padStart(5, "0")}
+                      <Box className={styles.iconBox}>
+                        <Image src="/polygon-matic-logo.svg" layout="fill" />
+                      </Box>
+                    </Typography>}
+                  </Box>
+                </Box>
+                {unipassMail && <Box className={styles.unipassLink}>
+                  <a href="https://wallet.unipass.id/" target="_blank" rel="noreferrer">
+                    Visit UniPass wallet  to your asset after withdraw.Login email: {unipassMail}
+                    <Box className={styles.arrowIcon}><ArrowForwardIcon /></Box>
+                  </a>
+                </Box>}
+              </Box>
+              :
+              <>
+                <Box className={styles.addressItem}>
+                  {isMounted && address && (ensName || formatAddress(address, 4))}
+                  {isMounted && address && <CopyButton targetValue={address || ""} />}
+                  {isMounted && !address && <Typography>Not connect wallet yet !</Typography>}
+                </Box>
+                {Number(passTokenId) > 0 && <Typography className={styles.passNFTInfo}>
+                  Pass-NFT: #{String(passTokenId).padStart(5, "0")}
+                  <Box className={styles.iconBox}>
+                    <Image src="/polygon-matic-logo.svg" layout="fill" />
+                  </Box>
+                </Typography>}
+                {
+                  unipassMail && <Box className={styles.unipassLink}>
+                    <a href="https://wallet.unipass.id/" target="_blank" rel="noreferrer">
+                      Visit UniPass wallet  to your asset after withdraw.Login email: {unipassMail}
+                      <Box className={styles.arrowIcon}><ArrowForwardIcon /></Box>
+                    </a>
+                  </Box>
+                }
+              </>
+            )}
+
+
+          {/* {passTokenId !== -1 && <Box className={styles.chainsActiveItem}>
             <Typography className={styles.chainsActiveDesc}>Trial qualification:</Typography>
             <Stack direction="row" className={styles.activeBtnList} >
               <ChainActiveButton
@@ -167,36 +277,36 @@ const Profile: NextPageWithLayout = () => {
               <ChainActiveButton chainId={5} isActived={activeRes?.[0] as unknown as boolean} setShowModal={setShowModal} setActiveChainInfo={setActiveChainInfo} />
               <ChainActiveButton chainId={97} isActived={activeRes?.[1] as unknown as boolean} setShowModal={setShowModal} setActiveChainInfo={setActiveChainInfo} />
             </Stack>
-          </Box>}
-          {/* <Box className={styles.integralItem}> */}
-          {/* <Typography className={styles.integralDesc}>Pointers:</Typography> */}
-          {/* <Typography><span>90</span> FP</Typography> */}
-          {/* </Box>  */}
+          </Box>} */}
         </Box>
-        {![0, -1].includes(passTokenId as number) && isMounted &&
-          <Box className={styles.passNFTBox}>
-            <Image loader={imageKitLoader} layout="fill" src="https://d2yhjjdyh5ugcy.cloudfront.net/PASS_NFT.jpg" objectFit="cover" />
-            <Box className={styles.imageMask}> </Box>
-            <Box className={styles.imageTokenId}>ID: {passTokenId.toString().padStart(5, '0')}</Box>
-          </Box>
-        }
       </Box>
     </Box>
     <Box className={styles.profileContent}>
+      <Box className={styles.balanceSection}>
+        <Typography variant="h3">Reward Balance</Typography>
+        <BalanceTokenItem tokenInfo={tokenBalances[0]} reload={refresh} />
+      </Box>
+
       <Tabs
         className={styles.tabsHeader}
         value={activeTab}
         onChange={(_: any, newItem: number) => {
           setActiveTab(newItem)
-          setParamTab(newItem === 0 ? 'Trialing' : "Activity")
+          setParamTab(TabItem[newItem])
         }} >
         <Tab label="Trialing" value={TabItem.Trialing} disableRipple />
         <Tab label="Activity" value={TabItem.Activity} disableRipple />
+        <Tab label="Balance" value={TabItem.Balance} disableRipple />
       </Tabs>
       <Box className={cx({
         itemBox: true,
         hiddenTab: isMounted && activeTab !== TabItem.Trialing
       })}>
+        {
+          trialingTaskList.map((item, index) => <ProfileTrialingTask key={index} taskInfo={item} />)
+        }
+
+        {/* 
         {
           isMounted && !loading && trialList.map((item, index) =>
             <ProfileNFTCard key={index} nftInfo={item} />)
@@ -208,17 +318,32 @@ const Profile: NextPageWithLayout = () => {
             <TrialNFTCardSkeleton />
             <TrialNFTCardSkeleton />
           </>
-        }
-        {
+        } */}
+
+
+        {/* 无任何正在试玩的任务 */}
+        {!trialingTaskListLoading &&
+          isEmpty(trialingTaskList) &&
+          <Box className={styles.emptyTrialingTask}>
+            <Box className={styles.emptyIllustration}>
+              <Image src="/empty_trialing.png" layout="fill" />
+            </Box>
+            <Typography>No games currently trialing, start a game you like now!</Typography>
+          </Box>}
+
+        {/* {
           // 无任何正在试玩游戏，引导去试玩
-          isMounted && !loading && isEmpty(trialList) && passTokenId > 0 && <Box className={styles.trialGameBtnBox}>
+          isMounted && !loading && isEmpty(trialList) && passTokenId > 0 &&
+          <Box className={styles.trialGameBtnBox}>
             <Link href="/" target="__blank">
               <Box className={styles.trialGameBtn}>Trial Games</Box>
             </Link>
             <Typography>No trialing games yet</Typography>
           </Box>
-        }
-        {
+        } */}
+
+        {/* 无 PassNFT，无试玩资格 */}
+        {/* {
           passTokenId === -1 && <Box className={styles.passNFTTips}>
             <Box className={styles.trialGameBtn}>
               Claim Pass-NFT
@@ -227,7 +352,7 @@ const Profile: NextPageWithLayout = () => {
             <Typography>Continue to receive airdrop rewards. </Typography>
             <Typography>You will have more benefits after being upgraded in the future.</Typography>
           </Box>
-        }
+        } */}
       </Box>
 
       <Box className={cx({
@@ -235,6 +360,13 @@ const Profile: NextPageWithLayout = () => {
         hiddenTab: isMounted && activeTab !== TabItem.Activity
       })}>
         <ProfileActivityTable />
+      </Box>
+
+      <Box className={cx({
+        balanceBox: true,
+        hiddenTab: isMounted && activeTab !== TabItem.Balance
+      })}>
+        <ProfileBalanceSection />
       </Box>
     </Box>
 

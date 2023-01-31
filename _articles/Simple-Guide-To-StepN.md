@@ -29,7 +29,7 @@ In StepN,after buying sneakers in the trading market,users can move to earn toke
 
 Search StepN in the Apple app store or Google app store, and click the following icon to download. If you can't find the app store in your country, you can go to our Discord or Twitter for help.
 
-Twitter:[https://twitter.com/FirstPlay2022](https://twitter.com/FirstPlay2022) DC:[https://discord.gg/spgtfKzd](https://discord.gg/spgtfKzd)
+Twitter:[https://twitter.com/FirstPlayApp](https://twitter.com/FirstPlayApp) DC:[https://discord.gg/spgtfKzd](https://discord.gg/spgtfKzd)
 
 ![https://lh4.googleusercontent.com/dbsAboJRBtGXp0_T-EBlViH6nx439HpH5-nAALU91ZgdeA2DwedyKGq5pZAtPhlmRVDB_sLAMkPpDEktQc9eQUcfvvbv18PAViFvuX4kzFs2macmoSH7lZZDoFnT_PW_mRkdFIsLJ1WZNDK_1fKFDq2YGYln6QrsQ-1O3Y8HGqJlUoBazwHswUxczI5-](https://lh4.googleusercontent.com/dbsAboJRBtGXp0_T-EBlViH6nx439HpH5-nAALU91ZgdeA2DwedyKGq5pZAtPhlmRVDB_sLAMkPpDEktQc9eQUcfvvbv18PAViFvuX4kzFs2macmoSH7lZZDoFnT_PW_mRkdFIsLJ1WZNDK_1fKFDq2YGYln6QrsQ-1O3Y8HGqJlUoBazwHswUxczI5-)
 

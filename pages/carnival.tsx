@@ -448,7 +448,7 @@ const Carnival: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps
           websiteLink="https://firstplay.app"
           cardImage="http://d2yhjjdyh5ugcy.cloudfront.net/carnival_firstplay_card.jpg"
           badge="Organizer"
-          twitterLink="https://twitter.com/FirstPlay2022"
+          twitterLink="https://twitter.com/FirstPlayApp"
           discordLink="https://discord.com/invite/84mhbPXFUu"
           telegramLink="https://t.me/firstplay2022"
         />

@@ -45,7 +45,7 @@ const unipassOption: PopupSDKOption = {
   },
 }
 
-const unipassInstance = new UniPassPopupSDK(unipassOption) 
+export const unipassInstance = new UniPassPopupSDK(unipassOption) 
 
 const client = createClient({
   autoConnect: true,

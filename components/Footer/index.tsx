@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
         </Stack>
         <Stack className={styles.medias}>
           <Typography variant="h4">{t('social')}</Typography>
-          <a href="https://twitter.com/FirstPlay2022" target="_blank" rel="noreferrer">
+          <a href="https://twitter.com/FirstPlayApp" target="_blank" rel="noreferrer">
             <Typography variant="body1">{t('twitter')}</Typography>
           </a>
           <a href="https://discord.com/invite/84mhbPXFUu" target="_blank" rel="noreferrer">

@@ -87,6 +87,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
     return gameInfo?.tasks.length > 0
   }, gameInfo)
 
+
   useEffect(() => {
     if (router.query?.uuid) {
       getCarnivalGameInfo({ address: address || '0x00', game_id: router.query?.uuid as string })

@@ -3,29 +3,115 @@
   background: #f4f4f9;
 
   .profileHeaderBox {
-    height: 23.33rem;
+    // height: 23.33rem;
     background-color: white;
+
+    .profileCover {
+      height: 20rem;
+      position: relative;
+    }
 
     .profileHeader {
       max-width: 100rem;
       margin: auto;
       height: 100%;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      justify-content: flex-start;
+      // align-items: center;
 
+      .profileAvatar {
+        position: relative;
+        width: 8.66rem;
+        height: 8.66rem;
+        border: 4px solid white;
+        border-radius: 50%;
+        margin-top: -4.33rem;
+        img {
+          border-radius: 50%;
+        }
+      }
       .headerInfo {
         flex-grow: 1;
 
         display: flex;
         flex-direction: column;
+        padding-bottom: 2.67rem;
+
+        .mobileInfo {
+          padding: 1.67rem 0 1.33rem;
+          .mobileUserInfo {
+            display: flex;
+            align-items: center;
+
+            .mobileAvatar {
+              width: 4.67rem;
+              height: 4.67rem;
+              position: relative;
+              margin-right: 0.83rem;
+              img {
+                border-radius: 50%;
+              }
+            }
+
+            .infoBox {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              .addressItem {
+                font-size: 1.75rem;
+                font-family: Inter-Medium, Inter;
+                font-weight: 500;
+                color: #222222;
+                line-height: 1.5rem;
+                margin-top: 0;
+
+                svg {
+                  width: 1rem;
+                  height: 1rem;
+                }
+              }
+              .passNFTInfo {
+                font-size: 1.17rem;
+                font-family: Inter-Medium, Inter;
+                font-weight: 500;
+                color: rgba(#222, 0.5);
+                line-height: 1.17rem;
+                // margin-top: 0.83rem;
+                margin-top: 0.4rem;
+                .iconBox {
+                  width: 1.17rem;
+                  height: 1.17rem;
+                  position: relative;
+                  margin-left: 0.33rem;
+                }
+              }
+            }
+          }
+
+          .unipassLink {
+            margin-top: 1.33rem;
+            font-size: 1.17rem;
+            font-family: Inter-Regular, Inter;
+            font-weight: 400;
+            color: #222222;
+            line-height: 1.67rem;
+            padding: 0.5rem 0.83rem;
+            border-radius: 0.67rem;
+            .arrowIcon {
+              flex-shrink: 0;
+            }
+          }
+        }
 
         .addressItem {
-          font-size: 3rem;
-          font-family: Inter-Medium, Inter;
-          font-weight: 500;
+          margin-top: 1.33rem;
+          font-size: 2.5rem;
+          font-family: Inter-SemiBold, Inter;
+          font-weight: 600;
           color: #222222;
-          line-height: 2.83rem;
+          line-height: 2.17rem;
+
           display: flex;
           align-items: center;
 
@@ -33,6 +119,58 @@
             opacity: 0.75;
             font-style: italic;
             font-size: 2.4rem;
+          }
+        }
+
+        .passNFTInfo {
+          display: inline-flex;
+          align-items: center;
+          font-size: 1.33rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: rgba(#222, 0.5);
+          line-height: 1.17rem;
+
+          margin-top: 1.08rem;
+          .iconBox {
+            width: 1.33rem;
+            height: 1.33rem;
+            position: relative;
+            margin-left: 0.42rem;
+          }
+        }
+
+        .unipassLink {
+          margin-top: 1.75rem;
+          // cursor: pointer;
+          font-size: 1.33rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #222222;
+          line-height: 1.33rem;
+
+          background: rgba(#8e50e4, 0.08);
+          border-radius: 0.5rem;
+          padding: 1.33rem 1.25rem;
+
+          a {
+            display: inline-flex;
+            align-items: center;
+          }
+
+          .arrowIcon {
+            width: 1.67rem;
+            height: 1.67rem;
+            margin-left: 0.83rem;
+            border-radius: 50%;
+            color: #8e50e4;
+            background: rgba(#8e50e4, 0.2);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            svg {
+              transform: scale(0.8);
+            }
           }
         }
 
@@ -70,42 +208,6 @@
           }
         }
       }
-
-      .passNFTBox {
-        flex-shrink: 0;
-        width: 13.33rem;
-        height: 13.33rem;
-        background: linear-gradient(#7041b1, #0f1827);
-        border-radius: 1rem;
-        position: relative;
-        overflow: hidden;
-
-        .imageMask {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          height: 4.25rem;
-          background: linear-gradient(
-            180deg,
-            rgba(0, 0, 0, 0) 0%,
-            #000000 100%
-          );
-          opacity: 0.55;
-        }
-        .imageTokenId {
-          position: absolute;
-          bottom: 0.67rem;
-          left: 0;
-          right: 0;
-          text-align: center;
-          font-size: 1.5rem;
-          font-family: Inter-SemiBold, Inter;
-          font-weight: 600;
-          color: #ffffff;
-          line-height: 1.5rem;
-        }
-      }
     }
   }
 
@@ -115,11 +217,27 @@
     margin: auto;
     overflow: hidden;
 
+    .balanceSection {
+      background-color: white;
+      padding: 2.5rem 2rem 2.67rem;
+      border-radius: 1rem;
+      margin-top: 3.33rem;
+
+      h3 {
+        font-size: 1.5rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #222222;
+        line-height: 1.33rem;
+        margin-bottom: 2.5rem;
+      }
+    }
+
     .hiddenTab {
       display: none !important;
     }
     .tabsHeader {
-      margin-top: 4rem;
+      margin-top: 1.1rem;
 
       :global {
         button {
@@ -131,7 +249,7 @@
           opacity: 0.5;
           padding-left: 0 !important;
           padding-right: 0 !important;
-          padding-bottom: 0.5rem !important;
+          padding-bottom: 0rem !important;
           width: auto;
           min-width: 0 !important;
           text-transform: unset;
@@ -150,16 +268,48 @@
     }
 
     .itemBox {
-      margin-top: 2.5rem;
+      margin-top: 2rem;
       margin-bottom: 6.67rem;
+      // min-height: 30rem;
       display: flex;
       flex-wrap: wrap;
-      justify-content: flex-start;
+      justify-content: space-between;
 
       & > div {
-        width: calc((100% - 6.18rem) / 4);
-        margin: auto 0.77rem;
-        margin-bottom: 2.08rem;
+        width: calc((100% - 2.67rem) / 2);
+        margin-bottom: 2.67rem;
+      }
+
+      .emptyTrialingTask {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        // justify-content: center;
+        padding-top: 9rem;
+        align-items: center;
+        background-color: white;
+        margin-bottom: 0rem;
+        background-color: white;
+        border-radius: 1rem;
+        min-height: 28rem;
+
+        .emptyIllustration {
+          margin: 0 auto;
+          position: relative;
+          // width: 9.25rem;
+          // height: 6.42rem;
+          width: 111px;
+          height: 77px;
+        }
+        p {
+          margin-top: 1.67rem;
+          font-size: 1.5rem;
+          font-family: Inter-Regular, Inter;
+          font-weight: 400;
+          color: rgba(#222, 0.3);
+          line-height: 1.33rem;
+          text-align: center;
+        }
       }
 
       .passNFTTips,
@@ -203,10 +353,22 @@
     }
 
     .activityBox {
-      margin-top: 1.67rem;
+      margin-top: 2rem;
       margin-bottom: 6.67rem;
       background-color: white;
       border-radius: 1rem;
+      min-height: 28rem;
+      overflow: hidden;
+    }
+
+    .balanceBox {
+      background: #ffffff;
+      border-radius: 1rem;
+      margin-top: 2rem;
+      margin-bottom: 6.67rem;
+      overflow: hidden;
+      padding: 1.5rem 2rem;
+      min-height: 28rem;
     }
   }
 }
@@ -214,15 +376,15 @@
 @media screen and (max-width: 1440px) {
   .containerBox {
     .profileHeaderBox {
-      height: 21.67rem;
+      // height: 21.67rem;
       .profileHeader {
         .headerInfo {
           .addressItem {
-            font-size: 2.5rem;
-            font-family: Inter-Medium, Inter;
-            font-weight: 500;
-            color: #222222;
-            line-height: 2.5rem;
+            // font-size: 2.5rem;
+            // font-family: Inter-Medium, Inter;
+            // font-weight: 500;
+            // color: #222222;
+            // line-height: 2.5rem;
           }
         }
       }
@@ -246,7 +408,7 @@
 @media screen and (max-width: 1024px) {
   .containerBox {
     .profileHeaderBox {
-      height: 20rem;
+      // height: 20rem;
       .profileHeader {
         .headerInfo {
           .chainsActiveItem {
@@ -271,9 +433,9 @@
     .profileContent {
       .itemBox {
         & > div {
-          width: calc((100% - 4rem) / 3);
-          margin: auto 0.6rem;
-          margin-bottom: 1.42rem;
+          width: calc((100% - 1.67rem) / 2);
+          // margin: auto 0.6rem;
+          margin-bottom: 1.67rem;
         }
       }
     }
@@ -282,6 +444,16 @@
 
 @media screen and (max-width: 800px) {
   .containerBox {
+    .profileContent {
+      .itemBox {
+        // padding: 0 0.6rem;
+        // margin-top: 1.17rem;
+        // margin-bottom: 2rem;
+        & > div {
+          width: 100%;
+        }
+      }
+    }
     .profileHeaderBox {
       .profileHeader {
         .headerInfo {
@@ -304,24 +476,9 @@
     .profileContent {
       width: 100%;
 
-      .itemBox {
-        padding: 0 0.6rem;
-        margin-top: 1.17rem;
-        margin-bottom: 2rem;
-        & > div {
-          width: calc((100% - 2.9rem) / 2);
-          margin: auto 0.6rem;
-          margin-bottom: 1.42rem;
-        }
-      }
-      .activityBox {
-        margin-bottom: 2rem;
-        margin-top: 1rem;
-      }
-
       .tabsHeader {
         padding-left: 1.33rem;
-        margin-top: 2rem;
+        margin-top: 1.1rem;
       }
     }
   }
@@ -333,23 +490,13 @@
     .profileHeaderBox {
       height: auto;
       .profileHeader {
-        flex-direction: column;
-        padding-bottom: 1rem;
+        // flex-direction: column;
+        // padding-bottom: 1rem;
 
         .headerInfo {
           order: 1;
           width: 100%;
-
-          .addressItem {
-            font-size: 1.75rem;
-            font-family: Inter-Medium, Inter;
-            font-weight: 500;
-            color: #222222;
-            line-height: 1.75rem;
-            margin-top: 2.5rem;
-            padding-bottom: 1.58rem;
-            border-bottom: 0.16rem solid rgba($color: #222, $alpha: 0.1);
-          }
+          padding-bottom: 0;
 
           .chainsActiveItem {
             margin-top: 1.68rem;
@@ -410,6 +557,102 @@
           p + p {
             margin-top: 0;
           }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .containerBox {
+    .profileContent {
+      .tabsHeader {
+        background-color: white;
+        margin-top: 0.83rem;
+
+        :global {
+          button {
+            opacity: 0.5;
+            font-size: 1.33rem;
+            font-family: Inter-SemiBold, Inter;
+            font-weight: 600;
+            color: #222222;
+            line-height: 1.33rem;
+
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            padding-bottom: 0rem !important;
+            padding-top: 8px;
+            width: auto;
+            min-width: 0 !important;
+            text-transform: unset;
+            & + button {
+              margin-left: 1.67rem;
+            }
+          }
+          .Mui-selected {
+            opacity: 1;
+          }
+          .MuiTabs-indicator {
+            height: 0.17rem;
+            background: #222222;
+          }
+        }
+      }
+
+      .activityBox {
+        padding-bottom: 2rem;
+        padding-top: 1.67rem;
+        margin-top: 0rem;
+        margin-bottom: 0;
+        min-height: 20rem;
+      }
+      .balanceBox {
+        margin-top: 0;
+        margin-bottom: 0;
+        min-height: 20rem;
+        padding-top: 2rem;
+      }
+
+      .itemBox {
+        background-color: white;
+        margin-top: 0;
+        padding-top: 1.75rem;
+        padding-left: 1.33rem;
+        padding-right: 1.33rem;
+        margin-bottom: 0;
+        padding-bottom: 1rem;
+
+        min-height: 0;
+        & > div {
+          margin-bottom: 1.33rem;
+        }
+
+        .emptyTrialingTask {
+          min-height: 18rem;
+          padding-top: 4rem;
+          p {
+            font-size: 1.17rem;
+            font-family: Inter-Regular, Inter;
+            font-weight: 400;
+            line-height: 1.5rem;
+            width: 60%;
+            margin-top: 0.92rem;
+            margin-bottom: 2rem;
+          }
+        }
+      }
+      .balanceSection {
+        margin-top: 0.83rem;
+        border-radius: 0;
+        padding: 1.67rem 1.33rem;
+        h3 {
+          font-size: 1.33rem;
+          font-family: Inter-SemiBold, Inter;
+          font-weight: 600;
+          color: #222222;
+          line-height: 1.17rem;
+          margin-bottom: 1.67rem;
         }
       }
     }

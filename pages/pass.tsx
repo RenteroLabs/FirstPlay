@@ -162,7 +162,7 @@ const PassNFT: NextPageWithLayout = () => {
                   <IconButton className={styles.taskMediaIcon} disableRipple>
                     <TwitterIcon />
                   </IconButton>
-                  <Typography>Follow On Twitter @FirstPlay2022</Typography>
+                  <Typography>Follow On Twitter @FirstPlayApp</Typography>
                 </Box>
                 <Divider orientation="vertical" flexItem sx={{ margin: "0 3rem" }} />
                 <Box className={styles.taskItem}>
@@ -183,7 +183,7 @@ const PassNFT: NextPageWithLayout = () => {
                   <IconButton className={styles.taskMediaIcon} disableRipple>
                     <TwitterIcon />
                   </IconButton>
-                  <Typography>Follow On Twitter @FirstPlay2022</Typography>
+                  <Typography>Follow On Twitter @FirstPlayApp</Typography>
                 </Box>
                 <Box className={styles.mobileTaskItem}>
                   <IconButton className={styles.taskMediaIcon} disableRipple>
