@@ -80,7 +80,9 @@ const HeaderUserInfo: React.FC<HeaderUserInfoProps> = (props) => {
             <>
               <Box className={styles.addressItem} >
                 <Box className={styles.addressBox}>
-                  <Typography>{formatAddress(address, 4)}</Typography>
+                  <Link href="/profile">
+                    <Typography>{formatAddress(address, 4)}</Typography>
+                  </Link>
                   <CopyButton targetValue={address} />
                 </Box>
                 <Box className={styles.exitIcon} onClick={() => {

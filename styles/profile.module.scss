@@ -9,6 +9,99 @@
     .profileCover {
       height: 20rem;
       position: relative;
+
+      .icon1 {
+        position: absolute;
+        left: 75% !important;
+        top: 20% !important;
+
+        @keyframes icon1Ani {
+          0% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(2px);
+          }
+          100% {
+            transform: translateY(0px);
+          }
+        }
+        animation-name: icon1Ani;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+      .icon2 {
+        position: absolute;
+        left: 55% !important;
+        top: 50% !important;
+        @keyframes icon2Ani {
+          0% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(2px);
+          }
+          100% {
+            transform: translateY(0px);
+          }
+        }
+        animation-name: icon2Ani;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+      .icon3 {
+        position: absolute;
+        left: 70% !important;
+        top: 60% !important;
+
+        @keyframes icon3Ani {
+          0% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.1);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+        animation-name: icon3Ani;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+      .icon4 {
+        position: absolute;
+        left: 6% !important;
+        top: 55% !important;
+        @keyframes icon4Ani {
+          0% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.15);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+        animation-name: icon4Ani;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+      .icon5 {
+        position: absolute;
+        left: 25% !important;
+        top: 15% !important;
+      }
+      .icon6 {
+        position: absolute;
+        left: 62% !important;
+        top: 24% !important;
+      }
     }
 
     .profileHeader {
