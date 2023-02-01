@@ -125,6 +125,10 @@
         color: #222222;
         line-height: 1.5rem;
         margin-right: 0.5rem;
+        user-select: none;
+        &:hover {
+          color: #8e50e4;
+        }
       }
     }
 

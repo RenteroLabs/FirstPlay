@@ -201,6 +201,24 @@ const Profile: NextPageWithLayout = () => {
       {isMounted && !is680Size &&
         <Box className={styles.profileCover}>
           <Image src="/profile_banner.jpg" layout="fill" />
+          <Box className={styles.icon1}>
+            <Image src="/profile_icon1.png" width="56" height="55" />
+          </Box>
+          <Box className={styles.icon2}>
+            <Image src="/profile_icon2.png" width="79" height="78" />
+          </Box>
+          <Box className={styles.icon3}>
+            <Image src="/profile_icon3.png" width="39" height="36" />
+          </Box>
+          <Box className={styles.icon4}>
+            <Image src="/profile_icon4.png" width="26" height="23" />
+          </Box>
+          <Box className={styles.icon5}>
+            <Image src="/profile_icon5.png" width="381" height="128" />
+          </Box>
+          <Box className={styles.icon6}>
+            <Image src="/profile_icon6.png" width="365" height="161" />
+          </Box>
         </Box>}
 
       <Box className={styles.profileHeader}>
