@@ -1,0 +1,67 @@
+.balanceBox {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 0.5rem 2rem 5rem;
+
+  .tableHeaderRow {
+    .tableHeaderCell {
+      font-size: 1.33rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: rgba(#222, 0.3);
+      line-height: 1.33rem;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  .tableRow {
+    .tableBodyCell {
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #222222;
+      line-height: 1.17rem;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .transferBtn {
+      display: inline-block;
+      border-radius: 0.33rem;
+      border: 1px solid #22222237;
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #222222;
+      line-height: 1rem;
+      padding: 0.83rem 1rem;
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+
+  .emptyList {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5.5rem;
+
+    .emptyIllustration {
+      margin: 0 auto;
+      position: relative;
+      width: 111px;
+      height: 77px;
+    }
+    p {
+      margin-top: 1.67rem;
+      font-size: 1.5rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
+      color: rgba(#222, 0.3);
+      line-height: 1.33rem;
+      text-align: center;
+    }
+  }
+}

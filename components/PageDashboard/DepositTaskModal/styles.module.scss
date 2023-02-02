@@ -1,0 +1,127 @@
+.modalBox {
+  width: 42.17rem;
+  background-color: white;
+  padding: 3.83rem 3.33rem 4.17rem;
+  position: relative;
+  border-radius: 1.33rem;
+
+  .closeBtn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+  }
+  h3 {
+    font-size: 2rem;
+    font-family: Inter-Bold, Inter;
+    font-weight: bold;
+    color: #222222;
+    line-height: 1.67rem;
+    text-align: center;
+    margin-bottom: 5rem;
+  }
+
+  .amountTitle,
+  .tokenTitle {
+    font-size: 1.33rem;
+    font-family: Inter-Bold, Inter;
+    font-weight: bold;
+    color: #222222;
+    line-height: 1.17rem;
+    margin-bottom: 1.67rem;
+
+    &::after {
+      content: '*';
+      color: #ff3d5a;
+    }
+  }
+  .amountTitle {
+    margin-top: 3.33rem;
+  }
+
+  .amountInput {
+    height: 4rem;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .assetAmountTips {
+    font-size: 1.33rem;
+    font-family: Inter-Regular, Inter;
+    font-weight: 400;
+    color: #222222;
+    line-height: 1.83rem;
+    margin-top: 0.83rem;
+    margin-bottom: 3.33rem;
+  }
+
+  .confirmBtn {
+    height: 4rem;
+    width: 100%;
+    background: #8e50e4;
+    border-radius: 0.67rem;
+
+    font-size: 1.33rem;
+    font-family: Inter-SemiBold, Inter;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.33rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    user-select: none;
+
+    span {
+      width: 1.33rem !important;
+      height: 1.33rem !important;
+      margin-left: 1rem;
+      svg {
+        color: white;
+      }
+    }
+  }
+}
+
+.tokenItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & + .tokenItem {
+    margin-top: 1.67rem;
+  }
+  .iconBox {
+    flex-grow: 0;
+    width: 2.33rem;
+    height: 2.33rem;
+    border-radius: 50%;
+    background-color: #22222234;
+    position: relative;
+  }
+  p {
+    flex-grow: 1;
+    font-size: 1.33rem;
+    font-family: Inter-Medium, Inter;
+    font-weight: 500;
+    color: #222222;
+    line-height: 1.17rem;
+    margin: 0 0.83rem;
+  }
+
+  span {
+    overflow: hidden;
+    border-radius: 50% !important;
+    :global {
+      .ant-checkbox-checked,
+      .ant-checkbox-inner {
+        background-color: #8E50E4 !important;
+        border-color: #8E50E4 !important;
+      }
+      .ant-checkbox-checked::after {
+        border: none !important;
+      }
+    }
+  }
+}

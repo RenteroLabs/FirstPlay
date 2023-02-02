@@ -54,35 +54,4 @@
     margin-top: 3.33rem;
   }
 
-  .tabsHeader {
-    margin-bottom: 2rem;
-    :global {
-      button {
-        font-size: 1.33rem;
-        font-family: Inter-SemiBold, Inter;
-        font-weight: 600;
-        color: #222222;
-        line-height: 1.33rem;
-        opacity: 0.5;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        padding-bottom: 0rem !important;
-        width: auto;
-        min-width: 0 !important;
-        text-transform: unset;
-        & + button {
-          margin-left: 2.5rem;
-        }
-      }
-      .Mui-selected {
-        opacity: 1;
-      }
-      .MuiTabs-indicator {
-        height: 0.17rem;
-        background: #222222;
-      }
-    }
-  }
-
-
 }

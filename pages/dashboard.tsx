@@ -1,13 +1,80 @@
-import { Box } from "@mui/material"
+import { Box, Tabs, Tab, Typography } from "@mui/material"
 import LayoutWithoutFooter from '@/components/LayoutWithoutFooter'
 import { GetStaticProps, GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import React, { ReactElement, useEffect, useState } from 'react'
 import { NextPageWithLayout } from './_app'
 import GameDashboardHeader from "@/components/PageDashboard/GameDashboardHeader"
+import styles from '../styles/dashboard.module.scss'
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import BalanceTable from "@/components/PageDashboard/BalanceTable"
+import { useAccount } from "wagmi"
+import OngoingTaskTable from "@/components/PageDashboard/OngoingTaskTable"
+import HistoryTaskTable from "@/components/PageDashboard/HistoryTaskTable"
+
+import Link from "next/link"
+
+enum TabItem {
+  Ongoing,
+  History
+}
 
 const Dashboard: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-  return <Box>
+
+  const { address } = useAccount()
+  const [activeTab, setActiveTab] = useState<TabItem>(TabItem.Ongoing)
+
+  useEffect(() => {
+    if (address) {
+      // 判断地址是否符合权限
+
+    }
+  }, [address])
+
+  return <Box className={styles.dashboardBox}>
     <GameDashboardHeader />
+    <Box className={styles.mainBox}>
+      <Box className={styles.balanceHeader}>
+        <Typography variant="h3">Available Balance</Typography>
+        <Link href="/dashboard/history" target="_blank" >
+          <Box className={styles.balanceHistoryBtn}>
+            History
+            <KeyboardDoubleArrowRightIcon />
+          </Box>
+        </Link>
+
+      </Box>
+      <BalanceTable balanceList={[
+        {
+          token: 'USDT',
+          balance: 12
+        }, {
+          token: "USDC",
+          balance: 10
+        }
+      ]} />
+
+      <Typography className={styles.taskSectionTitle}>Task Consumption</Typography>
+
+      <Tabs
+        className={styles.tabsHeader}
+        value={activeTab}
+        onChange={(_: any, newItem: number) => {
+          setActiveTab(newItem)
+        }} >
+        <Tab label="Ongoing" value={TabItem.Ongoing} disableRipple />
+        <Tab label="History" value={TabItem.History} disableRipple />
+      </Tabs>
+
+      {
+        activeTab === TabItem.Ongoing &&
+        <OngoingTaskTable />
+      }
+
+      {
+        activeTab === TabItem.History &&
+        <HistoryTaskTable />
+      }
+    </Box>
   </Box>
 }
 

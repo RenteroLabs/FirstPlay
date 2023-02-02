@@ -111,3 +111,27 @@ export const withdrawTokenBalance = async (params: withdrawTokenParams) => {
 
   return data.json()
 }
+
+
+
+
+/**
+ * ------------------------------------------------
+ * Business user manage api
+ * ------------------------------------------------
+ */
+
+interface DepositParams {
+
+}
+// 将 B 端用户余额存入指定任务项中作为奖励
+export const depositTokenToTask = async (params: DepositParams) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(params) 
+  })
+  return data.json()
+}
