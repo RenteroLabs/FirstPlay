@@ -321,7 +321,7 @@ const Profile: NextPageWithLayout = () => {
         hiddenTab: isMounted && activeTab !== TabItem.Trialing
       })}>
         {
-          trialingTaskList.map((item, index) => <ProfileTrialingTask key={index} taskInfo={item} />)
+          trialingTaskList?.map((item, index) => <ProfileTrialingTask key={index} taskInfo={item} />)
         }
 
         {/* 

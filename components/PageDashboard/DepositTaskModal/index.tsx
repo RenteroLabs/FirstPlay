@@ -22,7 +22,7 @@ const TokenSelectItem: React.FC<TokenItemProps> = (props) => {
         return '/usdt_logo_circle.png'
       // TODO: 默认返回 NFT icon 图片地址
       default:
-        return '/usdt_logo_circle.png'
+        return '/nft_logo.png'
     }
   }
 

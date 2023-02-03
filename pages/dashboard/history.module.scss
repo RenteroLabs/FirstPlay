@@ -9,10 +9,11 @@
 
   .balanceHeader {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 3.83rem;
-    margin-bottom: 1.58rem;
+    align-items: flex-start;
+    flex-direction: column;
+
+    margin-top: 4.25rem;
+    margin-bottom: 2rem;
     h3 {
       font-size: 2rem;
       font-family: Inter-Bold, Inter;
@@ -20,26 +21,22 @@
       color: #222222;
       line-height: 1.83rem;
     }
-    .balanceHistoryBtn {
-      font-size: 1.17rem;
-      font-family: Inter-Medium, Inter;
-      font-weight: 500;
-      color: #222222;
-      line-height: 1rem;
-
-      border-radius: 0.33rem;
-      border: 1px solid rgba(#222, 0.3);
-
-      display: inline-flex;
-      align-items: center;
-      padding: 0.83rem 1.25rem;
-
-      cursor: pointer;
-      user-select: none;
-
-      svg {
-        opacity: 0.3;
-        margin-left: 0.58rem;
+    .navList {
+      font-size: 1.08rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: rgba($color: #222, $alpha: 0.3);
+      line-height: 1.17rem;
+      margin-top: 1.33rem;
+      a {
+        color: rgba($color: #222, $alpha: 0.3);
+      }
+      p {
+        font-size: 1.08rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: rgba($color: #222, $alpha: 0.3);
+        line-height: 1.17rem;
       }
     }
   }
@@ -53,5 +50,4 @@
 
     margin-top: 3.33rem;
   }
-
 }

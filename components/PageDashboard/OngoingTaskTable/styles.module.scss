@@ -37,6 +37,10 @@
       padding: 0.83rem 1rem;
       cursor: pointer;
       user-select: none;
+
+      &:hover {
+        border-color: #222;
+      }
     }
   }
 

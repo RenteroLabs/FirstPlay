@@ -10,6 +10,7 @@ import BalanceTable from "@/components/PageDashboard/BalanceTable"
 import { useAccount } from "wagmi"
 import OngoingTaskTable from "@/components/PageDashboard/OngoingTaskTable"
 import HistoryTaskTable from "@/components/PageDashboard/HistoryTaskTable"
+import Image from "next/image"
 
 import Link from "next/link"
 
@@ -31,49 +32,69 @@ const Dashboard: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
   }, [address])
 
   return <Box className={styles.dashboardBox}>
-    <GameDashboardHeader />
-    <Box className={styles.mainBox}>
-      <Box className={styles.balanceHeader}>
-        <Typography variant="h3">Available Balance</Typography>
-        <Link href="/dashboard/history" target="_blank" >
-          <Box className={styles.balanceHistoryBtn}>
-            History
-            <KeyboardDoubleArrowRightIcon />
+    {
+      true ?
+        <>
+          <GameDashboardHeader />
+          <Box className={styles.mainBox}>
+            <Box className={styles.balanceHeader}>
+              <Typography variant="h3">Available Balance</Typography>
+              <Link href="/dashboard/history" target="_blank" >
+                <Box className={styles.balanceHistoryBtn}>
+                  History
+                  <KeyboardDoubleArrowRightIcon />
+                </Box>
+              </Link>
+
+            </Box>
+            <BalanceTable balanceList={[
+              {
+                token: 'USDT',
+                balance: 12
+              }, {
+                token: "USDC",
+                balance: 10
+              }
+            ]} />
+
+            <Typography className={styles.taskSectionTitle}>Task Consumption</Typography>
+
+            <Tabs
+              className={styles.tabsHeader}
+              value={activeTab}
+              onChange={(_: any, newItem: number) => {
+                setActiveTab(newItem)
+              }} >
+              <Tab label="Ongoing" value={TabItem.Ongoing} disableRipple />
+              <Tab label="History" value={TabItem.History} disableRipple />
+            </Tabs>
+
+            {
+              activeTab === TabItem.Ongoing &&
+              <OngoingTaskTable />
+            }
+
+            {
+              activeTab === TabItem.History &&
+              <HistoryTaskTable />
+            }
           </Box>
-        </Link>
+        </>
+        :
+        <Box className={styles.noAccessTip}>
+          <Box className={styles.noAccessIllust}>
+            <Image src="/no_access_right.png" layout="fill" />
+          </Box>
+          <Typography>
+            Current address no access right now! <br />
+            For game projects and other cooperation, please contact &nbsp;
+             <a target="__blank" href="mailto:business@firstplay.app">business@firstplay.app</a>
+          </Typography>
+        </Box>
+    }
 
-      </Box>
-      <BalanceTable balanceList={[
-        {
-          token: 'USDT',
-          balance: 12
-        }, {
-          token: "USDC",
-          balance: 10
-        }
-      ]} />
-
-      <Typography className={styles.taskSectionTitle}>Task Consumption</Typography>
-
-      <Tabs
-        className={styles.tabsHeader}
-        value={activeTab}
-        onChange={(_: any, newItem: number) => {
-          setActiveTab(newItem)
-        }} >
-        <Tab label="Ongoing" value={TabItem.Ongoing} disableRipple />
-        <Tab label="History" value={TabItem.History} disableRipple />
-      </Tabs>
-
-      {
-        activeTab === TabItem.Ongoing &&
-        <OngoingTaskTable />
-      }
-
-      {
-        activeTab === TabItem.History &&
-        <HistoryTaskTable />
-      }
+    <Box className={styles.mobileTips}>
+      Please go to the PC side to view for a better experience!
     </Box>
   </Box>
 }
