@@ -114,7 +114,7 @@ const WithdrawBalanceModal: React.FC<WithdrawBalanceProps> = (props) => {
         <Box className={styles.itemValue}>BNB Smart Chain (BEP20)</Box>
       </Box>
       <Typography>
-        Withdrawal application will be processed every Tuesday and Friday（UTC +8）. You can check the balance in the wallet later.
+        Withdrawal application will be processed before 12 noon every Tuesday and Friday（UTC +8）. You can check the balance in the wallet later.
       </Typography>
 
       <Box
