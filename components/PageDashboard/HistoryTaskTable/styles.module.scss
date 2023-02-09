@@ -24,6 +24,13 @@
       line-height: 1.17rem;
       padding-left: 0;
       padding-right: 0;
+
+      a {
+        color: #8E50E4;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
     .transferBtn {
       display: inline-block;

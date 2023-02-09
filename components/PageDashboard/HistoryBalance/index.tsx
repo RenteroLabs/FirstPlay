@@ -6,28 +6,29 @@ import styles from './styles.module.scss'
 import Image from "next/image";
 import { useAccount } from "wagmi";
 import { dateFormat } from "util/format";
+import { useRequest } from "ahooks";
+import { balanceChangeRecordList } from '../../../services/home'
 
 interface HistoryBalanceProps {
-  // balanceList: Record<string, any>[]
 }
 
 const HistoryBalanceTable: React.FC<HistoryBalanceProps> = (props) => {
   const isMounted = useIsMounted()
   const { address } = useAccount()
 
-  const [historyList, setHistoryList] = useState<Record<string, any>[]>([
-    {
-      token: 'USDT',
-      amount: '+1000',
-      action: "deposit",
-      timestamp: 1675242562
+  const [historyList, setHistoryList] = useState<Record<string, any>[]>([ ])
+
+  const { run: queryBalanceChangeRecord } = useRequest(balanceChangeRecordList, {
+    manual: true,
+    onSuccess: ({ data }) => {
+      setHistoryList(data)
     }
-  ])
+  })
 
   useEffect(() => {
     if (address) {
       // TODO: 请求 history 列表数据
-
+      queryBalanceChangeRecord(address)
     }
   }, [address])
 
@@ -66,10 +67,16 @@ const HistoryBalanceTable: React.FC<HistoryBalanceProps> = (props) => {
             {
               historyList.map((item, key) => <TableRow key={key} className={styles.tableRow}>
                 <TableCell className={styles.tableBodyCell} >
-                  {item?.token}
+                  {item?.token_symbol}
                 </TableCell>
-                <TableCell className={styles.tableBodyCell}>{item?.amount}</TableCell>
-                <TableCell className={styles.tableBodyCell}>{item?.action}</TableCell>
+                <TableCell className={styles.tableBodyCell}>{item?.change}</TableCell>
+                <TableCell className={styles.tableBodyCell}>
+                  {
+                    item?.task_id ?
+                      <>Transfer in #{item?.task_id}</>
+                      : "Deposit"
+                  }
+                </TableCell>
                 <TableCell className={styles.tableBodyCell}>
                   {dateFormat("YYYY-mm-dd", new Date(parseInt(item?.timestamp) * 1000))}
                 </TableCell>

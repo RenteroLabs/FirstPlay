@@ -122,16 +122,46 @@ export const withdrawTokenBalance = async (params: withdrawTokenParams) => {
  */
 
 interface DepositParams {
-
+  address: string,
+  task_id: string,
+  token: string,
+  amount: string,
+  timestamp: number,
+  signature: string
+  wallet?: string
 }
 // 将 B 端用户余额存入指定任务项中作为奖励
 export const depositTokenToTask = async (params: DepositParams) => {
-  const data = await fetch(`${BASE_BACKEND_API}/api/`, {
+  const data = await fetch(`${BASE_BACKEND_API}/api/deposit-task`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(params) 
+    body: JSON.stringify(params)
   })
+  return data.json()
+}
+
+// 校验地址是否有管理员访问权限
+export const checkAddressAuthority = async (address: string) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/master-game?address=${address}`)
+  return data.json()
+}
+
+// B 端管理页 代币余额列表
+export const businessTokenBalanceList = async (address: string) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/master-balances?address=${address}`)
+  return data.json()
+}
+
+// 余额变动列表
+export const balanceChangeRecordList = async (address: string) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/master-balance-details?address=${address}`)
+  return data.json()
+}
+
+// 项目方管理 task 任务列表（正在进行中、已结束）
+export const businessTaskList = async (address: string, status: 'on' | 'off') => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/master-tasks?address=${address}&status=${status}`)
   return data.json()
 }

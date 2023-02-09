@@ -8,20 +8,36 @@ import styles from './history.module.scss'
 import { useAccount } from "wagmi"
 import HistoryBalanceTable from "@/components/PageDashboard/HistoryBalance"
 import Link from '@mui/material/Link';
+import { useRequest } from "ahooks"
+import { checkAddressAuthority } from "services/home"
 
 const History: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-
   const { address } = useAccount()
+
+  const [gameInfo, setGameInfo] = useState<Record<string, any>>({})
+  const [isAuthority, setIsAuthority] = useState<boolean>(false)
+
+  const { run: queryCheckAddress } = useRequest(checkAddressAuthority, {
+    manual: true,
+    onSuccess: ({ data }) => {
+      if (data) {
+        setIsAuthority(true)
+        setGameInfo({ ...data })
+      }
+    }
+  })
 
   useEffect(() => {
     if (address) {
       // 判断地址是否符合权限
-
+      queryCheckAddress(address)
+    } else {
+      setIsAuthority(false)
     }
   }, [address])
 
   return <Box className={styles.dashboardBox}>
-    <GameDashboardHeader />
+    <GameDashboardHeader gameInfo={gameInfo} />
     <Box className={styles.mainBox}>
       <Box className={styles.balanceHeader}>
         <Typography variant="h3">History</Typography>

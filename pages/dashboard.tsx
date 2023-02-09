@@ -13,6 +13,8 @@ import HistoryTaskTable from "@/components/PageDashboard/HistoryTaskTable"
 import Image from "next/image"
 
 import Link from "next/link"
+import { useRequest } from "ahooks"
+import { businessTokenBalanceList, checkAddressAuthority } from "services/home"
 
 enum TabItem {
   Ongoing,
@@ -24,18 +26,46 @@ const Dashboard: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
   const { address } = useAccount()
   const [activeTab, setActiveTab] = useState<TabItem>(TabItem.Ongoing)
 
+  const [gameInfo, setGameInfo] = useState<Record<string, any>>({})
+
+  const [tokenBalanceList, setTokenBalanceList] = useState<Record<string, any>[]>([])
+
+  const [isAuthority, setIsAuthority] = useState<boolean>(false)
+
+  const { run: queryTokenBalance, refresh } = useRequest(businessTokenBalanceList, {
+    manual: true,
+    onSuccess: ({ data }) => {
+      // console.log(data)
+      setTokenBalanceList(data)
+    }
+  })
+
+  const { run: queryCheckAddress, loading } = useRequest(checkAddressAuthority, {
+    manual: true,
+    onSuccess: ({ data }) => {
+      if (data) {
+        setIsAuthority(true)
+        setGameInfo({ ...data })
+      }
+    }
+  })
   useEffect(() => {
     if (address) {
       // 判断地址是否符合权限
+      queryCheckAddress(address)
 
+      queryTokenBalance(address as string)
+
+    } else {
+      setIsAuthority(false)
     }
   }, [address])
 
   return <Box className={styles.dashboardBox}>
     {
-      true ?
+      (isAuthority || loading) ?
         <>
-          <GameDashboardHeader />
+          <GameDashboardHeader gameInfo={gameInfo} />
           <Box className={styles.mainBox}>
             <Box className={styles.balanceHeader}>
               <Typography variant="h3">Available Balance</Typography>
@@ -47,15 +77,7 @@ const Dashboard: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
               </Link>
 
             </Box>
-            <BalanceTable balanceList={[
-              {
-                token: 'USDT',
-                balance: 12
-              }, {
-                token: "USDC",
-                balance: 10
-              }
-            ]} />
+            <BalanceTable balanceList={tokenBalanceList} />
 
             <Typography className={styles.taskSectionTitle}>Task Consumption</Typography>
 
@@ -71,12 +93,18 @@ const Dashboard: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
 
             {
               activeTab === TabItem.Ongoing &&
-              <OngoingTaskTable />
+              <OngoingTaskTable
+                balanceTokenInfo={tokenBalanceList}
+                refreshBalance={refresh}
+                gameInfo={gameInfo}
+              />
             }
 
             {
               activeTab === TabItem.History &&
-              <HistoryTaskTable />
+              <HistoryTaskTable
+                gameInfo={gameInfo}
+              />
             }
           </Box>
         </>
@@ -88,7 +116,7 @@ const Dashboard: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
           <Typography>
             Current address no access right now! <br />
             For game projects and other cooperation, please contact &nbsp;
-             <a target="__blank" href="mailto:business@firstplay.app">business@firstplay.app</a>
+            <a target="__blank" href="mailto:business@firstplay.app">business@firstplay.app</a>
           </Typography>
         </Box>
     }

@@ -14,7 +14,6 @@ const BalanceTable: React.FC<BalanceTableProps> = (props) => {
   const { balanceList, isLoading = false } = props
   const isMounted = useIsMounted()
 
-
   const iconMap = (type: string) => {
     switch (type) {
       case 'USDT':
@@ -56,9 +55,9 @@ const BalanceTable: React.FC<BalanceTableProps> = (props) => {
                 <TableCell className={styles.tableBodyCell}>
                   <Box className={styles.tokenInfo}>
                     <Box className={styles.iconBox}>
-                      <Image src={iconMap(item?.token)} layout="fill" />
+                      <Image src={iconMap(item?.token_symbol)} layout="fill" />
                     </Box>
-                    {item?.token}
+                    {item?.token_symbol}
                   </Box>
                 </TableCell>
                 <TableCell className={styles.tableBodyCell}>{item?.balance}</TableCell>

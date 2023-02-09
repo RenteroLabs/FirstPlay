@@ -7,11 +7,11 @@ import { useAccount } from "wagmi";
 import styles from './styles.module.scss'
 
 interface GameHeaderProps {
-
+  gameInfo: Record<string, any>
 }
 
 const GameDashboardHeader: React.FC<GameHeaderProps> = (props) => {
-  const { } = props
+  const { gameInfo } = props
 
   const { address } = useAccount()
   const [showConnect, setShowConnect] = useState<boolean>(false)
@@ -27,7 +27,7 @@ const GameDashboardHeader: React.FC<GameHeaderProps> = (props) => {
   return <Box className={styles.headerBox}>
     <Box className={styles.header}>
       <Box className={styles.gameBox}>
-        <Typography>Big Time</Typography>
+        <Typography>{gameInfo?.name}</Typography>
         <Box className={styles.brandBox}>
           <Image src="/game_brand.png" layout="fill" />
         </Box>

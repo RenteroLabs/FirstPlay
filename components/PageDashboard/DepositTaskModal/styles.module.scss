@@ -82,6 +82,11 @@
       }
     }
   }
+  .disableBtn {
+    background-color: rgba($color: #222, $alpha: 0.2);
+    color: white;
+    cursor: not-allowed;
+  }
 }
 
 .tokenItem {
@@ -116,8 +121,8 @@
     :global {
       .ant-checkbox-checked,
       .ant-checkbox-inner {
-        background-color: #8E50E4 !important;
-        border-color: #8E50E4 !important;
+        background-color: #8e50e4 !important;
+        border-color: #8e50e4 !important;
       }
       .ant-checkbox-checked::after {
         border: none !important;
