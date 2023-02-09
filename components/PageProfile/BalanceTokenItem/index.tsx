@@ -4,6 +4,7 @@ import styles from './styles.module.scss'
 import Image from "next/image";
 import WithdrawBalanceModal from "@/components/PageModals/WithdrawBalance";
 import classNames from "classnames/bind";
+import { useTranslations } from "next-intl";
 
 const cx = classNames.bind(styles)
 
@@ -14,6 +15,7 @@ interface BalanceTokenItemProps {
 
 const BalanceTokenItem: React.FC<BalanceTokenItemProps> = (props) => {
   const { tokenInfo, reload } = props
+  const t = useTranslations('Profile.RewardTokenItem')
 
   const is600Size = useMediaQuery("(max-width: 600px)")
   const [showModal, setShowModal] = useState<boolean>(false)
@@ -43,7 +45,7 @@ const BalanceTokenItem: React.FC<BalanceTokenItemProps> = (props) => {
       <Typography variant="subtitle1" className={styles.tokenName}>TetherUS</Typography>
     </Box>
     <Box className={styles.balanceInfo}>
-      {!is600Size && <Typography variant="subtitle1" className={styles.amountText}>Amount</Typography>}
+      {!is600Size && <Typography variant="subtitle1" className={styles.amountText}>{t('amountText')}</Typography>}
       <Typography variant="h4">{tokenInfo?.balance}</Typography>
     </Box>
     <Box
@@ -52,7 +54,7 @@ const BalanceTokenItem: React.FC<BalanceTokenItemProps> = (props) => {
         disableWithdrawBtn: disableBtn
       })}
       onClick={handleWithdrawBalance}>
-      {tokenInfo?.status == 'withdrawing' ? 'Withdrawing' : 'Withdraw'}
+      {tokenInfo?.status == 'withdrawing' ? t('withdrawingBtnText') : t('withdrawBtnText')}
     </Box>
 
     <WithdrawBalanceModal

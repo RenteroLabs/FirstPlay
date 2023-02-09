@@ -8,6 +8,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { unipassInstance } from "pages/_app";
 import { useRequest } from "ahooks";
 import { withdrawTokenBalance } from "services/home";
+import { useTranslations } from "next-intl";
 
 interface WithdrawBalanceProps {
   showModal: boolean;
@@ -18,6 +19,8 @@ interface WithdrawBalanceProps {
 
 const WithdrawBalanceModal: React.FC<WithdrawBalanceProps> = (props) => {
   const { showModal, setShowModal, tokenInfo, reload } = props
+
+  const t = useTranslations('Profile.WithdrawModal')
 
   const connectedType = useConnectedType()
   const [withdrawLoading, setWithdrawLoading] = useState<boolean>(false)
@@ -103,24 +106,24 @@ const WithdrawBalanceModal: React.FC<WithdrawBalanceProps> = (props) => {
       <IconButton disableRipple onClick={() => setShowModal(false)} className={styles.closeBtn}>
         <CloseIcon />
       </IconButton>
-      <Typography variant="h3">Withdraw all balance</Typography>
+      <Typography variant="h3">{t('title')}</Typography>
 
       <Box className={styles.balanceItem}>
-        <Box className={styles.itemKey}>Token/Amount</Box>
+        <Box className={styles.itemKey}>{t('tokenAoumnt')}</Box>
         <Box className={styles.itemValue}>{tokenInfo?.balance} {tokenInfo?.token_symbol}</Box>
       </Box>
       <Box className={styles.networkItem}>
-        <Box className={styles.itemKey}>Network</Box>
+        <Box className={styles.itemKey}>{t('network')}</Box>
         <Box className={styles.itemValue}>BNB Smart Chain (BEP20)</Box>
       </Box>
       <Typography>
-        Withdrawal application will be processed before 12 noon every Tuesday and Friday（UTC +8）. You can check the balance in the wallet later.
+        {t('withdrawTip')}
       </Typography>
 
       <Box
         className={`${styles.withdrawBtn} ${(withdrawLoading || postWithdrawLoading) && styles.loadingBtn}`}
         onClick={handleWithdrawToken}>
-        Confirm and withdraw
+        {t('btnText')}
         {(withdrawLoading || postWithdrawLoading) && <CircularProgress />}
       </Box>
     </Box>

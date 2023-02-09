@@ -107,14 +107,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   let allArticlePath: { params: any }[] = []
 
-  // SUPPORT_LANGUAGE.forEach((language) =>
-  posts.forEach(item => {
-    allArticlePath.push({
-      params: { slug: item.slug },
-      // locale: language
+  SUPPORT_LANGUAGE.forEach((language) =>
+    posts.forEach(item => {
+      allArticlePath.push({
+        params: { slug: item.slug },
+        // @ts-ignore
+        locale: language
+      })
     })
-  })
-  // )
+  )
 
   return {
     paths: allArticlePath,

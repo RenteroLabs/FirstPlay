@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material"
 import styles from './styles.module.scss'
 import Image from 'next/image'
+import { useTranslations } from "next-intl";
 
 
 interface JoinCommunityProps {
@@ -10,10 +11,11 @@ interface JoinCommunityProps {
 
 const JoinCommunity: React.FC<JoinCommunityProps> = (props) => {
   const { } = props
+  const t = useTranslations('Index.Community')
 
   return <Box className={styles.communityBox}>
-    <Typography variant="h2">Our Community</Typography>
-    <Typography>Join the community and participate in community activities to build First Play together</Typography>
+    <Typography variant="h2">{t('title')}</Typography>
+    <Typography>{t('subTitle')}</Typography>
     <Box
       className={styles.discordBtn}
       onClick={() => {
@@ -22,7 +24,7 @@ const JoinCommunity: React.FC<JoinCommunityProps> = (props) => {
       <Box className={styles.iconBox}>
         <Image src="/Discord-Logo-Carnival.png" layout="fill" />
       </Box>
-      Go and see
+      {t('btnText')}
     </Box>
   </Box>
 }

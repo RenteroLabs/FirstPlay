@@ -230,7 +230,7 @@ const Header: React.FC = () => {
           </Stack>}
 
           <Box className={styles.headerSetting}>
-            {/* <Box className={styles.languageNav}>
+            <Box className={styles.languageNav}>
               <Box className={styles.headerNavImage}>
                 <Image src={HEADER_LANGUAGE} layout="fill" objectFit='contain' />
               </Box>
@@ -241,12 +241,22 @@ const Header: React.FC = () => {
                   </Link>
                 </Box>
                 <Box>
+                  <Link href={asPath} locale="id-ID">
+                    Indonesia
+                  </Link>
+                </Box>
+                <Box>
+                  <Link href={asPath} locale="vi-VM">
+                    Việt Nam
+                  </Link>
+                </Box>
+                <Box>
                   <Link href={asPath} locale="zh-CN">
                     简体中文
                   </Link>
                 </Box>
               </Box>
-            </Box> */}
+            </Box>
 
             <Box className={styles.shareNav}>
               <Box className={styles.headerNavImage}>

@@ -6,6 +6,7 @@ import styles from './styles.module.scss'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { useState } from "react"
+import { useTranslations } from "next-intl";
 
 interface RewardGamesProps {
   rewardGames: Record<string, any>[]
@@ -14,6 +15,7 @@ interface RewardGamesProps {
 
 const RewardGames: React.FC<RewardGamesProps> = (props) => {
   const { rewardGames, timestamp } = props
+  const t = useTranslations('Index.Section')
 
   const is600Size = useMediaQuery("(max-width: 600px)")
 
@@ -21,7 +23,7 @@ const RewardGames: React.FC<RewardGamesProps> = (props) => {
 
   return <Box className={styles.rewardGames}>
     <Box className={styles.rewardGamesBox}>
-      <SectionTitle normal="" emphasize="Rewarded Games" />
+      <SectionTitle normal="" emphasize={t('rewardedSectionTitle')} />
       <Box className={styles.cardList}>
         {
           ((is600Size && !showMore) ? rewardGames.slice(0, 3) : rewardGames).map((item, index) => <RewardGameCard gameInfo={item} key={index} timestamp={timestamp} />)
@@ -35,8 +37,8 @@ const RewardGames: React.FC<RewardGamesProps> = (props) => {
     {is600Size && <Box className={styles.showMoreBtn} onClick={() => setShowMore(!showMore)}>
       {
         showMore ?
-          <> Less <KeyboardArrowUpIcon /> </> :
-          <> More <KeyboardArrowDownIcon /> </>
+          <> {t('showLessBtn')} <KeyboardArrowUpIcon /> </> :
+          <> {t('showMoreBtn')} <KeyboardArrowDownIcon /> </>
       }
     </Box>}
   </Box>

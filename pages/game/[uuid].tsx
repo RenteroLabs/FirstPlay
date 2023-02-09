@@ -32,6 +32,7 @@ import Link from 'next/link'
 import { queryCarnivalGamesInfo } from 'services/carnival'
 import { Carnival_Games } from 'constants/index'
 import CampaignIcon from '@mui/icons-material/Campaign';
+import { useTranslations } from "next-intl";
 
 export interface TxLoadingParams {
   txHash: string,
@@ -56,6 +57,8 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
   const { address } = useAccount()
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false)
   const [showQuickTrialModal, setShowQuickTrialModal] = useState<boolean>(false)
+
+  const t = useTranslations('Game')
 
   const is700Width = useMediaQuery("(max-width: 700px)")
   const is600Width = useMediaQuery("(max-width: 600px)")
@@ -204,7 +207,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
           {isCarnivalGame && <Box className={styles.rewardMainBox}>
             <Box className={styles.carnivalRewrads}>
               <Box className={styles.cardHeader}>
-                <Typography>Task</Typography>
+                <Typography>{t('taskTitle')}</Typography>
                 <Box className={styles.mediaBox}>
                 </Box>
               </Box>
@@ -252,7 +255,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
           {!isCarnivalGame &&
             <Box className={styles.gameStrategy}>
               <Box className={styles.comingSoonTip}>
-                <CampaignIcon sx={{ mr: '2rem' }} fontSize="large" /> Coming Soon
+                <CampaignIcon sx={{ mr: '2rem' }} fontSize="large" /> {t('comingSoonTip')}
               </Box>
             </Box>}
 

@@ -10,6 +10,7 @@ import { useEffect, useState } from "react"
 import { useRequest } from "ahooks"
 import { getTrialingTasks } from "services/home"
 import classNames from "classnames/bind"
+import { useTranslations } from "next-intl";
 
 const cx = classNames.bind(styles)
 
@@ -21,12 +22,14 @@ const TrialGame: React.FC<TrialGameProps> = (props) => {
   const { address } = useAccount()
   const isMounted = useIsMounted()
 
+  const t = useTranslations('Index.Section')
+
   const [trialingTasks, setTrialingTasks] = useState<Record<string, any>[]>([])
 
   const { run: queryTrialingTask, loading } = useRequest(getTrialingTasks, {
     manual: true,
     onSuccess: ({ data }) => {
-      console.log(data)
+      // console.log(data)
       setTrialingTasks(data?.trialing_games || [])
     }
   })
@@ -39,7 +42,7 @@ const TrialGame: React.FC<TrialGameProps> = (props) => {
 
   return <Box className={styles.trialgame}>
     <Box className={styles.trialgameBox}>
-      <SectionTitle normal="Trialing Games" sort="last" moreLink="/profile?tab=Trialing" />
+      <SectionTitle normal={t('trialingTitle')} sort="last" moreLink="/profile?tab=Trialing" />
       <Box className={styles.addressInfo}>
         <Box className={styles.iconBox}>
           <PersonIcon />
@@ -56,7 +59,7 @@ const TrialGame: React.FC<TrialGameProps> = (props) => {
         }
         {
           !loading && trialingTasks.length === 0 &&
-          <Typography className={styles.emptyDesc}>No games currently trialing, start a game you like now!</Typography>
+          <Typography className={styles.emptyDesc}>{t('emptyTrialingTip')}</Typography>
         }
       </Box>
     </Box>

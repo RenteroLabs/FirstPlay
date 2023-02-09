@@ -8,6 +8,7 @@ import detectEthereumProvider from '@metamask/detect-provider'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useIsMounted } from 'hooks/useIsMounted';
 import { MetamaskDeeplink } from 'constants/index';
+import { useTranslations } from "next-intl";
 
 interface ConnectWalletProps {
   showConnect: boolean;
@@ -20,6 +21,8 @@ type WalletType = "" | "walletConnect" | "metaMask" | "Unipass"
 
 const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
   const { showConnect, setShowConnect, callback = () => { }, errorCallback = () => { } } = props
+
+  const t = useTranslations('Index.WalletConnect')
 
   const { address } = useAccount()
   const [isEthEnv, setIsEthEnv] = useState<boolean>(false)
@@ -72,32 +75,32 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
   }
 
   const WalletIntro = <Box className={styles.walletIntro}>
-    <Typography variant='h4'>Don&#39;t have a wallet yet?</Typography>
-    <Typography className={styles.subtitle}>Connecting wallet is like“logging in” to Web3. You can visit every website without  creating new accounts and passwords.</Typography>
+    <Typography variant='h4'>{t('notOwnWallet')}</Typography>
+    <Typography className={styles.subtitle}>{t("walletIntro")}</Typography>
 
     {/* <a href='https://wallet.unipass.id/register' target="_blank" rel="noreferrer"> */}
     <Box className={styles.downItem} onClick={() => handleConnect(UnipassConnector)}>
       <img src='/unipass_logo.svg' />
       <Typography>Unipass</Typography>
-      <Box className={styles.getBtn}>Get</Box>
-      <Box className={styles.beginnerBadge}>For beginners</Box>
+      <Box className={styles.getBtn}>{t("linkText")}</Box>
+      <Box className={styles.beginnerBadge}>{t("forBeginner")}</Box>
     </Box>
     {/* </a> */}
 
-    <Typography className={styles.unipassGuide}>Quick login with email in 3 minutes on the web.</Typography>
+    <Typography className={styles.unipassGuide}>{t("registerByMail")}</Typography>
 
     <a href='https://metamask.io/download/' target="_blank" rel="noreferrer">
       <Box className={styles.downItem}>
         <img src='/metamask_logo.svg' />
         <Typography>MetaMask</Typography>
-        <Box className={styles.getBtn}>Get</Box>
+        <Box className={styles.getBtn}>{t("linkText")}</Box>
       </Box>
     </a>
 
     <a
       className={styles.metamaskGuide}
       href="/strategy/Get-Started-With-Metamask-Quickly"
-      target="_blank">How to use MetaMask? Step by step</a>
+      target="_blank">{t("metamaskGuide")}</a>
   </Box>
 
   const mobileConnectDrawer = <Drawer
@@ -111,7 +114,7 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
         <Box onClick={() => setShowConnect(false)}>
           <ArrowBackIosIcon />
         </Box>
-        <Typography variant='h4'>Connect Wallet</Typography>
+        <Typography variant='h4'>{t('title')}</Typography>
         <Box></Box>
       </Box>
       <Box className={styles.mobileWalletList}>
@@ -178,7 +181,7 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
       </IconButton>
       <div className={styles.dialogContent}>
         <Box className={styles.walletList}>
-          <Typography variant='h4'>Connect Wallet</Typography>
+          <Typography variant='h4'>{t('title')}</Typography>
           {error &&
             <Alert severity="error" sx={{ display: 'flex', alignItems: 'center' }}>
               {error.message}

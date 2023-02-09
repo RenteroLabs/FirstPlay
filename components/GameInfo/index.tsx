@@ -10,7 +10,7 @@ import { KeyboardDoubleArrowDown, SportsRugbySharp } from '@mui/icons-material'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import classname from 'classnames/bind'
-
+import { useTranslations } from "next-intl";
 const cx = classname.bind(styles)
 
 interface GameInfoProps {
@@ -23,6 +23,7 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
   const isMobileSize = useMediaQuery('(max-width: 750px)')
   const [showMoreDesc, setShowMoreDesc] = useState<boolean>(false)
   const [showMoreDescPC, setShowMoreDescPC] = useState<boolean>(false)
+  const t = useTranslations('Game')
 
   const linkToStrategy = () => {
     window.open(gameInfo?.strategy)
@@ -95,7 +96,7 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
               <Box className={styles.showMoreBtn} component="span" onClick={() => setShowMoreDesc(!showMoreDesc)}>
                 {
                   showMoreDesc &&
-                  <> &nbsp;&nbsp; less <KeyboardArrowUpIcon sx={{ cursor: 'pointer' }} /></>
+                  <> &nbsp;&nbsp; {t('showLessBtn')} <KeyboardArrowUpIcon sx={{ cursor: 'pointer' }} /></>
                 }
               </Box>
             </Typography>
@@ -169,8 +170,8 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
                 <Box className={styles.showMoreDescBtnPC} onClick={() => setShowMoreDescPC(!showMoreDescPC)}>
                   {
                     showMoreDescPC ?
-                      <>less <KeyboardArrowUpIcon /></> :
-                      <>more <KeyboardArrowDownIcon /></>
+                      <>{t('showLessBtn')} <KeyboardArrowUpIcon /></> :
+                      <>{t('showMoreBtn')} <KeyboardArrowDownIcon /></>
                   }
                 </Box>
               </Box>

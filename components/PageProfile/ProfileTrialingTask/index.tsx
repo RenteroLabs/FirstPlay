@@ -3,6 +3,7 @@ import React from "react";
 import styles from './styles.module.scss'
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 interface TrialingTask {
   taskInfo: Record<string, any>
@@ -10,6 +11,7 @@ interface TrialingTask {
 
 const ProfileTrialingTask: React.FC<TrialingTask> = (props) => {
   const { taskInfo } = props
+  const t = useTranslations('Profile.Trialing')
 
   const is600Size = useMediaQuery('(max-width: 600px)')
 
@@ -33,11 +35,11 @@ const ProfileTrialingTask: React.FC<TrialingTask> = (props) => {
 
         <Box className={styles.divider}></Box>
         <Typography className={styles.taskName}>
-          <span>Task: </span>
+          <span>{t("taskName")}: </span>
           {taskInfo?.task}
         </Typography>
         <Typography className={styles.rewardInfo}>
-          <span>Rewards: </span>
+          <span>{t('rewardName')}: </span>
           {taskInfo?.rewards}
         </Typography>
       </Box>

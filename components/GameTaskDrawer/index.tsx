@@ -15,6 +15,7 @@ import DoneIcon from '@mui/icons-material/Done';
 import { useIsMounted } from 'hooks/useIsMounted';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { isEmpty } from 'lodash';
+import { useTranslations } from "next-intl";
 
 const cx = classNames.bind(styles)
 
@@ -59,7 +60,7 @@ const StepButton: React.FC<StepButtonProps> = (props) => {
   const [isIos, setIsIos] = useState<boolean>(false)
 
   useEffect(() => {
-    console.log(navigator.userAgent)
+    // console.log(navigator.userAgent)
     if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
       setIsIos(true)
     } else {
@@ -148,6 +149,7 @@ interface GameTaskDrawerProps {
 const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
   const { showTaskDrawer, setShowTaskDrawer, taskInfo, index, reward, setShowTaskModal, timestamp, isStarted, isClaimed } = props
 
+  const t = useTranslations('Game.StepDrawer')
   const [stepNums, setStepNums] = useState<number>(3)
   const [activeStep, setActiveStep] = useState<number>(1)
 
@@ -228,7 +230,7 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
                 taskBox?.current.scrollTo({ top: 0 })
               }
             }}>
-            <KeyboardArrowLeftIcon /> Back
+            <KeyboardArrowLeftIcon /> {t('backBtnText')}
           </Box> : <Box></Box>}
 
         {activeStep !== stepNums ? <Box
@@ -241,13 +243,13 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
             }
           }}
         >
-          Next <KeyboardArrowRightIcon />
+          {t('nextBtnText')} <KeyboardArrowRightIcon />
         </Box> :
           taskInfo?.form && !isClaimed && taskInfo?.task_status === 'on' && <Box
             className={styles.verifyBtn}
             onClick={() => setShowTaskModal(true)}
           >
-            Verify
+            {t('verifyBtnText')}
           </Box>
         }
       </Box>

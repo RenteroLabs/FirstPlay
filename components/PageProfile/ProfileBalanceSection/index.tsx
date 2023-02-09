@@ -8,7 +8,7 @@ import styles from './styles.module.scss';
 import Image from "next/image";
 import { useIsMounted } from "hooks/useIsMounted";
 import { isEmpty } from "lodash";
-
+import { useTranslations } from "next-intl";
 
 const MobileBalanceRecordItem: React.FC<{ recordItem: Record<string, any> }> = (props) => {
   const { recordItem } = props
@@ -46,6 +46,8 @@ const ProfileBalanceSection: React.FC<BalanceSectionProps> = (props) => {
   const isMounted = useIsMounted()
   const is600Size = useMediaQuery("(max-width: 600px)")
 
+  const t = useTranslations('Profile.Balance')
+
   const [recordList, setRecordList] = useState<Record<string, any>[]>([])
 
   const { loading, run: queryProfileBalanceRecord } = useRequest(getProfileBalanceRecordList, {
@@ -68,9 +70,9 @@ const ProfileBalanceSection: React.FC<BalanceSectionProps> = (props) => {
       <Table className={styles.tableBox}>
         <TableHead>
           <TableRow>
-            <TableCell className={styles.tableHeaderCell}> Token </TableCell>
-            <TableCell className={styles.tableHeaderCell}> Action </TableCell>
-            <TableCell className={styles.tableHeaderCell}> Time </TableCell>
+            <TableCell className={styles.tableHeaderCell}> {t('tokenColumn')} </TableCell>
+            <TableCell className={styles.tableHeaderCell}> {t("actionColumn")} </TableCell>
+            <TableCell className={styles.tableHeaderCell}> {t("timeColumn")} </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -114,7 +116,7 @@ const ProfileBalanceSection: React.FC<BalanceSectionProps> = (props) => {
         <Box className={styles.emptyIllustration}>
           <Image src="/empty_trialing.png" layout="fill" />
         </Box>
-        <Typography>Oh, there is no balance flow now.</Typography>
+        <Typography>{t('emptyTip')}</Typography>
       </Box>
     }
   </Box>
