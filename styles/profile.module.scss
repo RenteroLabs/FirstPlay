@@ -324,6 +324,16 @@
         line-height: 1.33rem;
         margin-bottom: 2.5rem;
       }
+
+      h5 {
+        margin-top: 2.17rem;
+        font-size: 1.17rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 1.17rem;
+        opacity: 0.3;
+      }
     }
 
     .hiddenTab {
@@ -759,6 +769,14 @@
           color: #222222;
           line-height: 1.17rem;
           margin-bottom: 1.67rem;
+        }
+        h5 {
+          margin-top: 1rem;
+          font-size: 1rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #222222;
+          line-height: 1.5rem;
         }
       }
     }

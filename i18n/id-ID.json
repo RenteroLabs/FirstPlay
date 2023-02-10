@@ -119,6 +119,7 @@
       "title": "Withdraw all balance",
       "tokenAoumnt": "Token/Amount",
       "network": "Network",
+      "shortWithdrawTip": "Withdrawal application will be processed before 12 noon every Tuesday and Friday（UTC +8）",
       "withdrawTip": "Withdrawal application will be processed before 12 noon every Tuesday and Friday（UTC +8）. You can check the balance in the wallet later.",
       "btnText": "Confirm and withdraw"
     }

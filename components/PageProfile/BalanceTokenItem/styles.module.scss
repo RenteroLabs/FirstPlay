@@ -3,6 +3,9 @@
   align-items: center;
   justify-content: space-between;
 
+  & + .tokenItem {
+    margin-top: 1.67rem;
+  }
   .tokenInfo {
     display: flex;
     align-items: center;
@@ -26,7 +29,7 @@
       font-size: 1.17rem;
       font-family: Inter-Medium, Inter;
       font-weight: 500;
-      color: rgba(#222, 0.3);
+      color: rgba(#222, 0.5);
       line-height: 1rem;
     }
   }
@@ -69,7 +72,7 @@
       font-size: 1.17rem;
       font-family: Inter-Medium, Inter;
       font-weight: 500;
-      color: rgba(#222, 0.3);
+      color: rgba(#222, 0.5);
       line-height: 1rem;
       margin-right: 0.5rem;
     }
@@ -78,6 +81,10 @@
 
 @media screen and (max-width: 600px) {
   .tokenItem {
+    & + .tokenItem {
+      margin-top: 0.83rem;
+    }
+    
     .tokenInfo {
       .tokenLogo {
         width: 2rem;
@@ -95,7 +102,7 @@
         font-size: 1rem;
         font-family: Inter-Medium, Inter;
         font-weight: 500;
-        color: rgba(#222, 0.3);
+        color: rgba(#222, 0.5);
         line-height: 1rem;
       }
     }

@@ -305,7 +305,15 @@ const Profile: NextPageWithLayout = () => {
     <Box className={styles.profileContent}>
       <Box className={styles.balanceSection}>
         <Typography variant="h3">{t('rewardBalance')}</Typography>
-        <BalanceTokenItem tokenInfo={tokenBalances[0]} reload={refresh} />
+        {
+          tokenBalances.map((item: Record<string, any>, index: number) =>
+            <BalanceTokenItem key={index} tokenInfo={item} reload={refresh} />
+          )
+        }
+        {/* <BalanceTokenItem key={2} tokenInfo={tokenBalances[0]} reload={refresh} /> */}
+        <Typography variant="h5">
+          * {t('WithdrawModal.shortWithdrawTip')}
+        </Typography>
       </Box>
 
       <Tabs

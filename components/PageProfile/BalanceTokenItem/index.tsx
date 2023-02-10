@@ -13,6 +13,16 @@ interface BalanceTokenItemProps {
   reload: (arg?: any) => any
 }
 
+const iconMap = (type: string) => {
+  switch (type) {
+    case 'USDT':
+      return '/usdt_logo_circle.png'
+    // TODO: 默认返回 NFT icon 图片地址
+    default:
+      return '/nft_logo.png'
+  }
+}
+
 const BalanceTokenItem: React.FC<BalanceTokenItemProps> = (props) => {
   const { tokenInfo, reload } = props
   const t = useTranslations('Profile.RewardTokenItem')
@@ -39,10 +49,10 @@ const BalanceTokenItem: React.FC<BalanceTokenItemProps> = (props) => {
   return <Box className={styles.tokenItem}>
     <Box className={styles.tokenInfo}>
       <Box className={styles.tokenLogo}>
-        <Image src="/usdt_logo_circle.png" layout="fill" />
+        <Image src={iconMap(tokenInfo?.token_symbol)} layout="fill" />
       </Box>
-      <Typography variant="h4" className={styles.tokenSymbol}>USDT</Typography>
-      <Typography variant="subtitle1" className={styles.tokenName}>TetherUS</Typography>
+      <Typography variant="h4" className={styles.tokenSymbol}>{tokenInfo?.token_symbol}</Typography>
+      <Typography variant="subtitle1" className={styles.tokenName}>{tokenInfo?.token_name}</Typography>
     </Box>
     <Box className={styles.balanceInfo}>
       {!is600Size && <Typography variant="subtitle1" className={styles.amountText}>{t('amountText')}</Typography>}
