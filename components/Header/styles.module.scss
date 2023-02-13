@@ -23,14 +23,14 @@
     }
 
     .headerNavs {
-      font-size: 1.5rem;
+      font-size: 1.33rem;
       font-family: Inter-SemiBold, Inter;
       font-weight: 600;
       color: #222222;
-      line-height: 1.5rem;
+      line-height: 1.33rem;
       & > div {
         & + div {
-          margin-left: 4.17rem;
+          margin-left: 3.33rem;
         }
       }
 
@@ -51,7 +51,7 @@
     }
 
     .headerSetting {
-      margin-left: 2.42rem;
+      margin-left: 2.5rem;
       height: 100%;
       align-items: center;
       display: flex;
@@ -62,7 +62,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0 1.25rem;
+        padding: 0 0.83rem;
 
         .headerNavImage {
           width: 3.67rem;
@@ -299,7 +299,7 @@
       display: block;
       position: absolute;
       top: 72px;
-      right: -32%;
+      right: -38%;
       width: 9.5rem;
       background: #ffffff;
       border-radius: 0.83rem;
@@ -328,7 +328,7 @@
     padding: 0.88rem 0;
     // top: 84px;
     top: 72px;
-    right: -50%;
+    right: -65%;
     box-shadow: rgb(0 0 0 / 8%) 0px 4px 8px;
 
     .mediaItem {
