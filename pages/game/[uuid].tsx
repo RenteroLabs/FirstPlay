@@ -30,7 +30,7 @@ import { checkOwnPassNFT } from 'services/web3'
 import CarnivalRewardItem from '@/components/PageCarnival/RewardItem'
 import Link from 'next/link'
 import { queryCarnivalGamesInfo } from 'services/carnival'
-import { Carnival_Games } from 'constants/index'
+import { Carnival_Games, SUPPORT_LANGUAGE } from 'constants/index'
 import CampaignIcon from '@mui/icons-material/Campaign';
 import { useTranslations } from "next-intl";
 
@@ -374,9 +374,23 @@ export const getStaticPaths: GetStaticPaths = async () => {
     ...data?.rewarded_games,
     ...addGameUID].map((item: any) => ({ params: { uuid: item.game_id } }))
 
-  console.log(gamePaths)
+  // console.log(gamePaths)
+
+  let allLanguageGamePaths: { params: any }[] = []
+
+  SUPPORT_LANGUAGE.forEach((language) =>
+    gamePaths.forEach(item => {
+      allLanguageGamePaths.push({
+        params: { uuid: item.params.uuid },
+        // @ts-ignore
+        locale: language
+      })
+    })
+  )
+
+  // console.log(allLanguageGamePaths)
   return {
-    paths: gamePaths,
+    paths: allLanguageGamePaths,
     fallback: false
   }
 }
