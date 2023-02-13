@@ -23,7 +23,7 @@ const HotGames: React.FC<HotGamesProps> = (props) => {
 
   return <Box className={styles.hotGames}>
     <Box className={styles.hotGamesBox}>
-      <SectionTitle normal="" emphasize={t('hotgameSectionTitle')} />
+      <SectionTitle emphasize={t('hotgameSectionTitle')} />
       <Box className={styles.cardList}>
         {
           ((is600Size && !showMore) ? hotGames.slice(0, 6) : hotGames).map((item, index) => <GameCard gameInfo={item} key={index} timestamp={timestamp} />)

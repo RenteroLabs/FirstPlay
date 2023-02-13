@@ -10,7 +10,7 @@ const Support: React.FC = () => {
 
   return <Box className={styles.support}>
     <Box className={styles.supportBox}>
-      <SectionTitle emphasize={t('supportSectionTitle')} normal="" />
+      <SectionTitle emphasize={t('supportSectionTitle')} />
       <Box className={styles.cardList}>
         <Box className={styles.brandItem}>
           <Box>

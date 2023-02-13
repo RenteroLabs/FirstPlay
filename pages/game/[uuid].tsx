@@ -75,8 +75,6 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
   const timestamp = useMemo(() => (Number(new Date) / 1000).toFixed(), [])
 
 
-
-
   /**
    * Carnival Part Start
    */
@@ -87,7 +85,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
   // }, [router.query?.uuid])
 
   const isCarnivalGame = useMemo(() => {
-    return gameInfo?.tasks.length > 0
+    return gameInfo?.tasks?.length > 0
   }, gameInfo)
 
 

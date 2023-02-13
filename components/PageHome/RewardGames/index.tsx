@@ -23,7 +23,10 @@ const RewardGames: React.FC<RewardGamesProps> = (props) => {
 
   return <Box className={styles.rewardGames}>
     <Box className={styles.rewardGamesBox}>
-      <SectionTitle normal="" emphasize={t('rewardedSectionTitle')} />
+      <SectionTitle
+        emphasize={t('rewardedSectionTitle')}
+        subTitle={t('rewardedSectionSubTitle')}
+      />
       <Box className={styles.cardList}>
         {
           ((is600Size && !showMore) ? rewardGames.slice(0, 3) : rewardGames).map((item, index) => <RewardGameCard gameInfo={item} key={index} timestamp={timestamp} />)
