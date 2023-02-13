@@ -1,5 +1,5 @@
 ---
-title: '10 things that beginners must know before playing the game'
+title: 'Ultimate Guide for Beginners at The Sandbox'
 excerpt: ''
 date: '2023-02-10'
 author:

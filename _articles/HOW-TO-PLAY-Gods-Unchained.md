@@ -1,5 +1,5 @@
 ---
-title: 'HOW TO PLAY Gods Unchained'
+title: 'How to Play Gods Unchained'
 excerpt: ''
 date: '2023-02-10'
 author:
@@ -8,7 +8,7 @@ comment: ""
 gameId: '59a7ab18-702c-46c0-855e-156b3736eb9c'
 ---
 
-# HOW TO PLAY Gods Unchained
+# How to Play Gods Unchained
 
 *Greetings, Mortal!*
 

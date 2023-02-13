@@ -21,9 +21,11 @@ const StrategyArticle: React.FC<StrategyArticleProp> = (props) => {
     }
     const paramsString = params.join(",");
     var urlEndpoint = "https://ik.imagekit.io/jnznr24q9";
-    const imagePaths = src.split('/')
-    const imageHash = imagePaths[imagePaths.length - 1]
-    return `${urlEndpoint}/${imageHash}?tr=${paramsString}`
+    // const imagePaths = src.split('/')
+    // const imageHash = imagePaths[imagePaths.length - 1]
+    const imageHash = new URL(src).pathname
+    // console.log(imageHash)
+    return `${urlEndpoint}${imageHash}?tr=${paramsString}`
   }
 
   return <Card className={styles.articleCard}>
