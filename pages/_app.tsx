@@ -30,6 +30,8 @@ import TagManager from 'react-gtm-module'
 import * as ga from '../util/ga'
 import { UnipassConnector } from 'lib/UnipassConnector'
 
+import 'antd/dist/reset.css'
+
 // connect wallet config
 const { chains, provider, webSocketProvider } = configureChains(SUPPORT_CHAINS, [
   alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID }),

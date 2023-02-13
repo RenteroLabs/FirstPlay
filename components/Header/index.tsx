@@ -198,6 +198,12 @@ const Header: React.FC = () => {
 
   const { address } = useAccount()
 
+  const router = useRouter()
+
+  const isDashboardEnv = useMemo(() => {
+    return router.pathname.indexOf('dashboard') !== -1
+  }, [router])
+
   return <Box className={styles.header}>
     <Box className={styles.headerBox}>
       <Link href="/">
@@ -211,7 +217,7 @@ const Header: React.FC = () => {
 
       {!isMobileHeaderNav && isMounted &&
         <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-          <Stack direction="row" className={styles.headerNavs} >
+          {!isDashboardEnv && <Stack direction="row" className={styles.headerNavs} >
             <Box>
               <Link href="/carnival" >
                 {/* <a target="_blank"> */}
@@ -221,9 +227,10 @@ const Header: React.FC = () => {
             </Box>
             <Box className={styles.disabled}>{t('games')}</Box>
             <Box className={styles.disabled}>{t('strategy')}</Box>
-          </Stack>
+          </Stack>}
+
           <Box className={styles.headerSetting}>
-            {/* <Box className={styles.languageNav}>
+            <Box className={styles.languageNav}>
               <Box className={styles.headerNavImage}>
                 <Image src={HEADER_LANGUAGE} layout="fill" objectFit='contain' />
               </Box>
@@ -234,12 +241,22 @@ const Header: React.FC = () => {
                   </Link>
                 </Box>
                 <Box>
+                  <Link href={asPath} locale="id-ID">
+                    Indonesia
+                  </Link>
+                </Box>
+                <Box>
+                  <Link href={asPath} locale="vi-VM">
+                    Việt Nam
+                  </Link>
+                </Box>
+                <Box>
                   <Link href={asPath} locale="zh-CN">
                     简体中文
                   </Link>
                 </Box>
               </Box>
-            </Box> */}
+            </Box>
 
             <Box className={styles.shareNav}>
               <Box className={styles.headerNavImage}>

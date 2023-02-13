@@ -1,0 +1,65 @@
+.headerBox {
+  height: 6rem;
+  background: linear-gradient(153deg, #000000 0%, #203f2f 49%, #000000 100%);
+
+  .header {
+    max-width: 100rem;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .gameBox {
+      display: flex;
+      align-items: center;
+      p {
+        font-size: 2rem;
+        font-family: Inter-Bold, Inter;
+        font-weight: bold;
+        color: #ffffff;
+        line-height: 1.83rem;
+        user-select: none;
+      }
+
+      .brandBox {
+        width: 1.61rem;
+        height: 1.61rem;
+        position: relative;
+        margin-left: 0.67rem;
+      }
+    }
+
+    .navList {
+      .navItem {
+        font-size: 1.33rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #ffffff;
+        line-height: 1.33rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 0.17rem solid white;
+        user-select: none;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1200px){
+  .headerBox {
+    .header {
+      width: calc(100% - 2.66rem);
+    }
+  }
+}
+
+
+@media screen and (max-width: 800px) {
+  .headerBox {
+    display: none;
+  }
+}

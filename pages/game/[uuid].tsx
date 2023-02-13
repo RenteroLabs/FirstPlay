@@ -30,8 +30,9 @@ import { checkOwnPassNFT } from 'services/web3'
 import CarnivalRewardItem from '@/components/PageCarnival/RewardItem'
 import Link from 'next/link'
 import { queryCarnivalGamesInfo } from 'services/carnival'
-import { Carnival_Games } from 'constants/index'
+import { Carnival_Games, SUPPORT_LANGUAGE } from 'constants/index'
 import CampaignIcon from '@mui/icons-material/Campaign';
+import { useTranslations } from "next-intl";
 
 export interface TxLoadingParams {
   txHash: string,
@@ -57,6 +58,8 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false)
   const [showQuickTrialModal, setShowQuickTrialModal] = useState<boolean>(false)
 
+  const t = useTranslations('Game')
+
   const is700Width = useMediaQuery("(max-width: 700px)")
   const is600Width = useMediaQuery("(max-width: 600px)")
 
@@ -72,8 +75,6 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
   const timestamp = useMemo(() => (Number(new Date) / 1000).toFixed(), [])
 
 
-
-
   /**
    * Carnival Part Start
    */
@@ -84,7 +85,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
   // }, [router.query?.uuid])
 
   const isCarnivalGame = useMemo(() => {
-    return gameInfo?.tasks.length > 0
+    return gameInfo?.tasks?.length > 0
   }, gameInfo)
 
 
@@ -204,7 +205,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
           {isCarnivalGame && <Box className={styles.rewardMainBox}>
             <Box className={styles.carnivalRewrads}>
               <Box className={styles.cardHeader}>
-                <Typography>Task</Typography>
+                <Typography>{t('taskTitle')}</Typography>
                 <Box className={styles.mediaBox}>
                 </Box>
               </Box>
@@ -252,7 +253,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
           {!isCarnivalGame &&
             <Box className={styles.gameStrategy}>
               <Box className={styles.comingSoonTip}>
-                <CampaignIcon sx={{ mr: '2rem' }} fontSize="large" /> Coming Soon
+                <CampaignIcon sx={{ mr: '2rem' }} fontSize="large" /> {t('comingSoonTip')}
               </Box>
             </Box>}
 
@@ -373,9 +374,23 @@ export const getStaticPaths: GetStaticPaths = async () => {
     ...data?.rewarded_games,
     ...addGameUID].map((item: any) => ({ params: { uuid: item.game_id } }))
 
-  console.log(gamePaths)
+  // console.log(gamePaths)
+
+  let allLanguageGamePaths: { params: any }[] = []
+
+  SUPPORT_LANGUAGE.forEach((language) =>
+    gamePaths.forEach(item => {
+      allLanguageGamePaths.push({
+        params: { uuid: item.params.uuid },
+        // @ts-ignore
+        locale: language
+      })
+    })
+  )
+
+  // console.log(allLanguageGamePaths)
   return {
-    paths: gamePaths,
+    paths: allLanguageGamePaths,
     fallback: false
   }
 }

@@ -5,6 +5,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import CloseIcon from '@mui/icons-material/Close';
 import * as ga from '../../../util/ga'
 import { GAME_EVENT_NAME } from 'constants/index'
+import { useTranslations } from "next-intl";
 
 interface VerifyTaskProps {
   showTaskModal: boolean
@@ -17,6 +18,7 @@ interface VerifyTaskProps {
 
 export const VerifyTaskModal: React.FC<VerifyTaskProps> = (props) => {
   const { showTaskModal, setShowTaskModal, gameId, index, claimLink, strategyLink } = props
+  const t = useTranslations('Game.VerifyTaskModal')
 
   const handleVerifyTask = () => {
     ga.event({ action: `${GAME_EVENT_NAME[gameId]}_${index}`, params: { gameId: gameId, task: index } })
@@ -39,19 +41,15 @@ export const VerifyTaskModal: React.FC<VerifyTaskProps> = (props) => {
         >
           <ArrowBackIosNewIcon />
         </IconButton>
-        <Typography>Verify Task</Typography>
+        <Typography>{t('modalTitle')}</Typography>
         <IconButton
           disableRipple
           onClick={() => setShowTaskModal(false)}
         ><CloseIcon /></IconButton>
       </Box>
       <Box className={styles.container}>
-        {/* <Typography className={styles.strategyDesc}>Complete the task as required, the walkthrough will help you a lot.</Typography>
-        <Box className={styles.strategyBtn} onClick={handleStrategyLink}>See the walkthrough</Box> */}
-        {/* <Divider /> */}
-        <Typography className={styles.verifyDesc}>Verify  after completing the task.
-          Your work will be reviewed manually.</Typography>
-        <Box className={styles.verifyBtn} onClick={handleVerifyTask}>Verify to get reward</Box>
+        <Typography className={styles.verifyDesc}>{t("modalSubtitle")}</Typography>
+        <Box className={styles.verifyBtn} onClick={handleVerifyTask}>{t('btnText')}</Box>
       </Box>
     </Box>
   </Dialog>

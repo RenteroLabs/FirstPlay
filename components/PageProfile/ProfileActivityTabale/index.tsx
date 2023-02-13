@@ -12,6 +12,7 @@ import { dateFormat } from 'util/format'
 import { useAccount } from 'wagmi'
 import Image from 'next/image'
 import styles from './styles.module.scss'
+import { useTranslations } from "next-intl";
 
 interface ProfileActivityTableProps {
 
@@ -20,6 +21,7 @@ interface ProfileActivityTableProps {
 const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
 
   const { address } = useAccount()
+  const t = useTranslations('Profile.Activity')
 
   const [activitiesList, setActivitiesList] = useState<UserActivityItem[]>([])
   const [taskRecordList, setTaskRecordList] = useState<Record<string, any>[]>([])
@@ -84,12 +86,12 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
       {(taskRecordLoading || (!taskRecordLoading && !isEmpty(taskRecordList))) && <Table >
         <TableHead>
           <TableRow className={styles.tableHeaderRow}>
-            <TableCell className={styles.tableHeaderCell}>Game</TableCell>
-            <TableCell className={styles.tableHeaderCell}>Action</TableCell>
+            <TableCell className={styles.tableHeaderCell}>{t('gameColumn')}</TableCell>
+            <TableCell className={styles.tableHeaderCell}>{t("actionColumn")}</TableCell>
             {/* <TableCell className={styles.tableHeaderCell}>Task</TableCell> */}
             {/* <TableCell className={styles.tableHeaderCell}>Trial</TableCell> */}
-            <TableCell className={styles.tableHeaderCell}>Reward</TableCell>
-            <TableCell className={styles.tableHeaderCell}>Time</TableCell>
+            <TableCell className={styles.tableHeaderCell}>{t("rewardColumn")}</TableCell>
+            <TableCell className={styles.tableHeaderCell}>{t("timeColumn")}</TableCell>
             {/* <TableCell className={styles.tableHeaderCell} align="center">Operate</TableCell> */}
           </TableRow>
         </TableHead>
@@ -137,7 +139,7 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
                   {item?.name}
                 </TableCell>
                 <TableCell className={styles.tableBodyCell} sx={{ minWidth: '20rem' }}>
-                  {item?.type === 'start task' ? 'Start' : "Completed"}: {item?.task}
+                  {item?.type === 'start task' ? t('startText') : t('completeText')}: {item?.task}
                 </TableCell>
 
                 <TableCell className={styles.tableBodyCell} sx={{ minWidth: '15rem' }}>
@@ -184,7 +186,7 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
         <Box className={styles.emptyIllustration}>
           <Image src="/empty_trialing.png" layout="fill" />
         </Box>
-        <Typography>Oh, there is no activity now.</Typography>
+        <Typography>{t('emptyTip')}</Typography>
       </Box>
     }
 

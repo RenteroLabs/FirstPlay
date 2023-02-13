@@ -37,6 +37,7 @@ import BalanceTokenItem from "@/components/PageProfile/BalanceTokenItem";
 import ProfileTrialingTask from "@/components/PageProfile/ProfileTrialingTask";
 import { getProfileTrialingTaskList, getUserTokenBalances } from "services/home";
 import ProfileBalanceSection from "@/components/PageProfile/ProfileBalanceSection";
+import { useTranslations } from "next-intl";
 
 const cx = classNames.bind(styles)
 
@@ -52,6 +53,8 @@ const Profile: NextPageWithLayout = () => {
 
   const isMounted = useIsMounted()
   const router = useRouter()
+
+  const t = useTranslations('Profile')
 
   const is680Size = useMediaQuery("(max-width: 680px)")
 
@@ -253,7 +256,7 @@ const Profile: NextPageWithLayout = () => {
                 </Box>
                 {unipassMail && <Box className={styles.unipassLink}>
                   <a href="https://wallet.unipass.id/" target="_blank" rel="noreferrer">
-                    Visit UniPass wallet  to your asset after withdraw.Login email: {unipassMail}
+                    {t('unipassLinkDesc')}: {unipassMail}
                     <Box className={styles.arrowIcon}><ArrowForwardIcon /></Box>
                   </a>
                 </Box>}
@@ -263,7 +266,7 @@ const Profile: NextPageWithLayout = () => {
                 <Box className={styles.addressItem}>
                   {isMounted && address && (ensName || formatAddress(address, 4))}
                   {isMounted && address && <CopyButton targetValue={address || ""} />}
-                  {isMounted && !address && <Typography>Not connect wallet yet !</Typography>}
+                  {isMounted && !address && <Typography>{t('notConnectWalletTip')}</Typography>}
                 </Box>
                 {Number(passTokenId) > 0 && <Typography className={styles.passNFTInfo}>
                   Pass-NFT: #{String(passTokenId).padStart(5, "0")}
@@ -274,7 +277,7 @@ const Profile: NextPageWithLayout = () => {
                 {
                   unipassMail && <Box className={styles.unipassLink}>
                     <a href="https://wallet.unipass.id/" target="_blank" rel="noreferrer">
-                      Visit UniPass wallet  to your asset after withdraw.Login email: {unipassMail}
+                      {t('unipassLinkDesc')}: {unipassMail}
                       <Box className={styles.arrowIcon}><ArrowForwardIcon /></Box>
                     </a>
                   </Box>
@@ -301,8 +304,16 @@ const Profile: NextPageWithLayout = () => {
     </Box>
     <Box className={styles.profileContent}>
       <Box className={styles.balanceSection}>
-        <Typography variant="h3">Reward Balance</Typography>
-        <BalanceTokenItem tokenInfo={tokenBalances[0]} reload={refresh} />
+        <Typography variant="h3">{t('rewardBalance')}</Typography>
+        {
+          tokenBalances.map((item: Record<string, any>, index: number) =>
+            <BalanceTokenItem key={index} tokenInfo={item} reload={refresh} />
+          )
+        }
+        {/* <BalanceTokenItem key={2} tokenInfo={tokenBalances[0]} reload={refresh} /> */}
+        <Typography variant="h5">
+          * {t('WithdrawModal.shortWithdrawTip')}
+        </Typography>
       </Box>
 
       <Tabs
@@ -312,16 +323,16 @@ const Profile: NextPageWithLayout = () => {
           setActiveTab(newItem)
           setParamTab(TabItem[newItem])
         }} >
-        <Tab label="Trialing" value={TabItem.Trialing} disableRipple />
-        <Tab label="Activity" value={TabItem.Activity} disableRipple />
-        <Tab label="Balance" value={TabItem.Balance} disableRipple />
+        <Tab label={t('trialingTabName')} value={TabItem.Trialing} disableRipple />
+        <Tab label={t('activityTabName')} value={TabItem.Activity} disableRipple />
+        <Tab label={t('balanceTabName')} value={TabItem.Balance} disableRipple />
       </Tabs>
       <Box className={cx({
         itemBox: true,
         hiddenTab: isMounted && activeTab !== TabItem.Trialing
       })}>
         {
-          trialingTaskList.map((item, index) => <ProfileTrialingTask key={index} taskInfo={item} />)
+          trialingTaskList && trialingTaskList?.map((item, index) => <ProfileTrialingTask key={index} taskInfo={item} />)
         }
 
         {/* 
@@ -346,7 +357,7 @@ const Profile: NextPageWithLayout = () => {
             <Box className={styles.emptyIllustration}>
               <Image src="/empty_trialing.png" layout="fill" />
             </Box>
-            <Typography>No games currently trialing, start a game you like now!</Typography>
+            <Typography>{t('Trialing.emptyTip')}</Typography>
           </Box>}
 
         {/* {

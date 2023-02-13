@@ -2,13 +2,15 @@ import { Box, useMediaQuery } from "@mui/material"
 import SectionTitle from "../components/SectionTitle"
 import styles from './style.module.scss'
 import Image from "next/image"
+import { useTranslations } from "next-intl";
 
 const Support: React.FC = () => {
   const isMobileSize = useMediaQuery("(max-width: 600px)")
+  const t = useTranslations('Index.Section')
 
   return <Box className={styles.support}>
     <Box className={styles.supportBox}>
-      <SectionTitle emphasize="Supported" normal="by" />
+      <SectionTitle emphasize={t('supportSectionTitle')} />
       <Box className={styles.cardList}>
         <Box className={styles.brandItem}>
           <Box>

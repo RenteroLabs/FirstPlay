@@ -45,7 +45,7 @@ const GudeStep: React.FC = () => {
 
   return <Box className={styles.guidestep}>
     <Box className={styles.guidestepBox}>
-      <SectionTitle emphasize="4 Easy Steps" normal="To First Play" />
+      <SectionTitle emphasize="4 Easy Steps To First Play" />
       <Box className={styles.stepList}>
         <UserStep
           stepIndex={1}

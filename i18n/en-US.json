@@ -17,15 +17,112 @@
       "whitepaper": "Whitepaper",
       "litebook": "Litebook",
       "SDK": "SDK",
-      "social": "Social",
+      "social": "Socials",
       "twitter": "Twitter",
       "telegram": "Telegram",
       "discord": "Discord"
     },
+    "WalletConnect": {
+      "title": "Connect Wallet",
+      "notOwnWallet": "Don't have a wallet yet?",
+      "walletIntro": "Connecting wallet is like“logging in” to Web3. You can visit every website without  creating new accounts and passwords.",
+      "linkText": "Get",
+      "forBeginner": "For beginners",
+      "registerByMail": "Quick login with email in 3 minutes on the web.",
+      "metamaskGuide": "How to use MetaMask? Step by step"
+    },
     "Contact": {
       "title": "Contact Us",
-      "subTitle": "For game projects and other cooperation, please contact <maillink>business@firstplay.app</maillink>"
+      "subTitle": "Send your proposal to <maillink>business@firstplay.app</maillink>"
+    },
+    "Community": {
+      "title": "Our Community",
+      "subTitle": "Join the community and participate in community activities to build First Play together",
+      "btnText": "Go and see"
+    },
+    "Section": {
+      "trialingTitle": "Trialing Games",
+      "emptyTrialingTip": "No games currently trialing, start a game you like now!",
+      "moreLink": "More",
+      "rewardedSectionTitle": "Bounty",
+      "rewardedSectionSubTitle": "Complete Tasks and Win Rewards",
+      "hotgameSectionTitle": "Hot Games",
+      "strategySectionTitle": "Game Tutorials",
+      "supportSectionTitle": "Supported by",
+      "showMoreBtn": "More",
+      "showLessBtn": "Less"
     }
   },
-  "PassNFT": {}
+  "Game": {
+    "taskTitle": "Task",
+    "comingSoonTip": "Coming Soon",
+    "showMoreBtn": "more",
+    "showLessBtn": "less",
+    "GameTask": {
+      "minutes": "minutes",
+      "hours": "hours",
+      "mobileCompleteTimeTip": "Completed in ",
+      "pcCompleteTimeTip": "Complete task {taskId}, it takes about",
+      "startBtnText": "Start",
+      "continueBtnText": "Continue",
+      "endBtnText": "Ended",
+      "completedBtnText": "Completed",
+      "verifyBtnText": "Verify",
+      "taskStepBtnText": "Task Steps",
+      "seeMoreTaskStep": "See All",
+      "seeLessTaskStep": "See Less",
+      "stepText": "Step"
+    },
+    "VerifyTaskModal": {
+      "modalTitle": "Verify Task",
+      "modalSubtitle": "Verify after completing the task. Your work will be reviewed manually.",
+      "btnText": "Verify to get reward"
+    },
+    "StepDrawer": {
+      "verifyBtnText": "Verify",
+      "nextBtnText": "Next",
+      "backBtnText": "Back"
+    }
+  },
+  "Profile": {
+    "unipassLinkDesc": "Visit UniPass wallet  to your asset after withdraw.Login email",
+    "notConnectWalletTip": "Not connect wallet yet !",
+    "rewardBalance": "Reward Balance",
+    "trialingTabName": "Trialing",
+    "activityTabName": "Activity",
+    "balanceTabName": "Balance",
+    "Trialing": {
+      "emptyTip": "No games currently trialing, start a game you like now!",
+      "taskName": "Task",
+      "rewardName": "Rewards"
+    },
+    "Activity": {
+      "gameColumn": "Game",
+      "actionColumn": "Action",
+      "rewardColumn": "Reward",
+      "timeColumn": "Time",
+      "emptyTip": "Oh, there is no activity now.",
+      "startText": "Start",
+      "completeText": "Completed"
+    },
+    "Balance": {
+      "tokenColumn": "Token",
+      "actionColumn": "Action",
+      "timeColumn": "Time",
+      "emptyTip": "Oh, there is no balance flow now."
+    },
+    "RewardTokenItem": {
+      "amountText": "Amount",
+      "withdrawingBtnText": "Withdrawing",
+      "withdrawBtnText": "Withdraw"
+    },
+    "WithdrawModal": {
+      "title": "Withdraw all balance",
+      "tokenAoumnt": "Token/Amount",
+      "network": "Network",
+      "shortWithdrawTip": "Withdrawal application will be processed before 12 noon every Tuesday and Friday（UTC +8）",
+      "withdrawTip": "Withdrawal application will be processed before 12 noon every Tuesday and Friday（UTC +8）. You can check the balance in the wallet later.",
+      "btnText": "Confirm and withdraw"
+    }
+  }
 }

@@ -34,6 +34,7 @@ import { useAccount } from 'wagmi'
 import ConnectWallet from '@/components/ConnectWallet'
 import { startGameTask } from 'services/home'
 import CircularProgress from '@mui/material/CircularProgress';
+import { useTranslations } from "next-intl";
 
 const cx = classname.bind(styles)
 
@@ -207,13 +208,12 @@ interface RewardItemProps {
   reloadData: () => any
 }
 
-const GiftbagGame = '740a1e44-fd84-433e-98df-be90d650eb51'
-const BlessGlobal = "32605c7c-45d3-49f4-9923-b3a51816d1df"
-
 const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
   const { index, reward, isClaimed, claimLink, medalNum, gameId, strategyLink, taskInfo, timestamp, isStarted, reloadData } = props
   const isMobileSize = useMediaQuery("(max-width:600px)")
   const isMounted = useIsMounted()
+
+  const t = useTranslations('Game.GameTask')
 
   const { address } = useAccount()
   console.log(taskInfo)
@@ -240,9 +240,9 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
   const taskSpendTime = useMemo(() => {
     const time = taskInfo?.complete_time || 0
     if (time <= 60 && time >= 0) {
-      return `${time} minutes`
+      return `${time} ${t('minutes')}`
     } else {
-      return `${(time / 60).toFixed(1)} hours`
+      return `${(time / 60).toFixed(1)} ${t('hours')}`
     }
   }, [taskInfo])
 
@@ -314,7 +314,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
   return isMounted && isMobileSize ?
     <Box className={styles.mobileCarnivalRewardItem}>
       <Box className={styles.itemLabel}>{index.toString().padStart(2, '0')}</Box>
-      <Typography className={styles.spendTime}>Completed in {taskSpendTime}</Typography>
+      <Typography className={styles.spendTime}>{t('mobileCompleteTimeTip')} {taskSpendTime}</Typography>
       <Typography className={styles.taskDesc}>
         <Box className={styles.iconBox}>
           <Image src={STAR_LABEL} layout="fill" />
@@ -338,14 +338,14 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
               await handleStartGameTask()
               reloadData()
             }}
-          >Start {isStartTaskLoading && <CircularProgress className={styles.btnLoading} />}</Box>
+          >{t('startBtnText')} {isStartTaskLoading && <CircularProgress className={styles.btnLoading} />}</Box>
         }
 
         {
           // 继续任务
           taskInfo?.task_status === 'on' && address && isStarted && !isClaimed &&
           <Box className={cx({ middleBtn: true })} onClick={showTaskSteps}>
-            Continue
+            {t('continueBtnText')}
           </Box>
         }
 
@@ -353,7 +353,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           // 任务结束
           taskInfo?.task_status === 'off' &&
           <Box className={cx({ claimBtn: true, middleBtn: true, claimedBtn: true })} >
-            Ended
+            {t('endBtnText')}
           </Box>
         }
 
@@ -366,7 +366,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
             claimedBtn: true,
           })}
           >
-            Completed
+            {t('completedBtnText')}
           </Box>
         }
 
@@ -376,14 +376,14 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           <Box className={cx({ claimBtn: true })}
             onClick={linkToForm}
           >
-            Verify
+            {t("verifyBtnText")}
           </Box>
         }
 
         {
           (taskInfo?.task_status === 'off' || (isClaimed && isStarted)) &&
           <Box className={cx({ claimBtn: true })} onClick={showTaskSteps}>
-            Task Steps
+            {t("taskStepBtnText")}
           </Box>
         }
       </Box>
@@ -418,7 +418,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       <Box className={styles.itemLabel}>{index.toString().padStart(2, '0')}</Box>
       <Typography className={styles.spendTime}>
         <AccessTimeIcon /> &nbsp;
-        Complete task {index.toString().padStart(2, '0')}, it takes about {taskSpendTime}
+        {t('pcCompleteTimeTip', { taskId: index.toString().padStart(2, '0')})} {taskSpendTime}
       </Typography>
 
       <Box className={styles.rewardBox}>
@@ -445,13 +445,13 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           })}
             onClick={linkToForm}
           >
-            {(isStarted && isClaimed) ? "Completed" : 'Verify'}
+            {(isStarted && isClaimed) ? t('completedBtnText') : t('verifyBtnText')}
           </Box>
         }
         {
           taskInfo?.task_status === 'off' &&
           <Box className={cx({ claimBtn: true, claimedBtn: true })} >
-            Ended
+            {t('endBtnText')}
           </Box>
         }
         {/* 没有开始，任务还在进行中 */}
@@ -463,7 +463,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
               await handleStartGameTask()
               reloadData()
             }}>
-            Start {isStartTaskLoading && <CircularProgress className={styles.btnLoading} />}
+            {t('startBtnText')} {isStartTaskLoading && <CircularProgress className={styles.btnLoading} />}
           </Box>}
       </Box>
 
@@ -474,7 +474,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           taskInfo?.steps.map((item: Record<string, any>, index: number) => {
 
             return <Box className={styles.stepItem} key={index}>
-              <Typography variant='h4'>Step{index + 1}:</Typography>
+              <Typography variant='h4'>{t('stepText')}{index + 1}:</Typography>
               <Box className={styles.stepContent}>
                 <Box className={styles.descBtnBox}>
                   <div
@@ -521,11 +521,11 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           {
             showTaskMore ?
               <>
-                See Less <KeyboardArrowUpIcon />
+                {t('seeLessTaskStep')} <KeyboardArrowUpIcon />
               </>
               :
               <>
-                See All <KeyboardArrowDownIcon />
+                {t('seeMoreTaskStep')} <KeyboardArrowDownIcon />
               </>
           }
         </Typography>

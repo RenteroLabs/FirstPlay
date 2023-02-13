@@ -1,0 +1,53 @@
+.dashboardBox {
+  background-color: #f4f4f9;
+  min-height: calc(100vh - 6rem);
+}
+
+.mainBox {
+  max-width: 100rem;
+  margin: auto;
+
+  .balanceHeader {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+
+    margin-top: 4.25rem;
+    margin-bottom: 2rem;
+    h3 {
+      font-size: 2rem;
+      font-family: Inter-Bold, Inter;
+      font-weight: bold;
+      color: #222222;
+      line-height: 1.83rem;
+    }
+    .navList {
+      font-size: 1.08rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: rgba($color: #222, $alpha: 0.3);
+      line-height: 1.17rem;
+      margin-top: 1.33rem;
+      a {
+        color: rgba($color: #222, $alpha: 0.3);
+      }
+      p {
+        font-size: 1.08rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: rgba($color: #222, $alpha: 0.3);
+        line-height: 1.17rem;
+      }
+    }
+  }
+
+  .taskSectionTitle {
+    font-size: 2rem;
+    font-family: Inter-Bold, Inter;
+    font-weight: bold;
+    color: #222222;
+    line-height: 1.83rem;
+
+    margin-top: 3.33rem;
+  }
+}

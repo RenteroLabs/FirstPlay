@@ -31,6 +31,18 @@
     white-space: nowrap;
   }
 
+  .subTitle {
+    font-size: 1.75rem;
+    font-family: Montserrat-Medium, Montserrat;
+    font-weight: 500;
+    color: #222222;
+    line-height: 1.75rem;
+    display: inline-flex;
+    align-items: center;
+    margin-left: 0.83rem;
+    flex-grow: 1;
+  }
+
   .moreLink {
     display: inline-flex;
     align-items: center;
@@ -70,6 +82,9 @@
       line-height: 1.75rem;
     }
 
+    .subTitle {
+      display: none;
+    }
     .moreLink {
       p {
         font-size: 1.17rem;

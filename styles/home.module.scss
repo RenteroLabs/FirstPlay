@@ -1,6 +1,6 @@
 .coverBox {
   position: relative;
-  height: 26vw;
+  height: 23.4vw;
   max-height: 41.67rem;
   // min-height: 33.33rem;
   object-fit: cover;
@@ -56,7 +56,12 @@
 
 @media screen and (max-width: 1400px) {
   .coverBox {
-    height: 30vw;
+    height: 23.4vw;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .coverBox {
+    height: 25.8vw;
   }
 }
 
@@ -83,7 +88,7 @@
 
 @media screen and (max-width: 900px) {
   .coverBox {
-    height: 45vw;
+    height: 38.9vw;
   }
 }
 
@@ -116,12 +121,12 @@
 
 @media screen and (max-width: 450px) {
   .coverBox {
-    height: 41.67rem;
+    height: 48vw;
   }
 }
 
 @media screen and (max-width: 374px) {
   .coverBox {
-    height: 128vw;
+    // height: 128vw;
   }
 }

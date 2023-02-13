@@ -6,6 +6,7 @@ import SectionTitle from "../components/SectionTitle"
 import styles from './style.module.scss'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { useTranslations } from "next-intl";
 
 interface HotGamesProps {
   hotGames: Record<string, any>[]
@@ -14,6 +15,7 @@ interface HotGamesProps {
 
 const HotGames: React.FC<HotGamesProps> = (props) => {
   const { hotGames, timestamp } = props
+  const t = useTranslations('Index.Section')
 
   const is600Size = useMediaQuery("(max-width: 600px)")
 
@@ -21,7 +23,7 @@ const HotGames: React.FC<HotGamesProps> = (props) => {
 
   return <Box className={styles.hotGames}>
     <Box className={styles.hotGamesBox}>
-      <SectionTitle normal="Games" emphasize="Hot" />
+      <SectionTitle emphasize={t('hotgameSectionTitle')} />
       <Box className={styles.cardList}>
         {
           ((is600Size && !showMore) ? hotGames.slice(0, 6) : hotGames).map((item, index) => <GameCard gameInfo={item} key={index} timestamp={timestamp} />)
@@ -35,8 +37,8 @@ const HotGames: React.FC<HotGamesProps> = (props) => {
     {is600Size && <Box className={styles.showMoreBtn} onClick={() => setShowMore(!showMore)}>
       {
         showMore ?
-          <> Less <KeyboardArrowUpIcon /> </> :
-          <> More <KeyboardArrowDownIcon /> </>
+          <> {t('showLessBtn')} <KeyboardArrowUpIcon /> </> :
+          <> {t("showMoreBtn")} <KeyboardArrowDownIcon /> </>
       }
     </Box>}
   </Box>
