@@ -2,16 +2,16 @@
   "Index": {
     "Header": {
       "games": "Games",
-      "strategy": "Walkthrough",
+      "strategy": "Walkthrough Game",
       "passNFT": "Carnival",
-      "connectWallet": "Connect Wallet"
+      "connectWallet": "Hubungkan Dompet"
     },
     "Footer": {
-      "solgan": "Be the first to play and earn.",
+      "solgan": "Jadilah yang pertama dan cuan",
       "copyright": "Copyright 2022 Rentero.io All rights reserved.",
       "platform": "Platform",
       "games": "Games",
-      "strategy": "Walkthrough",
+      "strategy": "Walkthrough Game",
       "passNFT": "Carnival",
       "support": "Support",
       "whitepaper": "Whitepaper",
@@ -23,106 +23,106 @@
       "discord": "Discord"
     },
     "WalletConnect": {
-      "title": "Connect Wallet",
-      "notOwnWallet": "Don't have a wallet yet?",
-      "walletIntro": "Connecting wallet is like“logging in” to Web3. You can visit every website without  creating new accounts and passwords.",
+      "title": "Hubungkan Dompet",
+      "notOwnWallet": "Belum mempunyai dompet?",
+      "walletIntro": "Hubungkan dompet seperti 'masuk' ke Web3. Anda dapat mengunjungi setiap situs web tanpa membuat akun dan kata sandi baru.",
       "linkText": "Get",
-      "forBeginner": "For beginners",
-      "registerByMail": "Quick login with email in 3 minutes on the web.",
-      "metamaskGuide": "How to use MetaMask? Step by step"
+      "forBeginner": "Untuk pemula",
+      "registerByMail": "Login cepat dengan email dalam 3 menit di web.",
+      "metamaskGuide": "Bagaimana cara menggunakan MetaMask? Langkah demi langkah"
     },
     "Contact": {
-      "title": "Contact Us",
-      "subTitle": "Send your proposal to <maillink>business@firstplay.app</maillink>"
+      "title": "Hubungi Kami",
+      "subTitle": "Kirim proposal ke <maillink>business@firstplay.app</maillink>"
     },
     "Community": {
-      "title": "Our Community",
-      "subTitle": "Join the community and participate in community activities to build First Play together",
+      "title": "Komunitas Kami",
+      "subTitle": "Bergabunglah dengan komunitas dan berpartisipasi dalam aktivitas komunitas untuk membangun First Play bersama",
       "btnText": "Go and see"
     },
     "Section": {
-      "trialingTitle": "Trialing Games",
-      "emptyTrialingTip": "No games currently trialing, start a game you like now!",
-      "moreLink": "More",
+      "trialingTitle": "Uji Coba Game",
+      "emptyTrialingTip": "Tidak ada game yang sedang diuji coba, mulai game yang Anda suka sekarang!!",
+      "moreLink": "Lebih",
       "rewardedSectionTitle": "Bounty",
       "rewardedSectionSubTitle": "Complete Tasks and Win Rewards",
-      "hotgameSectionTitle": "Hot Games",
-      "strategySectionTitle": "Game Tutorials",
-      "supportSectionTitle": "Supported by",
-      "showMoreBtn": "More",
-      "showLessBtn": "Less"
+      "hotgameSectionTitle": "Game Populer",
+      "strategySectionTitle": "Tutorial Game",
+      "supportSectionTitle": "Disupport oleh",
+      "showMoreBtn": "Lebih",
+      "showLessBtn": "Kurang"
     }
   },
   "Game": {
-    "taskTitle": "Task",
-    "comingSoonTip": "Coming Soon",
-    "showMoreBtn": "more",
-    "showLessBtn": "less",
+    "taskTitle": "Tugas",
+    "comingSoonTip": "Segera hadir",
+    "showMoreBtn": "Lebih",
+    "showLessBtn": "Kurang",
     "GameTask": {
-      "minutes": "minutes",
-      "hours": "hours",
-      "mobileCompleteTimeTip": "Completed in ",
-      "pcCompleteTimeTip": "Complete task {taskId}, it takes about",
-      "startBtnText": "Start",
-      "continueBtnText": "Continue",
-      "endBtnText": "Ended",
-      "completedBtnText": "Completed",
-      "verifyBtnText": "Verify",
-      "taskStepBtnText": "Task Steps",
-      "seeMoreTaskStep": "See All",
-      "seeLessTaskStep": "See Less",
-      "stepText": "Step"
+      "minutes": "Menit",
+      "hours": "Jam",
+      "mobileCompleteTimeTip": "Selesai dalam ",
+      "pcCompleteTimeTip": "Selesaikan tugas {taskId}, dibutuhkan sekitar",
+      "startBtnText": "Mulai",
+      "continueBtnText": "Melanjutkan",
+      "endBtnText": "Berakhir",
+      "completedBtnText": "Selesai",
+      "verifyBtnText": "Verifikasi",
+      "taskStepBtnText": "Langkah Misi",
+      "seeMoreTaskStep": "Lihat semua",
+      "seeLessTaskStep": "Lihat Lebih Sedikit",
+      "stepText": "Langkah"
     },
     "VerifyTaskModal": {
-      "modalTitle": "Verify Task",
-      "modalSubtitle": "Verify after completing the task. Your work will be reviewed manually.",
-      "btnText": "Verify to get reward"
+      "modalTitle": "Verifikasi Tugas",
+      "modalSubtitle": "Verifikasi setelah menyelesaikan tugas. Pekerjaan Anda akan ditinjau secara manual..",
+      "btnText": "Verifikasi untuk mendapat hadiah"
     },
     "StepDrawer": {
-      "verifyBtnText": "Verify",
-      "nextBtnText": "Next",
-      "backBtnText": "Back"
+      "verifyBtnText": "Verifikasi",
+      "nextBtnText": "Berikutnya",
+      "backBtnText": "Kembali"
     }
   },
   "Profile": {
-    "unipassLinkDesc": "Visit UniPass wallet  to your asset after withdraw.Login email",
-    "notConnectWalletTip": "Not connect wallet yet !",
-    "rewardBalance": "Reward Balance",
+    "unipassLinkDesc": "Kunjungi dompet UniPass ke aset Anda setelah withdraw.Login email",
+    "notConnectWalletTip": "Dompet belum terhubung",
+    "rewardBalance": "Saldo Hadiah",
     "trialingTabName": "Trialing",
-    "activityTabName": "Activity",
+    "activityTabName": "Aktifitas",
     "balanceTabName": "Balance",
     "Trialing": {
-      "emptyTip": "No games currently trialing, start a game you like now!",
-      "taskName": "Task",
-      "rewardName": "Rewards"
+      "emptyTip": "Tidak ada game yang sedang diuji coba, mulai game yang Anda suka sekarang!",
+      "taskName": "Misi",
+      "rewardName": "Hadiah"
     },
     "Activity": {
       "gameColumn": "Game",
-      "actionColumn": "Action",
-      "rewardColumn": "Reward",
-      "timeColumn": "Time",
-      "emptyTip": "Oh, there is no activity now.",
-      "startText": "Start",
-      "completeText": "Completed"
+      "actionColumn": "Aksi",
+      "rewardColumn": "Hadiah",
+      "timeColumn": "Waktu",
+      "emptyTip": "Oh, tidak ada aktifitas sekarang.",
+      "startText": "Mulai",
+      "completeText": "Selesai"
     },
     "Balance": {
       "tokenColumn": "Token",
-      "actionColumn": "Action",
-      "timeColumn": "Time",
-      "emptyTip": "Oh, there is no balance flow now."
+      "actionColumn": "Aksi",
+      "timeColumn": "Waktu",
+      "emptyTip": "Oh, tidak ada pemasukan saat ini."
     },
     "RewardTokenItem": {
-      "amountText": "Amount",
+      "amountText": "Jumlah",
       "withdrawingBtnText": "Withdrawing",
       "withdrawBtnText": "Withdraw"
     },
     "WithdrawModal": {
-      "title": "Withdraw all balance",
-      "tokenAoumnt": "Token/Amount",
-      "network": "Network",
-      "shortWithdrawTip": "Withdrawal application will be processed before 12 noon every Tuesday and Friday（UTC +8）",
-      "withdrawTip": "Withdrawal application will be processed before 12 noon every Tuesday and Friday（UTC +8）. You can check the balance in the wallet later.",
-      "btnText": "Confirm and withdraw"
+      "title": "Withdraw semua",
+      "tokenAoumnt": "Token/Jumlah",
+      "network": "Jaringan",
+      "shortWithdrawTip": "Pengajuan penarikan akan diproses sebelum jam 12 siang setiap hari Selasa dan Jumat (UTC +8)",
+      "withdrawTip": "Pengajuan penarikan akan diproses sebelum jam 12 siang setiap hari Selasa dan Jumat (UTC +8) Anda dapat memeriksa saldo di dompet nanti.",
+      "btnText": "Konfirm dan withdraw"
     }
   }
 }
