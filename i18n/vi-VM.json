@@ -1,128 +1,128 @@
 {
   "Index": {
     "Header": {
-      "games": "Games",
-      "strategy": "Walkthrough",
+      "games": "Trò Chơi",
+      "strategy": "Hướng Dẫn",
       "passNFT": "Carnival",
-      "connectWallet": "Connect Wallet"
+      "connectWallet": "Liên Kết Ví"
     },
     "Footer": {
-      "solgan": "Be the first to play and earn.",
-      "copyright": "Copyright 2022 Rentero.io All rights reserved.",
-      "platform": "Platform",
-      "games": "Games",
-      "strategy": "Walkthrough",
+      "solgan": "Trở thành người đầu tiên chơi và kiếm tiền",
+      "copyright": "Bản quyền 2022 Rentero.io Bảo lưu mọi quyền.",
+      "platform": "Nền Tảng",
+      "games": "Trò Chơi",
+      "strategy": "Hướng Dẫn",
       "passNFT": "Carnival",
-      "support": "Support",
+      "support": "Hỗ Trợ",
       "whitepaper": "Whitepaper",
       "litebook": "Litebook",
       "SDK": "SDK",
-      "social": "Socials",
+      "social": "Mạng Xã Hội",
       "twitter": "Twitter",
       "telegram": "Telegram",
       "discord": "Discord"
     },
     "WalletConnect": {
-      "title": "Connect Wallet",
-      "notOwnWallet": "Don't have a wallet yet?",
-      "walletIntro": "Connecting wallet is like“logging in” to Web3. You can visit every website without  creating new accounts and passwords.",
-      "linkText": "Get",
-      "forBeginner": "For beginners",
-      "registerByMail": "Quick login with email in 3 minutes on the web.",
-      "metamaskGuide": "How to use MetaMask? Step by step"
+      "title": "Liên kết ví",
+      "notOwnWallet": "Bạn vẫn chưa có ví?",
+      "walletIntro": "Liên kết ví giống như “đăng nhập” vào Web3. Bạn có thể truy cập mọi trang web mà không cần tạo tài khoản và mật khẩu mới.",
+      "linkText": "Nhận",
+      "forBeginner": "Dành cho người mới",
+      "registerByMail": "Đăng nhập nhanh trong vòng 3 phút trên trang web",
+      "metamaskGuide": "Hướng dẫn sử dụng MetaMask từng bước một "
     },
     "Contact": {
-      "title": "Contact Us",
-      "subTitle": "Send your proposal to <maillink>business@firstplay.app</maillink>"
+      "title": "Liên hệ với chúng tôi",
+      "subTitle": "Gửi đề xuất của bạn tới  <maillink>business@firstplay.app</maillink>"
     },
     "Community": {
-      "title": "Our Community",
-      "subTitle": "Join the community and participate in community activities to build First Play together",
-      "btnText": "Go and see"
+      "title": "Cộng Đồng Chúng Tôi",
+      "subTitle": "Tham gia cộng đồng và tham gia các hoạt động cộng đồng để cùng nhau xây dựng First Play",
+      "btnText": "Đến và xem"
     },
     "Section": {
-      "trialingTitle": "Trialing Games",
-      "emptyTrialingTip": "No games currently trialing, start a game you like now!",
-      "moreLink": "More",
-      "rewardedSectionTitle": "Bounty",
-      "rewardedSectionSubTitle": "Complete Tasks and Win Rewards",
-      "hotgameSectionTitle": "Hot Games",
-      "strategySectionTitle": "Game Tutorials",
-      "supportSectionTitle": "Supported by",
-      "showMoreBtn": "More",
-      "showLessBtn": "Less"
+      "trialingTitle": "Trò Chơi Thử Nghiệm",
+      "emptyTrialingTip": "Hiện không có trò chơi nào đang thử nghiệm, hãy bắt đầu trò chơi bạn thích ngay bây giờ!",
+      "moreLink": "Thêm",
+      "rewardedSectionTitle": "Tiền Thưởng",
+      "rewardedSectionSubTitle": "Hoàn thành nhiệm vụ và giành phần thưởng",
+      "hotgameSectionTitle": "Trò Chơi Phổ Biến",
+      "strategySectionTitle": "Hướng Dẫn Trò Chơi",
+      "supportSectionTitle": "Được hỗ trợ bởi",
+      "showMoreBtn": "Thêm",
+      "showLessBtn": "Giảm"
     }
   },
   "Game": {
-    "taskTitle": "Task",
-    "comingSoonTip": "Coming Soon",
-    "showMoreBtn": "more",
-    "showLessBtn": "less",
+    "taskTitle": "Nhiệm Vụ",
+    "comingSoonTip": "Sắp Ra Mắt",
+    "showMoreBtn": "Thêm",
+    "showLessBtn": "Giảm",
     "GameTask": {
-      "minutes": "minutes",
-      "hours": "hours",
-      "mobileCompleteTimeTip": "Completed in ",
-      "pcCompleteTimeTip": "Complete task {taskId}, it takes about",
-      "startBtnText": "Start",
-      "continueBtnText": "Continue",
-      "endBtnText": "Ended",
-      "completedBtnText": "Completed",
-      "verifyBtnText": "Verify",
-      "taskStepBtnText": "Task Steps",
-      "seeMoreTaskStep": "See All",
-      "seeLessTaskStep": "See Less",
-      "stepText": "Step"
+      "minutes": "phút ",
+      "hours": "giờ",
+      "mobileCompleteTimeTip": "Hoàn thành trong ",
+      "pcCompleteTimeTip": "Hoàn thành nhiệm vụ {taskId}, mất khoảng ",
+      "startBtnText": "Bắt Đầu",
+      "continueBtnText": "Tiếp Tục",
+      "endBtnText": "Kết Thúc",
+      "completedBtnText": "Hoàn Thành",
+      "verifyBtnText": "Xác Minh",
+      "taskStepBtnText": "Các Bước Nhiệm Vụ",
+      "seeMoreTaskStep": "Xem Tất Cả",
+      "seeLessTaskStep": "Rút Gọn",
+      "stepText": "Bước"
     },
     "VerifyTaskModal": {
-      "modalTitle": "Verify Task",
-      "modalSubtitle": "Verify after completing the task. Your work will be reviewed manually.",
-      "btnText": "Verify to get reward"
+      "modalTitle": "Xác Minh Nhiệm Vụ",
+      "modalSubtitle": "Xác minh sau khi hoàn thành nhiệm vụ. Công việc của bạn sẽ được xem xét thủ công.",
+      "btnText": "Xác minh để nhận thưởng"
     },
     "StepDrawer": {
-      "verifyBtnText": "Verify",
-      "nextBtnText": "Next",
-      "backBtnText": "Back"
+      "verifyBtnText": "Xác Minh",
+      "nextBtnText": "Kế Tiếp",
+      "backBtnText": "Quay Về"
     }
   },
   "Profile": {
-    "unipassLinkDesc": "Visit UniPass wallet  to your asset after withdraw.Login email",
-    "notConnectWalletTip": "Not connect wallet yet !",
-    "rewardBalance": "Reward Balance",
-    "trialingTabName": "Trialing",
-    "activityTabName": "Activity",
-    "balanceTabName": "Balance",
+    "unipassLinkDesc": "Truy cập ví UniPass vào tài sản của bạn sau khi rút tiền. Đăng nhập email",
+    "notConnectWalletTip": "Vẫn chưa liên kết ví",
+    "rewardBalance": "Số Dư Phần Thưởng",
+    "trialingTabName": "Đang thử nghiệm",
+    "activityTabName": "Hoạt động",
+    "balanceTabName": "Số dư",
     "Trialing": {
-      "emptyTip": "No games currently trialing, start a game you like now!",
-      "taskName": "Task",
-      "rewardName": "Rewards"
+      "emptyTip": "Hiện không có trò chơi nào đang thử nghiệm, hãy bắt đầu trò chơi bạn thích ngay bây giờ!",
+      "taskName": "Nhiệm Vụ",
+      "rewardName": "Phần Thưởng"
     },
     "Activity": {
-      "gameColumn": "Game",
-      "actionColumn": "Action",
-      "rewardColumn": "Reward",
-      "timeColumn": "Time",
-      "emptyTip": "Oh, there is no activity now.",
-      "startText": "Start",
-      "completeText": "Completed"
+      "gameColumn": "Trò Chơi",
+      "actionColumn": "Hành Động",
+      "rewardColumn": "Phần Thưởng",
+      "timeColumn": "Thời Gian",
+      "emptyTip": "Ôi, không có hoạt động nào lúc này",
+      "startText": "Bắt Đầu",
+      "completeText": "Hoàn Thành"
     },
     "Balance": {
-      "tokenColumn": "Token",
-      "actionColumn": "Action",
-      "timeColumn": "Time",
-      "emptyTip": "Oh, there is no balance flow now."
+      "tokenColumn": "Mã",
+      "actionColumn": "Hành Động",
+      "timeColumn": "Thời Gian",
+      "emptyTip": "Ôi, không có dòng tiền dư lúc này."
     },
     "RewardTokenItem": {
-      "amountText": "Amount",
-      "withdrawingBtnText": "Withdrawing",
-      "withdrawBtnText": "Withdraw"
+      "amountText": "Số lượng",
+      "withdrawingBtnText": "Đang rút",
+      "withdrawBtnText": "Rút"
     },
     "WithdrawModal": {
-      "title": "Withdraw all balance",
-      "tokenAoumnt": "Token/Amount",
-      "network": "Network",
-      "shortWithdrawTip": "Withdrawal application will be processed before 12 noon every Tuesday and Friday（UTC +8）",
-      "withdrawTip": "Withdrawal application will be processed before 12 noon every Tuesday and Friday（UTC +8）. You can check the balance in the wallet later.",
-      "btnText": "Confirm and withdraw"
+      "title": "Rút toàn bộ số dư",
+      "tokenAoumnt": "Mã/Số lượng",
+      "network": "Mạng",
+      "shortWithdrawTip": "Đơn rút tiền sẽ được xử lý trước 12 giờ trưa Thứ Ba và Thứ Sáu hàng tuần (UTC +8)",
+      "withdrawTip": "Đơn rút tiền sẽ được xử lý trước 12 giờ trưa Thứ Ba và Thứ Sáu hàng tuần (UTC +8). Bạn có thể kiểm tra số dư trong ví sau.",
+      "btnText": "Xác nhận và rút tiền"
     }
   }
 }
