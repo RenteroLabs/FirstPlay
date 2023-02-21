@@ -35,6 +35,7 @@ import ConnectWallet from '@/components/ConnectWallet'
 import { startGameTask } from 'services/home'
 import CircularProgress from '@mui/material/CircularProgress';
 import { useTranslations } from "next-intl";
+import MessageTips from '@/components/MessageTipsBox'
 
 const cx = classname.bind(styles)
 
@@ -252,7 +253,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
     if (!isClaimed) {
       setShowTaskModal(true)
 
-      ga.event({ action: `${GAME_TASK_MODAL_NAME[gameId]}`, params: { gameId: gameId } })
+      // ga.event({ action: `${GAME_TASK_MODAL_NAME[gameId]}`, params: { gameId: gameId } })
       // window.open(claimLink)
     }
   }
@@ -327,6 +328,16 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           <Image src={TASK_COIN} layout="fill" />
         </Box>
         {taskInfo?.reward}
+      </Box>
+
+      <Box className={styles.rewardInnerDivider}></Box>
+
+      <Box className={styles.rewardTips}>
+        <Typography className={styles.rewardNums}>Rewards: <span>34</span> / 100 &nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
+        <Typography className={styles.rewardTime}>
+          FCFS: rward every Friday &nbsp;
+        </Typography>
+        <MessageTips fullmessage='Complete the task to get rewards. You can also get more game token rewards by continue playing the game and reach the top 15 in leagues of different tiers.' />
       </Box>
 
       <Box className={styles.actionArea}>
@@ -418,7 +429,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       <Box className={styles.itemLabel}>{index.toString().padStart(2, '0')}</Box>
       <Typography className={styles.spendTime}>
         <AccessTimeIcon /> &nbsp;
-        {t('pcCompleteTimeTip', { taskId: index.toString().padStart(2, '0')})} {taskSpendTime}
+        {t('pcCompleteTimeTip', { taskId: index.toString().padStart(2, '0') })} {taskSpendTime}
       </Typography>
 
       <Box className={styles.rewardBox}>
