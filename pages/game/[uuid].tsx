@@ -33,6 +33,7 @@ import { queryCarnivalGamesInfo } from 'services/carnival'
 import { Carnival_Games, SUPPORT_LANGUAGE } from 'constants/index'
 import CampaignIcon from '@mui/icons-material/Campaign';
 import { useTranslations } from "next-intl";
+import GameActivityCarousel from '@/components/GameActivityCarousel'
 
 export interface TxLoadingParams {
   txHash: string,
@@ -256,7 +257,10 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                 <CampaignIcon sx={{ mr: '2rem' }} fontSize="large" /> {t('comingSoonTip')}
               </Box>
             </Box>}
-
+          {
+            !isCarnivalGame &&
+            <GameActivityCarousel />
+          }
           {/* {
             is700Width ?
               <Box className={styles.rewardMobileBox}>
