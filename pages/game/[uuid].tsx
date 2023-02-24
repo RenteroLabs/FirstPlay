@@ -203,6 +203,10 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
               property="og:description"
               content={gameInfo?.description}
             />
+            <meta
+              property="og:image"
+              content={gameInfo?.background}
+            />
             {isMounted && <meta
               property="og:url"
               content={window.location.href}
