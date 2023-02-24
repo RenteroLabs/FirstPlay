@@ -212,6 +212,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
               content={window.location.href}
             />}
             <meta property="og:type" content="website" />
+            <meta name="twitter:card" content="summary_large_image" />
             <link rel="icon" href="/favicon.ico" />
           </Head>
           <Box className={styles.topCover}>
