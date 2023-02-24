@@ -211,7 +211,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
               property="og:url"
               content={window.location.href}
             />}
-            <meta property="og:type" content="article" />
+            <meta property="og:type" content="website" />
             <link rel="icon" href="/favicon.ico" />
           </Head>
           <Box className={styles.topCover}>
