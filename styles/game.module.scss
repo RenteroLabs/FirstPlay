@@ -721,13 +721,18 @@
       }
     }
     .topCover {
-      height: 15rem;
+      height: 13.33rem;
+      background: #d8d8d8;
+      border-radius: 1rem;
+      margin: 1rem 1rem 0;
+      overflow: hidden;
+      
     }
 
     .gameInfoBox {
-      width: calc(100% - 2.66rem);
+      width: calc(100% - 2rem);
       margin: auto;
-      margin-top: -2.33rem;
+      margin-top: -30px;
     }
     .btnBox {
       display: none;
