@@ -254,7 +254,6 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                     isStarted={item?.user_task_status !== 'not started'}
                     isClaimed={item?.user_task_status !== 'uncompleted'}
                     reward={item?.description}
-                    claimLink={item?.form}
                     gameId={router.query?.uuid as string}
                     strategyLink={carnivalGame?.strategy}
                     taskInfo={item}

@@ -11,21 +11,17 @@ import VerifyTaskFormModal from '@/components/PageModals/VerifyTaskModal';
 interface VerifyTaskProps {
   showTaskModal: boolean
   setShowTaskModal: (arg: boolean) => any
-  gameId: string
-  index: number
-  claimLink: string
-  strategyLink: string
+  verifyForm: Record<string, any>[]
+  taskId: string
 }
 
 export const VerifyTaskModal: React.FC<VerifyTaskProps> = (props) => {
-  const { showTaskModal, setShowTaskModal, gameId, index, claimLink, strategyLink } = props
+  const { showTaskModal, setShowTaskModal, verifyForm, taskId } = props
   const t = useTranslations('Game.VerifyTaskModal')
 
   const [showFormModal, setShowFormModal] = useState<boolean>(false)
 
   const handleVerifyTask = () => {
-    // ga.event({ action: `${GAME_EVENT_NAME[gameId]}_${index}`, params: { gameId: gameId, task: index } })
-    // window.open(claimLink)
     setShowTaskModal(false)
     setShowFormModal(true)
   }
@@ -34,6 +30,8 @@ export const VerifyTaskModal: React.FC<VerifyTaskProps> = (props) => {
     <VerifyTaskFormModal
       showModal={showFormModal}
       setShowModal={setShowFormModal}
+      verifyForm={verifyForm}
+      taskId={taskId}
     />
     :
     <Dialog
@@ -58,7 +56,6 @@ export const VerifyTaskModal: React.FC<VerifyTaskProps> = (props) => {
           <Box className={styles.verifyBtn} onClick={handleVerifyTask}>{t('btnText')}</Box>
         </Box>
       </Box>
-
     </Dialog>
 }
 

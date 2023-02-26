@@ -200,7 +200,6 @@ interface RewardItemProps {
   reward: string,
   isClaimed: boolean,
   isStarted: boolean,
-  claimLink: string,
   medalNum: number,
   gameId: string,
   strategyLink: string,
@@ -210,7 +209,7 @@ interface RewardItemProps {
 }
 
 const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
-  const { index, reward, isClaimed, claimLink, medalNum, gameId, strategyLink, taskInfo, timestamp, isStarted, reloadData } = props
+  const { index, reward, isClaimed, medalNum, gameId, strategyLink, taskInfo, timestamp, isStarted, reloadData } = props
   const isMobileSize = useMediaQuery("(max-width:600px)")
   const isMounted = useIsMounted()
 
@@ -231,7 +230,6 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
 
   useEffect(() => {
     if (showTaskDrawer && isMobileSize) {
-      console.log("teset")
       document.body.style.overflow = "hidden"
     } else {
       document.body.style.overflow = "visible"
@@ -252,9 +250,6 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
   const linkToForm = () => {
     if (!isClaimed) {
       setShowTaskModal(true)
-
-      // ga.event({ action: `${GAME_TASK_MODAL_NAME[gameId]}`, params: { gameId: gameId } })
-      // window.open(claimLink)
     }
   }
 
@@ -333,11 +328,11 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       <Box className={styles.rewardInnerDivider}></Box>
 
       <Box className={styles.rewardTips}>
-        <Typography className={styles.rewardNums}>Rewards: <span>34</span> / 100 &nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
+        <Typography className={styles.rewardNums}>Rewards: <span>{taskInfo?.issued_rewards}</span> / {taskInfo?.total_rewards || '-'} &nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
         <Typography className={styles.rewardTime}>
-          FCFS: rward every Friday &nbsp;
+          {taskInfo?.reward_type} &nbsp;
         </Typography>
-        <MessageTips fullmessage='Complete the task to get rewards. You can also get more game token rewards by continue playing the game and reach the top 15 in leagues of different tiers.' />
+        <MessageTips fullmessage={taskInfo?.reward_explain} />
       </Box>
 
       <Box className={styles.actionArea}>
@@ -402,10 +397,8 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       <VerifyTaskModal
         showTaskModal={showTaskModal}
         setShowTaskModal={setShowTaskModal}
-        index={index}
-        claimLink={claimLink}
-        gameId={gameId}
-        strategyLink={strategyLink}
+        verifyForm={taskInfo?.form || []}
+        taskId={taskInfo?.task_id}
       />
 
       <GameTaskDrawer
@@ -547,10 +540,8 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       <VerifyTaskModal
         showTaskModal={showTaskModal}
         setShowTaskModal={setShowTaskModal}
-        index={index}
-        claimLink={claimLink}
-        gameId={gameId}
-        strategyLink={strategyLink}
+        verifyForm={taskInfo?.form || []}
+        taskId={taskInfo?.task_id}
       />
     </Box>
 }

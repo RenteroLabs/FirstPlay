@@ -44,6 +44,31 @@ export const startGameTask = async (params: GameTaskParams) => {
 }
 
 /**
+ * 提交游戏任务表单
+ */
+interface SubmitGameTaskParams {
+  address: string,
+  task_id: string,
+  form: {
+    address?: string,
+    email?: string,
+    link?: string,
+    text?: string,
+  }
+}
+export const submitGameTask = async (params: SubmitGameTaskParams) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/submit-task`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(params)
+  })
+  return data.json()
+}
+
+
+/**
  * 获取正在试玩游戏
  * @param address 
  * @returns 
