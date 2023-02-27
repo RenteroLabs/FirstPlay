@@ -720,6 +720,7 @@
       justify-content: center;
       cursor: pointer;
       user-select: none;
+      // margin-top: 10px;
 
       outline: none;
       font-size: 1.33rem;
@@ -731,6 +732,12 @@
     }
     .disableBtn {
       background: rgba(#222, 0.2);
+    }
+  }
+
+  :global {
+    input {
+      height: 36px;
     }
   }
 }

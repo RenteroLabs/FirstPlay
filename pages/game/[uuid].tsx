@@ -35,6 +35,7 @@ import CampaignIcon from '@mui/icons-material/Campaign';
 import { useTranslations } from "next-intl";
 import GameActivityCarousel from '@/components/GameActivityCarousel'
 import { useIsMounted } from 'hooks/useIsMounted'
+import WalkthroughCollection from '@/components/WalkthroughCollection'
 
 export interface TxLoadingParams {
   txHash: string,
@@ -286,6 +287,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
             !isCarnivalGame &&
             <GameActivityCarousel />
           }
+          <WalkthroughCollection />
           {/* {
             is700Width ?
               <Box className={styles.rewardMobileBox}>

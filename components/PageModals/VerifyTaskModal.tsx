@@ -6,6 +6,7 @@ import { Form, Input, Button } from "antd";
 import { useAccount } from "wagmi";
 import { useRequest } from "ahooks";
 import { submitGameTask } from "services/home";
+import { toast } from 'react-toastify';
 
 interface VerifyTaskProps {
   showModal: boolean;
@@ -17,9 +18,9 @@ interface VerifyTaskProps {
 type FormItemType = "address" | "email" | "link" | "text"
 
 const REG_MAP = {
-  'email': '^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$',
-  "address": "^[a-zA-Z0-9]+$",
-  'link': "(https?|ftp|file)://[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]",
+  'email': '^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$',
+  "address": "^0x[0-9a-fA-F]*$",
+  'link': "^(http|https)://[a-zA-Z0-9-.]+\.[a-z]{2,}(/\S*)?$",
   "text": ""
 }
 
@@ -66,13 +67,33 @@ const VerifyTaskFormModal: React.FC<VerifyTaskProps> = (props) => {
 
   const { run: postSubmitForm, loading } = useRequest(submitGameTask, {
     manual: true,
-    onSuccess: ({ data }) => {
-      // console.log(data)
-      setShowModal(false)
+    onSuccess: ({ code, message }) => {
+      if (code == 0) {
+        setShowModal(false)
+        toast.success("Submit Success!", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        })
+      } else {
+        toast.error(message || "Api call error", {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        })
+      }
     }
   })
-
-
 
   return <Dialog
     open={showModal}

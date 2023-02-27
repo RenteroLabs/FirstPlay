@@ -1,0 +1,53 @@
+.collectionBox {
+  background: #ffffff;
+  box-shadow: 0rem 0.17rem 2.5rem 0rem #ece7f4;
+  padding: 1.33rem 1rem 1.67rem;
+
+  .collectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .userInfo {
+      display: flex;
+      align-items: center;
+
+      .userLogo {
+        position: relative;
+        width: 2.67rem;
+        height: 2.67rem;
+        border-radius: 50%;
+      }
+
+      .userName {
+        font-size: 1.33rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #222222;
+        line-height: 1.33rem;
+        margin-left: 0.67rem;
+      }
+    }
+  }
+
+  .btnBox {
+    .clickBtn {
+      height: 3.33rem;
+      background: rgba(#222222, 0.05);
+      border-radius: 1.67rem;
+
+      font-size: 1.17rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #222222;
+      line-height: 1.17rem;
+      user-select: none;
+
+      cursor: pointer;
+      
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
