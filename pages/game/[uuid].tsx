@@ -287,7 +287,10 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
             !isCarnivalGame &&
             <GameActivityCarousel />
           }
-          <WalkthroughCollection />
+          {
+            !isCarnivalGame &&
+            <WalkthroughCollection />
+          }
           {/* {
             is700Width ?
               <Box className={styles.rewardMobileBox}>
