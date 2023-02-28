@@ -4,6 +4,7 @@ import Image from "next/image";
 import styles from './styles.module.scss'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import GameArticleItem from "../PageGame/PageGameArticleItem";
 
 interface WalkthroughCollectionProps {
 
@@ -28,7 +29,21 @@ const WalkthroughCollection: React.FC<WalkthroughCollectionProps> = (props) => {
         </IconButton>
       </Box>
     </Box>
-    <Box className={styles.articleList}></Box>
+    <Box className={styles.articleList}>
+      <GameArticleItem sort={1} />
+      <GameArticleItem sort={2} />
+      <GameArticleItem sort={3} />
+      <GameArticleItem sort={4} />
+      {
+        showAllArticle && <>
+          <GameArticleItem sort={5} />
+          <GameArticleItem sort={6} />
+          <GameArticleItem sort={7} />
+          <GameArticleItem sort={8} />
+        </>
+      }
+
+    </Box>
 
     {/* TODO: 如果文章数量少于 X 篇，不显示展开按钮 */}
     <Box className={styles.btnBox}>

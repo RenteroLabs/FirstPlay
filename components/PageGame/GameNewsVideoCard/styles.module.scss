@@ -1,0 +1,47 @@
+.videoCard {
+  .videoContent {
+    height: 16.33rem;
+    background: #d8d8d8;
+    border-radius: 1rem;
+    overflow: hidden;
+
+    iframe {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+  .videoInfo {
+    .videoPoster {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 1rem;
+      p {
+        font-size: 1rem;
+        font-family: Inter-Bold, Inter;
+        font-weight: bold;
+        color: rgba(#222, 0.3);
+        line-height: 1rem;
+      }
+      .iconBox {
+        margin-left: 0.5rem;
+        position: relative;
+        width: 1.29rem;
+        height: 1.29rem;
+        opacity: 0.3;
+      }
+    }
+    .videoTitle {
+      margin-top: 0.58rem;
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #222222;
+      line-height: 1.5rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+  }
+}

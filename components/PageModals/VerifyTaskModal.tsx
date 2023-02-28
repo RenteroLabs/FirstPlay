@@ -17,10 +17,13 @@ interface VerifyTaskProps {
 
 type FormItemType = "address" | "email" | "link" | "text"
 
-const REG_MAP = {
-  'email': '^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$',
-  "address": "^0x[0-9a-fA-F]*$",
-  'link': "^(http|https)://[a-zA-Z0-9-.]+\.[a-z]{2,}(/\S*)?$",
+const REG_MAP: Record<string, RegExp> = {
+  'email': new RegExp("^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"),
+  "address": new RegExp('^0x[0-9a-fA-F]*$'),
+  // "link": new RegExp("^(http|https)://[a-zA-Z0-9-.]+\.[a-z]{2,}(/\S*)?$", "g"),
+  // @ts-ignore
+  "link": "",
+  // @ts-ignore
   "text": ""
 }
 
@@ -39,8 +42,6 @@ const VerifyTaskFormModal: React.FC<VerifyTaskProps> = (props) => {
   const [form] = Form.useForm<any>()
 
   const handleSubmit = async (values: any) => {
-    // console.log(values)
-
     const rawFormData = Object.entries(values)
 
     let formParams: Record<string, any> = {}
@@ -116,6 +117,7 @@ const VerifyTaskFormModal: React.FC<VerifyTaskProps> = (props) => {
       >
         {
           verifyForm.map((item: Record<string, any>, index: number) => {
+            console.log(REG_MAP[item?.type || 'text'])
             return <Form.Item
               key={index}
               label={item?.filed}
@@ -124,6 +126,7 @@ const VerifyTaskFormModal: React.FC<VerifyTaskProps> = (props) => {
                 { required: true, message: `Please input ${item?.filed}` },
                 // @ts-ignore
                 { pattern: REG_MAP[item?.type || 'text'], message: "Please input valid format data" }
+                // { pattern: REG_MAP['address'], message: "Please input valid format data" }
               ]}
             >
               <Input />

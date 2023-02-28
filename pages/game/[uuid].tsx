@@ -36,6 +36,8 @@ import { useTranslations } from "next-intl";
 import GameActivityCarousel from '@/components/GameActivityCarousel'
 import { useIsMounted } from 'hooks/useIsMounted'
 import WalkthroughCollection from '@/components/WalkthroughCollection'
+import GameNewsVideoCard from '@/components/PageGame/GameNewsVideoCard'
+import GameNewsTwitterCard from '@/components/PageGame/GameNewsTwitterCard'
 
 export interface TxLoadingParams {
   txHash: string,
@@ -283,7 +285,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                 <CampaignIcon sx={{ mr: '2rem' }} fontSize="large" /> {t('comingSoonTip')}
               </Box>
             </Box>}
-          {
+          {/* {
             !isCarnivalGame &&
             <GameActivityCarousel />
           }
@@ -291,6 +293,20 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
             !isCarnivalGame &&
             <WalkthroughCollection />
           }
+          {
+            !isCarnivalGame &&
+            <>
+              <GameNewsVideoCard />
+              <GameNewsVideoCard />
+              <GameNewsVideoCard />
+            </>
+          }
+          {
+            !isCarnivalGame && 
+            <>
+              <GameNewsTwitterCard />
+            </>
+          } */}
           {/* {
             is700Width ?
               <Box className={styles.rewardMobileBox}>
