@@ -1,0 +1,57 @@
+.drawerBox {
+  :global {
+    .MuiPaper-root {
+      border-radius: 1rem 1rem 0rem 0rem;
+      overflow: hidden;
+    }
+  }
+}
+
+.mobileDrawerBox {
+  background: #ffffff;
+
+  padding: 1.67rem;
+
+  h3 {
+    font-size: 1.33rem;
+    font-family: Inter-Medium, Inter;
+    font-weight: 500;
+    color: #222222;
+    line-height: 1.33rem;
+  }
+
+  .shareList {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+
+    .shareItem {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      // margin: auto 2.4rem;
+
+      .shareMediaLogo {
+        width: 3.67rem;
+        height: 3.67rem;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      p {
+        font-size: 1rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 1rem;
+        margin-top: 0.83rem;
+      }
+    }
+  }
+}

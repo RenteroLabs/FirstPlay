@@ -31,6 +31,8 @@ import * as ga from '../util/ga'
 import { UnipassConnector } from 'lib/UnipassConnector'
 
 import 'antd/dist/reset.css'
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 
 // connect wallet config
 const { chains, provider, webSocketProvider } = configureChains(SUPPORT_CHAINS, [

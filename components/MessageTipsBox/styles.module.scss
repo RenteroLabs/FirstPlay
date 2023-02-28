@@ -1,0 +1,37 @@
+.tipBox {
+  display: inline-flex;
+  align-items: center;
+}
+
+.tipDrawer {
+  background-color: transparent !important;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  overflow: hidden;
+
+  :global {
+    .MuiPaper-root {
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+    }
+  }
+  .drawerBox {
+    overflow: hidden;
+    padding: 3rem 1.67rem 2rem;
+    min-height: 12rem;
+    position: relative;
+
+    p {
+      font-size: 1.17rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
+      color: #222222;
+    }
+
+    .closeBtn {
+      position: absolute;
+      right: 0.5rem;
+      top: 0.5rem;
+    }
+  }
+}

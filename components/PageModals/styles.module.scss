@@ -681,3 +681,72 @@
     }
   }
 }
+
+.verifyTaskModal {
+  .modalBox {
+    width: 31.67rem;
+    height: auto;
+    background: #ffffff;
+    border-radius: 1.17rem;
+    padding: 2.5rem 1.33rem;
+    position: relative;
+
+    .closeBtn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+    .modalHeader {
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2.58rem;
+      p {
+        font-size: 1.75rem;
+        font-family: Inter-Bold, Inter;
+        font-weight: bold;
+        color: rgba(#222, 1);
+        line-height: 1.75rem;
+      }
+    }
+    .formSubmitBtn {
+      width: 100%;
+      height: 3.33rem;
+      background: #8e50e4;
+      border-radius: 1.67rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      // margin-top: 10px;
+
+      outline: none;
+      font-size: 1.33rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.33rem;
+      border: none;
+    }
+    .disableBtn {
+      background: rgba(#222, 0.2);
+    }
+  }
+
+  :global {
+    input {
+      height: 36px;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .verifyTaskModal {
+    .modalBox {
+      width: calc(100vw - 6rem);
+      // padding: 0rem 0.8rem 0.5rem;
+    }
+  }
+}

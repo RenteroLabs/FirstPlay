@@ -135,11 +135,12 @@
       overflow: hidden;
       margin-right: 3vw;
       flex-shrink: 0;
+      margin-left: 12px;
     }
   }
   .mobileBox {
     .gameTitle {
-      margin-top: 1.33rem;
+      margin-top: 1rem;
       display: flex;
       flex-direction: column;
       align-self: flex-end;
@@ -197,16 +198,15 @@
     }
     .socialList {
       margin-top: -1rem;
+      margin-right: 0.67rem;
       button {
-        width: 3rem;
-        height: 3rem;
         background-color: rgba($color: #4a99e9, $alpha: 0.1);
         width: 2.67rem;
         height: 2.67rem;
         background-color: white;
       }
       a + a {
-        margin-left: 1rem;
+        margin-left: 0.83rem;
       }
     }
     .strategyBtn {

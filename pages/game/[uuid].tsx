@@ -33,6 +33,11 @@ import { queryCarnivalGamesInfo } from 'services/carnival'
 import { Carnival_Games, SUPPORT_LANGUAGE } from 'constants/index'
 import CampaignIcon from '@mui/icons-material/Campaign';
 import { useTranslations } from "next-intl";
+import GameActivityCarousel from '@/components/GameActivityCarousel'
+import { useIsMounted } from 'hooks/useIsMounted'
+import WalkthroughCollection from '@/components/WalkthroughCollection'
+import GameNewsVideoCard from '@/components/PageGame/GameNewsVideoCard'
+import GameNewsTwitterCard from '@/components/PageGame/GameNewsTwitterCard'
 
 export interface TxLoadingParams {
   txHash: string,
@@ -73,6 +78,8 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
   const [ownPassNFt, setOwnPassNFT] = useState<boolean>(false)
 
   const timestamp = useMemo(() => (Number(new Date) / 1000).toFixed(), [])
+
+  const isMounted = useIsMounted()
 
 
   /**
@@ -176,6 +183,12 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
     window.open(carnivalGame?.strategy)
   }
 
+
+  // const currentPath = useMemo(() => {
+  //   return window ? window.location.href : ""
+  // }, [isMounted])
+
+
   return <UserInfo.Provider
     value={{ isActived: isActived as unknown as boolean, ownPassNFt }}>
     <TxLoading.Provider value={{ txHash, setTxHash, showTxLoading, setShowTxLoading }}>
@@ -185,6 +198,24 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
           <Head>
             <title>Games | FirstPlay {gameInfo?.name && `| ${gameInfo?.name}`}</title>
             <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
+            <meta
+              property="og:title"
+              content={`Play ${gameInfo?.name} on FirstPlay`}
+            />
+            <meta
+              property="og:description"
+              content={gameInfo?.description}
+            />
+            <meta
+              property="og:image"
+              content={gameInfo?.background}
+            />
+            {isMounted && <meta
+              property="og:url"
+              content={window.location.href}
+            />}
+            <meta property="og:type" content="website" />
+            <meta name="twitter:card" content="summary_large_image" />
             <link rel="icon" href="/favicon.ico" />
           </Head>
           <Box className={styles.topCover}>
@@ -194,7 +225,6 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                 layout='fill'
                 objectFit='cover'
                 quality={100}
-                // loader={({ src }) => src}
                 loader={({ src }) => `${src}?timestamp=${init_timestamp}`}
               />}
           </Box>
@@ -227,7 +257,6 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                     isStarted={item?.user_task_status !== 'not started'}
                     isClaimed={item?.user_task_status !== 'uncompleted'}
                     reward={item?.description}
-                    claimLink={item?.form}
                     gameId={router.query?.uuid as string}
                     strategyLink={carnivalGame?.strategy}
                     taskInfo={item}
@@ -256,7 +285,28 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                 <CampaignIcon sx={{ mr: '2rem' }} fontSize="large" /> {t('comingSoonTip')}
               </Box>
             </Box>}
-
+          {/* {
+            !isCarnivalGame &&
+            <GameActivityCarousel />
+          }
+          {
+            !isCarnivalGame &&
+            <WalkthroughCollection />
+          }
+          {
+            !isCarnivalGame &&
+            <>
+              <GameNewsVideoCard />
+              <GameNewsVideoCard />
+              <GameNewsVideoCard />
+            </>
+          }
+          {
+            !isCarnivalGame && 
+            <>
+              <GameNewsTwitterCard />
+            </>
+          } */}
           {/* {
             is700Width ?
               <Box className={styles.rewardMobileBox}>

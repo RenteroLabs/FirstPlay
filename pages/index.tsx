@@ -80,8 +80,13 @@ export default FirstPlay
 
 export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsContext) => {
   // 获取首页数据
-  const result = await getAllGames()
-  const { popular_games = [], banners = [], rewarded_games = [], strategies = [], upcoming_games = [] } = result.data || {}
+  let result
+  try {
+    result = await getAllGames()
+  } catch (err) {
+    console.log(err)
+  }
+  const { popular_games = [], banners = [], rewarded_games = [], strategies = [], upcoming_games = [] } = result?.data || {}
 
   return {
     props: {
