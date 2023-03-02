@@ -726,7 +726,6 @@
       border-radius: 1rem;
       margin: 1rem 1rem 0;
       overflow: hidden;
-      
     }
 
     .gameInfoBox {
@@ -734,6 +733,105 @@
       margin: auto;
       margin-top: -30px;
     }
+
+    .gameContent {
+      padding-top: 0.83rem;
+      padding-bottom: 0.83rem;
+      background-color: #f4f4f9;
+      .tabsBox {
+        background: #fff;
+        :global {
+          .ant-tabs-nav {
+            margin-bottom: 0;
+          }
+        }
+      }
+      .mobileTabsBox {
+        :global {
+          .ant-tabs-nav::before {
+            border-bottom: none;
+          }
+          .ant-tabs-nav {
+            margin-top: 1rem;
+            .ant-tabs-nav-wrap {
+              display: flex;
+              justify-content: center;
+              overflow: visible;
+
+              .ant-tabs-nav-list {
+                display: flex;
+                align-items: center;
+                height: 3rem;
+                background-color: rgba(#222, 0.05);
+                border-radius: 1.67rem;
+                padding: 0.25rem;
+                box-sizing: border-box;
+                font-size: 1.17rem;
+                font-family: Inter-SemiBold, Inter;
+                font-weight: 600;
+                color: rgba(#222, 0.5);
+                line-height: 1.17rem;
+
+                .ant-tabs-ink-bar {
+                  width: 0 !important;
+                }
+
+                .ant-tabs-tab {
+                  height: 100%;
+                  padding: 0 2rem;
+                  &:hover {
+                    color: rgba(#222, 0.8);
+                  }
+                  user-select: none;
+                }
+                .ant-tabs-tab + .ant-tabs-tab {
+                  margin-left: 0;
+                }
+
+                .ant-tabs-tab:nth-child(3) {
+                  &::after {
+                    content: 'New';
+                    position: absolute;
+                    z-index: 10;
+                    top: -0.7rem;
+                    right: -0.25rem;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 3rem;
+                    height: 1.33rem;
+                    background: linear-gradient(
+                      135deg,
+                      #ffa57e 0%,
+                      #ff4e00 100%
+                    );
+                    box-shadow: 0rem 0.17rem 0.33rem 0rem rgba(200, 61, 0, 0.3);
+                    border-radius: 0.75rem 0.75rem  0.75rem 0rem;
+
+                    font-size: 0.83rem;
+                    font-family: Inter-Bold, Inter;
+                    font-weight: bold;
+                    color: #ffffff;
+                    line-height: 0.83rem;
+                  }
+                }
+
+                .ant-tabs-tab-active {
+                  height: 2.5rem;
+                  border-radius: 1.25rem;
+                  background-color: white;
+
+                  .ant-tabs-tab-btn {
+                    color: #222;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
     .btnBox {
       display: none;
     }

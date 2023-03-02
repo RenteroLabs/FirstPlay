@@ -316,10 +316,11 @@
 .mobileCarnivalRewardItem {
   position: relative;
   padding: 1.67rem 1.33rem;
-  background-color: white;
-  box-shadow: 0rem 0.83rem 1.67rem 0rem rgba(142, 80, 228, 0.2);
+  // background-color: white;
+  background: #F6EFFF;
+  // box-shadow: 0rem 0.83rem 1.67rem 0rem rgba(142, 80, 228, 0.2);
   border-radius: 0.67rem;
-  border-top: 0.83rem solid white;
+  border-top: 0.83rem solid #F6EFFF;
 
   .itemLabel {
     position: absolute;
@@ -384,7 +385,7 @@
   }
   .taskDesc {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     font-size: 1.33rem;
     font-family: Inter-Medium, Inter;
     font-weight: 500;
