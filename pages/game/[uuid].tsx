@@ -44,6 +44,7 @@ import GameNewsTab from '@/components/PageGame/GameNewsTab.tsx'
 import GameProxyTab from '@/components/PageGame/GameProxyTab'
 
 import classNames from 'classnames/bind'
+import { getUserArticleCollection } from 'services/cms'
 
 const cx = classNames.bind(styles)
 
@@ -108,6 +109,8 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
     if (router.query?.uuid) {
       getCarnivalGameInfo({ address: address || '0x00', game_id: router.query?.uuid as string })
     }
+
+    getUserArticleCollection({ gameId: router.query?.uuid as string })
   }, [router.query?.uuid, address])
 
   const { run: getCarnivalGameInfo, refresh } = useRequest(queryCarnivalGamesInfo, {
@@ -249,6 +252,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                 children: <HomeTab
                   gameTasksInfo={carnivalGame}
                   reloadGameTasks={refresh}
+                  gameId={router?.query?.uuid}
                 />
               }, {
                 key: "2",

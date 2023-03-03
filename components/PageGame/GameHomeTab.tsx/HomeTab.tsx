@@ -1,25 +1,52 @@
 import CarnivalRewardItem from "@/components/PageCarnival/RewardItem";
 import { Box, Typography } from "@mui/material";
 import { useRouter } from "next/router";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useAccount } from "wagmi";
 import styles from './styles.module.scss'
 import { useTranslations } from "next-intl";
 import WalkthroughCollection from "@/components/WalkthroughCollection";
+import { useRequest } from "ahooks";
+import { getUserArticleCollection } from "services/cms";
+import { isEmpty } from "lodash";
 
 interface HomeTabProps {
   gameTasksInfo: Record<string, any>
   reloadGameTasks: () => any
+  gameId: string
 }
 
 const HomeTab: React.FC<HomeTabProps> = (props) => {
-  const { gameTasksInfo, reloadGameTasks } = props
+  const { gameTasksInfo, reloadGameTasks, gameId } = props
 
   const t = useTranslations('Game')
 
   const { address } = useAccount()
   const router = useRouter()
   const timestamp = useMemo(() => (Number(new Date) / 1000).toFixed(), [])
+  const [hasCollection, setHasCollection] = useState<boolean>(false)
+  const [collectionData, setCollectionData] = useState<Record<string, any>[]>([])
+
+  // 获取 ArticleCollect 数据
+
+  const { run: queryArticleCollection } = useRequest(getUserArticleCollection, {
+    // manual: true,
+    defaultParams: [{ gameId: gameId }],
+    refreshDeps: [gameId],
+    onSuccess: ({ data }) => {
+      console.log(data)
+      const firstCollection = data[0]?.attributes || {}
+
+      if (firstCollection?.strategy_articles) {
+        const collectionData = firstCollection?.strategy_articles?.data
+        if (collectionData && !isEmpty(collectionData)) {
+          setHasCollection(true)
+          setCollectionData(collectionData)
+        }
+      }
+    }
+  })
+
 
   return <Box className={styles.homeTab}>
     <Box className={styles.rewardMainBox}>
@@ -60,10 +87,13 @@ const HomeTab: React.FC<HomeTabProps> = (props) => {
         }
       </Box>
     </Box>
-    <Box className={styles.workthroughBox}>
-      <Typography variant="h3">Walkthrough</Typography>
-      <WalkthroughCollection />
-    </Box>
+    {
+      hasCollection &&
+      <Box className={styles.workthroughBox}>
+        <Typography variant="h3">Walkthrough</Typography>
+        <WalkthroughCollection collectionData={collectionData} />
+      </Box>
+    }
   </Box>
 }
 

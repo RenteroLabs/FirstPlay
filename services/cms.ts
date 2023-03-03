@@ -1,0 +1,42 @@
+import { CMS_TOKEN } from './../constants/index';
+import qs from 'qs'
+
+const CMS_BASE_URL = "https://cms.firstplay.app"
+
+
+interface CollectionParams {
+  gameId: string
+  user?: string,
+}
+
+// TODO: 当前暂时仅根据 GameUUID 搜索 攻略集合，不添加作者的分类搜索
+export const getUserArticleCollection = async (params: CollectionParams) => {
+  const { gameId } = params
+  const query = qs.stringify({
+    filters: {
+      game_info: {
+        GameUUID: {
+          $eq: gameId
+        }
+      }
+    },
+    populate: {
+      strategy_articles: {
+        fields: ['ArticleTitle', 'ArticleName']
+      }
+    },
+    pagination: {
+      page: 1,
+      pageSize: 1000, // 获取全量数据，理论上一个游戏返回一个 ArticleCollection 集合
+    },
+  }, {
+    encodeValuesOnly: true
+  })
+  const data = await fetch(`${CMS_BASE_URL}/api/article-collections?${query}`, {
+    headers: {
+      "Authorization": `Bearer ${CMS_TOKEN}`
+    }
+  })
+
+  return data.json()
+}

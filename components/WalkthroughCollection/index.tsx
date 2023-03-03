@@ -1,5 +1,5 @@
 import { Box, IconButton } from "@mui/material";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import styles from './styles.module.scss'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -7,13 +7,20 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import GameArticleItem from "../PageGame/PageGameArticleItem";
 
 interface WalkthroughCollectionProps {
-
+  collectionData: Record<string, any>[]
 }
 
+const DEFAUTL_SHOW_COUNT: number = 5
+
 const WalkthroughCollection: React.FC<WalkthroughCollectionProps> = (props) => {
-  const { } = props
+  const { collectionData } = props
+  console.log(collectionData)
 
   const [showAllArticle, setShowAllArticle] = useState<boolean>(false)
+
+  const artilceCount = useMemo(() => {
+    return collectionData.length
+  }, [collectionData])
 
   return <Box className={styles.collectionBox}>
     <Box className={styles.collectionHeader}>
@@ -30,33 +37,28 @@ const WalkthroughCollection: React.FC<WalkthroughCollectionProps> = (props) => {
       </Box>
     </Box>
     <Box className={styles.articleList}>
-      <GameArticleItem sort={1} />
-      <GameArticleItem sort={2} />
-      <GameArticleItem sort={3} />
-      <GameArticleItem sort={4} />
       {
-        showAllArticle && <>
-          <GameArticleItem sort={5} />
-          <GameArticleItem sort={6} />
-          <GameArticleItem sort={7} />
-          <GameArticleItem sort={8} />
-        </>
+        collectionData.slice(0, showAllArticle ? artilceCount : DEFAUTL_SHOW_COUNT).map((item, index) =>
+          <GameArticleItem sort={index + 1} article={item} key={index} />
+        )
       }
-
     </Box>
 
-    {/* TODO: 如果文章数量少于 X 篇，不显示展开按钮 */}
-    <Box className={styles.btnBox}>
-      <Box className={styles.clickBtn} onClick={() => setShowAllArticle(!showAllArticle)}>
-        {
-          showAllArticle ? "See less" : "See all"
-        }
-        (8)
-        {
-          showAllArticle ? <ExpandLessIcon /> : <ExpandMoreIcon />
-        }
+    {/* 如果文章数量少于 5 篇，不显示展开按钮 */}
+    {
+      artilceCount > DEFAUTL_SHOW_COUNT &&
+      <Box className={styles.btnBox}>
+        <Box className={styles.clickBtn} onClick={() => setShowAllArticle(!showAllArticle)}>
+          {
+            showAllArticle ? "See less" : "See all"
+          }
+          ({artilceCount})
+          {
+            showAllArticle ? <ExpandLessIcon /> : <ExpandMoreIcon />
+          }
+        </Box>
       </Box>
-    </Box>
+    }
   </Box>
 }
 
