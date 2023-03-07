@@ -1,0 +1,22 @@
+.notActiveStep {
+  display: none;
+}
+.stepBox {
+  h2 {
+    font-size: 1.33rem;
+    font-family: Inter-SemiBold, Inter;
+    font-weight: 600;
+    color: #222222;
+    line-height: 1.33rem;
+
+    margin-top: 2.58rem;
+    margin-bottom: 1.67rem;
+  }
+
+  :global {
+    img {
+      max-width: 100%;
+      margin: auto;
+    }
+  }
+}

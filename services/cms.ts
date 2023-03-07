@@ -22,7 +22,7 @@ export const getUserArticleCollection = async (params: CollectionParams) => {
     },
     populate: {
       strategy_articles: {
-        fields: ['ArticleTitle', 'ArticleName']
+        fields: ['ArticleTitle', 'ArticleName', 'id']
       }
     },
     pagination: {
@@ -38,5 +38,52 @@ export const getUserArticleCollection = async (params: CollectionParams) => {
     }
   })
 
+  return data.json()
+}
+
+// 根据 Collection Id 获取 Article Collection 数据信息
+export const getArticleCollectionById = async(collectionId: string) => {
+  const query = qs.stringify({
+    filters: {
+      CollectionId: {
+        $eq: collectionId
+      }
+    },
+    populate: {
+      strategy_articles: {
+        fields: ['ArticleTitle', 'ArticleName']
+      }
+    },
+  }, {
+    encodeValuesOnly: true
+  })
+
+  const data = await fetch(`${CMS_BASE_URL}/api/article-collections?${query}`, {
+    headers: {
+      "Authorization": `Bearer ${CMS_TOKEN}`
+    }
+  })
+
+  return data.json()
+}
+
+// 获取单篇文章攻略内容
+export const getSingerStrategyArticle = async (articleId: string) => {
+  const query = qs.stringify({
+    filters: {
+      id: {
+        $eq: Number(articleId)
+      }
+    },
+    populate: ['StepList']
+  }, {
+    encodeValuesOnly: true
+  })
+
+  const data = await fetch(`${CMS_BASE_URL}/api/strategy-articles?${query}`, {
+    headers: {
+      "Authorization": `Bearer ${CMS_TOKEN}`
+    }
+  })
   return data.json()
 }

@@ -8,12 +8,13 @@ import GameArticleItem from "../PageGame/PageGameArticleItem";
 
 interface WalkthroughCollectionProps {
   collectionData: Record<string, any>[]
+  collectionId: string
 }
 
 const DEFAUTL_SHOW_COUNT: number = 5
 
 const WalkthroughCollection: React.FC<WalkthroughCollectionProps> = (props) => {
-  const { collectionData } = props
+  const { collectionData, collectionId } = props
   console.log(collectionData)
 
   const [showAllArticle, setShowAllArticle] = useState<boolean>(false)
@@ -39,7 +40,11 @@ const WalkthroughCollection: React.FC<WalkthroughCollectionProps> = (props) => {
     <Box className={styles.articleList}>
       {
         collectionData.slice(0, showAllArticle ? artilceCount : DEFAUTL_SHOW_COUNT).map((item, index) =>
-          <GameArticleItem sort={index + 1} article={item} key={index} />
+          <GameArticleItem
+            collectionId={collectionId}
+            sort={index + 1}
+            article={item}
+            key={index} />
         )
       }
     </Box>

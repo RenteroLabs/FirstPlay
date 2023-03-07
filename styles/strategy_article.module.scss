@@ -1,0 +1,197 @@
+.headerBox {
+  margin: 0.75rem 1.33rem 1.08rem;
+}
+
+.articleInfo {
+  display: flex;
+  align-items: center;
+
+  justify-content: space-between;
+
+  .leftBox {
+    display: inline-flex;
+    align-items: center;
+
+    .userLogo {
+      width: 2.67rem;
+      height: 2.67rem;
+
+      img {
+        border-radius: 50%;
+        width: 2.67rem;
+        height: 2.67rem;
+      }
+    }
+    p {
+      margin-left: 0.67rem;
+      font-size: 1.33rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #222222;
+      line-height: 1.33rem;
+    }
+  }
+}
+
+.viewArticleCollection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  p {
+    font-size: 1.17rem;
+    font-family: Inter-Medium, Inter;
+    font-weight: 500;
+    color: #222222;
+    line-height: 1.17rem;
+
+    span {
+      color: rgba(142, 80, 228, 1);
+    }
+  }
+}
+
+.contentBox {
+  padding: 1.67rem 1.33rem;
+  border-top: 0.87rem solid #f4f4f9;
+
+  h1 {
+    font-size: 1.5rem;
+    font-family: Inter-SemiBold, Inter;
+    font-weight: 600;
+    color: #222222;
+    line-height: 2rem;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .articleBaseInfo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    p {
+      font-size: 1rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: rgba(#222, 0.3);
+      line-height: 1rem;
+    }
+
+    .shareBtn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      width: 6rem;
+      height: 2rem;
+      border-radius: 1.5rem;
+      border: 1px solid rgba(#222, 0.3);
+
+      font-size: 1rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #222222;
+      line-height: 1rem;
+
+      svg {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  .stepBox {
+    margin-bottom: 5rem;
+  }
+
+  .stepBtns {
+    position: fixed;
+    bottom: 2rem;
+    left: 0.83rem;
+    right: 0.83rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .backBtn {
+      width: 7.33rem;
+      height: 2.67rem;
+      background: #222222;
+      border-radius: 1.5rem;
+      border: 0.08rem solid #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #ffffff;
+      line-height: 1.17rem;
+      svg {
+        margin-right: 0.5rem;
+      }
+    }
+
+    .nextBtn {
+      width: 7.33rem;
+      height: 2.67rem;
+      background: #222222;
+      border-radius: 1.5rem;
+      border: 0.08rem solid #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #ffffff;
+      line-height: 1.17rem;
+      svg {
+        margin-left: 0.5rem;
+      }
+    }
+    .nextArticleBtn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 15.83rem;
+      height: 2.67rem;
+      background: #8e50e4;
+      border-radius: 1.5rem;
+      border: 0.08rem solid #ffffff;
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #ffffff;
+      line-height: 1.17rem;
+
+      user-select: none;
+      cursor: pointer;
+
+    }
+    .verifyBtn {
+      width: 7.33rem;
+      height: 2.67rem;
+      background: #8e50e4;
+      border-radius: 1.5rem;
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #ffffff;
+      line-height: 1.17rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+}

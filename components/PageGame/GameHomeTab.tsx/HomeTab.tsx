@@ -26,6 +26,7 @@ const HomeTab: React.FC<HomeTabProps> = (props) => {
   const timestamp = useMemo(() => (Number(new Date) / 1000).toFixed(), [])
   const [hasCollection, setHasCollection] = useState<boolean>(false)
   const [collectionData, setCollectionData] = useState<Record<string, any>[]>([])
+  const [collectionId, setCollectionId] = useState<string>('')
 
   // 获取 ArticleCollect 数据
 
@@ -38,6 +39,8 @@ const HomeTab: React.FC<HomeTabProps> = (props) => {
       const firstCollection = data[0]?.attributes || {}
 
       if (firstCollection?.strategy_articles) {
+        setCollectionId(firstCollection?.CollectionId)
+
         const collectionData = firstCollection?.strategy_articles?.data
         if (collectionData && !isEmpty(collectionData)) {
           setHasCollection(true)
@@ -91,7 +94,9 @@ const HomeTab: React.FC<HomeTabProps> = (props) => {
       hasCollection &&
       <Box className={styles.workthroughBox}>
         <Typography variant="h3">Walkthrough</Typography>
-        <WalkthroughCollection collectionData={collectionData} />
+        <WalkthroughCollection
+          collectionData={collectionData}
+          collectionId={collectionId} />
       </Box>
     }
   </Box>
