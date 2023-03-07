@@ -17,7 +17,7 @@ const GameArticleItem: React.FC<GameArticleItemProps> = (props) => {
 
   // console.log(article)
   // TODO: link to strategy article detail page 
-  return <a target="_blank" href={`/strategy/article?articleId=${article?.id}&collectionId=${collectionId}`} >
+  return <a target="_blank" rel="noreferrer" href={`/strategy/article?articleId=${article?.id}&collectionId=${collectionId}`} >
     <Box className={styles.articleItem}>
       <Box className={cx({
         itemSort: true,
