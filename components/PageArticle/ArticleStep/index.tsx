@@ -3,6 +3,7 @@ import React, { useMemo } from "react";
 import styles from './styles.module.scss'
 import ReactMarkdown from 'react-markdown'
 import classNames from "classnames/bind";
+import remarkGfm from 'remark-gfm'
 
 const cx = classNames.bind(styles)
 
@@ -24,7 +25,7 @@ const ArticleStep: React.FC<ArticleStepProps> = (props) => {
     notActiveStep: !isCurrentStepActive
   })}>
     <Typography variant="h2">Step{stepIndex}: {stepItem?.StepTitle}</Typography>
-    <ReactMarkdown >{stepItem?.StepContent}</ReactMarkdown>
+    <ReactMarkdown linkTarget="_blank" remarkPlugins={[remarkGfm]} >{stepItem?.StepContent}</ReactMarkdown>
   </Box>
 }
 

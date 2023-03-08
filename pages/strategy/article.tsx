@@ -4,13 +4,13 @@ import { Dropdown, MenuProps } from 'antd'
 import { GetStaticPropsContext } from 'next'
 import Head from 'next/head'
 import { NextPageWithLayout } from 'pages/_app'
-import { ReactElement, useEffect, useMemo, useState } from 'react'
+import { ReactElement, useEffect, useMemo, useRef, useState } from 'react'
 import styles from '../../styles/strategy_article.module.scss'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import GameArticleItem from '@/components/PageGame/PageGameArticleItem'
 import { useRouter } from 'next/router'
-import { useRequest } from 'ahooks'
+import { useRequest, useScroll } from 'ahooks'
 import { getArticleCollectionById, getSingerStrategyArticle } from 'services/cms'
 import ArticleStep from '@/components/PageArticle/ArticleStep'
 
@@ -18,6 +18,8 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { last } from 'lodash'
 import Link from 'next/link'
+import StickyBox from 'react-sticky-box';
+
 
 import classNames from 'classnames/bind'
 
@@ -37,7 +39,18 @@ const ArticleDetailPage: NextPageWithLayout = (props) => {
 
   const [activeStep, setActiveStep] = useState<number>(1)
 
+  const [contentHeight, setContentHeight] = useState<boolean>(false)
+
+  const ref = useRef(null)
+
+  const scroll = useScroll()
+
   const router = useRouter()
+
+  useEffect(() => {
+    console.log(scroll)
+
+  }, [scroll])
 
   console.log(collectionArticleList)
   useEffect(() => {
@@ -100,8 +113,6 @@ const ArticleDetailPage: NextPageWithLayout = (props) => {
     return [menuItems, currentActiveIndex]
   }, [collectionArticleList])
 
-
-
   return <Box>
     <Head>
       {/* TODO: 页面 Title 信息 */}
@@ -119,7 +130,7 @@ const ArticleDetailPage: NextPageWithLayout = (props) => {
         </Box>
         <Box></Box>
       </Box>
-      <Box className={styles.viewArticleCollection}>
+      <Box className={styles.viewArticleCollection} >
         <Typography>View all for #Dark Throne(<span>{collectionArticleList.length}</span>)</Typography>
         <Dropdown
           menu={{ items: menuItems }}
@@ -129,24 +140,34 @@ const ArticleDetailPage: NextPageWithLayout = (props) => {
       </Box>
     </Box>
 
-    {isMobileSize && <Box className={styles.mobileStepAnchorBox}>
-      <Box className={styles.innerListWrapper}>
-        {
-          articleContent?.StepList.map((_, index: number) =>
-            <Box
-              key={index}
-              className={cx({
-                stepAnchorStep: true,
-                activeAnchor: activeStep === index + 1
-              })}
-              onClick={() => setActiveStep(index + 1)}
-            >Step{index + 1}</Box>
-          )
-        }
-      </Box>
-    </Box>}
+    {isMobileSize &&
+      <Box className={cx({
+        mobileStepAnchorBox: true,
+        // @ts-ignore
+        hiddenAnchorBox: scroll?.top < 70
+      })}>
+        <Box className={styles.innerListWrapper}>
+          {
+            articleContent?.StepList.map((_, index: number) =>
+              <Box
+                key={index}
+                className={cx({
+                  stepAnchorStep: true,
+                  activeAnchor: activeStep === index + 1
+                })}
+                onClick={() => {
+                  setActiveStep(index + 1)
+                  // @ts-ignore
+                  ref.current.scrollIntoView()
+                }}
+              >Step{index + 1}</Box>
+            )
+          }
+        </Box>
+      </Box>}
 
-    <Box className={styles.contentBox}>
+
+    <Box className={styles.contentBox} ref={ref}>
       <Typography variant='h1'>{articleContent?.ArticleTitle}</Typography>
       <Box className={styles.articleBaseInfo}>
         <Typography>Jan 31 | By Firstplay</Typography>
@@ -177,6 +198,7 @@ const ArticleDetailPage: NextPageWithLayout = (props) => {
                 setActiveStep(activeStep - 1)
                 // @ts-ignore
                 // taskBox?.current.scrollTo({ top: 0 })
+                ref.current.scrollIntoView()
               }
             }}>
             <KeyboardArrowLeftIcon /> Back
@@ -189,6 +211,7 @@ const ArticleDetailPage: NextPageWithLayout = (props) => {
               setActiveStep(activeStep + 1)
               // @ts-ignore
               // taskBox?.current.scrollTo({ top: 0 })
+              ref.current.scrollIntoView()
             }
           }}
         >

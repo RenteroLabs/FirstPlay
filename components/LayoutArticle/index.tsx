@@ -10,8 +10,8 @@ const LayoutArticle: React.FC<PropsWithChildren> = ({ children }) => {
   const isMobileSize = useMediaQuery("(max-width: 600px)")
 
   return (
-    <Box sx={{ overflow: 'hidden' }}>
-      { !isMobileSize && <Header />}
+    <Box>
+      {!isMobileSize && <Header />}
       <Box className={styles.containBox}>
         {children}
       </Box>
