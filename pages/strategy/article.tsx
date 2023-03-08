@@ -19,6 +19,10 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { last } from 'lodash'
 import Link from 'next/link'
 
+import classNames from 'classnames/bind'
+
+const cx = classNames.bind(styles)
+
 const ArticleDetailPage: NextPageWithLayout = (props) => {
   const isMobileSize = useMediaQuery("(max-width: 600px)")
 
@@ -125,6 +129,22 @@ const ArticleDetailPage: NextPageWithLayout = (props) => {
       </Box>
     </Box>
 
+    {isMobileSize && <Box className={styles.mobileStepAnchorBox}>
+      <Box className={styles.innerListWrapper}>
+        {
+          articleContent?.StepList.map((_, index: number) =>
+            <Box
+              key={index}
+              className={cx({
+                stepAnchorStep: true,
+                activeAnchor: activeStep === index + 1
+              })}
+              onClick={() => setActiveStep(index + 1)}
+            >Step{index + 1}</Box>
+          )
+        }
+      </Box>
+    </Box>}
 
     <Box className={styles.contentBox}>
       <Typography variant='h1'>{articleContent?.ArticleTitle}</Typography>

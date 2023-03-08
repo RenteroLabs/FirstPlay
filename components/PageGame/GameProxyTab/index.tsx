@@ -4,11 +4,11 @@ import ProxyPlayCard from "../ProxyPlayCard";
 import styles from './styles.module.scss'
 
 interface GameProxyTabProps {
-
+  proxyPlayList: Record<string, any>[]
 }
 
 const GameProxyTab: React.FC<GameProxyTabProps> = (props) => {
-  const { } = props
+  const { proxyPlayList } = props
 
   return <Box className={styles.proxyTabBox}>
     <Box className={styles.proxyCardList}>
@@ -16,10 +16,10 @@ const GameProxyTab: React.FC<GameProxyTabProps> = (props) => {
         Proxy Play
         <span>Coming Soon!</span>
       </Typography>
-      <ProxyPlayCard index={1} /> 
-      <ProxyPlayCard index={2} /> 
-      <ProxyPlayCard index={3} /> 
-      <ProxyPlayCard index={4} /> 
+      {
+        proxyPlayList.map((item, index) =>
+          <ProxyPlayCard key={index} index={index + 1} proxyInfo={item} />)
+      }
     </Box>
   </Box>
 }

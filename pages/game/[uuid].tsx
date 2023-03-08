@@ -104,6 +104,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
     return gameInfo?.tasks?.length > 0
   }, gameInfo)
 
+  console.log( carnivalGame)
 
   useEffect(() => {
     if (router.query?.uuid) {
@@ -228,7 +229,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
             <meta property="og:type" content="website" />
             <meta name="twitter:card" content="summary_large_image" />
             <link rel="icon" href="/favicon.ico" />
-            <script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></script>
+            {/* <script async src="https://platform.twitter.com/widgets.js"></script> */}
           </Head>
           <Box className={styles.topCover}>
             {gameInfo?.background &&
@@ -252,16 +253,19 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                 children: <HomeTab
                   gameTasksInfo={carnivalGame}
                   reloadGameTasks={refresh}
-                  gameId={router?.query?.uuid}
+                  gameId={router?.query?.uuid as string}
                 />
               }, {
                 key: "2",
                 label: "Videos&News",
-                children: <GameNewsTab />
+                children: <GameNewsTab 
+                twitterHandler={gameInfo.twitter} 
+                videoList={carnivalGame?.videos}
+                />
               }, {
                 key: "3",
                 label: "Proxy Play",
-                children: <GameProxyTab />
+                children: <GameProxyTab proxyPlayList={carnivalGame?.boosters} />
               }
             ]}>
             </Tabs>
