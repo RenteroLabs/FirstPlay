@@ -52,6 +52,9 @@ export const getArticleCollectionById = async(collectionId: string) => {
     populate: {
       strategy_articles: {
         fields: ['ArticleTitle', 'ArticleName']
+      },
+      game_info: {
+        fields: ['GameName']
       }
     },
   }, {
