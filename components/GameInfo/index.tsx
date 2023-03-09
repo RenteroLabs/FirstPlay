@@ -87,6 +87,7 @@ const GameInfo: React.FC<GameInfoProps> = (props) => {
             </Stack>
 
             <SocialMediaShare
+              shareType="Game"
               showShareModal={showShareModal}
               setShowShareModal={setShowShareModal}
               gameName={gameInfo?.name}

@@ -6,6 +6,19 @@
   overflow: hidden;
 }
 
+.activityBox {
+  padding: 0 1rem;
+  h2 {
+    font-size: 1.75rem;
+    font-family: Inter-Bold, Inter;
+    font-weight: bold;
+    color: #222222;
+    line-height: 1.75rem;
+    margin-top: 1.67rem;
+    margin-bottom: 1.33rem;
+  }
+}
+
 .workthroughBox {
   padding: 0.83rem 1rem 2.5rem;
   h3 {

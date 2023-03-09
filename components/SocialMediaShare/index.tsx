@@ -1,7 +1,7 @@
 import { Box, Drawer, useMediaQuery, Typography, IconButton } from "@mui/material";
 import { useIsMounted } from "hooks/useIsMounted";
 import React, { useMemo } from "react";
-import styles from './styles.module.scss'
+import styles from './styles.module.scss';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import LinkIcon from '@mui/icons-material/Link';
@@ -10,17 +10,23 @@ import { useRouter } from "next/router";
 import { toast } from 'react-toastify';
 
 interface SocialMediaShareProps {
+  shareType: 'Article' | 'Game'
   showShareModal: boolean
   setShowShareModal: (arg: boolean) => any
-  gameName: string
+  gameName?: string
 }
 
 const SocialMediaShare: React.FC<SocialMediaShareProps> = (props) => {
   const { showShareModal, setShowShareModal, gameName } = props
 
   const router = useRouter()
-
+  // console.log(router)
   const currentPath = useMemo(() => {
+    // console.log(typeof window)
+    // if (typeof window != undefined) {
+    //   return window.location.href
+    // }
+    // return window && window.location.href
     return window.location.href
   }, [])
 
