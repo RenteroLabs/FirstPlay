@@ -104,7 +104,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
     return gameInfo?.tasks?.length > 0
   }, gameInfo)
 
-  console.log( carnivalGame)
+  console.log(carnivalGame)
 
   useEffect(() => {
     if (router.query?.uuid) {
@@ -258,9 +258,9 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
               }, {
                 key: "2",
                 label: "Videos&News",
-                children: <GameNewsTab 
-                twitterHandler={gameInfo.twitter} 
-                videoList={carnivalGame?.videos}
+                children: <GameNewsTab
+                  twitterHandler={gameInfo.twitter}
+                  videoList={carnivalGame?.videos}
                 />
               }, {
                 key: "3",
@@ -312,7 +312,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
           </Box>
           }
 
-          {!isCarnivalGame &&
+          {!isCarnivalGame && !is600Width &&
             <Box className={styles.gameStrategy}>
               <Box className={styles.comingSoonTip}>
                 <CampaignIcon sx={{ mr: '2rem' }} fontSize="large" /> {t('comingSoonTip')}

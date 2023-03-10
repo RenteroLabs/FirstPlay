@@ -4,6 +4,7 @@ import React from "react";
 import GameNewsVideoCard from "../GameNewsVideoCard";
 import styles from './styles.module.scss'
 import { TwitterTimelineEmbed } from 'react-twitter-embed'
+import { useMemo } from "react";
 
 interface GameNewsTabProps {
   twitterHandler: string
@@ -12,6 +13,10 @@ interface GameNewsTabProps {
 
 const GameNewsTab: React.FC<GameNewsTabProps> = (props) => {
   const { twitterHandler, videoList } = props
+
+  const twitterName = useMemo(() => {
+    return new URL(twitterHandler).pathname.slice(1)
+  }, [twitterHandler])
 
   return <Box className={styles.newsTabBox}>
     {
@@ -35,9 +40,11 @@ const GameNewsTab: React.FC<GameNewsTabProps> = (props) => {
       }}>
       </div> */}
       <TwitterTimelineEmbed
+        noFooter={true}
+        noHeader={true}
         tweetLimit={10}
         sourceType="profile"
-        screenName={twitterHandler}
+        screenName={twitterName}
       />
     </Box>
   </Box>
