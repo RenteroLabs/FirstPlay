@@ -24,4 +24,26 @@
       }
     }
   }
+
+  .emptyTip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .iconBox {
+      width: 9.17rem;
+      height: 6.42rem;
+      position: relative;
+      margin-top: 8.33rem;
+    }
+
+    p {
+      font-size: 1.17rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
+      color: rgba($color: #222, $alpha: 0.3);
+      line-height: 1.5rem;
+      margin-top: 0.83rem;
+      margin-bottom: 7.83rem;
+    }
+  }
 }

@@ -264,7 +264,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                 />
               }, {
                 key: "3",
-                label: "Proxy Play",
+                label: "Pro Players",
                 children: <GameProxyTab proxyPlayList={carnivalGame?.boosters} />
               }
             ]}>

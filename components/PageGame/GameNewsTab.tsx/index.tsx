@@ -33,12 +33,6 @@ const GameNewsTab: React.FC<GameNewsTabProps> = (props) => {
 
     <Box className={styles.newsBox}>
       <Typography variant="h3">News</Typography>
-      {/* <div dangerouslySetInnerHTML={{
-        __html: `
-        <a class="twitter-timeline" href="https://twitter.com/TwitterDev?ref_src=twsrc%5Etfw">Tweets by TwitterDev</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
-        `
-      }}>
-      </div> */}
       <TwitterTimelineEmbed
         noFooter={true}
         noHeader={true}
