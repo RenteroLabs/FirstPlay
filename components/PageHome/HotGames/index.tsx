@@ -28,9 +28,6 @@ const HotGames: React.FC<HotGamesProps> = (props) => {
         {
           ((is600Size && !showMore) ? hotGames.slice(0, 6) : hotGames).map((item, index) => <GameCard gameInfo={item} key={index} timestamp={timestamp} />)
         }
-        {
-          // hotGames.map((item, index) => <GameCard gameInfo={item} key={index} timestamp={timestamp} />)
-        }
       </Box>
     </Box>
 
