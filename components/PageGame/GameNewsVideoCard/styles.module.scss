@@ -1,9 +1,8 @@
 .videoCard {
-  margin: 1rem 0;
   .videoContent {
-    height: 16.33rem;
+    height: 27.17rem;
     background: #d8d8d8;
-    border-radius: 1rem;
+    border-radius: 1.33rem;
     overflow: hidden;
 
     iframe {
@@ -15,34 +14,87 @@
     .videoPoster {
       display: inline-flex;
       align-items: center;
-      margin-top: 1rem;
+      margin-top: 1.67rem;
       p {
-        font-size: 1rem;
+        color: rgba(#222, 0.3);
+        font-size: 1.17rem;
         font-family: Inter-Bold, Inter;
         font-weight: bold;
-        color: rgba(#222, 0.3);
-        line-height: 1rem;
+        line-height: 1.17rem;
       }
       .iconBox {
         margin-left: 0.5rem;
         position: relative;
-        width: 1.29rem;
-        height: 1.29rem;
+        width: 1.37rem;
+        height: 1.37rem;
         opacity: 0.3;
       }
     }
     .videoTitle {
-      margin-top: 0.58rem;
-      font-size: 1.17rem;
+      margin-top: 0.75rem;
+      color: #222222;
+      font-size: 1.33rem;
       font-family: Inter-Medium, Inter;
       font-weight: 500;
       color: #222222;
-      line-height: 1.5rem;
+      line-height: 2rem;
+
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .videoCard {
+    margin: 1rem 0;
+    .videoContent {
+      height: 16.33rem;
+      background: #d8d8d8;
+      border-radius: 1rem;
+      overflow: hidden;
+
+      iframe {
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+    .videoInfo {
+      .videoPoster {
+        display: inline-flex;
+        align-items: center;
+        margin-top: 1rem;
+        p {
+          font-size: 1rem;
+          font-family: Inter-Bold, Inter;
+          font-weight: bold;
+          color: rgba(#222, 0.3);
+          line-height: 1rem;
+        }
+        .iconBox {
+          margin-left: 0.5rem;
+          position: relative;
+          width: 1.29rem;
+          height: 1.29rem;
+          opacity: 0.3;
+        }
+      }
+      .videoTitle {
+        margin-top: 0.58rem;
+        font-size: 1.17rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 1.5rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+      }
     }
   }
 }

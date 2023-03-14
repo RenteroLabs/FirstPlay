@@ -7,7 +7,7 @@
 }
 
 .activityBox {
-  padding: 0 1rem;
+  // padding: 0 1rem;
   h2 {
     font-size: 1.75rem;
     font-family: Inter-Bold, Inter;
@@ -20,7 +20,8 @@
 }
 
 .workthroughBox {
-  padding: 1.67rem 1rem 2.5rem;
+  min-height: 250px;
+  padding: 1.67rem 0rem 2.5rem;
   h3 {
     font-size: 1.75rem;
     font-family: Inter-Bold, Inter;
@@ -44,13 +45,13 @@
     align-items: center;
     p {
       font-size: 2rem;
-      font-family: Inter-Bold, Inter;
-      font-weight: bold;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
       color: #222222;
       line-height: 2rem;
-      background: linear-gradient(270deg, #f82757 0%, #984cec 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      // background: linear-gradient(270deg, #f82757 0%, #984cec 100%);
+      // -webkit-background-clip: text;
+      // -webkit-text-fill-color: transparent;
     }
     .mediaBox {
       display: flex;
@@ -72,16 +73,16 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-top: 1.33rem;
-    margin-bottom: 3.25rem;
+    margin-top: 0.83rem;
+    margin-bottom: 3.17rem;
     text-align: left;
     p {
       width: 80%;
-      font-size: 1.75rem;
-      font-family: Inter-Medium, Inter;
-      font-weight: 500;
-      color: #8e50e4;
-      line-height: 2.33rem;
+      font-size: 1.33rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
+      color: #222222;
+      line-height: 2rem;
     }
     .imageBox {
       text-align: center;
@@ -137,6 +138,10 @@
 }
 
 @media screen and (max-width: 600px) {
+  .workthroughBox {
+    padding: 1.67rem 0rem 2.5rem;
+    min-height: 230px;
+  }
   .carnivalRewrads {
     width: 100%;
     padding: 1.67rem 1rem;

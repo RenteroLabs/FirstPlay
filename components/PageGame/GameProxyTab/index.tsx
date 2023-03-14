@@ -5,13 +5,12 @@ import styles from './styles.module.scss'
 import Image from "next/image";
 import { isEmpty } from "lodash";
 
-
 interface GameProxyTabProps {
   proxyPlayList: Record<string, any>[]
 }
 
 const GameProxyTab: React.FC<GameProxyTabProps> = (props) => {
-  const { proxyPlayList } = props
+  const { proxyPlayList = [] } = props
 
   const showEmptyTip = useMemo(() => {
     return isEmpty(proxyPlayList)
@@ -23,10 +22,13 @@ const GameProxyTab: React.FC<GameProxyTabProps> = (props) => {
         Proxy Play
         <span>Coming Soon!</span>
       </Typography>
-      {
-        proxyPlayList.map((item, index) =>
-          <ProxyPlayCard key={index} index={index + 1} proxyInfo={item} />)
-      }
+      <Box className={styles.cardlist}>
+        {
+          proxyPlayList?.map((item, index) =>
+            <ProxyPlayCard key={index} index={index + 1} proxyInfo={item} />)
+        }
+      </Box>
+
       {showEmptyTip && <Box className={styles.emptyTip}>
         <Box className={styles.iconBox}>
           <Image src="https://firstplay-crm.s3.ap-east-1.amazonaws.com/icon_203a6d749c.png" layout="fill" />

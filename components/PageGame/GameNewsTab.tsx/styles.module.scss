@@ -1,32 +1,86 @@
 .newsTabBox {
+  padding-top: 2rem;
+  width: 100%;
+  max-width: 100rem;
   .videoBox {
-    padding: 1.67rem 1rem;
-
     h3 {
-      font-size: 1.75rem;
-      font-family: Inter-Bold, Inter;
-      font-weight: bold;
+      font-size: 2rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
       color: #222222;
-      line-height: 1.75rem;
-      margin-bottom: 1.33rem;
+      line-height: 2rem;
+      margin-bottom: 2.5rem;
     }
 
-    & > div {
-      & + div {
-        margin-top: 1.67rem;
+    .videoList {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-bottom: 2.33rem;
+      & > div {
+        width: calc(50% - 1.33rem);
+
+        & + div {
+          margin-bottom: 2.67rem;
+        }
       }
     }
   }
 
   .newsBox {
-    padding: 0.83rem 1rem 2.5rem;
     h3 {
-      font-size: 1.75rem;
-      font-family: Inter-Bold, Inter;
-      font-weight: bold;
+      font-size: 2rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
       color: #222222;
-      line-height: 1.75rem;
-      margin-bottom: 0.83rem;
+      line-height: 2rem;
+      margin-bottom: 1.67rem;
+    }
+    .twitterContainer {
+      width: 100%;
+      max-width: 60rem;
+      margin: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .newsTabBox {
+    padding-top: 0;
+    .videoBox {
+      padding: 1.67rem 0rem;
+      h3 {
+        font-size: 1.75rem;
+        font-family: Inter-Bold, Inter;
+        font-weight: bold;
+        color: #222222;
+        line-height: 1.75rem;
+        margin-bottom: 1.33rem;
+      }
+
+      .videoList {
+        display: block;
+        margin-bottom: 0;
+        & > div {
+          width: 100%;
+          & + div {
+            margin-top: 1.67rem;
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+
+    .newsBox {
+      padding: 0.83rem 0rem 2.5rem;
+      h3 {
+        font-size: 1.75rem;
+        font-family: Inter-Bold, Inter;
+        font-weight: bold;
+        color: #222222;
+        line-height: 1.75rem;
+        margin-bottom: 0.83rem;
+      }
     }
   }
 }
