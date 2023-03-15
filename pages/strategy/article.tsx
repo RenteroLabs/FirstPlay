@@ -54,17 +54,12 @@ const ArticleDetailPage: NextPageWithLayout = (props) => {
 
   const router = useRouter()
 
-  useEffect(() => {
-    console.log(scroll)
-
-  }, [scroll])
-
-  console.log(collectionArticleList)
+  // console.log(collectionArticleList)
   useEffect(() => {
     // console.log(router.query)
     if (router.query?.articleId) {
       setArticleId(router.query?.articleId as string)
-      queryArticleContent(router.query?.articleId as string)
+      queryArticleContent(router.query?.articleId as string, router.locale as string)
 
       setActiveStep(1)
     }
@@ -72,17 +67,29 @@ const ArticleDetailPage: NextPageWithLayout = (props) => {
       setCollectionId(router.query?.collectionId as string)
       queryCollectionList(router.query?.collectionId as string)
     }
-  }, [router.query])
+  }, [router.query, router.locale])
 
   const { run: queryArticleContent } = useRequest(getSingerStrategyArticle, {
-    // defaultParams: [articleId as string],
-    // refreshDeps: [articleId],
-    // ready: Boolean(articleId),
     onSuccess: ({ data }) => {
       console.log(data)
-      if (data[0]?.attributes) {
-        setArticleContent(data[0]?.attributes)
-        setArticleStepCount(data[0]?.attributes?.StepList.length || 0)
+
+      // 此处逻辑需注意
+      // 根据英文攻略文章 id 搜索内容，如果是其他语言，在 localizations 结构中获取内容
+      let content
+      if (router.locale === 'en-US') {
+        content = data[0]?.attributes
+      } else {
+        content = data[0]?.attributes?.localizations?.data[0]?.attributes
+
+        // 如果是其他语言，但其他语言尚未支持，仍然展示英文内容
+        if (!content) {
+          content = data[0]?.attributes
+        }
+      }
+
+      if (content) {
+        setArticleContent(content)
+        setArticleStepCount(content?.StepList.length || 0)
       }
     }
   })

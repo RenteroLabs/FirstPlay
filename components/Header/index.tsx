@@ -246,7 +246,7 @@ const Header: React.FC = () => {
                   </Link>
                 </Box>
                 <Box>
-                  <Link href={asPath} locale="vi-VM">
+                  <Link href={asPath} locale="vi-VN">
                     Việt Nam
                   </Link>
                 </Box>
