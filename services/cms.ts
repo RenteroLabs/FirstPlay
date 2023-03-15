@@ -42,7 +42,7 @@ export const getUserArticleCollection = async (params: CollectionParams) => {
 }
 
 // 根据 Collection Id 获取 Article Collection 数据信息
-export const getArticleCollectionById = async(collectionId: string) => {
+export const getArticleCollectionById = async (collectionId: string) => {
   const query = qs.stringify({
     filters: {
       CollectionId: {
@@ -71,14 +71,22 @@ export const getArticleCollectionById = async(collectionId: string) => {
 }
 
 // 获取单篇文章攻略内容
-export const getSingerStrategyArticle = async (articleId: string) => {
+export const getSingerStrategyArticle = async (articleId: string, localeType: string) => {
   const query = qs.stringify({
     filters: {
       id: {
         $eq: Number(articleId)
-      }
+      },
     },
-    populate: ['StepList']
+    populate: {
+      StepList: true,
+      localizations: {
+        populate: ['StepList'],
+        filters: {
+          locale: localeType
+        }
+      }
+    }
   }, {
     encodeValuesOnly: true
   })
