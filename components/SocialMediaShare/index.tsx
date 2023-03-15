@@ -14,10 +14,11 @@ interface SocialMediaShareProps {
   showShareModal: boolean
   setShowShareModal: (arg: boolean) => any
   gameName?: string
+  articleName?: string
 }
 
 const SocialMediaShare: React.FC<SocialMediaShareProps> = (props) => {
-  const { showShareModal, setShowShareModal, gameName } = props
+  const { showShareModal, setShowShareModal, gameName, shareType, articleName } = props
 
   const router = useRouter()
   // console.log(router)
@@ -51,12 +52,25 @@ const SocialMediaShare: React.FC<SocialMediaShareProps> = (props) => {
   }
 
   const [twitterLink, telegramLink] = useMemo(() => {
-    const text = `I\'m trialing ${gameName}, come and build web3 with me!`
+    let text = ''
+
+    switch (shareType) {
+      case 'Game':
+        text = `I\'m trialing ${gameName}, come and build web3 with me!`;
+        break;
+      case 'Article':
+        text = `I\’m reading 《${articleName}》, it will help you a lot to trial the game！`;
+        break;
+      default:
+        text = `I\'m trialing ${gameName}, come and build web3 with me!`;
+        break;
+    }
 
     const twitterShare = `https://twitter.com/share?text=${text}&url=${currentPath}`
     const telegramShare = `https://telegram.me/share/url?url=${currentPath}&text=${text}`
+
     return [twitterShare, telegramShare]
-  }, [currentPath, gameName])
+  }, [currentPath, gameName, shareType, articleName])
 
 
   return isMounted && is600Size ?

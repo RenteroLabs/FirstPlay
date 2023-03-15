@@ -1,5 +1,5 @@
 import { Box, Dialog, IconButton, Typography, useMediaQuery } from '@mui/material'
-import { COIN_ICON, MOBILE_CARNIVAL_REWARD_ITEM, MONEY_ICON, REWARD_ACTIVE_ICON, REWARD_ICON, STAR_LABEL, TASK_COIN } from 'constants/static'
+import { COIN_ICON, GAME_TASK_MONEY, MOBILE_CARNIVAL_REWARD_ITEM, MONEY_ICON, REWARD_ACTIVE_ICON, REWARD_ICON, STAR_LABEL, TASK_COIN } from 'constants/static'
 import Image from 'next/image'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styles from './styles.module.scss'
@@ -320,7 +320,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       <Box className={styles.taskReward}>
         {/* <img src={COIN_ICON} /> */}
         <Box className={styles.iconBox}>
-          <Image src={TASK_COIN} layout="fill" />
+          <Image src={GAME_TASK_MONEY} layout="fill" />
         </Box>
         {taskInfo?.reward}
       </Box>

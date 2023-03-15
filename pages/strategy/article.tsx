@@ -127,6 +127,26 @@ const ArticleDetailPage: NextPageWithLayout = (props) => {
       {/* TODO: 页面 Title 信息 */}
       <title>Strategy | FirstPlay </title>
       <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
+
+      <meta
+        property="og:title"
+        content={`Reading ${gameName}\'walkthrough on FirstPlay`}
+      />
+      <meta
+        property="og:description"
+        content={articleContent?.ArticleTitle}
+      />
+      {/* <meta
+        property="og:image"
+        content={gameInfo?.background}
+      /> */}
+      {isMounted && <meta
+        property="og:url"
+        content={window.location.href}
+      />}
+      <meta property="og:type" content="website" />
+      <meta name="twitter:card" content="summary_large_image" />
+
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Box className={styles.headerBox}>
@@ -187,6 +207,7 @@ const ArticleDetailPage: NextPageWithLayout = (props) => {
         {isMounted &&
           <SocialMediaShare
             shareType="Article"
+            articleName={articleContent?.ArticleTitle}
             setShowShareModal={setShowShareModal}
             showShareModal={showShareModal}
           />}
