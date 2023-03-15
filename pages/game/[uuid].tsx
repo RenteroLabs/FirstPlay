@@ -38,6 +38,15 @@ import { useIsMounted } from 'hooks/useIsMounted'
 import WalkthroughCollection from '@/components/WalkthroughCollection'
 import GameNewsVideoCard from '@/components/PageGame/GameNewsVideoCard'
 import GameNewsTwitterCard from '@/components/PageGame/GameNewsTwitterCard'
+import { Tabs } from 'antd'
+import HomeTab from '@/components/PageGame/GameHomeTab.tsx/HomeTab'
+import GameNewsTab from '@/components/PageGame/GameNewsTab.tsx'
+import GameProxyTab from '@/components/PageGame/GameProxyTab'
+
+import classNames from 'classnames/bind'
+import { getUserArticleCollection } from 'services/cms'
+
+const cx = classNames.bind(styles)
 
 export interface TxLoadingParams {
   txHash: string,
@@ -95,14 +104,17 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
     return gameInfo?.tasks?.length > 0
   }, gameInfo)
 
+  console.log(carnivalGame)
 
   useEffect(() => {
     if (router.query?.uuid) {
       getCarnivalGameInfo({ address: address || '0x00', game_id: router.query?.uuid as string })
     }
+
+    getUserArticleCollection({ gameId: router.query?.uuid as string })
   }, [router.query?.uuid, address])
 
-  const { run: getCarnivalGameInfo } = useRequest(queryCarnivalGamesInfo, {
+  const { run: getCarnivalGameInfo, refresh } = useRequest(queryCarnivalGamesInfo, {
     manual: true,
     onSuccess: ({ data }) => {
       setCarnivalGame(data)
@@ -217,6 +229,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
             <meta property="og:type" content="website" />
             <meta name="twitter:card" content="summary_large_image" />
             <link rel="icon" href="/favicon.ico" />
+            {/* <script async src="https://platform.twitter.com/widgets.js"></script> */}
           </Head>
           <Box className={styles.topCover}>
             {gameInfo?.background &&
@@ -231,8 +244,35 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
           <Box className={styles.gameInfoBox}>
             <GameInfo gameInfo={gameInfo} timestamp={init_timestamp} />
           </Box>
+
+          {is600Width && <Box className={styles.gameContent}>
+            <Tabs className={cx({ tabsBox: true, mobileTabsBox: true })} items={[
+              {
+                key: '1',
+                label: "Home",
+                children: <HomeTab
+                  gameTasksInfo={carnivalGame}
+                  reloadGameTasks={refresh}
+                  gameId={router?.query?.uuid as string}
+                />
+              }, {
+                key: "2",
+                label: "Videos&News",
+                children: <GameNewsTab
+                  twitterHandler={gameInfo.twitter}
+                  videoList={carnivalGame?.videos}
+                />
+              }, {
+                key: "3",
+                label: "Pro Players",
+                children: <GameProxyTab proxyPlayList={carnivalGame?.boosters} />
+              }
+            ]}>
+            </Tabs>
+          </Box>}
+
           {/* Carnival activity game detail style */}
-          {isCarnivalGame && <Box className={styles.rewardMainBox}>
+          {isCarnivalGame && !is600Width && <Box className={styles.rewardMainBox}>
             <Box className={styles.carnivalRewrads}>
               <Box className={styles.cardHeader}>
                 <Typography>{t('taskTitle')}</Typography>
@@ -263,28 +303,22 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                     timestamp={timestamp as unknown as number}
                     reloadData={() => {
                       getCarnivalGameInfo({ address: address || '0x00', game_id: router.query?.uuid as string })
+                      // reloadGameTasks()
                     }}
                   />
                 )
               }
             </Box>
-            {/* <Box className={styles.rewardDrop}>
-              <Typography variant='h4'>{carnivalGame?.gifts?.[0]?.title}</Typography>
-              <Box className={styles.dropDesc}>
-                <Typography>
-                  {carnivalGame?.gifts?.[0]?.description}
-                </Typography>
-                <Box className={styles.bg}></Box>
-                <Box className={styles.bg_ill}></Box>
-              </Box>
-            </Box> */}
-          </Box>}
-          {!isCarnivalGame &&
+          </Box>
+          }
+
+          {!isCarnivalGame && !is600Width &&
             <Box className={styles.gameStrategy}>
               <Box className={styles.comingSoonTip}>
                 <CampaignIcon sx={{ mr: '2rem' }} fontSize="large" /> {t('comingSoonTip')}
               </Box>
             </Box>}
+
           {/* {
             !isCarnivalGame &&
             <GameActivityCarousel />
@@ -293,14 +327,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
             !isCarnivalGame &&
             <WalkthroughCollection />
           }
-          {
-            !isCarnivalGame &&
-            <>
-              <GameNewsVideoCard />
-              <GameNewsVideoCard />
-              <GameNewsVideoCard />
-            </>
-          }
+        
           {
             !isCarnivalGame && 
             <>

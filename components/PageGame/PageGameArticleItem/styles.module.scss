@@ -12,7 +12,6 @@
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
-    background: #96fcc8;
     border: 0.08rem solid #000000;
 
     display: flex;
@@ -25,6 +24,9 @@
     // line-height: 1.17rem;
 
     margin-right: 1.17rem;
+  }
+  .itemSortActive {
+    background: #96fcc8;
   }
 
   .articleTitle {

@@ -6,43 +6,35 @@ import styles from './styles.module.scss'
 import Image from "next/image";
 import { Typography } from "antd";
 
-
-
-
-
 interface GameActivityCardProps {
-
+  activityInfo: Record<string, any>
 }
 
 const GameActivityCard: React.FC<GameActivityCardProps> = (props) => {
-  const { } = props
+  const { activityInfo } = props
 
-  return <Box className={styles.activityCard}>
+  return <a href={activityInfo?.link} target="_blank" rel="noreferrer" ><Box className={styles.activityCard}>
     <Box className={styles.cardImage}>
-      <img src="https://rentero-resource.s3.ap-east-1.amazonaws.com/firstplay/background/Nine-Chronicles.jpg" />
-      <Box className={styles.imageMask}>2023.01.24～2023.2.24</Box>
-
+      <img src={activityInfo?.image} />
+      <Box className={styles.imageMask}>{activityInfo?.time_range}</Box>
     </Box>
     <Box className={styles.cardContent}>
-      <Typography className={styles.activityTitle}>Download,Sign up and Play</Typography>
-      <Typography className={styles.activitySubtitle}>Get a genesis NFT WL and share $10,000 after test begin</Typography>
+      <Typography className={styles.activityTitle}>{activityInfo?.title}</Typography>
+      <Typography className={styles.activitySubtitle}>{activityInfo?.description}</Typography>
     </Box>
   </Box>
+  </a>
 }
-
-
 
 
 interface GameActivityCarouselProps {
-
+  activityList: Record<string, any>[]
 }
 
 const GameActivityCarousel: React.FC<GameActivityCarouselProps> = (props) => {
-
-  const { } = props
+  const { activityList } = props
 
   return <Box className={styles.activityBox}>
-
     <Slider
       className={styles.sliderBox}
       dots={true}
@@ -58,9 +50,9 @@ const GameActivityCarousel: React.FC<GameActivityCarouselProps> = (props) => {
         <span className={styles.dotItem}></span>
       )}
     >
-      <GameActivityCard key={1} />
-      <GameActivityCard key={2} />
-      <GameActivityCard key={3} />
+      {
+        activityList?.map((item, index) => <GameActivityCard key={index} activityInfo={item} />)
+      }
     </Slider>
   </Box>
 }

@@ -1,0 +1,49 @@
+.proxyTabBox {
+  .proxyCardList {
+    padding: 1.67rem 1rem 2.5rem;
+    h3 {
+      font-size: 1.75rem;
+      font-family: Inter-Bold, Inter;
+      font-weight: bold;
+      color: #222222;
+      line-height: 1.75rem;
+      margin-bottom: 1.33rem;
+      span {
+        font-size: 1.17rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 1.17rem;
+        margin-left: 0.58rem;
+      }
+    }
+
+    & > div {
+      & + div {
+        margin-top: 1rem;
+      }
+    }
+  }
+
+  .emptyTip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .iconBox {
+      width: 9.17rem;
+      height: 6.42rem;
+      position: relative;
+      margin-top: 8.33rem;
+    }
+
+    p {
+      font-size: 1.17rem;
+      font-family: Inter-Regular, Inter;
+      font-weight: 400;
+      color: rgba($color: #222, $alpha: 0.3);
+      line-height: 1.5rem;
+      margin-top: 0.83rem;
+      margin-bottom: 7.83rem;
+    }
+  }
+}

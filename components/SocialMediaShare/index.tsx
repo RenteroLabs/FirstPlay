@@ -1,7 +1,7 @@
 import { Box, Drawer, useMediaQuery, Typography, IconButton } from "@mui/material";
 import { useIsMounted } from "hooks/useIsMounted";
 import React, { useMemo } from "react";
-import styles from './styles.module.scss'
+import styles from './styles.module.scss';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import LinkIcon from '@mui/icons-material/Link';
@@ -10,17 +10,24 @@ import { useRouter } from "next/router";
 import { toast } from 'react-toastify';
 
 interface SocialMediaShareProps {
+  shareType: 'Article' | 'Game'
   showShareModal: boolean
   setShowShareModal: (arg: boolean) => any
-  gameName: string
+  gameName?: string
+  articleName?: string
 }
 
 const SocialMediaShare: React.FC<SocialMediaShareProps> = (props) => {
-  const { showShareModal, setShowShareModal, gameName } = props
+  const { showShareModal, setShowShareModal, gameName, shareType, articleName } = props
 
   const router = useRouter()
-
+  // console.log(router)
   const currentPath = useMemo(() => {
+    // console.log(typeof window)
+    // if (typeof window != undefined) {
+    //   return window.location.href
+    // }
+    // return window && window.location.href
     return window.location.href
   }, [])
 
@@ -45,12 +52,25 @@ const SocialMediaShare: React.FC<SocialMediaShareProps> = (props) => {
   }
 
   const [twitterLink, telegramLink] = useMemo(() => {
-    const text = `I\'m trialing ${gameName}, come and build web3 with me!`
+    let text = ''
+
+    switch (shareType) {
+      case 'Game':
+        text = `I\'m trialing ${gameName}, come and build web3 with me!`;
+        break;
+      case 'Article':
+        text = `I\’m reading 《${articleName}》, it will help you a lot to trial the game！`;
+        break;
+      default:
+        text = `I\'m trialing ${gameName}, come and build web3 with me!`;
+        break;
+    }
 
     const twitterShare = `https://twitter.com/share?text=${text}&url=${currentPath}`
     const telegramShare = `https://telegram.me/share/url?url=${currentPath}&text=${text}`
+
     return [twitterShare, telegramShare]
-  }, [currentPath, gameName])
+  }, [currentPath, gameName, shareType, articleName])
 
 
   return isMounted && is600Size ?

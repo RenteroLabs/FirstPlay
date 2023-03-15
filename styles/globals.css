@@ -17,7 +17,7 @@ a {
 }
 
 @font-face {
-  font-family: "Branding-Bold";
+  font-family: 'Branding-Bold';
   src: url(../public/fonts/Branding\ Bold.otf);
 }
 
@@ -38,4 +38,8 @@ a {
 
 .MuiDialog-root {
   z-index: 1700 !important;
+}
+
+.ant-dropdown-menu-title-content a > div {
+  padding: 0.5rem 0 !important;
 }

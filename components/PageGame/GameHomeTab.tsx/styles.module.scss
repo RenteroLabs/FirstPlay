@@ -1,0 +1,179 @@
+.homeTab {
+}
+
+.rewardMainBox {
+  // background: #f4f4f9;
+  overflow: hidden;
+}
+
+.activityBox {
+  padding: 0 1rem;
+  h2 {
+    font-size: 1.75rem;
+    font-family: Inter-Bold, Inter;
+    font-weight: bold;
+    color: #222222;
+    line-height: 1.75rem;
+    margin-top: 1.67rem;
+    margin-bottom: 1.33rem;
+  }
+}
+
+.workthroughBox {
+  padding: 1.67rem 1rem 2.5rem;
+  h3 {
+    font-size: 1.75rem;
+    font-family: Inter-Bold, Inter;
+    font-weight: bold;
+    color: #222222;
+    line-height: 1.75rem;
+    margin-bottom: 1.42rem;
+  }
+}
+
+.carnivalRewrads {
+  max-width: 100rem;
+  margin: auto;
+  min-height: 10rem;
+  // background: rgba(#E4405B, 0.08);
+  border-radius: 1rem;
+  padding: 3.33rem 0 8.33rem;
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p {
+      font-size: 2rem;
+      font-family: Inter-Bold, Inter;
+      font-weight: bold;
+      color: #222222;
+      line-height: 2rem;
+      background: linear-gradient(270deg, #f82757 0%, #984cec 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .mediaBox {
+      display: flex;
+      align-items: center;
+      font-size: 1.33rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #222222;
+      line-height: 1.33rem;
+      .rewardIcon {
+        position: relative;
+        width: 2rem;
+        height: 2rem;
+        margin-right: 0.33rem;
+      }
+    }
+  }
+  .rewardDesc {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 1.33rem;
+    margin-bottom: 3.25rem;
+    text-align: left;
+    p {
+      width: 80%;
+      font-size: 1.75rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #8e50e4;
+      line-height: 2.33rem;
+    }
+    .imageBox {
+      text-align: center;
+      position: relative;
+      width: 262px;
+      // height: 5.93rem;
+      margin-top: -4rem;
+      img {
+        height: 5.93rem;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .carnivalRewrads {
+    width: calc(100% - 10rem);
+    margin: auto;
+
+    .rewardDesc {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .carnivalRewrads {
+    width: calc(100% - 6rem);
+    margin: auto;
+
+    .rewardDesc {
+      width: 100%;
+      p {
+        width: 100%;
+      }
+      .imageBox {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .carnivalRewrads {
+    width: calc(100% - 4rem);
+    margin: auto;
+
+    .rewardDesc {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .carnivalRewrads {
+    width: 100%;
+    padding: 1.67rem 1rem;
+    .cardHeader {
+      p {
+        font-size: 1.75rem;
+        font-family: Inter-Bold, Inter;
+        font-weight: bold;
+        color: #222222;
+        font-size: 1.75rem;
+
+        background: none;
+        -webkit-background-clip: none;
+        -webkit-text-fill-color: #222222;
+        &::after {
+          display: none;
+        }
+      }
+      .mediaBox {
+        font-size: 1.17rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 1.17rem;
+      }
+    }
+
+    .rewardDesc {
+      margin-top: 0.67rem;
+      margin-bottom: 2.42rem;
+      P {
+        font-size: 1.17rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        line-height: 1.67rem;
+      }
+    }
+  }
+}

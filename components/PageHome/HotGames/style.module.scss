@@ -51,7 +51,8 @@
       width: 80%;
       .cardList {
         // max-height: calc((80vw - 7rem) / 2 + 300px);
-        max-height: calc((80vw - 7rem) / 2 + 242px);
+        max-height: calc(70vw + 136px);
+
         overflow: hidden;
         & > div {
           width: calc((100% - 7rem) / 4);
@@ -68,8 +69,8 @@
       width: 83.3%;
       // padding-top: 6.67rem;
       .cardList {
-        // max-height: calc((83vw - 6rem) / 2 + 300px);
-        max-height: calc((83vw - 6rem) / 2 + 238px);
+        // max-height: calc((83vw - 6rem) / 2 + 238px);
+        max-height: calc(70vw + 193px);
 
         & > div {
           width: calc((100% - 6rem) / 4);
@@ -87,7 +88,8 @@
       padding-top: 5rem;
 
       .cardList {
-        max-height: calc((89vw - 6rem) / 2 + 236px);
+        // max-height: calc((89vw - 6rem) / 2 + 236px);
+        max-height: calc(70vw + 260px);
 
         margin-top: 2.5rem;
       }

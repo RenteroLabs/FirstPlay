@@ -1,0 +1,23 @@
+
+.containBox {
+  margin: auto;
+
+  // margin-top: 6rem;
+  // overflow: hidden;
+  color: black;
+  // width: 100rem;
+  font-size: 1.33rem;
+  position: relative;
+}
+
+@media screen and (max-width: 1024px){
+  .containBox {
+    // margin-top: 6rem;
+  }
+}
+
+@media screen and (max-width: 600px){
+  .containBox {
+    // margin-top: 4.67rem;
+  }
+}
