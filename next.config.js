@@ -16,7 +16,8 @@ const nextConfig = {
     // deviceSizes: [320]
   },
   i18n: {
-    locales: ["en-US", "zh-CN", "id-ID", "vi-VM"],
+    // locales: ["en-US", "zh-CN", "id-ID", "vi-VM"],
+    locales: ["en-US", "id-ID", "vi-VM"],
     // locales: ['en-US'],
     defaultLocale: 'en-US',
   },

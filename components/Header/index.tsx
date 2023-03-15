@@ -250,11 +250,11 @@ const Header: React.FC = () => {
                     Việt Nam
                   </Link>
                 </Box>
-                <Box>
+                {/* <Box>
                   <Link href={asPath} locale="zh-CN">
                     简体中文
                   </Link>
-                </Box>
+                </Box> */}
               </Box>
             </Box>
 
