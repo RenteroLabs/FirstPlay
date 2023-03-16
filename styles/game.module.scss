@@ -1,5 +1,5 @@
 .gameBox {
-  min-height: calc(100vh - 27.17rem);
+  // min-height: calc(100vh - 27.17rem);
 
   .topCover {
     height: 20rem;
@@ -7,11 +7,110 @@
   }
 
   .gameInfoBox {
-    max-width: 100rem;
     // margin: 5.83rem auto 5.33rem;
     margin: auto;
     margin-top: -4rem;
-    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+
+    & > div {
+      max-width: 100rem;
+      width: 100%;
+    }
+  }
+
+  .gameContent {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    & > div {
+      width: 100%;
+      max-width: 100rem;
+    }
+
+    .tabsBox {
+      background: #fff;
+      :global {
+        .ant-tabs-nav {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    // tabs pc styles
+    .pcTabsStyle {
+      :global {
+        .ant-tabs-nav {
+          margin-top: 2rem;
+          .ant-tabs-nav-wrap {
+            // display: flex;
+            // justify-content: center;
+            overflow: visible;
+
+            .ant-tabs-nav-list {
+              font-size: 1.5rem !important;
+              font-family: Inter-SemiBold, Inter;
+              font-weight: 600;
+              color: rgba(#222, 0.5);
+              line-height: 1.5rem;
+
+              .ant-tabs-ink-bar {
+                // width: 0 !important;
+                background-color: #8e50e4;
+              }
+
+              .ant-tabs-tab {
+                height: 100%;
+                padding: 1rem 0 !important;
+                font-size: 1.5rem !important;
+
+                &:hover {
+                  color: rgba(#222, 0.8);
+                }
+                user-select: none;
+              }
+              .ant-tabs-tab + .ant-tabs-tab {
+                margin-left: 3.33rem;
+              }
+
+              .ant-tabs-tab:nth-child(3) {
+                &::after {
+                  content: 'New';
+                  position: absolute;
+                  z-index: 10;
+                  top: 0.4rem;
+                  right: -3.2rem;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 3rem;
+                  height: 1.33rem;
+                  background: linear-gradient(135deg, #ffa57e 0%, #ff4e00 100%);
+                  box-shadow: 0rem 0.17rem 0.33rem 0rem rgba(200, 61, 0, 0.3);
+                  border-radius: 0.75rem 0.75rem 0.75rem 0rem;
+
+                  font-size: 0.83rem;
+                  font-family: Inter-Bold, Inter;
+                  font-weight: bold;
+                  color: #ffffff;
+                  line-height: 0.83rem;
+                }
+              }
+
+              .ant-tabs-tab-active {
+                border-radius: 1.25rem;
+                background-color: white;
+                .ant-tabs-tab-btn {
+                  color: rgba(142, 80, 228, 1);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
   .rewardMainBox {
@@ -528,7 +627,8 @@
       margin: 3rem auto;
     }
     .rewardBox,
-    .gameInfoBox {
+    .gameInfoBox,
+    .gameContent {
       width: calc(100% - 10rem);
     }
     .cardBox {
@@ -569,7 +669,8 @@
       height: 18.33rem;
     }
     .rewardBox,
-    .gameInfoBox {
+    .gameInfoBox,
+    .gameContent {
       width: calc(100% - 6rem);
     }
 
@@ -609,7 +710,8 @@
 
     .rewardBox,
     .rewardMobileBox,
-    .gameInfoBox {
+    .gameInfoBox,
+    .gameContent {
       width: calc(100% - 4rem);
     }
 
@@ -732,9 +834,13 @@
       width: calc(100% - 2rem);
       margin: auto;
       margin-top: -30px;
+      padding-bottom: 0;
+      background-color: white;
     }
 
     .gameContent {
+      width: calc(100% - 2rem);
+      margin: auto;
       padding-top: 0.83rem;
       padding-bottom: 0.83rem;
       background-color: #f4f4f9;
@@ -747,6 +853,7 @@
         }
       }
       .mobileTabsBox {
+        min-height: 230px;
         :global {
           .ant-tabs-nav::before {
             border-bottom: none;
@@ -778,7 +885,7 @@
 
                 .ant-tabs-tab {
                   height: 100%;
-                  padding: 0 2rem;
+                  padding: 0 1.8rem;
                   &:hover {
                     color: rgba(#222, 0.8);
                   }

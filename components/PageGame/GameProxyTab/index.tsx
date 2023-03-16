@@ -5,13 +5,12 @@ import styles from './styles.module.scss'
 import Image from "next/image";
 import { isEmpty } from "lodash";
 
-
 interface GameProxyTabProps {
   proxyPlayList: Record<string, any>[]
 }
 
 const GameProxyTab: React.FC<GameProxyTabProps> = (props) => {
-  const { proxyPlayList } = props
+  const { proxyPlayList = [] } = props
 
   const showEmptyTip = useMemo(() => {
     return isEmpty(proxyPlayList)

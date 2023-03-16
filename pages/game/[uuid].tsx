@@ -245,8 +245,8 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
             <GameInfo gameInfo={gameInfo} timestamp={init_timestamp} />
           </Box>
 
-          {is600Width && <Box className={styles.gameContent}>
-            <Tabs className={cx({ tabsBox: true, mobileTabsBox: true })} items={[
+          {<Box className={styles.gameContent}>
+            <Tabs className={cx({ tabsBox: true, mobileTabsBox: is600Width, pcTabsStyle: !is600Width })} items={[
               {
                 key: '1',
                 label: "Home",
@@ -271,53 +271,12 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
             </Tabs>
           </Box>}
 
-          {/* Carnival activity game detail style */}
-          {isCarnivalGame && !is600Width && <Box className={styles.rewardMainBox}>
-            <Box className={styles.carnivalRewrads}>
-              <Box className={styles.cardHeader}>
-                <Typography>{t('taskTitle')}</Typography>
-                <Box className={styles.mediaBox}>
-                </Box>
-              </Box>
-              <Box className={styles.rewardDesc}>
-                <Typography>
-                  {carnivalGame?.task_description &&
-                    carnivalGame?.task_description}
-                </Typography>
-                <Box className={styles.imageBox}>
-                  <img src="/game_reward_ill.png" />
-                </Box>
-              </Box>
-              {
-                carnivalGame?.tasks?.map((item: Record<string, any>, index: number) =>
-                  <CarnivalRewardItem
-                    key={index}
-                    index={index + 1}
-                    medalNum={item?.medal}
-                    isStarted={item?.user_task_status !== 'not started'}
-                    isClaimed={item?.user_task_status !== 'uncompleted'}
-                    reward={item?.description}
-                    gameId={router.query?.uuid as string}
-                    strategyLink={carnivalGame?.strategy}
-                    taskInfo={item}
-                    timestamp={timestamp as unknown as number}
-                    reloadData={() => {
-                      getCarnivalGameInfo({ address: address || '0x00', game_id: router.query?.uuid as string })
-                      // reloadGameTasks()
-                    }}
-                  />
-                )
-              }
-            </Box>
-          </Box>
-          }
-
-          {!isCarnivalGame && !is600Width &&
+          {/* {!isCarnivalGame && !is600Width &&
             <Box className={styles.gameStrategy}>
               <Box className={styles.comingSoonTip}>
                 <CampaignIcon sx={{ mr: '2rem' }} fontSize="large" /> {t('comingSoonTip')}
               </Box>
-            </Box>}
+            </Box>} */}
 
           {/* {
             !isCarnivalGame &&

@@ -1,26 +1,39 @@
 .proxyTabBox {
+  padding-top: 2rem;
+  width: 100%;
+  max-width: 100rem;
+  padding-bottom: 6.75rem;
+
   .proxyCardList {
-    padding: 1.67rem 1rem 2.5rem;
+    // padding: 1.67rem 1rem 2.5rem;
     h3 {
-      font-size: 1.75rem;
-      font-family: Inter-Bold, Inter;
-      font-weight: bold;
+      font-size: 2rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
       color: #222222;
-      line-height: 1.75rem;
-      margin-bottom: 1.33rem;
+      line-height: 2rem;
+      margin-bottom: 2.5rem;
+
       span {
-        font-size: 1.17rem;
+        margin-left: 0.58rem;
+        font-size: 1.5rem;
         font-family: Inter-Medium, Inter;
         font-weight: 500;
         color: #222222;
-        line-height: 1.17rem;
-        margin-left: 0.58rem;
+        line-height: 1.5rem;
       }
     }
 
-    & > div {
-      & + div {
-        margin-top: 1rem;
+    .cardlist {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      & > div {
+        width: calc((100% - 4rem) / 3);
+        margin-bottom: 2rem;
+        & + div {
+          // margin-top: 1rem;
+        }
       }
     }
   }
@@ -44,6 +57,65 @@
       line-height: 1.5rem;
       margin-top: 0.83rem;
       margin-bottom: 7.83rem;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .proxyTabBox {
+    padding-top: 0;
+    padding-bottom: 0;
+
+    .proxyCardList {
+      padding: 1.67rem 1rem 2.5rem;
+      h3 {
+        font-size: 1.75rem;
+        font-family: Inter-Bold, Inter;
+        font-weight: bold;
+        color: #222222;
+        line-height: 1.75rem;
+        margin-bottom: 1.33rem;
+        span {
+          font-size: 1.17rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #222222;
+          line-height: 1.17rem;
+          margin-left: 0.58rem;
+        }
+      }
+
+      .cardlist {
+        & > div {
+          width: 100%;
+          margin-bottom: 0;
+          & + div {
+            margin-top: 1rem;
+          }
+        }
+      }
+    }
+
+    .emptyTip {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .iconBox {
+        width: 9.17rem;
+        height: 6.42rem;
+        position: relative;
+        margin-top: 8.33rem;
+      }
+
+      p {
+        font-size: 1.17rem;
+        font-family: Inter-Regular, Inter;
+        font-weight: 400;
+        color: rgba($color: #222, $alpha: 0.3);
+        line-height: 1.5rem;
+        margin-top: 0.83rem;
+        margin-bottom: 7.83rem;
+      }
     }
   }
 }

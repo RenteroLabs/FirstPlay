@@ -23,23 +23,28 @@ const GameNewsTab: React.FC<GameNewsTabProps> = (props) => {
       !isEmpty(videoList) &&
       <Box className={styles.videoBox}>
         <Typography variant="h3">Videos</Typography>
-        {
-          videoList.map((item, index) =>
-            <GameNewsVideoCard key={index} videoInfo={item} />
-          )
-        }
+        <Box className={styles.videoList}>
+          {
+            videoList.map((item, index) =>
+              <GameNewsVideoCard key={index} videoInfo={item} />
+            )
+          }
+        </Box>
+
       </Box>
     }
 
     <Box className={styles.newsBox}>
       <Typography variant="h3">News</Typography>
-      <TwitterTimelineEmbed
-        noFooter={true}
-        noHeader={true}
-        tweetLimit={10}
-        sourceType="profile"
-        screenName={twitterName}
-      />
+      <Box className={styles.twitterContainer}>
+        <TwitterTimelineEmbed
+          noFooter={true}
+          noHeader={true}
+          tweetLimit={10}
+          sourceType="profile"
+          screenName={twitterName}
+        />
+      </Box>
     </Box>
   </Box>
 }
