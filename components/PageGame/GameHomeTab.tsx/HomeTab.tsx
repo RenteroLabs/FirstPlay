@@ -61,7 +61,6 @@ const HomeTab: React.FC<HomeTabProps> = (props) => {
     }
   })
 
-
   return <Box className={styles.homeTab}>
     <Box className={styles.rewardMainBox}>
       {gameType === 1 &&

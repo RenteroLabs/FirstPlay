@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 import Slider from 'react-slick'
-import { Box } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import styles from './styles.module.scss'
 import Image from "next/image";
 import { Typography } from "antd";
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
 interface GameActivityCardProps {
   activityInfo: Record<string, any>
@@ -33,27 +35,40 @@ interface GameActivityCarouselProps {
 
 const GameActivityCarousel: React.FC<GameActivityCarouselProps> = (props) => {
   const { activityList } = props
+  const isMobileSize = useMediaQuery("(max-width: 600px)")
 
   return <Box className={styles.activityBox}>
-    <Slider
-      className={styles.sliderBox}
-      dots={true}
-      speed={500}
-      autoplay={true}
-      infinite={true}
-      slidesToShow={1}
-      slidesToScroll={1}
-      appendDots={(dots) => (
-        <div > <ul > {dots} </ul> </div>
-      )}
-      customPaging={i => (
-        <span className={styles.dotItem}></span>
-      )}
-    >
-      {
-        activityList?.map((item, index) => <GameActivityCard key={index} activityInfo={item} />)
-      }
-    </Slider>
+    {/* 在 pc 状态如果少于 2 张卡片，直接显示两张卡片 */}
+    {
+      !isMobileSize && activityList.length <= 2 ?
+        <Box className={styles.singleCardBox}>
+          {activityList?.map((item, index) =>
+            <GameActivityCard key={index} activityInfo={item} />)}
+        </Box>
+        :
+        <Slider
+          className={styles.sliderBox}
+          dots={activityList.length > 2 || isMobileSize}
+          speed={500}
+          autoplay={true}
+          infinite={true}
+          slidesToShow={!isMobileSize && activityList.length > 2 ? 2 : 1}
+          slidesToScroll={!isMobileSize && activityList.length > 2 ? 2 : 1}
+          centerPadding="2.67rem"
+          appendDots={(dots) => (
+            <div > <ul > {dots} </ul> </div>
+          )}
+          customPaging={i => (
+            <span className={styles.dotItem}></span>
+          )}
+          prevArrow={<Box><NavigateBeforeIcon /></Box>}
+          nextArrow={<Box><NavigateNextIcon /></Box>}
+        >
+          {
+            activityList?.map((item, index) => <GameActivityCard key={index} activityInfo={item} />)
+          }
+        </Slider>
+    }
   </Box>
 }
 

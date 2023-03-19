@@ -15,7 +15,6 @@ const DEFAUTL_SHOW_COUNT: number = 5
 
 const WalkthroughCollection: React.FC<WalkthroughCollectionProps> = (props) => {
   const { collectionData, collectionId } = props
-  console.log(collectionData)
 
   const [showAllArticle, setShowAllArticle] = useState<boolean>(false)
 
@@ -46,6 +45,7 @@ const WalkthroughCollection: React.FC<WalkthroughCollectionProps> = (props) => {
             sort={index + 1}
             article={item}
             activeItem={true}
+            activeColor={false}
             key={index} />
         )
       }

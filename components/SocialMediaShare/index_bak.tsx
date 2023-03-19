@@ -1,6 +1,6 @@
 import { Box, Drawer, useMediaQuery, Typography, IconButton } from "@mui/material";
 import { useIsMounted } from "hooks/useIsMounted";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import styles from './styles.module.scss';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import TelegramIcon from '@mui/icons-material/Telegram';
@@ -8,25 +8,27 @@ import LinkIcon from '@mui/icons-material/Link';
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useRouter } from "next/router";
 import { toast } from 'react-toastify';
-import { Dropdown, MenuProps } from "antd";
 
 interface SocialMediaShareProps {
-  trigger: React.ReactElement
   shareType: 'Article' | 'Game'
+  showShareModal: boolean
+  setShowShareModal: (arg: boolean) => any
   gameName?: string
   articleName?: string
 }
 
 const SocialMediaShare: React.FC<SocialMediaShareProps> = (props) => {
-  const { trigger, gameName, shareType, articleName } = props
-
-  const [showShareModal, setShowShareModal] = useState<boolean>(false)
-  const [currentPath, setCurrentPath] = useState<string>()
+  const { showShareModal, setShowShareModal, gameName, shareType, articleName } = props
 
   const router = useRouter()
-
-  useEffect(() => {
-    setCurrentPath(window.location.href)
+  // console.log(router)
+  const currentPath = useMemo(() => {
+    // console.log(typeof window)
+    // if (typeof window != undefined) {
+    //   return window.location.href
+    // }
+    // return window && window.location.href
+    return window.location.href
   }, [])
 
   const isMounted = useIsMounted()
@@ -43,6 +45,10 @@ const SocialMediaShare: React.FC<SocialMediaShareProps> = (props) => {
       progress: undefined,
       theme: "light",
     })
+  }
+
+  const handleShareTwitter = () => {
+
   }
 
   const [twitterLink, telegramLink] = useMemo(() => {
@@ -67,63 +73,7 @@ const SocialMediaShare: React.FC<SocialMediaShareProps> = (props) => {
   }, [currentPath, gameName, shareType, articleName])
 
 
-  const pcShareDropdown: MenuProps['items'] = [
-    {
-      key: '1',
-      label: (<a target="_blank" href={twitterLink} rel="noreferrer">
-        <Box className={styles.shareItemPC}>
-          <Box className={styles.shareMediaLogo} sx={{ backgroundColor: "rgba(74, 153, 233, 0.1)" }}>
-            <IconButton >
-              <TwitterIcon sx={{ color: '#4A99E9', fontSize: '1.8rem' }} />
-            </IconButton>
-          </Box>
-          <Typography className={styles.shareMediaName}>Twitter</Typography>
-        </Box>
-      </a>)
-    },
-    {
-      key: '2',
-      label: (
-        <a target="_blank" href={telegramLink} rel="noreferrer">
-          <Box className={styles.shareItemPC} >
-            <Box className={styles.shareMediaLogo} sx={{ backgroundColor: "rgba(143, 157, 248, 0.1)" }}>
-              <IconButton >
-                <TelegramIcon sx={{ color: '#8F9DF8', fontSize: '1.8rem' }} />
-              </IconButton>
-            </Box>
-            <Typography className={styles.shareMediaName}>Telegram</Typography>
-          </Box>
-        </a>
-      )
-    },
-    {
-      key: '3',
-      label: (
-        <CopyToClipboard text={currentPath as string}>
-          <Box className={styles.shareItemPC} onClick={handleCopyLink}>
-            <Box className={styles.shareMediaLogo} sx={{ backgroundColor: "rgba(34, 34, 34, 0.05)" }}>
-              <IconButton>
-                <LinkIcon sx={{ color: 'black', fontSize: '1.8rem', transform: 'rotate(-45deg)' }} />
-              </IconButton>
-            </Box>
-            <Typography className={styles.shareMediaName}>Copy Link</Typography>
-          </Box>
-        </CopyToClipboard>
-      )
-    }
-  ]
-
-  return isMounted ? <Box >
-    {
-      is600Size ?
-        <Box onClick={() => setShowShareModal(!showShareModal)}>{trigger}</Box>
-        :
-        <Dropdown menu={{ items: pcShareDropdown }} placement="bottomRight" >
-          {trigger}
-        </Dropdown>
-    }
-
-    {/* mobile component */}
+  return isMounted && is600Size ?
     <Drawer
       className={styles.drawerBox}
       anchor="bottom"
@@ -155,7 +105,7 @@ const SocialMediaShare: React.FC<SocialMediaShareProps> = (props) => {
               <Typography className={styles.shareMediaName}>Telegram</Typography>
             </Box>
           </a>
-          <CopyToClipboard text={currentPath as string}>
+          <CopyToClipboard text={window.location.href}>
             <Box className={styles.shareItem} onClick={handleCopyLink}>
               <Box className={styles.shareMediaLogo} sx={{ backgroundColor: "rgba(34, 34, 34, 0.05)" }}>
                 <IconButton>
@@ -168,7 +118,8 @@ const SocialMediaShare: React.FC<SocialMediaShareProps> = (props) => {
         </Box>
       </Box>
     </Drawer>
-  </Box> : <Box></Box>
+    :
+    <Box></Box>
 }
 
 export default SocialMediaShare

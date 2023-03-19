@@ -435,10 +435,17 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           </Typography>
           <Typography className={styles.taskRewardDesc}>
             <Box className={styles.iconBox}>
-              <Image src={TASK_COIN} layout="fill" />
+              <Image src={GAME_TASK_MONEY} layout="fill" />
             </Box>
             {taskInfo?.reward}
           </Typography>
+          <Box className={styles.rewardTips}>
+            <Typography className={styles.rewardNums}>Rewards: <span>{taskInfo?.issued_rewards}</span> / {taskInfo?.total_rewards || '-'} &nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
+            <Typography className={styles.rewardTime}>
+              {taskInfo?.reward_type} &nbsp;
+            </Typography>
+            <MessageTips fullmessage={taskInfo?.reward_explain} />
+          </Box>
         </Box>
         {
           // 无表单链接不显示 Verify 按钮

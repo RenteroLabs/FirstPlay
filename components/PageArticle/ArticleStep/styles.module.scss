@@ -1,40 +1,84 @@
 .notActiveStep {
   display: none;
 }
+
 .stepBox {
   h2 {
-    font-size: 1.33rem;
+    font-size: 2rem;
     font-family: Inter-SemiBold, Inter;
     font-weight: 600;
     color: #222222;
-    line-height: 1.33rem;
+    line-height: 2rem;
 
-    margin-top: 2.58rem;
-    margin-bottom: 1.67rem;
+    margin-top: 5rem;
+    margin-bottom: 2.5rem;
   }
 
   :global {
     h3 {
-      font-size: 1.17rem;
+      font-size: 1.5rem;
       font-family: Inter-SemiBold, Inter;
       font-weight: 600;
       color: #222222;
-      line-height: 1.17rem;
+      line-height: 1.5rem;
+      margin-bottom: 1.33rem;
     }
     p {
-      font-size: 1.17rem;
+      font-size: 1.5rem;
       font-family: Inter-Regular, Inter;
       font-weight: 400;
       color: #222222;
-      line-height: 2rem;
+      line-height: 2.67rem;
     }
     img {
       max-width: 100%;
-      margin: 0.5rem auto;
+      margin: 1.83rem auto;
+      display: block;
+      max-height: 680px;
     }
 
     a {
       text-decoration: underline;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .stepBox {
+    h2 {
+      font-size: 1.33rem;
+      font-family: Inter-SemiBold, Inter;
+      font-weight: 600;
+      color: #222222;
+      line-height: 1.33rem;
+
+      margin-top: 2.58rem;
+      margin-bottom: 1.67rem;
+    }
+
+    :global {
+      h3 {
+        font-size: 1.17rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #222222;
+        line-height: 1.17rem;
+      }
+      p {
+        font-size: 1.17rem;
+        font-family: Inter-Regular, Inter;
+        font-weight: 400;
+        color: #222222;
+        line-height: 2rem;
+      }
+      img {
+        max-width: 100%;
+        margin: 0.5rem auto;
+      }
+
+      a {
+        text-decoration: underline;
+      }
     }
   }
 }

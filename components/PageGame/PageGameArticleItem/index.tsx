@@ -9,14 +9,13 @@ interface GameArticleItemProps {
   sort: number
   article: Record<string, any>
   collectionId: string,
-  activeItem: boolean
+  activeItem: boolean,
+  activeColor: boolean
 }
 
 const GameArticleItem: React.FC<GameArticleItemProps> = (props) => {
-  const { sort, article, collectionId, activeItem = true } = props
+  const { sort, article, collectionId, activeItem = true, activeColor = true } = props
 
-  // console.log(article)
-  // TODO: link to strategy article detail page 
   return <a target="_blank" rel="noreferrer" href={`/strategy/article?articleId=${article?.id}&collectionId=${collectionId}`} >
     <Box className={styles.articleItem}>
       <Box className={cx({
@@ -25,7 +24,10 @@ const GameArticleItem: React.FC<GameArticleItemProps> = (props) => {
       })}>
         {sort}
       </Box>
-      <Box className={styles.articleTitle}>
+      <Box className={cx({
+        articleTitle: true,
+        artiveArticleColor: activeColor && activeItem
+      })}>
         {article?.attributes?.ArticleTitle}
       </Box>
     </Box>

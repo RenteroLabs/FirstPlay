@@ -22,10 +22,13 @@ const GameProxyTab: React.FC<GameProxyTabProps> = (props) => {
         Pro Players
         <span>Coming Soon!</span>
       </Typography>}
-      {
-        proxyPlayList.map((item, index) =>
-          <ProxyPlayCard key={index} index={index + 1} proxyInfo={item} />)
-      }
+      <Box className={styles.cardlist}>
+        {
+          proxyPlayList.map((item, index) =>
+            <ProxyPlayCard key={index} index={index + 1} proxyInfo={item} />)
+        }
+      </Box>
+
       {showEmptyTip && <Box className={styles.emptyTip}>
         <Box className={styles.iconBox}>
           <Image src="https://firstplay-crm.s3.ap-east-1.amazonaws.com/icon_203a6d749c.png" layout="fill" />
