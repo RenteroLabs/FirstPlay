@@ -7,7 +7,6 @@ import { TwitterTimelineEmbed } from 'react-twitter-embed'
 import { useMemo } from "react";
 import { useTranslations } from "next-intl";
 
-
 interface GameNewsTabProps {
   twitterHandler: string
   videoList: Record<string, any>[]

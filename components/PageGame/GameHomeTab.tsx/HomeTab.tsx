@@ -100,7 +100,7 @@ const HomeTab: React.FC<HomeTabProps> = (props) => {
             )
           }
         </Box>}
-      {gameType === 2 &&
+      {!isEmpty(gameTasksInfo?.activities) &&
         <Box className={styles.activityBox}>
           <Typography variant="h2">{t("Tabs.activity")}</Typography>
           <GameActivityCarousel activityList={gameTasksInfo?.activities} />

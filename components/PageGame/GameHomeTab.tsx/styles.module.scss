@@ -20,13 +20,13 @@
 
 .workthroughBox {
   min-height: 250px;
-  padding: 3.33rem 0rem 7.58rem;
+  padding: 3.33rem 0rem 2.5rem;
   h3 {
-    font-size: 1.75rem;
-    font-family: Inter-Bold, Inter;
-    font-weight: bold;
+    font-size: 2rem;
+    font-family: Inter-SemiBold, Inter;
+    font-weight: 600;
     color: #222222;
-    line-height: 1.75rem;
+    line-height: 2rem;
     margin-bottom: 2.5rem;
   }
 }
@@ -37,7 +37,7 @@
   min-height: 10rem;
   // background: rgba(#E4405B, 0.08);
   border-radius: 1rem;
-  padding: 3.33rem 0 8.33rem;
+  padding: 3.33rem 0 2.33rem;
   .cardHeader {
     display: flex;
     justify-content: space-between;
