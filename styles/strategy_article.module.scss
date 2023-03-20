@@ -183,6 +183,8 @@
 }
 
 .dropdownViewBox {
+  max-width: 47.5rem;
+  min-width: 40rem;
   padding: 1.67rem 0 1rem;
   list-style-type: none;
   background-color: #ffffff;
@@ -280,6 +282,25 @@
 }
 .hiddenAnchorBox {
   display: none;
+}
+
+@media screen and (max-width: 1400px) {
+  .headerBox,
+  .contentBox {
+    max-width: 66.67rem;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .contentBox {
+    width: calc(100% - 5rem);
+  }
+  .headerBox {
+    width: calc(100% - 5rem);
+  }
+}
+@media screen and (max-width: 750px) {
+
 }
 
 @media screen and (max-width: 600px) {

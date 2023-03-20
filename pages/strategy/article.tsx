@@ -122,6 +122,7 @@ const ArticleDetailPage: NextPageWithLayout = (props) => {
           sort={index + 1}
           article={item}
           activeItem={articleId == item?.id}
+          activeColor={true}
           collectionId={collectionId as string} />
       }
     })

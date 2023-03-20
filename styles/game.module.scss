@@ -26,6 +26,9 @@
     display: flex;
     justify-content: center;
     margin: auto;
+    border-bottom: 10px solid #f9f9f9;
+    min-height: 20rem;
+
     & > div {
       width: 100%;
       max-width: 100rem;
@@ -845,6 +848,9 @@
       padding-top: 0.83rem;
       padding-bottom: 0.83rem;
       background-color: #f4f4f9;
+
+      border-bottom: none;
+
       .tabsBox {
         background: #fff;
         :global {
