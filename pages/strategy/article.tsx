@@ -137,7 +137,7 @@ const ArticleDetailPage: NextPageWithLayout = (props) => {
 
       <meta
         property="og:title"
-        content={`Reading ${gameName}\'walkthrough on FirstPlay`}
+        content={`Reading ${gameName} walkthrough on FirstPlay`}
       />
       <meta
         property="og:description"
