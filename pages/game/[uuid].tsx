@@ -104,7 +104,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
     return gameInfo?.tasks?.length > 0
   }, gameInfo)
 
-  console.log(carnivalGame)
+  // console.log(carnivalGame)
 
   useEffect(() => {
     if (router.query?.uuid) {
@@ -245,11 +245,11 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
             <GameInfo gameInfo={gameInfo} timestamp={init_timestamp} />
           </Box>
 
-          {is600Width && <Box className={styles.gameContent}>
-            <Tabs className={cx({ tabsBox: true, mobileTabsBox: true })} items={[
+          {<Box className={styles.gameContent}>
+            <Tabs className={cx({ tabsBox: true, mobileTabsBox: is600Width, pcTabsStyle: !is600Width })} items={[
               {
                 key: '1',
-                label: "Home",
+                label: t('homeTab'),
                 children: <HomeTab
                   gameTasksInfo={carnivalGame}
                   reloadGameTasks={refresh}
@@ -257,67 +257,26 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                 />
               }, {
                 key: "2",
-                label: "Videos&News",
+                label: t("newsTab"),
                 children: <GameNewsTab
                   twitterHandler={gameInfo.twitter}
                   videoList={carnivalGame?.videos}
                 />
               }, {
                 key: "3",
-                label: "Pro Players",
+                label: t('proplayTab'),
                 children: <GameProxyTab proxyPlayList={carnivalGame?.boosters} />
               }
             ]}>
             </Tabs>
           </Box>}
 
-          {/* Carnival activity game detail style */}
-          {isCarnivalGame && !is600Width && <Box className={styles.rewardMainBox}>
-            <Box className={styles.carnivalRewrads}>
-              <Box className={styles.cardHeader}>
-                <Typography>{t('taskTitle')}</Typography>
-                <Box className={styles.mediaBox}>
-                </Box>
-              </Box>
-              <Box className={styles.rewardDesc}>
-                <Typography>
-                  {carnivalGame?.task_description &&
-                    carnivalGame?.task_description}
-                </Typography>
-                <Box className={styles.imageBox}>
-                  <img src="/game_reward_ill.png" />
-                </Box>
-              </Box>
-              {
-                carnivalGame?.tasks?.map((item: Record<string, any>, index: number) =>
-                  <CarnivalRewardItem
-                    key={index}
-                    index={index + 1}
-                    medalNum={item?.medal}
-                    isStarted={item?.user_task_status !== 'not started'}
-                    isClaimed={item?.user_task_status !== 'uncompleted'}
-                    reward={item?.description}
-                    gameId={router.query?.uuid as string}
-                    strategyLink={carnivalGame?.strategy}
-                    taskInfo={item}
-                    timestamp={timestamp as unknown as number}
-                    reloadData={() => {
-                      getCarnivalGameInfo({ address: address || '0x00', game_id: router.query?.uuid as string })
-                      // reloadGameTasks()
-                    }}
-                  />
-                )
-              }
-            </Box>
-          </Box>
-          }
-
-          {!isCarnivalGame && !is600Width &&
+          {/* {!isCarnivalGame && !is600Width &&
             <Box className={styles.gameStrategy}>
               <Box className={styles.comingSoonTip}>
                 <CampaignIcon sx={{ mr: '2rem' }} fontSize="large" /> {t('comingSoonTip')}
               </Box>
-            </Box>}
+            </Box>} */}
 
           {/* {
             !isCarnivalGame &&
@@ -434,24 +393,26 @@ Game.getLayout = function getLayout(page: ReactElement) {
 export default Game
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // const { data } = await getAllGamesInfo()
-  const { data } = await getAllGames()
+  const { data } = await getAllGamesInfo()
+  // const { data } = await getAllGames()
 
-  const addGameUID = [
-    // Bless Global
-    { game_id: '32605c7c-45d3-49f4-9923-b3a51816d1df' },
-    // NEO FANTASY
-    { game_id: '740a1e44-fd84-433e-98df-be90d650eb51' },
-    // Mirror Planet
-    { game_id: '11ec241d-c889-4f54-8656-b5f7b1598300' }
-  ]
+  // const addGameUID = [
+  //   // Bless Global
+  //   { game_id: '32605c7c-45d3-49f4-9923-b3a51816d1df' },
+  //   // NEO FANTASY
+  //   { game_id: '740a1e44-fd84-433e-98df-be90d650eb51' },
+  //   // Mirror Planet
+  //   { game_id: '11ec241d-c889-4f54-8656-b5f7b1598300' }
+  // ]
 
-  const gamePaths = [
-    ...data?.popular_games,
-    ...data?.rewarded_games,
-    ...addGameUID].map((item: any) => ({ params: { uuid: item.game_id } }))
+  // const gamePaths = [
+  //   ...data?.popular_games,
+  //   ...data?.rewarded_games,
+  //   ...addGameUID].map((item: any) => ({ params: { uuid: item.game_id } }))
 
-  // console.log(gamePaths)
+  const gamePaths = data.map((item: any) => ({ params: { uuid: item.game_id } }))
+
+  console.log(gamePaths)
 
   let allLanguageGamePaths: { params: any }[] = []
 

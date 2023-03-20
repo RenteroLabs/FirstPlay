@@ -58,6 +58,20 @@
     "comingSoonTip": "Coming Soon",
     "showMoreBtn": "more",
     "showLessBtn": "less",
+    "homeTab": "Home",
+    "newsTab": "Videos&News",
+    "proplayTab": "Pro Players",
+    "Tabs": {
+      "activity": "Activity",
+      "walkthrough": "Walkthrough",
+      "video": "Videos",
+      "news": "News",
+      "proPlayer": "Pro Players",
+      "comingSoonTip": "Coming Soon!",
+      "emptyTip": "No player yet, stay tuned",
+      "lessArticle": "See less",
+      "moreArticle": "See all"
+    },
     "GameTask": {
       "minutes": "minutes",
       "hours": "hours",
@@ -71,7 +85,8 @@
       "taskStepBtnText": "Task Steps",
       "seeMoreTaskStep": "See All",
       "seeLessTaskStep": "See Less",
-      "stepText": "Step"
+      "stepText": "Step",
+      "reward": "Rewards"
     },
     "VerifyTaskModal": {
       "modalTitle": "Verify Task",
@@ -83,6 +98,17 @@
       "nextBtnText": "Next",
       "backBtnText": "Back"
     }
+  },
+  "Article": {
+    "shareText": "Share",
+    "authorOtherArticles": "Author's other articles:",
+    "viewAllArticleFor": "View all for #{gameName}",
+    "articleStep": "Step{index}",
+    "stepBack": "Back",
+    "stepNext": "Next",
+    "viewNextArticle": "View next walkthrough",
+    "articlePrev": "Previous",
+    "articleNext": "Next"
   },
   "Profile": {
     "unipassLinkDesc": "Visit UniPass wallet  to your asset after withdraw.Login email",
@@ -124,5 +150,18 @@
       "withdrawTip": "Withdrawal application will be processed before 12 noon every Tuesday and Friday（UTC +8）. You can check the balance in the wallet later.",
       "btnText": "Confirm and withdraw"
     }
+  },
+  "ErrorMessage": {
+    "4001": "Parameter missing！",
+    "5000": "Internal error！",
+    "5001": "Limit Exceeded！",
+    "5002": "Insufficient game key！",
+    "5003": "Invalid address！",
+    "5004": "The task has started!",
+    "5005": "Invalid request！",
+    "5006": "Unable to withdraw, try again later！",
+    "5007": "Unable to submit at this time, try again later！",
+    "5008": "The task is offline!",
+    "5009": "Do not submit the same information repeatedly!"
   }
 }

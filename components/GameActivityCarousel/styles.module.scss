@@ -1,16 +1,59 @@
 .activityBox {
   padding-bottom: 3rem;
-  // padding-left: 1.33rem;
-  // padding-right: 1.33rem;
+
+  .singleCardBox {
+    display: flex;
+    justify-content: space-between;
+    & > a {
+      width: calc(50% - 1.33rem);
+    }
+  }
 }
 
 .sliderBox {
-  box-shadow: 0rem 0.17rem 2.5rem 0rem #ece7f4;
-
   :global {
     ul {
       margin-bottom: 0;
       padding-left: 0;
+    }
+    .slick-list {
+      width: calc(100% + 2.67rem);
+      padding-bottom: 20px;
+    }
+
+    .slick-slide {
+      padding-right: 2.67rem;
+    }
+
+    .slick-next,
+    .slick-prev {
+      display: block;
+      width: 3.67rem;
+      height: 3.67rem;
+      background: #ffffff;
+      box-shadow: 0rem 0.83rem 2.5rem 0rem rgba(0, 0, 0, 0.2);
+      border-radius: 50%;
+      position: absolute;
+      right: -1.83rem;
+      top: 12rem;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+      svg {
+        color: #222;
+        font-size: 2rem;
+        line-height: 3.67rem;
+        margin: 0 0;
+        width: 3rem;
+        height: 3.67rem;
+      }
+      &::before {
+        display: none;
+        content: '';
+      }
     }
 
     .slick-dots {
@@ -40,17 +83,19 @@
 
 .activityCard {
   background: #ffffff;
-  box-shadow: 0rem 0.17rem 2.5rem 0rem #ece7f4;
-  border-radius: 1rem;
+  box-shadow: 6px 6px 12px #f2f0f4;
+  border-radius: 1.33rem;
   // overflow: hidden;
   cursor: pointer;
+
+  // width: calc(100% - 1.33rem);
 
   .cardImage {
     position: relative;
     width: 100%;
-    height: 13.33rem;
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
+    height: 22.17rem;
+    border-top-left-radius: 1.33rem;
+    border-top-right-radius: 1.33rem;
     overflow: hidden;
 
     img {
@@ -59,46 +104,159 @@
       object-fit: cover;
     }
     .imageMask {
-      height: 2rem;
+      height: 2.33rem;
       background: linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      line-height: 2rem;
+      line-height: 2.33rem;
       padding-left: 1rem;
 
-      font-size: 1rem;
+      font-size: 1.17rem;
       font-family: Inter-Medium, Inter;
       font-weight: 500;
       color: #96fcc8;
     }
   }
   .cardContent {
-    padding: 1.17rem 1rem 1.67rem;
+    padding: 1.67rem 1.67rem 2.5rem;
     .activityTitle {
-      font-size: 1.33rem;
+      font-size: 1.5rem;
       font-family: Inter-SemiBold, Inter;
       font-weight: 600;
       color: #222222;
-      line-height: 1.67rem;
+      line-height: 1.5rem;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
     .activitySubtitle {
-      margin-top: 0.5rem;
+      margin-top: 0.83rem;
       font-size: 1.17rem;
       font-family: Inter-Regular, Inter;
       font-weight: 400;
       color: #222222;
       line-height: 1.67rem;
+      height: 3.34rem;
 
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .sliderBox {
+    box-shadow: 0rem 0.17rem 2.5rem 0rem #ece7f4;
+
+    :global {
+      ul {
+        margin-bottom: 0;
+        padding-left: 0;
+      }
+      .slick-list {
+        padding-bottom: 0;
+        width: 100%;
+      }
+      .slick-slide {
+        padding-right: 0;
+      }
+
+      .slick-dots {
+        bottom: -30px;
+        ul li {
+          width: 0.67rem;
+          height: 0.67rem;
+          margin: 0 0.33rem;
+        }
+
+        ul .slick-active {
+          span {
+            background: rgba($color: #222, $alpha: 1) !important;
+          }
+        }
+      }
+      .slick-next,
+      .slick-prev {
+        display: none !important;
+      }
+    }
+
+    .dotItem {
+      display: inline-block;
+      width: 0.67rem;
+      height: 0.67rem;
+      background: rgba($color: #222, $alpha: 0.3);
+      border-radius: 50%;
+    }
+  }
+
+  .activityCard {
+    background: #ffffff;
+    box-shadow: 0rem 0.17rem 2.5rem 0rem #ece7f4;
+    border-radius: 1rem;
+    cursor: pointer;
+    width: 100%;
+
+    .cardImage {
+      position: relative;
+      width: 100%;
+      height: 13.33rem;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .imageMask {
+        height: 2rem;
+        background: linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        line-height: 2rem;
+        padding-left: 1rem;
+
+        font-size: 1rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #96fcc8;
+      }
+    }
+    .cardContent {
+      padding: 1.17rem 1rem 1.67rem;
+      .activityTitle {
+        font-size: 1.33rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #222222;
+        line-height: 1.67rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .activitySubtitle {
+        margin-top: 0.5rem;
+        font-size: 1.17rem;
+        font-family: Inter-Regular, Inter;
+        font-weight: 400;
+        color: #222222;
+        line-height: 1.67rem;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+      }
     }
   }
 }

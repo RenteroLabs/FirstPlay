@@ -1,8 +1,8 @@
 .collectionBox {
   background: #ffffff;
-  box-shadow: 0rem 0.17rem 2.5rem 0rem #ece7f4;
-  padding: 1.33rem 1rem 1.67rem;
+  padding: 2.5rem;
   border-radius: 1rem;
+  box-shadow: 0rem 0.5rem 2.5rem 0rem #f2f0f4;
 
   .collectionHeader {
     display: flex;
@@ -15,24 +15,25 @@
 
       .userLogo {
         position: relative;
-        width: 2.67rem;
-        height: 2.67rem;
+        width: 3rem;
+        height: 3rem;
         border-radius: 50%;
       }
 
       .userName {
-        font-size: 1.33rem;
+        font-size: 1.5rem;
         font-family: Inter-SemiBold, Inter;
         font-weight: 600;
         color: #222222;
-        line-height: 1.33rem;
-        margin-left: 0.67rem;
+        line-height: 1.5rem;
+        margin-left: 0.83rem;
       }
     }
   }
 
   .articleList {
-    margin-top: 0.67rem;
+    margin-top: 1.92rem;
+    margin-left: 0.5rem;
     position: relative;
     &::before {
       display: block;
@@ -55,24 +56,99 @@
   }
 
   .btnBox {
-    margin-top: 0.67rem;
+    margin-top: 1.83rem;
     .clickBtn {
-      height: 3.33rem;
-      background: rgba(#222222, 0.05);
-      border-radius: 1.67rem;
-
-      font-size: 1.17rem;
+      font-size: 1.33rem;
       font-family: Inter-SemiBold, Inter;
       font-weight: 600;
-      color: #222222;
+      color: #8e50e4;
       line-height: 1.17rem;
       user-select: none;
-
       cursor: pointer;
-
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .collectionBox {
+    background: #ffffff;
+    box-shadow: 0rem 0.17rem 2.5rem 0rem #ece7f4;
+    padding: 1.33rem 1rem 1.67rem;
+    border-radius: 1rem;
+
+    .collectionHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .userInfo {
+        display: flex;
+        align-items: center;
+
+        .userLogo {
+          position: relative;
+          width: 2.67rem;
+          height: 2.67rem;
+          border-radius: 50%;
+        }
+
+        .userName {
+          font-size: 1.33rem;
+          font-family: Inter-SemiBold, Inter;
+          font-weight: 600;
+          color: #222222;
+          line-height: 1.33rem;
+          margin-left: 0.67rem;
+        }
+      }
+    }
+
+    .articleList {
+      margin-top: 0.67rem;
+      position: relative;
+      &::before {
+        display: block;
+        content: '';
+        height: 96%;
+        width: 1px;
+        background-image: linear-gradient(
+          to bottom,
+          rgba(#222, 0.5) 0%,
+          rgba(#222, 0.5) 40%,
+          transparent 40%
+        );
+        background-size: 1px 4px;
+
+        position: absolute;
+        z-index: 0;
+        top: 2%;
+        left: 1rem;
+      }
+    }
+
+    .btnBox {
+      margin-top: 0.67rem;
+      .clickBtn {
+        height: 3.33rem;
+        background: rgba(#222222, 0.05);
+        border-radius: 1.67rem;
+
+        font-size: 1.17rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #222222;
+        line-height: 1.17rem;
+        user-select: none;
+
+        cursor: pointer;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
     }
   }
 }

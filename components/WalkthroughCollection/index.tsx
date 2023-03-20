@@ -5,6 +5,7 @@ import styles from './styles.module.scss'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import GameArticleItem from "../PageGame/PageGameArticleItem";
+import { useTranslations } from "next-intl";
 
 interface WalkthroughCollectionProps {
   collectionData: Record<string, any>[]
@@ -15,7 +16,7 @@ const DEFAUTL_SHOW_COUNT: number = 5
 
 const WalkthroughCollection: React.FC<WalkthroughCollectionProps> = (props) => {
   const { collectionData, collectionId } = props
-  console.log(collectionData)
+  const t = useTranslations('Game.Tabs')
 
   const [showAllArticle, setShowAllArticle] = useState<boolean>(false)
 
@@ -46,6 +47,7 @@ const WalkthroughCollection: React.FC<WalkthroughCollectionProps> = (props) => {
             sort={index + 1}
             article={item}
             activeItem={true}
+            activeColor={false}
             key={index} />
         )
       }
@@ -57,7 +59,7 @@ const WalkthroughCollection: React.FC<WalkthroughCollectionProps> = (props) => {
       <Box className={styles.btnBox}>
         <Box className={styles.clickBtn} onClick={() => setShowAllArticle(!showAllArticle)}>
           {
-            showAllArticle ? "See less" : "See all"
+            showAllArticle ? t("lessArticle") : t('moreArticle')
           }
           ({artilceCount})
           {

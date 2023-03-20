@@ -58,6 +58,20 @@
     "comingSoonTip": "Sắp Ra Mắt",
     "showMoreBtn": "Thêm",
     "showLessBtn": "Giảm",
+    "homeTab": "Home",
+    "newsTab": "Videos&News",
+    "proplayTab": "Pro Players",
+    "Tabs": {
+      "activity": "Activity",
+      "walkthrough": "Walkthrough",
+      "video": "Videos",
+      "news": "News",
+      "proPlayer": "Pro Players",
+      "comingSoonTip": "Coming Soon!",
+      "emptyTip": "No player yet, stay tuned",
+      "lessArticle": "See less",
+      "moreArticle": "See all"
+    },
     "GameTask": {
       "minutes": "phút ",
       "hours": "giờ",
@@ -71,7 +85,8 @@
       "taskStepBtnText": "Các Bước Nhiệm Vụ",
       "seeMoreTaskStep": "Xem Tất Cả",
       "seeLessTaskStep": "Rút Gọn",
-      "stepText": "Bước"
+      "stepText": "Bước",
+      "reward": "Rewards"
     },
     "VerifyTaskModal": {
       "modalTitle": "Xác Minh Nhiệm Vụ",
@@ -83,6 +98,17 @@
       "nextBtnText": "Kế Tiếp",
       "backBtnText": "Quay Về"
     }
+  },
+  "Article": {
+    "shareText": "Share",
+    "authorOtherArticles": "Author's other articles:",
+    "viewAllArticleFor": "View all for #{gameName}",
+    "articleStep": "Step{index}",
+    "stepBack": "Back",
+    "stepNext": "Next",
+    "viewNextArticle": "View next walkthrough",
+    "articlePrev": "Previous",
+    "articleNext": "Next"
   },
   "Profile": {
     "unipassLinkDesc": "Truy cập ví UniPass vào tài sản của bạn sau khi rút tiền. Đăng nhập email",
@@ -124,5 +150,18 @@
       "withdrawTip": "Đơn rút tiền sẽ được xử lý trước 12 giờ trưa Thứ Ba và Thứ Sáu hàng tuần (UTC +8). Bạn có thể kiểm tra số dư trong ví sau.",
       "btnText": "Xác nhận và rút tiền"
     }
+  },
+  "ErrorMessage": {
+    "4001": "Parameter missing！",
+    "5000": "Internal error！",
+    "5001": "Limit Exceeded！",
+    "5002": "Insufficient game key！",
+    "5003": "Invalid address！",
+    "5004": "The task has started!",
+    "5005": "Invalid request！",
+    "5006": "Unable to withdraw, try again later！",
+    "5007": "Unable to submit at this time, try again later！",
+    "5008": "The task is offline!",
+    "5009": "Do not submit the same information repeatedly!"
   }
 }

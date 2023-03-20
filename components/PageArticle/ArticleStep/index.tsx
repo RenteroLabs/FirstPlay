@@ -4,6 +4,7 @@ import styles from './styles.module.scss'
 import ReactMarkdown from 'react-markdown'
 import classNames from "classnames/bind";
 import remarkGfm from 'remark-gfm'
+import { useTranslations } from "next-intl";
 
 const cx = classNames.bind(styles)
 
@@ -15,7 +16,8 @@ interface ArticleStepProps {
 
 const ArticleStep: React.FC<ArticleStepProps> = (props) => {
   const { stepItem, stepIndex, activeStep } = props
-
+  const t = useTranslations('Article')
+  
   const isCurrentStepActive = useMemo(() => {
     return stepIndex === activeStep
   }, [stepIndex, activeStep])
@@ -24,7 +26,7 @@ const ArticleStep: React.FC<ArticleStepProps> = (props) => {
     stepBox: true,
     notActiveStep: !isCurrentStepActive
   })}>
-    <Typography variant="h2">Step{stepIndex}: {stepItem?.StepTitle}</Typography>
+    <Typography variant="h2">{t("articleStep", { index: stepIndex })}: {stepItem?.StepTitle}</Typography>
     <ReactMarkdown linkTarget="_blank" remarkPlugins={[remarkGfm]} >{stepItem?.StepContent}</ReactMarkdown>
   </Box>
 }

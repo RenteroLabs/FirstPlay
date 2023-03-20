@@ -216,7 +216,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
   const t = useTranslations('Game.GameTask')
 
   const { address } = useAccount()
-  console.log(taskInfo)
+  // console.log(taskInfo)
   const [showConnectWallet, setShowConnectWallet] = useState<boolean>(false)
 
   const [showGiftModal, setShowGiftModal] = useState<boolean>(false)
@@ -328,7 +328,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       <Box className={styles.rewardInnerDivider}></Box>
 
       <Box className={styles.rewardTips}>
-        <Typography className={styles.rewardNums}>Rewards: <span>{taskInfo?.issued_rewards}</span> / {taskInfo?.total_rewards || '-'} &nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
+        <Typography className={styles.rewardNums}>{t('reward')}: <span>{taskInfo?.issued_rewards}</span> / {taskInfo?.total_rewards || '-'} &nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
         <Typography className={styles.rewardTime}>
           {taskInfo?.reward_type} &nbsp;
         </Typography>
@@ -435,10 +435,17 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           </Typography>
           <Typography className={styles.taskRewardDesc}>
             <Box className={styles.iconBox}>
-              <Image src={TASK_COIN} layout="fill" />
+              <Image src={GAME_TASK_MONEY} layout="fill" />
             </Box>
             {taskInfo?.reward}
           </Typography>
+          <Box className={styles.rewardTips}>
+            <Typography className={styles.rewardNums}>{t('reward')}: <span>{taskInfo?.issued_rewards}</span> / {taskInfo?.total_rewards || '-'} &nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
+            <Typography className={styles.rewardTime}>
+              {taskInfo?.reward_type} &nbsp;
+            </Typography>
+            <MessageTips fullmessage={taskInfo?.reward_explain} />
+          </Box>
         </Box>
         {
           // 无表单链接不显示 Verify 按钮

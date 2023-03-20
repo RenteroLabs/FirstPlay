@@ -4,7 +4,7 @@ import ArrowRightAltRoundedIcon from '@mui/icons-material/ArrowRightAltRounded';
 import CloseIcon from '@mui/icons-material/Close';
 import styles from './style.module.scss'
 import { Connector, useAccount, useConnect } from 'wagmi';
-import detectEthereumProvider from '@metamask/detect-provider'
+import detectEthereumProvider from '@metamask/detect-provider';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { useIsMounted } from 'hooks/useIsMounted';
 import { MetamaskDeeplink } from 'constants/index';
