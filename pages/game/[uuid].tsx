@@ -104,7 +104,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
     return gameInfo?.tasks?.length > 0
   }, gameInfo)
 
-  console.log(carnivalGame)
+  // console.log(carnivalGame)
 
   useEffect(() => {
     if (router.query?.uuid) {
@@ -249,7 +249,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
             <Tabs className={cx({ tabsBox: true, mobileTabsBox: is600Width, pcTabsStyle: !is600Width })} items={[
               {
                 key: '1',
-                label: "Home",
+                label: t('homeTab'),
                 children: <HomeTab
                   gameTasksInfo={carnivalGame}
                   reloadGameTasks={refresh}
@@ -257,14 +257,14 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                 />
               }, {
                 key: "2",
-                label: "Videos&News",
+                label: t("newsTab"),
                 children: <GameNewsTab
                   twitterHandler={gameInfo.twitter}
                   videoList={carnivalGame?.videos}
                 />
               }, {
                 key: "3",
-                label: "Pro Players",
+                label: t('proplayTab'),
                 children: <GameProxyTab proxyPlayList={carnivalGame?.boosters} />
               }
             ]}>
@@ -393,24 +393,26 @@ Game.getLayout = function getLayout(page: ReactElement) {
 export default Game
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // const { data } = await getAllGamesInfo()
-  const { data } = await getAllGames()
+  const { data } = await getAllGamesInfo()
+  // const { data } = await getAllGames()
 
-  const addGameUID = [
-    // Bless Global
-    { game_id: '32605c7c-45d3-49f4-9923-b3a51816d1df' },
-    // NEO FANTASY
-    { game_id: '740a1e44-fd84-433e-98df-be90d650eb51' },
-    // Mirror Planet
-    { game_id: '11ec241d-c889-4f54-8656-b5f7b1598300' }
-  ]
+  // const addGameUID = [
+  //   // Bless Global
+  //   { game_id: '32605c7c-45d3-49f4-9923-b3a51816d1df' },
+  //   // NEO FANTASY
+  //   { game_id: '740a1e44-fd84-433e-98df-be90d650eb51' },
+  //   // Mirror Planet
+  //   { game_id: '11ec241d-c889-4f54-8656-b5f7b1598300' }
+  // ]
 
-  const gamePaths = [
-    ...data?.popular_games,
-    ...data?.rewarded_games,
-    ...addGameUID].map((item: any) => ({ params: { uuid: item.game_id } }))
+  // const gamePaths = [
+  //   ...data?.popular_games,
+  //   ...data?.rewarded_games,
+  //   ...addGameUID].map((item: any) => ({ params: { uuid: item.game_id } }))
 
-  // console.log(gamePaths)
+  const gamePaths = data.map((item: any) => ({ params: { uuid: item.game_id } }))
+
+  console.log(gamePaths)
 
   let allLanguageGamePaths: { params: any }[] = []
 

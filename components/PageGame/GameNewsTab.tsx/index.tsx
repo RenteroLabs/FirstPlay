@@ -5,6 +5,8 @@ import GameNewsVideoCard from "../GameNewsVideoCard";
 import styles from './styles.module.scss'
 import { TwitterTimelineEmbed } from 'react-twitter-embed'
 import { useMemo } from "react";
+import { useTranslations } from "next-intl";
+
 
 interface GameNewsTabProps {
   twitterHandler: string
@@ -14,6 +16,8 @@ interface GameNewsTabProps {
 const GameNewsTab: React.FC<GameNewsTabProps> = (props) => {
   const { twitterHandler, videoList } = props
 
+  const t = useTranslations('Game.Tabs')
+
   const twitterName = useMemo(() => {
     return new URL(twitterHandler).pathname.slice(1)
   }, [twitterHandler])
@@ -22,7 +26,7 @@ const GameNewsTab: React.FC<GameNewsTabProps> = (props) => {
     {
       !isEmpty(videoList) &&
       <Box className={styles.videoBox}>
-        <Typography variant="h3">Videos</Typography>
+        <Typography variant="h3">{t('video')}</Typography>
         <Box className={styles.videoList}>
           {
             videoList.map((item, index) =>
@@ -35,7 +39,7 @@ const GameNewsTab: React.FC<GameNewsTabProps> = (props) => {
     }
 
     <Box className={styles.newsBox}>
-      <Typography variant="h3">News</Typography>
+      <Typography variant="h3">{t('news')}</Typography>
       <Box className={styles.twitterContainer}>
         <TwitterTimelineEmbed
           noFooter={true}

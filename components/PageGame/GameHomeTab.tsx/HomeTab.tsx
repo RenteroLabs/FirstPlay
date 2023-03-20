@@ -102,7 +102,7 @@ const HomeTab: React.FC<HomeTabProps> = (props) => {
         </Box>}
       {gameType === 2 &&
         <Box className={styles.activityBox}>
-          <Typography variant="h2">Activity</Typography>
+          <Typography variant="h2">{t("Tabs.activity")}</Typography>
           <GameActivityCarousel activityList={gameTasksInfo?.activities} />
         </Box>
       }
@@ -110,7 +110,7 @@ const HomeTab: React.FC<HomeTabProps> = (props) => {
     {
       hasCollection &&
       <Box className={styles.workthroughBox}>
-        <Typography variant="h3">Walkthrough</Typography>
+        <Typography variant="h3">{t("Tabs.walkthrough")}</Typography>
         <WalkthroughCollection
           collectionData={collectionData}
           collectionId={collectionId} />
