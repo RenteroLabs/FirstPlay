@@ -143,11 +143,10 @@ const ArticleDetailPage: NextPageWithLayout = (props) => {
         property="og:description"
         content={articleContent?.ArticleTitle}
       />
-      {/* TODO: 缺分享图片 */}
-      {/* <meta
+      <meta
         property="og:image"
-        content={gameInfo?.background}
-      /> */}
+        content="https://firstplay-crm.s3.ap-east-1.amazonaws.com/3_17_2_6e7214ad47.jpg"
+      />
       {isMounted && <meta
         property="og:url"
         content={window.location.href}
