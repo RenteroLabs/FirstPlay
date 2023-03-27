@@ -1,6 +1,6 @@
 .bounties {
   background: #f4f4f9;
-  padding-bottom: 5rem;
+  padding-bottom: 10rem;
   min-height: calc(100vh - 27rem);
   .bountiesBox {
     margin: auto;
@@ -59,6 +59,19 @@
         box-shadow: none;
         &:hover {
           // box-shadow: 0rem 0.5rem 2.5rem 0rem rgba(142, 80, 228, 0.1);
+        }
+      }
+    }
+    .paginationBox {
+      text-align: center;
+      margin-top: 4rem;
+      :global {
+        .ant-pagination-item-active {
+          background: #8e50e4;
+          border: none;
+          a {
+            color: white !important;
+          }
         }
       }
     }

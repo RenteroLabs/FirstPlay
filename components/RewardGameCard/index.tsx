@@ -2,6 +2,7 @@ import { Box, Card, CardContent, Typography } from "@mui/material"
 import Link from "next/link"
 import styles from './styles.module.scss'
 import Image from 'next/image'
+import { GAME_TASK_MONEY, STAR_LABEL } from "constants/static"
 
 interface RewardGameCardProps {
   gameInfo: Record<string, any>
@@ -18,34 +19,34 @@ const RewardGameCard: React.FC<RewardGameCardProps> = (props) => {
       <Box className={styles.gameImage}>
         <Image
           priority
-          src={gameInfo?.cover}
+          src={gameInfo?.image}
           layout="fill"
           objectFit="cover"
           loader={({ src }) => `${src}?timestamp=${timestamp}`}
         />
-        <Box className={styles.cardTag}>{gameInfo?.game_status[0]}</Box>
+        {/* <Box className={styles.cardTag}>{gameInfo?.game_status[0]}</Box> */}
       </Box>
       <CardContent className={styles.gameContent}>
         <Box className={styles.cardTitle}>
           <Typography>{gameInfo?.name}</Typography>
-          <Box className={styles.tagList}>
-            {/* {
-              [...(gameInfo?.game_types || []), ...(gameInfo?.platforms || [])].slice(0, 3).map((item: string, index: number) => <Box className={styles.tagItem} key={index}>{item}</Box>)
-            } */}
-            {
-              gameInfo?.game_types.map((item: string, index: number) => <Box className={styles.tagItem} key={index}>{item}</Box>)
-            }
-            {/* 
-            {
-              gameInfo?.platforms.map((item: string, index: number) => <Box className={styles.tagItem} key={index}>{item}</Box>)
-            } */}
+          <Box className={styles.taskItem}>
+            <Box className={styles.iconBox}>
+              <Image src={STAR_LABEL} layout="fill" />
+            </Box>
+            <span>{gameInfo?.task}</span>
+          </Box>
+          <Box className={styles.rewardItem}>
+            <Box className={styles.iconBox}>
+              <Image src={GAME_TASK_MONEY} layout="fill" />
+            </Box>
+            <span>{gameInfo?.reward}</span>
           </Box>
         </Box>
-        <Box className={styles.rewardItem}>
-          <Box className={styles.iconBox}>
-            <Image src="/reward_game_card_star_label.png" layout="fill" />
+        <Box className={styles.taskProgress}>
+          <Box className={styles.progressInfo}>
+            Progress: <span>{gameInfo?.issued_rewards}</span> / {gameInfo?.total_rewards}
           </Box>
-          Reward: {gameInfo?.rewards}
+          <Box className={styles.endTime}>{}</Box>
         </Box>
       </CardContent>
     </Card>

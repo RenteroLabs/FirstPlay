@@ -7,7 +7,7 @@
   .gameImage {
     position: relative;
     width: 100%;
-    padding-bottom: 46.16%;
+    padding-bottom: 51.2%;
     overflow: hidden;
 
     img {
@@ -30,59 +30,85 @@
   }
 
   .gameContent {
-    padding: 1.67rem 1.33rem;
+    padding: 1.33rem 1.33rem 1.42rem;
 
     .cardTitle {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
       p {
         font-size: 1.75rem;
         font-family: Inter-SemiBold, Inter;
         font-weight: 600;
         color: #222222;
         line-height: 1.75rem;
+        margin-bottom: 0.83rem;
       }
+      .taskItem {
+        display: flex;
+        align-items: center;
 
-      .tagList {
-        display: inline-flex;
+        font-size: 1.17rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        // line-height: 1.17rem;
 
-        .tagItem {
-          border-radius: 0.33rem;
-          border: 1px solid rgba(#222222, 0.5);
-          font-size: 1rem;
-          font-family: Inter-Medium, Inter;
-          font-weight: 500;
-          color: #222222;
-          line-height: 1rem;
-          padding: 0.33rem 0.67rem;
+        .iconBox {
+          flex-grow: 0;
+          flex-shrink: 0;
+          width: 1.67rem;
+          height: 1.67rem;
+          position: relative;
+          margin-right: 0.33rem;
+        }
+        span {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
+      .rewardItem {
+        display: flex;
+        align-items: center;
+        margin-top: 0.58rem;
+        font-size: 1.17rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: #222222;
+        // line-height: 1.17rem;
 
-          & + .tagItem {
-            margin-left: 0.67rem;
+        .iconBox {
+          flex-grow: 0;
+          flex-shrink: 0;
+          position: relative;
+          width: 1.67rem;
+          height: 1.67rem;
+          margin-right: 0.33rem;
+          img {
+            object-fit: contain;
           }
+        }
+
+        span {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
       }
     }
 
-    .rewardItem {
-      display: flex;
-      align-items: center;
-      margin-top: 1.25rem;
-      font-size: 1.17rem;
+    .taskProgress {
+      border-top: 1px solid rgba($color: #222, $alpha: 0.1);
+      padding-top: 1.25rem;
+      margin-top: 0.75rem;
+      font-size: 1rem;
       font-family: Inter-Medium, Inter;
       font-weight: 500;
-      color: #8e50e4;
-      line-height: 1.17rem;
+      color: #787878;
+      line-height: 1rem;
 
-      .iconBox {
-        position: relative;
-        width: 15px;
-        height: 17px;
-        margin-right: 0.67rem;
-        img {
-          object-fit: contain;
-        }
+      display: flex;
+      justify-content: space-between;
+      span {
+        color: rgba(142, 80, 228, 1);
       }
     }
   }
@@ -101,36 +127,29 @@
           font-weight: bold;
           color: #222222;
           line-height: 1.5rem;
+          margin-bottom: 1rem;
         }
 
-        .tagList {
-          .tagItem {
-            padding: 0.25rem 0.58rem;
-            font-size: 0.83rem;
-            font-family: Inter-Medium, Inter;
-            font-weight: 500;
-            color: #222222;
-            line-height: 0.83rem;
+        .rewardItem {
+          font-size: 1.17rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #8e50e4;
+          // line-height: 1.5rem;
+          // margin-top: 0.67rem !important;
+        }
 
-            & + .tagItem {
-              margin-left: 0.33rem;
-            }
-          }
+        .taskItem {
+          font-size: 1.17rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #222222;
+          // line-height: 1.17rem;
         }
       }
 
-      .rewardItem {
-        font-size: 1.17rem;
-        font-family: Inter-Medium, Inter;
-        font-weight: 500;
-        color: #8e50e4;
-        line-height: 1.5rem;
-        // margin-top: 1rem !important;
-        margin-top: 10px !important;
-
-        .iconBox {
-          display: none;
-        }
+      .taskProgress {
+        padding-top: 0.92rem;
       }
     }
   }

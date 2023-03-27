@@ -1,6 +1,6 @@
 .games {
   background: #f4f4f9;
-  padding-bottom: 5rem;
+  padding-bottom: 10rem;
   min-height: calc(100vh - 27rem);
   .gamesBox {
     margin: auto;
@@ -25,6 +25,20 @@
         width: calc((100% - 5.4rem) / 4);
         margin: 0 0.67rem;
         margin-bottom: 1.33rem;
+      }
+    }
+
+    .paginationBox {
+      text-align: center;
+      margin-top: 4rem;
+      :global {
+        .ant-pagination-item-active {
+          background: #8e50e4;
+          border: none;
+          a {
+            color: white !important;
+          }
+        }
       }
     }
   }
@@ -103,6 +117,7 @@
 
 @media screen and (max-width: 600px) {
   .games {
+    padding-bottom: 5rem;
     .gamesBox {
       width: calc(100% - 2.66rem);
 

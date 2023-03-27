@@ -8,7 +8,7 @@ import Support from "@/components/PageHome/Support";
 import GameStrategy from "@/components/PageHome/GameStrategy";
 import GudeStep from "@/components/PageHome/GuideStep";
 import TrialGame from "@/components/PageHome/TrialingGame";
-import { getAllGamesInfo, getHomeData } from "services/home";
+import { getAllGamesInfo, getHomeData, getHomeDataV1 } from "services/home";
 import { useTranslations } from "next-intl";
 import { ReactElement, useMemo } from "react";
 import Layout from "@/components/Layout";
@@ -84,26 +84,30 @@ export default FirstPlay
 
 export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsContext) => {
   // 获取首页数据
-  let result
+  let result, homeData
   try {
     result = await getHomeData()
+    homeData = await getHomeDataV1()
   } catch (err) {
     console.log(err)
   }
-  const { popular_games = [], banners = [], rewarded_games = [], strategies = [], upcoming_games = [] } = result?.data || {}
+  let { popular_games = [], banners = [], rewarded_games = [], strategies = [], upcoming_games = [] } = result?.data || {}
 
+  const { games: hotGames, bounties } = homeData?.data || {}
 
   // 获取所有游戏数据
   const { data } = await getAllGamesInfo()
   const partnerList = data?.map(({ name, logo }: any) => ({ name, logo }))
   // console.log(partnerList)
+
   return {
     props: {
       // hotGames: reverse(popular_games),
-      hotGames: popular_games,
+      // hotGames: popular_games,
+      hotGames: hotGames,
       comingGames: upcoming_games,
       strategys: strategies,
-      rewardedGames: rewarded_games,
+      rewardedGames: bounties,
 
       // partnerGames
       partnerGames: partnerList,

@@ -10,9 +10,24 @@ export const getHomeData = async () => {
 
 // v1 首页数据
 export const getHomeDataV1 = async () => {
-  const data = await fetch(`${BASE_BACKEND_API}/`)
+  const data = await fetch(`${BASE_BACKEND_API}/api/v1/home`)
+  return data.json()
 }
 
+
+
+
+// games hot game 集合页数据
+export const getHotGameList = async (params: { offset: number, limit: number }) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/v1/games?${qs.stringify(params)}`)
+  return data.json()
+}
+
+// bounties 集合页数据
+export const getBountiesList = async (params: { offset: number, limit: number, status: 'on' | 'off' }) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/bounties?${qs.stringify(params)}`)
+  return data.json()
+}
 
 
 interface GameInfoParams {

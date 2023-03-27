@@ -43,8 +43,8 @@
     "Section": {
       "trialingTitle": "Ongoing Tasks",
       "emptyTrialingTip": "No games currently trialing, start a game you like now!",
-      "moreLink": "More",
-      "rewardedSectionTitle": "Bounty",
+      "moreLink": "ALL",
+      "rewardedSectionTitle": "Bounties",
       "rewardedSectionSubTitle": "Complete Tasks and Win Rewards",
       "hotgameSectionTitle": "Hot Games",
       "strategySectionTitle": "Game Tutorials",

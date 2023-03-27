@@ -19,7 +19,7 @@ const HotGameCard: React.FC<HotGameCardProps> = (props) => {
     <Box className={styles.cardBox}>
       <Box className={styles.gameBase}>
         <Box className={styles.gameLogo}>
-          <img src={`${gameInfo?.image}?timestamp=${timestamp}`} />
+          <img src={`${gameInfo?.logo}?timestamp=${timestamp}`} />
         </Box>
         <Box className={styles.gameDetail}>
           <Typography variant="h3">{gameInfo?.name}</Typography>

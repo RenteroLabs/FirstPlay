@@ -25,7 +25,8 @@ const RewardGames: React.FC<RewardGamesProps> = (props) => {
     <Box className={styles.rewardGamesBox}>
       <SectionTitle
         emphasize={t('rewardedSectionTitle')}
-        subTitle={t('rewardedSectionSubTitle')}
+        // subTitle={t('rewardedSectionSubTitle')}
+        moreLink="/bounties"
       />
       <Box className={styles.cardList}>
         {
