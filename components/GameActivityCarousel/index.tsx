@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-
 import Slider from 'react-slick'
 import { Box, useMediaQuery } from "@mui/material";
 import styles from './styles.module.scss'

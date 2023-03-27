@@ -33,7 +33,6 @@ import { queryCarnivalGamesInfo } from 'services/carnival'
 import { Carnival_Games, SUPPORT_LANGUAGE } from 'constants/index'
 import CampaignIcon from '@mui/icons-material/Campaign';
 import { useTranslations } from "next-intl";
-import GameActivityCarousel from '@/components/GameActivityCarousel'
 import { useIsMounted } from 'hooks/useIsMounted'
 import WalkthroughCollection from '@/components/WalkthroughCollection'
 import GameNewsVideoCard from '@/components/PageGame/GameNewsVideoCard'
@@ -278,21 +277,6 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
               </Box>
             </Box>} */}
 
-          {/* {
-            !isCarnivalGame &&
-            <GameActivityCarousel />
-          }
-          {
-            !isCarnivalGame &&
-            <WalkthroughCollection />
-          }
-        
-          {
-            !isCarnivalGame && 
-            <>
-              <GameNewsTwitterCard />
-            </>
-          } */}
           {/* {
             is700Width ?
               <Box className={styles.rewardMobileBox}>

@@ -1,0 +1,134 @@
+.bounties {
+  background: #f4f4f9;
+  padding-bottom: 10rem;
+  min-height: calc(100vh - 27rem);
+  .bountiesBox {
+    margin: auto;
+    width: 78%;
+
+    h2 {
+      font-size: 2.5rem;
+      font-family: Inter-Black, Inter;
+      font-weight: 900;
+      color: #222222;
+      line-height: 2.5rem;
+      padding: 5rem 0 1.7rem;
+    }
+
+    .bountiesList {
+      width: calc(100% + 2rem);
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: -1rem;
+      margin-top: 2.2rem;
+
+      & > a {
+        width: calc((100% - 4rem) / 2);
+        margin: 0 1rem 2rem;
+      }
+    }
+
+    .paginationBox {
+      text-align: center;
+      margin-top: 4rem;
+      :global {
+        .ant-pagination-item-active {
+          background: #8e50e4;
+          border: none;
+          a {
+            color: white !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1720px) {
+  .bounties {
+    .bountiesBox {
+      .bountiesList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1650px) {
+  .bounties {
+    .bountiesBox {
+      width: 80%;
+      .bountiesList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .bounties {
+    .bountiesBox {
+      width: 83.3%;
+      .bountiesList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .bounties {
+    .bountiesBox {
+      width: 89%;
+      .bountiesList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .bounties {
+    .bountiesBox {
+      width: 92.2%;
+
+      .bountiesList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .bounties {
+    .bountiesBox {
+      .bountiesList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .bounties {
+    padding-bottom: 5rem;
+    .bountiesBox {
+      width: calc(100% - 2.66rem);
+
+      h2 {
+        font-size: 1.75rem;
+        font-family: Inter-Black, Inter;
+        font-weight: 900;
+        color: #222222;
+        line-height: 1.75rem;
+        padding: 1.67rem 0 1rem;
+      }
+
+      .bountiesList {
+        width: 100%;
+        margin-left: 0;
+        height: auto;
+        max-height: none;
+        & > a {
+          width: 100%;
+          margin: 0;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+}

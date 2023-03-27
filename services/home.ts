@@ -29,6 +29,14 @@ export const getBountiesList = async (params: { offset: number, limit: number, s
   return data.json()
 }
 
+// activit 集合页数据
+export const getActivityList = async (params: { offset: number, limit: number }) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/activities?${qs.stringify(params)}`)
+  return data.json()
+}
+
+
+
 
 interface GameInfoParams {
   game_id: string

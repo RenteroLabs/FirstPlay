@@ -55,10 +55,11 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
       <TrialGame />
     }
     <RewardGames timestamp={timestamp} rewardGames={rewardedGames} />
+    <Activities activityList={activityList} />
+
     {!isMiddleSize && <JoinCommunity />}
 
     <Box className={styles.mainBox}>
-      {is600Size && <Activities activityList={activityList} />}
       <HotGames hotGames={hotGames} timestamp={timestamp} />
       <GameStrategy gameStrategy={strategys} />
       {/* <ComingGames comingGames={comingGames} /> */}
@@ -93,7 +94,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
   }
   let { popular_games = [], banners = [], rewarded_games = [], strategies = [], upcoming_games = [] } = result?.data || {}
 
-  const { games: hotGames, bounties } = homeData?.data || {}
+  const { games: hotGames, bounties, activities } = homeData?.data || {}
 
   // 获取所有游戏数据
   const { data } = await getAllGamesInfo()
@@ -112,26 +113,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
       // partnerGames
       partnerGames: partnerList,
 
-      activityList: [
-        {
-          "title": "PLAY MORE AND PAY LESS",
-          "description": "We're celebrating our multiple award WINS with you, Mortals! 25% rebate in $GODS on all pack purchases begins 𝗡𝗢𝗪 - for 1 week only ",
-          "image": "https://rentero-resource.s3.ap-east-1.amazonaws.com/firstplay/activity/Gods+Unchained.jpg",
-          "time_range": "2023/03/10~2023/03/16",
-          "link": "https://twitter.com/GodsUnchained/status/1634011199082774531?s=20",
-          "steps": [],
-          "status": "on"
-        },
-        {
-          "title": "Airdrop reward $800 + 150 MATIC wait for you",
-          "description": "Participate in Twitter activity, follow twitters, like&RT, tag friends.You will get airdrop rewards",
-          "image": "https://rentero-resource.s3.ap-east-1.amazonaws.com/firstplay/activity/Oil+War.jpg",
-          "time_range": "Until 2023/03/21 21:00",
-          "link": "https://twitter.com/goodfriend0906/status/1631879293319127041?s=20",
-          "steps": [],
-          "status": "on"
-        }
-      ],
+      activityList: activities,
 
 
       // 获取国际化文案

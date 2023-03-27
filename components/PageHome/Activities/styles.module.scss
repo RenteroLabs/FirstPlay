@@ -1,5 +1,25 @@
 .activity {
+  background: #f4f4f9;
   .activityBox {
+    height: 100%;
+    width: 78.2%;
+    margin: auto;
+    padding-bottom: 2.92rem;
+
+    .activityList {
+      width: calc(100% + 2rem);
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 2.5rem;
+      margin-left: -1rem;
+
+      & > a {
+        width: calc((100% - 4rem) / 2);
+        margin: 0 1rem 2rem;
+
+        box-shadow: none;
+      }
+    }
   }
 }
 
@@ -48,7 +68,13 @@
 @media screen and (max-width: 800px) {
   .activity {
     .activityBox {
+      // width: calc(100% - 2rem);
+      margin: auto;
       .activityList {
+        & > a {
+          width: 100%;
+          margin-bottom: 1rem;
+        }
       }
     }
   }
@@ -64,6 +90,8 @@
 
       .activityList {
         margin-top: 1rem;
+        width: 100%;
+        margin-left: 0;
       }
     }
   }
