@@ -1,0 +1,131 @@
+.games {
+  background: #f4f4f9;
+  padding-bottom: 5rem;
+  min-height: calc(100vh - 27rem);
+  .gamesBox {
+    margin: auto;
+    width: 78%;
+
+    h2 {
+      font-size: 2.5rem;
+      font-family: Inter-Black, Inter;
+      font-weight: 900;
+      color: #222222;
+      line-height: 2.5rem;
+      padding: 5rem 0 2.5rem;
+    }
+
+    .gameList {
+      width: calc(100% + 1.33rem);
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: -0.67rem;
+
+      & > div {
+        width: calc((100% - 5.4rem) / 4);
+        margin: 0 0.67rem;
+        margin-bottom: 1.33rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1720px) {
+  .games {
+    .gamesBox {
+      .gameList {
+        & > div {
+          width: calc((100% - 4.1rem) / 3);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1650px) {
+  .games {
+    .gamesBox {
+      width: 80%;
+      .gameList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .games {
+    .gamesBox {
+      width: 83.3%;
+      .gameList {
+        & > div {
+          width: calc((100% - 4.1rem) / 3);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .games {
+    .gamesBox {
+      width: 89%;
+      .gameList {
+        & > div {
+          width: calc((100% - 2.7rem) / 2);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .games {
+    .gamesBox {
+      width: 92.2%;
+
+      .gameList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .games {
+    .gamesBox {
+      .gameList {
+        & > div {
+          width: calc((100% - 2.7rem) / 2);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .games {
+    .gamesBox {
+      width: calc(100% - 2.66rem);
+
+      h2 {
+        font-size: 1.75rem;
+        font-family: Inter-Black, Inter;
+        font-weight: 900;
+        color: #222222;
+        line-height: 1.75rem;
+        padding: 1.67rem 0 1rem;
+      }
+
+      .gameList {
+        width: 100%;
+        margin-left: 0;
+        height: auto;
+        max-height: none;
+        & > div {
+          width: 100%;
+          margin: 0;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+}

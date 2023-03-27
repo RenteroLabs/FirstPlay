@@ -15,7 +15,7 @@ import TrialNFTCardSkeleton from '@/components/TrialNFTCard/TrialNFTCardSkeleton
 import QuickTrialNFT from '@/components/PageModals/quickTrialNFT'
 import Head from 'next/head'
 import { useRequest } from 'ahooks'
-import { getAllGames, getAllGamesInfo, getGameInfo } from 'services/home'
+import { getHomeData, getAllGamesInfo, getGameInfo } from 'services/home'
 import { useLazyQuery, useQuery } from '@apollo/client'
 import { GET_GAME_PACKAGES } from 'services/documentNode'
 import { goerliGraph } from 'services/graphql'
@@ -394,7 +394,7 @@ export default Game
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const { data } = await getAllGamesInfo()
-  // const { data } = await getAllGames()
+  // const { data } = await getHomeData()
 
   // const addGameUID = [
   //   // Bless Global

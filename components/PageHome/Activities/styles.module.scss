@@ -1,0 +1,70 @@
+.activity {
+  .activityBox {
+  }
+}
+
+@media screen and (max-width: 1650px) {
+  .activity {
+    .activityBox {
+      width: 80%;
+      .activityList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .activity {
+    .activityBox {
+      width: 83.3%;
+      .activityList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .activity {
+    .activityBox {
+      width: 89%;
+
+      .activityList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .activity {
+    .activityBox {
+      width: 92.2%;
+
+      .activityList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .activity {
+    .activityBox {
+      .activityList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .activity {
+    .activityBox {
+      padding-top: 2.5rem;
+      padding-bottom: 1.17rem;
+      width: calc(100% - 2rem);
+      margin: auto;
+
+      .activityList {
+        margin-top: 1rem;
+      }
+    }
+  }
+}

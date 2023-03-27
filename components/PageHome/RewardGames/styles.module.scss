@@ -10,18 +10,20 @@
     padding-bottom: 2.92rem;
 
     .cardList {
+      width: calc(100% + 2rem);
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
       margin-top: 2.5rem;
+      margin-left: -1rem;
 
       & > div {
-        width: calc((100% - 4.16rem) / 3);
-        margin-bottom: 2.08rem;
+        width: calc((100% - 6rem) / 3);
+        // margin-bottom: 2rem;
+        margin: 0 1rem 2rem;
 
         box-shadow: none;
         &:hover {
-          box-shadow: 0rem 0.5rem 2.5rem 0rem rgba(142, 80, 228, 0.1);
+          // box-shadow: 0rem 0.5rem 2.5rem 0rem rgba(142, 80, 228, 0.1);
         }
       }
     }
@@ -90,7 +92,7 @@
 
       .cardList {
         & > div {
-          width: calc((100% - 2.08rem) / 2);
+          width: calc((100% - 4rem) / 2);
         }
       }
     }
@@ -102,18 +104,20 @@
     padding-bottom: 0;
 
     .rewardGamesBox {
-      width: calc(100% - 2.66rem);
+      width: calc(100% - 2rem);
       padding-top: 2.5rem;
       padding-bottom: 0rem;
       margin-bottom: -1.33rem;
 
       .cardList {
+        width: 100%;
         margin-top: 1.67rem;
+        margin-left: 0;
         height: auto;
         max-height: none;
         & > div {
           width: 100%;
-          margin-bottom: 1.33rem;
+          margin: 0 0 1rem 0;
         }
       }
     }

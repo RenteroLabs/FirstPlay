@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 interface RewardGameCardProps {
   gameInfo: Record<string, any>
-  timestamp: number
+  timestamp?: number
 }
 
 // 有奖励活动的游戏卡片

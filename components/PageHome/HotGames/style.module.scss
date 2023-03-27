@@ -7,18 +7,21 @@
     padding-bottom: 3rem;
 
     .cardList {
+      width: calc(100% + 1.33rem);
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
+      // justify-content: space-between;
       margin-top: 2.5rem;
+      margin-left: -0.67rem;
 
       & > div {
-        width: calc((100% - 8.32rem) / 5);
-        margin-bottom: 2.67rem;
+        width: calc((100% - 5.4rem) / 4);
+        margin: 0 0.67rem;
+        margin-bottom: 1.33rem;
 
         box-shadow: none;
         &:hover {
-          box-shadow: 0rem 0.5rem 2.5rem 0rem rgba(142, 80, 228, 0.1);
+          // box-shadow: 0rem 0.5rem 2.5rem 0rem rgba(142, 80, 228, 0.1);
         }
       }
     }
@@ -45,18 +48,25 @@
   }
 }
 
+@media screen and (max-width: 1720px) {
+  .hotGames {
+    .hotGamesBox {
+      .cardList {
+        overflow: hidden;
+        & > div {
+          width: calc((100% - 4.1rem) / 3);
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 1650px) {
   .hotGames {
     .hotGamesBox {
       width: 80%;
       .cardList {
-        // max-height: calc((80vw - 7rem) / 2 + 300px);
-        max-height: calc(70vw + 136px);
-
-        overflow: hidden;
         & > div {
-          width: calc((100% - 7rem) / 4);
-          margin-bottom: 2.3rem;
         }
       }
     }
@@ -70,11 +80,10 @@
       // padding-top: 6.67rem;
       .cardList {
         // max-height: calc((83vw - 6rem) / 2 + 238px);
-        max-height: calc(70vw + 193px);
+        // max-height: calc(70vw + 193px);
 
         & > div {
-          width: calc((100% - 6rem) / 4);
-          margin-bottom: 2rem;
+          width: calc((100% - 4.1rem) / 3);
         }
       }
     }
@@ -88,10 +97,10 @@
       padding-top: 5rem;
 
       .cardList {
-        // max-height: calc((89vw - 6rem) / 2 + 236px);
-        max-height: calc(70vw + 260px);
-
         margin-top: 2.5rem;
+        & > div {
+          width: calc((100% - 2.7rem) / 2);
+        }
       }
     }
   }
@@ -104,8 +113,6 @@
       padding-top: 5rem;
 
       .cardList {
-        // max-height: calc((92.2vw - 6rem) / 2 + 264px);
-
         margin-top: 2.5rem;
       }
     }
@@ -116,9 +123,9 @@
   .hotGames {
     .hotGamesBox {
       .cardList {
-        max-height: calc((92.2vw) + 264px);
+        // max-height: calc((92.2vw) + 264px);
         & > div {
-          width: calc((100% - 4rem) / 3);
+          width: calc((100% - 2.7rem) / 2);
         }
       }
     }
@@ -134,12 +141,15 @@
       padding-bottom: 0;
 
       .cardList {
+        width: 100%;
+        margin-left: 0;
         margin-top: 1.67rem;
         height: auto;
         max-height: none;
         & > div {
-          width: calc((100% - 1.33rem) / 2);
-          margin-bottom: 1.33rem;
+          width: 100%;
+          margin: 0;
+          margin-bottom: 1rem;
         }
       }
     }

@@ -1,0 +1,165 @@
+.bounties {
+  background: #f4f4f9;
+  padding-bottom: 5rem;
+  min-height: calc(100vh - 27rem);
+  .bountiesBox {
+    margin: auto;
+    width: 78%;
+
+    h2 {
+      font-size: 2.5rem;
+      font-family: Inter-Black, Inter;
+      font-weight: 900;
+      color: #222222;
+      line-height: 2.5rem;
+      padding: 5rem 0 1.7rem;
+    }
+
+    :global {
+      .ant-tabs-nav {
+        margin: 0;
+        &::before {
+          border-bottom: none;
+        }
+
+        .ant-tabs-tab {
+          padding: 0;
+          .ant-tabs-tab-btn {
+            user-select: none;
+            font-size: 1.33rem;
+            font-family: Inter-Medium, Inter;
+            font-weight: 500;
+            color: rgba($color: #222, $alpha: 0.5);
+            // line-height: 1.33rem;
+          }
+        }
+        .ant-tabs-tab-active {
+          .ant-tabs-tab-btn {
+            color: #222;
+          }
+        }
+        .ant-tabs-ink-bar {
+          display: none;
+        }
+      }
+    }
+
+    .bountiesList {
+      width: calc(100% + 2rem);
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: -1rem;
+      margin-top: 2.2rem;
+
+      & > div {
+        width: calc((100% - 6rem) / 3);
+        // margin-bottom: 2rem;
+        margin: 0 1rem 2rem;
+
+        box-shadow: none;
+        &:hover {
+          // box-shadow: 0rem 0.5rem 2.5rem 0rem rgba(142, 80, 228, 0.1);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1650px) {
+  .bounties {
+    .bountiesBox {
+      width: 80%;
+      .bountiesList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .bounties {
+    .bountiesBox {
+      width: 83.3%;
+      // padding-top: 6.67rem;
+      .bountiesList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .bounties {
+    .bountiesBox {
+      width: 89%;
+      // padding-top: 5rem;
+
+      .bountiesList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .bounties {
+    .bountiesBox {
+      width: 92.2%;
+      // padding-top: 5rem;
+
+      .bountiesList {
+        & > div {
+          width: calc((100% - 4rem) / 2);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .bounties {
+    padding-bottom: 0;
+
+    .bountiesBox {
+      width: calc(100% - 2rem);
+      padding-bottom: 5rem;
+
+      h2 {
+        font-size: 1.75rem;
+        font-family: Inter-Black, Inter;
+        font-weight: 900;
+        color: #222222;
+        line-height: 1.75rem;
+        padding: 1.67rem 0 1rem;
+      }
+
+      :global {
+        .ant-tabs-nav {
+          .ant-tabs-tab {
+            padding: 0;
+            .ant-tabs-tab-btn {
+              font-size: 1.17rem;
+              font-family: Inter-Medium, Inter;
+              font-weight: 500;
+              color: rgba($color: #222, $alpha: 0.5);
+            }
+          }
+          .ant-tabs-tab-active {
+            .ant-tabs-tab-btn {
+              color: #222;
+            }
+          }
+        }
+      }
+
+      .bountiesList {
+        width: 100%;
+        margin-top: 1rem;
+        margin-left: 0;
+        height: auto;
+        max-height: none;
+        & > div {
+          width: 100%;
+          margin: 0 0 1rem 0;
+        }
+      }
+    }
+  }
+}

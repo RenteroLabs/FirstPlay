@@ -31,9 +31,6 @@ const RewardGames: React.FC<RewardGamesProps> = (props) => {
         {
           ((is600Size && !showMore) ? rewardGames.slice(0, 3) : rewardGames).map((item, index) => <RewardGameCard gameInfo={item} key={index} timestamp={timestamp} />)
         }
-        {
-          // rewardGames.map((item, index) => <RewardGameCard gameInfo={item} key={index} timestamp={timestamp} />)
-        }
       </Box>
     </Box>
 
