@@ -21,6 +21,7 @@ import { useAccount } from "wagmi";
 import { useIsMounted } from "hooks/useIsMounted";
 import Partner from "@/components/PageHome/Partners";
 import Activities from "@/components/PageHome/Activities"
+import TopBanner from "@/components/PageHome/TopBanner";
 
 const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   const { hotGames, strategys, comingGames, timestamp, rewardedGames, partnerGames, activityList } = props
@@ -45,11 +46,12 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
       <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <Box className={styles.coverBox}>
+    <TopBanner />
+    {/* <Box className={styles.coverBox}>
       {coverSize === 1920 && <Image priority src={`/headerCover1920.jpg`} layout="fill" objectFit="cover" />}
       {coverSize === 900 && <Image priority src={`/headerCover900.jpg`} layout="fill" objectFit="cover" />}
       {coverSize === 375 && <Image priority src={`/headerCover375.jpg`} layout="fill" objectFit="cover" />}
-    </Box>
+    </Box> */}
     {
       isMounted && address &&
       <TrialGame />

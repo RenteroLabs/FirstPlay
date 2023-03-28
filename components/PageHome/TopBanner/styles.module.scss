@@ -1,0 +1,116 @@
+.topBanner {
+  padding-top: 2rem;
+  background-color: #f4f4f9;
+
+  .carousel {
+    width: 100%;
+
+    :global {
+      ul {
+        margin-bottom: 0;
+        padding-left: 0;
+      }
+      .slick-list {
+        // padding: 0 5.5rem !important;
+      }
+
+      .slick-slide {
+        width: calc(78.1vw + 2rem) !important;
+        position: relative;
+      }
+
+      .slick-arrow {
+        display: none !important;
+      }
+
+      .slick-next,
+      .slick-prev {
+        width: 3.67rem;
+        height: 3.67rem;
+        background: rgba(0, 0, 0, 0.2);
+
+        box-shadow: 0rem 0.83rem 2.5rem 0rem rgba(0, 0, 0, 0.2);
+        border-radius: 50%;
+        position: absolute;
+        right: 12.5vw;
+        top: 50%;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        svg {
+          color: white;
+          font-size: 2rem;
+          font-weight: 400;
+          line-height: 3.67rem;
+          margin: 0 0;
+          width: 3rem;
+          height: 3.67rem;
+        }
+        &::before {
+          display: none;
+          content: '';
+        }
+      }
+
+      .slick-prev {
+        right: 0;
+        left: 12.5vw;
+      }
+    }
+
+    .bannerItem {
+      box-sizing: border-box;
+      width: calc(78.1vw + 2rem) !important;
+      // height: 37.5rem;
+      height: 23.4vw;
+      // margin: 0 1rem;
+      position: relative;
+
+      img {
+        margin: auto;
+        width: 78.1vw;
+        height: 100%;
+        border-radius: 1.33rem;
+        overflow: hidden;
+      }
+    }
+  }
+
+  .carouselBtn {
+    :global {
+      .slick-arrow {
+        display: block !important;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topBanner {
+    padding-top: 0;
+
+    .mobileCarousel {
+      width: 100%;
+
+      .mobileBannerItem {
+        height: 48vw;
+        width: 100%;
+
+        img {
+          width: 100%;
+          height: 48vw;
+        }
+      }
+
+      :global {
+        .slick-dots li button:before {
+          content: '';
+          display: none !important;
+        }
+      }
+    }
+  }
+}
