@@ -33,7 +33,7 @@ const TopBanner: React.FC<TopBannerProps> = (props) => {
 
   const bannerRef = useRef<Record<string, any>>({})
 
-  const size = useSize(document.querySelector('body'));
+  const size = useSize(() => document.querySelector('body'));
 
   const activeBannerDom = useMemo(() => {
     return isMounted && document.getElementsByClassName('slick-current')[0]
