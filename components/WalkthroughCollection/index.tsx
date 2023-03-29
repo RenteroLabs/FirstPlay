@@ -1,4 +1,4 @@
-import { Box, IconButton } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import styles from './styles.module.scss'
@@ -25,6 +25,11 @@ const WalkthroughCollection: React.FC<WalkthroughCollectionProps> = (props) => {
   }, [collectionData])
 
   return <Box className={styles.collectionBox}>
+    <Box className={styles.collectionTitle}>
+      <Typography>
+        Master the gameplay of StepN like a Pro
+      </Typography>
+    </Box>
     <Box className={styles.collectionHeader}>
       <Box className={styles.userInfo}>
         <Box className={styles.userLogo}>
@@ -46,7 +51,7 @@ const WalkthroughCollection: React.FC<WalkthroughCollectionProps> = (props) => {
             collectionId={collectionId}
             sort={index + 1}
             article={item}
-            activeItem={true}
+            activeItem={false}
             activeColor={false}
             key={index} />
         )
@@ -61,7 +66,7 @@ const WalkthroughCollection: React.FC<WalkthroughCollectionProps> = (props) => {
           {
             showAllArticle ? t("lessArticle") : t('moreArticle')
           }
-          ({artilceCount})
+          &nbsp;({artilceCount})
           {
             showAllArticle ? <ExpandLessIcon /> : <ExpandMoreIcon />
           }

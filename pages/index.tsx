@@ -22,10 +22,11 @@ import { useIsMounted } from "hooks/useIsMounted";
 import Partner from "@/components/PageHome/Partners";
 import Activities from "@/components/PageHome/Activities"
 import TopBanner from "@/components/PageHome/TopBanner";
+import { getHomeConfigData } from "services/cms";
 
 const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   const { hotGames, strategys, comingGames, timestamp, rewardedGames, partnerGames, activityList } = props
-
+  console.log(strategys)
   const { address } = useAccount()
   const isMounted = useIsMounted()
 
@@ -63,19 +64,19 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
 
     <Box className={styles.mainBox}>
       <HotGames hotGames={hotGames} timestamp={timestamp} />
-      {/* <GameStrategy gameStrategy={strategys} /> */}
+      <GameStrategy gameStrategy={strategys} />
       {/* <ComingGames comingGames={comingGames} /> */}
       <Partner gameList={partnerGames} />
       <Support />
     </Box>
-    {/* <Box className={styles.contactUs}>
+    <Box className={styles.contactUs}>
       <Typography variant="h3">{t('title')}</Typography>
       <Typography>
         {t.rich('subTitle', {
           maillink: (children) => <a target="__blank" href="mailto:business@firstplay.app"><span>{children}</span></a>
         })}
       </Typography>
-    </Box> */}
+    </Box>
   </Box>
 }
 
@@ -103,13 +104,27 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
   // const partnerList = data?.map(({ name, logo }: any) => ({ name, logo }))
   // console.log(partnerList)
 
+
+  // 获取首页 CMS 配置数据
+  let homeCMSConfig
+  try {
+    homeCMSConfig = await getHomeConfigData()
+    // console.log(homeCMSConfig)
+  } catch (err) {
+    console.log(err)
+  }
+
+  let { article_collections: workthroughList } = homeCMSConfig?.data?.attributes
+
   return {
     props: {
       // hotGames: reverse(popular_games),
       // hotGames: popular_games,
       hotGames: hotGames,
       comingGames: upcoming_games,
-      strategys: strategies,
+
+      strategys: workthroughList?.data || [],
+
       rewardedGames: bounties,
 
       // partnerGames

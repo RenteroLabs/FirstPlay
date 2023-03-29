@@ -19,7 +19,7 @@ const RewardGames: React.FC<RewardGamesProps> = (props) => {
 
   const is600Size = useMediaQuery("(max-width: 600px)")
 
-  const [showMore, setShowMore] = useState<boolean>(false)
+  const [showMore, setShowMore] = useState<boolean>(true)
 
   return <Box className={styles.rewardGames}>
     <Box className={styles.rewardGamesBox}>
@@ -35,13 +35,13 @@ const RewardGames: React.FC<RewardGamesProps> = (props) => {
       </Box>
     </Box>
 
-    {is600Size && <Box className={styles.showMoreBtn} onClick={() => setShowMore(!showMore)}>
+    {/* {is600Size && <Box className={styles.showMoreBtn} onClick={() => setShowMore(!showMore)}>
       {
         showMore ?
           <> {t('showLessBtn')} <KeyboardArrowUpIcon /> </> :
           <> {t('showMoreBtn')} <KeyboardArrowDownIcon /> </>
       }
-    </Box>}
+    </Box>} */}
   </Box>
 }
 

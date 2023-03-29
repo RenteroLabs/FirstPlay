@@ -34,7 +34,6 @@ import { Carnival_Games, SUPPORT_LANGUAGE } from 'constants/index'
 import CampaignIcon from '@mui/icons-material/Campaign';
 import { useTranslations } from "next-intl";
 import { useIsMounted } from 'hooks/useIsMounted'
-import WalkthroughCollection from '@/components/WalkthroughCollection'
 import GameNewsVideoCard from '@/components/PageGame/GameNewsVideoCard'
 import GameNewsTwitterCard from '@/components/PageGame/GameNewsTwitterCard'
 import { Tabs } from 'antd'

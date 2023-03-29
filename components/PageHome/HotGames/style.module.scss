@@ -136,20 +136,24 @@
   .hotGames {
     .hotGamesBox {
       width: calc(100% - 2rem);
-      padding-top: 2.5rem;
+      padding-top: 0rem;
       // padding-bottom: 1.17rem;
       padding-bottom: 0;
 
       .cardList {
         width: 100%;
         margin-left: 0;
-        margin-top: 1.67rem;
+        margin-top: 1rem;
         height: auto;
         max-height: none;
         & > div {
           width: 100%;
           margin: 0;
           margin-bottom: 1rem;
+
+        }
+        & > div:last-child {
+          margin-bottom: 0;
         }
       }
     }

@@ -98,3 +98,28 @@ export const getSingerStrategyArticle = async (articleId: string, localeType: st
   })
   return data.json()
 }
+
+
+// 获取首页配置参数数据
+export const getHomeConfigData = async () => {
+  const query = qs.stringify({
+    populate: {
+      article_collections: {
+        populate: {
+          strategy_articles: {
+            fields: ['ArticleTitle', 'ArticleName']
+          },
+        }
+      }
+    },
+  }, {
+    encodeValuesOnly: true
+  })
+  const data = await fetch(`${CMS_BASE_URL}/api/home-config?${query}`, {
+    headers: {
+      "Authorization": `Bearer ${CMS_TOKEN}`
+    }
+  })
+
+  return data.json()
+}

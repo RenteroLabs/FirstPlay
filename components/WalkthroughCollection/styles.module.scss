@@ -1,13 +1,33 @@
 .collectionBox {
   background: #ffffff;
-  padding: 2.5rem;
-  border-radius: 1rem;
-  box-shadow: 0rem 0.5rem 2.5rem 0rem #f2f0f4;
+  padding: 0 0 2.5rem;
+  border-radius: 1.33rem;
+
+  .collectionTitle {
+    height: 5.17rem;
+    background: linear-gradient(
+      180deg,
+      rgba(#96fcc8, 0.3) 0%,
+      rgba(150, 252, 200, 0) 100%
+    );
+    border-radius: 1.33rem 1.33rem 0rem 0rem;
+
+    padding-top: 1.75rem;
+    padding-left: 2.5rem;
+    p {
+      font-size: 1.5rem;
+      font-family: Inter-Bold, Inter;
+      font-weight: bold;
+      color: #8e50e4;
+      line-height: 1.5rem;
+    }
+  }
 
   .collectionHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 2.5rem;
 
     .userInfo {
       display: flex;
@@ -15,8 +35,8 @@
 
       .userLogo {
         position: relative;
-        width: 3rem;
-        height: 3rem;
+        width: 4rem;
+        height: 4rem;
         border-radius: 50%;
       }
 
@@ -32,6 +52,7 @@
   }
 
   .articleList {
+    padding: 0 2.5rem;
     margin-top: 1.92rem;
     margin-left: 0.5rem;
     position: relative;
@@ -51,16 +72,18 @@
       position: absolute;
       z-index: 0;
       top: 2%;
-      left: 1rem;
+      left: 3.5rem;
     }
   }
 
   .btnBox {
     margin-top: 1.83rem;
+    margin-left: 6.25rem;
+
     .clickBtn {
-      font-size: 1.33rem;
-      font-family: Inter-SemiBold, Inter;
-      font-weight: 600;
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
       color: #8e50e4;
       line-height: 1.17rem;
       user-select: none;
@@ -74,15 +97,47 @@
 
 @media screen and (max-width: 600px) {
   .collectionBox {
+    position: relative;
     background: #ffffff;
-    box-shadow: 0rem 0.17rem 2.5rem 0rem #ece7f4;
-    padding: 1.33rem 1rem 1.67rem;
     border-radius: 1rem;
 
+    &::before {
+      content: '';
+      height: 5.17rem;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(#96fcc8, 0.3) 0%,
+        rgba(150, 252, 200, 0) 100%
+      );
+      border-radius: 1rem 1rem 0rem 0rem;
+    }
+
+    .collectionTitle {
+      height: auto;
+      background: transparent;
+      padding-top: 1.17rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      p {
+        font-size: 1.33rem;
+        font-family: Inter-Bold, Inter;
+        font-weight: bold;
+        color: #8e50e4;
+        line-height: 1.83rem;
+        padding-bottom: 1.08rem;
+        border-bottom: 1px solid rgba(#8e50e4, 0.1);
+      }
+      margin-bottom: 1rem;
+    }
     .collectionHeader {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 0 1rem;
 
       .userInfo {
         display: flex;
@@ -107,6 +162,8 @@
     }
 
     .articleList {
+      padding: 0 1rem;
+      margin-left: 3px;
       margin-top: 0.67rem;
       position: relative;
       &::before {
@@ -125,30 +182,13 @@
         position: absolute;
         z-index: 0;
         top: 2%;
-        left: 1rem;
+        left: 2rem;
       }
     }
 
     .btnBox {
       margin-top: 0.67rem;
-      .clickBtn {
-        height: 3.33rem;
-        background: rgba(#222222, 0.05);
-        border-radius: 1.67rem;
-
-        font-size: 1.17rem;
-        font-family: Inter-SemiBold, Inter;
-        font-weight: 600;
-        color: #222222;
-        line-height: 1.17rem;
-        user-select: none;
-
-        cursor: pointer;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+      margin-left: 4.42rem;
     }
   }
 }
