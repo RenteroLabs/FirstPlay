@@ -21,8 +21,12 @@ const Partner: React.FC<PartnerProps> = (props) => {
           centerMode={true}
           infinite={true}
           autoplay={true}
+          swipeToSlide={true}
           slidesToShow={3.6}
-          speed={500}
+          speed={2000}
+          autoplaySpeed={2000}
+          cssEase="linear"
+          variableWidth={true}
         >
           {
             gameList.map((item, index) =>

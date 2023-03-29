@@ -85,7 +85,7 @@
       .cardList {
         // margin-top: 2.5rem;
         .brandItem {
-          height: 5.33rem;
+          height: 6rem;
           border-radius: 0.67rem;
         }
       }
@@ -111,19 +111,19 @@
 @media screen and (max-width: 600px) {
   .support {
     .supportBox {
+      width: calc(100% - 2rem);
       padding-top: 2.5rem;
-      padding-bottom: 1.17rem;
+      padding-bottom: 1.5rem;
 
       .cardList {
         flex-wrap: wrap;
-        // justify-content: flex-start;
         justify-content: space-between;
         margin-top: 1.67rem;
         .brandItem {
-          width: calc((100% - 1.66rem) / 2);
-          height: 4.33rem;
-          // margin: 0 0.27rem 0.83rem;
-          margin-bottom: 1.33rem;
+          margin: 0;
+          width: calc((100% - 1rem) / 2);
+          height: 6rem;
+          margin-bottom: 1rem;
         }
       }
     }

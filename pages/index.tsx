@@ -63,9 +63,9 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
 
     <Box className={styles.mainBox}>
       <HotGames hotGames={hotGames} timestamp={timestamp} />
-      <GameStrategy gameStrategy={strategys} />
+      {/* <GameStrategy gameStrategy={strategys} /> */}
       {/* <ComingGames comingGames={comingGames} /> */}
-      {is600Size && <Partner gameList={partnerGames} />}
+      <Partner gameList={partnerGames} />
       <Support />
     </Box>
     {/* <Box className={styles.contactUs}>
@@ -96,11 +96,11 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
   }
   let { popular_games = [], banners = [], rewarded_games = [], strategies = [], upcoming_games = [] } = result?.data || {}
 
-  const { games: hotGames, bounties, activities } = homeData?.data || {}
+  const { games: hotGames, bounties, activities, partners } = homeData?.data || {}
 
   // 获取所有游戏数据
-  const { data } = await getAllGamesInfo()
-  const partnerList = data?.map(({ name, logo }: any) => ({ name, logo }))
+  // const { data } = await getAllGamesInfo()
+  // const partnerList = data?.map(({ name, logo }: any) => ({ name, logo }))
   // console.log(partnerList)
 
   return {
@@ -113,7 +113,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
       rewardedGames: bounties,
 
       // partnerGames
-      partnerGames: partnerList,
+      partnerGames: partners,
 
       activityList: activities,
 
