@@ -24,6 +24,7 @@ const GameStrategy: React.FC<GameStrategyProps> = (props) => {
             const { attributes } = item
             return <WalkthroughCollection
               key={index}
+              collectionTitle={attributes?.CollectionTitle}
               collectionId={attributes?.CollectionId}
               collectionData={attributes?.strategy_articles?.data}
             />

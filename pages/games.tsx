@@ -1,6 +1,6 @@
 import { Box, Typography, useMediaQuery } from '@mui/material'
 import { GetStaticProps, GetStaticPropsContext, NextPage } from 'next'
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import styles from '../styles/games.module.scss'
 import Layout from '@/components/Layout'
@@ -8,7 +8,7 @@ import { NextPageWithLayout } from './_app'
 import Head from 'next/head'
 import HotGameCard from '@/components/HotGameCard'
 import { Pagination } from 'antd';
-import { useRequest } from 'ahooks'
+import { useInViewport, useRequest, useScroll } from 'ahooks'
 import { getHotGameList } from 'services/home'
 
 const pageSize = 12
@@ -25,22 +25,34 @@ const Games: NextPageWithLayout = () => {
     queryHotgameList({ limit: pageSize, offset: pageSize * (currentPage - 1) })
   }, [currentPage])
 
+  const scroll = useScroll()
+
+  useEffect(() => {
+    if (!isMobileSize) return
+    // @ts-ignore
+    if (scroll?.top + 300 + document.body.offsetHeight > document.body.scrollHeight && currentPage * pageSize < totalCount) {
+      setCurrentPage(currentPage + 1)
+    }
+  }, [scroll])
+
   // TODO: 请求数据逻辑
   const { run: queryHotgameList } = useRequest(getHotGameList, {
     manual: true,
     onSuccess: ({ data }) => {
       if (data) {
         const { games, total_count } = data
-        console.log(data)
-        setGameList(games)
+        // console.log(data)
+        if (isMobileSize) {
+          setGameList([...gameList, ...games])
+        } else {
+          setGameList(games)
+        }
         setTotalCount(total_count)
       }
     }
   })
 
-  // TODO: 移动端自动加载数据逻辑
-
-  return <Box className={styles.games}>
+  return <Box className={styles.games} >
     <Head>
       <title>Games | FirstPlay</title>
       <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
@@ -54,11 +66,17 @@ const Games: NextPageWithLayout = () => {
             <HotGameCard gameInfo={item} key={index} />)
         }
       </Box>
-      <Pagination
-        className={styles.paginationBox}
-        total={totalCount}
-        current={currentPage}
-        onChange={(page) => setCurrentPage(page)} />
+      {
+        !isMobileSize ?
+          <Pagination
+            className={styles.paginationBox}
+            total={totalCount}
+            current={currentPage}
+            onChange={(page) => setCurrentPage(page)} />
+          : <Box>
+            {/* mobile loading */}
+          </Box>
+      }
     </Box>
   </Box>
 }

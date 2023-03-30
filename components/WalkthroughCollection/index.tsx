@@ -10,12 +10,13 @@ import { useTranslations } from "next-intl";
 interface WalkthroughCollectionProps {
   collectionData: Record<string, any>[]
   collectionId: string
+  collectionTitle: string
 }
 
 const DEFAUTL_SHOW_COUNT: number = 5
 
 const WalkthroughCollection: React.FC<WalkthroughCollectionProps> = (props) => {
-  const { collectionData, collectionId } = props
+  const { collectionData, collectionId, collectionTitle } = props
   const t = useTranslations('Game.Tabs')
 
   const [showAllArticle, setShowAllArticle] = useState<boolean>(false)
@@ -27,7 +28,7 @@ const WalkthroughCollection: React.FC<WalkthroughCollectionProps> = (props) => {
   return <Box className={styles.collectionBox}>
     <Box className={styles.collectionTitle}>
       <Typography>
-        Master the gameplay of StepN like a Pro
+        {collectionTitle || "No Collection Title Yet ~"}
       </Typography>
     </Box>
     <Box className={styles.collectionHeader}>

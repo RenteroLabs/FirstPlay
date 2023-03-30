@@ -1,6 +1,8 @@
 import { Box, Typography } from "@mui/material";
+import { useRequest } from "ahooks";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getUserArticleCollection } from "services/cms";
 import styles from './styles.module.scss'
 
 interface HotGameCardProps {
@@ -11,9 +13,18 @@ interface HotGameCardProps {
 const HotGameCard: React.FC<HotGameCardProps> = (props) => {
   const { gameInfo, timestamp } = props
 
-  // console.log(gameInfo)
+  const [collectionData, setCollectionData] = useState<Record<string, any>>()
 
-  // TODO: 获取游戏攻略集合数据
+  const { run } = useRequest(getUserArticleCollection, {
+    manual: true,
+    onSuccess: ({ data = [] }) => {
+      setCollectionData(data[0]?.attributes || {})
+    }
+  })
+
+  useEffect(() => {
+    run({ gameId: gameInfo?.game_id })
+  }, [gameInfo])
 
   return <Link href={`/game/${gameInfo?.game_id}`} target="_blank" >
     <Box className={styles.cardBox}>
@@ -25,15 +36,15 @@ const HotGameCard: React.FC<HotGameCardProps> = (props) => {
           <Typography variant="h3">{gameInfo?.name}</Typography>
           <Box className={styles.tagList}>
             {
-              gameInfo?.game_types.map((item: string, index: number) =>
+              gameInfo?.game_types?.map((item: string, index: number) =>
                 <Box className={styles.tagItem} key={index}>{item}</Box>)
             }
           </Box>
-          <Typography>3 Tutorials:</Typography>
+          <Typography>{collectionData?.strategy_articles?.data?.length || 0} Tutorials:</Typography>
         </Box>
       </Box>
       <Box className={styles.gameArticleCollection}>
-        Community Alpha Gameplay Guide!Community Alpha Gameplay Guide!
+        {collectionData?.CollectionTitle || 'No Collection Title Yet ~'}
       </Box>
     </Box>
   </Link >
