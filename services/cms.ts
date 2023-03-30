@@ -110,6 +110,9 @@ export const getHomeConfigData = async () => {
             fields: ['ArticleTitle', 'ArticleName']
           },
         }
+      },
+      WeekItems: {
+        populate: '*'
       }
     },
   }, {

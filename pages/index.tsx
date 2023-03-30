@@ -23,12 +23,15 @@ import Partner from "@/components/PageHome/Partners";
 import Activities from "@/components/PageHome/Activities"
 import TopBanner from "@/components/PageHome/TopBanner";
 import { getHomeConfigData } from "services/cms";
+import WeeklyRank from "@/components/PageHome/WeeklyRank";
 
 const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-  const { hotGames, strategys, comingGames, timestamp, rewardedGames, partnerGames, activityList } = props
-  console.log(strategys)
+  const { hotGames, strategys, comingGames, timestamp, rewardedGames, partnerGames, activityList, weeklynews } = props
+
   const { address } = useAccount()
   const isMounted = useIsMounted()
+
+  const is1200Size = useMediaQuery("(max-width: 1200px)")
 
   const isMiddleSize = useMediaQuery("(max-width: 900px)")
   const isMobileSize = useMediaQuery("(max-width: 450px)")
@@ -64,6 +67,7 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
 
     <Box className={styles.mainBox}>
       <HotGames hotGames={hotGames} timestamp={timestamp} />
+      {!is1200Size && <WeeklyRank weeklyRankList={weeklynews} />}
       <GameStrategy gameStrategy={strategys} />
       {/* <ComingGames comingGames={comingGames} /> */}
       <Partner gameList={partnerGames} />
@@ -114,7 +118,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
     console.log(err)
   }
 
-  let { article_collections: workthroughList } = homeCMSConfig?.data?.attributes
+  let { article_collections: workthroughList, WeekItems } = homeCMSConfig?.data?.attributes
 
   return {
     props: {
@@ -131,6 +135,9 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
       partnerGames: partners,
 
       activityList: activities,
+
+      // weekly news
+      weeklynews: WeekItems,
 
 
       // 获取国际化文案
