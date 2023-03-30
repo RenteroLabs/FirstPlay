@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import { GetStaticProps, GetStaticPropsContext } from "next";
 import Head from "next/head";
 import React, { ReactElement, useEffect, useState } from "react";
@@ -7,7 +7,7 @@ import { NextPageWithLayout } from "./_app";
 import styles from '../styles/bounties.module.scss'
 import { Pagination, Tabs } from 'antd';
 import RewardGameCard from "@/components/RewardGameCard";
-import { useRequest } from "ahooks";
+import { useRequest, useScroll } from "ahooks";
 import { getBountiesList } from "services/home";
 
 enum TabEnum {
@@ -32,7 +32,7 @@ const BountiesList: React.FC<BountiesListPorps> = (props) => {
 const pageSize = 9
 // Bounty 集合页
 const Bounties: NextPageWithLayout = () => {
-
+  const isMobileSize = useMediaQuery("(max-width: 600px)")
   const [activeKey, setActiveKey] = useState<string>(TabEnum.ONGOING)
 
   const [currentPageGoing, setCurrentPageGoing] = useState<number>(1)
@@ -44,16 +44,61 @@ const Bounties: NextPageWithLayout = () => {
   const [ongoingList, setOngoingList] = useState<Record<string, any>[]>([])
   const [endList, setEndList] = useState<Record<string, any>[]>([])
 
+  const [isRequesting, setIsRequesting] = useState<boolean>(false)
+
+  const scroll = useScroll()
+
+  useEffect(() => {
+    if (!isMobileSize) return
+
+    if (activeKey === TabEnum.ONGOING) {
+      // @ts-ignore
+      if (scroll?.top + 500 + document.body.offsetHeight > document.body.scrollHeight
+        && currentPageGoing * pageSize < totalGoing) {
+
+        if (isRequesting) return
+        setIsRequesting(true)
+        setTimeout(() => setIsRequesting(false), 500)
+
+        setCurrentPageGoing(currentPageGoing + 1)
+
+        queryBountiesList({
+          limit: pageSize,
+          offset: pageSize * (currentPageGoing),
+          status: "on"
+        })
+      }
+    } else {
+      // @ts-ignore
+      if (scroll?.top + 500 + document.body.offsetHeight > document.body.scrollHeight
+        && currentPageEnd * pageSize < totalEnd) {
+
+        if (isRequesting) return
+        setIsRequesting(true)
+        setTimeout(() => setIsRequesting(false), 500)
+
+        setCurrentPageEnd(currentPageEnd + 1)
+
+        queryBountiesList({
+          limit: pageSize,
+          offset: pageSize * (currentPageEnd),
+          status: "off"
+        })
+      }
+    }
+  }, [scroll])
+
+
   const { run: queryBountiesList, runAsync } = useRequest(getBountiesList, {
     manual: true,
     onSuccess: ({ data }, [{ status }]) => {
       if (data) {
         const { total_count, bounties } = data
         if (status === 'on') {
-          setOngoingList(bounties)
+          setOngoingList(isMobileSize ? [...ongoingList, ...bounties] : bounties)
           setTotalGoing(total_count)
         } else {
-          setEndList(bounties)
+          setEndList(isMobileSize ? [...endList, ...bounties] : bounties)
           setTotalEnd(total_count)
         }
       }
@@ -67,11 +112,6 @@ const Bounties: NextPageWithLayout = () => {
       await runAsync({ limit: pageSize, offset: pageSize * (currentPageEnd - 1), status: 'off' })
     })()
   }, [])
-
-
-
-  // TODO: 移动端懒加载列表
-
 
   return <Box className={styles.bounties}>
     <Head>
@@ -97,7 +137,7 @@ const Bounties: NextPageWithLayout = () => {
         ]}
       />
 
-      <Pagination
+      {!isMobileSize && <Pagination
         className={styles.paginationBox}
         total={activeKey === TabEnum.ONGOING ? totalGoing : totalEnd}
         current={activeKey === TabEnum.ONGOING ? currentPageGoing : currentPageEnd}
@@ -114,7 +154,7 @@ const Bounties: NextPageWithLayout = () => {
             status: activeKey === TabEnum.ONGOING ? "on" : "off"
           })
         }}
-      />
+      />}
     </Box>
   </Box>
 }

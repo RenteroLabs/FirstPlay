@@ -17,6 +17,8 @@ const HotGameCard: React.FC<HotGameCardProps> = (props) => {
 
   const { run } = useRequest(getUserArticleCollection, {
     manual: true,
+    cacheKey: gameInfo?.game_id,
+    staleTime: 1000 * 60 * 60 * 12, // 缓存 12 小时
     onSuccess: ({ data = [] }) => {
       setCollectionData(data[0]?.attributes || {})
     }

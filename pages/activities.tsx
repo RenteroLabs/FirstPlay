@@ -7,10 +7,10 @@ import { NextPageWithLayout } from "./_app";
 import styles from '../styles/activities.module.scss'
 import { Pagination } from "antd";
 import ActivityCard from "@/components/ActivityCard";
-import { useRequest } from "ahooks";
+import { useRequest, useScroll } from "ahooks";
 import { getActivityList } from "services/home";
 
-const pageSize = 10
+const pageSize = 8
 
 // Activity 集合页
 const Activities: NextPageWithLayout = () => {
@@ -21,13 +21,33 @@ const Activities: NextPageWithLayout = () => {
 
   const [activityList, setActivityList] = useState<Record<string, any>[]>([])
 
+  const [isRequesting, setIsRequesting] = useState<boolean>(false)
+
+  const scroll = useScroll()
+
+  useEffect(() => {
+    if (!isMobileSize) return
+    // @ts-ignore
+    if (scroll?.top + 300 + document.body.offsetHeight > document.body.scrollHeight && currentPage * pageSize < totalCount) {
+      if (isRequesting) return
+      setIsRequesting(true)
+
+      setCurrentPage(currentPage + 1)
+      setTimeout(() => setIsRequesting(false), 500)
+    }
+  }, [scroll])
+
   const { run: queryActivityList } = useRequest(getActivityList, {
     manual: true,
     onSuccess: ({ data }) => {
       if (data) {
         const { activities, total_count } = data
-        setActivityList(activities)
         setTotalCount(total_count)
+        if (isMobileSize) {
+          setActivityList([...activityList, ...activities])
+        } else {
+          setActivityList(activities)
+        }
       }
     }
   })
@@ -43,18 +63,18 @@ const Activities: NextPageWithLayout = () => {
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Box className={styles.bountiesBox}>
-      <Typography variant='h2'>Hot Games {!isMobileSize && `> ALL`}</Typography>
+      <Typography variant='h2'>Activities {!isMobileSize && `> ALL`}</Typography>
       <Box className={styles.bountiesList}>
         {
           activityList?.map((item, index) =>
             <ActivityCard activityInfo={item} key={index} />)
         }
       </Box>
-      <Pagination
+      {!isMobileSize && <Pagination
         className={styles.paginationBox}
         total={totalCount}
         current={currentPage}
-        onChange={(page) => setCurrentPage(page)} />
+        onChange={(page) => setCurrentPage(page)} />}
     </Box>
   </Box>
 }

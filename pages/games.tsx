@@ -21,27 +21,32 @@ const Games: NextPageWithLayout = () => {
   const [totalCount, setTotalCount] = useState<number>(0)
   const [currentPage, setCurrentPage] = useState<number>(1)
 
+  const [isRequesting, setIsRequesting] = useState<boolean>(false)
+
   useEffect(() => {
     queryHotgameList({ limit: pageSize, offset: pageSize * (currentPage - 1) })
   }, [currentPage])
 
   const scroll = useScroll()
-
+  
   useEffect(() => {
     if (!isMobileSize) return
     // @ts-ignore
-    if (scroll?.top + 300 + document.body.offsetHeight > document.body.scrollHeight && currentPage * pageSize < totalCount) {
+    if (scroll?.top + 500 + document.body.offsetHeight > document.body.scrollHeight && currentPage * pageSize < totalCount) {
+      if (isRequesting) return
+
+      setIsRequesting(true)
       setCurrentPage(currentPage + 1)
+
+      setTimeout(() => setIsRequesting(false), 500)
     }
   }, [scroll])
 
-  // TODO: 请求数据逻辑
   const { run: queryHotgameList } = useRequest(getHotGameList, {
     manual: true,
     onSuccess: ({ data }) => {
       if (data) {
         const { games, total_count } = data
-        // console.log(data)
         if (isMobileSize) {
           setGameList([...gameList, ...games])
         } else {
