@@ -3,6 +3,7 @@ import Link from "next/link"
 import styles from './styles.module.scss'
 import Image from 'next/image'
 import { GAME_TASK_MONEY, STAR_LABEL } from "constants/static"
+import { useCountDown } from "ahooks"
 
 interface RewardGameCardProps {
   gameInfo: Record<string, any>
@@ -12,7 +13,10 @@ interface RewardGameCardProps {
 // 有奖励活动的游戏卡片
 const RewardGameCard: React.FC<RewardGameCardProps> = (props) => {
   const { gameInfo, timestamp } = props
-  console.log(gameInfo)
+
+  const [_, { days, hours, minutes }] = useCountDown({
+    targetDate: gameInfo?.expired_at || new Date()
+  })
 
   return <Link href={`/game/${gameInfo?.game_id}`}>
     <Card className={styles.gameCard}>
@@ -46,7 +50,11 @@ const RewardGameCard: React.FC<RewardGameCardProps> = (props) => {
           <Box className={styles.progressInfo}>
             Progress: <span>{gameInfo?.issued_rewards}</span> / {gameInfo?.total_rewards}
           </Box>
-          <Box className={styles.endTime}>{}</Box>
+          <Box className={styles.endTime}>
+            {
+              gameInfo?.expired_at ? `Ends in ${days}D:${hours}H:${minutes}M` : "FCFS"
+            }
+          </Box>
         </Box>
       </CardContent>
     </Card>

@@ -9,6 +9,7 @@ import { Pagination } from "antd";
 import ActivityCard from "@/components/ActivityCard";
 import { useRequest, useScroll } from "ahooks";
 import { getActivityList } from "services/home";
+import { GameActivityCard } from "@/components/GameActivityCarousel";
 
 const pageSize = 8
 
@@ -66,8 +67,12 @@ const Activities: NextPageWithLayout = () => {
       <Typography variant='h2'>Activities {!isMobileSize && `> ALL`}</Typography>
       <Box className={styles.bountiesList}>
         {
-          activityList?.map((item, index) =>
-            <ActivityCard activityInfo={item} key={index} />)
+          isMobileSize ?
+            activityList?.map((item, index) =>
+              <GameActivityCard activityInfo={item} key={index} cardType="GameName" />)
+            :
+            activityList?.map((item, index) =>
+              <ActivityCard activityInfo={item} key={index} />)
         }
       </Box>
       {!isMobileSize && <Pagination

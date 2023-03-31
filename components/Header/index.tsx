@@ -139,6 +139,22 @@ const HeaderUserInfo: React.FC<HeaderUserInfoProps> = (props) => {
             <>
               {address && <Box className={styles.divider} />}
 
+
+              <Link href="/bounties">
+                <MenuItem className={styles.menuItem} onClick={closeCallback} disableRipple>
+                  Bounty
+                </MenuItem>
+              </Link>
+              <Link href="/activities">
+                <MenuItem className={styles.menuItem} onClick={closeCallback} disableRipple>
+                  Activity
+                </MenuItem>
+              </Link>
+              <Link href="/games">
+                <MenuItem className={styles.menuItem} onClick={closeCallback} disableRipple>
+                  Games
+                </MenuItem>
+              </Link>
               <Link href="/carnival">
                 {/* <a target="__blank"> */}
                 <MenuItem className={styles.menuItem} onClick={closeCallback} disableRipple>
@@ -146,19 +162,18 @@ const HeaderUserInfo: React.FC<HeaderUserInfoProps> = (props) => {
                 </MenuItem>
                 {/* </a> */}
               </Link>
-
               <MenuItem className={cx({
                 menuItem: true,
                 disabled: true,
               })} disableRipple>
-                {t('games')}
+                MarketPlace
               </MenuItem>
-              <MenuItem className={cx({
+              {/* <MenuItem className={cx({
                 menuItem: true,
                 disabled: true,
               })} disableRipple>
                 {t('strategy')}
-              </MenuItem>
+              </MenuItem> */}
             </>
           }
 
@@ -219,14 +234,27 @@ const Header: React.FC = () => {
         <Box sx={{ display: 'flex', alignItems: 'center', height: '100%' }}>
           {!isDashboardEnv && <Stack direction="row" className={styles.headerNavs} >
             <Box>
-              <Link href="/carnival" >
-                {/* <a target="_blank"> */}
-                {t('passNFT')}
-                {/* </a> */}
+              <Link href="/bounties" >
+                Bounty
               </Link>
             </Box>
-            <Box className={styles.disabled}>{t('games')}</Box>
-            <Box className={styles.disabled}>{t('strategy')}</Box>
+            <Box>
+              <Link href="/activities" >
+                Activity
+              </Link>
+            </Box>
+            <Box>
+              <Link href="/games" >
+                Games
+              </Link>
+            </Box>
+            <Box>
+              <Link href="/carnival" >
+                {t('passNFT')}
+              </Link>
+            </Box>
+            <Box className={styles.disabled}>MarketPlace</Box>
+            {/* <Box className={styles.disabled}>Airdrop</Box> */}
           </Stack>}
 
           <Box className={styles.headerSetting}>

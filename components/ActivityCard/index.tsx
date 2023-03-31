@@ -17,7 +17,7 @@ const ActivityCard: React.FC<ActivityCardProps> = (props) => {
       </Box>
       <Box className={styles.activityInfo}>
         <Typography variant="h3">{activityInfo?.name}</Typography>
-        <Typography>{activityInfo?.description}</Typography>
+        <Typography>{activityInfo?.title || activityInfo?.description}</Typography>
         <Box className={styles.activityTimeRange}>{activityInfo?.time_range}</Box>
       </Box>
     </Box>

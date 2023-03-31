@@ -73,7 +73,8 @@ const TopBanner: React.FC<TopBannerProps> = (props) => {
           dots={false}
           speed={500}
           centerMode={true}
-          // autoplay={true}
+          autoplay={true}
+          autoplaySpeed={7000}
           infinite={true}
           slidesToShow={1}
           variableWidth={true}
