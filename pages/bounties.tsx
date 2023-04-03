@@ -49,7 +49,7 @@ const Bounties: NextPageWithLayout = () => {
   const scroll = useScroll()
 
   useEffect(() => {
-    if (!isMobileSize) return
+    // if (!isMobileSize) return
 
     if (activeKey === TabEnum.ONGOING) {
       // @ts-ignore
@@ -95,10 +95,12 @@ const Bounties: NextPageWithLayout = () => {
       if (data) {
         const { total_count, bounties } = data
         if (status === 'on') {
-          setOngoingList(isMobileSize ? [...ongoingList, ...bounties] : bounties)
+          // setOngoingList(isMobileSize ? [...ongoingList, ...bounties] : bounties)
+          setOngoingList([...ongoingList, ...bounties])
           setTotalGoing(total_count)
         } else {
-          setEndList(isMobileSize ? [...endList, ...bounties] : bounties)
+          // setEndList(isMobileSize ? [...endList, ...bounties] : bounties)
+          setEndList([...endList, ...bounties])
           setTotalEnd(total_count)
         }
       }
@@ -137,7 +139,7 @@ const Bounties: NextPageWithLayout = () => {
         ]}
       />
 
-      {!isMobileSize && <Pagination
+      {/* {!isMobileSize && <Pagination
         className={styles.paginationBox}
         total={activeKey === TabEnum.ONGOING ? totalGoing : totalEnd}
         current={activeKey === TabEnum.ONGOING ? currentPageGoing : currentPageEnd}
@@ -154,7 +156,7 @@ const Bounties: NextPageWithLayout = () => {
             status: activeKey === TabEnum.ONGOING ? "on" : "off"
           })
         }}
-      />}
+      />} */}
     </Box>
   </Box>
 }

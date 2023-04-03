@@ -14,6 +14,7 @@
       margin-bottom: 3.33rem;
     }
     .gameList {
+      position: relative;
       .gameItem {
         width: calc(2.5rem + 6.67rem) !important;
         padding: 0 1.25rem;
@@ -24,6 +25,40 @@
           border-radius: 50%;
           margin-bottom: 1.08rem;
         }
+        p {
+          font-weight: 400;
+          color: #222222 !important;
+        }
+      }
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: -1px;
+        bottom: 0;
+        width: 100px;
+        z-index: 1000;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0) 0%,
+          #ffffff 100%
+        );
+      }
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 100px;
+        z-index: 1000;
+        background: linear-gradient(
+          270deg,
+          rgba(255, 255, 255, 0) 0%,
+          #ffffff 100%
+        );
       }
     }
   }
@@ -102,6 +137,13 @@
         position: relative;
         padding-top: 2.58rem;
 
+        &::after {
+          width: 30px;
+        }
+        &::before {
+          width: 30px;
+        }
+
         .sliderBox {
           width: 100%;
         }
@@ -130,7 +172,6 @@
             word-wrap: break-word;
           }
         }
-
       }
     }
   }
