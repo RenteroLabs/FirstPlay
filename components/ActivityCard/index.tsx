@@ -13,7 +13,7 @@ const ActivityCard: React.FC<ActivityCardProps> = (props) => {
   return <a href={activityInfo?.link} target="_blank" rel="noreferrer"  >
     <Box className={styles.activityBox}>
       <Box className={styles.imageBox}>
-        <Image src={activityInfo?.image} layout="fill" />
+        <Image src={activityInfo?.image} layout="fill" objectFit="cover" />
       </Box>
       <Box className={styles.activityInfo}>
         <Typography variant="h3">{activityInfo?.name}</Typography>
