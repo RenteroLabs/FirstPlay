@@ -8,17 +8,18 @@ import { useCountDown } from "ahooks"
 interface RewardGameCardProps {
   gameInfo: Record<string, any>
   timestamp?: number
+  type?: 'Ongoing' | 'Ended'
 }
 
 // 有奖励活动的游戏卡片
 const RewardGameCard: React.FC<RewardGameCardProps> = (props) => {
-  const { gameInfo, timestamp } = props
+  const { gameInfo, timestamp, type = 'Ongoing' } = props
 
   const [_, { days, hours, minutes }] = useCountDown({
     targetDate: gameInfo?.expired_at || new Date()
   })
 
-  return <Link href={`/game/${gameInfo?.game_id}`}>
+  return <Link href={`/game/${gameInfo?.game_id}?taskType=${type}`}>
     <Card className={styles.gameCard}>
       <Box className={styles.gameImage}>
         <Image

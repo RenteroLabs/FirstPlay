@@ -113,6 +113,9 @@ export const getHomeConfigData = async () => {
       },
       WeekItems: {
         populate: '*'
+      },
+      BannerItems: {
+        populate: '*'
       }
     },
   }, {

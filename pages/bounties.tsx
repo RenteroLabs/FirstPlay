@@ -17,13 +17,15 @@ enum TabEnum {
 
 interface BountiesListPorps {
   bountiesList: Record<string, any>[]
+  type: 'Ongoing' | 'Ended'
 }
 const BountiesList: React.FC<BountiesListPorps> = (props) => {
-  const { bountiesList } = props
+  const { bountiesList, type } = props
 
   return <Box className={styles.bountiesList}>
     {
-      bountiesList?.map((item, index) => <RewardGameCard key={index} gameInfo={item} />)
+      bountiesList?.map((item, index) =>
+        <RewardGameCard key={index} gameInfo={item} type={type} />)
     }
   </Box>
 }
@@ -130,11 +132,19 @@ const Bounties: NextPageWithLayout = () => {
           {
             label: `Ongoing(${totalGoing})`,
             key: TabEnum.ONGOING,
-            children: <BountiesList bountiesList={ongoingList} key={TabEnum.ONGOING} />
+            children: <BountiesList
+              bountiesList={ongoingList}
+              key={TabEnum.ONGOING}
+              type="Ongoing"
+            />
           }, {
             label: `Ended(${totalEnd})`,
             key: TabEnum.ENDED,
-            children: <BountiesList bountiesList={endList} key={TabEnum.ENDED} />
+            children: <BountiesList
+              bountiesList={endList}
+              key={TabEnum.ENDED}
+              type="Ended"
+            />
           }
         ]}
       />

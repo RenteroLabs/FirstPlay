@@ -26,7 +26,7 @@ import { getHomeConfigData } from "services/cms";
 import WeeklyRank from "@/components/PageHome/WeeklyRank";
 
 const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-  const { hotGames, strategys, comingGames, timestamp, rewardedGames, partnerGames, activityList, weeklynews } = props
+  const { hotGames, strategys, comingGames, timestamp, rewardedGames, partnerGames, activityList, weeklynews , bannerList} = props
 
   const { address } = useAccount()
   const isMounted = useIsMounted()
@@ -50,7 +50,7 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
       <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <TopBanner />
+    <TopBanner bannerList={bannerList} />
     {/* <Box className={styles.coverBox}>
       {coverSize === 1920 && <Image priority src={`/headerCover1920.jpg`} layout="fill" objectFit="cover" />}
       {coverSize === 900 && <Image priority src={`/headerCover900.jpg`} layout="fill" objectFit="cover" />}
@@ -118,8 +118,9 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
     console.log(err)
   }
 
-  let { article_collections: workthroughList, WeekItems } = homeCMSConfig?.data?.attributes
+  let { article_collections: workthroughList, WeekItems, BannerItems } = homeCMSConfig?.data?.attributes
 
+  // console.log(BannerItems)
   return {
     props: {
       // hotGames: reverse(popular_games),
@@ -138,6 +139,9 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
 
       // weekly news
       weeklynews: WeekItems,
+
+      // banner list
+      bannerList: BannerItems,
 
 
       // 获取国际化文案

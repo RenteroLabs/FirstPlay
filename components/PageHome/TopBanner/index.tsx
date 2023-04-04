@@ -13,16 +13,12 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 const cx = classNames.bind(styles)
 
 interface TopBannerProps {
-
+  bannerList: Record<string, any>[]
 }
 
-const bannerList = [
-  "/headerCover1920.jpg",
-  "/headerCover1920.jpg",
-  "/headerCover1920.jpg"
-]
 const TopBanner: React.FC<TopBannerProps> = (props) => {
-  const { } = props
+  const { bannerList } = props
+  console.log(bannerList)
 
   const isMobileSize = useMediaQuery("(max-width: 600px)")
 
@@ -56,10 +52,16 @@ const TopBanner: React.FC<TopBannerProps> = (props) => {
       isMobileSize ?
         <Carousel className={styles.mobileCarousel} >
           {
-            bannerList.map((item, index) =>
-              <Box className={styles.mobileBannerItem} key={index} >
-                <img src={item} />
-              </Box>)
+            bannerList.map((item, index) => {
+              const { coversamll } = item
+              let imageUrl
+
+              // 不同宽度用不同图片
+              imageUrl = coversamll?.data?.attributes?.url
+              return <Box className={styles.mobileBannerItem} key={index} >
+                <img src={imageUrl} />
+              </Box>
+            })
           }
         </Carousel>
         :
@@ -86,10 +88,20 @@ const TopBanner: React.FC<TopBannerProps> = (props) => {
           }}
         >
           {
-            bannerList.map((item, index) =>
-              <Box className={styles.bannerItem} key={index} ref={(r) => bannerRef.current[String(index)] = r}>
-                <img src={item} />
-              </Box>)
+            bannerList.map((item, index) => {
+              const { coverlarge } = item
+              // console.log(coverlarge)
+              let imageUrl
+
+              // 不同宽度用不同图片
+              imageUrl = coverlarge?.data?.attributes?.url
+              return <Box
+                className={styles.bannerItem}
+                key={index}
+                ref={(r) => bannerRef.current[String(index)] = r}>
+                <img src={imageUrl} />
+              </Box>
+            })
           }
         </Slider>
     }
