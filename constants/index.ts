@@ -1,62 +1,22 @@
-import { Chain, chain } from "wagmi"
-
-const BSC_CHAIN: Chain = {
-  id: 56,
-  name: 'BNB Smart Chain',
-  network: 'Binance Smart Chain Mainnet',
-  nativeCurrency: {
-    decimals: 18,
-    name: 'BNB',
-    symbol: 'BNB'
-  },
-  rpcUrls: {
-    default: 'https://bsc-dataseed1.binance.org',
-  },
-  blockExplorers: {
-    default: {
-      name: "BscScan",
-      url: "https://bscscan.com/"
-    }
-  },
-  testnet: false
-}
-
-const BSC_TEST: Chain = {
-  id: 97,
-  name: 'BSC Test',
-  network: 'Binance Smart Chain Testnet',
-  nativeCurrency: {
-    decimals: 18,
-    name: 'tBNB',
-    symbol: 'tBNB'
-  },
-  rpcUrls: {
-    default: 'https://data-seed-prebsc-1-s1.binance.org:8545'
-  },
-  blockExplorers: {
-    default: {
-      name: 'BscScan Test',
-      url: "https://testnet.bscscan.com"
-    }
-  }
-}
+import { Chain } from "wagmi"
+import { bsc, bscTestnet, mainnet, polygon, polygonMumbai, goerli } from '@wagmi/core/chains'
 
 const MAIN_NETWORK: Chain[] = [
-  chain.mainnet,
-  chain.polygon,
-  BSC_CHAIN,
+  mainnet,
+  polygon,
+  bsc,
 ]
 
 export const SUPPORT_CHAINS =
   process.env.NEXT_PUBLIC_ENV === 'PRO' ?
     MAIN_NETWORK :
     [
-      chain.mainnet,
-      chain.goerli,
-      chain.polygon,
-      chain.polygonMumbai,
-      BSC_CHAIN,
-      BSC_TEST
+      mainnet,
+      goerli,
+      polygon,
+      polygonMumbai,
+      bsc,
+      bscTestnet
     ]
 
 export enum CHAIN_ID_NAME {

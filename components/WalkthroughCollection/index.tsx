@@ -1,4 +1,4 @@
-import { Box, IconButton } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import styles from './styles.module.scss'
@@ -10,12 +10,13 @@ import { useTranslations } from "next-intl";
 interface WalkthroughCollectionProps {
   collectionData: Record<string, any>[]
   collectionId: string
+  collectionTitle: string
 }
 
 const DEFAUTL_SHOW_COUNT: number = 5
 
 const WalkthroughCollection: React.FC<WalkthroughCollectionProps> = (props) => {
-  const { collectionData, collectionId } = props
+  const { collectionData, collectionId, collectionTitle } = props
   const t = useTranslations('Game.Tabs')
 
   const [showAllArticle, setShowAllArticle] = useState<boolean>(false)
@@ -25,6 +26,11 @@ const WalkthroughCollection: React.FC<WalkthroughCollectionProps> = (props) => {
   }, [collectionData])
 
   return <Box className={styles.collectionBox}>
+    <Box className={styles.collectionTitle}>
+      <Typography>
+        {collectionTitle || "No Collection Title Yet ~"}
+      </Typography>
+    </Box>
     <Box className={styles.collectionHeader}>
       <Box className={styles.userInfo}>
         <Box className={styles.userLogo}>
@@ -46,7 +52,7 @@ const WalkthroughCollection: React.FC<WalkthroughCollectionProps> = (props) => {
             collectionId={collectionId}
             sort={index + 1}
             article={item}
-            activeItem={true}
+            activeItem={false}
             activeColor={false}
             key={index} />
         )
@@ -61,7 +67,7 @@ const WalkthroughCollection: React.FC<WalkthroughCollectionProps> = (props) => {
           {
             showAllArticle ? t("lessArticle") : t('moreArticle')
           }
-          ({artilceCount})
+          &nbsp;({artilceCount})
           {
             showAllArticle ? <ExpandLessIcon /> : <ExpandMoreIcon />
           }

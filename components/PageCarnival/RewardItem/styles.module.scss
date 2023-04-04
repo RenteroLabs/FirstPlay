@@ -5,7 +5,7 @@
   // background: #ffffff;
   background: #f7f3fd;
   // box-shadow: 0rem 0.83rem 1.67rem 0rem rgba(142, 80, 228, 0.2);
-  box-shadow: 0rem 0.83rem 1.67rem 0rem #eaeaf3;
+  // box-shadow: 0rem 0.83rem 1.67rem 0rem #eaeaf3;
   border-radius: 1rem;
 
   // display: flex;
@@ -280,14 +280,15 @@
     border-radius: 1.67rem;
     // background: rgba(142, 80, 228, 0.1);
     border: 1px solid #8e50e4;
-
+    background: #8e50e4;
+    
     user-select: none;
     padding: 1rem;
 
     font-size: 1.17rem;
     font-family: Inter-SemiBold, Inter;
     font-weight: 600;
-    color: #8e50e4;
+    color: white;
     line-height: 1.33rem;
     cursor: pointer;
 
@@ -302,8 +303,8 @@
       color: white;
     }
     &:hover {
-      box-shadow: 0.2rem 0.4rem 0.4rem 0rem rgba(142, 80, 228, 0.2);
-      background: #8e50e4;
+      // box-shadow: 0.2rem 0.4rem 0.4rem 0rem rgba(142, 80, 228, 0.2);
+      background: #7336C8;
       color: white;
     }
   }
@@ -323,6 +324,7 @@
     &:hover {
       background: rgba(#222, 0.2) !important;
       color: #ffffff !important;
+      box-shadow: none !important;
     }
   }
   .rewardIcon {

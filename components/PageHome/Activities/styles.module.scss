@@ -1,0 +1,98 @@
+.activity {
+  background: #f4f4f9;
+  .activityBox {
+    height: 100%;
+    width: 78.2%;
+    margin: auto;
+    padding-bottom: 3rem;
+
+    .activityList {
+      width: calc(100% + 2rem);
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 2.5rem;
+      margin-left: -1rem;
+
+      & > a {
+        width: calc((100% - 4rem) / 2);
+        margin: 0 1rem 2rem;
+
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1650px) {
+  .activity {
+    .activityBox {
+      width: 80%;
+      .activityList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .activity {
+    .activityBox {
+      width: 83.3%;
+      .activityList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .activity {
+    .activityBox {
+      width: 89%;
+
+      .activityList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .activity {
+    .activityBox {
+      width: 92.2%;
+
+      .activityList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .activity {
+    .activityBox {
+      // width: calc(100% - 2rem);
+      margin: auto;
+      .activityList {
+        & > a {
+          width: 100%;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .activity {
+    .activityBox {
+      padding-top: 2.5rem;
+      padding-bottom: 1.17rem;
+      width: calc(100% - 2rem);
+      margin: auto;
+
+      .activityList {
+        margin-top: 1rem;
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+  }
+}

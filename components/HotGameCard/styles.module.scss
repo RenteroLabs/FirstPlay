@@ -1,0 +1,185 @@
+// 移动端样式
+.cardBox {
+  cursor: pointer;
+  overflow: hidden;
+  padding: 1.33rem;
+  background: #ffffff;
+  border-radius: 1rem;
+  filter: blur(0px);
+
+  .gameBase {
+    display: flex;
+    align-items: flex-start;
+
+    .gameLogo {
+      width: 8rem;
+      height: 8rem;
+      flex-grow: 0;
+      flex-shrink: 0;
+      margin-right: 0.83rem;
+      border-radius: 1rem;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .gameDetail {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      h3 {
+        font-size: 1.75rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #222222;
+        // line-height: 1.33rem;
+        margin-top: 0.33rem;
+        margin-bottom: 1rem;
+      }
+      p {
+        margin-top: 1.33rem;
+        font-size: 1rem;
+        font-family: Inter-Medium, Inter;
+        font-weight: 500;
+        color: rgba(#222, 0.3);
+        line-height: 1rem;
+      }
+      .tagList {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+
+        .tagItem {
+          border-radius: 0.33rem;
+          border: 0.04rem solid rgba(#222, 0.3);
+          font-size: 1rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #222222;
+          line-height: 1rem;
+          padding: 0.33rem 0.75rem;
+          user-select: none;
+
+          & + .tagItem {
+            margin-left: 0.67rem;
+          }
+        }
+      }
+    }
+  }
+
+  .gameArticleCollection {
+    margin-top: 1.33rem;
+    padding: 0.75rem;
+    background: rgba(#8e50e4, 0.05);
+    border-radius: 0.5rem;
+    filter: blur(0px);
+
+    font-size: 1.17rem;
+    font-family: Inter-Medium, Inter;
+    font-weight: 500;
+    color: #8e50e4;
+    line-height: 1.17rem;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  // 移动端样式
+  .cardBox {
+    overflow: hidden;
+    padding: 1rem;
+    background: #ffffff;
+    border-radius: 1rem;
+    filter: blur(0px);
+
+    .gameBase {
+      display: flex;
+      align-items: flex-start;
+
+      .gameLogo {
+        width: 6rem;
+        height: 6rem;
+        flex-grow: 0;
+        flex-shrink: 0;
+        margin-right: 0.83rem;
+        border-radius: 1rem;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      .gameDetail {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        h3 {
+          font-size: 1.33rem;
+          font-family: Inter-Bold, Inter;
+          font-weight: bold;
+          color: #222222;
+          line-height: 1.33rem;
+          margin-top: 0.25rem;
+          // margin-bottom: 0.83rem;
+          margin-bottom: 0;
+          padding-bottom: 0.83rem;
+        }
+        p {
+          margin-top: 0.83rem;
+          font-size: 1rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: rgba(#222, 0.3);
+          line-height: 1rem;
+        }
+        .tagList {
+          display: flex;
+          align-items: center;
+          flex-wrap: nowrap;
+
+          .tagItem {
+            border-radius: 0.33rem;
+            border: 0.04rem solid rgba(#222, 0.3);
+            font-size: 1rem;
+            font-family: Inter-Medium, Inter;
+            font-weight: 500;
+            color: #222222;
+            line-height: 1rem;
+            padding: 0.33rem 0.75rem;
+
+            & + .tagItem {
+              margin-left: 0.67rem;
+            }
+          }
+        }
+      }
+    }
+
+    .gameArticleCollection {
+      margin-top: 1.17rem;
+      padding: 0.75rem;
+      background: rgba(#8e50e4, 0.05);
+      border-radius: 0.5rem;
+      filter: blur(0px);
+
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: #8e50e4;
+      line-height: 1.17rem;
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}

@@ -23,10 +23,10 @@ const SectionTitle: React.FC<SectionTitleProps> = (props) => {
     {subTitle && <Box className={styles.subTitle}>{subTitle}</Box>}
     {
       moreLink && <Box className={styles.moreLink}>
-        <Link href={moreLink}>
+        <a href={moreLink} target="_blank" rel="noreferrer">
           <Typography>{t('moreLink')}</Typography>
-        </Link>
-        <ArrowRightIcon fontSize="large" />
+        </a>
+        {/* <ArrowRightIcon fontSize="large" /> */}
       </Box>
     }
   </Box>

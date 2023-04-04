@@ -19,31 +19,29 @@ const RewardGames: React.FC<RewardGamesProps> = (props) => {
 
   const is600Size = useMediaQuery("(max-width: 600px)")
 
-  const [showMore, setShowMore] = useState<boolean>(false)
+  const [showMore, setShowMore] = useState<boolean>(true)
 
   return <Box className={styles.rewardGames}>
     <Box className={styles.rewardGamesBox}>
       <SectionTitle
         emphasize={t('rewardedSectionTitle')}
-        subTitle={t('rewardedSectionSubTitle')}
+        // subTitle={t('rewardedSectionSubTitle')}
+        moreLink="/bounties"
       />
       <Box className={styles.cardList}>
         {
           ((is600Size && !showMore) ? rewardGames.slice(0, 3) : rewardGames).map((item, index) => <RewardGameCard gameInfo={item} key={index} timestamp={timestamp} />)
         }
-        {
-          // rewardGames.map((item, index) => <RewardGameCard gameInfo={item} key={index} timestamp={timestamp} />)
-        }
       </Box>
     </Box>
 
-    {is600Size && <Box className={styles.showMoreBtn} onClick={() => setShowMore(!showMore)}>
+    {/* {is600Size && <Box className={styles.showMoreBtn} onClick={() => setShowMore(!showMore)}>
       {
         showMore ?
           <> {t('showLessBtn')} <KeyboardArrowUpIcon /> </> :
           <> {t('showMoreBtn')} <KeyboardArrowDownIcon /> </>
       }
-    </Box>}
+    </Box>} */}
   </Box>
 }
 

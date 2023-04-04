@@ -2,11 +2,41 @@ import { BASE_BACKEND_API } from './../constants/index';
 import qs from 'qs'
 
 
-// 获取首页全部游戏
-export const getAllGames = async () => {
+// 获取首页数据
+export const getHomeData = async () => {
   const data = await fetch(`${BASE_BACKEND_API}/api/home`)
   return data.json()
 }
+
+// v1 首页数据
+export const getHomeDataV1 = async () => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/v1/home`)
+  return data.json()
+}
+
+
+
+
+// games hot game 集合页数据
+export const getHotGameList = async (params: { offset: number, limit: number }) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/v1/games?${qs.stringify(params)}`)
+  return data.json()
+}
+
+// bounties 集合页数据
+export const getBountiesList = async (params: { offset: number, limit: number, status: 'on' | 'off' }) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/bounties?${qs.stringify(params)}`)
+  return data.json()
+}
+
+// activit 集合页数据
+export const getActivityList = async (params: { offset: number, limit: number }) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/activities?${qs.stringify(params)}`)
+  return data.json()
+}
+
+
+
 
 interface GameInfoParams {
   game_id: string
@@ -68,6 +98,15 @@ export const submitGameTask = async (params: SubmitGameTaskParams) => {
 }
 
 
+
+
+
+/**
+ * ------------------------------------------------
+ * Profile page api
+ * ------------------------------------------------
+ */
+
 /**
  * 获取正在试玩游戏
  * @param address 
@@ -86,7 +125,6 @@ export const getTrialTaskRecordList = async (address: string) => {
   return data.json()
 }
 
-
 /**
  * 获取个人页正在试玩任务列表
  */
@@ -102,7 +140,6 @@ export const getProfileBalanceRecordList = async (address: string) => {
   const data = await fetch(`${BASE_BACKEND_API}/api/user-balance-details?address=${address.toLowerCase()}`)
   return data.json()
 }
-
 
 /**
  * 用户余额列表
@@ -136,6 +173,8 @@ export const withdrawTokenBalance = async (params: withdrawTokenParams) => {
 
   return data.json()
 }
+
+
 
 
 

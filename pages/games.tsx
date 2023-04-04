@@ -1,106 +1,100 @@
- 
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, useMediaQuery } from '@mui/material'
 import { GetStaticProps, GetStaticPropsContext, NextPage } from 'next'
-import { useRouter } from 'next/router'
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import styles from '../styles/game.module.scss'
+import styles from '../styles/games.module.scss'
 import Layout from '@/components/Layout'
 import { NextPageWithLayout } from './_app'
-import GameInfo from '@/components/GameInfo'
-import { REWARD_ICON } from 'constants/static'
-import KeyboardDoubleArrowDownOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowDownOutlined';
-import TrialNFTCard from '@/components/TrialNFTCard'
-import TrialNFTCardSkeleton from '@/components/TrialNFTCard/TrialNFTCardSkeleton'
-import TrialSuccessModal from '@/components/PageModals/TrialSuccess'
-import QuickTrialNFT from '@/components/PageModals/quickTrialNFT'
 import Head from 'next/head'
+import HotGameCard from '@/components/HotGameCard'
+import { Pagination } from 'antd';
+import { useInViewport, useRequest, useScroll } from 'ahooks'
+import { getHotGameList } from 'services/home'
 
+const pageSize = 12
 
-// 游戏详情页
-const Game: NextPageWithLayout = () => {
+// 游戏集合页
+const Games: NextPageWithLayout = () => {
+  const isMobileSize = useMediaQuery("(max-width: 600px)")
 
-  const router = useRouter()
-  const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false)
-  const [showQuickTrialModal, setShowQuickTrialModal] = useState<boolean>(false)
+  const [gameList, setGameList] = useState<Record<string, any>[]>([])
+  const [totalCount, setTotalCount] = useState<number>(0)
+  const [currentPage, setCurrentPage] = useState<number>(1)
+
+  const [isRequesting, setIsRequesting] = useState<boolean>(false)
 
   useEffect(() => {
-    // 根据路由参数，获取当前游戏信息
+    queryHotgameList({ limit: pageSize, offset: pageSize * (currentPage - 1) })
+  }, [currentPage])
 
-  }, [router])
+  const scroll = useScroll()
+  
+  useEffect(() => {
+    if (!isMobileSize) return
+    // @ts-ignore
+    if (scroll?.top + 500 + document.body.offsetHeight > document.body.scrollHeight && currentPage * pageSize < totalCount) {
+      if (isRequesting) return
 
-  return <Box className={styles.gameBox}>
+      setIsRequesting(true)
+      setCurrentPage(currentPage + 1)
+
+      setTimeout(() => setIsRequesting(false), 500)
+    }
+  }, [scroll])
+
+  const { run: queryHotgameList } = useRequest(getHotGameList, {
+    manual: true,
+    onSuccess: ({ data }) => {
+      if (data) {
+        const { games, total_count } = data
+        if (isMobileSize) {
+          setGameList([...gameList, ...games])
+        } else {
+          setGameList(games)
+        }
+        setTotalCount(total_count)
+      }
+    }
+  })
+
+  return <Box className={styles.games} >
     <Head>
       <title>Games | FirstPlay</title>
       <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <Box className={styles.topCover}>
-      <Image src="https://tva1.sinaimg.cn/large/e6c9d24egy1h3xhds6ikrj20zo0ibtcv.jpg" layout='fill' objectFit='cover' />
-    </Box>
-    <Box className={styles.gameInfoBox}>
-      <GameInfo gameInfo={{}} />
-    </Box>
-    <Box className={styles.rewardBox}>
-      <Typography variant='h4'>Rewards</Typography>
-      <Box className={styles.rewardItem}>
-        <Box className={styles.rewardName}>
-          <Box className={styles.rewardIcon}>
-            <Image src={REWARD_ICON} layout="fill" />
+    <Box className={styles.gamesBox}>
+      <Typography variant='h2'>Hot Games {!isMobileSize && `> ALL`}</Typography>
+      <Box className={styles.gameList}>
+        {
+          gameList?.map((item, index) =>
+            <HotGameCard gameInfo={item} key={index} />)
+        }
+      </Box>
+      {
+        !isMobileSize ?
+          <Pagination
+            className={styles.paginationBox}
+            total={totalCount}
+            current={currentPage}
+            pageSize={pageSize}
+            onChange={(page) => setCurrentPage(page)} />
+          : <Box>
+            {/* mobile loading */}
           </Box>
-          <Typography>Continue to rent after the trial to get rewards during the trial.</Typography>
-        </Box>
-        <Box className={styles.rewardValue}>
-          <Typography>200U / 3D</Typography>
-        </Box>
-      </Box>
+      }
     </Box>
-    <Box className={styles.btnBox}>
-      <Box className={styles.trialBtn} onClick={() => setShowQuickTrialModal(true)}> Start Free Trial </Box>
-      <Box className={styles.downIcon} onClick={() => {
-        // window.body.screenTop(300)
-        // document.body.scrollTop = 500
-        // console.log("ddd")
-      }}>
-        <KeyboardDoubleArrowDownOutlinedIcon />
-      </Box>
-    </Box>
-    <Box className={styles.cardBox}>
-      <Box className={styles.cardContent}>
-        <Typography variant='h3'>All Items</Typography>
-        <Typography variant='h4'>Choose your own favorite NFT to trial.</Typography>
-
-        <Box className={styles.cardList}>
-          {/* <TrialNFTCard />
-          <TrialNFTCard />
-          <TrialNFTCard />
-          <TrialNFTCard />
-          <TrialNFTCard />
-          <TrialNFTCard />
-          <TrialNFTCard />
-          <TrialNFTCard /> */}
-          <TrialNFTCardSkeleton />
-          <TrialNFTCardSkeleton />
-          <TrialNFTCardSkeleton />
-          <TrialNFTCardSkeleton />
-        </Box>
-      </Box>
-    </Box>
-    {/* <QuickTrialNFT showModal={showQuickTrialModal} setShowModal={setShowQuickTrialModal} /> */}
-    {/* <TrialSuccessModal showModal={showSuccessModal} setShowModal={setShowSuccessModal} /> */}
   </Box>
 }
 
-Game.getLayout = function getLayout(page: ReactElement) {
+Games.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>
 }
 
-
-export default Game
+export default Games
 
 
 export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsContext) => {
-
   return {
     props: {
       // 获取国际化文案

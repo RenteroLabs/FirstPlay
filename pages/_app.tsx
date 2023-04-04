@@ -60,9 +60,11 @@ const client = createClient({
     new WalletConnectConnector({
       chains,
       options: {
-        qrcode: true
+        showQrModal: true,
+        projectId: 'ee2b39154b521ae33c8750a1716e3107'
       }
     }),
+    // @ts-ignore
     new UnipassConnector({
       chains,
       options: unipassOption,

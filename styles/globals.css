@@ -40,6 +40,10 @@ a {
   z-index: 1700 !important;
 }
 
+html {
+  --w3m-z-index: 1900 !important;
+}
+
 @media screen and (max-width: 600px) {
   .ant-dropdown-menu-title-content a > div {
     padding: 0.5rem 0 !important;

@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-
 import Slider from 'react-slick'
 import { Box, useMediaQuery } from "@mui/material";
 import styles from './styles.module.scss'
@@ -10,19 +9,24 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
 interface GameActivityCardProps {
   activityInfo: Record<string, any>
+  cardType?: 'GameName' | 'GameTitle'
 }
 
-const GameActivityCard: React.FC<GameActivityCardProps> = (props) => {
-  const { activityInfo } = props
-
+export const GameActivityCard: React.FC<GameActivityCardProps> = (props) => {
+  const { activityInfo, cardType = 'GameTitle' } = props
+  // console.log(activityInfo)
   return <a href={activityInfo?.link} target="_blank" rel="noreferrer" ><Box className={styles.activityCard}>
     <Box className={styles.cardImage}>
       <img src={activityInfo?.image} />
       <Box className={styles.imageMask}>{activityInfo?.time_range}</Box>
     </Box>
     <Box className={styles.cardContent}>
-      <Typography className={styles.activityTitle}>{activityInfo?.title}</Typography>
-      <Typography className={styles.activitySubtitle}>{activityInfo?.description}</Typography>
+      <Typography className={styles.activityTitle}>
+        {cardType === 'GameName' ? activityInfo?.name : activityInfo?.title}
+      </Typography>
+      <Typography className={styles.activitySubtitle}>
+        {cardType === 'GameName' ? activityInfo?.title : activityInfo?.description}
+      </Typography>
     </Box>
   </Box>
   </a>

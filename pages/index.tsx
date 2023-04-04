@@ -8,7 +8,7 @@ import Support from "@/components/PageHome/Support";
 import GameStrategy from "@/components/PageHome/GameStrategy";
 import GudeStep from "@/components/PageHome/GuideStep";
 import TrialGame from "@/components/PageHome/TrialingGame";
-import { getAllGames } from "services/home";
+import { getAllGamesInfo, getHomeData, getHomeDataV1 } from "services/home";
 import { useTranslations } from "next-intl";
 import { ReactElement, useMemo } from "react";
 import Layout from "@/components/Layout";
@@ -19,12 +19,19 @@ import JoinCommunity from "@/components/PageHome/JoinCommunity";
 import RewardGames from "@/components/PageHome/RewardGames";
 import { useAccount } from "wagmi";
 import { useIsMounted } from "hooks/useIsMounted";
+import Partner from "@/components/PageHome/Partners";
+import Activities from "@/components/PageHome/Activities"
+import TopBanner from "@/components/PageHome/TopBanner";
+import { getHomeConfigData } from "services/cms";
+import WeeklyRank from "@/components/PageHome/WeeklyRank";
 
 const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-  const { hotGames, strategys, comingGames, timestamp, rewardedGames } = props
+  const { hotGames, strategys, comingGames, timestamp, rewardedGames, partnerGames, activityList, weeklynews , bannerList} = props
 
   const { address } = useAccount()
   const isMounted = useIsMounted()
+
+  const is1200Size = useMediaQuery("(max-width: 1200px)")
 
   const isMiddleSize = useMediaQuery("(max-width: 900px)")
   const isMobileSize = useMediaQuery("(max-width: 450px)")
@@ -43,22 +50,27 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
       <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <Box className={styles.coverBox}>
+    <TopBanner bannerList={bannerList} />
+    {/* <Box className={styles.coverBox}>
       {coverSize === 1920 && <Image priority src={`/headerCover1920.jpg`} layout="fill" objectFit="cover" />}
       {coverSize === 900 && <Image priority src={`/headerCover900.jpg`} layout="fill" objectFit="cover" />}
       {coverSize === 375 && <Image priority src={`/headerCover375.jpg`} layout="fill" objectFit="cover" />}
-    </Box>
+    </Box> */}
     {
       isMounted && address &&
       <TrialGame />
     }
     <RewardGames timestamp={timestamp} rewardGames={rewardedGames} />
+    <Activities activityList={activityList} />
+
     {!isMiddleSize && <JoinCommunity />}
 
     <Box className={styles.mainBox}>
       <HotGames hotGames={hotGames} timestamp={timestamp} />
+      {!is1200Size && <WeeklyRank weeklyRankList={weeklynews} />}
       <GameStrategy gameStrategy={strategys} />
       {/* <ComingGames comingGames={comingGames} /> */}
+      <Partner gameList={partnerGames} />
       <Support />
     </Box>
     <Box className={styles.contactUs}>
@@ -80,21 +92,57 @@ export default FirstPlay
 
 export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsContext) => {
   // 获取首页数据
-  let result
+  let result, homeData
   try {
-    result = await getAllGames()
+    result = await getHomeData()
+    homeData = await getHomeDataV1()
   } catch (err) {
     console.log(err)
   }
-  const { popular_games = [], banners = [], rewarded_games = [], strategies = [], upcoming_games = [] } = result?.data || {}
+  let { popular_games = [], banners = [], rewarded_games = [], strategies = [], upcoming_games = [] } = result?.data || {}
 
+  const { games: hotGames, bounties, activities, partners } = homeData?.data || {}
+
+  // 获取所有游戏数据
+  // const { data } = await getAllGamesInfo()
+  // const partnerList = data?.map(({ name, logo }: any) => ({ name, logo }))
+  // console.log(partnerList)
+
+
+  // 获取首页 CMS 配置数据
+  let homeCMSConfig
+  try {
+    homeCMSConfig = await getHomeConfigData()
+    // console.log(homeCMSConfig)
+  } catch (err) {
+    console.log(err)
+  }
+
+  let { article_collections: workthroughList, WeekItems, BannerItems } = homeCMSConfig?.data?.attributes
+
+  // console.log(BannerItems)
   return {
     props: {
       // hotGames: reverse(popular_games),
-      hotGames: popular_games,
+      // hotGames: popular_games,
+      hotGames: hotGames,
       comingGames: upcoming_games,
-      strategys: strategies,
-      rewardedGames: rewarded_games,
+
+      strategys: workthroughList?.data || [],
+
+      rewardedGames: bounties,
+
+      // partnerGames
+      partnerGames: partners,
+
+      activityList: activities,
+
+      // weekly news
+      weeklynews: WeekItems,
+
+      // banner list
+      bannerList: BannerItems,
+
 
       // 获取国际化文案
       messages: (await import(`../i18n/${locale}.json`)).default,

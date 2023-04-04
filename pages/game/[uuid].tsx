@@ -15,7 +15,7 @@ import TrialNFTCardSkeleton from '@/components/TrialNFTCard/TrialNFTCardSkeleton
 import QuickTrialNFT from '@/components/PageModals/quickTrialNFT'
 import Head from 'next/head'
 import { useRequest } from 'ahooks'
-import { getAllGames, getAllGamesInfo, getGameInfo } from 'services/home'
+import { getHomeData, getAllGamesInfo, getGameInfo } from 'services/home'
 import { useLazyQuery, useQuery } from '@apollo/client'
 import { GET_GAME_PACKAGES } from 'services/documentNode'
 import { goerliGraph } from 'services/graphql'
@@ -27,15 +27,12 @@ import { useAccount, useContractRead } from 'wagmi'
 import { MARKET_CONTRACT } from 'constants/contract'
 import { FIRSTPLYA_MARKET_ABI } from 'constants/abi'
 import { checkOwnPassNFT } from 'services/web3'
-import CarnivalRewardItem from '@/components/PageCarnival/RewardItem'
 import Link from 'next/link'
 import { queryCarnivalGamesInfo } from 'services/carnival'
 import { Carnival_Games, SUPPORT_LANGUAGE } from 'constants/index'
 import CampaignIcon from '@mui/icons-material/Campaign';
 import { useTranslations } from "next-intl";
-import GameActivityCarousel from '@/components/GameActivityCarousel'
 import { useIsMounted } from 'hooks/useIsMounted'
-import WalkthroughCollection from '@/components/WalkthroughCollection'
 import GameNewsVideoCard from '@/components/PageGame/GameNewsVideoCard'
 import GameNewsTwitterCard from '@/components/PageGame/GameNewsTwitterCard'
 import { Tabs } from 'antd'
@@ -279,21 +276,6 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
             </Box>} */}
 
           {/* {
-            !isCarnivalGame &&
-            <GameActivityCarousel />
-          }
-          {
-            !isCarnivalGame &&
-            <WalkthroughCollection />
-          }
-        
-          {
-            !isCarnivalGame && 
-            <>
-              <GameNewsTwitterCard />
-            </>
-          } */}
-          {/* {
             is700Width ?
               <Box className={styles.rewardMobileBox}>
                 <Box className={styles.cardHeader}>
@@ -394,7 +376,7 @@ export default Game
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const { data } = await getAllGamesInfo()
-  // const { data } = await getAllGames()
+  // const { data } = await getHomeData()
 
   // const addGameUID = [
   //   // Bless Global

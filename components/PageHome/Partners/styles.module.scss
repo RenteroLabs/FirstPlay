@@ -1,0 +1,178 @@
+.partner {
+  background-color: white;
+  padding: 50px 0;
+  .partnerBox {
+    width: 78.2%;
+    margin: auto;
+
+    h3 {
+      font-family: Inter-Black, Inter;
+      font-weight: 900;
+      color: #222222;
+      font-size: 2.5rem;
+      line-height: 2.5rem;
+      margin-bottom: 3.33rem;
+    }
+    .gameList {
+      position: relative;
+      .gameItem {
+        width: calc(2.5rem + 6.67rem) !important;
+        padding: 0 1.25rem;
+        text-align: center;
+        img {
+          width: 6.67rem;
+          height: 6.67rem;
+          border-radius: 50%;
+          margin-bottom: 1.08rem;
+        }
+        p {
+          font-weight: 400;
+          color: #222222 !important;
+        }
+      }
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: -1px;
+        bottom: 0;
+        width: 100px;
+        z-index: 1000;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0) 0%,
+          #ffffff 100%
+        );
+      }
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 100px;
+        z-index: 1000;
+        background: linear-gradient(
+          270deg,
+          rgba(255, 255, 255, 0) 0%,
+          #ffffff 100%
+        );
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1650px) {
+  .partner {
+    .partnerBox {
+      width: 80%;
+      .gameList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .partner {
+    .partnerBox {
+      width: 83.3%;
+      .gameList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .partner {
+    .partnerBox {
+      width: 89%;
+
+      .gameList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .partner {
+    .partnerBox {
+      width: 92.2%;
+
+      .gameList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .partner {
+    .partnerBox {
+      .gameList {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .partner {
+    background-color: transparent;
+    padding: 0;
+    .partnerBox {
+      padding-top: 2rem;
+      // padding-bottom: 1.17rem;
+
+      width: 100%;
+
+      h3 {
+        font-size: 1.75rem;
+        line-height: 1.75rem;
+        margin: 0 1rem 1rem;
+      }
+      .gameList {
+        height: 12.5rem;
+        background: #ffffff;
+        width: 100%;
+        position: relative;
+        padding-top: 2.58rem;
+
+        &::after {
+          width: 30px;
+        }
+        &::before {
+          width: 30px;
+        }
+
+        .sliderBox {
+          width: 100%;
+        }
+
+        .gameItem {
+          width: calc(2rem + 4.67rem) !important;
+
+          padding: 0 0.5rem;
+          text-align: center;
+          // height: 100%;
+
+          img {
+            width: 4.67rem;
+            height: 4.67rem;
+            border-radius: 50%;
+            margin: auto;
+            margin-bottom: 0.83rem;
+          }
+          p {
+            font-size: 0.67rem;
+            font-family: PingFangSC-Semibold, PingFang SC;
+            font-weight: 600;
+            color: #222222;
+            line-height: 0.83rem;
+            text-align: center;
+            word-wrap: break-word;
+          }
+        }
+      }
+    }
+  }
+}
