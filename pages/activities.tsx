@@ -79,6 +79,7 @@ const Activities: NextPageWithLayout = () => {
         className={styles.paginationBox}
         total={totalCount}
         current={currentPage}
+        pageSize={pageSize}
         onChange={(page) => setCurrentPage(page)} />}
     </Box>
   </Box>

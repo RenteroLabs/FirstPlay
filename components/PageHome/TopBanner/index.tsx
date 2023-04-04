@@ -50,7 +50,7 @@ const TopBanner: React.FC<TopBannerProps> = (props) => {
   return <Box className={styles.topBanner}>
     {
       isMobileSize ?
-        <Carousel className={styles.mobileCarousel} >
+        <Carousel className={styles.mobileCarousel} easing="ease" >
           {
             bannerList.map((item, index) => {
               const { coversamll } = item
@@ -89,7 +89,7 @@ const TopBanner: React.FC<TopBannerProps> = (props) => {
         >
           {
             bannerList.map((item, index) => {
-              const { coverlarge } = item
+              const { coverlarge, link } = item
               // console.log(coverlarge)
               let imageUrl
 
