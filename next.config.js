@@ -12,6 +12,7 @@ const nextConfig = {
       'cdn2.ettoday.net',
       'ik.imagekit.io',
       'd2yhjjdyh5ugcy.cloudfront.net',
+      's3.ap-northeast-1.amazonaws.com',
     ],
     // deviceSizes: [320]
   },

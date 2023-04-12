@@ -26,7 +26,7 @@ import { getHomeConfigData } from "services/cms";
 import WeeklyRank from "@/components/PageHome/WeeklyRank";
 
 const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-  const { hotGames, strategys, comingGames, timestamp, rewardedGames, partnerGames, activityList, weeklynews , bannerList} = props
+  const { hotGames, strategys, comingGames, timestamp, rewardedGames, partnerGames, activityList, weeklynews, bannerList } = props
 
   const { address } = useAccount()
   const isMounted = useIsMounted()
@@ -49,6 +49,19 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
       <title>FirstPlay</title>
       <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
       <link rel="icon" href="/favicon.ico" />
+      {
+        bannerList.map((item: { coverlarge: any; }, index: number) => {
+          const { coverlarge } = item
+          const imageUrl = coverlarge?.data?.attributes?.url
+          return <link
+            key={index}
+            rel="preload"
+            href={imageUrl}
+            as="image"
+            media="(min-width: 601px)"
+          />
+        })
+      }
     </Head>
     <TopBanner bannerList={bannerList} />
     {/* <Box className={styles.coverBox}>
