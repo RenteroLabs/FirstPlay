@@ -49,7 +49,7 @@ const RewardGameCard: React.FC<RewardGameCardProps> = (props) => {
         </Box>
         <Box className={styles.taskProgress}>
           <Box className={styles.progressInfo}>
-            Progress: <span>{gameInfo?.issued_rewards}</span> / {gameInfo?.total_rewards}
+            Progress: <span>{gameInfo?.issued_rewards}</span> / {gameInfo?.total_rewards == 0 ? '∞' : gameInfo?.total_rewards}
           </Box>
           <Box className={styles.endTime}>
             {
