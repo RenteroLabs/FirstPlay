@@ -15,13 +15,11 @@ export const getHomeDataV1 = async () => {
 }
 
 
-
-
 // games hot game 集合页数据
-export const getHotGameList = async (params: { offset: number, limit: number }) => {
-  const data = await fetch(`${BASE_BACKEND_API}/api/v1/games?${qs.stringify(params)}`)
-  return data.json()
-}
+// export const getHotGameList = async (params: { offset: number, limit: number }) => {
+//   const data = await fetch(`${BASE_BACKEND_API}/api/v1/games?${qs.stringify(params)}`)
+//   return data.json()
+// }
 
 // bounties 集合页数据
 export const getBountiesList = async (params: { offset: number, limit: number, status: 'on' | 'off' }) => {
@@ -30,10 +28,10 @@ export const getBountiesList = async (params: { offset: number, limit: number, s
 }
 
 // activit 集合页数据
-export const getActivityList = async (params: { offset: number, limit: number }) => {
-  const data = await fetch(`${BASE_BACKEND_API}/api/activities?${qs.stringify(params)}`)
-  return data.json()
-}
+// export const getActivityList = async (params: { offset: number, limit: number }) => {
+//   const data = await fetch(`${BASE_BACKEND_API}/api/activities?${qs.stringify(params)}`)
+//   return data.json()
+// }
 
 
 

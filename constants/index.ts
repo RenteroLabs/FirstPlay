@@ -92,6 +92,3 @@ export const MetamaskDeeplink: string =
   process.env.NEXT_PUBLIC_ENV === 'PRO' ?
     "https://metamask.app.link/dapp/firstplay.app" :
     "https://metamask.app.link/dapp/test.firstplay.app"
-
-
-export const CMS_TOKEN: string = '03092ddb38a6c15e46b30d8e50c8c5c18d9ac621dd04dd8d76d249b9175a85411a7d1a6936f8a03c901a977a1c59bf4cf953182e8501708da450f8bb45c46d3d7be6789abdff9ce84cab031ec0943b9a2eeb21002dd26daa38bb39b363ac90100162d18092c840fd03da39e5e372d02756c32e51327b5a66857f1894e15aac0c'

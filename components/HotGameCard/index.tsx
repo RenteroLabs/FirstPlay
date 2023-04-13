@@ -25,20 +25,20 @@ const HotGameCard: React.FC<HotGameCardProps> = (props) => {
   })
 
   useEffect(() => {
-    run({ gameId: gameInfo?.game_id })
+    run({ gameId: gameInfo?.GameUUID })
   }, [gameInfo])
 
   return <Link href={`/game/${gameInfo?.game_id}`} target="_blank" >
     <Box className={styles.cardBox}>
       <Box className={styles.gameBase}>
         <Box className={styles.gameLogo}>
-          <img src={`${gameInfo?.logo}?timestamp=${timestamp}`} />
+          <img src={`${gameInfo?.logo?.data?.attributes?.url}?timestamp=${timestamp}`} />
         </Box>
         <Box className={styles.gameDetail}>
-          <Typography variant="h3">{gameInfo?.name}</Typography>
+          <Typography variant="h3">{gameInfo?.GameName}</Typography>
           <Box className={styles.tagList}>
             {
-              gameInfo?.game_types?.map((item: string, index: number) =>
+              gameInfo?.types?.map((item: string, index: number) =>
                 <Box className={styles.tagItem} key={index}>{item}</Box>)
             }
           </Box>

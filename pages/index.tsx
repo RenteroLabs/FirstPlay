@@ -114,7 +114,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
   }
   let { popular_games = [], banners = [], rewarded_games = [], strategies = [], upcoming_games = [] } = result?.data || {}
 
-  const { games: hotGames, bounties, activities, partners } = homeData?.data || {}
+  const { games: hotGames, bounties, partners } = homeData?.data || {}
 
   // 获取所有游戏数据
   // const { data } = await getAllGamesInfo()
@@ -131,14 +131,19 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
     console.log(err)
   }
 
-  let { article_collections: workthroughList, WeekItems, BannerItems } = homeCMSConfig?.data?.attributes
+  let {
+    article_collections: workthroughList,
+    WeekItems,
+    BannerItems,
+    activities,
+    game_infos
+  } = homeCMSConfig?.data?.attributes
 
-  // console.log(BannerItems)
   return {
     props: {
       // hotGames: reverse(popular_games),
       // hotGames: popular_games,
-      hotGames: hotGames,
+      hotGames: game_infos?.data || [],
       comingGames: upcoming_games,
 
       strategys: workthroughList?.data || [],
@@ -148,7 +153,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
       // partnerGames
       partnerGames: partners,
 
-      activityList: activities,
+      activityList: activities?.data || [],
 
       // weekly news
       weeklynews: WeekItems,

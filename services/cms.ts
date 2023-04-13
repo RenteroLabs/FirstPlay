@@ -1,7 +1,7 @@
-import { CMS_TOKEN } from './../constants/index';
 import qs from 'qs'
 
 const CMS_BASE_URL = "https://cms.firstplay.app"
+const CMS_TOKEN = process.env.NEXT_PUBLIC_CMS_TOKEN
 
 
 interface CollectionParams {
@@ -116,12 +116,77 @@ export const getHomeConfigData = async () => {
       },
       BannerItems: {
         populate: '*'
+      },
+      activities: {
+        populate: '*'
+      },
+      game_infos: {
+        populate: '*'
       }
     },
   }, {
     encodeValuesOnly: true
   })
   const data = await fetch(`${CMS_BASE_URL}/api/home-config?${query}`, {
+    headers: {
+      "Authorization": `Bearer ${CMS_TOKEN}`
+    }
+  })
+
+  return data.json()
+}
+
+
+interface HotGameListParams {
+  pageSize: number
+  pageNum: number
+}
+// 获取 Hotgames 数据
+export const getHotGameList = async (params: HotGameListParams) => {
+  const { pageNum, pageSize } = params
+  const query = qs.stringify({
+    populate: '*',
+    sort: ['id:desc'],
+    pagination: {
+      page: pageNum,
+      pageSize: pageSize,
+    }
+  }, {
+    encodeValuesOnly: true, // prettify URL
+  })
+
+  const data = await fetch(`${CMS_BASE_URL}/api/game-infos?${query}`, {
+    headers: {
+      "Authorization": `Bearer ${CMS_TOKEN}`
+    }
+  })
+
+  return data.json()
+}
+
+
+
+
+// TODO: 添加筛选条件 Activity status = on
+interface ActivityListParasm {
+  pageSize: number
+  pageNum: number
+}
+// 获取 ActivityList 数据
+export const getActivitiesList = async (params: ActivityListParasm) => {
+  const { pageNum, pageSize } = params
+
+  const query = qs.stringify({
+    populate: '*',
+    sort: ['id:desc'],
+    pagination: {
+      page: pageNum,
+      pageSize: pageSize,
+    }
+  }, {
+    encodeValuesOnly: true, // prettify URL
+  })
+  const data = await fetch(`${CMS_BASE_URL}/api/activities?${query}`, {
     headers: {
       "Authorization": `Bearer ${CMS_TOKEN}`
     }
