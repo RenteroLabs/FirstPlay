@@ -50,13 +50,13 @@ const SocialMediaShare: React.FC<SocialMediaShareProps> = (props) => {
 
     switch (shareType) {
       case 'Game':
-        text = `I\'m trialing ${gameName}, come and build web3 with me!`;
+        text = `I\'m playing the game ${gameName} and get rewards, Discover the latest web3 gaming events at First Play.`;
         break;
       case 'Article':
-        text = `I\’m reading 《${articleName}》, it will help you a lot to trial the game！`;
+        text = `I\'m learning the gameplay of ${gameName}. Discover the latest web3 gaming events at First Play.`;
         break;
       default:
-        text = `I\'m trialing ${gameName}, come and build web3 with me!`;
+        text = `I\'m playing the game ${gameName} and get rewards, Discover the latest web3 gaming events at First Play.`;
         break;
     }
 
