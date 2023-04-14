@@ -3,12 +3,11 @@ import { Box, Typography, useMediaQuery } from '@mui/material'
 import styles from '../styles/home.module.scss'
 import Image from "next/image";
 import HotGames from "@/components/PageHome/HotGames";
-import ComingGames from "@/components/PageHome/ComingGames";
 import Support from "@/components/PageHome/Support";
 import GameStrategy from "@/components/PageHome/GameStrategy";
 import GudeStep from "@/components/PageHome/GuideStep";
 import TrialGame from "@/components/PageHome/TrialingGame";
-import { getAllGamesInfo, getHomeData, getHomeDataV1 } from "services/home";
+import { getAllGamesInfo } from "services/home";
 import { useTranslations } from "next-intl";
 import { ReactElement, useMemo } from "react";
 import Layout from "@/components/Layout";
@@ -26,7 +25,7 @@ import { getHomeConfigData } from "services/cms";
 import WeeklyRank from "@/components/PageHome/WeeklyRank";
 
 const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
-  const { hotGames, strategys, comingGames, timestamp, rewardedGames, partnerGames, activityList, weeklynews, bannerList } = props
+  const { hotGames, strategys, timestamp, rewardedGames, partnerGames, activityList, weeklynews, bannerList } = props
 
   const { address } = useAccount()
   const isMounted = useIsMounted()
@@ -82,7 +81,6 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
       <HotGames hotGames={hotGames} timestamp={timestamp} />
       {!is1200Size && <WeeklyRank weeklyRankList={weeklynews} />}
       <GameStrategy gameStrategy={strategys} />
-      {/* <ComingGames comingGames={comingGames} /> */}
       <Partner gameList={partnerGames} />
       <Support />
     </Box>
@@ -104,29 +102,10 @@ FirstPlay.getLayout = function getLayout(page: ReactElement) {
 export default FirstPlay
 
 export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsContext) => {
-  // 获取首页数据
-  let result, homeData
-  try {
-    result = await getHomeData()
-    homeData = await getHomeDataV1()
-  } catch (err) {
-    console.log(err)
-  }
-  let { popular_games = [], banners = [], rewarded_games = [], strategies = [], upcoming_games = [] } = result?.data || {}
-
-  const { games: hotGames, bounties, partners } = homeData?.data || {}
-
-  // 获取所有游戏数据
-  // const { data } = await getAllGamesInfo()
-  // const partnerList = data?.map(({ name, logo }: any) => ({ name, logo }))
-  // console.log(partnerList)
-
-
   // 获取首页 CMS 配置数据
   let homeCMSConfig
   try {
     homeCMSConfig = await getHomeConfigData()
-    // console.log(homeCMSConfig)
   } catch (err) {
     console.log(err)
   }
@@ -136,22 +115,20 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
     WeekItems,
     BannerItems,
     activities,
-    game_infos
+    game_infos,
+    tasks
   } = homeCMSConfig?.data?.attributes
 
   return {
     props: {
-      // hotGames: reverse(popular_games),
-      // hotGames: popular_games,
       hotGames: game_infos?.data || [],
-      comingGames: upcoming_games,
 
       strategys: workthroughList?.data || [],
 
-      rewardedGames: bounties,
+      rewardedGames: tasks?.data || [],
 
-      // partnerGames
-      partnerGames: partners,
+      // TODO: partnerGames
+      partnerGames: [],
 
       activityList: activities?.data || [],
 
@@ -160,7 +137,6 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
 
       // banner list
       bannerList: BannerItems,
-
 
       // 获取国际化文案
       messages: (await import(`../i18n/${locale}.json`)).default,

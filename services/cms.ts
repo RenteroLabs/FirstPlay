@@ -122,6 +122,12 @@ export const getHomeConfigData = async () => {
       },
       game_infos: {
         populate: '*'
+      },
+      tasks: {
+        populate: [
+          'game_info',
+          'game_info.cover'
+        ]
       }
     },
   }, {
@@ -192,5 +198,79 @@ export const getActivitiesList = async (params: ActivityListParasm) => {
     }
   })
 
+  return data.json()
+}
+
+
+interface BountiesListParams {
+  pageSize: number
+  pageNum: number
+  status: boolean
+}
+// 获取 Bounties 列表数据
+export const getBountiesList = async (params: BountiesListParams) => {
+  const { pageNum, pageSize, status } = params
+
+  const query = qs.stringify({
+    filters: {
+      task_status: status
+    },
+    // populate: {
+    //   game_info: {
+    //     fields: ['cover'],
+    //     populate: '*'
+    //   }
+    // },
+    populate: [
+      'game_info',
+      'game_info.cover'
+    ],
+    sort: ['id:desc'],
+    pagination: {
+      page: pageNum,
+      pageSize: pageSize,
+    }
+  }, {
+    encodeValuesOnly: true, // prettify URL
+  })
+
+  const data = await fetch(`${CMS_BASE_URL}/api/tasks?${query}`, {
+    headers: {
+      "Authorization": `Bearer ${CMS_TOKEN}`
+    }
+  })
+  return data.json()
+}
+
+
+
+
+
+interface AllHotGameListParams {
+  gameCount?: number
+}
+// 获取全部或指定数量的游戏数据
+export const getAllHotGameList = async (params: AllHotGameListParams) => {
+  const { gameCount = 10000 } = params
+  const query = qs.stringify({
+    fields: ['GameUUID', 'GameName'],
+    populate: [
+      'game_info',
+      'game_info.logo'
+    ],
+    sort: ['id:desc'],
+    pagination: {
+      page: 1,
+      pageSize: gameCount,
+    }
+  }, {
+    encodeValuesOnly: true, // prettify URL
+  })
+
+  const data = await fetch(`${CMS_BASE_URL}/api/game-infos?${query}`, {
+    headers: {
+      "Authorization": `Bearer ${CMS_TOKEN}`
+    }
+  })
   return data.json()
 }

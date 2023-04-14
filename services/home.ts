@@ -3,16 +3,16 @@ import qs from 'qs'
 
 
 // 获取首页数据
-export const getHomeData = async () => {
-  const data = await fetch(`${BASE_BACKEND_API}/api/home`)
-  return data.json()
-}
+// export const getHomeData = async () => {
+//   const data = await fetch(`${BASE_BACKEND_API}/api/home`)
+//   return data.json()
+// }
 
 // v1 首页数据
-export const getHomeDataV1 = async () => {
-  const data = await fetch(`${BASE_BACKEND_API}/api/v1/home`)
-  return data.json()
-}
+// export const getHomeDataV1 = async () => {
+//   const data = await fetch(`${BASE_BACKEND_API}/api/v1/home`)
+//   return data.json()
+// }
 
 
 // games hot game 集合页数据
@@ -52,6 +52,25 @@ export const getAllGamesInfo = async () => {
   const data = await fetch(`${BASE_BACKEND_API}/api/games`)
   return data.json()
 }
+
+interface TaskStatusParams {
+  address: string,
+  task_ids: string[]
+}
+export const getTaskStatus = async (params: TaskStatusParams) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/tasks`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(params)
+  })
+
+  return data.json()
+}
+
+
+
 
 /**
  * 开始游戏 task 任务

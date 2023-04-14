@@ -15,7 +15,7 @@ import TrialNFTCardSkeleton from '@/components/TrialNFTCard/TrialNFTCardSkeleton
 import QuickTrialNFT from '@/components/PageModals/quickTrialNFT'
 import Head from 'next/head'
 import { useRequest } from 'ahooks'
-import { getHomeData, getAllGamesInfo, getGameInfo } from 'services/home'
+import { getAllGamesInfo, getGameInfo } from 'services/home'
 import { useLazyQuery, useQuery } from '@apollo/client'
 import { GET_GAME_PACKAGES } from 'services/documentNode'
 import { goerliGraph } from 'services/graphql'
@@ -41,7 +41,7 @@ import GameNewsTab from '@/components/PageGame/GameNewsTab.tsx'
 import GameProxyTab from '@/components/PageGame/GameProxyTab'
 
 import classNames from 'classnames/bind'
-import { getUserArticleCollection } from 'services/cms'
+import { getAllHotGameList, getUserArticleCollection } from 'services/cms'
 
 const cx = classNames.bind(styles)
 
@@ -376,16 +376,8 @@ export default Game
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const { data } = await getAllGamesInfo()
-  // const { data } = await getHomeData()
-
-  // const addGameUID = [
-  //   // Bless Global
-  //   { game_id: '32605c7c-45d3-49f4-9923-b3a51816d1df' },
-  //   // NEO FANTASY
-  //   { game_id: '740a1e44-fd84-433e-98df-be90d650eb51' },
-  //   // Mirror Planet
-  //   { game_id: '11ec241d-c889-4f54-8656-b5f7b1598300' }
-  // ]
+  const { data: res } = await getAllHotGameList({})
+  console.log(res)
 
   // const gamePaths = [
   //   ...data?.popular_games,
@@ -408,7 +400,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     })
   )
 
-  // console.log(allLanguageGamePaths)
   return {
     paths: allLanguageGamePaths,
     fallback: false
