@@ -18,7 +18,6 @@ interface TopBannerProps {
 
 const TopBanner: React.FC<TopBannerProps> = (props) => {
   const { bannerList } = props
-  console.log(bannerList)
 
   const isMobileSize = useMediaQuery("(max-width: 600px)")
 

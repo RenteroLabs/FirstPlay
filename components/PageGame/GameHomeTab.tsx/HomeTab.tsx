@@ -10,18 +10,18 @@ import { useRequest } from "ahooks";
 import { getActivitiesByGame, getUserArticleCollection } from "services/cms";
 import { isEmpty } from "lodash";
 import GameActivityCarousel from "@/components/GameActivityCarousel";
+import { getTaskStatus } from "services/home"
 
 interface HomeTabProps {
   gameBounties: Record<string, any>[]
   gameBase: Record<string, any>
-  reloadGameTasks: () => any
   gameId: string
 }
 
 const HomeTab: React.FC<HomeTabProps> = (props) => {
-  const { gameBounties, reloadGameTasks, gameId, gameBase } = props
+  const { gameBounties, gameId, gameBase } = props
 
-  console.log(gameBounties)
+  // console.log(gameBounties)
   const t = useTranslations('Game')
 
   const [taskType, setTaskType] = useState<'Ongoing' | 'Ended'>('Ongoing')
@@ -35,15 +35,12 @@ const HomeTab: React.FC<HomeTabProps> = (props) => {
   const [collectionTitle, setCollectionTitle] = useState<string>('')
 
   const [activityList, setActivityList] = useState<Record<string, any>[]>([])
+  const [useTaskStatusList, setUserTaskStatusList] = useState<Record<string, any>>({})
 
   const gameType = useMemo(() => {
     // TODO:
     if (!isEmpty(gameBounties)) {
       return 1
-    } else if (!isEmpty(gameBounties)) {
-      return 2
-    } else {
-      return 3
     }
   }, [gameBounties])
 
@@ -87,6 +84,29 @@ const HomeTab: React.FC<HomeTabProps> = (props) => {
   })
 
 
+  // 获取用户 task 进度数据
+  const { run: queryTaskStatus, refresh } = useRequest(getTaskStatus, {
+    manual: true,
+    onSuccess: ({ data }) => {
+      // console.log(data)
+      let statusList: Record<string, any> = {}
+      data.forEach((item: Record<string, any>) => {
+        statusList[item.task_id] = item
+      })
+      setUserTaskStatusList(statusList)
+    }
+  })
+
+
+  useEffect(() => {
+    if (address) {
+      queryTaskStatus({
+        address,
+        task_ids: gameBounties?.map((item: Record<string, any>) => item?.attributes?.task_id) || []
+      })
+    }
+  }, [address, gameId, gameBounties])
+
   return <Box className={styles.homeTab}>
     <Box className={styles.rewardMainBox}>
       {gameType === 1 &&
@@ -107,18 +127,19 @@ const HomeTab: React.FC<HomeTabProps> = (props) => {
           </Box>
           {
             gameBounties?.map((item: Record<string, any>, index: number) => {
+              const userTaskStatus = useTaskStatusList[item?.attributes?.task_id]
               // 仅显示进行中或已结束的状态
               return <CarnivalRewardItem
                 key={index}
                 index={index + 1}
-                isStarted={false}
-                isClaimed={false}
+                isStarted={userTaskStatus?.user_task_status !== 'not started'}
+                isClaimed={userTaskStatus?.user_task_status !== 'uncompleted'}
                 reward={item?.reward}
                 gameId={router.query?.uuid as string}
-                taskInfo={item?.attributes}
+                taskInfo={{ ...item?.attributes, ...userTaskStatus }}
                 timestamp={timestamp as unknown as number}
                 reloadData={() => {
-                  reloadGameTasks()
+                  refresh()
                 }}
               />
             })

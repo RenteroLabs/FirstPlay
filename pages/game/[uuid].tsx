@@ -64,7 +64,7 @@ export interface UserInfoParams {
 export const UserInfo = createContext<UserInfoParams>({ ownPassNFt: false, isActived: false })
 
 // 游戏详情页
-const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = ({ init_timestamp, gameBase }) => {
+const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = ({ init_timestamp, gameBase, locale }) => {
   const router = useRouter()
   const { address } = useAccount()
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false)
@@ -99,13 +99,13 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
     if (router.query?.uuid) {
       getCarnivalGameInfo({ address: address || '0x00', game_id: router.query?.uuid as string })
 
-      queryBountiesList({ gameId: router.query?.uuid as string, status: true })
+      queryBountiesList({ gameId: router.query?.uuid as string, status: true, locale: locale })
     }
 
     getUserArticleCollection({ gameId: router.query?.uuid as string })
   }, [router.query?.uuid, address])
 
-  const { run: getCarnivalGameInfo, refresh } = useRequest(queryCarnivalGamesInfo, {
+  const { run: getCarnivalGameInfo } = useRequest(queryCarnivalGamesInfo, {
     manual: true,
     onSuccess: ({ data }) => {
       setCarnivalGame(data)
@@ -115,8 +115,15 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
   const { run: queryBountiesList } = useRequest(getBountiesByGame, {
     manual: true,
     onSuccess: ({ data }) => {
-      console.log(data)
-      setBountiesList(data || [])
+      // console.log(data)
+
+      let content
+      if (locale === 'en-US') {
+        content = data
+      } else {
+        content = data.map((item: Record<string, any>) => item?.attributes?.localizations?.data[0])
+      }
+      setBountiesList(content || [])
     }
   })
 
@@ -244,7 +251,6 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
               children: <HomeTab
                 gameBase={gameBase}
                 gameBounties={bountiesList}
-                reloadGameTasks={refresh}
                 gameId={router?.query?.uuid as string}
               />
             }, {
@@ -377,7 +383,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   let allLanguageGamePaths: { params: any }[] = []
 
   SUPPORT_LANGUAGE.forEach((language) =>
-    gamePaths?.forEach(item => {
+    gamePaths?.forEach((item: Record<string, any>) => {
       allLanguageGamePaths.push({
         params: { uuid: item.params.uuid },
         // @ts-ignore
@@ -405,6 +411,7 @@ export const getStaticProps: GetStaticProps = async ({ locale, params }: GetStat
       messages: (await import(`../../i18n/${locale}.json`)).default,
       // gameInfo: res?.data,
       gameBase: gameBase || {},
+      locale: locale,
       init_timestamp: new Date().getTime()
     }
   }

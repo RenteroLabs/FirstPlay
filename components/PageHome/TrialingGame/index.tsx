@@ -8,29 +8,47 @@ import PersonIcon from '@mui/icons-material/Person';
 import { useIsMounted } from "hooks/useIsMounted"
 import { useEffect, useState } from "react"
 import { useRequest } from "ahooks"
-import { getTrialingTasks } from "services/home"
+import { getProfileTrialingTaskList, getTrialingTasks } from "services/home"
 import classNames from "classnames/bind"
 import { useTranslations } from "next-intl";
+import { getBountiesByTaskIds } from "services/cms"
 
 const cx = classNames.bind(styles)
 
-interface TrialGameProps {
+interface TrialGameProps { }
 
-}
-
-const TrialGame: React.FC<TrialGameProps> = (props) => {
+const TrialGame: React.FC<TrialGameProps> = () => {
   const { address } = useAccount()
   const isMounted = useIsMounted()
 
   const t = useTranslations('Index.Section')
 
   const [trialingTasks, setTrialingTasks] = useState<Record<string, any>[]>([])
+  const [bountyInfos, setBountyInfos] = useState<Record<string, any>>({})
 
-  const { run: queryTrialingTask, loading } = useRequest(getTrialingTasks, {
+  const { run: queryTrialingTask, loading } = useRequest(getProfileTrialingTaskList, {
     manual: true,
     onSuccess: ({ data }) => {
-      // console.log(data)
-      setTrialingTasks(data?.trialing_games || [])
+      console.log(data)
+      // setTrialingTasks(data?.trialing_games || [])
+      const homeTrialing = data?.slice(0, 2)
+      setTrialingTasks(homeTrialing || [])
+      const task_ids = ['2431f220-0729-4537-a8ba-8b44c1b61318', 'bbc0e19b-a48f-4971-96a8-08af1f8e45aa']
+
+      queryBountyInfos({ taskIds: task_ids })
+    }
+  })
+
+  const { run: queryBountyInfos } = useRequest(getBountiesByTaskIds, {
+    manual: true,
+    onSuccess: ({ data }) => {
+      console.log(data)
+      let bountyInfos: Record<string, any> = {}
+      data.forEach((item: Record<string, any>) => {
+        bountyInfos[item?.attributes?.task_id] = item?.attributes
+      })
+      console.log(bountyInfos)
+      setBountyInfos(bountyInfos)
     }
   })
 
@@ -53,9 +71,10 @@ const TrialGame: React.FC<TrialGameProps> = (props) => {
         cardList: true,
         oneCard: trialingTasks.length === 1
       })}>
+        {/* TODO: 待添加 task_id 字段后处理 */}
         {
           trialingTasks.map((item, index: number) =>
-            <TrialGameCard key={index} trialTask={item} />)
+            <TrialGameCard key={index} trialTask={bountyInfos['bbc0e19b-a48f-4971-96a8-08af1f8e45aa']} />)
         }
         {
           !loading && trialingTasks.length === 0 &&

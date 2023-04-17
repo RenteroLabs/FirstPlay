@@ -117,10 +117,10 @@ const VerifyTaskFormModal: React.FC<VerifyTaskProps> = (props) => {
             console.log(REG_MAP[item?.type || 'text'])
             return <Form.Item
               key={index}
-              label={item?.filed}
+              label={item?.label}
               name={`${item?.type}-${index}`}
               rules={[
-                { required: true, message: `Please input ${item?.filed}` },
+                { required: true, message: `Please input ${item?.label}` },
                 // @ts-ignore
                 { pattern: REG_MAP[item?.type || 'text'], message: "Please input valid format data" }
               ]}

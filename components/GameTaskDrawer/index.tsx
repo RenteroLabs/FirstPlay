@@ -44,10 +44,10 @@ interface StepButtonProps {
   link: string,
   perform: string,
   platform?: {
-    android: string,
-    ios: string,
-    mac: string,
-    windows: string
+    android?: string,
+    ios?: string,
+    mac?: string,
+    windows?: string
   }
 }
 
@@ -60,7 +60,6 @@ const StepButton: React.FC<StepButtonProps> = (props) => {
   const [isIos, setIsIos] = useState<boolean>(false)
 
   useEffect(() => {
-    // console.log(navigator.userAgent)
     if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
       setIsIos(true)
     } else {
@@ -90,7 +89,7 @@ const StepButton: React.FC<StepButtonProps> = (props) => {
       case "download": return isIos ?
         <Box className={styles.iconBox}><Image src="/IOS_icon.png" layout='fill' /></Box> :
         <Box className={styles.iconBox}><Image src="/Android.png" layout='fill' /></Box>
-      case "visit": return <OpenInNewIcon />
+      case "link": return <OpenInNewIcon />
       default: return <OpenInNewIcon />
     }
   }, [perform, isIos])
@@ -121,7 +120,7 @@ const StepButton: React.FC<StepButtonProps> = (props) => {
       </Box>
     }
     {
-      perform === 'visit' &&
+      perform === 'link' &&
       <Box
         className={styles.stepBtnItem}
         onClick={handleClick}
@@ -178,7 +177,7 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
           <Box className={styles.stepPannel}>
             <Box className={styles.stepBox}>
               {
-                taskInfo?.steps.map((_: any, index: number) => {
+                taskInfo?.steps?.map((_: any, index: number) => {
                   const isLast = taskInfo?.steps && (taskInfo?.steps.length - 1 === index)
                   return <>
                     <TaskStepItem
@@ -199,24 +198,33 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
           </Box>
         </Box>
 
-        {!isEmpty(taskInfo?.steps[activeStep - 1]?.buttons || []) &&
+        {!isEmpty(taskInfo?.steps[activeStep - 1]?.StepButtonList || []) &&
           <Box className={styles.btnList}>
             {
-              taskInfo?.steps[activeStep - 1]?.buttons.map((item: StepButtonProps, index: number) => <StepButton {...item} key={index} />)
+              taskInfo?.steps[activeStep - 1]?.
+                StepButtonList.map((btnConfig: Record<string, any>, index: number) => {
+                  const [type, platform]: string[] = btnConfig?.ButtonType?.split('-')
+
+                  let configs: StepButtonProps = {
+                    text: btnConfig?.ButtonText,
+                    link: btnConfig?.ButtonValue,
+                    perform: type.toLowerCase() 
+                  }
+
+                  if (platform) {
+                    const platformType = platform.toLowerCase() 
+                    configs['platform'] = {
+                      [platformType]: btnConfig?.ButtonValue
+                    }
+                  }
+                  return <StepButton {...configs} key={index} />})
             }
           </Box>}
 
         <div
           className={styles.stepDesc}
-          dangerouslySetInnerHTML={{ __html: taskInfo?.steps[activeStep - 1]?.description }}
+          dangerouslySetInnerHTML={{ __html: taskInfo?.steps[activeStep - 1]?.StepContent }}
         ></div>
-        <Box className={styles.imageList}>
-          {
-            taskInfo?.steps[activeStep - 1]?.images.map((url: string, index: number) => <Box className={styles.imageBox} key={index}>
-              <img src={`${url}?timestamp=${timestamp}`} />
-            </Box>)
-          }
-        </Box>
       </Box>
 
       <Box className={styles.stepBtns}>
@@ -245,7 +253,7 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
         >
           {t('nextBtnText')} <KeyboardArrowRightIcon />
         </Box> :
-          taskInfo?.form && !isClaimed && taskInfo?.task_status === 'on' && <Box
+          taskInfo?.form && !isClaimed && taskInfo?.task_status && <Box
             className={styles.verifyBtn}
             onClick={() => setShowTaskModal(true)}
           >

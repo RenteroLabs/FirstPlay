@@ -332,9 +332,10 @@ export const getBountiesList = async (params: BountiesListParams) => {
 interface BountiesByGameParams {
   gameId: string
   status: boolean
+  locale: string
 }
 export const getBountiesByGame = async (params: BountiesByGameParams) => {
-  const { gameId, status } = params
+  const { gameId, status, locale } = params
 
   const query = qs.stringify({
     filters: {
@@ -345,11 +346,23 @@ export const getBountiesByGame = async (params: BountiesByGameParams) => {
         }
       }
     },
-    populate: [
-      'game_info',
-      "steps",
-      'form'
-    ],
+    populate: {
+      game_info: true,
+      steps: true,
+      form: true,
+      'steps.StepButtonList': true,
+      localizations: {
+        filters: {
+          locale: locale
+        },
+        populate: {
+          game_info: true,
+          steps: true,
+          form: true,
+          'steps.StepButtonList': true,
+        }
+      }
+    },
   }, {
     encodeValuesOnly: true, // prettify URL
   })
@@ -362,6 +375,35 @@ export const getBountiesByGame = async (params: BountiesByGameParams) => {
   return data.json()
 }
 
+
+// 根据 task_ids 获取任务详情
+interface BountiesByTaskIdsParams {
+  taskIds: string[]
+}
+
+export const getBountiesByTaskIds = async (params: BountiesByTaskIdsParams) => {
+  const { taskIds } = params
+  const query = qs.stringify({
+    filters: {
+      task_id: {
+        $in: taskIds
+      }
+    },
+    populate: [
+      'game_info',
+      'game_info.logo'
+    ],
+  }, {
+    encodeValuesOnly: true, // prettify URL
+  })
+
+  const data = await fetch(`${CMS_BASE_URL}/api/tasks?${query}`, {
+    headers: {
+      "Authorization": `Bearer ${CMS_TOKEN}`
+    }
+  })
+  return data.json()
+}
 
 
 
