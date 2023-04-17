@@ -64,7 +64,7 @@ export interface UserInfoParams {
 export const UserInfo = createContext<UserInfoParams>({ ownPassNFt: false, isActived: false })
 
 // 游戏详情页
-const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = ({ gameInfo, init_timestamp, gameBase }) => {
+const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = ({ init_timestamp, gameBase }) => {
   const router = useRouter()
   const { address } = useAccount()
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false)
@@ -87,8 +87,6 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
   const timestamp = useMemo(() => (Number(new Date) / 1000).toFixed(), [])
 
   const isMounted = useIsMounted()
-
-  console.log(gameInfo)
 
   /**
    * Carnival Part Start
@@ -396,8 +394,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 
 export const getStaticProps: GetStaticProps = async ({ locale, params }: GetStaticPropsContext) => {
-
-  const res = await queryCarnivalGamesInfo({ address: "0x00", game_id: params?.uuid as string })
+  // const res = await queryCarnivalGamesInfo({ address: "0x00", game_id: params?.uuid as string })
 
   const gameBase = await getGameBaseInfo({ gameId: params?.uuid as string, locale: locale as string })
   // console.log(gameBase)
@@ -406,7 +403,7 @@ export const getStaticProps: GetStaticProps = async ({ locale, params }: GetStat
     props: {
       // 获取国际化文案
       messages: (await import(`../../i18n/${locale}.json`)).default,
-      gameInfo: res?.data,
+      // gameInfo: res?.data,
       gameBase: gameBase || {},
       init_timestamp: new Date().getTime()
     }
