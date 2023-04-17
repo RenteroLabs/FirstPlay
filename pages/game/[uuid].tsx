@@ -115,8 +115,6 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
   const { run: queryBountiesList } = useRequest(getBountiesByGame, {
     manual: true,
     onSuccess: ({ data }) => {
-      // console.log(data)
-
       let content
       if (locale === 'en-US') {
         content = data

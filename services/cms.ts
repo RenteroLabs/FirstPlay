@@ -179,6 +179,7 @@ export const getGameBaseInfo = async (params: GameBaseInfoParams) => {
   const { gameId, locale } = params
 
   const query = qs.stringify({
+    publicationState: process.env.NEXT_PUBLIC_ENV === 'PRO' ? 'live' : 'preview',
     filters: {
       GameUUID: {
         $eq: gameId
@@ -338,6 +339,8 @@ export const getBountiesByGame = async (params: BountiesByGameParams) => {
   const { gameId, status, locale } = params
 
   const query = qs.stringify({
+    // 生产环境使用 live，测试环境使用 preview
+    publicationState: process.env.NEXT_PUBLIC_ENV === 'PRO' ? 'live' : 'preview',
     filters: {
       task_status: status,
       game_info: {

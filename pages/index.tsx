@@ -128,7 +128,6 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
 
       rewardedGames: tasks?.data || [],
 
-      // TODO: partnerGames
       partnerGames: partnerData?.data || [],
 
       activityList: activities?.data || [],

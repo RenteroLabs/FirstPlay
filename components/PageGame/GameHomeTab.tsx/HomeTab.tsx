@@ -88,7 +88,7 @@ const HomeTab: React.FC<HomeTabProps> = (props) => {
   const { run: queryTaskStatus, refresh } = useRequest(getTaskStatus, {
     manual: true,
     onSuccess: ({ data }) => {
-      // console.log(data)
+      console.log(data)
       let statusList: Record<string, any> = {}
       data.forEach((item: Record<string, any>) => {
         statusList[item.task_id] = item
@@ -99,13 +99,12 @@ const HomeTab: React.FC<HomeTabProps> = (props) => {
 
 
   useEffect(() => {
-    if (address) {
-      queryTaskStatus({
-        address,
-        task_ids: gameBounties?.map((item: Record<string, any>) => item?.attributes?.task_id) || []
-      })
-    }
-  }, [address, gameId, gameBounties])
+    queryTaskStatus({
+      // @ts-ignore
+      address: address,
+      task_ids: gameBounties?.map((item: Record<string, any>) => item?.attributes?.task_id) || []
+    })
+  }, [address, gameBounties])
 
   return <Box className={styles.homeTab}>
     <Box className={styles.rewardMainBox}>
