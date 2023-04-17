@@ -36,6 +36,8 @@ import { startGameTask } from 'services/home'
 import CircularProgress from '@mui/material/CircularProgress';
 import { useTranslations } from "next-intl";
 import MessageTips from '@/components/MessageTipsBox'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 const cx = classname.bind(styles)
 
@@ -200,16 +202,14 @@ interface RewardItemProps {
   reward: string,
   isClaimed: boolean,
   isStarted: boolean,
-  medalNum: number,
   gameId: string,
-  strategyLink: string,
   taskInfo: Record<string, any>
   timestamp: number
   reloadData: () => any
 }
 
 const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
-  const { index, reward, isClaimed, medalNum, gameId, strategyLink, taskInfo, timestamp, isStarted, reloadData } = props
+  const { index, reward, isClaimed, gameId, taskInfo, timestamp, isStarted, reloadData } = props
   const isMobileSize = useMediaQuery("(max-width:600px)")
   const isMounted = useIsMounted()
 
@@ -251,37 +251,6 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
     if (!isClaimed) {
       setShowTaskModal(true)
     }
-  }
-
-  const [localGiftCode, setLocalGiftCode] = useLocalStorageState("GIFTCODE")
-  const [recordTime, setRecordTime] = useLocalStorageState("RECORD_TIME")
-
-
-  // const 
-  const { run: getGiftCode } = useRequest(queryGameGiftCode, {
-    manual: true,
-    onSuccess: ({ data }) => {
-      setGiftCode(data.key)
-      setLocalGiftCode(data?.key)
-      setRecordTime(new Date().getTime())
-    }
-  })
-
-  // 首先判断本地存不存在有效 giftcode
-  useEffect(() => {
-    if (localGiftCode && recordTime) {
-      if (new Date().getTime() - Number(recordTime) < (86400 * 1000)) {
-        setGiftCode(localGiftCode as string)
-      }
-    }
-  }, [])
-
-  const handleClickGiftBtn = () => {
-    // 判断本地有没有
-    if (giftCode === "XXXXXXX") {
-      getGiftCode({ game_id: gameId })
-    }
-    setShowGiftModal(true)
   }
 
   const handleStartGameTask = async () => {
@@ -431,7 +400,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
             <Box className={styles.iconBox}>
               <Image src={STAR_LABEL} layout="fill" />
             </Box>
-            {reward}
+            {taskInfo?.description}
           </Typography>
           <Typography className={styles.taskRewardDesc}>
             <Box className={styles.iconBox}>
@@ -440,6 +409,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
             {taskInfo?.reward}
           </Typography>
           <Box className={styles.rewardTips}>
+            {/* TODO: issued_reward */}
             <Typography className={styles.rewardNums}>{t('reward')}: <span>{taskInfo?.issued_rewards}</span> / {taskInfo?.total_rewards || '-'} &nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
             <Typography className={styles.rewardTime}>
               {taskInfo?.reward_type} &nbsp;
@@ -449,7 +419,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
         </Box>
         {
           // 无表单链接不显示 Verify 按钮
-          taskInfo?.form && isStarted && taskInfo?.task_status === 'on' &&
+          taskInfo?.form && isStarted && taskInfo?.task_status &&
           <Box className={cx({
             claimBtn: true,
             claimedBtn: isStarted && isClaimed
@@ -460,13 +430,13 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           </Box>
         }
         {
-          taskInfo?.task_status === 'off' &&
+          !taskInfo?.task_status &&
           <Box className={cx({ claimBtn: true, claimedBtn: true })} >
             {t('endBtnText')}
           </Box>
         }
         {/* 没有开始，任务还在进行中 */}
-        {!isStarted && taskInfo?.task_status === 'on' && taskInfo?.form &&
+        {!isStarted && taskInfo?.task_status && taskInfo?.form &&
           <Box
             className={styles.claimBtn}
             onClick={async () => {
@@ -485,33 +455,39 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           taskInfo?.steps.map((item: Record<string, any>, index: number) => {
 
             return <Box className={styles.stepItem} key={index}>
-              <Typography variant='h4'>{t('stepText')}{index + 1}:</Typography>
+              <Typography variant='h4'>{t('stepText')}{index + 1}: {item?.StepTitle}</Typography>
               <Box className={styles.stepContent}>
                 <Box className={styles.descBtnBox}>
-                  <div
+                  {/* <div
                     className={styles.stepDesc}
-                    dangerouslySetInnerHTML={{ __html: item?.description }}
-                  ></div>
+                    dangerouslySetInnerHTML={{ __html: item?.StepContent }}
+                  ></div> */}
+                  <ReactMarkdown
+                    className={styles.stepDesc}
+                    linkTarget="_blank"
+                    remarkPlugins={[remarkGfm]} >
+                    {item?.StepContent}
+                  </ReactMarkdown>
                   <Box className={styles.btnList}>
                     {
-                      item?.buttons.map((btnConfig: StepButtonProps, index: number) =>
+                      item?.buttons?.map((btnConfig: StepButtonProps, index: number) =>
                         <StepButton {...btnConfig} key={index} />
                       )
                     }
                   </Box>
                 </Box>
-                <Box className={styles.imageList}>
+                {/* <Box className={styles.imageList}>
                   <RcImage.PreviewGroup icons={{
                     left: <KeyboardArrowLeftIcon />,
                     right: <KeyboardArrowRightIcon />
                   }}>
                     {
-                      item?.images.map((url: string, index: number) =>
+                      item?.images?.map((url: string, index: number) =>
                         <RcImage src={`${url}?timestamp=${timestamp}`} key={index} className={styles.imageItem} />
                       )
                     }
                   </RcImage.PreviewGroup>
-                </Box>
+                </Box> */}
               </Box>
             </Box>
           })

@@ -7,19 +7,21 @@ import styles from './styles.module.scss';
 import { useTranslations } from "next-intl";
 import WalkthroughCollection from "@/components/WalkthroughCollection";
 import { useRequest } from "ahooks";
-import { getUserArticleCollection } from "services/cms";
+import { getActivitiesByGame, getUserArticleCollection } from "services/cms";
 import { isEmpty } from "lodash";
 import GameActivityCarousel from "@/components/GameActivityCarousel";
 
 interface HomeTabProps {
-  gameTasksInfo: Record<string, any>
+  gameBounties: Record<string, any>[]
+  gameBase: Record<string, any>
   reloadGameTasks: () => any
   gameId: string
 }
 
 const HomeTab: React.FC<HomeTabProps> = (props) => {
-  const { gameTasksInfo, reloadGameTasks, gameId } = props
+  const { gameBounties, reloadGameTasks, gameId, gameBase } = props
 
+  console.log(gameBounties)
   const t = useTranslations('Game')
 
   const [taskType, setTaskType] = useState<'Ongoing' | 'Ended'>('Ongoing')
@@ -32,15 +34,18 @@ const HomeTab: React.FC<HomeTabProps> = (props) => {
   const [collectionId, setCollectionId] = useState<string>('')
   const [collectionTitle, setCollectionTitle] = useState<string>('')
 
+  const [activityList, setActivityList] = useState<Record<string, any>[]>([])
+
   const gameType = useMemo(() => {
-    if (!isEmpty(gameTasksInfo?.tasks)) {
+    // TODO:
+    if (!isEmpty(gameBounties)) {
       return 1
-    } else if (!isEmpty(gameTasksInfo?.activities)) {
+    } else if (!isEmpty(gameBounties)) {
       return 2
     } else {
       return 3
     }
-  }, [gameTasksInfo])
+  }, [gameBounties])
 
   useEffect(() => {
     if (router.query.taskType) {
@@ -71,6 +76,17 @@ const HomeTab: React.FC<HomeTabProps> = (props) => {
     }
   })
 
+  // 获取 Activity 数据
+  const { run: queryActicleByGame } = useRequest(getActivitiesByGame, {
+    defaultParams: [{ gameId: gameId, status: true }],
+    refreshDeps: [gameId],
+    onSuccess: ({ data }) => {
+      // console.log(data)
+      setActivityList(data)
+    }
+  })
+
+
   return <Box className={styles.homeTab}>
     <Box className={styles.rewardMainBox}>
       {gameType === 1 &&
@@ -82,28 +98,24 @@ const HomeTab: React.FC<HomeTabProps> = (props) => {
           </Box>
           <Box className={styles.rewardDesc}>
             <Typography>
-              {gameTasksInfo?.task_description &&
-                gameTasksInfo?.task_description}
+              {gameBase?.task_description &&
+                gameBase?.task_description}
             </Typography>
             <Box className={styles.imageBox}>
               <img src="/game_reward_ill.png" />
             </Box>
           </Box>
           {
-            gameTasksInfo?.tasks?.map((item: Record<string, any>, index: number) => {
-              let taskStatus
-              taskStatus = taskType === 'Ongoing' ? 'on' : 'off'
+            gameBounties?.map((item: Record<string, any>, index: number) => {
               // 仅显示进行中或已结束的状态
-              return item.task_status === taskStatus && <CarnivalRewardItem
+              return <CarnivalRewardItem
                 key={index}
                 index={index + 1}
-                medalNum={item?.medal}
-                isStarted={item?.user_task_status !== 'not started'}
-                isClaimed={item?.user_task_status !== 'uncompleted'}
-                reward={item?.description}
+                isStarted={false}
+                isClaimed={false}
+                reward={item?.reward}
                 gameId={router.query?.uuid as string}
-                strategyLink={gameTasksInfo?.strategy}
-                taskInfo={item}
+                taskInfo={item?.attributes}
                 timestamp={timestamp as unknown as number}
                 reloadData={() => {
                   reloadGameTasks()
@@ -112,10 +124,10 @@ const HomeTab: React.FC<HomeTabProps> = (props) => {
             })
           }
         </Box>}
-      {!isEmpty(gameTasksInfo?.activities) &&
+      {!isEmpty(activityList) &&
         <Box className={styles.activityBox}>
           <Typography variant="h2">{t("Tabs.activity")}</Typography>
-          <GameActivityCarousel activityList={gameTasksInfo?.activities} />
+          <GameActivityCarousel activityList={activityList.map((item: Record<string, any>) => item?.attributes)} />
         </Box>
       }
     </Box>

@@ -170,6 +170,63 @@ export const getHotGameList = async (params: HotGameListParams) => {
   return data.json()
 }
 
+interface GameBaseInfoParams {
+  gameId: string,
+  locale: string
+}
+// 获取单条游戏数据
+export const getGameBaseInfo = async (params: GameBaseInfoParams) => {
+  const { gameId, locale } = params
+
+  const query = qs.stringify({
+    filters: {
+      GameUUID: {
+        $eq: gameId
+      }
+    },
+    populate: {
+      logo: true,
+      background: true,
+      pro_players: true,
+      Videos: true,
+      localizations: {
+        filters: {
+          locale: locale
+        },
+        populate: {
+          logo: true,
+          background: true,
+          pro_players: true,
+          Videos: true,
+        }
+      }
+    },
+  }, {
+    encodeValuesOnly: true, // prettify URL
+  })
+
+  const data = await fetch(`${CMS_BASE_URL}/api/game-infos?${query}`, {
+    headers: {
+      "Authorization": `Bearer ${CMS_TOKEN}`
+    }
+  })
+
+  const result: Record<string, any> = await data.json()
+  const gameBase = result?.data[0]?.attributes
+
+  let content
+  if (locale === 'en-US') {
+    content = gameBase
+  } else {
+    content = gameBase?.localizations?.data[0]?.attributes
+  }
+
+  return content
+}
+
+
+
+
 
 
 
@@ -201,6 +258,35 @@ export const getActivitiesList = async (params: ActivityListParasm) => {
   return data.json()
 }
 
+// 获取游戏活动数据
+interface ActivitiesByGameParams {
+  gameId: string
+  status: boolean
+}
+export const getActivitiesByGame = async (params: ActivitiesByGameParams) => {
+  const { gameId, status } = params
+
+  const query = qs.stringify({
+    filters: {
+      status: status,
+      game_info: {
+        GameUUID: {
+          $eq: gameId
+        }
+      }
+    },
+    populate: ['game_info', 'image']
+  }, {
+    encodeValuesOnly: true, // prettify URL
+  })
+  const data = await fetch(`${CMS_BASE_URL}/api/activities?${query}`, {
+    headers: {
+      "Authorization": `Bearer ${CMS_TOKEN}`
+    }
+  })
+
+  return data.json()
+}
 
 interface BountiesListParams {
   pageSize: number
@@ -213,7 +299,7 @@ export const getBountiesList = async (params: BountiesListParams) => {
 
   const query = qs.stringify({
     filters: {
-      task_status: status
+      task_status: status,
     },
     // populate: {
     //   game_info: {
@@ -242,6 +328,39 @@ export const getBountiesList = async (params: BountiesListParams) => {
   return data.json()
 }
 
+// 获取游戏 Bounties 数据
+interface BountiesByGameParams {
+  gameId: string
+  status: boolean
+}
+export const getBountiesByGame = async (params: BountiesByGameParams) => {
+  const { gameId, status } = params
+
+  const query = qs.stringify({
+    filters: {
+      task_status: status,
+      game_info: {
+        GameUUID: {
+          $eq: gameId
+        }
+      }
+    },
+    populate: [
+      'game_info',
+      "steps",
+      'form'
+    ],
+  }, {
+    encodeValuesOnly: true, // prettify URL
+  })
+
+  const data = await fetch(`${CMS_BASE_URL}/api/tasks?${query}`, {
+    headers: {
+      "Authorization": `Bearer ${CMS_TOKEN}`
+    }
+  })
+  return data.json()
+}
 
 
 
@@ -255,8 +374,7 @@ export const getAllHotGameList = async (params: AllHotGameListParams) => {
   const query = qs.stringify({
     fields: ['GameUUID', 'GameName'],
     populate: [
-      'game_info',
-      'game_info.logo'
+      'logo'
     ],
     sort: ['id:desc'],
     pagination: {
@@ -274,3 +392,4 @@ export const getAllHotGameList = async (params: AllHotGameListParams) => {
   })
   return data.json()
 }
+

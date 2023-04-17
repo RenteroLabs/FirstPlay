@@ -28,7 +28,7 @@ const GameProxyTab: React.FC<GameProxyTabProps> = (props) => {
       <Box className={styles.cardlist}>
         {
           proxyPlayList.map((item, index) =>
-            <ProxyPlayCard key={index} index={index + 1} proxyInfo={item} />)
+            <ProxyPlayCard key={index} index={index + 1} proxyInfo={item?.attributes} />)
         }
       </Box>
 

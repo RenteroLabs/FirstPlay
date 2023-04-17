@@ -1,6 +1,5 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import SectionTitle from "../components/SectionTitle";
 import styles from './styles.module.scss'
 import Slider from "react-slick";
 
@@ -10,7 +9,6 @@ interface PartnerProps {
 
 const Partner: React.FC<PartnerProps> = (props) => {
   const { gameList } = props
-  console.log(gameList)
 
   return <Box className={styles.partner}>
     <Box className={styles.partnerBox}>
@@ -31,8 +29,8 @@ const Partner: React.FC<PartnerProps> = (props) => {
           {
             gameList.map((item, index) =>
               <Box className={styles.gameItem} key={index}>
-                <img src={item?.logo} />
-                <Typography>{item?.name}</Typography>
+                <img src={item?.attributes?.logo?.data?.attributes?.url} />
+                <Typography>{item?.attributes?.GameName}</Typography>
               </Box>)
           }
         </Slider>

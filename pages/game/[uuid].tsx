@@ -39,9 +39,10 @@ import { Tabs } from 'antd'
 import HomeTab from '@/components/PageGame/GameHomeTab.tsx/HomeTab'
 import GameNewsTab from '@/components/PageGame/GameNewsTab.tsx'
 import GameProxyTab from '@/components/PageGame/GameProxyTab'
+import qs from 'qs'
 
 import classNames from 'classnames/bind'
-import { getAllHotGameList, getUserArticleCollection } from 'services/cms'
+import { getAllHotGameList, getBountiesByGame, getGameBaseInfo, getUserArticleCollection } from 'services/cms'
 
 const cx = classNames.bind(styles)
 
@@ -63,7 +64,7 @@ export interface UserInfoParams {
 export const UserInfo = createContext<UserInfoParams>({ ownPassNFt: false, isActived: false })
 
 // 游戏详情页
-const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = ({ gameInfo, init_timestamp }) => {
+const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = ({ gameInfo, init_timestamp, gameBase }) => {
   const router = useRouter()
   const { address } = useAccount()
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false)
@@ -87,25 +88,20 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
 
   const isMounted = useIsMounted()
 
+  console.log(gameInfo)
 
   /**
    * Carnival Part Start
    */
   const [carnivalGame, setCarnivalGame] = useState<Record<string, any>>({})
 
-  // const isCarnivalGame = useMemo(() => {
-  //   return Carnival_Games.includes(router.query?.uuid as string)
-  // }, [router.query?.uuid])
-
-  const isCarnivalGame = useMemo(() => {
-    return gameInfo?.tasks?.length > 0
-  }, gameInfo)
-
-  // console.log(carnivalGame)
+  const [bountiesList, setBountiesList] = useState<Record<string, any>[]>([])
 
   useEffect(() => {
     if (router.query?.uuid) {
       getCarnivalGameInfo({ address: address || '0x00', game_id: router.query?.uuid as string })
+
+      queryBountiesList({ gameId: router.query?.uuid as string, status: true })
     }
 
     getUserArticleCollection({ gameId: router.query?.uuid as string })
@@ -115,6 +111,14 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
     manual: true,
     onSuccess: ({ data }) => {
       setCarnivalGame(data)
+    }
+  })
+
+  const { run: queryBountiesList } = useRequest(getBountiesByGame, {
+    manual: true,
+    onSuccess: ({ data }) => {
+      console.log(data)
+      setBountiesList(data || [])
     }
   })
 
@@ -139,7 +143,8 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
 
   // 判断用户在当前游戏链是否激活试玩权限
   const { data: isActived } = useContractRead({
-    addressOrName: MARKET_CONTRACT[chainId],
+    // @ts-ignore
+    address: MARKET_CONTRACT[chainId],
     contractInterface: FIRSTPLYA_MARKET_ABI,
     functionName: 'playerWhitelist',
     chainId: chainId,
@@ -167,115 +172,107 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
     if (!showTxLoading) setTxHash("")
   }, [showTxLoading])
 
-  useEffect(() => {
-    if (gameInfo && gameInfo?.game_chains) {
-      setChainId(gameInfo?.game_chains[0]?.chain_id)
-    }
-  }, [gameInfo])
+  // 更新游戏链数据
+  // useEffect(() => {
+  //   if (gameInfo && gameInfo?.game_chains) {
+  //     setChainId(gameInfo?.game_chains[0]?.chain_id)
+  //   }
+  // }, [gameInfo])
 
   // 获取当前游戏所有 NFT Packages
-  const { loading, refetch: queryGamePackages } = useQuery(GET_GAME_PACKAGES, {
-    variables: {
-      gameId: gameInfo.game_id || router?.query?.uuid
-    },
-    // TODO: 此处需要根据游戏所处链来调用不同的 graph 服务
-    client: goerliGraph,
-    onCompleted({ game }) {
-      console.log(game)
-      const { packages, ...rest } = game
-      setGameContractInfo({ ...rest })
-      setPackageList(packages)
-    }
-  })
-
-  const linkToStrategy = () => {
-    window.open(carnivalGame?.strategy)
-  }
-
-
-  // const currentPath = useMemo(() => {
-  //   return window ? window.location.href : ""
-  // }, [isMounted])
+  // const { loading, refetch: queryGamePackages } = useQuery(GET_GAME_PACKAGES, {
+  //   variables: {
+  //     gameId: gameInfo.game_id || router?.query?.uuid
+  //   },
+  //   // TODO: 此处需要根据游戏所处链来调用不同的 graph 服务
+  //   client: goerliGraph,
+  //   onCompleted({ game }) {
+  //     const { packages, ...rest } = game
+  //     setGameContractInfo({ ...rest })
+  //     setPackageList(packages)
+  //   }
+  // })
 
 
   return <UserInfo.Provider
     value={{ isActived: isActived as unknown as boolean, ownPassNFt }}>
     <TxLoading.Provider value={{ txHash, setTxHash, showTxLoading, setShowTxLoading }}>
       {/* // @ts-ignore */}
-      <PackageListRefresh.Provider value={{ refreshList: queryGamePackages }}>
-        <Box className={styles.gameBox}>
-          <Head>
-            <title>Games | FirstPlay {gameInfo?.name && `| ${gameInfo?.name}`}</title>
-            <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
-            <meta
-              property="og:title"
-              content={`Play ${gameInfo?.name} on FirstPlay`}
-            />
-            <meta
-              property="og:description"
-              content={gameInfo?.description}
-            />
-            <meta
-              property="og:image"
-              content={gameInfo?.background}
-            />
-            {isMounted && <meta
-              property="og:url"
-              content={window.location.href}
+      {/* <PackageListRefresh.Provider value={{ refreshList: queryGamePackages }}> */}
+      <Box className={styles.gameBox}>
+        <Head>
+          <title>Games | FirstPlay {gameBase?.GameName && `| ${gameBase?.GameName}`}</title>
+          <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
+          <meta
+            property="og:title"
+            content={`Play ${gameBase?.GameName} on FirstPlay`}
+          />
+          <meta
+            property="og:description"
+            content={gameBase?.Description}
+          />
+          <meta
+            property="og:image"
+            content={gameBase?.cover?.data?.attributes?.url || gameBase?.background?.data?.attributes?.url}
+          />
+          {isMounted && <meta
+            property="og:url"
+            content={window.location.href}
+          />}
+          <meta property="og:type" content="website" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <link rel="icon" href="/favicon.ico" />
+          {/* <script async src="https://platform.twitter.com/widgets.js"></script> */}
+        </Head>
+        <Box className={styles.topCover}>
+          {gameBase?.background?.data &&
+            <Image
+              src={gameBase?.background?.data?.attributes?.url}
+              layout='fill'
+              objectFit='cover'
+              quality={100}
+              loader={({ src }) => `${src}?timestamp=${init_timestamp}`}
             />}
-            <meta property="og:type" content="website" />
-            <meta name="twitter:card" content="summary_large_image" />
-            <link rel="icon" href="/favicon.ico" />
-            {/* <script async src="https://platform.twitter.com/widgets.js"></script> */}
-          </Head>
-          <Box className={styles.topCover}>
-            {gameInfo?.background &&
-              <Image
-                src={gameInfo?.background}
-                layout='fill'
-                objectFit='cover'
-                quality={100}
-                loader={({ src }) => `${src}?timestamp=${init_timestamp}`}
-              />}
-          </Box>
-          <Box className={styles.gameInfoBox}>
-            <GameInfo gameInfo={gameInfo} timestamp={init_timestamp} />
-          </Box>
+        </Box>
+        <Box className={styles.gameInfoBox}>
+          <GameInfo gameInfo={gameBase} timestamp={init_timestamp} />
+        </Box>
 
-          {<Box className={styles.gameContent}>
-            <Tabs className={cx({ tabsBox: true, mobileTabsBox: is600Width, pcTabsStyle: !is600Width })} items={[
-              {
-                key: '1',
-                label: t('homeTab'),
-                children: <HomeTab
-                  gameTasksInfo={carnivalGame}
-                  reloadGameTasks={refresh}
-                  gameId={router?.query?.uuid as string}
-                />
-              }, {
-                key: "2",
-                label: t("newsTab"),
-                children: <GameNewsTab
-                  twitterHandler={gameInfo.twitter}
-                  videoList={carnivalGame?.videos}
-                />
-              }, {
-                key: "3",
-                label: t('proplayTab'),
-                children: <GameProxyTab proxyPlayList={carnivalGame?.boosters} />
-              }
-            ]}>
-            </Tabs>
-          </Box>}
+        {<Box className={styles.gameContent}>
+          <Tabs className={cx({ tabsBox: true, mobileTabsBox: is600Width, pcTabsStyle: !is600Width })} items={[
+            {
+              key: '1',
+              label: t('homeTab'),
+              children: <HomeTab
+                gameBase={gameBase}
+                gameBounties={bountiesList}
+                reloadGameTasks={refresh}
+                gameId={router?.query?.uuid as string}
+              />
+            }, {
+              key: "2",
+              label: t("newsTab"),
+              children: <GameNewsTab
+                twitterHandler={gameBase.TwitterLink}
+                videoList={gameBase?.Videos}
+              />
+            }, {
+              key: "3",
+              label: t('proplayTab'),
+              children: <GameProxyTab proxyPlayList={gameBase?.pro_players?.data || []} />
+            }
+          ]}>
+          </Tabs>
+        </Box>}
 
-          {/* {!isCarnivalGame && !is600Width &&
+        {/* {!isCarnivalGame && !is600Width &&
             <Box className={styles.gameStrategy}>
               <Box className={styles.comingSoonTip}>
                 <CampaignIcon sx={{ mr: '2rem' }} fontSize="large" /> {t('comingSoonTip')}
               </Box>
             </Box>} */}
 
-          {/* {
+        {/* {
             is700Width ?
               <Box className={styles.rewardMobileBox}>
                 <Box className={styles.cardHeader}>
@@ -301,7 +298,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
                 </Box>
               </Box>
           } */}
-          {/* {
+        {/* {
             is600Width ?
               <Box className={styles.btnMobileBox}>
                 <Box className={styles.gameStrategyBtn}>Game Strategy</Box>
@@ -328,7 +325,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
               </Box>
           } */}
 
-          {/* 
+        {/* 
           <Box className={styles.cardBox}>
             <Box className={styles.cardContent}>
               <Typography variant='h3'>All Items</Typography>
@@ -355,15 +352,15 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
               </Box>
             </Box>
           </Box> */}
-          <QuickTrialNFT
-            showModal={showQuickTrialModal}
-            setShowModal={setShowQuickTrialModal}
-            packageList={trialablePackageList}
-            chainId={chainId}
-          />
-          <ContractTxLoading txHash={txHash} showModal={showTxLoading} />
-        </Box>
-      </PackageListRefresh.Provider>
+        <QuickTrialNFT
+          showModal={showQuickTrialModal}
+          setShowModal={setShowQuickTrialModal}
+          packageList={trialablePackageList}
+          chainId={chainId}
+        />
+        <ContractTxLoading txHash={txHash} showModal={showTxLoading} />
+      </Box>
+      {/* </PackageListRefresh.Provider> */}
     </TxLoading.Provider>
   </UserInfo.Provider>
 }
@@ -375,18 +372,9 @@ Game.getLayout = function getLayout(page: ReactElement) {
 export default Game
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { data } = await getAllGamesInfo()
-  const { data: res } = await getAllHotGameList({})
-  console.log(res)
+  const { data } = await getAllHotGameList({})
 
-  // const gamePaths = [
-  //   ...data?.popular_games,
-  //   ...data?.rewarded_games,
-  //   ...addGameUID].map((item: any) => ({ params: { uuid: item.game_id } }))
-
-  const gamePaths = data.map((item: any) => ({ params: { uuid: item.game_id } }))
-
-  console.log(gamePaths)
+  const gamePaths = data.map((item: any) => ({ params: { uuid: item?.attributes?.GameUUID } }))
 
   let allLanguageGamePaths: { params: any }[] = []
 
@@ -406,18 +394,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
+
 export const getStaticProps: GetStaticProps = async ({ locale, params }: GetStaticPropsContext) => {
 
-  // const res = await getGameInfo({ game_id: params?.uuid as string })
-
   const res = await queryCarnivalGamesInfo({ address: "0x00", game_id: params?.uuid as string })
-  // console.log(res.data)
+
+  const gameBase = await getGameBaseInfo({ gameId: params?.uuid as string, locale: locale as string })
+  console.log(gameBase)
 
   return {
     props: {
       // 获取国际化文案
       messages: (await import(`../../i18n/${locale}.json`)).default,
       gameInfo: res.data,
+      gameBase: gameBase || {},
       init_timestamp: new Date().getTime()
     }
   }

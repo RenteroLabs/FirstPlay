@@ -21,7 +21,7 @@ import { useIsMounted } from "hooks/useIsMounted";
 import Partner from "@/components/PageHome/Partners";
 import Activities from "@/components/PageHome/Activities"
 import TopBanner from "@/components/PageHome/TopBanner";
-import { getHomeConfigData } from "services/cms";
+import { getAllHotGameList, getHomeConfigData } from "services/cms";
 import WeeklyRank from "@/components/PageHome/WeeklyRank";
 
 const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
@@ -103,9 +103,10 @@ export default FirstPlay
 
 export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsContext) => {
   // 获取首页 CMS 配置数据
-  let homeCMSConfig
+  let homeCMSConfig, partnerData
   try {
     homeCMSConfig = await getHomeConfigData()
+    partnerData = await getAllHotGameList({ gameCount: 30})
   } catch (err) {
     console.log(err)
   }
@@ -128,7 +129,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
       rewardedGames: tasks?.data || [],
 
       // TODO: partnerGames
-      partnerGames: [],
+      partnerGames: partnerData?.data || [],
 
       activityList: activities?.data || [],
 

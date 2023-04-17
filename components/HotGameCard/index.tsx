@@ -28,7 +28,7 @@ const HotGameCard: React.FC<HotGameCardProps> = (props) => {
     run({ gameId: gameInfo?.GameUUID })
   }, [gameInfo])
 
-  return <Link href={`/game/${gameInfo?.game_id}`} target="_blank" >
+  return <Link href={`/game/${gameInfo?.GameUUID}`} target="_blank" >
     <Box className={styles.cardBox}>
       <Box className={styles.gameBase}>
         <Box className={styles.gameLogo}>
