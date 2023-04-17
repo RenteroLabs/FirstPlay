@@ -374,12 +374,12 @@ export default Game
 export const getStaticPaths: GetStaticPaths = async () => {
   const { data } = await getAllHotGameList({})
 
-  const gamePaths = data.map((item: any) => ({ params: { uuid: item?.attributes?.GameUUID } }))
+  const gamePaths = data?.map((item: any) => ({ params: { uuid: item?.attributes?.GameUUID } }))
 
   let allLanguageGamePaths: { params: any }[] = []
 
   SUPPORT_LANGUAGE.forEach((language) =>
-    gamePaths.forEach(item => {
+    gamePaths?.forEach(item => {
       allLanguageGamePaths.push({
         params: { uuid: item.params.uuid },
         // @ts-ignore
@@ -400,13 +400,13 @@ export const getStaticProps: GetStaticProps = async ({ locale, params }: GetStat
   const res = await queryCarnivalGamesInfo({ address: "0x00", game_id: params?.uuid as string })
 
   const gameBase = await getGameBaseInfo({ gameId: params?.uuid as string, locale: locale as string })
-  console.log(gameBase)
+  // console.log(gameBase)
 
   return {
     props: {
       // 获取国际化文案
       messages: (await import(`../../i18n/${locale}.json`)).default,
-      gameInfo: res.data,
+      gameInfo: res?.data,
       gameBase: gameBase || {},
       init_timestamp: new Date().getTime()
     }
