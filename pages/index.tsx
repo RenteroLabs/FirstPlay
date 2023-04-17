@@ -106,13 +106,13 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
   let homeCMSConfig, partnerData
   try {
     homeCMSConfig = await getHomeConfigData()
-    partnerData = await getAllHotGameList({ gameCount: 30})
+    partnerData = await getAllHotGameList({ gameCount: 30 })
   } catch (err) {
     console.log(err)
   }
 
   let {
-    article_collections: workthroughList,
+    article_collections,
     WeekItems,
     BannerItems,
     activities,
@@ -124,7 +124,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
     props: {
       hotGames: game_infos?.data || [],
 
-      strategys: workthroughList?.data || [],
+      strategys: article_collections?.data || [],
 
       rewardedGames: tasks?.data || [],
 
