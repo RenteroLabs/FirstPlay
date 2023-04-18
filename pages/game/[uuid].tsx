@@ -103,7 +103,7 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
     }
 
     getUserArticleCollection({ gameId: router.query?.uuid as string })
-  }, [router.query?.uuid, address])
+  }, [router.query?.uuid, address, locale])
 
   const { run: getCarnivalGameInfo } = useRequest(queryCarnivalGamesInfo, {
     manual: true,
