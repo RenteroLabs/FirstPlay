@@ -167,7 +167,7 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
     onClose={() => setShowTaskDrawer(false)}
     className={styles.drawerBox}
   >
-    <Box className={`${styles.taskBox} taskBoxClass`} ref={taskBox}>
+    <Box className={`${styles.taskBox} taskBoxClass`} >
       <Box className={styles.itemLabel}>{index.toString().padStart(2, '0')}</Box>
       <IconButton
         className={styles.closeBtn}
@@ -175,7 +175,7 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
       >
         <HighlightOffIcon />
       </IconButton>
-      <Box className={styles.taskInfoBox}>
+      <Box className={styles.taskInfoBox} ref={taskBox}>
         <Box className={styles.taskHeader}>
           <Box className={styles.stepPannel}>
             <Box className={styles.stepBox}>
