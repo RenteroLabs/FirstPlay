@@ -25,6 +25,8 @@ import { useTranslations } from "next-intl";
 import MessageTips from '@/components/MessageTipsBox'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { useRequest } from 'ahooks'
+import { toast } from 'react-toastify'
 
 const cx = classname.bind(styles)
 
@@ -235,6 +237,25 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
     }
   }
 
+  const { run: handleStartTask } = useRequest(startGameTask, {
+    manual: true,
+    onSuccess: ({ code, message }) => {
+      if (code != 0) {
+        toast.error(message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
+
+    }
+  })
+
   const handleStartGameTask = async () => {
     // check connect wallet
     if (!address) {
@@ -243,11 +264,12 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
     }
 
     await setStartTaskLoading(true)
-    // send reqeust
-    await startGameTask({
+
+    await handleStartTask({
       task_id: taskInfo?.task_id,
       address: address
     })
+
     await setStartTaskLoading(false)
 
     // open drawer
@@ -278,7 +300,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       <Box className={styles.rewardInnerDivider}></Box>
 
       <Box className={styles.rewardTips}>
-        <Typography className={styles.rewardNums}>{t('reward')}: <span>{taskInfo?.issued_rewards}</span> / {taskInfo?.total_rewards || '-'} &nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
+        <Typography className={styles.rewardNums}>{t('reward')}: {taskInfo?.total_rewards || '-'} &nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
         <Typography className={styles.rewardTime}>
           {taskInfo?.reward_type} &nbsp;
         </Typography>
@@ -391,7 +413,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
             {taskInfo?.reward}
           </Typography>
           <Box className={styles.rewardTips}>
-            <Typography className={styles.rewardNums}>{t('reward')}: <span>{taskInfo?.issued_rewards}</span> / {taskInfo?.total_rewards || '-'} &nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
+            <Typography className={styles.rewardNums}>{t('reward')}: {taskInfo?.total_rewards || '-'} &nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
             <Typography className={styles.rewardTime}>
               {taskInfo?.reward_type} &nbsp;
             </Typography>

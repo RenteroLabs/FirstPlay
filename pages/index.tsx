@@ -7,7 +7,6 @@ import Support from "@/components/PageHome/Support";
 import GameStrategy from "@/components/PageHome/GameStrategy";
 import GudeStep from "@/components/PageHome/GuideStep";
 import TrialGame from "@/components/PageHome/TrialingGame";
-import { getAllGamesInfo } from "services/home";
 import { useTranslations } from "next-intl";
 import { ReactElement, useMemo } from "react";
 import Layout from "@/components/Layout";
@@ -33,15 +32,7 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
   const is1200Size = useMediaQuery("(max-width: 1200px)")
 
   const isMiddleSize = useMediaQuery("(max-width: 900px)")
-  const isMobileSize = useMediaQuery("(max-width: 450px)")
-  const is600Size = useMediaQuery("(max-width: 600px)")
   const t = useTranslations('Index.Contact')
-
-  const coverSize = useMemo(() => {
-    if (isMobileSize) return 375
-    if (isMiddleSize) return 900
-    return 1920
-  }, [isMiddleSize, isMobileSize])
 
   return <Box>
     <Head>
@@ -63,11 +54,7 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
       }
     </Head>
     <TopBanner bannerList={bannerList} />
-    {/* <Box className={styles.coverBox}>
-      {coverSize === 1920 && <Image priority src={`/headerCover1920.jpg`} layout="fill" objectFit="cover" />}
-      {coverSize === 900 && <Image priority src={`/headerCover900.jpg`} layout="fill" objectFit="cover" />}
-      {coverSize === 375 && <Image priority src={`/headerCover375.jpg`} layout="fill" objectFit="cover" />}
-    </Box> */}
+
     {
       isMounted && address &&
       <TrialGame />

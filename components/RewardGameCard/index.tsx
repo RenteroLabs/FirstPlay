@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { GAME_TASK_MONEY, STAR_LABEL } from "constants/static"
 import { useCountDown } from "ahooks"
 import { useMemo } from "react"
+import { useTranslations } from "next-intl"
 
 interface RewardGameCardProps {
   gameInfo: Record<string, any>
@@ -16,6 +17,8 @@ interface RewardGameCardProps {
 // 有奖励活动的游戏卡片
 const RewardGameCard: React.FC<RewardGameCardProps> = (props) => {
   const { gameInfo, timestamp, type = 'Ongoing', taskStatus } = props
+
+  const t = useTranslations('Game.GameTask')
 
   const [_, { days, hours, minutes }] = useCountDown({
     targetDate: gameInfo?.expired_at || new Date()
@@ -55,7 +58,7 @@ const RewardGameCard: React.FC<RewardGameCardProps> = (props) => {
         </Box>
         <Box className={styles.taskProgress}>
           <Box className={styles.progressInfo}>
-            Progress: <span>{taskStatus[gameInfo?.task_id]}</span> / {gameInfo?.total_rewards == 0 ? '∞' : gameInfo?.total_rewards}
+            {t('reward')}: {gameInfo?.total_rewards == 0 ? '∞' : gameInfo?.total_rewards}
           </Box>
           <Box className={styles.endTime}>
             {

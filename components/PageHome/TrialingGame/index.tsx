@@ -8,7 +8,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import { useIsMounted } from "hooks/useIsMounted"
 import { useEffect, useState } from "react"
 import { useRequest } from "ahooks"
-import { getProfileTrialingTaskList, getTrialingTasks } from "services/home"
+import { getProfileTrialingTaskList } from "services/home"
 import classNames from "classnames/bind"
 import { useTranslations } from "next-intl";
 import { getBountiesByTaskIds } from "services/cms"
@@ -29,11 +29,9 @@ const TrialGame: React.FC<TrialGameProps> = () => {
   const { run: queryTrialingTask, loading } = useRequest(getProfileTrialingTaskList, {
     manual: true,
     onSuccess: ({ data }) => {
-      console.log(data)
-      // setTrialingTasks(data?.trialing_games || [])
       const homeTrialing = data?.slice(0, 2)
       setTrialingTasks(homeTrialing || [])
-      const task_ids = ['2431f220-0729-4537-a8ba-8b44c1b61318', 'bbc0e19b-a48f-4971-96a8-08af1f8e45aa']
+      const task_ids = data?.map((item: Record<string, any>) => item?.task_id) || []
 
       queryBountyInfos({ taskIds: task_ids })
     }
@@ -42,12 +40,10 @@ const TrialGame: React.FC<TrialGameProps> = () => {
   const { run: queryBountyInfos } = useRequest(getBountiesByTaskIds, {
     manual: true,
     onSuccess: ({ data }) => {
-      console.log(data)
       let bountyInfos: Record<string, any> = {}
       data.forEach((item: Record<string, any>) => {
         bountyInfos[item?.attributes?.task_id] = item?.attributes
       })
-      console.log(bountyInfos)
       setBountyInfos(bountyInfos)
     }
   })
@@ -71,10 +67,9 @@ const TrialGame: React.FC<TrialGameProps> = () => {
         cardList: true,
         oneCard: trialingTasks.length === 1
       })}>
-        {/* TODO: 待添加 task_id 字段后处理 */}
         {
           trialingTasks.map((item, index: number) =>
-            <TrialGameCard key={index} trialTask={bountyInfos['bbc0e19b-a48f-4971-96a8-08af1f8e45aa']} />)
+            <TrialGameCard key={index} trialTask={bountyInfos[item?.task_id]} />)
         }
         {
           !loading && trialingTasks.length === 0 &&
