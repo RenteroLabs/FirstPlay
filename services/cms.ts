@@ -351,18 +351,20 @@ export const getBountiesByGame = async (params: BountiesByGameParams) => {
     },
     populate: {
       game_info: true,
-      steps: true,
+      steps: {
+        populate: ['StepButtonList']
+      },
       form: true,
-      'steps.StepButtonList': true,
       localizations: {
         filters: {
           locale: locale
         },
         populate: {
           game_info: true,
-          steps: true,
+          steps: {
+            populate: ['StepButtonList']
+          },
           form: true,
-          'steps.StepButtonList': true,
         }
       }
     },
