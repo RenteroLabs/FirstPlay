@@ -88,6 +88,8 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
 
   const isMounted = useIsMounted()
 
+  const [taskType, setTaskType] = useState<'Ongoing' | 'Ended'>('Ongoing')
+
   /**
    * Carnival Part Start
    */
@@ -96,14 +98,25 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
   const [bountiesList, setBountiesList] = useState<Record<string, any>[]>([])
 
   useEffect(() => {
+    if (router.query.taskType) {
+      // @ts-ignore
+      setTaskType(router.query.taskType)
+    }
+  }, [router.query?.taskType])
+
+  useEffect(() => {
     if (router.query?.uuid) {
       getCarnivalGameInfo({ address: address || '0x00', game_id: router.query?.uuid as string })
 
-      queryBountiesList({ gameId: router.query?.uuid as string, status: true, locale: locale })
+      queryBountiesList({
+        gameId: router.query?.uuid as string,
+        status: !(taskType === 'Ended'),
+        locale: locale
+      })
     }
 
     getUserArticleCollection({ gameId: router.query?.uuid as string })
-  }, [router.query?.uuid, address, locale])
+  }, [router.query?.uuid, address, locale, taskType])
 
   const { run: getCarnivalGameInfo } = useRequest(queryCarnivalGamesInfo, {
     manual: true,
