@@ -1,17 +1,14 @@
 import { GetStaticProps, GetStaticPropsContext, InferGetStaticPropsType, NextPage } from "next";
 import { Box, Typography, useMediaQuery } from '@mui/material'
 import styles from '../styles/home.module.scss'
-import Image from "next/image";
 import HotGames from "@/components/PageHome/HotGames";
 import Support from "@/components/PageHome/Support";
 import GameStrategy from "@/components/PageHome/GameStrategy";
-import GudeStep from "@/components/PageHome/GuideStep";
 import TrialGame from "@/components/PageHome/TrialingGame";
 import { useTranslations } from "next-intl";
 import { ReactElement, useMemo } from "react";
 import Layout from "@/components/Layout";
 import { NextPageWithLayout } from "./_app";
-import { reverse } from 'lodash'
 import Head from "next/head";
 import JoinCommunity from "@/components/PageHome/JoinCommunity";
 import RewardGames from "@/components/PageHome/RewardGames";
