@@ -17,6 +17,9 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { isEmpty } from 'lodash';
 import { useTranslations } from "next-intl";
 
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+
 const cx = classNames.bind(styles)
 
 interface TaskStepItemProps {
@@ -208,23 +211,27 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
                   let configs: StepButtonProps = {
                     text: btnConfig?.ButtonText,
                     link: btnConfig?.ButtonValue,
-                    perform: type.toLowerCase() 
+                    perform: type.toLowerCase()
                   }
 
                   if (platform) {
-                    const platformType = platform.toLowerCase() 
+                    const platformType = platform.toLowerCase()
                     configs['platform'] = {
                       [platformType]: btnConfig?.ButtonValue
                     }
                   }
-                  return <StepButton {...configs} key={index} />})
+                  return <StepButton {...configs} key={index} />
+                })
             }
           </Box>}
 
-        <div
+        <ReactMarkdown
           className={styles.stepDesc}
-          dangerouslySetInnerHTML={{ __html: taskInfo?.steps[activeStep - 1]?.StepContent }}
-        ></div>
+          linkTarget="_blank"
+          remarkPlugins={[remarkGfm]}
+        >
+          {taskInfo?.steps[activeStep - 1]?.StepContent}
+        </ReactMarkdown>
       </Box>
 
       <Box className={styles.stepBtns}>
