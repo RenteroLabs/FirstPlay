@@ -37,7 +37,7 @@ const BountiesList: React.FC<BountiesListPorps> = (props) => {
 }
 
 
-const pageSize = 9
+const pageSize = 18
 // Bounty 集合页
 const Bounties: NextPageWithLayout = () => {
   const isMobileSize = useMediaQuery("(max-width: 600px)")
@@ -63,7 +63,7 @@ const Bounties: NextPageWithLayout = () => {
 
     if (activeKey === TabEnum.ONGOING) {
       // @ts-ignore
-      if (scroll?.top + 500 + document.body.offsetHeight > document.body.scrollHeight
+      if (scroll?.top + 600 + document.body.offsetHeight > document.body.scrollHeight
         && currentPageGoing * pageSize < totalGoing) {
 
         if (isRequesting) return
