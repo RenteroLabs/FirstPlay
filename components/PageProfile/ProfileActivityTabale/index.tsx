@@ -13,10 +13,9 @@ import { useAccount } from 'wagmi'
 import Image from 'next/image'
 import styles from './styles.module.scss'
 import { useTranslations } from "next-intl";
+import { getBountiesByTaskIds } from 'services/cms'
 
-interface ProfileActivityTableProps {
-
-}
+interface ProfileActivityTableProps { }
 
 const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
 
@@ -25,6 +24,7 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
 
   const [activitiesList, setActivitiesList] = useState<UserActivityItem[]>([])
   const [taskRecordList, setTaskRecordList] = useState<Record<string, any>[]>([])
+  const [bountyInfos, setBountyInfos] = useState<Record<string, any>>({})
 
   const [gameInfo, setGameInfo] = useState<Record<string, Record<string, any>>>({})
 
@@ -70,16 +70,26 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
   const { run: queryTaskRecordList, loading: taskRecordLoading } = useRequest(getTrialTaskRecordList, {
     manual: true,
     onSuccess: ({ data }) => {
-      console.log(data)
       setTaskRecordList(data || [])
+
+      const task_ids = data?.map((item: Record<string, any>) => item?.task_id) || []
+      queryBountyInfos({ taskIds: task_ids })
+    }
+  })
+
+  // 获取 tasks 信息
+  const { run: queryBountyInfos } = useRequest(getBountiesByTaskIds, {
+    manual: true,
+    onSuccess: ({ data }) => {
+      let bountyInfos: Record<string, any> = {}
+      data.forEach((item: Record<string, any>) => {
+        bountyInfos[item?.attributes?.task_id] = item?.attributes
+      })
+      setBountyInfos(bountyInfos)
     }
   })
 
 
-  const handleTrialBtn = (gameId: string) => {
-    // 跳转至游戏详情页
-    window.open(`/game/${gameId}`, '__blank')
-  }
 
   return <TableContainer component={Paper} className={styles.tableBox}>
     <Box>
@@ -133,31 +143,26 @@ const ProfileActivityTable: React.FC<ProfileActivityTableProps> = (props) => {
           } */}
           {
             !taskRecordLoading &&
-            taskRecordList.map((item, index) =>
-              <TableRow key={index} className={styles.tableRow}>
+            taskRecordList.map((item, index) => {
+              const bountyInfo = bountyInfos[item?.task_id]
+              const gameInfo = bountyInfo?.game_info
+
+              return <TableRow key={index} className={styles.tableRow}>
                 <TableCell className={styles.tableBodyCell} sx={{ minWidth: '13rem' }}>
-                  {item?.name}
+                  {gameInfo?.data?.attributes?.GameName}
                 </TableCell>
                 <TableCell className={styles.tableBodyCell} sx={{ minWidth: '20rem' }}>
-                  {item?.type === 'start task' ? t('startText') : t('completeText')}: {item?.task}
+                  {item?.type === 'start task' ? t('startText') : t('completeText')}: {bountyInfo?.description}
                 </TableCell>
 
                 <TableCell className={styles.tableBodyCell} sx={{ minWidth: '15rem' }}>
-                  {item?.rewards}
+                  {bountyInfo?.reward}
                 </TableCell>
                 <TableCell className={styles.tableBodyCell} sx={{ minWidth: '15rem' }}>
                   {dateFormat("YYYY-mm-dd HH:MM", new Date(parseInt(item?.time) * 1000))}
                 </TableCell>
-                {/* <TableCell className={styles.tableBodyCell} align="center" >
-                  {
-                    <Box
-                      className={styles.cellTrialBtn}
-                      onClick={() => handleTrialBtn(item?.game_id)}>
-                      {item?.user_task_status === 'uncompleted' ? 'Continue' : "Detail"}
-                    </Box>
-                  }
-                </TableCell> */}
               </TableRow>
+            }
             )}
         </TableBody>
       </Table>}

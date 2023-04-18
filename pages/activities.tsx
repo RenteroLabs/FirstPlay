@@ -80,6 +80,7 @@ const Activities: NextPageWithLayout = () => {
         total={totalCount}
         current={currentPage}
         pageSize={pageSize}
+        showSizeChanger={false}
         onChange={(page) => setCurrentPage(page)} />}
     </Box>
   </Box>
