@@ -243,6 +243,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
   const { run: handleStartTask } = useRequest(startGameTask, {
     manual: true,
     onSuccess: ({ code, message }) => {
+      reloadData()
       if (code != 0) {
         toast.error(message, {
           position: "top-right",
