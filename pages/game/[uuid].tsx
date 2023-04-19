@@ -134,7 +134,13 @@ const Game: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> =
       if (locale === 'en-US') {
         content = data
       } else {
-        content = data.map((item: Record<string, any>) => item?.attributes?.localizations?.data[0])
+        content = data.map((item: Record<string, any>) => {
+          let taskItem: Record<string, any> = item?.attributes?.localizations?.data[0]
+
+          // 确保其他语言的 task_id 与英文的一致
+          taskItem['attributes']['task_id'] = item?.attributes?.task_id
+          return taskItem
+        })
       }
       setBountiesList(content || [])
     }
