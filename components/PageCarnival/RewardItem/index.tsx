@@ -28,6 +28,9 @@ import remarkGfm from 'remark-gfm'
 import { useRequest } from 'ahooks'
 import { toast } from 'react-toastify'
 
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+
+
 const cx = classname.bind(styles)
 
 interface DownloadButtonProps {
@@ -455,62 +458,61 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       <Box className={styles.taskDivider}></Box>
 
       <Box className={styles.stepList}>
-        {
-          taskInfo?.steps?.map((item: Record<string, any>, index: number) => {
+        <PhotoProvider maskOpacity={0.5} >
+          {
+            taskInfo?.steps?.map((item: Record<string, any>, index: number) => {
 
-            return <Box className={styles.stepItem} key={index}>
-              <Typography variant='h4'>{t('stepText')}{index + 1}: {item?.StepTitle}</Typography>
-              <Box className={styles.stepContent}>
-                <Box className={styles.descBtnBox}>
-                  <ReactMarkdown
-                    className={styles.stepDesc}
-                    linkTarget="_blank"
-                    remarkPlugins={[remarkGfm]} >
-                    {item?.StepContent}
-                  </ReactMarkdown>
-                  <Box className={styles.btnList}>
-                    {
-                      item?.StepButtonList?.
-                        map((btnConfig: Record<string, any>, index: number) => {
-                          console.log(btnConfig)
-                          const [type, platform]: string[] = btnConfig?.ButtonType?.split('-')
+              return <Box className={styles.stepItem} key={index}>
+                <Typography variant='h4'>{t('stepText')}{index + 1}: {item?.StepTitle}</Typography>
+                <Box className={styles.stepContent}>
+                  <Box className={styles.descBtnBox}>
+                    <ReactMarkdown
+                      className={styles.stepDesc}
+                      linkTarget="_blank"
+                      remarkPlugins={[remarkGfm]}
+                      components={{
+                        // 将 img 元素替换为 PhotoView 组件
+                        img: ({ node, ...props }) => {
+                          return <PhotoView key={index} src={props?.src} >
+                            <img src={props?.src} alt={props?.alt} />
+                          </PhotoView>
+                        }
+                      }}
+                    >
+                      {item?.StepContent}
+                    </ReactMarkdown>
+                    <Box className={styles.btnList}>
+                      {
+                        item?.StepButtonList?.
+                          map((btnConfig: Record<string, any>, index: number) => {
+                            console.log(btnConfig)
+                            const [type, platform]: string[] = btnConfig?.ButtonType?.split('-')
 
-                          let configs: StepButtonProps = {
-                            text: btnConfig?.ButtonText,
-                            link: btnConfig?.ButtonValue,
-                            perform: type.toLowerCase() as ButtonType
-                          }
-
-                          if (platform) {
-                            const platformType = platform.toLowerCase() as PlatformType
-                            configs['platform'] = {
-                              [platformType]: btnConfig?.ButtonValue
+                            let configs: StepButtonProps = {
+                              text: btnConfig?.ButtonText,
+                              link: btnConfig?.ButtonValue,
+                              perform: type.toLowerCase() as ButtonType
                             }
-                          }
 
-                          return <StepButton
-                            {...configs}
-                            key={index} />
-                        })
-                    }
+                            if (platform) {
+                              const platformType = platform.toLowerCase() as PlatformType
+                              configs['platform'] = {
+                                [platformType]: btnConfig?.ButtonValue
+                              }
+                            }
+
+                            return <StepButton
+                              {...configs}
+                              key={index} />
+                          })
+                      }
+                    </Box>
                   </Box>
                 </Box>
-                {/* <Box className={styles.imageList}>
-                  <RcImage.PreviewGroup icons={{
-                    left: <KeyboardArrowLeftIcon />,
-                    right: <KeyboardArrowRightIcon />
-                  }}>
-                    {
-                      item?.images?.map((url: string, index: number) =>
-                        <RcImage src={`${url}?timestamp=${timestamp}`} key={index} className={styles.imageItem} />
-                      )
-                    }
-                  </RcImage.PreviewGroup>
-                </Box> */}
               </Box>
-            </Box>
-          })
-        }
+            })
+          }
+        </PhotoProvider>
       </Box>
 
       <Box className={cx({

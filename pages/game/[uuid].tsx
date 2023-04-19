@@ -39,7 +39,9 @@ import { Tabs } from 'antd'
 import HomeTab from '@/components/PageGame/GameHomeTab.tsx/HomeTab'
 import GameNewsTab from '@/components/PageGame/GameNewsTab.tsx'
 import GameProxyTab from '@/components/PageGame/GameProxyTab'
-import qs from 'qs'
+
+// 图片预览组件 CSS 样式
+import 'react-photo-view/dist/react-photo-view.css';
 
 import classNames from 'classnames/bind'
 import { getAllHotGameList, getBountiesByGame, getGameBaseInfo, getUserArticleCollection } from 'services/cms'
