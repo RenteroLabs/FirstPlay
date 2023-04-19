@@ -96,7 +96,8 @@
     "StepDrawer": {
       "verifyBtnText": "Verify",
       "nextBtnText": "Next",
-      "backBtnText": "Back"
+      "backBtnText": "Back",
+      "stepText": "Step"
     }
   },
   "Article": {

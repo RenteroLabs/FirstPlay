@@ -201,6 +201,8 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
           </Box>
         </Box>
 
+        <Typography variant='h4'>{taskInfo?.steps[activeStep - 1]?.StepTitle}</Typography>
+
         {!isEmpty(taskInfo?.steps[activeStep - 1]?.StepButtonList || []) &&
           <Box className={styles.btnList}>
             {

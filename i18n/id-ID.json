@@ -96,7 +96,8 @@
     "StepDrawer": {
       "verifyBtnText": "Verifikasi",
       "nextBtnText": "Berikutnya",
-      "backBtnText": "Kembali"
+      "backBtnText": "Kembali",
+      "stepText": "Langkah"
     }
   },
   "Article": {

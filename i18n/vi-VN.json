@@ -96,7 +96,8 @@
     "StepDrawer": {
       "verifyBtnText": "Xác Minh",
       "nextBtnText": "Kế Tiếp",
-      "backBtnText": "Quay Về"
+      "backBtnText": "Quay Về",
+      "stepText": "Bước"
     }
   },
   "Article": {
