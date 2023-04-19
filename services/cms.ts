@@ -241,7 +241,13 @@ export const getActivitiesList = async (params: ActivityListParasm) => {
   const { pageNum, pageSize } = params
 
   const query = qs.stringify({
-    populate: '*',
+    publicationState: process.env.NEXT_PUBLIC_ENV === 'PRO' ? 'live' : 'preview',
+    populate: {
+      image: true,
+      game_info: {
+        fields: ['GameName'],
+      }
+    },
     sort: ['id:desc'],
     pagination: {
       page: pageNum,
