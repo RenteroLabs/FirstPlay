@@ -147,11 +147,11 @@
     overflow: hidden;
     .stepItem {
       h4 {
-        font-size: 1.33rem;
-        font-family: Inter-Bold, Inter;
-        font-weight: bold;
-        color: rgba(#222222, 0.3);
-        line-height: 1.33rem;
+        font-size: 1.5rem;
+        font-family: Inter-SemiBold, Inter;
+        font-weight: 600;
+        color: #000000;
+        line-height: 1.5rem;
       }
 
       .stepContent {
@@ -178,6 +178,18 @@
             b {
               font-family: Inter-SemiBold, Inter;
               font-weight: 600;
+            }
+            img {
+              max-height: 300px;
+              margin: 0.5rem 0;
+              cursor: pointer;
+            }
+            p {
+              font-size: 1.33rem;
+              font-family: Inter-Regular, Inter;
+              font-weight: 400;
+              color: #000000;
+              line-height: 2rem;
             }
           }
           .btnList {
@@ -281,7 +293,7 @@
     // background: rgba(142, 80, 228, 0.1);
     border: 1px solid #8e50e4;
     background: #8e50e4;
-    
+
     user-select: none;
     padding: 1rem;
 
@@ -304,7 +316,7 @@
     }
     &:hover {
       // box-shadow: 0.2rem 0.4rem 0.4rem 0rem rgba(142, 80, 228, 0.2);
-      background: #7336C8;
+      background: #7336c8;
       color: white;
     }
   }

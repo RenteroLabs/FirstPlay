@@ -58,19 +58,19 @@
     "comingSoonTip": "Segera hadir",
     "showMoreBtn": "Lebih",
     "showLessBtn": "Kurang",
-    "homeTab": "Home",
-    "newsTab": "Videos&News",
-    "proplayTab": "Pro Players",
+    "homeTab": "Beranda",
+    "newsTab": "Video&Berita",
+    "proplayTab": "Pemain Profesional",
     "Tabs": {
-      "activity": "Activity",
-      "walkthrough": "Walkthrough",
+      "activity": "Aktivitas",
+      "walkthrough": "panduan langkah demi langkah",
       "video": "Videos",
-      "news": "News",
-      "proPlayer": "Pro Players",
-      "comingSoonTip": "Coming Soon!",
-      "emptyTip": "No player yet, stay tuned",
-      "lessArticle": "See less",
-      "moreArticle": "See all"
+      "news": "Berita",
+      "proPlayer": "Pemain Profesional",
+      "comingSoonTip": "Segera datang",
+      "emptyTip": "Belum ada pemain, tetap nantikan",
+      "lessArticle": "Lihat kurang",
+      "moreArticle": "Lihat semua"
     },
     "GameTask": {
       "minutes": "Menit",
@@ -86,7 +86,7 @@
       "seeMoreTaskStep": "Lihat semua",
       "seeLessTaskStep": "Lihat Lebih Sedikit",
       "stepText": "Langkah",
-      "reward": "Progress"
+      "reward": "Posisi"
     },
     "VerifyTaskModal": {
       "modalTitle": "Verifikasi Tugas",
@@ -96,19 +96,20 @@
     "StepDrawer": {
       "verifyBtnText": "Verifikasi",
       "nextBtnText": "Berikutnya",
-      "backBtnText": "Kembali"
+      "backBtnText": "Kembali",
+      "stepText": "Langkah"
     }
   },
   "Article": {
-    "shareText": "Share",
-    "authorOtherArticles": "Author's other articles:",
-    "viewAllArticleFor": "View all for #{gameName}",
-    "articleStep": "Step{index}",
-    "stepBack": "Back",
-    "stepNext": "Next",
-    "viewNextArticle": "View next walkthrough",
-    "articlePrev": "Previous",
-    "articleNext": "Next"
+    "shareText": "Berbagi",
+    "authorOtherArticles": "Artikel lain dari penulis:",
+    "viewAllArticleFor": "Lihat semua #{gameName}",
+    "articleStep": "Langkah{index}",
+    "stepBack": "Kembali",
+    "stepNext": "Selanjutnya",
+    "viewNextArticle": "Lihat panduan berikutnya",
+    "articlePrev": "Sebelumnya",
+    "articleNext": "Berikutnya"
   },
   "Profile": {
     "unipassLinkDesc": "Kunjungi dompet UniPass ke aset Anda setelah withdraw.Login email",
@@ -152,16 +153,16 @@
     }
   },
   "ErrorMessage": {
-    "4001": "Parameter missing！",
-    "5000": "Internal error！",
-    "5001": "Limit Exceeded！",
-    "5002": "Insufficient game key！",
-    "5003": "Invalid address！",
-    "5004": "The task has started!",
-    "5005": "Invalid request！",
-    "5006": "Unable to withdraw, try again later！",
-    "5007": "Unable to submit at this time, try again later！",
-    "5008": "The task is offline!",
-    "5009": "Do not submit the same information repeatedly!"
+    "4001": "Parameter hilang！",
+    "5000": "Kesalahan internal！",
+    "5001": "Batas terlampaui！",
+    "5002": "Kunci game tidak mencukupi！",
+    "5003": "Alamat tidak valid！",
+    "5004": "Tugas telah dimulai!",
+    "5005": "Permintaan tidak valid！",
+    "5006": "Tidak dapat menarik, coba lagi nanti!",
+    "5007": "Tidak dapat mengirimkan saat ini, coba lagi nanti!",
+    "5008": "Tugas sedang offline!",
+    "5009": "Jangan mengirim informasi yang sama berkali-kali!"
   }
 }

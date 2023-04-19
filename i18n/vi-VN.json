@@ -58,19 +58,19 @@
     "comingSoonTip": "Sắp Ra Mắt",
     "showMoreBtn": "Thêm",
     "showLessBtn": "Giảm",
-    "homeTab": "Home",
-    "newsTab": "Videos&News",
-    "proplayTab": "Pro Players",
+    "homeTab": "Trang chủ",
+    "newsTab": "Video&Tin tức",
+    "proplayTab": "Các vận động viên chuyên nghiệp",
     "Tabs": {
-      "activity": "Activity",
-      "walkthrough": "Walkthrough",
+      "activity": "Hoạt động",
+      "walkthrough": "Hướng dẫn",
       "video": "Videos",
-      "news": "News",
-      "proPlayer": "Pro Players",
-      "comingSoonTip": "Coming Soon!",
-      "emptyTip": "No player yet, stay tuned",
-      "lessArticle": "See less",
-      "moreArticle": "See all"
+      "news": "Tin tức",
+      "proPlayer": "Các vận động viên chuyên nghiệp",
+      "comingSoonTip": "Sắp Ra Mắt!",
+      "emptyTip": "Chưa có người chơi, hãy đợi nhé",
+      "lessArticle": "Hiển thị ít hơn",
+      "moreArticle": "Xem tất cả"
     },
     "GameTask": {
       "minutes": "phút ",
@@ -86,7 +86,7 @@
       "seeMoreTaskStep": "Xem Tất Cả",
       "seeLessTaskStep": "Rút Gọn",
       "stepText": "Bước",
-      "reward": "Progress"
+      "reward": "Tiến trình"
     },
     "VerifyTaskModal": {
       "modalTitle": "Xác Minh Nhiệm Vụ",
@@ -96,19 +96,20 @@
     "StepDrawer": {
       "verifyBtnText": "Xác Minh",
       "nextBtnText": "Kế Tiếp",
-      "backBtnText": "Quay Về"
+      "backBtnText": "Quay Về",
+      "stepText": "Bước"
     }
   },
   "Article": {
-    "shareText": "Share",
-    "authorOtherArticles": "Author's other articles:",
-    "viewAllArticleFor": "View all for #{gameName}",
-    "articleStep": "Step{index}",
-    "stepBack": "Back",
-    "stepNext": "Next",
-    "viewNextArticle": "View next walkthrough",
-    "articlePrev": "Previous",
-    "articleNext": "Next"
+    "shareText": "Chia sẻ",
+    "authorOtherArticles": "Những bài viết khác của tác giả:",
+    "viewAllArticleFor": "xem tất cả #{gameName}",
+    "articleStep": "Bước{index}",
+    "stepBack": "Quay lại",
+    "stepNext": "Tiếp theo",
+    "viewNextArticle": "Xem hướng dẫn tiếp theo",
+    "articlePrev": "Trước",
+    "articleNext": "Kế Tiếp"
   },
   "Profile": {
     "unipassLinkDesc": "Truy cập ví UniPass vào tài sản của bạn sau khi rút tiền. Đăng nhập email",
@@ -152,16 +153,16 @@
     }
   },
   "ErrorMessage": {
-    "4001": "Parameter missing！",
-    "5000": "Internal error！",
-    "5001": "Limit Exceeded！",
-    "5002": "Insufficient game key！",
-    "5003": "Invalid address！",
-    "5004": "The task has started!",
-    "5005": "Invalid request！",
-    "5006": "Unable to withdraw, try again later！",
-    "5007": "Unable to submit at this time, try again later！",
-    "5008": "The task is offline!",
-    "5009": "Do not submit the same information repeatedly!"
+    "4001": "Thiếu tham số！",
+    "5000": "Lỗi nội bộ！",
+    "5001": "Vượt quá giới hạn！",
+    "5002": "Khóa game không đủ！",
+    "5003": "Địa chỉ không hợp lệ！",
+    "5004": "Nhiệm vụ đã bắt đầu!",
+    "5005": "Yêu cầu không hợp lệ！",
+    "5006": "Không thể rút tiền, vui lòng thử lại sau!",
+    "5007": "Không thể gửi vào thời điểm này, vui lòng thử lại sau!",
+    "5008": "Nhiệm vụ đang offline!",
+    "5009": "Không gửi thông tin giống nhau nhiều lần!"
   }
 }

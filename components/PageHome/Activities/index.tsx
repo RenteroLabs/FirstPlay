@@ -20,9 +20,13 @@ const Activities: React.FC<ActivitiesProps> = (props) => {
       {/* 移动端 轮播图卡片样式 */}
       {
         isMobileSize
-          ? <Box sx={{ marginTop: '1rem' }}><GameActivityCarousel activityList={activityList} /></Box>
+          ? <Box sx={{ marginTop: '1rem' }}>
+            <GameActivityCarousel
+              activityList={activityList.map((item: Record<string, any>) => item?.attributes)} />
+          </Box>
           : <Box className={styles.activityList}>
-            {activityList?.map((item, index) => <ActivityCard activityInfo={item} key={index} />)}
+            {activityList?.map((item, index) =>
+              <ActivityCard activityInfo={item?.attributes} key={index} />)}
           </Box>
       }
     </Box>

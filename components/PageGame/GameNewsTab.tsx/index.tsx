@@ -28,12 +28,12 @@ const GameNewsTab: React.FC<GameNewsTabProps> = (props) => {
         <Typography variant="h3">{t('video')}</Typography>
         <Box className={styles.videoList}>
           {
-            videoList.map((item, index) =>
-              <GameNewsVideoCard key={index} videoInfo={item} />
-            )
+            videoList.map((item, index) => {
+              const url = new URL(item.link).searchParams
+              return <GameNewsVideoCard key={index} videoInfo={{ ...item, id: url.get('v') }} />
+            })
           }
         </Box>
-
       </Box>
     }
 

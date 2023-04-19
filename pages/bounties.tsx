@@ -8,7 +8,8 @@ import styles from '../styles/bounties.module.scss'
 import { Pagination, Tabs } from 'antd';
 import RewardGameCard from "@/components/RewardGameCard";
 import { useRequest, useScroll } from "ahooks";
-import { getBountiesList } from "services/home";
+import { getBountiesList } from "services/cms";
+import { getTaskStatus } from "services/home";
 
 enum TabEnum {
   ONGOING = 'ongoing',
@@ -17,21 +18,26 @@ enum TabEnum {
 
 interface BountiesListPorps {
   bountiesList: Record<string, any>[]
+  taskStatus: Record<string, any>
   type: 'Ongoing' | 'Ended'
 }
 const BountiesList: React.FC<BountiesListPorps> = (props) => {
-  const { bountiesList, type } = props
+  const { bountiesList, type, taskStatus } = props
 
   return <Box className={styles.bountiesList}>
     {
       bountiesList?.map((item, index) =>
-        <RewardGameCard key={index} gameInfo={item} type={type} />)
+        <RewardGameCard
+          key={item?.id || index}
+          gameInfo={item?.attributes || {}}
+          taskStatus={taskStatus}
+          type={type} />)
     }
   </Box>
 }
 
 
-const pageSize = 9
+const pageSize = 18
 // Bounty 集合页
 const Bounties: NextPageWithLayout = () => {
   const isMobileSize = useMediaQuery("(max-width: 600px)")
@@ -46,6 +52,8 @@ const Bounties: NextPageWithLayout = () => {
   const [ongoingList, setOngoingList] = useState<Record<string, any>[]>([])
   const [endList, setEndList] = useState<Record<string, any>[]>([])
 
+  const [taskStatusRecord, setTaskStatusRecord] = useState<Record<string, any>>({})
+
   const [isRequesting, setIsRequesting] = useState<boolean>(false)
 
   const scroll = useScroll()
@@ -55,7 +63,7 @@ const Bounties: NextPageWithLayout = () => {
 
     if (activeKey === TabEnum.ONGOING) {
       // @ts-ignore
-      if (scroll?.top + 500 + document.body.offsetHeight > document.body.scrollHeight
+      if (scroll?.top + 600 + document.body.offsetHeight > document.body.scrollHeight
         && currentPageGoing * pageSize < totalGoing) {
 
         if (isRequesting) return
@@ -65,9 +73,9 @@ const Bounties: NextPageWithLayout = () => {
         setCurrentPageGoing(currentPageGoing + 1)
 
         queryBountiesList({
-          limit: pageSize,
-          offset: pageSize * (currentPageGoing),
-          status: "on"
+          pageSize: pageSize,
+          pageNum: currentPageGoing + 1,
+          status: true
         })
       }
     } else {
@@ -82,38 +90,52 @@ const Bounties: NextPageWithLayout = () => {
         setCurrentPageEnd(currentPageEnd + 1)
 
         queryBountiesList({
-          limit: pageSize,
-          offset: pageSize * (currentPageEnd),
-          status: "off"
+          pageSize: pageSize,
+          pageNum: currentPageEnd + 1,
+          status: false
         })
       }
     }
   }, [scroll])
 
-
   const { run: queryBountiesList, runAsync } = useRequest(getBountiesList, {
     manual: true,
-    onSuccess: ({ data }, [{ status }]) => {
+    onSuccess: async ({ data, meta }, [{ status }]) => {
       if (data) {
-        const { total_count, bounties } = data
-        if (status === 'on') {
-          // setOngoingList(isMobileSize ? [...ongoingList, ...bounties] : bounties)
-          setOngoingList([...ongoingList, ...bounties])
-          setTotalGoing(total_count)
+
+        if (status) {
+          setOngoingList([...ongoingList, ...data])
+          setTotalGoing(meta?.pagination?.total || 0)
         } else {
-          // setEndList(isMobileSize ? [...endList, ...bounties] : bounties)
-          setEndList([...endList, ...bounties])
-          setTotalEnd(total_count)
+          setEndList([...endList, ...data])
+          setTotalEnd(meta?.pagination?.total || 0)
         }
+
+        // 查询 task 任务进度数据
+        await queryTaskStatus({
+          address: '',
+          task_ids: data.map((item: Record<string, any>) => item?.attributes?.task_id)
+        })
       }
+    }
+  })
+
+  const { run: queryTaskStatus } = useRequest(getTaskStatus, {
+    manual: true,
+    onSuccess: ({ data }) => {
+      let statusList: Record<string, any> = {}
+      data.forEach((item: Record<string, any>) => {
+        statusList[item.task_id] = item.issued_rewards
+      })
+      setTaskStatusRecord({ ...taskStatusRecord, ...statusList })
     }
   })
 
   useEffect(() => {
     // 初始化请求列表数据
     (async () => {
-      await runAsync({ limit: pageSize, offset: pageSize * (currentPageGoing - 1), status: 'on' })
-      await runAsync({ limit: pageSize, offset: pageSize * (currentPageEnd - 1), status: 'off' })
+      await runAsync({ pageSize: pageSize, pageNum: currentPageGoing, status: true })
+      await runAsync({ pageSize: pageSize, pageNum: currentPageEnd, status: false })
     })()
   }, [])
 
@@ -134,6 +156,7 @@ const Bounties: NextPageWithLayout = () => {
             key: TabEnum.ONGOING,
             children: <BountiesList
               bountiesList={ongoingList}
+              taskStatus={taskStatusRecord}
               key={TabEnum.ONGOING}
               type="Ongoing"
             />
@@ -142,6 +165,7 @@ const Bounties: NextPageWithLayout = () => {
             key: TabEnum.ENDED,
             children: <BountiesList
               bountiesList={endList}
+              taskStatus={taskStatusRecord}
               key={TabEnum.ENDED}
               type="Ended"
             />

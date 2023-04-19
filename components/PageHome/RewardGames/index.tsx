@@ -7,6 +7,8 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { useState } from "react"
 import { useTranslations } from "next-intl";
+import { useRequest } from "ahooks"
+import { getTaskStatus } from "services/home"
 
 interface RewardGamesProps {
   rewardGames: Record<string, any>[]
@@ -21,6 +23,20 @@ const RewardGames: React.FC<RewardGamesProps> = (props) => {
 
   const [showMore, setShowMore] = useState<boolean>(true)
 
+  const [taskStatusRecord, setTaskStatusRecord] = useState<Record<string, any>>({})
+
+  useRequest(getTaskStatus, {
+    defaultParams: [{ address: '', task_ids: rewardGames.map((item: Record<string, any>) => item?.attributes?.task_id) }],
+    refreshDeps: [rewardGames],
+    onSuccess: ({ data }) => {
+      let statusList: Record<string, any> = {}
+      data.forEach((item: Record<string, any>) => {
+        statusList[item.task_id] = item.issued_rewards
+      })
+      setTaskStatusRecord({ ...taskStatusRecord, ...statusList })
+    }
+  })
+
   return <Box className={styles.rewardGames}>
     <Box className={styles.rewardGamesBox}>
       <SectionTitle
@@ -30,7 +46,11 @@ const RewardGames: React.FC<RewardGamesProps> = (props) => {
       />
       <Box className={styles.cardList}>
         {
-          ((is600Size && !showMore) ? rewardGames.slice(0, 3) : rewardGames).map((item, index) => <RewardGameCard gameInfo={item} key={index} timestamp={timestamp} />)
+          ((is600Size && !showMore) ? rewardGames.slice(0, 3) : rewardGames).map((item, index) => <RewardGameCard
+            gameInfo={item?.attributes || {}}
+            taskStatus={taskStatusRecord}
+            key={index}
+            timestamp={timestamp} />)
         }
       </Box>
     </Box>

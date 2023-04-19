@@ -41,6 +41,7 @@
     "react-dom": "18.2.0",
     "react-gtm-module": "^2.0.11",
     "react-markdown": "^8.0.3",
+    "react-photo-view": "^1.2.3",
     "react-qr-code": "^2.0.11",
     "react-slick": "^0.29.0",
     "react-sticky-box": "^2.0.0",

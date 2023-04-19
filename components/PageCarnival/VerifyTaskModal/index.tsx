@@ -4,7 +4,6 @@ import styles from './style.module.scss'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import CloseIcon from '@mui/icons-material/Close';
 import * as ga from '../../../util/ga'
-import { GAME_EVENT_NAME } from 'constants/index'
 import { useTranslations } from "next-intl";
 import VerifyTaskFormModal from '@/components/PageModals/VerifyTaskModal';
 

@@ -1,15 +1,10 @@
 import { Box, Dialog, IconButton, Typography, useMediaQuery } from '@mui/material'
-import { COIN_ICON, GAME_TASK_MONEY, MOBILE_CARNIVAL_REWARD_ITEM, MONEY_ICON, REWARD_ACTIVE_ICON, REWARD_ICON, STAR_LABEL, TASK_COIN } from 'constants/static'
+import { COIN_ICON, GAME_TASK_MONEY, STAR_LABEL, TASK_COIN } from 'constants/static'
 import Image from 'next/image'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import styles from './styles.module.scss'
 import classname from 'classnames/bind'
 import { useIsMounted } from 'hooks/useIsMounted'
-import GiftCodeModal from '../GiftCodeModal'
-import { useLocalStorageState, useRequest } from 'ahooks'
-import { queryGameGiftCode } from 'services/carnival'
-import * as ga from '../../../util/ga'
-import { GAME_TASK_MODAL_NAME } from 'constants/index'
 import VerifyTaskModal from '../VerifyTaskModal'
 import GameTaskDrawer from '@/components/GameTaskDrawer'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -20,15 +15,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import DoneIcon from '@mui/icons-material/Done';
-import DownloadIcon from '@mui/icons-material/Download';
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import RcImage from 'rc-image'
 import QRCodeDownloadModal from '@/components/PageModals/QRCodeDownload'
-import { FormatColorResetRounded } from '@mui/icons-material'
-import QRCode from 'react-qr-code'
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import CloseIcon from '@mui/icons-material/Close';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { useAccount } from 'wagmi'
 import ConnectWallet from '@/components/ConnectWallet'
@@ -36,6 +23,13 @@ import { startGameTask } from 'services/home'
 import CircularProgress from '@mui/material/CircularProgress';
 import { useTranslations } from "next-intl";
 import MessageTips from '@/components/MessageTipsBox'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import { useRequest } from 'ahooks'
+import { toast } from 'react-toastify'
+
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+
 
 const cx = classname.bind(styles)
 
@@ -102,7 +96,7 @@ const DownloadButton: React.FC<DownloadButtonProps> = (props) => {
   </Box>
 }
 
-type ButtonType = "download" | "copy" | 'visit'
+type ButtonType = "download" | "copy" | 'link'
 type PlatformType = 'android' | 'ios' | 'mac' | 'windows'
 
 interface StepButtonProps {
@@ -110,10 +104,10 @@ interface StepButtonProps {
   link: string,
   perform: ButtonType,
   platform?: {
-    android: string,
-    ios: string,
-    mac: string,
-    windows: string
+    android?: string,
+    ios?: string,
+    mac?: string,
+    windows?: string
   }
 }
 
@@ -153,7 +147,7 @@ const StepButton: React.FC<StepButtonProps> = (props) => {
     switch (perform) {
       case "copy": return <ContentCopyIcon />
       case "download": return isIos ? <AppleIcon /> : <AndroidIcon />
-      case "visit": return <OpenInNewIcon />
+      case "link": return <OpenInNewIcon />
       default: return <OpenInNewIcon />
     }
   }, [perform, isIos])
@@ -183,7 +177,7 @@ const StepButton: React.FC<StepButtonProps> = (props) => {
       })
     }
     {
-      perform === 'visit' &&
+      perform === 'link' &&
       <Box
         className={styles.stepBtnItem}
         onClick={handleClick}
@@ -200,33 +194,28 @@ interface RewardItemProps {
   reward: string,
   isClaimed: boolean,
   isStarted: boolean,
-  medalNum: number,
   gameId: string,
-  strategyLink: string,
   taskInfo: Record<string, any>
   timestamp: number
   reloadData: () => any
 }
 
 const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
-  const { index, reward, isClaimed, medalNum, gameId, strategyLink, taskInfo, timestamp, isStarted, reloadData } = props
+  const { index, isClaimed, taskInfo, timestamp, isStarted, reloadData } = props
   const isMobileSize = useMediaQuery("(max-width:600px)")
   const isMounted = useIsMounted()
 
   const t = useTranslations('Game.GameTask')
 
   const { address } = useAccount()
-  // console.log(taskInfo)
   const [showConnectWallet, setShowConnectWallet] = useState<boolean>(false)
 
-  const [showGiftModal, setShowGiftModal] = useState<boolean>(false)
   const [showTaskModal, setShowTaskModal] = useState<boolean>(false)
   const [showTaskDrawer, setShowTaskDrawer] = useState<boolean>(false)
 
   const [showTaskMore, setShowTaskMore] = useState<boolean>(false)
 
   const [isStartTaskLoading, setStartTaskLoading] = useState<boolean>(false)
-
 
   useEffect(() => {
     if (showTaskDrawer && isMobileSize) {
@@ -245,44 +234,31 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
     }
   }, [taskInfo])
 
-  const [giftCode, setGiftCode] = useState<string>("XXXXXXX")
-
   const linkToForm = () => {
     if (!isClaimed) {
       setShowTaskModal(true)
     }
   }
 
-  const [localGiftCode, setLocalGiftCode] = useLocalStorageState("GIFTCODE")
-  const [recordTime, setRecordTime] = useLocalStorageState("RECORD_TIME")
-
-
-  // const 
-  const { run: getGiftCode } = useRequest(queryGameGiftCode, {
+  const { run: handleStartTask } = useRequest(startGameTask, {
     manual: true,
-    onSuccess: ({ data }) => {
-      setGiftCode(data.key)
-      setLocalGiftCode(data?.key)
-      setRecordTime(new Date().getTime())
+    onSuccess: ({ code, message }) => {
+      reloadData()
+      if (code != 0) {
+        toast.error(message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
+
     }
   })
-
-  // 首先判断本地存不存在有效 giftcode
-  useEffect(() => {
-    if (localGiftCode && recordTime) {
-      if (new Date().getTime() - Number(recordTime) < (86400 * 1000)) {
-        setGiftCode(localGiftCode as string)
-      }
-    }
-  }, [])
-
-  const handleClickGiftBtn = () => {
-    // 判断本地有没有
-    if (giftCode === "XXXXXXX") {
-      getGiftCode({ game_id: gameId })
-    }
-    setShowGiftModal(true)
-  }
 
   const handleStartGameTask = async () => {
     // check connect wallet
@@ -292,11 +268,12 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
     }
 
     await setStartTaskLoading(true)
-    // send reqeust
-    await startGameTask({
+
+    await handleStartTask({
       task_id: taskInfo?.task_id,
       address: address
     })
+
     await setStartTaskLoading(false)
 
     // open drawer
@@ -315,10 +292,9 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
         <Box className={styles.iconBox}>
           <Image src={STAR_LABEL} layout="fill" />
         </Box>
-        {reward}
+        {taskInfo?.description}
       </Typography>
       <Box className={styles.taskReward}>
-        {/* <img src={COIN_ICON} /> */}
         <Box className={styles.iconBox}>
           <Image src={GAME_TASK_MONEY} layout="fill" />
         </Box>
@@ -328,16 +304,17 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       <Box className={styles.rewardInnerDivider}></Box>
 
       <Box className={styles.rewardTips}>
-        <Typography className={styles.rewardNums}>{t('reward')}: <span>{taskInfo?.issued_rewards}</span> / {taskInfo?.total_rewards || '-'} &nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
+        <Typography className={styles.rewardNums}>{t('reward')}: {taskInfo?.spot || '-'} &nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
         <Typography className={styles.rewardTime}>
           {taskInfo?.reward_type} &nbsp;
         </Typography>
-        <MessageTips fullmessage={taskInfo?.reward_explain} />
+        {taskInfo?.reward_explain &&
+          <MessageTips fullmessage={taskInfo?.reward_explain} />}
       </Box>
 
       <Box className={styles.actionArea}>
         {
-          taskInfo?.task_status === 'on' && (!address || !isStarted) &&
+          taskInfo?.task_status && (!address || !isStarted) &&
           <Box
             className={styles.startBtn}
             onClick={async () => {
@@ -349,7 +326,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
 
         {
           // 继续任务
-          taskInfo?.task_status === 'on' && address && isStarted && !isClaimed &&
+          taskInfo?.task_status && address && isStarted && !isClaimed &&
           <Box className={cx({ middleBtn: true })} onClick={showTaskSteps}>
             {t('continueBtnText')}
           </Box>
@@ -357,7 +334,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
 
         {
           // 任务结束
-          taskInfo?.task_status === 'off' &&
+          !taskInfo?.task_status &&
           <Box className={cx({ claimBtn: true, middleBtn: true, claimedBtn: true })} >
             {t('endBtnText')}
           </Box>
@@ -365,7 +342,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
 
         {
           // 任务完成
-          taskInfo?.task_status === 'on' && address && isStarted && isClaimed &&
+          taskInfo?.task_status && address && isStarted && isClaimed &&
           <Box className={cx({
             claimBtn: true,
             middleBtn: true,
@@ -378,7 +355,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
 
         {
           // 验证完成任务
-          taskInfo?.form && taskInfo?.task_status === 'on' && isStarted && !isClaimed &&
+          taskInfo?.form && taskInfo?.task_status && isStarted && !isClaimed &&
           <Box className={cx({ claimBtn: true })}
             onClick={linkToForm}
           >
@@ -387,7 +364,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
         }
 
         {
-          (taskInfo?.task_status === 'off' || (isClaimed && isStarted)) &&
+          (!taskInfo?.task_status || (isClaimed && isStarted)) &&
           <Box className={cx({ claimBtn: true })} onClick={showTaskSteps}>
             {t("taskStepBtnText")}
           </Box>
@@ -406,7 +383,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
         setShowTaskDrawer={setShowTaskDrawer}
         taskInfo={taskInfo}
         index={index}
-        reward={reward}
+        reward={taskInfo?.reward}
         setShowTaskModal={setShowTaskModal}
         timestamp={timestamp}
         isStarted={isStarted}
@@ -431,7 +408,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
             <Box className={styles.iconBox}>
               <Image src={STAR_LABEL} layout="fill" />
             </Box>
-            {reward}
+            {taskInfo?.description}
           </Typography>
           <Typography className={styles.taskRewardDesc}>
             <Box className={styles.iconBox}>
@@ -440,16 +417,17 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
             {taskInfo?.reward}
           </Typography>
           <Box className={styles.rewardTips}>
-            <Typography className={styles.rewardNums}>{t('reward')}: <span>{taskInfo?.issued_rewards}</span> / {taskInfo?.total_rewards || '-'} &nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
+            <Typography className={styles.rewardNums}>{t('reward')}: {taskInfo?.spot || '-'} &nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
             <Typography className={styles.rewardTime}>
               {taskInfo?.reward_type} &nbsp;
             </Typography>
-            <MessageTips fullmessage={taskInfo?.reward_explain} />
+            {taskInfo?.reward_explain &&
+              <MessageTips fullmessage={taskInfo?.reward_explain} />}
           </Box>
         </Box>
         {
           // 无表单链接不显示 Verify 按钮
-          taskInfo?.form && isStarted && taskInfo?.task_status === 'on' &&
+          taskInfo?.form && isStarted && taskInfo?.task_status &&
           <Box className={cx({
             claimBtn: true,
             claimedBtn: isStarted && isClaimed
@@ -460,13 +438,13 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
           </Box>
         }
         {
-          taskInfo?.task_status === 'off' &&
+          !taskInfo?.task_status &&
           <Box className={cx({ claimBtn: true, claimedBtn: true })} >
             {t('endBtnText')}
           </Box>
         }
         {/* 没有开始，任务还在进行中 */}
-        {!isStarted && taskInfo?.task_status === 'on' && taskInfo?.form &&
+        {!isStarted && taskInfo?.task_status && taskInfo?.form &&
           <Box
             className={styles.claimBtn}
             onClick={async () => {
@@ -481,41 +459,61 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       <Box className={styles.taskDivider}></Box>
 
       <Box className={styles.stepList}>
-        {
-          taskInfo?.steps.map((item: Record<string, any>, index: number) => {
+        <PhotoProvider maskOpacity={0.5} >
+          {
+            taskInfo?.steps?.map((item: Record<string, any>, index: number) => {
 
-            return <Box className={styles.stepItem} key={index}>
-              <Typography variant='h4'>{t('stepText')}{index + 1}:</Typography>
-              <Box className={styles.stepContent}>
-                <Box className={styles.descBtnBox}>
-                  <div
-                    className={styles.stepDesc}
-                    dangerouslySetInnerHTML={{ __html: item?.description }}
-                  ></div>
-                  <Box className={styles.btnList}>
-                    {
-                      item?.buttons.map((btnConfig: StepButtonProps, index: number) =>
-                        <StepButton {...btnConfig} key={index} />
-                      )
-                    }
+              return <Box className={styles.stepItem} key={index}>
+                <Typography variant='h4'>{t('stepText')}{index + 1}: {item?.StepTitle}</Typography>
+                <Box className={styles.stepContent}>
+                  <Box className={styles.descBtnBox}>
+                    <ReactMarkdown
+                      className={styles.stepDesc}
+                      linkTarget="_blank"
+                      remarkPlugins={[remarkGfm]}
+                      components={{
+                        // 将 img 元素替换为 PhotoView 组件
+                        img: ({ node, ...props }) => {
+                          return <PhotoView key={index} src={props?.src} >
+                            <img src={props?.src} alt={props?.alt} />
+                          </PhotoView>
+                        }
+                      }}
+                    >
+                      {item?.StepContent}
+                    </ReactMarkdown>
+                    <Box className={styles.btnList}>
+                      {
+                        item?.StepButtonList?.
+                          map((btnConfig: Record<string, any>, index: number) => {
+                            console.log(btnConfig)
+                            const [type, platform]: string[] = btnConfig?.ButtonType?.split('-')
+
+                            let configs: StepButtonProps = {
+                              text: btnConfig?.ButtonText,
+                              link: btnConfig?.ButtonValue,
+                              perform: type.toLowerCase() as ButtonType
+                            }
+
+                            if (platform) {
+                              const platformType = platform.toLowerCase() as PlatformType
+                              configs['platform'] = {
+                                [platformType]: btnConfig?.ButtonValue
+                              }
+                            }
+
+                            return <StepButton
+                              {...configs}
+                              key={index} />
+                          })
+                      }
+                    </Box>
                   </Box>
                 </Box>
-                <Box className={styles.imageList}>
-                  <RcImage.PreviewGroup icons={{
-                    left: <KeyboardArrowLeftIcon />,
-                    right: <KeyboardArrowRightIcon />
-                  }}>
-                    {
-                      item?.images.map((url: string, index: number) =>
-                        <RcImage src={`${url}?timestamp=${timestamp}`} key={index} className={styles.imageItem} />
-                      )
-                    }
-                  </RcImage.PreviewGroup>
-                </Box>
               </Box>
-            </Box>
-          })
-        }
+            })
+          }
+        </PhotoProvider>
       </Box>
 
       <Box className={cx({

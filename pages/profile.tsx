@@ -38,6 +38,7 @@ import ProfileTrialingTask from "@/components/PageProfile/ProfileTrialingTask";
 import { getProfileTrialingTaskList, getUserTokenBalances } from "services/home";
 import ProfileBalanceSection from "@/components/PageProfile/ProfileBalanceSection";
 import { useTranslations } from "next-intl";
+import { getBountiesByTaskIds } from "services/cms";
 
 const cx = classNames.bind(styles)
 
@@ -86,6 +87,7 @@ const Profile: NextPageWithLayout = () => {
 
   // 正在试玩游戏任务列表
   const [trialingTaskList, setTrialingTaskList] = useState<Record<string, any>[]>([])
+  const [bountyInfos, setBountyInfos] = useState<Record<string, any>>({})
 
   const timestamp = useMemo(() => (Number(new Date) / 1000).toFixed(), [])
 
@@ -104,8 +106,22 @@ const Profile: NextPageWithLayout = () => {
   const { run: queryProfileTrialingTaskList, loading: trialingTaskListLoading } = useRequest(getProfileTrialingTaskList, {
     manual: true,
     onSuccess: ({ data }) => {
-      console.log(data)
       setTrialingTaskList(data)
+
+      const task_ids = data?.map((item: Record<string, any>) => item?.task_id) || []
+      queryBountyInfos({ taskIds: task_ids })
+    }
+  })
+
+  // 获取游戏 task 基本信息
+  const { run: queryBountyInfos, loading: bountyInfosLoading } = useRequest(getBountiesByTaskIds, {
+    manual: true,
+    onSuccess: ({ data }) => {
+      let bountyInfos: Record<string, any> = {}
+      data.forEach((item: Record<string, any>) => {
+        bountyInfos[item?.attributes?.task_id] = item?.attributes
+      })
+      setBountyInfos(bountyInfos)
     }
   })
 
@@ -181,18 +197,6 @@ const Profile: NextPageWithLayout = () => {
       },
     ]
   })
-
-  const imageKitLoader = ({ src, width, quality = 100 }: any) => {
-    const params = [`w-400`];
-    if (quality) {
-      params.push(`q-${quality}`);
-    }
-    const paramsString = params.join(",");
-    var urlEndpoint = "https://ik.imagekit.io/jnznr24q9";
-    const imagePaths = src.split('/')
-    const imageHash = imagePaths[imagePaths.length - 1]
-    return `${urlEndpoint}/${imageHash}?tr=${paramsString}`
-  }
 
   return <Box className={styles.containerBox}>
     <Head>
@@ -332,8 +336,21 @@ const Profile: NextPageWithLayout = () => {
         hiddenTab: isMounted && activeTab !== TabItem.Trialing
       })}>
         {
-          trialingTaskList && trialingTaskList?.map((item, index) => <ProfileTrialingTask key={index} taskInfo={item} />)
+          trialingTaskList && trialingTaskList?.map((item, index) => {
+            const bountyInfo = bountyInfos[item.task_id]
+            return <ProfileTrialingTask key={index} taskInfo={item} bountyInfo={bountyInfo} />
+          })
         }
+
+        {/* 无任何正在试玩的任务 */}
+        {!(trialingTaskListLoading || bountyInfosLoading) &&
+          isEmpty(trialingTaskList) &&
+          <Box className={styles.emptyTrialingTask}>
+            <Box className={styles.emptyIllustration}>
+              <Image src="/empty_trialing.png" layout="fill" />
+            </Box>
+            <Typography>{t('Trialing.emptyTip')}</Typography>
+          </Box>}
 
         {/* 
         {
@@ -348,17 +365,6 @@ const Profile: NextPageWithLayout = () => {
             <TrialNFTCardSkeleton />
           </>
         } */}
-
-
-        {/* 无任何正在试玩的任务 */}
-        {!trialingTaskListLoading &&
-          isEmpty(trialingTaskList) &&
-          <Box className={styles.emptyTrialingTask}>
-            <Box className={styles.emptyIllustration}>
-              <Image src="/empty_trialing.png" layout="fill" />
-            </Box>
-            <Typography>{t('Trialing.emptyTip')}</Typography>
-          </Box>}
 
         {/* {
           // 无任何正在试玩游戏，引导去试玩

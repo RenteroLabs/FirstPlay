@@ -7,10 +7,14 @@ import { useTranslations } from "next-intl";
 
 interface TrialingTask {
   taskInfo: Record<string, any>
+  bountyInfo: Record<string, any>
 }
 
 const ProfileTrialingTask: React.FC<TrialingTask> = (props) => {
-  const { taskInfo } = props
+  const { taskInfo, bountyInfo } = props
+
+  const gameInfo = bountyInfo?.game_info?.data?.attributes
+
   const t = useTranslations('Profile.Trialing')
 
   const is600Size = useMediaQuery('(max-width: 600px)')
@@ -25,26 +29,26 @@ const ProfileTrialingTask: React.FC<TrialingTask> = (props) => {
         {
           is600Size ?
             <Box className={styles.mobileGameTask}>
-              <Typography variant="h4">{taskInfo?.name}</Typography>
+              <Typography variant="h4">{gameInfo?.GameName}</Typography>
               <Box className={styles.mobileGameLogo}>
-                <Image src={taskInfo?.logo} layout="fill" />
+                <Image src={gameInfo?.logo?.data?.attributes?.url} layout="fill" />
               </Box>
             </Box> :
-            <Typography variant="h4">{taskInfo?.name}</Typography>
+            <Typography variant="h4">{gameInfo?.GameName}</Typography>
         }
 
         <Box className={styles.divider}></Box>
         <Typography className={styles.taskName}>
           <span>{t("taskName")}: </span>
-          {taskInfo?.task}
+          {bountyInfo?.description}
         </Typography>
         <Typography className={styles.rewardInfo}>
           <span>{t('rewardName')}: </span>
-          {taskInfo?.rewards}
+          {bountyInfo?.reward}
         </Typography>
       </Box>
       <Box className={styles.gameLogo}>
-        <Image src={taskInfo?.logo} layout="fill" />
+        <Image src={gameInfo?.logo?.data?.attributes?.url} layout="fill" />
       </Box>
     </Box>
   </Link>

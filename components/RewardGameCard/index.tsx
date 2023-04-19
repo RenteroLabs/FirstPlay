@@ -4,27 +4,36 @@ import styles from './styles.module.scss'
 import Image from 'next/image'
 import { GAME_TASK_MONEY, STAR_LABEL } from "constants/static"
 import { useCountDown } from "ahooks"
+import { useMemo } from "react"
+import { useTranslations } from "next-intl"
 
 interface RewardGameCardProps {
   gameInfo: Record<string, any>
   timestamp?: number
+  taskStatus: Record<string, any>
   type?: 'Ongoing' | 'Ended'
 }
 
 // 有奖励活动的游戏卡片
 const RewardGameCard: React.FC<RewardGameCardProps> = (props) => {
-  const { gameInfo, timestamp, type = 'Ongoing' } = props
+  const { gameInfo, timestamp, type = 'Ongoing', taskStatus } = props
+
+  const t = useTranslations('Game.GameTask')
 
   const [_, { days, hours, minutes }] = useCountDown({
     targetDate: gameInfo?.expired_at || new Date()
   })
 
-  return <Link href={`/game/${gameInfo?.game_id}?taskType=${type}`}>
+  const gameBase = useMemo(() => {
+    return gameInfo?.game_info?.data?.attributes || {}
+  }, [gameInfo])
+
+  return <Link href={`/game/${gameBase?.GameUUID}?taskType=${type}`}>
     <Card className={styles.gameCard}>
       <Box className={styles.gameImage}>
         <Image
           priority
-          src={gameInfo?.image}
+          src={gameBase?.cover?.data?.attributes?.url}
           layout="fill"
           objectFit="cover"
           loader={({ src }) => `${src}?timestamp=${timestamp}`}
@@ -33,12 +42,12 @@ const RewardGameCard: React.FC<RewardGameCardProps> = (props) => {
       </Box>
       <CardContent className={styles.gameContent}>
         <Box className={styles.cardTitle}>
-          <Typography>{gameInfo?.name}</Typography>
+          <Typography>{gameBase?.GameName}</Typography>
           <Box className={styles.taskItem}>
             <Box className={styles.iconBox}>
               <Image src={STAR_LABEL} layout="fill" />
             </Box>
-            <span>{gameInfo?.task}</span>
+            <span>{gameInfo?.description}</span>
           </Box>
           <Box className={styles.rewardItem}>
             <Box className={styles.iconBox}>
@@ -49,7 +58,7 @@ const RewardGameCard: React.FC<RewardGameCardProps> = (props) => {
         </Box>
         <Box className={styles.taskProgress}>
           <Box className={styles.progressInfo}>
-            Progress: <span>{gameInfo?.issued_rewards}</span> / {gameInfo?.total_rewards == 0 ? '∞' : gameInfo?.total_rewards}
+            {t('reward')}: {gameInfo?.spot == 0 ? '∞' : gameInfo?.spot}
           </Box>
           <Box className={styles.endTime}>
             {

@@ -17,6 +17,9 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { isEmpty } from 'lodash';
 import { useTranslations } from "next-intl";
 
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+
 const cx = classNames.bind(styles)
 
 interface TaskStepItemProps {
@@ -44,10 +47,10 @@ interface StepButtonProps {
   link: string,
   perform: string,
   platform?: {
-    android: string,
-    ios: string,
-    mac: string,
-    windows: string
+    android?: string,
+    ios?: string,
+    mac?: string,
+    windows?: string
   }
 }
 
@@ -60,7 +63,6 @@ const StepButton: React.FC<StepButtonProps> = (props) => {
   const [isIos, setIsIos] = useState<boolean>(false)
 
   useEffect(() => {
-    // console.log(navigator.userAgent)
     if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
       setIsIos(true)
     } else {
@@ -90,7 +92,7 @@ const StepButton: React.FC<StepButtonProps> = (props) => {
       case "download": return isIos ?
         <Box className={styles.iconBox}><Image src="/IOS_icon.png" layout='fill' /></Box> :
         <Box className={styles.iconBox}><Image src="/Android.png" layout='fill' /></Box>
-      case "visit": return <OpenInNewIcon />
+      case "link": return <OpenInNewIcon />
       default: return <OpenInNewIcon />
     }
   }, [perform, isIos])
@@ -121,7 +123,7 @@ const StepButton: React.FC<StepButtonProps> = (props) => {
       </Box>
     }
     {
-      perform === 'visit' &&
+      perform === 'link' &&
       <Box
         className={styles.stepBtnItem}
         onClick={handleClick}
@@ -165,7 +167,7 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
     onClose={() => setShowTaskDrawer(false)}
     className={styles.drawerBox}
   >
-    <Box className={`${styles.taskBox} taskBoxClass`} ref={taskBox}>
+    <Box className={`${styles.taskBox} taskBoxClass`} >
       <Box className={styles.itemLabel}>{index.toString().padStart(2, '0')}</Box>
       <IconButton
         className={styles.closeBtn}
@@ -173,12 +175,12 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
       >
         <HighlightOffIcon />
       </IconButton>
-      <Box className={styles.taskInfoBox}>
+      <Box className={styles.taskInfoBox} ref={taskBox}>
         <Box className={styles.taskHeader}>
           <Box className={styles.stepPannel}>
             <Box className={styles.stepBox}>
               {
-                taskInfo?.steps.map((_: any, index: number) => {
+                taskInfo?.steps?.map((_: any, index: number) => {
                   const isLast = taskInfo?.steps && (taskInfo?.steps.length - 1 === index)
                   return <>
                     <TaskStepItem
@@ -199,24 +201,39 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
           </Box>
         </Box>
 
-        {!isEmpty(taskInfo?.steps[activeStep - 1]?.buttons || []) &&
+        <Typography variant='h4'>{taskInfo?.steps[activeStep - 1]?.StepTitle}</Typography>
+
+        {!isEmpty(taskInfo?.steps[activeStep - 1]?.StepButtonList || []) &&
           <Box className={styles.btnList}>
             {
-              taskInfo?.steps[activeStep - 1]?.buttons.map((item: StepButtonProps, index: number) => <StepButton {...item} key={index} />)
+              taskInfo?.steps[activeStep - 1]?.
+                StepButtonList.map((btnConfig: Record<string, any>, index: number) => {
+                  const [type, platform]: string[] = btnConfig?.ButtonType?.split('-')
+
+                  let configs: StepButtonProps = {
+                    text: btnConfig?.ButtonText,
+                    link: btnConfig?.ButtonValue,
+                    perform: type.toLowerCase()
+                  }
+
+                  if (platform) {
+                    const platformType = platform.toLowerCase()
+                    configs['platform'] = {
+                      [platformType]: btnConfig?.ButtonValue
+                    }
+                  }
+                  return <StepButton {...configs} key={index} />
+                })
             }
           </Box>}
 
-        <div
+        <ReactMarkdown
           className={styles.stepDesc}
-          dangerouslySetInnerHTML={{ __html: taskInfo?.steps[activeStep - 1]?.description }}
-        ></div>
-        <Box className={styles.imageList}>
-          {
-            taskInfo?.steps[activeStep - 1]?.images.map((url: string, index: number) => <Box className={styles.imageBox} key={index}>
-              <img src={`${url}?timestamp=${timestamp}`} />
-            </Box>)
-          }
-        </Box>
+          linkTarget="_blank"
+          remarkPlugins={[remarkGfm]}
+        >
+          {taskInfo?.steps[activeStep - 1]?.StepContent}
+        </ReactMarkdown>
       </Box>
 
       <Box className={styles.stepBtns}>
@@ -245,7 +262,7 @@ const GameTaskDrawer: React.FC<GameTaskDrawerProps> = (props) => {
         >
           {t('nextBtnText')} <KeyboardArrowRightIcon />
         </Box> :
-          taskInfo?.form && !isClaimed && taskInfo?.task_status === 'on' && <Box
+          taskInfo?.form && !isClaimed && taskInfo?.task_status && <Box
             className={styles.verifyBtn}
             onClick={() => setShowTaskModal(true)}
           >

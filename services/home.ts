@@ -3,25 +3,23 @@ import qs from 'qs'
 
 
 // 获取首页数据
-export const getHomeData = async () => {
-  const data = await fetch(`${BASE_BACKEND_API}/api/home`)
-  return data.json()
-}
+// export const getHomeData = async () => {
+//   const data = await fetch(`${BASE_BACKEND_API}/api/home`)
+//   return data.json()
+// }
 
 // v1 首页数据
-export const getHomeDataV1 = async () => {
-  const data = await fetch(`${BASE_BACKEND_API}/api/v1/home`)
-  return data.json()
-}
-
-
+// export const getHomeDataV1 = async () => {
+//   const data = await fetch(`${BASE_BACKEND_API}/api/v1/home`)
+//   return data.json()
+// }
 
 
 // games hot game 集合页数据
-export const getHotGameList = async (params: { offset: number, limit: number }) => {
-  const data = await fetch(`${BASE_BACKEND_API}/api/v1/games?${qs.stringify(params)}`)
-  return data.json()
-}
+// export const getHotGameList = async (params: { offset: number, limit: number }) => {
+//   const data = await fetch(`${BASE_BACKEND_API}/api/v1/games?${qs.stringify(params)}`)
+//   return data.json()
+// }
 
 // bounties 集合页数据
 export const getBountiesList = async (params: { offset: number, limit: number, status: 'on' | 'off' }) => {
@@ -30,10 +28,10 @@ export const getBountiesList = async (params: { offset: number, limit: number, s
 }
 
 // activit 集合页数据
-export const getActivityList = async (params: { offset: number, limit: number }) => {
-  const data = await fetch(`${BASE_BACKEND_API}/api/activities?${qs.stringify(params)}`)
-  return data.json()
-}
+// export const getActivityList = async (params: { offset: number, limit: number }) => {
+//   const data = await fetch(`${BASE_BACKEND_API}/api/activities?${qs.stringify(params)}`)
+//   return data.json()
+// }
 
 
 
@@ -54,6 +52,25 @@ export const getAllGamesInfo = async () => {
   const data = await fetch(`${BASE_BACKEND_API}/api/games`)
   return data.json()
 }
+
+interface TaskStatusParams {
+  address: string,
+  task_ids: string[]
+}
+export const getTaskStatus = async (params: TaskStatusParams) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/tasks`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(params)
+  })
+
+  return data.json()
+}
+
+
+
 
 /**
  * 开始游戏 task 任务
@@ -106,16 +123,6 @@ export const submitGameTask = async (params: SubmitGameTaskParams) => {
  * Profile page api
  * ------------------------------------------------
  */
-
-/**
- * 获取正在试玩游戏
- * @param address 
- * @returns 
- */
-export const getTrialingTasks = async (address: string) => {
-  const data = await fetch(`${BASE_BACKEND_API}/api/home?address=${address}`)
-  return data.json()
-}
 
 /**
  * 历史进行游戏 Task 记录

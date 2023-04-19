@@ -9,7 +9,7 @@ import Head from 'next/head'
 import HotGameCard from '@/components/HotGameCard'
 import { Pagination } from 'antd';
 import { useInViewport, useRequest, useScroll } from 'ahooks'
-import { getHotGameList } from 'services/home'
+import { getHotGameList } from 'services/cms'
 
 const pageSize = 12
 
@@ -24,11 +24,11 @@ const Games: NextPageWithLayout = () => {
   const [isRequesting, setIsRequesting] = useState<boolean>(false)
 
   useEffect(() => {
-    queryHotgameList({ limit: pageSize, offset: pageSize * (currentPage - 1) })
+    queryHotgameList({ pageSize: pageSize, pageNum: currentPage })
   }, [currentPage])
 
   const scroll = useScroll()
-  
+
   useEffect(() => {
     if (!isMobileSize) return
     // @ts-ignore
@@ -44,15 +44,17 @@ const Games: NextPageWithLayout = () => {
 
   const { run: queryHotgameList } = useRequest(getHotGameList, {
     manual: true,
-    onSuccess: ({ data }) => {
+    onSuccess: ({ data, meta }) => {
+      // console.log(data, meta)
+      setTotalCount(meta?.pagination?.total || 0)
+
       if (data) {
-        const { games, total_count } = data
+        const gameInfoList = data.map((item: any) => item?.attributes)
         if (isMobileSize) {
-          setGameList([...gameList, ...games])
+          setGameList([...gameList, ...gameInfoList])
         } else {
-          setGameList(games)
+          setGameList(gameInfoList)
         }
-        setTotalCount(total_count)
       }
     }
   })
@@ -78,6 +80,7 @@ const Games: NextPageWithLayout = () => {
             total={totalCount}
             current={currentPage}
             pageSize={pageSize}
+            showSizeChanger={false}
             onChange={(page) => setCurrentPage(page)} />
           : <Box>
             {/* mobile loading */}

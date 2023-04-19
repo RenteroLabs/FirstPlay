@@ -14,21 +14,22 @@ interface GameActivityCardProps {
 
 export const GameActivityCard: React.FC<GameActivityCardProps> = (props) => {
   const { activityInfo, cardType = 'GameTitle' } = props
-  // console.log(activityInfo)
-  return <a href={activityInfo?.link} target="_blank" rel="noreferrer" ><Box className={styles.activityCard}>
-    <Box className={styles.cardImage}>
-      <img src={activityInfo?.image} />
-      <Box className={styles.imageMask}>{activityInfo?.time_range}</Box>
+
+  return <a href={activityInfo?.link} target="_blank" rel="noreferrer" >
+    <Box className={styles.activityCard}>
+      <Box className={styles.cardImage}>
+        <img src={activityInfo?.image?.data?.attributes?.url} />
+        <Box className={styles.imageMask}>{activityInfo?.time_range}</Box>
+      </Box>
+      <Box className={styles.cardContent}>
+        <Typography className={styles.activityTitle}>
+          {cardType === 'GameName' ? activityInfo?.game_info?.data?.attributes?.GameName : activityInfo?.title}
+        </Typography>
+        <Typography className={styles.activitySubtitle}>
+          {cardType === 'GameName' ? activityInfo?.title : activityInfo?.description}
+        </Typography>
+      </Box>
     </Box>
-    <Box className={styles.cardContent}>
-      <Typography className={styles.activityTitle}>
-        {cardType === 'GameName' ? activityInfo?.name : activityInfo?.title}
-      </Typography>
-      <Typography className={styles.activitySubtitle}>
-        {cardType === 'GameName' ? activityInfo?.title : activityInfo?.description}
-      </Typography>
-    </Box>
-  </Box>
   </a>
 }
 

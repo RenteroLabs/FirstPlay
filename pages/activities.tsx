@@ -8,8 +8,8 @@ import styles from '../styles/activities.module.scss'
 import { Pagination } from "antd";
 import ActivityCard from "@/components/ActivityCard";
 import { useRequest, useScroll } from "ahooks";
-import { getActivityList } from "services/home";
 import { GameActivityCard } from "@/components/GameActivityCarousel";
+import { getActivitiesList } from "services/cms";
 
 const pageSize = 8
 
@@ -38,23 +38,23 @@ const Activities: NextPageWithLayout = () => {
     }
   }, [scroll])
 
-  const { run: queryActivityList } = useRequest(getActivityList, {
+  const { run: queryActivityList } = useRequest(getActivitiesList, {
     manual: true,
-    onSuccess: ({ data }) => {
+    onSuccess: ({ data, meta }) => {
+      setTotalCount(meta?.pagination?.total)
       if (data) {
-        const { activities, total_count } = data
-        setTotalCount(total_count)
+        const activityList = data.map((item: Record<string, any>) => item?.attributes)
         if (isMobileSize) {
-          setActivityList([...activityList, ...activities])
+          setActivityList([...activityList, ...activityList])
         } else {
-          setActivityList(activities)
+          setActivityList(activityList)
         }
       }
     }
   })
 
   useEffect(() => {
-    queryActivityList({ limit: pageSize, offset: pageSize * (currentPage - 1) })
+    queryActivityList({ pageSize: pageSize, pageNum: currentPage })
   }, [currentPage])
 
   return <Box className={styles.bounties}>
@@ -80,6 +80,7 @@ const Activities: NextPageWithLayout = () => {
         total={totalCount}
         current={currentPage}
         pageSize={pageSize}
+        showSizeChanger={false}
         onChange={(page) => setCurrentPage(page)} />}
     </Box>
   </Box>
