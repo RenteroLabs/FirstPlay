@@ -303,7 +303,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
       <Box className={styles.rewardInnerDivider}></Box>
 
       <Box className={styles.rewardTips}>
-        <Typography className={styles.rewardNums}>{t('reward')}: {taskInfo?.total_rewards || '-'} &nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
+        <Typography className={styles.rewardNums}>{t('reward')}: {taskInfo?.spot || '-'} &nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
         <Typography className={styles.rewardTime}>
           {taskInfo?.reward_type} &nbsp;
         </Typography>
@@ -416,7 +416,7 @@ const CarnivalRewardItem: React.FC<RewardItemProps> = (props) => {
             {taskInfo?.reward}
           </Typography>
           <Box className={styles.rewardTips}>
-            <Typography className={styles.rewardNums}>{t('reward')}: {taskInfo?.total_rewards || '-'} &nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
+            <Typography className={styles.rewardNums}>{t('reward')}: {taskInfo?.spot || '-'} &nbsp;&nbsp;|&nbsp;&nbsp;</Typography>
             <Typography className={styles.rewardTime}>
               {taskInfo?.reward_type} &nbsp;
             </Typography>

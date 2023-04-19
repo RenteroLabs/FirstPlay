@@ -58,7 +58,7 @@ const RewardGameCard: React.FC<RewardGameCardProps> = (props) => {
         </Box>
         <Box className={styles.taskProgress}>
           <Box className={styles.progressInfo}>
-            {t('reward')}: {gameInfo?.total_rewards == 0 ? '∞' : gameInfo?.total_rewards}
+            {t('reward')}: {gameInfo?.spot == 0 ? '∞' : gameInfo?.spot}
           </Box>
           <Box className={styles.endTime}>
             {
