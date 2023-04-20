@@ -1,7 +1,8 @@
 import { Box, Typography } from "@mui/material";
-import React from "react";
+import React, { useMemo } from "react";
 import styles from './styles.module.scss'
 import Slider from "react-slick";
+import { reverse } from "lodash";
 
 interface PartnerProps {
   gameList: Record<string, any>[]
@@ -9,6 +10,17 @@ interface PartnerProps {
 
 const Partner: React.FC<PartnerProps> = (props) => {
   const { gameList } = props
+
+  // 获取含有 Bounty 的游戏作为 Partner 数据
+  const partnerList = useMemo(() => {
+    let list: Record<string, any> = {}
+
+    gameList.forEach(item => {
+      const gameInfo = item?.attributes?.game_info
+      list[gameInfo?.data?.attributes?.GameUUID] = gameInfo?.data?.attributes
+    })
+    return reverse(Object.values(list))
+  }, [gameList])
 
   return <Box className={styles.partner}>
     <Box className={styles.partnerBox}>
@@ -27,10 +39,10 @@ const Partner: React.FC<PartnerProps> = (props) => {
           variableWidth={true}
         >
           {
-            gameList.map((item, index) =>
+            partnerList.map((item, index) =>
               <Box className={styles.gameItem} key={index}>
-                <img src={item?.attributes?.logo?.data?.attributes?.url} />
-                <Typography>{item?.attributes?.GameName}</Typography>
+                <img src={item?.logo?.data?.attributes?.url} />
+                <Typography>{item?.GameName}</Typography>
               </Box>)
           }
         </Slider>

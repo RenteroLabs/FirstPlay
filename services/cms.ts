@@ -446,3 +446,24 @@ export const getAllHotGameList = async (params: AllHotGameListParams) => {
   return data.json()
 }
 
+export const getAllPartnerGames = async () => {
+
+  const query = qs.stringify({
+    populate: [
+      'game_info',
+      'game_info.logo'
+    ],
+    pagination: {
+      page: 1,
+      pageSize: 10000,
+    }
+  }, {
+    encodeValuesOnly: true, // prettify URL
+  })
+  const data = await fetch(`${CMS_BASE_URL}/api/tasks?${query}`, {
+    headers: {
+      "Authorization": `Bearer ${CMS_TOKEN}`
+    }
+  })
+  return data.json()
+}

@@ -17,7 +17,7 @@ import { useIsMounted } from "hooks/useIsMounted";
 import Partner from "@/components/PageHome/Partners";
 import Activities from "@/components/PageHome/Activities"
 import TopBanner from "@/components/PageHome/TopBanner";
-import { getAllHotGameList, getHomeConfigData } from "services/cms";
+import { getAllPartnerGames, getHomeConfigData } from "services/cms";
 import WeeklyRank from "@/components/PageHome/WeeklyRank";
 
 const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
@@ -90,7 +90,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }: GetStaticPropsC
   let homeCMSConfig, partnerData
   try {
     homeCMSConfig = await getHomeConfigData()
-    partnerData = await getAllHotGameList({ gameCount: 30 })
+    partnerData = await getAllPartnerGames()
   } catch (err) {
     console.log(err)
   }

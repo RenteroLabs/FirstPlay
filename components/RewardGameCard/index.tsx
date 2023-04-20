@@ -62,7 +62,8 @@ const RewardGameCard: React.FC<RewardGameCardProps> = (props) => {
           </Box>
           <Box className={styles.endTime}>
             {
-              gameInfo?.expired_at ? `Ends in ${days}D:${hours}H:${minutes}M` : "FCFS"
+              // gameInfo?.expired_at ? `Ends in ${days}D:${hours}H:${minutes}M` : "FCFS"
+              gameInfo?.reward_type
             }
           </Box>
         </Box>
