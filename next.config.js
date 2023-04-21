@@ -7,7 +7,7 @@ const nextConfig = {
     domains: [
       'tva1.sinaimg.cn',
       'rentero-resource.s3.ap-east-1.amazonaws.com',
-      "firstplay-crm.s3.ap-east-1.amazonaws.com",
+      'firstplay-crm.s3.ap-east-1.amazonaws.com',
       'p2.bahamut.com.tw',
       'cdn2.ettoday.net',
       'ik.imagekit.io',
@@ -18,7 +18,7 @@ const nextConfig = {
   },
   i18n: {
     // locales: ["en-US", "zh-CN", "id-ID", "vi-VN"],
-    locales: ["en-US", "id-ID", "vi-VN"],
+    locales: ['en-US', 'id-ID', 'vi-VN'],
     // locales: ['en-US'],
     defaultLocale: 'en-US',
   },

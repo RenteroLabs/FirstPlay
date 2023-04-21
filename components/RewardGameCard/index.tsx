@@ -9,14 +9,13 @@ import { useTranslations } from "next-intl"
 
 interface RewardGameCardProps {
   gameInfo: Record<string, any>
-  timestamp?: number
   taskStatus: Record<string, any>
   type?: 'Ongoing' | 'Ended'
 }
 
 // 有奖励活动的游戏卡片
 const RewardGameCard: React.FC<RewardGameCardProps> = (props) => {
-  const { gameInfo, timestamp, type = 'Ongoing', taskStatus } = props
+  const { gameInfo, type = 'Ongoing', taskStatus } = props
 
   const t = useTranslations('Game.GameTask')
 
@@ -36,7 +35,7 @@ const RewardGameCard: React.FC<RewardGameCardProps> = (props) => {
           src={gameBase?.cover?.data?.attributes?.url}
           layout="fill"
           objectFit="cover"
-          loader={({ src }) => `${src}?timestamp=${timestamp}`}
+          loader={({ src }) => `${src}`}
         />
         {/* <Box className={styles.cardTag}>{gameInfo?.game_status[0]}</Box> */}
       </Box>

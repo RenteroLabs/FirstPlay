@@ -56,7 +56,7 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
       isMounted && address &&
       <TrialGame />
     }
-    <RewardGames timestamp={timestamp} rewardGames={rewardedGames} />
+    <RewardGames rewardGames={rewardedGames} />
     <Activities activityList={activityList} />
 
     {!isMiddleSize && <JoinCommunity />}

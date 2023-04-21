@@ -446,6 +446,8 @@ export const getAllHotGameList = async (params: AllHotGameListParams) => {
   return data.json()
 }
 
+
+// 获取首页 Partner 数据
 export const getAllPartnerGames = async () => {
 
   const query = qs.stringify({
@@ -457,6 +459,23 @@ export const getAllPartnerGames = async () => {
       page: 1,
       pageSize: 10000,
     }
+  }, {
+    encodeValuesOnly: true, // prettify URL
+  })
+  const data = await fetch(`${CMS_BASE_URL}/api/tasks?${query}`, {
+    headers: {
+      "Authorization": `Bearer ${CMS_TOKEN}`
+    }
+  })
+  return data.json()
+}
+
+// 获取全部有效任务数量
+export const getAllTaskCount = async () => {
+  const query = qs.stringify({
+    filters: {
+      // task_status: true,
+    },
   }, {
     encodeValuesOnly: true, // prettify URL
   })
