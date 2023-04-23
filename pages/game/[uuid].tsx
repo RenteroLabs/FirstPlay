@@ -423,7 +423,6 @@ export const getStaticProps: GetStaticProps = async ({ locale, params }: GetStat
 
   const gameBase = await getGameBaseInfo({ gameId: params?.uuid as string, locale: locale as string })
   // console.log(gameBase)
-
   return {
     props: {
       // 获取国际化文案

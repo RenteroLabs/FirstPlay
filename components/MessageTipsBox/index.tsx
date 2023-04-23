@@ -1,9 +1,10 @@
-import { Box, Drawer, IconButton, Tooltip, useMediaQuery, Typography } from "@mui/material";
+import { Box, Drawer, IconButton, useMediaQuery, Typography } from "@mui/material";
 import React, { useState } from "react";
 import styles from './styles.module.scss'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { useIsMounted } from "hooks/useIsMounted";
 import CloseIcon from '@mui/icons-material/Close';
+import { Tooltip } from 'antd';
 
 interface MessageTipsProps {
   fullmessage: string

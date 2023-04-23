@@ -32,32 +32,41 @@
   }
 
   .subTitle {
-    font-size: 1.75rem;
-    font-family: Montserrat-Medium, Montserrat;
+    font-size: 18px;
+    font-family: Inter-Medium, Inter;
     font-weight: 500;
     color: #222222;
-    line-height: 1.75rem;
+    line-height: 18px;
+    text-decoration: underline;
+
     display: inline-flex;
     align-items: center;
-    margin-left: 0.83rem;
+    margin-left: 1.08rem;
     flex-grow: 1;
+    cursor: pointer;
+
+    span {
+      color: rgba(142, 80, 228, 1);
+    }
   }
 
   .moreLink {
     display: inline-flex;
     align-items: center;
+
+    color: #8e50e4;
     p {
       font-size: 1.33rem;
       font-family: Inter-Medium, Inter;
       font-weight: 500;
-      color: rgba(#222, 0.8);
+      color: #8e50e4;
       line-height: 1.33rem;
-      text-decoration: underline;
+      // text-decoration: underline;
       cursor: pointer;
     }
     svg {
       // background: rgba(#222, 0.8);
-      color: rgba(#222, 0.8);
+      color: #8e50e4;
     }
   }
 }
