@@ -14,7 +14,7 @@ import { useIsMounted } from "hooks/useIsMounted";
 import { formatAddress } from "util/format";
 import { MONEY_ICON, REWARD_ACTIVE_ICON } from "constants/static";
 import MedalProgress from "@/components/PageCarnival/MedalProgress";
-import { queryCarnivalGamesInfo, queryCarnivalProgress } from "services/carnival";
+import { queryCarnivalProgress } from "services/carnival";
 import OrganizerCard from "@/components/PageCarnival/OrganizerCard";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';

@@ -17,7 +17,7 @@ interface ConnectWalletProps {
   errorCallback?: () => any;
 }
 
-type WalletType = "" | "walletConnect" | "metaMask" | "Unipass"
+type WalletType = "" | "walletConnect" | "metaMask" | "Unipass" | 'web3auth'
 
 const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
   const { showConnect, setShowConnect, callback = () => { }, errorCallback = () => { } } = props
@@ -40,7 +40,6 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
 
   useEffect(() => {
     const walletType = window.localStorage.getItem("wagmi.wallet")
-    console.log(walletType?.split("\""))
     setLastConnectWalletType(walletType?.split("\"")[1] as WalletType)
   }, [address])
 
@@ -51,15 +50,16 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
     }
   })
 
-  const [MetaMaskConnector, WalletConnectConnector, UnipassConnector] = connectors
+  const [MetaMaskConnector, WalletConnectConnector, UnipassConnector, GoogleConnector] = connectors
 
-  const [MetaMaskConnecting, WalletConnectConnecting, UnipassConnecting] = useMemo(() => {
-    if (!isLoading) return [false, false]
+  const [MetaMaskConnecting, WalletConnectConnecting, UnipassConnecting, GoogleConnecting] = useMemo(() => {
+    if (!isLoading) return [false, false, false, false]
 
     return [
       MetaMaskConnector.id === pendingConnector?.id,
       WalletConnectConnector.id === pendingConnector?.id,
-      UnipassConnector.id === pendingConnector?.id
+      UnipassConnector.id === pendingConnector?.id,
+      GoogleConnector.id === pendingConnector?.id
     ]
   }, [isLoading, pendingConnector])
 
@@ -225,6 +225,16 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
               <Box className={styles.lastConnectType}>Recent</Box>}
           </Box>
 
+          <Box
+            className={styles.walletItem}
+            onClick={() => handleConnect(GoogleConnector)}>
+            <span className={styles.itemGoogleConnectLogo}></span>
+            <p>Google</p>
+            {GoogleConnecting && <CircularProgress />}
+            {/* {!WalletConnectConnecting &&
+              lastConnectWalletType === "walletConnect" &&
+              <Box className={styles.lastConnectType}>Recent</Box>} */}
+          </Box>
         </Box>
         {WalletIntro}
       </div>

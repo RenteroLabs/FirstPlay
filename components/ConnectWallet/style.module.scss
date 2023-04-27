@@ -66,6 +66,11 @@
     background: url(/walletconnect_logo.svg);
   }
 
+  .itemGoogleConnectLogo {
+    @extend .logoBase;
+    background: url(https://firstplay-crm.s3.ap-east-1.amazonaws.com/google_logo_icon_png_transparent_background_osteopathy_16_d503bd8f46.png);
+  }
+
   .itemMetamaskLogo {
     @extend .logoBase;
     border-radius: 50%;
