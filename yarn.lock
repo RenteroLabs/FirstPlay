@@ -3740,10 +3740,10 @@
     "@web3auth/base-evm-adapter" "^5.1.0"
     "@web3auth/ethereum-provider" "^5.1.1"
 
-"@web3auth/web3auth-wagmi-connector@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.npmmirror.com/@web3auth/web3auth-wagmi-connector/-/web3auth-wagmi-connector-3.0.1.tgz#d40158779bd0b42151468a7fee6e6c3543745097"
-  integrity sha512-8fltQ6ZMGyJ9WHfgNdxAp19zG8B1MGwuw6npAJcha6bLtxTz+ee2rZU5HMjfgxvq4RHdXOPmTy9Sb/+1nd7twQ==
+"@web3auth/web3auth-wagmi-connector@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.npmmirror.com/@web3auth/web3auth-wagmi-connector/-/web3auth-wagmi-connector-3.0.2.tgz#e1f8295b4c725b71be3f809f5f674d59b8bc07b0"
+  integrity sha512-LZfWqMldnQOQBcvT3TeWGTRH3xrFASo6Rm7tp3OyhPRKo0wRVsiKre9ZcuV+eyWOEI5WGMGjGbtPZWKKUXBzOQ==
   dependencies:
     loglevel "^1.8.1"
 
