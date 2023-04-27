@@ -92,3 +92,11 @@ export const MetamaskDeeplink: string =
   process.env.NEXT_PUBLIC_ENV === 'PRO' ?
     "https://metamask.app.link/dapp/firstplay.app" :
     "https://metamask.app.link/dapp/test.firstplay.app"
+
+
+
+
+export const WEB3AUTH_CLIENT_ID: string =
+  process.env.NEXT_PUBLIC_ENV === 'PRO' ?
+    process.env.NEXT_PUBLIC_WEB3AUTH_CLIENT_ID_PROD as string
+    : process.env.NEXT_PUBLIC_WEB3AUTH_CLIENT_ID_TEST as string

@@ -4,13 +4,14 @@ import { OpenloginAdapter } from "@web3auth/openlogin-adapter";
 import { CHAIN_NAMESPACES } from "@web3auth/base";
 import { TorusWalletConnectorPlugin } from "@web3auth/torus-wallet-connector-plugin";
 import { Chain } from "wagmi";
+import { WEB3AUTH_CLIENT_ID } from "constants/index";
 
 const iconUrl = "https://web3auth.io/docs/contents/logo-ethereum.png";
 
 export default function Web3AuthConnectorInstance(chains: Chain[]) {
   // Create Web3Auth Instance
   const web3AuthInstance = new Web3AuthNoModal({
-    clientId: "BC4DKpIKdjIc8ceOqBWFcxHtubDYPZ95A80JspWi_7TwxPyKhnjp3-vzz9cwzS4qmfM7iUjNGZNdl-ovEmXEDDA",
+    clientId: WEB3AUTH_CLIENT_ID,
     chainConfig: {
       chainNamespace: CHAIN_NAMESPACES.EIP155,
       chainId: "0x" + chains[0].id.toString(16),
