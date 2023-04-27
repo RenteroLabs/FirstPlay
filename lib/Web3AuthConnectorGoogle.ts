@@ -11,7 +11,6 @@ export default function Web3AuthConnectorInstance(chains: Chain[]) {
   // Create Web3Auth Instance
   const web3AuthInstance = new Web3AuthNoModal({
     clientId: "BC4DKpIKdjIc8ceOqBWFcxHtubDYPZ95A80JspWi_7TwxPyKhnjp3-vzz9cwzS4qmfM7iUjNGZNdl-ovEmXEDDA",
-    web3AuthNetwork: "cyan",
     chainConfig: {
       chainNamespace: CHAIN_NAMESPACES.EIP155,
       chainId: "0x" + chains[0].id.toString(16),
