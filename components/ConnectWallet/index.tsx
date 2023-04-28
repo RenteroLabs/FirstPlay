@@ -50,16 +50,35 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
     }
   })
 
-  const [MetaMaskConnector, WalletConnectConnector, UnipassConnector, GoogleConnector] = connectors
+  const [
+    MetaMaskConnector,
+    WalletConnectConnector,
+    UnipassConnector,
+    GoogleConnector,
+    FacebookConnector,
+    TwitterConnector
+  ] = connectors
 
-  const [MetaMaskConnecting, WalletConnectConnecting, UnipassConnecting, GoogleConnecting] = useMemo(() => {
-    if (!isLoading) return [false, false, false, false]
+  const [
+    MetaMaskConnecting,
+    WalletConnectConnecting,
+    UnipassConnecting,
+    GoogleConnecting,
+    FacebookConnecting,
+    TwitterConnecting
+  ] = useMemo(() => {
+    if (!isLoading) return [false, false, false, false, false, false]
 
     return [
       MetaMaskConnector.id === pendingConnector?.id,
       WalletConnectConnector.id === pendingConnector?.id,
       UnipassConnector.id === pendingConnector?.id,
-      GoogleConnector.id === pendingConnector?.id
+      // @ts-ignore
+      pendingConnector?.loginParams?.loginProvider === 'google',
+      // @ts-ignore
+      pendingConnector?.loginParams?.loginProvider === 'facebook',
+      // @ts-ignore
+      pendingConnector?.loginParams?.loginProvider === 'twitter',
     ]
   }, [isLoading, pendingConnector])
 
@@ -68,10 +87,6 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
       return
     }
     await connect({ connector: selectedConnector })
-  }
-
-  const handleLinkMetamask = () => {
-    window.open("/strategy/Get-Started-With-Metamask-Quickly", "__blank")
   }
 
   const WalletIntro = <Box className={styles.walletIntro}>
@@ -231,9 +246,22 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
             <span className={styles.itemGoogleConnectLogo}></span>
             <p>Google</p>
             {GoogleConnecting && <CircularProgress />}
-            {/* {!WalletConnectConnecting &&
-              lastConnectWalletType === "walletConnect" &&
-              <Box className={styles.lastConnectType}>Recent</Box>} */}
+          </Box>
+
+          <Box
+            className={styles.walletItem}
+            onClick={() => handleConnect(FacebookConnector)}>
+            <span className={styles.itemFacebookConnectLogo}></span>
+            <p>Facebook</p>
+            {FacebookConnecting && <CircularProgress />}
+          </Box>
+
+          <Box
+            className={styles.walletItem}
+            onClick={() => handleConnect(TwitterConnector)}>
+            <span className={styles.itemTwitterConnectLogo}></span>
+            <p>Twitter</p>
+            {TwitterConnecting && <CircularProgress />}
           </Box>
         </Box>
         {WalletIntro}

@@ -92,8 +92,25 @@ const client = createClient({
           loginProvider: "google",
         },
       },
+    }),
+    new Web3AuthConnector({
+      chains: chains,
+      options: {
+        web3AuthInstance: web3AuthInstance,
+        loginParams: {
+          loginProvider: "facebook",
+        },
+      }, 
+    }),
+    new Web3AuthConnector({
+      chains: chains,
+      options: {
+        web3AuthInstance: web3AuthInstance,
+        loginParams: {
+          loginProvider: "twitter",
+        },
+      },
     })
-    // Web3AuthConnectorInstance(chains)
   ],
   provider,
   webSocketProvider

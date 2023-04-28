@@ -71,6 +71,16 @@
     background: url(https://firstplay-crm.s3.ap-east-1.amazonaws.com/google_logo_icon_png_transparent_background_osteopathy_16_d503bd8f46.png);
   }
 
+  .itemFacebookConnectLogo {
+    @extend .logoBase;
+    background: url(https://firstplay-crm.s3.ap-east-1.amazonaws.com/_ab76e2e679.jpeg);
+  }
+
+  .itemTwitterConnectLogo {
+    @extend .logoBase;
+    background: url(https://firstplay-crm.s3.ap-east-1.amazonaws.com/pngtree_twitter_social_media_round_icon_png_image_6315985_e914f4f89b.png);
+  }
+
   .itemMetamaskLogo {
     @extend .logoBase;
     border-radius: 50%;
