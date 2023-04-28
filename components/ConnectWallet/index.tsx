@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { Alert, Box, CircularProgress, Dialog, DialogTitle, Drawer, IconButton, Typography, useMediaQuery } from '@mui/material'
-import ArrowRightAltRoundedIcon from '@mui/icons-material/ArrowRightAltRounded';
+import { Alert, Box, CircularProgress, Dialog, Drawer, IconButton, Typography, useMediaQuery } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
 import styles from './style.module.scss'
 import { Connector, useAccount, useConnect } from 'wagmi';
@@ -132,7 +131,42 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
         <Typography variant='h4'>{t('title')}</Typography>
         <Box></Box>
       </Box>
+
+      <Typography className={styles.walletSubtitle}>Sign up with social :</Typography>
       <Box className={styles.mobileWalletList}>
+        <Box
+          className={styles.mobileWalletItem}
+          onClick={() => handleConnect(GoogleConnector)}
+        >
+          {GoogleConnecting ?
+            <CircularProgress /> :
+            <Box className={styles.googleConnectLogo} />}
+          <Typography>Google</Typography>
+        </Box>
+        <Box
+          className={styles.mobileWalletItem}
+          onClick={() => handleConnect(FacebookConnector)}
+        >
+          {FacebookConnecting ?
+            <CircularProgress /> :
+            <Box className={styles.facebookConnectLogo} />}
+          <Typography>Facebook</Typography>
+        </Box>
+        <Box
+          className={styles.mobileWalletItem}
+          onClick={() => handleConnect(TwitterConnector)}
+        >
+          {
+            TwitterConnecting ?
+              <CircularProgress /> :
+              <Box className={styles.twitterConnectLogo} />
+          }
+          <Typography>Twitter</Typography>
+        </Box>
+      </Box>
+
+      <Typography className={styles.walletSubtitle}>Connect Wallet:</Typography>
+      <Box className={styles.mobileWalletList} sx={{ paddingBottom: '3.33rem' }}>
         <Box
           className={styles.mobileWalletItem}
           onClick={() => handleConnect(UnipassConnector)}>
@@ -166,9 +200,11 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
         <Box
           className={styles.mobileWalletItem}
           onClick={() => handleConnect(WalletConnectConnector)}>
-          <Box className={styles.walletConnectLogo}>
-            <img src='/walletconnect_logo.svg' />
-          </Box>
+          {WalletConnectConnecting ?
+            <CircularProgress /> :
+            <Box className={styles.walletConnectLogo}>
+              <img src='/walletconnect_logo.svg' />
+            </Box>}
           <Typography>WalletConnect</Typography>
           {
             lastConnectWalletType === "walletConnect" &&

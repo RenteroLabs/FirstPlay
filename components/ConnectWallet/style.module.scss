@@ -292,12 +292,23 @@
         line-height: 1.5rem;
       }
     }
+
+    .walletSubtitle {
+      font-size: 1.17rem;
+      font-family: Inter-Medium, Inter;
+      font-weight: 500;
+      color: rgba(#222, 0.3);
+      line-height: 1.17rem;
+      background: #f4f4f9;
+      padding-top: 2.5rem;
+      padding-left: 1.33rem;
+    }
     .mobileWalletList {
       display: flex;
       align-items: center;
       justify-content: center;
       background: #f4f4f9;
-      padding-bottom: 1.67rem;
+      // padding-bottom: 1.67rem;
 
       .mobileWalletItem {
         width: 8.83rem;
@@ -307,7 +318,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding-top: 1.5rem;
+        padding-top: 1.33rem;
         margin-top: 1.67rem;
         position: relative;
         cursor: pointer;
@@ -322,6 +333,7 @@
           display: inline-flex;
           align-items: center;
           justify-content: center;
+          background-size: contain !important;
         }
         .unipassLogo {
           @extend .baseMobileLogo;
@@ -344,6 +356,26 @@
             width: 4rem;
             height: 4rem;
           }
+        }
+
+        .googleConnectLogo {
+          @extend .baseMobileLogo;
+          background: url(https://firstplay-crm.s3.ap-east-1.amazonaws.com/google_logo_icon_png_transparent_background_osteopathy_16_d503bd8f46.png);
+        }
+
+        .facebookConnectLogo {
+          @extend .baseMobileLogo;
+          background: url(https://firstplay-crm.s3.ap-east-1.amazonaws.com/_ab76e2e679.jpeg);
+        }
+
+        .twitterConnectLogo {
+          @extend .baseMobileLogo;
+          background: url(https://firstplay-crm.s3.ap-east-1.amazonaws.com/pngtree_twitter_social_media_round_icon_png_image_6315985_e914f4f89b.png);
+        }
+
+        span {
+          width: 4rem !important;
+          height: 4rem !important;
         }
 
         p {
