@@ -19,10 +19,10 @@ const JoinCommunity: React.FC<JoinCommunityProps> = (props) => {
     <Box
       className={styles.discordBtn}
       onClick={() => {
-        window.open('https://discord.com/invite/84mhbPXFUu')
+        window.open('https://t.me/firstplay2022')
       }}>
       <Box className={styles.iconBox}>
-        <Image src="/Discord-Logo-Carnival.png" layout="fill" />
+        <Image src="/Telegram-Logo-Carnival.png" layout="fill" />
       </Box>
       {t('btnText')}
     </Box>
