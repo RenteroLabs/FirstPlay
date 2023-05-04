@@ -23,7 +23,7 @@
       "discord": "Discord"
     },
     "WalletConnect": {
-      "title": "Connect Wallet",
+      "title": "Login",
       "notOwnWallet": "Don't have a wallet yet?",
       "walletIntro": "Connecting wallet is like“logging in” to Web3. You can visit every website without  creating new accounts and passwords.",
       "linkText": "Get",
