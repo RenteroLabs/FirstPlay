@@ -4,7 +4,7 @@ import { OpenloginAdapter } from "@web3auth/openlogin-adapter";
 import { CHAIN_NAMESPACES } from "@web3auth/base";
 import { TorusWalletConnectorPlugin } from "@web3auth/torus-wallet-connector-plugin";
 import { Chain } from "wagmi";
-import { WEB3AUTH_CLIENT_ID } from "constants/index";
+import { WEB3AUTH_CLIENT_ID, WEB3AUTH_NETWORK } from "constants/index";
 
 const iconUrl = "https://web3auth.io/docs/contents/logo-ethereum.png";
 
@@ -25,7 +25,7 @@ export default function Web3AuthConnectorInstance(chains: Chain[]) {
   // Add openlogin adapter for customisations
   const openloginAdapterInstance =  new OpenloginAdapter({
     adapterSettings: {
-      network: "cyan",
+      network: WEB3AUTH_NETWORK,
       uxMode: "popup",
       whiteLabel: {
         name: "FirstPlay",

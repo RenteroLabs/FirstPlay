@@ -34,10 +34,7 @@ import { UnipassConnector } from 'lib/UnipassConnector'
 import 'antd/dist/reset.css'
 import Web3AuthConnectorInstance from 'lib/Web3AuthConnectorGoogle'
 import { Web3AuthWrapper } from '@/components/Web3AuthWrapper'
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
 
-// import { Web3AuthConnector } from "../lib/Web3AuthConnector";
 import { Web3AuthConnector } from '@web3auth/web3auth-wagmi-connector'
 
 // connect wallet config
@@ -59,12 +56,6 @@ const unipassOption: PopupSDKOption = {
 export const web3AuthInstance = Web3AuthConnectorInstance(chains)
 export const unipassInstance = new UniPassPopupSDK(unipassOption)
 
-// let web3AuthInstance: any
-// (async () => {
-//   web3AuthInstance = await Web3AuthConnectorInstance(chains)
-// })()
-
-console.log(web3AuthInstance)
 const client = createClient({
   autoConnect: true,
   connectors: [

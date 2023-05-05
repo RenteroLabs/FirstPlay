@@ -185,7 +185,7 @@
 
 .walletIntro {
   // padding: 5.08rem 5rem 5rem;
-  padding:  11.33rem 4.17rem 5.12rem ;
+  padding: 11.33rem 4.17rem 5.12rem;
   width: 49.17rem;
   width: 34.17rem;
 
@@ -246,6 +246,7 @@
       user-select: none;
     }
     .getBtn {
+      display: none;
       height: 3rem;
       background: #8e50e4;
       border-radius: 0.67rem;
@@ -261,6 +262,7 @@
     }
 
     .beginnerBadge {
+      display: none;
       position: absolute;
       top: -0.75rem;
       width: 7.83rem;
@@ -455,6 +457,7 @@
   .walletIntro {
     padding: 2.5rem 1.33rem;
     width: 100%;
+    background-color: white;
 
     h4 {
       font-size: 1.5rem;
@@ -478,6 +481,12 @@
     }
     .downItem {
       margin-top: 2rem;
+      border: 1px solid rgba(34, 34, 34, 0.2);
+
+      .beginnerBadge {
+        display: block;
+      }
+
       p {
         font-size: 1.33rem;
         font-family: Inter-SemiBold, Inter;
@@ -486,12 +495,17 @@
         line-height: 1.33rem;
       }
       .getBtn {
-        height: 2.67rem;
+        display: block;
         font-size: 1.17rem;
         font-family: Inter-SemiBold, Inter;
         font-weight: 600;
         color: #ffffff;
         line-height: 2.67rem;
+        width: 6rem;
+        height: 2.67rem;
+        background: #8e50e4;
+        border-radius: 1.33rem;
+        filter: blur(0px);
       }
     }
 

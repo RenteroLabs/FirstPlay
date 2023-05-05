@@ -100,3 +100,7 @@ export const WEB3AUTH_CLIENT_ID: string =
   process.env.NEXT_PUBLIC_ENV === 'PRO' ?
     process.env.NEXT_PUBLIC_WEB3AUTH_CLIENT_ID_PROD as string
     : process.env.NEXT_PUBLIC_WEB3AUTH_CLIENT_ID_TEST as string
+
+
+export const WEB3AUTH_NETWORK: "cyan" | "mainnet" =
+  process.env.NEXT_PUBLIC_ENV === 'PRO' ? "mainnet" : "cyan"

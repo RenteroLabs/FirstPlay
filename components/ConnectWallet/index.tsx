@@ -96,8 +96,8 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
     <Box className={styles.downItem} onClick={() => handleConnect(UnipassConnector)}>
       <img src='/unipass_logo.svg' />
       <Typography>Unipass</Typography>
-      {/* <Box className={styles.getBtn}>{t("linkText")}</Box> */}
-      {/* <Box className={styles.beginnerBadge}>{t("forBeginner")}</Box> */}
+      <Box className={styles.getBtn}>{t("linkText")}</Box>
+      <Box className={styles.beginnerBadge}>{t("forBeginner")}</Box>
     </Box>
     {/* </a> */}
 
@@ -107,7 +107,7 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
       <Box className={styles.downItem}>
         <img src='/metamask_logo.svg' />
         <Typography>MetaMask</Typography>
-        {/* <Box className={styles.getBtn}>{t("linkText")}</Box> */}
+        <Box className={styles.getBtn}>{t("linkText")}</Box>
       </Box>
     </a>
 
