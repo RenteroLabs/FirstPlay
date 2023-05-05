@@ -113,7 +113,7 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
 
     <a
       className={styles.metamaskGuide}
-      href="/strategy/Get-Started-With-Metamask-Quickly"
+      href="/strategy/article?articleId=161&collectionId=068c8c3a-72ff-4cea-8af3-954d201f0887"
       target="_blank">{t("metamaskGuide")}</a>
   </Box>
 
