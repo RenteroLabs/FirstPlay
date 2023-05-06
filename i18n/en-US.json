@@ -24,7 +24,7 @@
     },
     "WalletConnect": {
       "title": "Login",
-      "notOwnWallet": "Don't have a wallet yet?",
+      "notOwnWallet": "What is wallet？",
       "walletIntro": "Connecting wallet is like“logging in” to Web3. You can visit every website without  creating new accounts and passwords.",
       "linkText": "Get",
       "forBeginner": "For beginners",

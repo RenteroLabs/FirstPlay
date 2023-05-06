@@ -240,7 +240,7 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
               {error.message}
             </Alert>}
 
-          <Typography className={styles.walletSubtitle}>Sign up with social :</Typography>
+          <Typography className={styles.walletSubtitle}>Connect with social :</Typography>
           <Box
             className={styles.walletItem}
             onClick={() => handleConnect(GoogleConnector)}>
