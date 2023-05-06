@@ -48,10 +48,10 @@ export const getGameInfo = async (params: GameInfoParams) => {
  * 获取平台全部游戏数据
  * @returns 
  */
-export const getAllGamesInfo = async () => {
-  const data = await fetch(`${BASE_BACKEND_API}/api/games`)
-  return data.json()
-}
+// export const getAllGamesInfo = async () => {
+//   const data = await fetch(`${BASE_BACKEND_API}/api/games`)
+//   return data.json()
+// }
 
 interface TaskStatusParams {
   address: string,

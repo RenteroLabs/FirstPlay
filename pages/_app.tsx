@@ -11,6 +11,7 @@ import { QueryParamProvider } from 'use-query-params';
 
 import { WagmiConfig, configureChains, createClient } from 'wagmi'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
+import { infuraProvider } from 'wagmi/providers/infura'
 import { publicProvider } from 'wagmi/providers/public'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
@@ -31,12 +32,15 @@ import * as ga from '../util/ga'
 import { UnipassConnector } from 'lib/UnipassConnector'
 
 import 'antd/dist/reset.css'
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
+import Web3AuthConnectorInstance from 'lib/Web3AuthConnectorGoogle'
+import { Web3AuthWrapper } from '@/components/Web3AuthWrapper'
+
+import { Web3AuthConnector } from '@web3auth/web3auth-wagmi-connector'
 
 // connect wallet config
 const { chains, provider, webSocketProvider } = configureChains(SUPPORT_CHAINS, [
-  alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID }),
+  infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_ID as string }),
+  alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID as string }),
   publicProvider()
 ])
 
@@ -49,7 +53,8 @@ const unipassOption: PopupSDKOption = {
   },
 }
 
-export const unipassInstance = new UniPassPopupSDK(unipassOption) 
+export const web3AuthInstance = Web3AuthConnectorInstance(chains)
+export const unipassInstance = new UniPassPopupSDK(unipassOption)
 
 const client = createClient({
   autoConnect: true,
@@ -69,6 +74,33 @@ const client = createClient({
       chains,
       options: unipassOption,
       unipass: unipassInstance
+    }),
+    new Web3AuthConnector({
+      chains: chains,
+      options: {
+        web3AuthInstance: web3AuthInstance,
+        loginParams: {
+          loginProvider: "google",
+        },
+      },
+    }),
+    new Web3AuthConnector({
+      chains: chains,
+      options: {
+        web3AuthInstance: web3AuthInstance,
+        loginParams: {
+          loginProvider: "facebook",
+        },
+      }, 
+    }),
+    new Web3AuthConnector({
+      chains: chains,
+      options: {
+        web3AuthInstance: web3AuthInstance,
+        loginParams: {
+          loginProvider: "twitter",
+        },
+      },
     })
   ],
   provider,
@@ -112,19 +144,21 @@ function MyApp({ Component, pageProps }: AppPropsWithMessages) {
   }, [router])
 
   useEffect(() => {
-    TagManager.initialize({ gtmId: process.env.NEXT_PUBLIC_GOOGLE_TAGMANAGER as string})
+    TagManager.initialize({ gtmId: process.env.NEXT_PUBLIC_GOOGLE_TAGMANAGER as string })
   }, [])
 
   return <WagmiConfig client={client}>
     <NextIntlProvider messages={pageProps.messages}>
-      <QueryParamProvider adapter={NextAdapter}>
-        <WalletConnet.Provider value={{ showConnect: showConnect, setShowConnect: setShowConnect }}>
-          {getLayout(<Component {...pageProps} />)}
-          <Analytics />
-          <ConnectWallet showConnect={showConnect} setShowConnect={setShowConnect} />
-          <ToastContainer />
-        </WalletConnet.Provider>
-      </QueryParamProvider>
+      <Web3AuthWrapper>
+        <QueryParamProvider adapter={NextAdapter}>
+          <WalletConnet.Provider value={{ showConnect: showConnect, setShowConnect: setShowConnect }}>
+            {getLayout(<Component {...pageProps} />)}
+            <Analytics />
+            <ConnectWallet showConnect={showConnect} setShowConnect={setShowConnect} />
+            <ToastContainer />
+          </WalletConnet.Provider>
+        </QueryParamProvider>
+      </Web3AuthWrapper>
     </NextIntlProvider>
   </WagmiConfig>
 }

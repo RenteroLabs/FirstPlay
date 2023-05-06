@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { Alert, Box, CircularProgress, Dialog, DialogTitle, Drawer, IconButton, Typography, useMediaQuery } from '@mui/material'
-import ArrowRightAltRoundedIcon from '@mui/icons-material/ArrowRightAltRounded';
+import { Alert, Box, CircularProgress, Dialog, Drawer, IconButton, Typography, useMediaQuery } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close';
 import styles from './style.module.scss'
 import { Connector, useAccount, useConnect } from 'wagmi';
@@ -17,7 +16,7 @@ interface ConnectWalletProps {
   errorCallback?: () => any;
 }
 
-type WalletType = "" | "walletConnect" | "metaMask" | "Unipass"
+type WalletType = "" | "walletConnect" | "metaMask" | "Unipass" | 'web3auth'
 
 const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
   const { showConnect, setShowConnect, callback = () => { }, errorCallback = () => { } } = props
@@ -40,7 +39,6 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
 
   useEffect(() => {
     const walletType = window.localStorage.getItem("wagmi.wallet")
-    console.log(walletType?.split("\""))
     setLastConnectWalletType(walletType?.split("\"")[1] as WalletType)
   }, [address])
 
@@ -51,15 +49,35 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
     }
   })
 
-  const [MetaMaskConnector, WalletConnectConnector, UnipassConnector] = connectors
+  const [
+    MetaMaskConnector,
+    WalletConnectConnector,
+    UnipassConnector,
+    GoogleConnector,
+    FacebookConnector,
+    TwitterConnector
+  ] = connectors
 
-  const [MetaMaskConnecting, WalletConnectConnecting, UnipassConnecting] = useMemo(() => {
-    if (!isLoading) return [false, false]
+  const [
+    MetaMaskConnecting,
+    WalletConnectConnecting,
+    UnipassConnecting,
+    GoogleConnecting,
+    FacebookConnecting,
+    TwitterConnecting
+  ] = useMemo(() => {
+    if (!isLoading) return [false, false, false, false, false, false]
 
     return [
       MetaMaskConnector.id === pendingConnector?.id,
       WalletConnectConnector.id === pendingConnector?.id,
-      UnipassConnector.id === pendingConnector?.id
+      UnipassConnector.id === pendingConnector?.id,
+      // @ts-ignore
+      pendingConnector?.loginParams?.loginProvider === 'google',
+      // @ts-ignore
+      pendingConnector?.loginParams?.loginProvider === 'facebook',
+      // @ts-ignore
+      pendingConnector?.loginParams?.loginProvider === 'twitter',
     ]
   }, [isLoading, pendingConnector])
 
@@ -68,10 +86,6 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
       return
     }
     await connect({ connector: selectedConnector })
-  }
-
-  const handleLinkMetamask = () => {
-    window.open("/strategy/Get-Started-With-Metamask-Quickly", "__blank")
   }
 
   const WalletIntro = <Box className={styles.walletIntro}>
@@ -99,7 +113,7 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
 
     <a
       className={styles.metamaskGuide}
-      href="/strategy/Get-Started-With-Metamask-Quickly"
+      href="/strategy/article?articleId=161&collectionId=068c8c3a-72ff-4cea-8af3-954d201f0887"
       target="_blank">{t("metamaskGuide")}</a>
   </Box>
 
@@ -117,7 +131,42 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
         <Typography variant='h4'>{t('title')}</Typography>
         <Box></Box>
       </Box>
+
+      <Typography className={styles.walletSubtitle}>Sign up with social :</Typography>
       <Box className={styles.mobileWalletList}>
+        <Box
+          className={styles.mobileWalletItem}
+          onClick={() => handleConnect(GoogleConnector)}
+        >
+          {GoogleConnecting ?
+            <CircularProgress /> :
+            <Box className={styles.googleConnectLogo} />}
+          <Typography>Google</Typography>
+        </Box>
+        <Box
+          className={styles.mobileWalletItem}
+          onClick={() => handleConnect(FacebookConnector)}
+        >
+          {FacebookConnecting ?
+            <CircularProgress /> :
+            <Box className={styles.facebookConnectLogo} />}
+          <Typography>Facebook</Typography>
+        </Box>
+        <Box
+          className={styles.mobileWalletItem}
+          onClick={() => handleConnect(TwitterConnector)}
+        >
+          {
+            TwitterConnecting ?
+              <CircularProgress /> :
+              <Box className={styles.twitterConnectLogo} />
+          }
+          <Typography>Twitter</Typography>
+        </Box>
+      </Box>
+
+      <Typography className={styles.walletSubtitle}>Connect Wallet:</Typography>
+      <Box className={styles.mobileWalletList} sx={{ paddingBottom: '3.33rem' }}>
         <Box
           className={styles.mobileWalletItem}
           onClick={() => handleConnect(UnipassConnector)}>
@@ -151,9 +200,11 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
         <Box
           className={styles.mobileWalletItem}
           onClick={() => handleConnect(WalletConnectConnector)}>
-          <Box className={styles.walletConnectLogo}>
-            <img src='/walletconnect_logo.svg' />
-          </Box>
+          {WalletConnectConnecting ?
+            <CircularProgress /> :
+            <Box className={styles.walletConnectLogo}>
+              <img src='/walletconnect_logo.svg' />
+            </Box>}
           <Typography>WalletConnect</Typography>
           {
             lastConnectWalletType === "walletConnect" &&
@@ -180,6 +231,8 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
         <CloseIcon />
       </IconButton>
       <div className={styles.dialogContent}>
+        {WalletIntro}
+
         <Box className={styles.walletList}>
           <Typography variant='h4'>{t('title')}</Typography>
           {error &&
@@ -187,28 +240,49 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
               {error.message}
             </Alert>}
 
+          <Typography className={styles.walletSubtitle}>Connect with social :</Typography>
           <Box
             className={styles.walletItem}
-            onClick={() => handleConnect(UnipassConnector)}>
-            <span className={styles.itemUnipassLogo}>
-              <img src='/unipass_logo.svg' />
-            </span>
-            <p>Unipass</p>
-            {UnipassConnecting && <CircularProgress />}
-            {!UnipassConnecting &&
-              lastConnectWalletType === "Unipass" &&
-              <Box className={styles.lastConnectType}>Recent</Box>}
+            onClick={() => handleConnect(GoogleConnector)}>
+            {GoogleConnecting ?
+              <CircularProgress /> :
+              <span className={styles.itemGoogleConnectLogo}></span>
+            }
+            <p>Google</p>
           </Box>
+
+          <Box
+            className={styles.walletItem}
+            onClick={() => handleConnect(FacebookConnector)}>
+            {FacebookConnecting ?
+              <CircularProgress /> :
+              <span className={styles.itemFacebookConnectLogo}></span>
+            }
+            <p>Facebook</p>
+          </Box>
+
+          <Box
+            className={styles.walletItem}
+            onClick={() => handleConnect(TwitterConnector)}>
+            {TwitterConnecting ?
+              <CircularProgress /> :
+              <span className={styles.itemTwitterConnectLogo}></span>
+            }
+            <p>Twitter</p>
+          </Box>
+
+          <Typography className={styles.walletSubtitle}>Connect Wallet: </Typography>
 
           <Box
             className={styles.walletItem}
             onClick={() => handleConnect(!isEthEnv ? WalletConnectConnector : MetaMaskConnector)}
           >
-            <span className={styles.itemMetamaskLogo}>
-              <img src='/metamask_logo.svg' />
-            </span>
+            {MetaMaskConnecting ?
+              <CircularProgress /> :
+              <span className={styles.itemMetamaskLogo}>
+                <img src='/metamask_logo.svg' />
+              </span>}
             <p>MetaMask</p>
-            {MetaMaskConnecting && <CircularProgress />}
             {!MetaMaskConnecting &&
               lastConnectWalletType === "metaMask" &&
               <Box className={styles.lastConnectType}>Recent</Box>}
@@ -217,16 +291,31 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
           <Box
             className={styles.walletItem}
             onClick={() => handleConnect(WalletConnectConnector)}>
-            <span className={styles.itemWalletConnectLogo}></span>
+            {WalletConnectConnecting ?
+              <CircularProgress /> :
+              <span className={styles.itemWalletConnectLogo}></span>
+            }
             <p>WalletConnect</p>
-            {WalletConnectConnecting && <CircularProgress />}
             {!WalletConnectConnecting &&
               lastConnectWalletType === "walletConnect" &&
               <Box className={styles.lastConnectType}>Recent</Box>}
           </Box>
 
+          <Box
+            className={styles.walletItem}
+            onClick={() => handleConnect(UnipassConnector)}>
+            {UnipassConnecting ?
+              <CircularProgress /> :
+              <span className={styles.itemUnipassLogo}>
+                <img src='/unipass_logo.svg' />
+              </span>
+            }
+            <p>Unipass</p>
+            {!UnipassConnecting &&
+              lastConnectWalletType === "Unipass" &&
+              <Box className={styles.lastConnectType}>Recent</Box>}
+          </Box>
         </Box>
-        {WalletIntro}
       </div>
     </Dialog>
 }
