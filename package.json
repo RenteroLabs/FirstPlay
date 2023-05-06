@@ -30,6 +30,7 @@
     "@zeit/next-css": "^1.0.1",
     "ahooks": "^3.7.1",
     "antd": "^5.1.7",
+    "autoprefixer": "^10.4.14",
     "classnames": "^2.3.2",
     "crypto-js": "^4.1.1",
     "ethers": "^5.7.1",
@@ -41,6 +42,7 @@
     "next": "12.3.0",
     "next-intl": "^2.7.6",
     "next-query-params": "^4.0.0",
+    "postcss": "^8.4.23",
     "qs": "^6.11.0",
     "rc-image": "^5.12.1",
     "rc-progress": "^3.4.0",
@@ -61,6 +63,7 @@
     "remark-html": "^15.0.1",
     "sharp": "^0.31.0",
     "spark-md5": "^3.0.2",
+    "tailwindcss": "^3.3.2",
     "use-query-params": "^2.1.2",
     "wagmi": "^0.12.9"
   },
