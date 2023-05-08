@@ -11,6 +11,7 @@ module.exports = {
         primary: '#222222',
         secondary: '#F2F2F2',
         bgColor: '#F4F4F9',
+        boldColor: '#8E50E4',
       },
       fontFamily: {
         'Inter-Medium': ['Inter-Medium', 'Inter'],

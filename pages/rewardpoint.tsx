@@ -1,28 +1,54 @@
-import React, { ReactElement } from "react"
+import React, { ReactElement, useState } from "react"
 import { NextPageWithLayout } from "./_app"
 import Layout from "@/components/Layout"
-import { Box } from "@mui/material"
 import Head from "next/head"
 import { GetStaticProps, GetStaticPropsContext } from "next"
 import Signup from "@/components/PageRewardPoint/Signup"
+import GetRewardList from "@/components/PageRewardPoint/GetRewardList"
+import { useAccount } from "wagmi"
+import ProgressInfo from "@/components/PageRewardPoint/ProgressInfo"
 
 const RewardPoint: NextPageWithLayout = () => {
 
-  return <div className="container mx-auto bg-bgColor">
+  const { address } = useAccount()
+
+
+  return <div className="container mx-auto bg-bgColor pb-8">
     <Head>
       <title>Points | FirstPlay</title>
       <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <div className="h-96 bg-gradient-to-b from-primary from-0% via-primary/80 via-85% to-primary/10 flex justify-center flex-col items-center">
-      <h3 className="text-2xl text-white font-Inter-SemiBold font-semibold leading-7">
+    {/* bg-gradient-to-b from-primary from-0% via-primary/80 via-85% to-primary/10  */}
+    <div className="h-[23.33rem]
+    flex  flex-col items-center bg-[url('/rewardpoint_bg.png')] bg-cover">
+      <img src="/rewardpoint_ill.png" className="w-[10rem] h-[10rem] mt-7 mb-[0.83rem]" />
+      <h3 className="text-2xl text-white font-Inter-SemiBold font-semibold leading-7 mb-[0.83rem] ">
         $2 Cash Drops !
       </h3>
-      <p className="text-base text-white font-Inter-Medium font-medium leading-[1.67rem] max-w-[24rem] text-center">Continuous check-in,invite friends to collect points, get $2 immediately !</p>
+      <p className="text-base text-white font-Inter-Medium font-medium leading-[1.67rem] max-w-[24rem] text-center">
+        {
+          address ?
+            'Collect 10000 points and withdraw 2 USDT immediately!' :
+            'Continuous check-in,invite friends to collect points, get $2 immediately!'
+        }
+      </p>
     </div>
 
-    <Signup />
+    {
+      !address ?
+        <>
+          <Signup />
+          <GetRewardList />
+        </> :
+        <>
+          <ProgressInfo />
+        </>
+    }
+
+
+
 
   </div>
 }

@@ -132,7 +132,7 @@ const ConnectWallet: React.FC<ConnectWalletProps> = (props) => {
         <Box></Box>
       </Box>
 
-      <Typography className={styles.walletSubtitle}>Sign up with social :</Typography>
+      <Typography className={styles.walletSubtitle}>Sign up with social:</Typography>
       <Box className={styles.mobileWalletList}>
         <Box
           className={styles.mobileWalletItem}

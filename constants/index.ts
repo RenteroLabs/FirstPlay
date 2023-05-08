@@ -104,3 +104,7 @@ export const WEB3AUTH_CLIENT_ID: string =
 
 export const WEB3AUTH_NETWORK: "cyan" | "mainnet" =
   process.env.NEXT_PUBLIC_ENV === 'PRO' ? "mainnet" : "cyan"
+
+
+
+export const TOTAL_REWARD_POINTS: number = 10000
