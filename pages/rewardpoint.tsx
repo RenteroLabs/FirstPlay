@@ -7,11 +7,13 @@ import Signup from "@/components/PageRewardPoint/Signup"
 import GetRewardList from "@/components/PageRewardPoint/GetRewardList"
 import { useAccount } from "wagmi"
 import ProgressInfo from "@/components/PageRewardPoint/ProgressInfo"
+import { useIsMounted } from "hooks/useIsMounted"
+import InviteFriend from "@/components/PageRewardPoint/InviteFriend"
 
 const RewardPoint: NextPageWithLayout = () => {
 
   const { address } = useAccount()
-
+  const isMounted = useIsMounted()
 
   return <div className="container mx-auto bg-bgColor pb-8">
     <Head>
@@ -29,7 +31,7 @@ const RewardPoint: NextPageWithLayout = () => {
       </h3>
       <p className="text-base text-white font-Inter-Medium font-medium leading-[1.67rem] max-w-[24rem] text-center">
         {
-          address ?
+          (address && isMounted) ?
             'Collect 10000 points and withdraw 2 USDT immediately!' :
             'Continuous check-in,invite friends to collect points, get $2 immediately!'
         }
@@ -44,6 +46,7 @@ const RewardPoint: NextPageWithLayout = () => {
         </> :
         <>
           <ProgressInfo />
+          <InviteFriend />
         </>
     }
 
