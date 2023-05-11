@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from "react"
+import React, { ReactElement, useEffect, useState } from "react"
 import { NextPageWithLayout } from "./_app"
 import Layout from "@/components/Layout"
 import Head from "next/head"
@@ -9,11 +9,59 @@ import { useAccount } from "wagmi"
 import ProgressInfo from "@/components/PageRewardPoint/ProgressInfo"
 import { useIsMounted } from "hooks/useIsMounted"
 import InviteFriend from "@/components/PageRewardPoint/InviteFriend"
+import InviteeCard from "@/components/PageRewardPoint/InviteeCard"
+import TopBanner from "@/components/PageRewardPoint/TopBanner"
+import { useQueryParam } from "use-query-params";
+import { useRequest } from "ahooks"
+import { login2InviteCode, getUserPoint, getInvitorInfo } from "services/invitepoint"
 
 const RewardPoint: NextPageWithLayout = () => {
-
   const { address } = useAccount()
   const isMounted = useIsMounted()
+  const [ownInviteCode, setOwnInviteCode] = useState<string>()
+  const [userPoint, setUserPoint] = useState<number>(0)
+  const [invitor, setInvitor] = useState<string>()
+
+  const [inviteCode] = useQueryParam<string>('inviter')
+
+  // 获取用户邀请码信息
+  const { run: queryLoginInviteCode } = useRequest(login2InviteCode, {
+    manual: true,
+    onSuccess: ({ data }) => {
+      // console.log(data)
+      setOwnInviteCode(data?.invite_code)
+    }
+  })
+
+  // 获取当前钱包地址用户积分
+  const { run: queryUserPoint } = useRequest(getUserPoint, {
+    manual: true,
+    onSuccess: ({ data }) => {
+      console.log(data)
+      // TODO: update userPoint
+    }
+  })
+
+  // 获取邀请码信息
+  useRequest(getInvitorInfo, {
+    defaultParams: [inviteCode],
+    refreshDeps: [inviteCode],
+    onSuccess: ({ data }) => {
+      console.log(data)
+      setInvitor(data?.invitor)
+    }
+  })
+
+  useEffect(() => {
+    if (address) {
+      queryLoginInviteCode({
+        address,
+        inviteCode: inviteCode
+      })
+      queryUserPoint(address)
+    }
+  }, [address])
+
 
   return <div className="container mx-auto bg-bgColor pb-8">
     <Head>
@@ -21,38 +69,25 @@ const RewardPoint: NextPageWithLayout = () => {
       <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
+    {/* 用户未登录且 URL 参数包含邀请码 */}
+    {
+      (!address && inviteCode) ?
+        <InviteeCard invitor={invitor as string} /> :
+        <TopBanner />
+    }
 
-    {/* bg-gradient-to-b from-primary from-0% via-primary/80 via-85% to-primary/10  */}
-    <div className="h-[23.33rem]
-    flex  flex-col items-center bg-[url('/rewardpoint_bg.png')] bg-cover">
-      <img src="/rewardpoint_ill.png" className="w-[10rem] h-[10rem] mt-7 mb-[0.83rem]" />
-      <h3 className="text-2xl text-white font-Inter-SemiBold font-semibold leading-7 mb-[0.83rem] ">
-        $2 Cash Drops !
-      </h3>
-      <p className="text-base text-white font-Inter-Medium font-medium leading-[1.67rem] max-w-[24rem] text-center">
-        {
-          (address && isMounted) ?
-            'Collect 10000 points and withdraw 2 USDT immediately!' :
-            'Continuous check-in,invite friends to collect points, get $2 immediately!'
-        }
-      </p>
-    </div>
-
+    {/* 是否连接钱包 */}
     {
       !address ?
         <>
-          <Signup />
+          <Signup signType={inviteCode ? "Invitee" : 'Default'} />
           <GetRewardList />
         </> :
         <>
-          <ProgressInfo />
+          <ProgressInfo userPoint={userPoint} />
           <InviteFriend />
         </>
     }
-
-
-
-
   </div>
 }
 

@@ -6,12 +6,25 @@ const InviteFriend = () => {
 
   return <div className="bg-white rounded-2xl mx-4 mt-4 px-3 py-[1.33rem]">
     <h4 className="text-2xl text-primary font-semibold font-Inter-SemiBold leading-6 mb-[0.67rem]">Invite friends</h4>
-    <p className="text-base text-primary font-Inter-Regular font-normal leading-[1.17rem]">Invite friends to earn combined rewards.</p>
+    <p className="text-base text-primary font-Inter-Regular font-normal leading-[1.17rem] mb-[2.17rem]">Invite friends to earn combined rewards.</p>
 
-    <div className="h-[19.5rem] bg-[rgba(142,80,228,0.08)] rounded-2xl px-[0.83rem]">
+    <div className="relative h-[19.5rem] bg-[rgba(142,80,228,0.08)] rounded-2xl px-[0.83rem] ">
+      <div className="absolute inset-x-0 h-[45px]  top-[-0.5rem]">
+        <div className="w-[23.34rem] h-[45px] bg-[url('/invite_info_bg_banner.png')] bg-cover bg-no-repeat bg-center mx-auto text-center text-base text-white font-Inter-Medium font-medium pt-[0.83rem]">
+          Successfully invited someone
+        </div>
+      </div>
 
-      <div>
-        
+      <div className="flex justify-around items-center mb-[1.67rem]  pt-[4.25rem]">
+        <div className="flex flex-col justify-center items-center ">
+          <h3 className="text-4xl text-boldColor font-Inter-SemiBold font-semibold leading-[1.67rem] mb-[0.83rem]">+100</h3>
+          <p className="text-[1rem] text-boldColor font-Inter-Medium font-medium mb-0">Complete registration</p>
+        </div>
+        <p className="text-4xl text-boldColor font-Inter-SemiBold font-semibold leading-[1.67rem] mb-0">&</p>
+        <div className="flex flex-col justify-center items-center ">
+          <h3 className="text-4xl text-boldColor font-Inter-SemiBold font-semibold leading-[1.67rem] mb-[0.83rem]">+200</h3>
+          <p className="text-[1rem] text-boldColor font-Inter-Medium font-medium mb-0">Complete a bounty</p>
+        </div>
       </div>
       <Divider className="text-base font-Inter-SemiBold font-semibold leading-[1.17rem] mb-[1.67rem]" >Invite</Divider>
       <div className="flex justify-around">
