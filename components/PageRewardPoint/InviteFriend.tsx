@@ -26,8 +26,8 @@ const InviteFriend = () => {
           <p className="text-[1rem] text-boldColor font-Inter-Medium font-medium mb-0">Complete a bounty</p>
         </div>
       </div>
-      <Divider className="text-base font-Inter-SemiBold font-semibold leading-[1.17rem] mb-[1.67rem]" >Invite</Divider>
-      <div className="flex justify-around">
+      <Divider className="text-base font-Inter-SemiBold font-semibold leading-[1.17rem]" >Invite</Divider>
+      <div className="flex justify-around mt-[1.67rem]">
         <div className="flex flex-col items-center">
           <div className="h-[3.67rem] w-[3.67rem] rounded-full bg-primary inline-flex items-center justify-center">
             <img src="/Twitter-Logo-Carnival.png" className="scale-90" />
