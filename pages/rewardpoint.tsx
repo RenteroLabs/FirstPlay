@@ -14,6 +14,7 @@ import TopBanner from "@/components/PageRewardPoint/TopBanner"
 import { useQueryParam } from "use-query-params";
 import { useRequest } from "ahooks"
 import { login2InviteCode, getUserPoint, getInvitorInfo } from "services/invitepoint"
+import DailyCheckIn from "@/components/PageRewardPoint/DailyCheckIn"
 
 const RewardPoint: NextPageWithLayout = () => {
   const { address } = useAccount()
@@ -38,7 +39,7 @@ const RewardPoint: NextPageWithLayout = () => {
     manual: true,
     onSuccess: ({ data }) => {
       console.log(data)
-      // TODO: update userPoint
+      setUserPoint(data?.point || 0)
     }
   })
 
@@ -68,24 +69,43 @@ const RewardPoint: NextPageWithLayout = () => {
       <title>Points | FirstPlay</title>
       <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
       <link rel="icon" href="/favicon.ico" />
+      <meta
+        property="og:title"
+        content="Join me and invite friends to win cash!"
+      />
+      {/* <meta
+        property="og:description"
+        content=""
+      /> */}
+      <meta
+        property="og:image"
+        content="https://firstplay-crm.s3.ap-east-1.amazonaws.com/point_media_share_e07462344e.jpg?updated_at=2023-05-12T05:27:53.379Z"
+      />
+      {isMounted && <meta
+        property="og:url"
+        content={`https://firstplay.app/rewardpoint?inviter=${ownInviteCode}`}
+      />}
+      <meta property="og:type" content="website" />
+      <meta name="twitter:card" content="summary_large_image" />
     </Head>
     {/* 用户未登录且 URL 参数包含邀请码 */}
     {
-      (!address && inviteCode) ?
+      (isMounted && !address && inviteCode) ?
         <InviteeCard invitor={invitor as string} /> :
         <TopBanner />
     }
 
     {/* 是否连接钱包 */}
     {
-      !address ?
+      (!address && isMounted) ?
         <>
           <Signup signType={inviteCode ? "Invitee" : 'Default'} />
           <GetRewardList />
         </> :
         <>
           <ProgressInfo userPoint={userPoint} />
-          <InviteFriend />
+          {/* <DailyCheckIn /> */}
+          <InviteFriend ownCode={ownInviteCode} />
         </>
     }
   </div>

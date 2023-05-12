@@ -23,7 +23,7 @@ const ProgressInfo: React.FC<ProgressInfoProps> = (props) => {
     <p className="text-[1rem] text-primary font-medium font-Inter-Medium mt-4 flex justify-between mb-[1.67rem]">
       <span>
         Initial:
-        <span className="text-boldColor"> 0</span>/{TOTAL_REWARD_POINTS}
+        <span className="text-boldColor"> {userPoint}</span>/{TOTAL_REWARD_POINTS}
       </span>
       <span>Just {lessProgress}% less!</span>
     </p>
