@@ -18,10 +18,10 @@ const InviteeModal: React.FC<InviteeModalProps> = (props) => {
     footer={null}
   >
     <List
-      className="my-4"
+      className="my-4 mb-0"
       dataSource={inviteeList}
       renderItem={(item) => <List.Item style={{ padding: '0'}}>
-        <div className="w-full flex items-center justify-between text-base text-primary font-Inter-Regular font-normal leading-[1.17rem]">
+        <div className="w-full flex items-center justify-between text-base text-primary font-Inter-Regular font-normal leading-[1.17rem] my-2">
           <img src="/profile_avatar.png" className="w-8 h-8 rounded-full flex-none" />
           <div className="glow-1 mb-0 mx-[0.67rem]" style={{ flexGrow: 1 }}>{formatAddress(item?.invitee, 4)} {item?.type}</div>
           <span className="flex-none">+{item?.change}</span>

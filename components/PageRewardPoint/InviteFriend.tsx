@@ -22,7 +22,8 @@ const InviteFriend: React.FC<InviteFriendProps> = (props) => {
   const [showInviteeModal, setShowInviteeModal] = useState<boolean>(false)
 
   const shareLink = useMemo(() => {
-    return `https://firstplay.app/rewardpoint?inviter=${ownCode}`
+    if (typeof window === 'undefined') return ''
+    return `${window && window.location.origin}/rewardpoint?inviter=${ownCode}`
   }, [ownCode])
 
   const [twitterLink, telegramLink] = useMemo(() => {
@@ -48,7 +49,6 @@ const InviteFriend: React.FC<InviteFriendProps> = (props) => {
       queryInviteeList(address)
     }
   }, [address])
-
 
 
   const handleCopyLink = () => {

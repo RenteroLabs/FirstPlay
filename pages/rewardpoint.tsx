@@ -15,6 +15,7 @@ import { useQueryParam } from "use-query-params";
 import { useRequest } from "ahooks"
 import { login2InviteCode, getUserPoint, getInvitorInfo } from "services/invitepoint"
 import DailyCheckIn from "@/components/PageRewardPoint/DailyCheckIn"
+import InviteConnectModal from "@/components/PageRewardPoint/InviteConnectSuccessModal"
 
 const RewardPoint: NextPageWithLayout = () => {
   const { address } = useAccount()
@@ -23,7 +24,10 @@ const RewardPoint: NextPageWithLayout = () => {
   const [userPoint, setUserPoint] = useState<number>(0)
   const [invitor, setInvitor] = useState<string>()
 
-  const [inviteCode] = useQueryParam<string>('inviter')
+  const [inviteCode, setInviteCode] = useState<string>()
+
+
+  const [showModal, setShowModal] = useState<boolean>(false)
 
   // 获取用户邀请码信息
   const { run: queryLoginInviteCode } = useRequest(login2InviteCode, {
@@ -38,33 +42,49 @@ const RewardPoint: NextPageWithLayout = () => {
   const { run: queryUserPoint } = useRequest(getUserPoint, {
     manual: true,
     onSuccess: ({ data }) => {
-      console.log(data)
+      // console.log(data)
       setUserPoint(data?.point || 0)
     }
   })
 
   // 获取邀请码信息
-  useRequest(getInvitorInfo, {
-    defaultParams: [inviteCode],
-    refreshDeps: [inviteCode],
+  const { run: queryInvitorInfo } = useRequest(getInvitorInfo, {
+    manual: true,
     onSuccess: ({ data }) => {
-      console.log(data)
       setInvitor(data?.invitor)
     }
   })
 
   useEffect(() => {
+    const queryString = window.location.search
+    const params = new URLSearchParams(queryString);
+    const inviteCode = params.get('inviter')
+    console.log(inviteCode)
+    setInviteCode(inviteCode as string)
+
     if (address) {
-      queryLoginInviteCode({
-        address,
-        inviteCode: inviteCode
-      })
+
+      let loginParams: Record<string, any> = {
+        address
+      }
+      if (inviteCode) {
+        loginParams['inviteCode'] = inviteCode
+      }
+      // @ts-ignore
+      queryLoginInviteCode(loginParams)
+
       queryUserPoint(address)
+
     }
   }, [address])
 
+  useEffect(() => {
+    if (inviteCode) {
+      queryInvitorInfo(inviteCode)
+    }
+  }, [inviteCode])
 
-  return <div className="container mx-auto bg-bgColor pb-8">
+  return <div className="container mx-auto bg-bgColor pb-4">
     <Head>
       <title>Points | FirstPlay</title>
       <meta name="description" content="A blockchain game platform where you discover new games and try game NFTs for free" />
@@ -83,7 +103,7 @@ const RewardPoint: NextPageWithLayout = () => {
       />
       {isMounted && <meta
         property="og:url"
-        content={`https://firstplay.app/rewardpoint?inviter=${ownInviteCode}`}
+        content={`/rewardpoint?inviter=${ownInviteCode}`}
       />}
       <meta property="og:type" content="website" />
       <meta name="twitter:card" content="summary_large_image" />
@@ -108,6 +128,7 @@ const RewardPoint: NextPageWithLayout = () => {
           <InviteFriend ownCode={ownInviteCode} />
         </>
     }
+    {/* <InviteConnectModal showModal={showModal} setShowModal={setShowModal} /> */}
   </div>
 }
 
