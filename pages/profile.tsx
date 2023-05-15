@@ -205,7 +205,7 @@ const Profile: NextPageWithLayout = () => {
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Box className={styles.profileHeaderBox}>
-      {isMounted && !is680Size &&
+      {/* {isMounted && !is680Size &&
         <Box className={styles.profileCover}>
           <Image src="/profile_banner.jpg" layout="fill" />
           <Box className={styles.icon1}>
@@ -226,7 +226,7 @@ const Profile: NextPageWithLayout = () => {
           <Box className={styles.icon6}>
             <Image src="/profile_icon6.png" width="365" height="161" />
           </Box>
-        </Box>}
+        </Box>} */}
 
       <Box className={styles.profileHeader}>
         {

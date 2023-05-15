@@ -8,6 +8,15 @@
   }
 }
 
+@layer components {
+  .default-checkin-item {
+    @apply bg-primary/5 border-primary/20;
+  }
+  .active-checkin-item {
+    @apply bg-[rgba(255,187,42,0.08)] border-[rgba(255,187,42,1)];
+  }
+}
+
 html,
 body {
   padding: 0;

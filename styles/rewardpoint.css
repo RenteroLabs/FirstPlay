@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .default-checkin-item {
+    @apply bg-primary/5 border-primary/20 ;
+  }
+}
