@@ -19,6 +19,7 @@ import Activities from "@/components/PageHome/Activities"
 import TopBanner from "@/components/PageHome/TopBanner";
 import { getAllPartnerGames, getHomeConfigData } from "services/cms";
 import WeeklyRank from "@/components/PageHome/WeeklyRank";
+import GoldReward from "@/components/PageHome/GoldReward";
 
 const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProps>> = (props) => {
   const { hotGames, strategys, timestamp, rewardedGames, partnerGames, activityList, weeklynews, bannerList } = props
@@ -27,7 +28,7 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
   const isMounted = useIsMounted()
 
   const is1200Size = useMediaQuery("(max-width: 1200px)")
-
+  const is1120Size = useMediaQuery("(max-width: 1120px)")
   const isMiddleSize = useMediaQuery("(max-width: 900px)")
   const t = useTranslations('Index.Contact')
 
@@ -56,6 +57,7 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
       isMounted && address &&
       <TrialGame />
     }
+    {!is1120Size && <GoldReward />}
     <RewardGames rewardGames={rewardedGames} />
     <Activities activityList={activityList} />
 

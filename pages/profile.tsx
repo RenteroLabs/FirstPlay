@@ -32,13 +32,13 @@ import classNames from "classnames/bind";
 import Link from "next/link";
 
 import EastIcon from '@mui/icons-material/East';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import BalanceTokenItem from "@/components/PageProfile/BalanceTokenItem";
 import ProfileTrialingTask from "@/components/PageProfile/ProfileTrialingTask";
 import { getProfileTrialingTaskList, getUserTokenBalances } from "services/home";
 import ProfileBalanceSection from "@/components/PageProfile/ProfileBalanceSection";
 import { useTranslations } from "next-intl";
 import { getBountiesByTaskIds } from "services/cms";
+import MobileOnlyTip from "@/components/PageModals/MobileOnlyModal";
 
 const cx = classNames.bind(styles)
 
@@ -58,6 +58,7 @@ const Profile: NextPageWithLayout = () => {
   const t = useTranslations('Profile')
 
   const is680Size = useMediaQuery("(max-width: 680px)")
+  const is1120Size = useMediaQuery("(max-width: 1120px)")
 
   const [paramTab, setParamTab] = useQueryParam('tab')
 
@@ -83,6 +84,9 @@ const Profile: NextPageWithLayout = () => {
 
   const [unipassMail, setUnipassMail] = useState<string>()
   const [tokenBalances, setTokenBalances] = useState<Record<string, any>[]>([])
+
+
+  const [showMobileOnlyTip, setShowMobileOnlyTip] = useState<boolean>(false)
 
 
   // 正在试玩游戏任务列表
@@ -205,36 +209,7 @@ const Profile: NextPageWithLayout = () => {
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Box className={styles.profileHeaderBox}>
-      {/* {isMounted && !is680Size &&
-        <Box className={styles.profileCover}>
-          <Image src="/profile_banner.jpg" layout="fill" />
-          <Box className={styles.icon1}>
-            <Image src="/profile_icon1.png" width="56" height="55" />
-          </Box>
-          <Box className={styles.icon2}>
-            <Image src="/profile_icon2.png" width="79" height="78" />
-          </Box>
-          <Box className={styles.icon3}>
-            <Image src="/profile_icon3.png" width="39" height="36" />
-          </Box>
-          <Box className={styles.icon4}>
-            <Image src="/profile_icon4.png" width="26" height="23" />
-          </Box>
-          <Box className={styles.icon5}>
-            <Image src="/profile_icon5.png" width="381" height="128" />
-          </Box>
-          <Box className={styles.icon6}>
-            <Image src="/profile_icon6.png" width="365" height="161" />
-          </Box>
-        </Box>} */}
-
       <Box className={styles.profileHeader}>
-        {
-          isMounted && !is680Size &&
-          <Box className={styles.profileAvatar}>
-            <Image src="/profile_avatar.png" layout="fill" />
-          </Box>
-        }
 
         <Box className={styles.headerInfo}>
           {
@@ -250,39 +225,43 @@ const Profile: NextPageWithLayout = () => {
                       {address && isMounted && <CopyButton targetValue={address || ""} />}
                       {/* {!address && isMounted && <Typography>Not connect wallet yet !</Typography>} */}
                     </Box>
-                    {Number(passTokenId) > 0 && <Typography className={styles.passNFTInfo}>
+                    {/* {Number(passTokenId) > 0 && <Typography className={styles.passNFTInfo}>
                       Pass-NFT: #{String(passTokenId).padStart(5, "0")}
                       <Box className={styles.iconBox}>
                         <Image src="/polygon-matic-logo.svg" layout="fill" />
                       </Box>
-                    </Typography>}
+                    </Typography>} */}
                   </Box>
                 </Box>
-                {unipassMail && <Box className={styles.unipassLink}>
-                  <a href="https://wallet.unipass.id/" target="_blank" rel="noreferrer">
-                    {t('unipassLinkDesc')}: {unipassMail}
-                    <Box className={styles.arrowIcon}><ArrowForwardIcon /></Box>
-                  </a>
-                </Box>}
+                {
+                  // unipassMail &&
+                  <Box className={styles.unipassLink}>
+                    <a href="https://wallet.unipass.id/" target="_blank" rel="noreferrer">
+                      {t('unipassLinkDesc')}: {unipassMail}
+                    </a>
+                  </Box>}
               </Box>
               :
               <>
+                <Box className={styles.profileAvatar}>
+                  <Image src="/profile_avatar.png" layout="fill" />
+                </Box>
                 <Box className={styles.addressItem}>
-                  {isMounted && address && (ensName || formatAddress(address, 4))}
+                  {isMounted && address && (ensName || formatAddress(address, 6))}
                   {isMounted && address && <CopyButton targetValue={address || ""} />}
                   {isMounted && !address && <Typography>{t('notConnectWalletTip')}</Typography>}
                 </Box>
-                {Number(passTokenId) > 0 && <Typography className={styles.passNFTInfo}>
+                {/* {Number(passTokenId) > 0 && <Typography className={styles.passNFTInfo}>
                   Pass-NFT: #{String(passTokenId).padStart(5, "0")}
                   <Box className={styles.iconBox}>
                     <Image src="/polygon-matic-logo.svg" layout="fill" />
                   </Box>
-                </Typography>}
+                </Typography>} */}
                 {
-                  unipassMail && <Box className={styles.unipassLink}>
+                  unipassMail &&
+                  <Box className={styles.unipassLink}>
                     <a href="https://wallet.unipass.id/" target="_blank" rel="noreferrer">
                       {t('unipassLinkDesc')}: {unipassMail}
-                      <Box className={styles.arrowIcon}><ArrowForwardIcon /></Box>
                     </a>
                   </Box>
                 }
@@ -307,6 +286,12 @@ const Profile: NextPageWithLayout = () => {
       </Box>
     </Box>
     <Box className={styles.profileContent}>
+      {!is1120Size &&
+        <Box className={styles.pointreward} onClick={() => setShowMobileOnlyTip(true)}>
+          <h3>$2 Cash Drops!</h3>
+          <p>Continuous check-in, invite friends to colledt points, get $2 immediately! Complete tasks on mobile to win cash rewards.</p>
+        </Box>}
+      <MobileOnlyTip showModal={showMobileOnlyTip} setShowModal={setShowMobileOnlyTip} />
       <Box className={styles.balanceSection}>
         <Typography variant="h3">{t('rewardBalance')}</Typography>
         {
