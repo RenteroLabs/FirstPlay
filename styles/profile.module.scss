@@ -37,22 +37,30 @@
         padding-bottom: 3.33rem;
 
         .mobileInfo {
+          margin: auto;
           padding: 1.67rem 0 1.33rem;
+          text-align: center;
           .mobileUserInfo {
             display: flex;
             align-items: center;
+            flex-direction: column;
 
             .mobileAvatar {
               width: 4.67rem;
               height: 4.67rem;
               position: relative;
-              margin-right: 0.83rem;
+              background: #222222;
+              box-shadow: 0rem 0.33rem 0.5rem 0rem rgba(0, 0, 0, 0.15);
+              border: 0.17rem solid #ffffff;
+              border-radius: 50%;
+              box-sizing: content-box;
               img {
                 border-radius: 50%;
               }
             }
 
             .infoBox {
+              margin-top: 1.5rem;
               display: flex;
               flex-direction: column;
               justify-content: center;
@@ -69,26 +77,12 @@
                   height: 1rem;
                 }
               }
-              // .passNFTInfo {
-              //   font-size: 1.17rem;
-              //   font-family: Inter-Medium, Inter;
-              //   font-weight: 500;
-              //   color: rgba(#222, 0.5);
-              //   line-height: 1.17rem;
-              //   // margin-top: 0.83rem;
-              //   margin-top: 0.4rem;
-              //   .iconBox {
-              //     width: 1.17rem;
-              //     height: 1.17rem;
-              //     position: relative;
-              //     margin-left: 0.33rem;
-              //   }
-              // }
             }
           }
 
           .unipassLink {
-            margin-top: 0.83rem;
+            text-align: center;
+            margin-top: 0.5rem;
             font-size: 1rem;
             font-family: Inter-Regular, Inter;
             font-weight: 400;

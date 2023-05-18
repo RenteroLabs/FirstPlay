@@ -16,6 +16,7 @@ import { useRequest } from "ahooks"
 import { login2InviteCode, getUserPoint, getInvitorInfo } from "services/invitepoint"
 import DailyCheckIn from "@/components/PageRewardPoint/DailyCheckIn"
 import InviteConnectModal from "@/components/PageRewardPoint/InviteConnectSuccessModal"
+import PointTaskList from "@/components/PageRewardPoint/PointTaskList"
 
 const RewardPoint: NextPageWithLayout = () => {
   const { address } = useAccount()
@@ -126,6 +127,7 @@ const RewardPoint: NextPageWithLayout = () => {
           <ProgressInfo userPoint={userPoint} />
           {/* <DailyCheckIn /> */}
           <InviteFriend ownCode={ownInviteCode} />
+          {/* <PointTaskList /> */}
         </>
     }
     {/* <InviteConnectModal showModal={showModal} setShowModal={setShowModal} /> */}
