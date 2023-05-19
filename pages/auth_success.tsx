@@ -6,10 +6,10 @@ const AuthSuccess: NextPageWithLayout = () => {
 
   useEffect(() => {
     window.close()
-  }, [])
+  })
 
   return <div className=" container flex justify-center items-center h-screen">
-    <h2 className=" text-green-500 text-4xl">Successfully authorized Twitter.</h2>
+    {/* <h2 className=" text-green-500 text-4xl">Successfully authorized Twitter.</h2> */}
   </div>
 }
 

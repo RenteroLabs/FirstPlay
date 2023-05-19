@@ -217,14 +217,17 @@ const Profile: NextPageWithLayout = () => {
   })
 
   const handleAuthTwitter = () => {
-    const authWin = window.open(`${BASE_BACKEND_API}/api/twitter-oauth?address=${address}`, "Auth", 'width=600,height=600')
+    const authWin = window.open(`${BASE_BACKEND_API}/api/twitter-oauth?address=${address}`, "Auth", 'left=300,top=200,width=600,height=600')
 
     // @ts-ignore
     authWin.onclose = function () {
-      // @ts-ignore
-      queryLogin({ address })
+      setTimeout(() => {
+        console.log("abc")
+
+        // @ts-ignore
+        queryLogin({ address })
+      }, 500)
     }
-    // window.open(`${BASE_BACKEND_API}/api/twitter-oauth?address=${address}`, '_self')
   }
 
   return <Box className={styles.containerBox}>
