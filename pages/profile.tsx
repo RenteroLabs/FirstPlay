@@ -218,7 +218,12 @@ const Profile: NextPageWithLayout = () => {
 
   const handleAuthTwitter = () => {
     const authWin = window.open(`${BASE_BACKEND_API}/api/twitter-oauth?address=${address}`, "Auth", 'width=600,height=600')
-    
+
+    // @ts-ignore
+    authWin.onclose = function () {
+      // @ts-ignore
+      queryLogin({ address })
+    }
     // window.open(`${BASE_BACKEND_API}/api/twitter-oauth?address=${address}`, '_self')
   }
 

@@ -1,9 +1,12 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect } from "react";
 import { NextPageWithLayout } from "./_app";
 import { GetStaticProps, GetStaticPropsContext } from "next";
 
-
 const AuthSuccess: NextPageWithLayout = () => {
+
+  useEffect(() => {
+    window.close()
+  }, [])
 
   return <div className=" container flex justify-center items-center h-screen">
     <h2 className=" text-green-500 text-4xl">Successfully authorized Twitter.</h2>
