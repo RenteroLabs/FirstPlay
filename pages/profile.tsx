@@ -221,12 +221,9 @@ const Profile: NextPageWithLayout = () => {
 
     // @ts-ignore
     authWin.onclose = function () {
-      setTimeout(() => {
-        console.log("abc")
-
-        // @ts-ignore
-        queryLogin({ address })
-      }, 500)
+      console.log("close window")
+      // @ts-ignore
+      queryLogin({ address })
     }
   }
 
