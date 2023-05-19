@@ -217,7 +217,9 @@ const Profile: NextPageWithLayout = () => {
   })
 
   const handleAuthTwitter = () => {
-    window.open(`${BASE_BACKEND_API}/api/twitter-oauth?address=${address}`, '_self')
+    const authWin = window.open(`${BASE_BACKEND_API}/api/twitter-oauth?address=${address}`, "Auth", 'width=600,height=600')
+    
+    // window.open(`${BASE_BACKEND_API}/api/twitter-oauth?address=${address}`, '_self')
   }
 
   return <Box className={styles.containerBox}>
