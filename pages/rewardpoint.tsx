@@ -21,7 +21,10 @@ import PointTaskList from "@/components/PageRewardPoint/PointTaskList"
 const RewardPoint: NextPageWithLayout = () => {
   const { address } = useAccount()
   const isMounted = useIsMounted()
+
   const [ownInviteCode, setOwnInviteCode] = useState<string>()
+  const [bindTwitterName, setBindTwitterName] = useState<string>()
+
   const [userPoint, setUserPoint] = useState<number>(0)
   const [invitor, setInvitor] = useState<string>()
 
@@ -36,6 +39,7 @@ const RewardPoint: NextPageWithLayout = () => {
     onSuccess: ({ data }) => {
       // console.log(data)
       setOwnInviteCode(data?.invite_code)
+      setBindTwitterName(data?.twitter_name)
     }
   })
 
@@ -127,7 +131,7 @@ const RewardPoint: NextPageWithLayout = () => {
           <ProgressInfo userPoint={userPoint} />
           {/* <DailyCheckIn /> */}
           <InviteFriend ownCode={ownInviteCode} />
-          {/* <PointTaskList /> */}
+          <PointTaskList bindTwitterName={bindTwitterName as string} />
         </>
     }
     {/* <InviteConnectModal showModal={showModal} setShowModal={setShowModal} /> */}

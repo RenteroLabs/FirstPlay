@@ -41,3 +41,34 @@ export const getInviteePointDetail = async (address: string) => {
   const data = await fetch(`${BASE_BACKEND_API}/api/invitee-point-details?address=${address}`)
   return data.json()
 }
+
+// Point task list
+export const getPointTaskList = async (address: string) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/point-tasks?address=${address}`)
+  return data.json()
+}
+
+// Point task twitter verify
+export const verifyReTwitterPointTask = async ({ address, tweet_id }: { address: string, tweet_id: string }) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/twitter-verify?address=${address}&tweet_id=${tweet_id}`)
+  return data.json()
+}
+
+
+export interface PointByPointTaskParams {
+  address: string,
+  type: 'register' | 'task' | 'tweet',
+  task_id?: string,
+  tweet_id?: string
+}
+export const getPointByPointTask = async (params: PointByPointTaskParams) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/receive-point`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(params)
+  })
+
+  return data.json()
+}
