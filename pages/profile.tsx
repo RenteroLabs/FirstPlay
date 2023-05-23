@@ -92,6 +92,7 @@ const Profile: NextPageWithLayout = () => {
 
   const [showMobileOnlyTip, setShowMobileOnlyTip] = useState<boolean>(false)
 
+  const [authWindow, setAuthWindow] = useState<any>()
 
   // 正在试玩游戏任务列表
   const [trialingTaskList, setTrialingTaskList] = useState<Record<string, any>[]>([])
@@ -219,13 +220,24 @@ const Profile: NextPageWithLayout = () => {
   const handleAuthTwitter = () => {
     const authWin = window.open(`${BASE_BACKEND_API}/api/twitter-oauth?address=${address}`, "Auth", 'left=300,top=200,width=600,height=600')
 
-    // @ts-ignore
-    authWin.onclose = function () {
-      console.log("close window")
-      // @ts-ignore
-      queryLogin({ address })
-    }
+    setAuthWindow(authWin)
   }
+
+  // 监听 Auth window，当窗口关闭时，重新请求 login 数据
+  useEffect(() => {
+    let timer: string | number | NodeJS.Timeout | undefined
+    if (authWindow) {
+      timer = setInterval(() => {
+        if (authWindow?.closed) {
+          clearInterval(timer)
+          // @ts-ignore
+          queryLogin({ address })
+        }
+      }, 500)
+    }
+
+    return () => clearInterval(timer)
+  }, [authWindow])
 
   return <Box className={styles.containerBox}>
     <Head>
