@@ -164,5 +164,10 @@
     "5007": "Không thể gửi vào thời điểm này, vui lòng thử lại sau!",
     "5008": "Nhiệm vụ đang offline!",
     "5009": "Không gửi thông tin giống nhau nhiều lần!"
+  },
+  "RewardPoint": {
+    "ShowGetRewardListTitle": "People Have Get $2 Rewards",
+    "ModalInviteSuccess": "Invite Successful",
+    "ModalHelpedFriends": "You have successfully helped your friend"
   }
 }
