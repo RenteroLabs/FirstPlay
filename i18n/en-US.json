@@ -164,5 +164,10 @@
     "5007": "Unable to submit at this time, try again later！",
     "5008": "The task is offline!",
     "5009": "Do not submit the same information repeatedly!"
+  },
+  "RewardPoint": {
+    "ShowGetRewardListTitle": "People Have Get $2 Rewards",
+    "ModalInviteSuccess": "Invite Successful",
+    "ModalHelpedFriends": "You have successfully helped your friend"
   }
 }

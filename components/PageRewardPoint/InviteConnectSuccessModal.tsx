@@ -1,4 +1,5 @@
 import { Modal } from "antd";
+import { useTranslations } from "next-intl";
 import React from "react";
 
 interface InviteConnectModalProps {
@@ -8,6 +9,7 @@ interface InviteConnectModalProps {
 const InviteConnectModal: React.FC<InviteConnectModalProps> = (props) => {
   const { showModal, setShowModal } = props
 
+  const t = useTranslations('RewardPoint')
 
   return <Modal
     open={showModal}
@@ -18,8 +20,8 @@ const InviteConnectModal: React.FC<InviteConnectModalProps> = (props) => {
   >
     <div className="flex flex-col justify-center">
       <h3 className="text-[3rem] text-[#FFBB2A] font-Inter-SemiBold font-semibold leading-[2.67rem]">+100</h3>
-      <h4>Invite Successful</h4>
-      <p>You have successfully helped your friend</p>
+      <h4>{t('ModalInviteSuccess')}</h4>
+      <p>{t('ModalHelpedFriends')}</p>
     </div>
   </Modal>
 }

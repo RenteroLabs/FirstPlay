@@ -1,6 +1,6 @@
+import { useTranslations } from "next-intl";
 import React from "react";
 import Slider from "react-slick";
-
 
 const mockRewardList: string[] = [
   '0xda824f****kd32 get 300 points 10 min ago',
@@ -17,9 +17,11 @@ const mockRewardList: string[] = [
 
 const GetRewardList = () => {
 
+  const t = useTranslations('RewardPoint')
+  
   return <div className="bg-white rounded-2xl px-[0.83rem] pt-[1.67rem] pb-5 mx-4 mt-[0.83rem] mb-4">
     <h4 className="text-[1rem] font-Inter-Medium font-medium text-primary mb-[0.83rem]">
-      <span className="text-[#8E50E4]">107</span> People Have Get $2 Rewards</h4>
+      <span className="text-[#8E50E4]">107</span> {t('ShowGetRewardListTitle')}</h4>
 
     <div>
       {/* https://react-slick.neostack.com/docs/example/auto-play */}

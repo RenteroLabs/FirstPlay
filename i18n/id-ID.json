@@ -164,5 +164,10 @@
     "5007": "Tidak dapat mengirimkan saat ini, coba lagi nanti!",
     "5008": "Tugas sedang offline!",
     "5009": "Jangan mengirim informasi yang sama berkali-kali!"
+  },
+  "RewardPoint": {
+    "ShowGetRewardListTitle": "People Have Get $2 Rewards",
+    "ModalInviteSuccess": "Invite Successful",
+    "ModalHelpedFriends": "You have successfully helped your friend"
   }
 }

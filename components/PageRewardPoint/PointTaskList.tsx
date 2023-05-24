@@ -7,6 +7,7 @@ import { PointByPointTaskParams, getPointByPointTask, getPointTaskList, verifyRe
 import { toast } from "react-toastify";
 import { CircularProgress } from "@mui/material";
 import { BASE_BACKEND_API } from "constants/index";
+import { isEmpty } from "lodash";
 
 interface TaskCardProps {
   taskInfo: Record<string, any>
@@ -224,7 +225,9 @@ const PointTaskList: React.FC<PointTaskListProps> = (props) => {
         }
       })
 
-      setTaskList(taskList)
+      if (!isEmpty(taskList)) {
+        setTaskList([taskList[0]])
+      }
     }
   })
 
