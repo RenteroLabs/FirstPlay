@@ -129,7 +129,7 @@ const RewardPoint: NextPageWithLayout = () => {
         </> :
         <>
           <ProgressInfo userPoint={userPoint} />
-          {/* <DailyCheckIn /> */}
+          <DailyCheckIn />
           <InviteFriend ownCode={ownInviteCode} />
           <PointTaskList bindTwitterName={bindTwitterName as string} />
         </>

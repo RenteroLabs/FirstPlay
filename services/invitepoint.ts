@@ -72,3 +72,13 @@ export const getPointByPointTask = async (params: PointByPointTaskParams) => {
 
   return data.json()
 }
+
+
+/**
+ * 获取每日签到积分
+ * @returns 
+ */
+export const getWeeklyCheckinPoint = () => {
+
+  return new Promise((resolve) => setTimeout(() => resolve({}), 600))
+}
