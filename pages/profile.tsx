@@ -40,7 +40,7 @@ import { useTranslations } from "next-intl";
 import { getBountiesByTaskIds } from "services/cms";
 import MobileOnlyTip from "@/components/PageModals/MobileOnlyModal";
 import { BASE_BACKEND_API } from "constants/index";
-import { login2InviteCode } from 'services/invitepoint'
+import { getUserPoint, login2InviteCode } from 'services/invitepoint'
 
 const cx = classNames.bind(styles)
 
@@ -59,6 +59,7 @@ const Profile: NextPageWithLayout = () => {
 
   const t = useTranslations('Profile')
 
+  const is600Size = useMediaQuery("(max-width: 600px)")
   const is680Size = useMediaQuery("(max-width: 680px)")
   const is1120Size = useMediaQuery("(max-width: 1120px)")
 
@@ -67,6 +68,7 @@ const Profile: NextPageWithLayout = () => {
   const [activeTab, setActiveTab] = useState<number>(TabItem.Trialing)
 
   const [twitterName, setTwitterName] = useState<string>()
+  const [userPointInfo, setUserPointInfo] = useState<Record<string, any>>()
 
   useEffect(() => {
     if (router.query?.tab == 'Activity') {
@@ -162,6 +164,14 @@ const Profile: NextPageWithLayout = () => {
     }
   })
 
+  // 获取用户积分数据
+  const { run: queryUserPoint } = useRequest(getUserPoint, {
+    manual: true,
+    onSuccess: ({ data }) => {
+      console.log(data)
+      setUserPointInfo(data)
+    }
+  })
 
 
   useEffect(() => {
@@ -176,6 +186,9 @@ const Profile: NextPageWithLayout = () => {
 
       // 获取用户 login 信息
       queryLogin({ address })
+
+      // 获取用户积分数据
+      queryUserPoint(address)
 
       // 判断用户是否拥有试玩 NFT
       queryPassNFT({
@@ -238,6 +251,10 @@ const Profile: NextPageWithLayout = () => {
 
     return () => clearInterval(timer)
   }, [authWindow])
+
+  const handleExchangePoint = () => {
+
+  }
 
   return <Box className={styles.containerBox}>
     <Head>
@@ -354,6 +371,21 @@ const Profile: NextPageWithLayout = () => {
           <p>Continuous check-in, invite friends to colledt points, get $2 immediately! Complete tasks on mobile to win cash rewards.</p>
         </Box>}
       <MobileOnlyTip showModal={showMobileOnlyTip} setShowModal={setShowMobileOnlyTip} />
+
+      {is600Size &&
+        <Box className={styles.pointSection}>
+          <Typography variant="h3">Integration</Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Box className={styles.pointLabel}>
+              {userPointInfo?.point || 0} Golds
+            </Box>
+            <Box onClick={handleExchangePoint} className={`${styles.exchangeBtn} ${userPointInfo?.status !== 'withdrawable' && styles.exchangeBtn_disable}`} >
+              Exchange
+            </Box>
+          </Box>
+          <Typography>Reaching 10,000 can be exchanged for USDT</Typography>
+        </Box>}
+
       <Box className={styles.balanceSection}>
         <Typography variant="h3">{t('rewardBalance')}</Typography>
         {
