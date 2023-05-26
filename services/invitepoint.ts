@@ -1,3 +1,4 @@
+import { JsonRpcProvider } from '@ethersproject/providers';
 import { BASE_BACKEND_API } from './../constants/index'
 import qs from 'qs'
 
@@ -81,4 +82,18 @@ export const getPointByPointTask = async (params: PointByPointTaskParams) => {
 export const getWeeklyCheckinPoint = () => {
 
   return new Promise((resolve) => setTimeout(() => resolve({}), 600))
+}
+
+/**
+ * 每周积分列表
+ */
+interface WeeklyPointListProps {
+  time: string,
+  address: string
+}
+export const getWeeklyPointList = async (params: WeeklyPointListProps) => {
+  const { time, address } = params
+  const data = await fetch(`${BASE_BACKEND_API}/api/check-dates?time=${time}&address=${address}`)
+
+  return data.json()
 }
