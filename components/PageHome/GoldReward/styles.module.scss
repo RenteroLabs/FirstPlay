@@ -106,9 +106,33 @@
   .goldReward {
     .goldRewardBox {
       width: calc(100% - 2rem);
-      padding-top: 0rem;
-      // padding-bottom: 1.17rem;
-      padding-bottom: 0;
+      padding-top: 2rem;
+
+      .posterBox {
+        margin-top: 1rem;
+        height: 10.83rem;
+        background-size: cover;
+        background-position: 80% 100%;
+
+        h3 {
+          font-size: 1.75rem;
+          font-family: Inter-Bold, Inter;
+          font-weight: bold;
+          color: #ffbb2a;
+          line-height: 1.75rem;
+          margin-top: 2.33rem;
+          margin-bottom: 0.67rem;
+          height: auto;
+        }
+        p {
+          font-size: 1.33rem;
+          font-family: Inter-Medium, Inter;
+          font-weight: 500;
+          color: #ffbb2a;
+          line-height: 1.83rem;
+          max-width: 85%;
+        }
+      }
     }
   }
 }

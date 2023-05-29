@@ -57,7 +57,9 @@ const FirstPlay: NextPageWithLayout<InferGetStaticPropsType<typeof getStaticProp
       isMounted && address &&
       <TrialGame />
     }
-    {!is1120Size && <GoldReward />}
+    {
+    // !is1120Size && 
+    <GoldReward />}
     <RewardGames rewardGames={rewardedGames} />
     <Activities activityList={activityList} />
 

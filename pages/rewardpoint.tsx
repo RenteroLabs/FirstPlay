@@ -44,7 +44,7 @@ const RewardPoint: NextPageWithLayout = () => {
   })
 
   // 获取当前钱包地址用户积分
-  const { run: queryUserPoint } = useRequest(getUserPoint, {
+  const { run: queryUserPoint, refresh: refreshUserPoint } = useRequest(getUserPoint, {
     manual: true,
     onSuccess: ({ data }) => {
       // console.log(data)
@@ -129,7 +129,7 @@ const RewardPoint: NextPageWithLayout = () => {
         </> :
         <>
           <ProgressInfo userPoint={userPoint} />
-          <DailyCheckIn />
+          <DailyCheckIn refreshUserPoint={refreshUserPoint} />
           <InviteFriend ownCode={ownInviteCode} />
           <PointTaskList bindTwitterName={bindTwitterName as string} />
         </>

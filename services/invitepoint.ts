@@ -75,14 +75,7 @@ export const getPointByPointTask = async (params: PointByPointTaskParams) => {
 }
 
 
-/**
- * 获取每日签到积分
- * @returns 
- */
-export const getWeeklyCheckinPoint = () => {
 
-  return new Promise((resolve) => setTimeout(() => resolve({}), 600))
-}
 
 /**
  * 每周积分列表
@@ -94,6 +87,41 @@ interface WeeklyPointListProps {
 export const getWeeklyPointList = async (params: WeeklyPointListProps) => {
   const { time, address } = params
   const data = await fetch(`${BASE_BACKEND_API}/api/check-dates?time=${time}&address=${address}`)
+
+  return data.json()
+}
+
+/**
+ * 每天签到
+ */
+export const postDailyCheckIn = async (params: WeeklyPointListProps) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/check`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(params)
+  })
+  return data.json()
+}
+
+/**
+ * 获取每日签到积分
+ * @returns 
+ */
+interface WeeklyCheckinPointParams {
+  address: string,
+  type: string,
+  date: string
+}
+export const getWeeklyCheckinPoint = async (params: WeeklyCheckinPointParams) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/receive-point`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(params)
+  })
 
   return data.json()
 }
