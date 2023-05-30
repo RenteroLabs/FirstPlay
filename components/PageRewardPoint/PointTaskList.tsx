@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { CircularProgress } from "@mui/material";
 import { BASE_BACKEND_API } from "constants/index";
 import { isEmpty } from "lodash";
+import { useTranslations } from "next-intl";
 
 interface TaskCardProps {
   taskInfo: Record<string, any>
@@ -18,15 +19,17 @@ const TaskCard: React.FC<TaskCardProps> = (props) => {
   const { taskInfo, bindTwitterName, refresh } = props
   const { address } = useAccount()
 
+  const t = useTranslations('RewardPoint.PointTask')
+
   const [twitterVerified, setTwitterVerified] = useState<boolean>(false)
 
   const [authWindow, setAuthWindow] = useState<any>()
 
   const taskTitle = useMemo(() => {
     switch (taskInfo?.type) {
-      case 'register': return 'Sign up';
-      case 'task': return "Complete bounty";
-      case 'tweet': return 'Retweet & like twitter'
+      case 'register': return t('SignupType');
+      case 'task': return t('BountyType');
+      case 'tweet': return t('TweetType')
       default: return ''
     }
   }, [taskInfo])
@@ -126,7 +129,7 @@ const TaskCard: React.FC<TaskCardProps> = (props) => {
     {/* Type: Sign Up */}
     {taskInfo?.type === 'register' &&
       <p className="text-base font-Inter-Regular font-normal leading-[1.17rem] mb-0">
-        Connect wallet to FirstPlay</p>}
+        {t('SignupDesc')}</p>}
 
 
     {/* Type: Bounty task */}
@@ -165,7 +168,7 @@ const TaskCard: React.FC<TaskCardProps> = (props) => {
         (taskInfo?.status === "unclaimed" || twitterVerified) &&
         <div className="mt-[1.33rem] h-[2.33rem] rounded-[1.17rem] bg-gradient-to-b from-[#FFBB2A] to-[#FF9A00] shadow-[0rem_0.67rem_1.67rem_0rem_rgba(255,187,42,0.3)] leading-[2.33rem] px-4 text-[1rem] font-Inter-SemiBold font-semibold text-white cursor-pointer inline-flex items-center" onClick={handleQueryTaskPoint}>
           <svg className="mr-[0.42rem]" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6561" width="16" height="16"><path d="M577.536 766.634667a68.266667 68.266667 0 0 1-95.573333 0L197.973333 483.328a68.266667 68.266667 0 0 1 95.573334-95.573333l236.202666 235.52 402.773334-402.773334A512 512 0 0 0 0 512a512 512 0 0 0 1024 0 510.634667 510.634667 0 0 0-27.306667-164.522667z" fill="#ffffff" p-id="6562"></path></svg>
-          Receive! +{taskInfo?.point}
+          {t('ReceiveBtn')} +{taskInfo?.point}
           {queryLoading &&
             <CircularProgress sx={{ circle: { stroke: 'rgb(33, 150, 243)' } }} style={{ width: '20px !important', height: "20px !important" }} className="w-5 h-5 ml-2" />}
         </div>
@@ -174,7 +177,7 @@ const TaskCard: React.FC<TaskCardProps> = (props) => {
       {
         taskInfo?.type === 'tweet' && taskInfo?.status === 'uncompleted' &&
         <div className="mt-[1.33rem]  h-[2.33rem] w-[7.5rem] rounded-[1.17rem] bg-[#8E50E4] inline-flex justify-center items-center text-[1rem] font-Inter-SemiBold font-semibold text-white cursor-pointer" onClick={handleVerifyTwitter}>
-          Verify
+          {t('VerifyBtn')}
           {verifyLoading &&
             <CircularProgress sx={{ circle: { stroke: 'rgb(33, 150, 243)' } }} style={{ width: '20px !important', height: "20px !important" }} className="w-5 h-5 ml-2" />}
         </div>
@@ -190,6 +193,8 @@ const PointTaskList: React.FC<PointTaskListProps> = (props) => {
   const { bindTwitterName } = props
 
   const { address } = useAccount()
+
+  const t = useTranslations('RewardPoint.PointTask')
 
   const [taskList, setTaskList] = useState<Record<string, any>[]>([])
 
@@ -238,9 +243,8 @@ const PointTaskList: React.FC<PointTaskListProps> = (props) => {
   }, [address])
 
   return <div className="mx-4 mt-[1.67rem]">
-    <h3 className="text-2xl font-Inter-SemiBold font-semibold leading-6">Integral Task List</h3>
+    <h3 className="text-2xl font-Inter-SemiBold font-semibold leading-6">{t('PointTaskTitle')}</h3>
     <div>
-
       {
         taskList.map((item, index) => {
           return <TaskCard

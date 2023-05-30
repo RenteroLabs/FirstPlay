@@ -125,3 +125,15 @@ export const getWeeklyCheckinPoint = async (params: WeeklyCheckinPointParams) =>
 
   return data.json()
 }
+
+
+export const postWithdrawPointsToMoney = async (address: string) => {
+  const data = await fetch(`${BASE_BACKEND_API}/api/withdraw-point`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ address })
+  })
+  return data.json()
+}

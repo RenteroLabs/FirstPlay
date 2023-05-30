@@ -1,6 +1,6 @@
 import { NextPageWithLayout, unipassInstance } from "./_app";
 import React, { ReactElement, useEffect, useMemo, useState } from 'react';
-import { Box, Stack, Tab, Tabs, Typography, useMediaQuery } from "@mui/material";
+import { Box, CircularProgress, Stack, Tab, Tabs, Typography, useMediaQuery } from "@mui/material";
 import Layout from "@/components/Layout";
 import Image from 'next/image';
 import { GetStaticProps, GetStaticPropsContext } from "next";
@@ -40,7 +40,8 @@ import { useTranslations } from "next-intl";
 import { getBountiesByTaskIds } from "services/cms";
 import MobileOnlyTip from "@/components/PageModals/MobileOnlyModal";
 import { BASE_BACKEND_API } from "constants/index";
-import { getUserPoint, login2InviteCode } from 'services/invitepoint'
+import { getUserPoint, login2InviteCode, postWithdrawPointsToMoney } from 'services/invitepoint'
+import { toast } from "react-toastify";
 
 const cx = classNames.bind(styles)
 
@@ -165,7 +166,7 @@ const Profile: NextPageWithLayout = () => {
   })
 
   // 获取用户积分数据
-  const { run: queryUserPoint } = useRequest(getUserPoint, {
+  const { run: queryUserPoint, refresh: refreshUserPoints } = useRequest(getUserPoint, {
     manual: true,
     onSuccess: ({ data }) => {
       console.log(data)
@@ -173,6 +174,31 @@ const Profile: NextPageWithLayout = () => {
     }
   })
 
+  const { run: switchPointsToMoney, loading: switchPointLoading } = useRequest(postWithdrawPointsToMoney, {
+    manual: true,
+    onSuccess: ({ data, code, message }) => {
+      if (code != 0) {
+        toast.error(message, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          // theme: "colored",
+        });
+      } else {
+        refreshUserPoints()
+      }
+    }
+  })
+
+  const handleSwitchPoints = () => {
+    if (userPointInfo?.status === 'withdrawable') {
+      switchPointsToMoney(address as string)
+    }
+  }
 
   useEffect(() => {
     if (!address) {
@@ -251,10 +277,6 @@ const Profile: NextPageWithLayout = () => {
 
     return () => clearInterval(timer)
   }, [authWindow])
-
-  const handleExchangePoint = () => {
-
-  }
 
   return <Box className={styles.containerBox}>
     <Head>
@@ -379,8 +401,10 @@ const Profile: NextPageWithLayout = () => {
             <Box className={styles.pointLabel}>
               {userPointInfo?.point || 0} Golds
             </Box>
-            <Box onClick={handleExchangePoint} className={`${styles.exchangeBtn} ${userPointInfo?.status !== 'withdrawable' && styles.exchangeBtn_disable}`} >
-              Exchange
+            <Box onClick={handleSwitchPoints} className={`${styles.exchangeBtn} ${userPointInfo?.status !== 'withdrawable' && styles.exchangeBtn_disable}`} >
+              {userPointInfo?.status == 'withdrawing' ? 'Withdrawing' : 'Exchange'}
+              {switchPointLoading &&
+                <CircularProgress sx={{ circle: { stroke: 'rgb(33, 150, 243)' } }} style={{ width: '20px !important', height: "20px !important" }} className="w-5 h-5 ml-2" />}
             </Box>
           </Box>
           <Typography>Reaching 10,000 can be exchanged for USDT</Typography>

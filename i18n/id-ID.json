@@ -168,6 +168,48 @@
   "RewardPoint": {
     "ShowGetRewardListTitle": "People Have Get $2 Rewards",
     "ModalInviteSuccess": "Invite Successful",
-    "ModalHelpedFriends": "You have successfully helped your friend"
+    "ModalHelpedFriends": "You have successfully helped your friend",
+    "YourFriendInvite": "Your friend <span>xxx</span> invites you to help get cash rewards",
+    "DailyCheckInSectionTitle": "Daily check-in",
+    "CheckInBtn": "Check in",
+    "CheckedInBtn": "Checked in",
+    "DailyCheckInTip": "{checkedNum}-day streak! Check in for {unCheckedNum} more days to earn an additional 100 points.",
+    "InviteSectionTitle": "Invite friends",
+    "InviteSectionSubtitle": "Invite friends to earn combined rewards.",
+    "ModuleTitle": "Successfully invited someone",
+    "ShareInvite_First": "Complete registration",
+    "ShareInvite_Second": "Complete a bounty",
+    "InviteWord": "Invite",
+    "CopyLink": "Copy Link",
+    "InviteesTitle": "Invitees",
+    "ViewAllInviteeList": "View all",
+    "NoneInviteeYet": "No invitee yet!",
+    "PointTask": {
+      "PointTaskTitle": "Integral Task List",
+      "SignupType": "Sign up",
+      "BountyType": "Complete bounty",
+      "TweetType": "Retweet & like twitter",
+      "SignupDesc": "Connect wallet to FirstPlay",
+      "ReceiveBtn": "Receive!",
+      "VerifyBtn": "Verify"
+    },
+    "Progress": {
+      "Title": "My progress",
+      "PointLeft": "Just {lessProgress}% less!",
+      "PointInitial": "Initial",
+      "ReachToWithdraw": "Reach 10,000 points to withdraw"
+    },
+    "Signup": {
+      "Title": "Sign Up Bonus Points",
+      "PointInitial": "Initial",
+      "SignupDesc": "After registration, you will help your friends get 100 points, and you will also get an extra 500 points, and you can get 2U red envelopes",
+      "SignupBtn_Default": "Sign up! +500",
+      "SignupBtn_Share": "Sign up and get $2!"
+    },
+    "Banner": {
+      "Title": "$2 Cash Drops !",
+      "NotConnectDesc": "Continuous check-in,invite friends to collect points, get $2 immediately!",
+      "ConnectedDesc": "Collect 10000 points and withdraw 2 USDT immediately!"
+    }
   }
 }
