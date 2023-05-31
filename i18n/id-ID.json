@@ -2,17 +2,17 @@
   "Index": {
     "Header": {
       "games": "Games",
-      "strategy": "Walkthrough Game",
-      "passNFT": "Carnival",
+      "strategy": "Cara Pakai",
+      "passNFT": "Karnaval",
       "connectWallet": "Hubungkan Dompet"
     },
     "Footer": {
       "solgan": "Jadilah yang pertama dan cuan",
       "copyright": "Copyright 2022 Rentero.io All rights reserved.",
       "platform": "Platform",
-      "games": "Games",
+      "games": "Permainan",
       "strategy": "Walkthrough Game",
-      "passNFT": "Carnival",
+      "passNFT": "Karnaval",
       "support": "Support",
       "whitepaper": "Whitepaper",
       "litebook": "Litebook",
@@ -195,21 +195,21 @@
     },
     "Progress": {
       "Title": "Progres saya",
-      "PointLeft": "Just {lessProgress}% less!",
-      "PointInitial": "Initial",
-      "ReachToWithdraw": "Reach 10,000 points to withdraw"
+      "PointLeft": "{lessProgress}% less!",
+      "PointInitial": "Inisial",
+      "ReachToWithdraw": "Mencapai 10.000 poin untuk menarik"
     },
     "Signup": {
-      "Title": "Sign Up Bonus Points",
-      "PointInitial": "Initial",
-      "SignupDesc": "After registration, you will help your friends get 100 points, and you will also get an extra 500 points, and you can get 2U red envelopes",
-      "SignupBtn_Default": "Sign up! +500",
-      "SignupBtn_Share": "Sign up and get $2!"
+      "Title": "Poin Bonus Pendaftaran",
+      "PointInitial": "Inisial",
+      "SignupDesc": "Setelah pendaftaran, Anda akan membantu teman-teman Anda mendapatkan 100 poin, dan Anda juga akan mendapatkan 500 poin tambahan",
+      "SignupBtn_Default": "Daftar! +500",
+      "SignupBtn_Share": "Daftar dan dapatkan $2!"
     },
     "Banner": {
-      "Title": "$2 Cash Drops !",
-      "NotConnectDesc": "Continuous check-in,invite friends to collect points, get $2 immediately!",
-      "ConnectedDesc": "Collect 10000 points and withdraw 2 USDT immediately!"
+      "Title": "Uang Tunai $2 !",
+      "NotConnectDesc": "Cek-in berkelanjutan, undang teman untuk mengumpulkan poin, dapatkan $2 segera!",
+      "ConnectedDesc": "Kumpulkan 10000 poin dan tarik 2 USDT segera!"
     }
   }
 }
