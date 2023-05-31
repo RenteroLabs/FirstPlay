@@ -16,11 +16,15 @@ import { useRequest } from "ahooks"
 import { login2InviteCode, getUserPoint, getInvitorInfo } from "services/invitepoint"
 import DailyCheckIn from "@/components/PageRewardPoint/DailyCheckIn"
 import InviteConnectModal from "@/components/PageRewardPoint/InviteConnectSuccessModal"
+import PointTaskList from "@/components/PageRewardPoint/PointTaskList"
 
 const RewardPoint: NextPageWithLayout = () => {
   const { address } = useAccount()
   const isMounted = useIsMounted()
+
   const [ownInviteCode, setOwnInviteCode] = useState<string>()
+  const [bindTwitterName, setBindTwitterName] = useState<string>()
+
   const [userPoint, setUserPoint] = useState<number>(0)
   const [invitor, setInvitor] = useState<string>()
 
@@ -35,11 +39,12 @@ const RewardPoint: NextPageWithLayout = () => {
     onSuccess: ({ data }) => {
       // console.log(data)
       setOwnInviteCode(data?.invite_code)
+      setBindTwitterName(data?.twitter_name)
     }
   })
 
   // 获取当前钱包地址用户积分
-  const { run: queryUserPoint } = useRequest(getUserPoint, {
+  const { run: queryUserPoint, refresh: refreshUserPoint } = useRequest(getUserPoint, {
     manual: true,
     onSuccess: ({ data }) => {
       // console.log(data)
@@ -124,8 +129,9 @@ const RewardPoint: NextPageWithLayout = () => {
         </> :
         <>
           <ProgressInfo userPoint={userPoint} />
-          {/* <DailyCheckIn /> */}
+          <DailyCheckIn refreshUserPoint={refreshUserPoint} />
           <InviteFriend ownCode={ownInviteCode} />
+          <PointTaskList bindTwitterName={bindTwitterName as string} />
         </>
     }
     {/* <InviteConnectModal showModal={showModal} setShowModal={setShowModal} /> */}

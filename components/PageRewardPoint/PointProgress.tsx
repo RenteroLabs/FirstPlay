@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-import classNames from "classnames";
 import { TOTAL_REWARD_POINTS } from "constants/index";
 
 interface PointProgressProps {
